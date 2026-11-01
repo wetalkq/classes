@@ -51,7 +51,8 @@ def box(x, y, w, h, items, gap=24, align="center", valign="center", cls=""):
 def page(body, bg=B): return f"<!doctype html><html><head><meta charset='utf-8'><style>{CSS}</style></head><body style='background:{bg}'>{body}{FIT}</body></html>"
 def img(pid, x, y, w, h, fy=.45, cls="", r=0): return f'<div class="a f {cls}" style="left:{x}px;top:{y}px;width:{w}px;height:{h}px;border-radius:{r}px;background-image:url(file://{ph(pid,w,h,fy)})"></div>'
 def rect(x, y, w, h, col=C, r=0, border=""): return f'<div class="a" style="left:{x}px;top:{y}px;width:{w}px;height:{h}px;background:{col};border-radius:{r}px;{border}"></div>'
-def logo(col, fs=56): return f'<div style="--fs:{fs}px;color:{col};letter-spacing:6px;border-top:1.5px solid {col};border-bottom:1.5px solid {col};padding:8px 20px 6px">WETALK</div>'
+def logo(col, fs=56): return ''
+def _old_logo(col, fs=56): return f'<div style="--fs:{fs}px;color:{col};letter-spacing:6px;border-top:1.5px solid {col};border-bottom:1.5px solid {col};padding:8px 20px 6px">WETALK</div>'
 
 
 POD, BAG = "Podcast By Our Student", "What’s In My Bag?"
@@ -62,21 +63,19 @@ L = {}
 # 1 фото, логотип, @, заголовок по центру, подпись внизу
 L[1] = page(img("ee305f34", 0, 0, 1080, 1440, .3, "dim")
     + box(90, 70, 900, 260, [logo(C), T(AT, 60, C, it=True)], gap=40, cls="shd")
-    + box(90, 760, 900, 380, [T("Podcast", 110, C, 700), T("By Our Student", 110, C, 700), T("(37) · A2–B1 Level", 46, C, ls=2)], gap=18, cls="shd")
-    + box(90, 1250, 900, 110, [T(SCH, 42, C)], cls="shd"))
+    + box(90, 760, 900, 380, [T("Podcast", 110, C, 700), T("By Our Student", 110, C, 700), T("(37) · A2–B1 Level", 46, C, ls=2)], gap=18, cls="shd"))
 
 # 2 фото сверху, светлая плашка снизу, крупный заголовок слева
 L[2] = page(img("b5e6f2e0", 0, 0, 1080, 840, .4) + rect(0, 840, 1080, 600, B)
     + box(70, 900, 940, 320, [T("What’s In", 110, K, 700), T("My Bag?", 110, K, 700)], gap=8, align="left")
     + box(70, 1230, 940, 70, [T("(47) · By Our Student", 44, G)], align="left")
-    + box(70, 1320, 940, 80, [f'<div style="--fs:52px;display:flex;gap:26px;align-items:baseline"><b>WeTalk</b><i style="color:{O}">{AT}</i></div>'], align="left"))
+    + box(70, 1320, 940, 80, [f'<div style="--fs:52px;display:flex;gap:26px;align-items:baseline"><i style="color:{O}">{AT}</i></div>'], align="left"))
 
 # 3 бежевый фон, текст сверху с выделением, квадратное фото, подпись снизу
 L[3] = page(box(70, 60, 400, 80, [T(AT, 54, O, it=True)], align="left")
     + box(90, 150, 900, 220, [T("Новый Выпуск", 76, K), T("Podcast By Our Student", 64, O, it=True)], gap=16)
     + img("38779c67", 190, 400, 700, 700, .5)
-    + box(90, 1130, 900, 180, [T("(30) · B1–B2 Level", 52, G), T("Живой английский от наших студентов", 40, K)], gap=18)
-    + box(90, 1340, 900, 60, [T("WETALK × @WETALK.RU", 32, K, 700, ls=4)]))
+    + box(90, 1130, 900, 180, [T("(30) · B1–B2 Level", 52, G), T("Живой английский от наших студентов", 40, K)], gap=18))
 
 # 4 зелёный фон, верх, @, светлая карточка с заголовком, низ
 L[4] = page(box(90, 90, 900, 200, [T("Новый Выпуск", 72, C, ls=2, up=True), T(AT, 60, B, it=True)], gap=28)
@@ -85,7 +84,8 @@ L[4] = page(box(90, 90, 900, 200, [T("Новый Выпуск", 72, C, ls=2, up=
     + box(90, 1170, 900, 200, [T("Живой английский", 52, C), T("от наших студентов", 52, C, it=True)], gap=12), bg=G)
 
 # 5 шапка, две страницы, крупный капс снизу
-hdr = lambda col=K: box(50, 50, 980, 60, [f'<div style="--fs:26px;width:100%;display:flex;justify-content:space-between;color:{col};letter-spacing:2px"><span>WETALK</span><span>@wetalk.ru</span><span>2026</span></div>'])
+hdr = lambda col=K: ''
+_old_hdr = lambda col=K: box(50, 50, 980, 60, [f'<div style="--fs:26px;width:100%;display:flex;justify-content:space-between;color:{col};letter-spacing:2px"><span>WETALK</span><span>@wetalk.ru</span><span>2026</span></div>'])
 L[5] = page(hdr() + box(90, 140, 900, 120, [T(AT, 64, O, it=True)])
     + rect(90, 290, 440, 760)
     + box(130, 330, 360, 680, [T("What’s In", 84, G, 700), T("My Bag?", 84, G, 700), T("(47)", 80, O, it=True), T("By Our", 56, K), T("Student", 56, K)], gap=26)
@@ -111,7 +111,6 @@ L[8] = page(hdr() + box(90, 120, 900, 140, [T(AT, 84, O, it=True)])
 
 # 9 фото, верх, @, огромный капс, подзаголовок, низ
 L[9] = page(img("85387ce9", 0, 0, 1080, 1440, .5, "dim")
-    + box(70, 70, 940, 70, [f'<div style="--fs:30px;width:100%;display:flex;justify-content:space-between;color:{C};letter-spacing:3px"><b>WT</b><span>WETALK / ENGLISH SCHOOL</span></div>'], cls="shd")
     + box(70, 720, 940, 560, [T(AT, 64, C, it=True), T("WHAT’S IN", 120, C, 700), T("MY BAG?", 120, C, 700), T("(47) · By Our Student", 54, C)], gap=18, align="left", valign="bottom", cls="shd")
     + box(70, 1320, 940, 60, [T("ЖИВОЙ АНГЛИЙСКИЙ ОТ НАШИХ СТУДЕНТОВ", 28, C, ls=2)], align="left", cls="shd"))
 
@@ -134,7 +133,7 @@ L[11] = page(box(90, 60, 900, 120, [logo(B, 52)])
 
 # 12 фото, светлая карточка по центру, @ ниже, логотип внизу
 L[12] = page(img("5629baa1", 0, 0, 1080, 1440, .4) + rect(170, 150, 740, 840)
-    + box(210, 190, 660, 760, [T(SCH, 40, K), T("The", 130, K, it=True), T("Podcast", 104, K), T("By Our Student", 84, K), T("(30) • B1–B2 Level", 44, G, it=True)], gap=22)
+    + box(210, 190, 660, 760, [T("The", 130, K, it=True), T("Podcast", 104, K), T("By Our Student", 84, K), T("(30) • B1–B2 Level", 44, G, it=True)], gap=22)
     + box(90, 1040, 900, 120, [T(AT, 72, C, it=True)], cls="shd")
     + box(90, 1230, 900, 140, [logo(C, 52)], cls="shd"))
 
@@ -159,7 +158,6 @@ L[14] = page(img("ce64ee2f", 0, 0, 1080, 1440, .5, "dim")
 
 # 16 фото, подпись сверху, @, светлая карточка с курсивом, логотип внизу
 L[16] = page(img("3a12a672", 0, 0, 1080, 1440, .3)
-    + box(90, 80, 900, 90, [T(SCH, 44, C)], cls="shd")
     + box(90, 380, 900, 110, [T(AT, 72, C, it=True)], cls="shd")
     + rect(140, 520, 800, 520)
     + box(180, 560, 720, 440, [T("Podcast", 110, K, it=True), T("By Our Student", 90, K, it=True), T("(9) · 0–A1 Level", 46, G)], gap=24)
