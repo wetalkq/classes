@@ -71,10 +71,10 @@ def stamp():
     m = stamp_mask(500, 320)
     css = f"""body{{background:url(file://{PAPER}) center/1000px}}
 .st{{left:290px;width:500px;height:320px;-webkit-mask:{m} center/100% 100%;mask:{m} center/100% 100%}}
-.row{{left:40px;right:40px;top:560px;display:flex;justify-content:space-between;color:{GREEN};font-size:58px}}
+.row{{left:40px;right:40px;top:535px;display:flex;justify-content:space-between;color:{GREEN};font-size:78px}}
 .low{{left:0;right:0;top:640px;height:800px}}
 .tx{{left:290px;width:500px;top:960px;height:320px;display:flex;flex-direction:column;align-items:center;justify-content:center;color:{GREEN};text-align:center}}
-.tx .s{{font-size:34px;letter-spacing:5px}} .tx .o{{color:{ORANGE};font-style:italic;font-size:40px;margin-top:16px}}"""
+.tx .s{{font-size:38px;letter-spacing:3px}} .tx .o{{color:{ORANGE};font-style:italic;font-size:54px;margin-top:18px}}"""
     return doc(css, f"""<div class="a st bg" style="top:130px;background-image:url(file://{p1})"></div>
 <div class="a row"><span>Podcast</span><span><i>by our</i></span><span>student</span></div>
 <div class="a low bg" style="background-image:url(file://{p2})"></div>
@@ -100,16 +100,19 @@ def b3():  # только фото
     p = photo("a582ad4e", fy=0.4)
     return doc("", f'<div class="a fill bg" style="background-image:url(file://{p})"></div>')
 
-def b4():  # фото + монограмма и слова поверх
+def b4():  # фото + монограмма и слова по центру, плотным блоком
     p = photo("11851dde", fy=0.5)
-    css = f""".sh2{{inset:0;background:linear-gradient(180deg,rgba(0,0,0,.15),rgba(0,0,0,.55) 40%,rgba(0,0,0,.55) 58%,rgba(0,0,0,.15))}} .row{{left:50px;right:50px;top:560px;height:200px;display:flex;align-items:center;justify-content:space-between;color:{CREAM};font-size:50px;text-shadow:0 2px 12px rgba(0,0,0,.6)}}"""
+    css = f""".sh2{{inset:0;background:radial-gradient(ellipse 70% 32% at 50% 50%,rgba(0,0,0,.6),rgba(0,0,0,.15))}}
+.in{{inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:{CREAM};text-shadow:0 2px 14px rgba(0,0,0,.55)}}
+.in .w{{font-size:70px;line-height:1.1}}"""
     return doc(css, f"""<div class="a fill bg" style="background-image:url(file://{p})"></div><div class="a sh2"></div>
-<div class="a row"><span>{WORDS[0]}</span><span>{WORDS[1]}</span>{mono(200, CREAM)}<span>{WORDS[2]}</span><span>{WORDS[3]}</span></div>""")
+<div class="a in"><div class="w">Speak English</div>{mono(300, CREAM)}<div class="w"><i>with confidence.</i></div><div style="font-size:40px;letter-spacing:6px;margin-top:36px">@WETALK.RU</div></div>""")
 
-def b5():  # кремовый, большой логотип по центру
-    css = f"""body{{background:{CREAM}}} .in{{left:0;right:0;top:0;bottom:0;display:flex;flex-direction:column;align-items:center;justify-content:center}}"""
-    return doc(css, f"""<div class="grain"></div><div class="a in">{lock('PODCAST','by our','STUDENT',46,170,GREEN)}
-<div style="color:{GREEN};font-size:34px;letter-spacing:6px;margin-top:40px">(30) · B1-B2 LEVEL</div><div style="color:{ORANGE};font-style:italic;font-size:42px;margin-top:22px">@WeTalk.Ru</div></div>""")
+def b5():  # кремовый, большой логотип по центру (без фото — крупно)
+    css = f"""body{{background:{CREAM}}} .in{{inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:{GREEN}}}"""
+    return doc(css, f"""<div class="grain"></div><div class="a in"><div style="font-size:96px;letter-spacing:16px">PODCAST</div>
+<div style="font-style:italic;font-size:270px;line-height:1">by our</div><div style="font-size:96px;letter-spacing:16px">STUDENT</div>
+<div style="font-size:48px;letter-spacing:6px;margin-top:60px">(30) · B1-B2 LEVEL</div><div style="color:{ORANGE};font-style:italic;font-size:62px;margin-top:24px">@WeTalk.Ru</div></div>""")
 
 def b6():  # полоски (голубые→бежевые) + круглая наклейка
     css = f"""body{{background:repeating-linear-gradient(90deg,{BEIGE} 0 90px,{CREAM} 90px 180px)}}
@@ -130,13 +133,12 @@ def b8():  # только фото
     p = photo("636e13bc", fy=0.5)
     return doc("", f'<div class="a fill bg" style="background-image:url(file://{p})"></div>')
 
-def b9():  # фото + логотип и вертикальные слова справа
+def b9():  # фото + крупный логотип, слова под ним по центру
     p = photo("ebe280e1", fy=0.5)
-    css = f""".sh2{{inset:0;background:rgba(0,0,0,.30)}} .lg{{left:0;right:0;top:640px}}
-.v{{right:120px;color:{CREAM};font-size:46px;writing-mode:vertical-rl;text-shadow:0 1px 8px rgba(0,0,0,.5)}}"""
-    v = "".join(f'<div class="a v" style="top:{90 + i*330}px">{w}</div>' for i, w in enumerate(WORDS))
+    css = f""".sh2{{inset:0;background:radial-gradient(ellipse 75% 30% at 50% 52%,rgba(0,0,0,.6),rgba(0,0,0,.2))}}
+.in{{inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:{CREAM};text-shadow:0 2px 14px rgba(0,0,0,.55)}}"""
     return doc(css, f"""<div class="a fill bg" style="background-image:url(file://{p})"></div><div class="a sh2"></div>
-<div class="a lg" style="text-shadow:0 2px 12px rgba(0,0,0,.45)">{lock('WE','Talk','.RU',46,170,CREAM)}</div>{v}""")
+<div class="a in">{lock('WE','Talk','.RU',72,250,CREAM)}<div style="font-size:60px;margin-top:30px"><i>Speak English with confidence.</i></div></div>""")
 
 
 if __name__ == "__main__":
