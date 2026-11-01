@@ -16,10 +16,10 @@ REELS = [
     dict(r=5, c=2, kind="podcast", top="by our student", level="B1 Level"),
     dict(r=6, c=2, kind="podcast", top="by our student"),
     # --- скрин 3 (ряды 8–11)
-    dict(r=8, c=0, kind="special", title=["Meet", "our student"], quote="“Do you watch movies in English?”"),
+    dict(r=8, c=0, kind="special", title=["Meet our", "student"], quote="w/ her new podcast"),
     dict(r=8, c=1, kind="podcast", top="by our student", level="0-A1 Level"),
     dict(r=8, c=2, kind="podcast", top="by our student", level="A1 Level"),
-    dict(r=10, c=0, kind="special", title=["Отзывы"], quote="и результаты наших учениц", maybe=True),
+    dict(r=10, c=0, kind="special", title=["Отзывы", "& результаты"], quote="наших учениц", maybe=True),
     dict(r=10, c=1, kind="podcast", num=13, place="Jiddah", level="0-A1 Level"),
     dict(r=11, c=0, kind="podcast", num=30, place="Moscow", level="B1-B2 Level"),
     dict(r=11, c=1, kind="podcast", num=25, place="Russia", level="B1-B2 Level"),
@@ -68,10 +68,10 @@ REELS = [
     dict(r=29, c=2, kind="bag", num=48),
     dict(r=30, c=0, kind="podcast", num=28, place="England", level="B1-B2 Level"),
     dict(r=30, c=1, kind="bag", num=49, maybe=True),
-    dict(r=31, c=0, kind="special", title=["Отзыв"], quote="Мадины Алиевой"),
+    dict(r=31, c=0, kind="special", title=["Отзыв", "ученицы"], quote="Мадина Алиева"),
 ]
 
 # Цвета бренда (заменить на точные коды, когда пришлёт)
-BEIGE = "#D9D3C7"
-GREEN = "#43523B"
+BEIGE = "#D2CEC3"
+GREEN = "#415038"
 ORANGE = "#DA5200"

@@ -1,3 +1,5 @@
 build/
 covers_4K/
+fonts/
 *.jpg
+*.zip
