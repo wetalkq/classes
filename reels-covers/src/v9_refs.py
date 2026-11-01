@@ -45,9 +45,9 @@ def coffee_card():
     css = f""".c1{{left:230px;top:300px;width:620px;height:400px;background:{GREEN}}}
 .c2{{left:230px;top:730px;width:620px;height:430px;background:{BEIGE}}}
 .t1{{left:230px;top:300px;width:620px;height:400px;display:flex;flex-direction:column;align-items:center;justify-content:center;color:{CREAM};text-align:center}}
-.t1 .i{{font-style:italic;font-size:120px;line-height:1}} .t1 .s{{font-size:34px;letter-spacing:6px;margin-top:18px}}
-.t2{{left:250px;width:580px;top:1080px;color:{GREEN};font-size:30px;letter-spacing:2px;line-height:1.3;text-align:center}}
-.sig{{right:70px;bottom:60px;color:{CREAM};font-style:italic;font-size:44px;text-shadow:0 1px 8px rgba(0,0,0,.4)}}"""
+.t1 .i{{font-style:italic;font-size:130px;line-height:1}} .t1 .s{{font-size:42px;letter-spacing:6px;margin-top:18px}}
+.t2{{left:240px;width:600px;top:1072px;color:{GREEN};font-size:38px;letter-spacing:2px;line-height:1.3;text-align:center}}
+.sig{{right:70px;bottom:60px;color:{CREAM};font-style:italic;font-size:62px;text-shadow:0 1px 8px rgba(0,0,0,.4)}}"""
     return doc(css, f"""<div class="a fill bg" style="background-image:url(file://{p})"></div>
 <div class="a c1 sh"><div class="grain" style="opacity:.3"></div></div><div class="a c2 sh"><div class="grain"></div></div>
 <div class="a t1"><div class="i">What’s in<br>my bag?</div><div class="s">BY OUR STUDENT</div></div>
@@ -91,10 +91,10 @@ def b1():  # фото + квадратная плашка (как сумка) с
     return doc(css, f"""<div class="a fill bg" style="background-image:url(file://{p})"></div><div class="a sq sh"><div class="grain" style="opacity:.25"></div></div>
 <div class="a in"><div><div style="font-size:46px;letter-spacing:10px">WHAT’S IN</div><div style="font-style:italic;font-size:130px;line-height:1">my bag?</div><div style="font-size:30px;letter-spacing:5px;margin-top:28px">(47) · @WETALK.RU</div></div></div>""")
 
-def b2():  # однотонный (голубой→бежевый), монограмма по центру, слова в одну строку
-    css = f"""body{{background:{BEIGE}}} .row{{left:40px;right:40px;top:620px;height:200px;display:flex;align-items:center;justify-content:space-between;color:{GREEN};font-size:50px}}"""
-    return doc(css, f"""<div class="grain"></div><div class="a row"><span>{WORDS[0]}</span><span>{WORDS[1]}</span>{mono(210, GREEN)}<span>{WORDS[2]}</span><span>{WORDS[3]}</span></div>
-<div class="a c" style="bottom:90px;color:{GREEN};font-size:34px;letter-spacing:6px">@WETALK.RU</div>""")
+def b2():  # бежевый, без фото — крупный блок по центру
+    css = f"""body{{background:{BEIGE}}} .in{{inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:{GREEN}}}"""
+    return doc(css, f"""<div class="grain"></div><div class="a in"><div style="font-size:96px">Speak English</div>{mono(380, GREEN)}
+<div style="font-size:96px"><i>with confidence.</i></div><div style="font-size:48px;letter-spacing:6px;margin-top:60px">@WETALK.RU</div></div>""")
 
 def b3():  # только фото
     p = photo("a582ad4e", fy=0.4)
