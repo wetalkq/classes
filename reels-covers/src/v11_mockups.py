@@ -71,10 +71,10 @@ L[2] = page(img("b5e6f2e0", 0, 0, 1080, 840, .4) + rect(0, 840, 1080, 600, B)
     + box(70, 870, 940, 240, [T("What’s In", 96, K, 700), T("My Bag?", 96, K, 700)], gap=6, align="left")
     + box(70, 1130, 940, 60, [T("«Каждое слово — шаг вперёд»", 42, G, it=True, extra="white-space:nowrap")], align="left")
     + box(70, 1205, 940, 60, [T("(47) · By Our Student", 44, K)], align="left")
-    + box(70, 1280, 940, 70, [f'<div style="--fs:52px;display:flex;gap:26px;align-items:baseline"><i style="color:{O}">{AT}</i></div>'], align="left"))
+    + box(0, 1290, 1080, 80, [T(AT, 52, O, it=True)]))
 
 # 3 бежевый фон, текст сверху с выделением, квадратное фото, подпись снизу
-L[3] = page(box(70, 60, 400, 80, [T(AT, 54, O, it=True)], align="left")
+L[3] = page(box(0, 50, 1080, 80, [T(AT, 54, O, it=True)])
     + box(90, 150, 900, 220, [T("Новый Выпуск", 76, K), T("Podcast By Our Student", 64, O, it=True)], gap=16)
     + img("38779c67", 190, 400, 700, 700, .5)
     + box(90, 1135, 900, 180, [T("(30) · B1–B2 Level", 52, G), T("«Ошибки — это рост»", 52, K, it=True, extra="white-space:nowrap")], gap=18, valign="top"))
@@ -102,7 +102,8 @@ L[6] = page(hdr() + box(90, 130, 900, 140, [T("Podcast By Our Student", 72, K)])
 
 # 7 крупная строка, подпись, @, два фото со скруглением
 L[7] = page(box(60, 60, 960, 420, [T("What’s In", 130, K), T("My Bag?", 130, K)], gap=4, align="left")
-    + box(60, 470, 960, 230, [T("— (47) · By Our Student", 50, K), T("«Язык — это привычка»", 44, G, it=True, extra="white-space:nowrap"), T(AT, 56, O, it=True)], gap=16, align="left")
+    + box(60, 470, 960, 160, [T("— (47) · By Our Student", 50, K), T("«Язык — это привычка»", 44, G, it=True, extra="white-space:nowrap")], gap=16, align="left", valign="top")
+    + box(0, 640, 1080, 70, [T(AT, 56, O, it=True)])
     + img("dbb02000", 40, 720, 485, 660, .4, r=22) + img("11851dde", 555, 720, 485, 660, .4, r=22))
 
 # 8 шапка, @, заголовок жирным курсивом, подзаголовок, фото снизу
@@ -113,7 +114,8 @@ L[8] = page(hdr() + box(90, 120, 900, 140, [T(AT, 84, O, it=True)])
 
 # 9 фото, верх, @, огромный капс, подзаголовок, низ
 L[9] = page(img("85387ce9", 0, 0, 1080, 1440, .5, "dim")
-    + box(70, 640, 940, 560, [T(AT, 64, C, it=True), T("WHAT’S IN", 120, C, 700), T("MY BAG?", 120, C, 700), T("(47) · By Our Student", 54, C)], gap=18, align="left", valign="bottom", cls="shd")
+    + box(0, 610, 1080, 90, [T(AT, 64, C, it=True)], cls="shd")
+    + box(70, 720, 940, 480, [T("WHAT’S IN", 120, C, 700), T("MY BAG?", 120, C, 700), T("(47) · By Our Student", 54, C)], gap=18, align="left", valign="bottom", cls="shd")
     + box(70, 1225, 940, 80, [T("«Ты знаешь больше, чем думаешь»", 44, C, it=True, extra="white-space:nowrap")], align="left", valign="top", cls="shd"))
 
 # 10 фото, верх, капс, светлая карточка, @, курсив снизу
