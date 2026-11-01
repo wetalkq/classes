@@ -66,7 +66,7 @@ L[1] = page(img("ee305f34", 0, 0, 1080, 1440, .3, "dim")
     + box(90, 1250, 900, 110, [T(SCH, 42, C)], cls="shd"))
 
 # 2 фото сверху, светлая плашка снизу, крупный заголовок слева
-L[2] = page(img("b5e6f2e0", 0, 0, 1080, 840, .4) + rect(0, 840, 1080, 600)
+L[2] = page(img("b5e6f2e0", 0, 0, 1080, 840, .4) + rect(0, 840, 1080, 600, B)
     + box(70, 900, 940, 320, [T("What’s In", 110, K, 700), T("My Bag?", 110, K, 700)], gap=8, align="left")
     + box(70, 1230, 940, 70, [T("(47) · By Our Student", 44, G)], align="left")
     + box(70, 1320, 940, 80, [f'<div style="--fs:52px;display:flex;gap:26px;align-items:baseline"><b>WeTalk</b><i style="color:{O}">{AT}</i></div>'], align="left"))
