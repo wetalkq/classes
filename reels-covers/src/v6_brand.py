@@ -41,14 +41,14 @@ def L2(photo, l1, l2, sub, num):
     css = f"""body{{background:{GREEN}}}
 .sheet{{left:90px;top:90px;right:90px;bottom:90px;background:url(file://{PAPER}) center/1100px;box-shadow:0 2px 3px rgba(0,0,0,.3),0 24px 40px rgba(0,0,0,.28)}}
 .lab{{top:150px;color:{ORANGE}}}
-.ph{{left:390px;top:500px;width:300px;height:360px}}
-.w1{{top:330px;color:{GREEN};font-style:italic;font-size:210px;line-height:1;letter-spacing:-5px}}
-.w2{{top:790px;color:{GREEN};font-style:italic;font-size:210px;line-height:1;letter-spacing:-5px}}
-.sub{{top:1080px;color:{GREEN};font-size:30px;letter-spacing:5px;text-transform:uppercase}}
-.num{{top:1135px;color:{GREEN};font-style:italic;font-size:40px}}
+.ph{{left:330px;top:700px;width:420px;height:420px}}
+.w1{{top:250px;color:{GREEN};font-style:italic;font-size:210px;line-height:1;letter-spacing:-5px}}
+.w2{{top:455px;color:{GREEN};font-style:italic;font-size:210px;line-height:1;letter-spacing:-5px}}
+.sub{{top:1170px;color:{GREEN};font-size:30px;letter-spacing:5px;text-transform:uppercase}}
+.num{{top:1220px;color:{GREEN};font-style:italic;font-size:40px}}
 .bot{{bottom:150px;color:{GREEN};opacity:.8}}"""
     return doc(css, f"""<div class="a sheet"></div><div class="a cap c lab">@WeTalk.Ru</div>
-<div class="a ph photo" style="background-image:url(file://{photo});mix-blend-mode:multiply"></div>
+<div class="a ph photo" style="background-image:url(file://{photo});box-shadow:0 1px 2px rgba(0,0,0,.25),0 10px 22px rgba(0,0,0,.18)"></div>
 <div class="a c w1">{E(l1)}</div><div class="a c w2">{E(l2)}</div>
 <div class="a c sub">{E(sub)}</div><div class="a c num">{E(num)}</div>""")
 
@@ -86,7 +86,7 @@ if __name__ == "__main__":
         "f1_podcast_zelenyi": L1(f"{P}/eb1025f3.jpg", "Podcast", "by our student", "(30) · B1-B2 Level", "green"),
         "f2_bag_list": L2(f"{P}/ebe280e1.jpg", "What’s in", "my bag?", "by our student", "(47)"),
         "f3_podcast_list_na_foto": L3(f"{P}/636e13bc.jpg", "Podcast", "by our student", "(16) · B1-B2 Level"),
-        "f4_podcast_foto": L4(f"{P}/dbb02000.jpg", "Podcast", "by our student", "(37) · A2-B1 Level"),
+        "f4_podcast_foto": L4(f"{P3}/a.jpg", "Podcast", "by our student", "(37) · A2-B1 Level"),
         "f5_podcast_bezhevyi": L1(f"{P}/f50a214e.jpg", "Podcast", "by our student", "(9) · 0-A1 Level", "beige"),
     }
     for n, h in pages.items():
