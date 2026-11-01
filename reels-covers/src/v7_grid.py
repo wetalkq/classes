@@ -41,45 +41,47 @@ def t1():
 def t2():
     css = f"""body{{background:{GREEN}}} .top{{top:70px;color:{WHITE}}}
 .big{{top:420px;color:{WHITE};font-weight:700;font-size:118px;line-height:1.08;letter-spacing:2px}}
-.txt{{left:120px;right:120px;bottom:130px;color:{WHITE}}}"""
+.txt{{left:120px;right:120px;bottom:170px;color:{WHITE};font-size:32px;line-height:1.4;text-align:center}}"""
     return doc(css, f"""<div class="grain" style="opacity:.35"></div><div class="a cap c top">@WeTalk.Ru</div>
 <div class="a c big">WHAT’S IN<br>MY BAG?</div>
-<div class="a txt"><div class="body">Every episode, one of our students opens their bag and tells us about everything inside, in English. Real words, real life, real progress.</div><div style="margin-top:26px;font-size:26px;letter-spacing:4px">(47) · BY OUR STUDENT</div></div>""")
+<div class="a txt"><i>by our student</i><br>(47)</div>""")
 
 # 3 — обложка блокнота на спирали, бледный огромный курсив, капс и мелкий текст
 def t3():
     css = f"""body{{background:{BEIGE}}} .bg{{inset:0}}
-.top{{top:70px;color:{GREEN}}} .ghost{{top:250px;left:40px;right:-60px;text-align:center;color:{GREEN};opacity:.28;font-style:italic;font-size:270px;letter-spacing:-6px;white-space:nowrap}}
-.mid{{top:600px;left:190px;right:110px;text-align:center;color:{GREEN}}}
-.mid .t{{font-size:38px;letter-spacing:4px}} .mid .i{{font-style:italic;font-size:58px;line-height:1}} .mid .s{{font-size:28px;letter-spacing:3px;margin-top:30px}}
-.bot{{bottom:80px;left:150px;right:60px;text-align:center;color:{GREEN}}}"""
+.top{{top:70px;color:{GREEN}}} .ghost{{top:200px;left:40px;right:-60px;text-align:center;color:{GREEN};opacity:.28;font-style:italic;font-size:270px;letter-spacing:-6px;white-space:nowrap}}
+.mid{{top:690px;left:150px;right:60px;text-align:center;color:{GREEN}}}
+.mid .t{{font-size:58px;letter-spacing:8px}} .mid .i{{font-style:italic;font-size:104px;line-height:1.05;margin-top:6px}} .mid .s{{font-size:34px;letter-spacing:4px;margin-top:48px}}
+.bot{{bottom:90px;left:150px;right:60px;text-align:center;color:{GREEN}}}"""
     return doc(css, f"""<div class="a bg ph" style="background-image:url(file://{A}/notebook.jpg)"></div>
 <div class="a cap top" style="left:150px;right:60px;text-align:center">@WeTalk.Ru</div><div class="a ghost">Podcast</div>
-<div class="a mid"><div class="t">PODCAST</div><div class="i">by our student</div><div class="s">RECORDED IN ENGLISH</div><div class="body" style="margin-top:34px;font-size:27px">Short, honest conversations recorded by our students. Listen, repeat and learn the English people really speak every day.</div></div>\n<div class="a cap bot">(30) · B1-B2 LEVEL</div>""")
+<div class="a mid"><div class="t">PODCAST</div><div class="i">by our student</div><div class="s">(30) · B1-B2 LEVEL</div></div>
+<div class="a cap bot">wetalk.ru</div>""".replace('<div class="a cap bot">wetalk.ru</div>', ''))
 
 # 4 — наш зелёный фон, фото по центру, огромный курсив через фото
 def t4():
     css = f"""body{{background:{GREEN}}} .top{{top:70px;color:{WHITE}}}
-.p{{left:300px;top:330px;width:470px;height:720px}}
-.big{{top:360px;left:-40px;right:-80px;text-align:center;color:{BEIGE};font-style:italic;font-size:230px;letter-spacing:-5px;white-space:nowrap;opacity:.95}}
-.txt{{left:110px;right:110px;top:1110px;color:{WHITE};text-align:center}}"""
+.p{{left:290px;top:300px;width:500px;height:660px}}
+.big{{top:330px;left:-40px;right:-80px;text-align:center;color:{BEIGE};font-style:italic;font-size:230px;letter-spacing:-5px;white-space:nowrap;opacity:.95}}
+.txt{{left:110px;right:110px;top:1010px;color:{WHITE};text-align:center;font-size:34px;line-height:1.45}}"""
     return doc(css, f"""<div class="grain" style="opacity:.35"></div><div class="a cap c top">@WeTalk.Ru</div>
 <div class="a p ph" style="background-image:url(file://{PH}/eb1025f3.jpg)"></div><div class="a big">Podcast</div>
-<div class="a txt"><div class="body">Our students talk about their lives, plans and favourite things in English. Each episode is a small step to speaking with confidence.</div><div style="margin-top:22px;font-size:26px;letter-spacing:4px">(30) · B1-B2 LEVEL</div></div>""")
+<div class="a txt"><i>by our student</i><br>(30) · B1-B2 Level</div>""")
 
 # 5 — фото на весь кадр, маленький текст по центру
 def t5():
     css = f"""body{{background:#111}} .bg{{inset:0}} .sh2{{inset:0;background:linear-gradient(180deg,rgba(0,0,0,.45),rgba(0,0,0,0) 15%,rgba(0,0,0,.15) 50%,rgba(0,0,0,0) 85%,rgba(0,0,0,.5))}}
-.top{{top:70px;color:{WHITE}}} .mid{{top:610px;color:{WHITE}}} .mid .t{{font-size:36px;letter-spacing:4px}}
-.mid .i{{font-style:italic;font-size:60px;line-height:1}} .mid .s{{font-size:28px;letter-spacing:3px;margin-top:10px}} .bot{{bottom:70px;color:{WHITE}}}"""
-    return doc(css, f"""<div class="a bg ph" style="background-image:url(file://{PH3}/a.jpg)"></div><div class="a sh2"></div>
+.top{{top:70px;color:{WHITE}}} .mid{{top:560px;color:{WHITE};text-shadow:0 2px 14px rgba(0,0,0,.55)}} .mid .t{{font-size:58px;letter-spacing:8px}}
+.mid .i{{font-style:italic;font-size:104px;line-height:1.05;margin-top:6px}} .mid .s{{font-size:34px;letter-spacing:4px;margin-top:34px}} .bot{{bottom:70px;color:{WHITE}}}
+.dk{{inset:0;background:radial-gradient(ellipse 55% 22% at 50% 47%,rgba(0,0,0,.50),rgba(0,0,0,0))}}"""
+    return doc(css, f"""<div class="a bg ph" style="background-image:url(file://{PH3}/a.jpg)"></div><div class="a sh2"></div><div class="a dk"></div>
 <div class="a cap c top">@WeTalk.Ru</div><div class="a c mid"><div class="t">PODCAST</div><div class="i">by our student</div><div class="s">(37) · A2-B1 LEVEL</div></div>
 <div class="a cap c bot">english podcast</div>""")
 
 # 6 — конверт с сургучной печатью, текст под печатью
 def t6():
-    css = f""".bg{{inset:0}} .mid{{top:880px;color:{GREEN}}} .mid .t{{font-size:36px;letter-spacing:4px}}
-.mid .i{{font-style:italic;font-size:64px;line-height:1}} .mid .s{{font-size:28px;letter-spacing:3px;margin-top:12px}} .top{{top:70px;color:{ORANGE}}}"""
+    css = f""".bg{{inset:0}} .mid{{top:860px;color:{GREEN}}} .mid .t{{font-size:58px;letter-spacing:8px}}
+.mid .i{{font-style:italic;font-size:112px;line-height:1.05;margin-top:6px}} .mid .s{{font-size:34px;letter-spacing:4px;margin-top:40px}} .top{{top:70px;color:{ORANGE}}}"""
     return doc(css, f"""<div class="a bg ph" style="background-image:url(file://{A}/seal.jpg)"></div><div class="a cap c top">@WeTalk.Ru</div>
 <div class="a c mid"><div class="t">WHAT’S IN</div><div class="i">my bag?</div><div class="s">(44) · BY OUR STUDENT</div></div>""")
 
@@ -109,13 +111,13 @@ def t8():
 # 9 — наш зелёный фон, белый лист, огромный курсив в две строки, маленькое фото между
 def t9():
     css = f"""body{{background:{GREEN}}} .sheet{{left:120px;top:120px;right:120px;bottom:120px;background:url(file://{PAPER}) center/1000px}}
-.lab{{top:180px;color:{ORANGE}}} .p{{left:380px;top:420px;width:330px;height:380px}}
-.w1{{top:300px;color:{GREEN};font-style:italic;font-size:210px;line-height:1;letter-spacing:-5px}}
-.w2{{top:640px;color:{GREEN};font-style:italic;font-size:132px;line-height:1;letter-spacing:-3px}}
-.txt{{left:200px;right:200px;bottom:180px;color:{GREEN};font-size:24px;text-align:center;letter-spacing:3px}}"""
+.lab{{top:190px;color:{ORANGE}}} .p{{left:430px;top:560px;width:240px;height:260px}}
+.w1{{top:330px;color:{GREEN};font-style:italic;font-size:200px;line-height:1;letter-spacing:-5px}}
+.w2{{top:720px;color:{GREEN};font-style:italic;font-size:130px;line-height:1;letter-spacing:-3px}}
+.txt{{left:200px;right:200px;bottom:200px;color:{GREEN};font-size:28px;text-align:center;letter-spacing:3px}}"""
     return doc(css, f"""<div class="grain" style="opacity:.35"></div><div class="a sheet sh"></div><div class="a cap c lab">@WeTalk.Ru</div>
 <div class="a p ph" style="background-image:url(file://{PH}/62180978.jpg)"></div>
-<div class="a c w1">Podcast</div><div class="a c w2">by our student</div><div class="a txt"><div class="body" style="letter-spacing:0;font-size:26px">Our students talk about their lives, plans and favourite things in English. Each episode is a small step to speaking with confidence.</div><div style="margin-top:20px">(9) · 0-A1 LEVEL</div></div>""")
+<div class="a c w1">Podcast</div><div class="a c w2">by our student</div><div class="a txt">(9) · 0-A1 LEVEL</div>""")
 
 if __name__ == "__main__":
     for i, f in enumerate([t1, t2, t3, t4, t5, t6, t7, t8, t9], 1):
