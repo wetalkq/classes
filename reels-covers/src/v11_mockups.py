@@ -80,7 +80,7 @@ L[3] = page(box(0, 50, 1080, 80, [T(AT, 54, O, it=True)])
     + box(90, 1135, 900, 180, [T("(30) · B1–B2 Level", 52, G), T("«Ошибки — это рост»", 52, K, it=True, extra="white-space:nowrap")], gap=18, valign="top"))
 
 # 4 зелёный фон, верх, @, светлая карточка с заголовком, низ
-L[4] = page(box(90, 90, 900, 200, [T("Новый Выпуск", 72, C, ls=2, up=True), T(AT, 60, B, it=True)], gap=28)
+L[4] = page(box(0, 150, 1080, 120, [T(AT, 64, B, it=True)])
     + rect(120, 340, 840, 760, C, 30)
     + box(170, 380, 740, 680, [T("Podcast", 120, G, 700), T("By Our Student", 96, G, 700), T("(30) · B1–B2 Level", 48, K, ls=2)], gap=26)
     + box(90, 1150, 900, 200, [T("«Начни с одной фразы»", 62, C, it=True, extra="white-space:nowrap")], gap=12, valign="top"), bg=G)
@@ -132,8 +132,7 @@ L[11] = page(box(90, 60, 900, 120, [logo(B, 52)])
     + box(90, 440, 900, 100, [T(AT, 60, B, it=True)])
     + img("387e0534", 0, 580, 330, 600, .3) + rect(375, 580, 330, 600) + rect(750, 580, 330, 600)
     + box(400, 610, 280, 540, [T("0–A1", 64, G, 700), T("A2–B1", 64, G, 700), T("B1–B2", 64, G, 700)], gap=40)
-    + box(775, 610, 280, 540, [T("«Новый", 56, G, it=True), T("язык —", 56, G, it=True), T("новая", 56, G, it=True), T("версия", 56, G, it=True), T("тебя»", 56, G, it=True, extra="white-space:nowrap")], gap=16)
-    + box(90, 1220, 900, 100, [T("НОВЫЙ ВЫПУСК", 60, C, 700, ls=2)], valign="top"), bg=G)
+    + box(775, 610, 280, 540, [T("«Новый", 56, G, it=True), T("язык —", 56, G, it=True), T("новая", 56, G, it=True), T("версия", 56, G, it=True), T("тебя»", 56, G, it=True, extra="white-space:nowrap")], gap=16), bg=G)
 
 # 12 фото, светлая карточка по центру, @ ниже, логотип внизу
 L[12] = page(img("5629baa1", 0, 0, 1080, 1440, .4) + rect(170, 150, 740, 840)
