@@ -82,7 +82,7 @@ def oval(lines, name):
     a = np.asarray(im.convert("RGB")).astype(np.float32)
     a = a * (1 - .45 * lo[..., None]) + (255 - a) * (.22 * hi[..., None]) - a * .08 * M[..., None]
     im = Image.fromarray(a.clip(0, 255).astype(np.uint8)).convert("RGBA")
-    block(im, cx, cy, lines, rx * 2 * .82, BE)
+    block(im, cx, cy, lines, rx * 2 * .68, BE)
     save(im, name)
 
 # --- реф. «кружевная рамка на бумаге»
