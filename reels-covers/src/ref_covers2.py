@@ -55,7 +55,7 @@ def frame_photo(im, photo, col, width, cy):
 # --- реф. «перчатка с карточкой»
 def glove(lines, name):
     im = paper(BE, .03)
-    k = .86; o = load("a_glove_g.png", k); x0 = (W - o.width / S) / 2; y0 = 1430 - 900 * k
+    k = .86; o = load("a_glove_g.png", k); x0 = (W - o.width / S) / 2; y0 = 1290 - 900 * k
     place(im, o, x0, y0, off=(10, 20), blur=24, k=.35)
     cx0, cy0, cx1, cy1 = x0 + 417 * k, y0 + 505 * k, x0 + 1183 * k, y0 + 895 * k
     block(im, (cx0 + cx1) / 2, (cy0 + cy1) / 2, lines, (cx1 - cx0) * .9, G)
