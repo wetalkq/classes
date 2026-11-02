@@ -97,7 +97,16 @@ def framed(im, photo, col, width, cy):
     s, (dx, dy) = shadow_of(fr, blur=18, k=.5); im.alpha_composite(s, (int(x0 * S) + dx, int(y0 * S) + dy))
     im.alpha_composite(ph_im, (int((x0 + ix0 - 12) * S), int((y0 + iy0 - 12) * S)))
     im.alpha_composite(fr, (int(x0 * S), int(y0 * S)))
+    im._win = (x0 + ix0, y0 + iy0, x0 + ix1, y0 + iy1)
     return x0, y0, fr.width / S, fr.height / S
+
+def in_frame(im, lines, step=60):
+    wx0, wy0, wx1, wy1 = im._win; cx, cy = (wx0 + wx1) / 2, (wy0 + wy1) / 2
+    v = Image.new("RGBA", im.size, (14, 16, 10, 0)); m = Image.new("L", im.size, 0)
+    ImageDraw.Draw(m).rectangle((int(wx0 * S), int(wy0 * S), int(wx1 * S), int(wy1 * S)), fill=95)
+    v.putalpha(m); im.alpha_composite(v)
+    y0 = cy - step * (len(lines) - 1) / 2
+    for i, (t, f, size) in enumerate(lines): text(im, (cx, y0 + i * step), t, size, f, BE, shadow=True)
 
 def star(im, cx, cy, r, col, rot=0):
     L = Image.new("RGBA", im.size, (0, 0, 0, 0)); d = ImageDraw.Draw(L)
@@ -165,9 +174,9 @@ def L3():  # реф.2: кружевной конверт с листком, св
     im = im.filter(ImageFilter.GaussianBlur(1.2 * S)); handle(im, G)
     k = .7; o = load("a_envelope.png", k); x0 = (W - o.width / S) / 2; y0 = 1000 - (266 + 1641) / 2 * k
     place(im, o, x0, y0, off=(10, 22), blur=22, k=.4)
-    cx = x0 + (487 + 1237) / 2 * k; cy = y0 + 640 * k
-    for i, (s, f, size) in enumerate([("Let’s Talk", REG, 50), ("With Our", IT, 36), ("Student", IT, 36)]):
-        text(im, (cx, cy - 50 + i * 52), s, size, f, G)
+    cx = x0 + (487 + 1237) / 2 * k; cy = y0 + (418 + 1000) / 2 * k
+    for i, (s, f, size) in enumerate([("Let’s Talk", REG, 52), ("With Our Student", IT, 34)]):
+        text(im, (cx, cy - 26 + i * 56), s, size, f, G)
     save(im, "03_konvert")
 
 def L4():  # реф.3: тиснёная овальная рамка на зелёной бумаге
@@ -213,15 +222,17 @@ def L_sil_photo(photo, lines, name, flip):  # реф.6/7: силуэт пове�
     gl = Image.new("RGBA", (W * S, 900 * S), (12, 14, 8, 0)); gl.putalpha(Image.fromarray(np.repeat(grad, W * S, 1).astype(np.uint8)))
     im.alpha_composite(gl)
     handle(im, BE, shadow=True)
-    headline(im, lines, 500, 66, BE, shadow=True)
+    yy = np.arange(H * S)[:, None] / S
+    band = (np.clip(1 - np.abs(yy - 960) / 260, 0, 1) ** 1.5 * 120).astype(np.uint8)
+    bl = Image.new("RGBA", im.size, (12, 14, 8, 0)); bl.putalpha(Image.fromarray(np.repeat(band, W * S, 1))); im.alpha_composite(bl)
+    headline(im, lines, 927, 66, BE, shadow=True)
     save(im, name)
 
 def L_frame_paper(photo, l1, l2, name, stars):  # реф.8: зелёная бумага, бежевое кружево, звёзды, подпись справа внизу
     im = paper(G, .07); handle(im, BE)
     x0, y0, fw, fh = framed(im, photo, BE, 680, 950)
     for (sx, sy, r, rot) in stars: star(im, sx, sy, r, BE, rot)
-    text(im, (x0 + fw - 30, y0 + fh + 70), l1, 46, IT, BE, anchor="rm")
-    text(im, (x0 + fw - 100, y0 + fh + 128), l2, 46, IT, BE, anchor="rm")
+    in_frame(im, [(t, REG, 48) for t in l1.split('|')] + [(t, IT, 32) for t in l2.split('|')], 56)
     save(im, name)
 
 def L_frame_letter(photo, plaque, heart, name):  # реф.9: рукопись на фоне, оранжевое кружево, сердце и табличка
@@ -242,7 +253,7 @@ def L_frame_letter(photo, plaque, heart, name):  # реф.9: рукопись н
     s, (dx, dy) = shadow_of(hL, off=(4, 7), blur=6, k=.45); im.alpha_composite(s, (dx, dy)); im.alpha_composite(hL)
     text(im, (hx, hy + 6), heart, 30, IT, BE)
     # табличка справа снизу: зелёная с бежевой каймой
-    pw, ph = 330, 110; px, py = x0 + fw - pw + 40, y0 + fh - ph + 40
+    pw, ph = 330, 110; wx0, wy0, wx1, wy1 = im._win; px, py = (wx0 + wx1) / 2 - pw / 2, (wy0 + wy1) / 2 - ph / 2
     pl = Image.new("RGBA", im.size, (0, 0, 0, 0)); d = ImageDraw.Draw(pl)
     d.rounded_rectangle((px * S, py * S, (px + pw) * S, (py + ph) * S), radius=14 * S, fill=BE + (255,))
     d.rounded_rectangle(((px + 10) * S, (py + 10) * S, (px + pw - 10) * S, (py + ph - 10) * S), radius=9 * S, outline=G + (255,), width=int(1.6 * S))
@@ -266,22 +277,19 @@ def L_frame_polka(photo, words, name):  # реф.10: горошек, круже�
     im = polka()
     # подложка под @WeTalk.Ru не нужна: ставим текст бежевым с тенью
     handle(im, BE, shadow=True)
-    x0, y0, fw, fh = framed(im, photo, BE, 540, 990)
+    x0, y0, fw, fh = framed(im, photo, BE, 620, 990)
     (w1, w2, w3) = words
-    text(im, (x0 - 26, y0 + 60), w1, 46, REG, BE, anchor="rm", shadow=True)
-    text(im, (x0 + fw + 26, y0 + fh * .6), w2, 46, REG, BE, anchor="lm", shadow=True)
-    text(im, (x0 - 26, y0 + fh - 40), w3, 46, REG, BE, anchor="rm", shadow=True)
-    star(im, x0 + fw + 60, y0 + fh - 10, 22, BE, 0)
+    in_frame(im, [(w1, REG, 50), (w2, REG, 50), (w3, REG, 50)], 60)
     save(im, name)
 
 if __name__ == "__main__":
     L1(); L2(); L3(); L4()
     L_sil_photo("photo1.jpg", [("A Day In English", REG, 60), ("With Our Student", IT, 40)], "06_foto_1", False)
     L_sil_photo("photo3.jpg", [("Coffee Talk", REG, 60), ("With Our Student", IT, 40)], "07_foto_2", True)
-    L_frame_paper("photo4.jpg", "Speaking Without Fear", "With Our Student", "08_ramka_bumaga_1",
+    L_frame_paper("photo4.jpg", "Speaking|Without Fear", "With Our Student", "08_ramka_bumaga_1",
                   [(255, 610, 34, 10), (445, 545, 30, -8), (848, 700, 32, 20), (240, 1100, 30, 0), (590, 1230, 32, 14), (830, 1370, 30, -12), (220, 1440, 34, 6)])
     L_frame_letter("photo5.jpg", "New Recording", "new", "09_ramka_pismo")
     L_frame_polka("photo2.jpg", ("What’s", "In My", "Bag?"), "10_ramka_goroshek_1")
-    L_frame_paper("photo6.jpg", "Morning Routine", "With Our Student", "11_ramka_bumaga_2",
+    L_frame_paper("photo6.jpg", "Morning|Routine", "With Our Student", "11_ramka_bumaga_2",
                   [(260, 640, 32, -6), (820, 560, 30, 12), (870, 1000, 34, -14), (215, 1250, 30, 8), (610, 1400, 32, 0)])
     L_frame_polka("photo7.jpg", ("Meet", "The New", "Podcast"), "12_ramka_goroshek_2")
