@@ -67,7 +67,7 @@ def envelope(name, lines):
     R2.block(im, (cx0 + cx1) / 2, (ctop + cbot) / 2, lines, (cx1 - cx0) * .8, G, lead=.98)
     R2.save.__globals__["OUT"] = OUT; R2.save(im, name)
 
-if __name__ == "__main__":
+if __name__ == "__main__" and "--env" not in sys.argv:
     envelope("01_konvert_lets_talk", [("Let’s Talk", REG, 90), ("With Our Student", IT, 48)])
     envelope("02_konvert_opinions", [("Exchanging", REG, 74), ("Opinions", REG, 74), ("With Our Students", IT, 44)])
     card("03_karta_bag", "lzebra", "photo2.jpg", "♠", [("What’s In", REG, 100), ("My Bag?", REG, 100)])
@@ -81,3 +81,37 @@ if __name__ == "__main__":
         sh.paste(a.crop((0, 240, W, 1680)).resize((270, 360)), (i * 280, 0))
         sh.paste(a.crop((44, 560, 1036, 1920)).resize((270, 360)), (i * 280, 370))
     sh.save(os.path.join(OUT, "setka_proverka.jpg"), quality=92)
+
+
+def envelope2(src, name, lines):
+    """конверт с произвольной шкурой: карточку находим автоматически"""
+    im = paper(BE, .03)
+    e = np.asarray(Image.open(os.path.join(R.A, src)).convert("RGBA")).astype(np.float32)
+    rgb, al = e[..., :3], e[..., 3]
+    L = rgb.mean(-1); cardm = (al > 200) & (L > 170)
+    fur = (al > 10) & ~cardm
+    Lf = L / 255
+    p5, pd, pl, p97 = np.percentile(Lf[fur], [3, 30, 75, 99.5])
+    stops = np.array([[8, 9, 3], [16, 17, 5], BASE, G, [92, 108, 80], [110, 126, 96]], np.float32)
+    col = np.stack([np.interp(Lf, [0, p5, pd, pl, p97, 1], stops[:, c]) for c in range(3)], -1)
+    cardc = np.array(BE, np.float32)[None, None] * (L / np.median(L[cardm]))[..., None]
+    out = np.where(cardm[..., None], cardc, np.where(fur[..., None], col, rgb))
+    env = Image.fromarray(np.dstack([out.clip(0, 255), al]).astype(np.uint8), "RGBA")
+    rows = cardm.sum(1); ys = np.nonzero(rows > 50)[0]; wmax = rows.max()
+    ctop = ys[0]; cbot = next(y for y in range(ys[0], ys[-1]) if rows[y] < wmax * .75 and y > ctop + 50)
+    xs = np.nonzero(cardm[(ctop + cbot) // 2])[0]; cx0, cx1 = xs.min(), xs.max()
+    bb = Image.fromarray(al.astype(np.uint8)).getbbox()
+    k = .8; env = env.resize((int(env.width * k * S), int(env.height * k * S)), Image.LANCZOS)
+    x0 = (W - env.width / S) / 2; y0 = 1080 - (bb[1] + bb[3]) / 2 * k
+    s, (dx, dy) = shadow_of(env, off=(10, 24), blur=24, k=.45); im.alpha_composite(s, (int(x0 * S) + dx, int(y0 * S) + dy))
+    im.alpha_composite(env, (int(x0 * S), int(y0 * S)))
+    R2.block(im, x0 + (cx0 + cx1) / 2 * k, y0 + (ctop + 34 + cbot) / 2 * k, lines, (cx1 - cx0) * k * .8, G, lead=.98)
+    R2.save.__globals__["OUT"] = OUT; R2.save(im, name)
+
+if __name__ == "__main__" and "--env" in sys.argv:
+    J = [("a_env_zebra.png", "07_konvert_zebra", [("What’s In", REG, 84), ("My Bag?", REG, 84)]),
+         ("a_env_leopard.png", "08_konvert_leopard", [("Meet The", REG, 64), ("New Podcast", REG, 64), ("By Our Student", IT, 38)]),
+         ("a_env_giraffe.png", "09_konvert_zhiraf", [("New", REG, 64), ("Recording", REG, 64), ("By Our Student", IT, 38)]),
+         ("a_env_tiger.png", "10_konvert_tigr", [("Real Stories", REG, 84), ("By Our Students", IT, 46)]),
+         ("a_env_cow.png", "11_konvert_korova", [("Coffee Talk", REG, 84), ("With Our Student", IT, 46)])]
+    for a, n, l in J: envelope2(a, n, l)
