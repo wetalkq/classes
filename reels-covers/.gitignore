@@ -34,3 +34,5 @@ shpargalka_*.jpg
 gde_chto_*.jpg
 POSTY/
 tray/
+shell/
+src/__pycache__/
