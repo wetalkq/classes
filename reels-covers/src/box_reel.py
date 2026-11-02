@@ -23,18 +23,18 @@ al = shell.split()[3]
 shad = Image.new("RGBA", (shell.width + 120, shell.height + 120), (0, 0, 0, 0))
 sh = Image.new("RGBA", shell.size, (30, 22, 15, 0)); sh.putalpha(al.point(lambda v: int(v * .45)))
 shad.paste(sh, (60, 60)); shad = shad.filter(ImageFilter.GaussianBlur(26))
-SCX, SCY = W // 2, 915
+SCX, SCY = W // 2, 960
 
 TOP = [("@WeTalk.Ru", IT, 38, O, 355), ("Спроси Свой AI", IT, 66, G, 427), ("чем бы он заполнил эту коробку", IT, 40, G, 490)]
 PROMPT = ["Промпт ждёт тебя", "в описании"]
-P_Y, P_STEP, P_SIZE = 1370, 58, 46
+P_Y, P_STEP, P_SIZE = 1420, 58, 46
 END = [("А какая ты в его глазах?", REG, 52, G, 1392), ("Пиши в комментариях", IT, 36, G, 1452)]
 
 def clamp(x): return max(0.0, min(1.0, x))
 T_TYPE0, CPS = 1.9, 26
 NCH = sum(len(l) for l in PROMPT)
 T_TYPE1 = T_TYPE0 + NCH / CPS
-T_POUT, T_END, DUR = 99, 99, T_TYPE1 + 4.0
+T_POUT, T_END, DUR = 99, 99, 8.0
 
 def txt(layer, items, a):
     d = ImageDraw.Draw(layer)
@@ -76,7 +76,7 @@ if __name__ == "__main__":
         print(DUR); raise SystemExit
     n = int(DUR * FPS)
     for k in range(n): frame(k / FPS).save(os.path.join(FR, f"{k:04d}.png"))
-    out = os.path.join(S, "WeTalk_korobka_reels.mp4")
+    out = os.path.join(S, "WeTalk_korobka_reels_v2.mp4")
     subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-framerate", str(FPS), "-i", os.path.join(FR, "%04d.png"),
                     "-c:v", "libx264", "-preset", "slow", "-crf", "16", "-pix_fmt", "yuv420p", "-movflags", "+faststart", out], check=True)
     print(out, n, round(DUR, 1))
