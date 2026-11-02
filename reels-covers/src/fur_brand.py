@@ -62,13 +62,13 @@ if __name__ == "__main__" and "--real" not in __import__("sys").argv:
 BASE = np.array([29, 29, 8], np.float32)        # средний цвет фона обложки с коробкой (до виньетки)
 PAT = G                                          # #415038
 
-def brand_real(name, pattern_is_light=True):
+def brand_real(name, pattern_is_light=True, soft=.12):
     from PIL import ImageFilter
     a = np.asarray(Image.open(os.path.join(D, f"raw_{name}.png")).convert("RGB")).astype(np.float32) / 255
     L = a @ np.array([.299, .587, .114], np.float32)
     th = otsu(L.ravel()[::7])
     lo, hi = np.median(L[L < th]), np.median(L[L >= th])
-    m = 1 / (1 + np.exp(-(L - th) / ((hi - lo) * .12)))      # 1 = светлый класс
+    m = 1 / (1 + np.exp(-(L - th) / ((hi - lo) * soft)))      # 1 = светлый класс
     # фактура: яркость относительно медианы своего класса — сохраняем все ворсинки и блики
     r_dark = np.clip(L / lo, .25, 2.2); r_light = np.clip(L / hi, .4, 1.6)
     c_light, c_dark = (PAT, BASE) if pattern_is_light else (BASE, PAT)
@@ -86,3 +86,18 @@ def brand_real(name, pattern_is_light=True):
 if __name__ == "__main__" and "--real" in __import__("sys").argv:
     for n in ["zebra", "tiger", "giraffe", "panther"]: brand_real(n, True)
     brand_real("cheetah", False)
+
+
+def brand_gradient(name, invert=False):
+    """градиентная карта по яркости исходной шкуры: сохраняет каждую ворсинку без «постеризации»"""
+    a = np.asarray(Image.open(os.path.join(D, f"raw_{name}.png")).convert("RGB")).astype(np.float32) / 255
+    L = a @ np.array([.299, .587, .114], np.float32)
+    if invert: L = 1 - L
+    p5, p50d, p50l, p97 = np.percentile(L, [3, 30, 75, 99.5])
+    xs = [0, p5, p50d, p50l, p97, 1]
+    stops = np.array([[8, 9, 3], [16, 17, 5], BASE, G, [92, 108, 80], [110, 126, 96]], np.float32)
+    out = np.stack([np.interp(L, xs, stops[:, c]) for c in range(3)], -1)
+    H_, W_ = L.shape; yy, xx = np.mgrid[0:H_, 0:W_].astype(np.float32)
+    rr = np.sqrt(((xx - W_ / 2) / (W_ * .75)) ** 2 + ((yy - H_ / 2) / (H_ * .75)) ** 2)
+    out *= np.clip(1.08 - .45 * rr ** 2, .55, 1.08)[..., None]
+    Image.fromarray(np.clip(out, 0, 255).astype(np.uint8)).resize((1080, 1920), Image.LANCZOS).save(os.path.join(D, f"fon2_{name}.jpg"), quality=96)

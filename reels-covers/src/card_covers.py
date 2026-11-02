@@ -52,11 +52,10 @@ def envelope(name, lines):
     rgb, al = e[..., :3], e[..., 3]
     L = rgb.mean(-1); cardm = (al > 200) & (L > 170)
     fur = (al > 10) & ~cardm
-    Lf = L / 255; th = otsu(Lf[fur].ravel()[::5])
-    lo, hi = np.median(Lf[fur & (Lf < th)]), np.median(Lf[fur & (Lf >= th)])
-    mk = 1 / (1 + np.exp(-(Lf - th) / ((hi - lo) * .12)))
-    col = BASE[None, None] * np.clip(Lf / lo, .25, 2.2)[..., None] ** 1.1 * (1 - mk[..., None]) + \
-          np.array(G, np.float32)[None, None] * np.clip(Lf / hi, .4, 1.6)[..., None] ** 1.3 * mk[..., None]
+    Lf = L / 255
+    p5, pd, pl, p97 = np.percentile(Lf[fur], [3, 30, 75, 99.5])
+    stops = np.array([[8, 9, 3], [16, 17, 5], BASE, G, [92, 108, 80], [110, 126, 96]], np.float32)
+    col = np.stack([np.interp(Lf, [0, p5, pd, pl, p97, 1], stops[:, c]) for c in range(3)], -1)
     cardc = np.array(BE, np.float32)[None, None] * (L / np.median(L[cardm]))[..., None]
     out = np.where(cardm[..., None], cardc, np.where(fur[..., None], col, rgb))
     env = Image.fromarray(np.dstack([out.clip(0, 255), al]).astype(np.uint8), "RGBA")
@@ -71,10 +70,10 @@ def envelope(name, lines):
 if __name__ == "__main__":
     envelope("01_konvert_lets_talk", [("Let’s Talk", REG, 90), ("With Our Student", IT, 48)])
     envelope("02_konvert_opinions", [("Exchanging", REG, 74), ("Opinions", REG, 74), ("With Our Students", IT, 44)])
-    card("03_karta_bag", "zebra", "photo2.jpg", "♠", [("What’s In", REG, 100), ("My Bag?", REG, 100)])
-    card("04_karta_podcast", "giraffe", "photo7.jpg", "♣", [("Meet The", REG, 100), ("New Podcast", REG, 100), ("By Our Student", IT, 54)])
-    card("05_karta_recording", "panther", "photo4.jpg", "♠", [("New", REG, 104), ("Recording", REG, 104), ("By Our Student", IT, 54)])
-    card("06_karta_stories", "tiger", "photo1.jpg", "♣", [("Real Stories", REG, 100), ("By Our Students", IT, 54)])
+    card("03_karta_bag", "lzebra", "photo2.jpg", "♠", [("What’s In", REG, 100), ("My Bag?", REG, 100)])
+    card("04_karta_podcast", "lgiraffe", "photo7.jpg", "♣", [("Meet The", REG, 100), ("New Podcast", REG, 100), ("By Our Student", IT, 54)])
+    card("05_karta_recording", "lleopard", "photo4.jpg", "♠", [("New", REG, 104), ("Recording", REG, 104), ("By Our Student", IT, 54)])
+    card("06_karta_stories", "ltiger", "photo1.jpg", "♣", [("Real Stories", REG, 100), ("By Our Students", IT, 54)])
     fs = sorted(f for f in os.listdir(OUT) if f[0].isdigit())
     sh = Image.new("RGB", (280 * len(fs) - 10, 370 * 2), (255, 255, 255))
     for i, f in enumerate(fs):
