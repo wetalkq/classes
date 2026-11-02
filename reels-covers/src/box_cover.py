@@ -16,7 +16,7 @@ OUTN = sys.argv[2] if len(sys.argv) > 2 else "WeTalk_korobka_oblozhka_v2.jpg"
 bg = Image.open(os.path.join(B, BGF)).convert("RGB").resize((W * S, H * S), Image.LANCZOS)
 # подгоняем средний цвет под бархат
 ref = np.asarray(Image.open(os.path.join(B, "velvet_bg.png")).convert("RGB").resize((270, 480))).reshape(-1, 3).mean(0)
-RAW = BGF.startswith("fur/fon2_")           # готовая шкура: цвет и виньетка уже применены
+RAW = BGF.startswith("fur/fon2_") or "polosy" in BGF         # готовая шкура: цвет и виньетка уже применены
 if not RAW:
     ba = np.asarray(bg).astype(np.float32); ba *= (ref / ba.reshape(-1, 3).mean(0))[None, None]
     bg = Image.fromarray(np.clip(ba, 0, 255).astype(np.uint8))
@@ -48,7 +48,12 @@ def block(items):
     d = ImageDraw.Draw(im)
     for txt, f, s, y in items: d.text((W // 2 * S, y * S), txt, font=font(f, s), fill=BE + (255,), anchor="mm")
 
-block([("@WeTalk.Ru", IT, 40, top - 52)])
+# если под @WeTalk.Ru светлый фон — пишем его зелёным #415038 без тени (зелёное на бежевом)
+_y = int((top - 52) * S); _p = np.asarray(im.crop((W * S // 2 - 150 * S, _y - 20 * S, W * S // 2 + 150 * S, _y + 20 * S)).convert("L")).mean()
+if _p > 120:
+    ImageDraw.Draw(im).text((W // 2 * S, _y), "@WeTalk.Ru", font=font(IT, 40), fill=(65, 80, 56, 255), anchor="mm")
+else:
+    block([("@WeTalk.Ru", IT, 40, top - 52)])
 block([("Спроси", IT, 118, LID - 62), ("Свой AI", IT, 118, LID + 62)])
 bc = (BOT0 + BOT1) / 2
 block([("Чем Бы Он Заполнил", IT, 60, bc - 78), ("Эту Коробку?", IT, 60, bc - 8),
