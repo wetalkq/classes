@@ -18,12 +18,12 @@ BG = Image.fromarray(np.clip(np.array([210, 206, 195], np.float32)[None, None] *
 
 shell = Image.open(os.path.join(S, "box_cut.png")).convert("RGBA")
 shell = shell.crop(shell.getbbox())
-SW = 800; shell = shell.resize((SW, round(shell.height * SW / shell.width)), Image.LANCZOS)
+SW = 600; shell = shell.resize((SW, round(shell.height * SW / shell.width)), Image.LANCZOS)
 al = shell.split()[3]
 shad = Image.new("RGBA", (shell.width + 120, shell.height + 120), (0, 0, 0, 0))
 sh = Image.new("RGBA", shell.size, (30, 22, 15, 0)); sh.putalpha(al.point(lambda v: int(v * .45)))
 shad.paste(sh, (60, 60)); shad = shad.filter(ImageFilter.GaussianBlur(26))
-SCX, SCY = W // 2, 905
+SCX, SCY = W // 2, 915
 
 TOP = [("@WeTalk.Ru", IT, 38, O, 355), ("Спроси Свой AI", IT, 66, G, 427), ("чем бы он заполнил эту коробку", IT, 40, G, 490)]
 PROMPT = ["Промпт ждёт тебя", "в описании"]
