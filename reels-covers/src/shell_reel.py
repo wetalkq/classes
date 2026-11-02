@@ -25,9 +25,9 @@ sh = Image.new("RGBA", shell.size, (30, 22, 15, 0)); sh.putalpha(al.point(lambda
 shad.paste(sh, (60, 60)); shad = shad.filter(ImageFilter.GaussianBlur(26))
 SCX, SCY = W // 2, 905
 
-TOP = [("@WeTalk.Ru", IT, 38, O, 268), ("Спроси Свой AI", IT, 66, G, 340), ("как он тебя видит", IT, 40, G, 403)]
-PROMPT = ["Промпт ждёт тебя в описании"]
-P_Y, P_STEP, P_SIZE = 1340, 46, 46
+TOP = [("@WeTalk.Ru", IT, 38, O, 355), ("Спроси Свой AI", IT, 66, G, 427), ("как он тебя видит", IT, 40, G, 490)]
+PROMPT = ["Промпт ждёт тебя", "в описании"]
+P_Y, P_STEP, P_SIZE = 1370, 58, 46
 END = [("А какая ты в его глазах?", REG, 52, G, 1392), ("Пиши в комментариях", IT, 36, G, 1452)]
 
 def clamp(x): return max(0.0, min(1.0, x))
@@ -76,7 +76,7 @@ if __name__ == "__main__":
         print(DUR); raise SystemExit
     n = int(DUR * FPS)
     for k in range(n): frame(k / FPS).save(os.path.join(FR, f"{k:04d}.png"))
-    out = os.path.join(S, "WeTalk_rakushka_reels_v3.mp4")
+    out = os.path.join(S, "WeTalk_rakushka_reels_v4.mp4")
     subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-framerate", str(FPS), "-i", os.path.join(FR, "%04d.png"),
                     "-c:v", "libx264", "-preset", "slow", "-crf", "16", "-pix_fmt", "yuv420p", "-movflags", "+faststart", out], check=True)
     print(out, n, round(DUR, 1))
