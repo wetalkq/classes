@@ -16,11 +16,13 @@ OUTN = sys.argv[2] if len(sys.argv) > 2 else "WeTalk_korobka_oblozhka_v2.jpg"
 bg = Image.open(os.path.join(B, BGF)).convert("RGB").resize((W * S, H * S), Image.LANCZOS)
 # подгоняем средний цвет под бархат
 ref = np.asarray(Image.open(os.path.join(B, "velvet_bg.png")).convert("RGB").resize((270, 480))).reshape(-1, 3).mean(0)
-ba = np.asarray(bg).astype(np.float32); ba *= (ref / ba.reshape(-1, 3).mean(0))[None, None]
-bg = Image.fromarray(np.clip(ba, 0, 255).astype(np.uint8))
+RAW = BGF.startswith("fur/fon2_")           # готовая шкура: цвет и виньетка уже применены
+if not RAW:
+    ba = np.asarray(bg).astype(np.float32); ba *= (ref / ba.reshape(-1, 3).mean(0))[None, None]
+    bg = Image.fromarray(np.clip(ba, 0, 255).astype(np.uint8))
 yy, xx = np.mgrid[0:H * S, 0:W * S].astype(np.float32)
 r = np.sqrt(((xx - W * S / 2) / (W * S * .75)) ** 2 + ((yy - H * S / 2) / (H * S * .75)) ** 2)
-vig = np.clip(1.08 - .45 * r ** 2, .55, 1.08)
+vig = np.ones_like(r) if RAW else np.clip(1.08 - .45 * r ** 2, .55, 1.08)
 im = Image.fromarray(np.clip(np.asarray(bg).astype(np.float32) * vig[..., None], 0, 255).astype(np.uint8)).convert("RGBA")
 
 # коробка
