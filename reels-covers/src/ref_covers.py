@@ -264,7 +264,7 @@ def L_frame_letter(photo, plaque, heart, name):  # реф.9: рукопись н
 def polka():
     im = paper(G, .09)
     d = ImageDraw.Draw(im); r = 72
-    for j, y in enumerate(range(-60, H + 200, 330)):
+    for j, y in enumerate(range(-130, H + 200, 330)):
         for x in range(-100 + (j % 2) * 230, W + 200, 460):
             d.ellipse(((x - r) * S, (y - r) * S, (x + r) * S, (y + r) * S), fill=BE + (255,))
     # переплетение льна поверх горошка
