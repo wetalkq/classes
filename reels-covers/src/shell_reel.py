@@ -25,9 +25,9 @@ sh = Image.new("RGBA", shell.size, (30, 22, 15, 0)); sh.putalpha(al.point(lambda
 shad.paste(sh, (60, 60)); shad = shad.filter(ImageFilter.GaussianBlur(26))
 SCX, SCY = W // 2, 905
 
-TOP = [("@WeTalk.Ru", IT, 38, O, 268), ("Спроси Свой AI", REG, 64, G, 340), ("как он тебя видит", IT, 40, G, 403)]
-PROMPT = ["«Опиши, какой ты меня видишь —", "по нашим разговорам и тому, как я пишу.", "Ответь тремя словами»"]
-P_Y, P_STEP, P_SIZE = 1372, 46, 35
+TOP = [("@WeTalk.Ru", IT, 38, O, 268), ("Спроси Свой AI", IT, 66, G, 340), ("как он тебя видит", IT, 40, G, 403)]
+PROMPT = ["Промпт ждёт тебя в описании"]
+P_Y, P_STEP, P_SIZE = 1405, 46, 46
 END = [("А какая ты в его глазах?", REG, 52, G, 1392), ("Пиши в комментариях", IT, 36, G, 1452)]
 
 def clamp(x): return max(0.0, min(1.0, x))
