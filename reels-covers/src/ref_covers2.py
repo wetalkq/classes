@@ -24,11 +24,11 @@ def fit(t, f, size, maxw):
 
 def block(im, cx, cy, lines, maxw, fill, shadow=False, lead=1.02):
     """lines: [(text, font, size)] — размеры подгоняются под ширину, интерлиньяж плотный"""
-    ls = [(t, f, fit(t, f, s, maxw)) for t, f, s in lines]
-    hs = [s * lead for _, _, s in ls]; tot = sum(hs)
+    ls = [("@WeTalk.Ru", IT, min(46, fit("@WeTalk.Ru", IT, 46, maxw)))] + [(t, f, fit(t, f, s, maxw)) for t, f, s in lines]
+    hs = [s * lead for _, _, s in ls]; hs[0] += 22; tot = sum(hs)
     y = cy - tot / 2
     for (t, f, s), h in zip(ls, hs):
-        R.text(im, (cx, y + h / 2), t, s, f, fill, shadow=shadow); y += h
+        R.text(im, (cx, y + (h - (22 if t == '@WeTalk.Ru' else 0)) / 2), t, s, f, fill, shadow=shadow); y += h
 
 def save(im, name):
     im.resize((W, H), Image.LANCZOS).convert("RGB").save(os.path.join(OUT, name + ".jpg"), quality=95); print(name)
@@ -54,8 +54,8 @@ def frame_photo(im, photo, col, width, cy):
 
 # --- реф. «перчатка с карточкой»
 def glove(lines, name):
-    im = paper(BE, .03); handle(im, G, pill=True)
-    k = .86; o = load("a_glove_g.png", k); x0 = (W - o.width / S) / 2; y0 = 1340 - 900 * k
+    im = paper(BE, .03)
+    k = .86; o = load("a_glove_g.png", k); x0 = (W - o.width / S) / 2; y0 = 1430 - 900 * k
     place(im, o, x0, y0, off=(10, 20), blur=24, k=.35)
     cx0, cy0, cx1, cy1 = x0 + 417 * k, y0 + 505 * k, x0 + 1183 * k, y0 + 895 * k
     block(im, (cx0 + cx1) / 2, (cy0 + cy1) / 2, lines, (cx1 - cx0) * .9, G)
@@ -65,7 +65,7 @@ def glove(lines, name):
 def oval(lines, name):
     im = paper(G, .06)
     m = Image.new("L", im.size, 0); d = ImageDraw.Draw(m)
-    cx, cy, rx, ry = W / 2, 960, 300, 520
+    cx, cy, rx, ry = W / 2, 1100, 290, 500
     for dr, wdt in ((0, 6), (-24, 3)):
         d.ellipse(((cx - rx - dr) * S, (cy - ry - dr) * S, (cx + rx + dr) * S, (cy + ry + dr) * S), outline=255, width=int(wdt * S))
     for side in (-1, 1):
@@ -82,32 +82,27 @@ def oval(lines, name):
     a = np.asarray(im.convert("RGB")).astype(np.float32)
     a = a * (1 - .45 * lo[..., None]) + (255 - a) * (.22 * hi[..., None]) - a * .08 * M[..., None]
     im = Image.fromarray(a.clip(0, 255).astype(np.uint8)).convert("RGBA")
-    handle(im, BE)
     block(im, cx, cy, lines, rx * 2 * .82, BE)
     save(im, name)
 
 # --- реф. «кружевная рамка на бумаге»
 def frame_paper(photo, lines, name):
-    im = paper(G, .07); handle(im, BE)
-    (wx0, wy0, wx1, wy1), _ = frame_photo(im, photo, BE, 920, 1015)
+    im = paper(G, .07)
+    (wx0, wy0, wx1, wy1), _ = frame_photo(im, photo, BE, 900, 1095)
     block(im, (wx0 + wx1) / 2, (wy0 + wy1) / 2, lines, (wx1 - wx0) * .96, BE, shadow=True)
     save(im, name)
 
 # --- реф. «горошек»
 def frame_polka(photo, lines, name):
-    im = polka(); handle(im, BE, shadow=True)
-    (wx0, wy0, wx1, wy1), _ = frame_photo(im, photo, BE, 880, 1015)
+    im = polka()
+    (wx0, wy0, wx1, wy1), _ = frame_photo(im, photo, BE, 880, 1095)
     block(im, (wx0 + wx1) / 2, (wy0 + wy1) / 2, lines, (wx1 - wx0) * .96, BE, shadow=True)
     save(im, name)
 
 # --- реф. «рукопись + кружево + табличка»
 def frame_letter(photo, lines, plaque, name):
     im = letter_tex(W, H, 1.35, .38)
-    clean = paper(BE, .035); yy = np.arange(H * S)[:, None] / S
-    a = np.clip(1 - np.abs(yy - HY) / 80, 0, 1) ** .6 * 255
-    clean.putalpha(Image.fromarray(np.repeat(a, W * S, 1).astype(np.uint8))); im.alpha_composite(clean)
-    handle(im, G)
-    (wx0, wy0, wx1, wy1), (x0, y0, fw, fh) = frame_photo(im, photo, G, 900, 1005)
+    (wx0, wy0, wx1, wy1), (x0, y0, fw, fh) = frame_photo(im, photo, G, 880, 1085)
     block(im, (wx0 + wx1) / 2, (wy0 + wy1) / 2, lines, (wx1 - wx0) * .96, BE, shadow=True)
     # табличка как на референсе: справа снизу на кромке рамки
     pw, ph = 380, 112; px, py = x0 + fw - pw + 10, y0 + fh - ph + 30
