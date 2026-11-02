@@ -18,7 +18,7 @@ BG = Image.fromarray(np.clip(np.array([210, 206, 195], np.float32)[None, None] *
 
 shell = Image.open(os.path.join(S, "shell_final.png")).convert("RGBA")
 shell = shell.crop(shell.getbbox())
-SW = 990; shell = shell.resize((SW, round(shell.height * SW / shell.width)), Image.LANCZOS)
+SW = 800; shell = shell.resize((SW, round(shell.height * SW / shell.width)), Image.LANCZOS)
 al = shell.split()[3]
 shad = Image.new("RGBA", (shell.width + 120, shell.height + 120), (0, 0, 0, 0))
 sh = Image.new("RGBA", shell.size, (30, 22, 15, 0)); sh.putalpha(al.point(lambda v: int(v * .45)))
@@ -27,14 +27,14 @@ SCX, SCY = W // 2, 905
 
 TOP = [("@WeTalk.Ru", IT, 38, O, 268), ("Спроси Свой AI", IT, 66, G, 340), ("как он тебя видит", IT, 40, G, 403)]
 PROMPT = ["Промпт ждёт тебя в описании"]
-P_Y, P_STEP, P_SIZE = 1405, 46, 46
+P_Y, P_STEP, P_SIZE = 1340, 46, 46
 END = [("А какая ты в его глазах?", REG, 52, G, 1392), ("Пиши в комментариях", IT, 36, G, 1452)]
 
 def clamp(x): return max(0.0, min(1.0, x))
 T_TYPE0, CPS = 1.9, 26
 NCH = sum(len(l) for l in PROMPT)
 T_TYPE1 = T_TYPE0 + NCH / CPS
-T_POUT, T_END, DUR = T_TYPE1 + 1.8, T_TYPE1 + 2.3, T_TYPE1 + 5.2
+T_POUT, T_END, DUR = 99, 99, T_TYPE1 + 4.0
 
 def txt(layer, items, a):
     d = ImageDraw.Draw(layer)
@@ -52,7 +52,7 @@ def frame(t):
     L = Image.new("RGBA", (W, H), (0, 0, 0, 0))
     txt(L, TOP, clamp((t - .5) / .9))
     if t >= T_TYPE0:
-        pa = 1 - clamp((t - T_POUT) / .5)
+        pa = 1.0
         if pa > 0:
             n = int((t - T_TYPE0) * CPS); d = ImageDraw.Draw(L); f = font(IT, P_SIZE); shown = []
             for line in PROMPT:
@@ -65,7 +65,7 @@ def frame(t):
                 if i == last and t < T_TYPE1 + .9 and int(t * 2.4) % 2 == 0:
                     cx = x + d.textlength(line, font=f) + 4
                     d.line([(cx, y - 20), (cx, y + 18)], fill=G + (int(200 * pa),), width=2)
-    txt(L, END, clamp((t - T_END) / .7))
+    pass
     im.alpha_composite(L)
     return im.convert("RGB")
 
@@ -76,7 +76,7 @@ if __name__ == "__main__":
         print(DUR); raise SystemExit
     n = int(DUR * FPS)
     for k in range(n): frame(k / FPS).save(os.path.join(FR, f"{k:04d}.png"))
-    out = os.path.join(S, "WeTalk_rakushka_reels.mp4")
+    out = os.path.join(S, "WeTalk_rakushka_reels_v3.mp4")
     subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-framerate", str(FPS), "-i", os.path.join(FR, "%04d.png"),
                     "-c:v", "libx264", "-preset", "slow", "-crf", "16", "-pix_fmt", "yuv420p", "-movflags", "+faststart", out], check=True)
     print(out, n, round(DUR, 1))
