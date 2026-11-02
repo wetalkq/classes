@@ -34,7 +34,7 @@ def clamp(x): return max(0.0, min(1.0, x))
 T_TYPE0, CPS = 1.9, 26
 NCH = sum(len(l) for l in PROMPT)
 T_TYPE1 = T_TYPE0 + NCH / CPS
-T_POUT, T_END, DUR = 99, 99, 8.0
+T_POUT, T_END, DUR = 99, 99, 15.0
 
 def txt(layer, items, a):
     d = ImageDraw.Draw(layer)
@@ -76,7 +76,7 @@ if __name__ == "__main__":
         print(DUR); raise SystemExit
     n = int(DUR * FPS)
     for k in range(n): frame(k / FPS).save(os.path.join(FR, f"{k:04d}.png"))
-    out = os.path.join(S, "WeTalk_korobka_reels_v2.mp4")
+    out = os.path.join(S, "WeTalk_korobka_reels_v3_silent.mp4")
     subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-framerate", str(FPS), "-i", os.path.join(FR, "%04d.png"),
                     "-c:v", "libx264", "-preset", "slow", "-crf", "16", "-pix_fmt", "yuv420p", "-movflags", "+faststart", out], check=True)
     print(out, n, round(DUR, 1))
