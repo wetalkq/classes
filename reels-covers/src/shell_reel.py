@@ -18,17 +18,17 @@ BG = Image.fromarray(np.clip(np.array([210, 206, 195], np.float32)[None, None] *
 
 shell = Image.open(os.path.join(S, "shell_final.png")).convert("RGBA")
 shell = shell.crop(shell.getbbox())
-SW = 780; shell = shell.resize((SW, round(shell.height * SW / shell.width)), Image.LANCZOS)
+SW = 990; shell = shell.resize((SW, round(shell.height * SW / shell.width)), Image.LANCZOS)
 al = shell.split()[3]
 shad = Image.new("RGBA", (shell.width + 120, shell.height + 120), (0, 0, 0, 0))
 sh = Image.new("RGBA", shell.size, (30, 22, 15, 0)); sh.putalpha(al.point(lambda v: int(v * .45)))
 shad.paste(sh, (60, 60)); shad = shad.filter(ImageFilter.GaussianBlur(26))
 SCX, SCY = W // 2, 905
 
-TOP = [("@WeTalk.Ru", IT, 40, O, 300), ("Спроси Свой AI", REG, 70, G, 385), ("как он тебя видит", IT, 44, G, 460)]
+TOP = [("@WeTalk.Ru", IT, 38, O, 268), ("Спроси Свой AI", REG, 64, G, 340), ("как он тебя видит", IT, 40, G, 403)]
 PROMPT = ["«Опиши, какой ты меня видишь —", "по нашим разговорам и тому, как я пишу.", "Ответь тремя словами»"]
-P_Y, P_STEP, P_SIZE = 1320, 52, 38
-END = [("А какая ты в его глазах?", REG, 56, G, 1340), ("Пиши в комментариях", IT, 38, G, 1415)]
+P_Y, P_STEP, P_SIZE = 1372, 46, 35
+END = [("А какая ты в его глазах?", REG, 52, G, 1392), ("Пиши в комментариях", IT, 36, G, 1452)]
 
 def clamp(x): return max(0.0, min(1.0, x))
 T_TYPE0, CPS = 1.9, 26
@@ -42,7 +42,7 @@ def txt(layer, items, a):
 
 def frame(t):
     im = BG.copy().convert("RGBA")
-    a = clamp(t / 1.0); z = 1 + .035 * (t / DUR)
+    a = clamp(t / 1.0); z = 1 + .02 * (t / DUR)
     s = shell.resize((int(shell.width * z), int(shell.height * z)), Image.LANCZOS)
     sd = shad.resize((int(shad.width * z), int(shad.height * z)), Image.LANCZOS)
     if a < 1:

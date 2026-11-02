@@ -25,7 +25,7 @@ base += np.random.default_rng(2).normal(0, 1.6, (h, w, 1))
 a[y0:y1, x0:x1, :3] = base
 
 # тиснение
-fnt = ImageFont.truetype(os.path.join(ROOT, "fonts", "timesnrcyrmt_inclined.ttf"), 46)
+fnt = ImageFont.truetype(os.path.join(ROOT, "fonts", "PinyonScript-Regular.ttf"), 64)
 m = Image.new("L", (w, h), 0); d = ImageDraw.Draw(m)
 d.text((w / 2, h / 2), PHRASE, font=fnt, fill=255, anchor="mm")
 m = m.filter(ImageFilter.GaussianBlur(0.6))
