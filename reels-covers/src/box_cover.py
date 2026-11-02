@@ -1,5 +1,5 @@
 """Обложка 9:16 для Reels с коробкой: бархат во весь кадр, коробка по центру, весь текст бежевый (Times New Roman)."""
-import os
+import os, sys
 import numpy as np
 from PIL import Image, ImageDraw, ImageFont, ImageFilter
 
@@ -11,7 +11,13 @@ REG, IT = "timesnrcyrmt.ttf", "timesnrcyrmt_inclined.ttf"
 def font(n, s): return ImageFont.truetype(os.path.join(F, n), s * S)
 
 # фон: бархат на весь кадр, лёгкая виньетка
-bg = Image.open(os.path.join(B, "velvet_bg.png")).convert("RGB").resize((W * S, H * S), Image.LANCZOS)
+BGF = sys.argv[1] if len(sys.argv) > 1 else "velvet_bg.png"
+OUTN = sys.argv[2] if len(sys.argv) > 2 else "WeTalk_korobka_oblozhka_v2.jpg"
+bg = Image.open(os.path.join(B, BGF)).convert("RGB").resize((W * S, H * S), Image.LANCZOS)
+# подгоняем средний цвет под бархат
+ref = np.asarray(Image.open(os.path.join(B, "velvet_bg.png")).convert("RGB").resize((270, 480))).reshape(-1, 3).mean(0)
+ba = np.asarray(bg).astype(np.float32); ba *= (ref / ba.reshape(-1, 3).mean(0))[None, None]
+bg = Image.fromarray(np.clip(ba, 0, 255).astype(np.uint8))
 yy, xx = np.mgrid[0:H * S, 0:W * S].astype(np.float32)
 r = np.sqrt(((xx - W * S / 2) / (W * S * .75)) ** 2 + ((yy - H * S / 2) / (H * S * .75)) ** 2)
 vig = np.clip(1.08 - .45 * r ** 2, .55, 1.08)
@@ -47,6 +53,6 @@ block([("Чем Бы Он Заполнил", IT, 60, bc - 78), ("Эту Коро
        ("промпт ждёт тебя в описании", IT, 36, bc + 92)])
 
 out = im.resize((W, H), Image.LANCZOS).convert("RGB")
-p = os.path.join(B, "WeTalk_korobka_oblozhka_v2.jpg"); out.save(p, quality=95)
+p = os.path.join(B, OUTN); out.save(p, quality=95)
 out.crop((0, 240, W, 1680)).resize((270, 360), Image.LANCZOS).save(os.path.join(B, "oblozhka_grid.jpg"), quality=92)
 print(p, round(top), round(top + b.height / S), round(LID), round(BOT0), round(BOT1))
