@@ -53,6 +53,36 @@ def box():
     Image.fromarray(a.astype(np.uint8), "RGBA").save(os.path.join(ROOT, "box", "box_cut_brand.png"))
     print("box fabric median ->", (G * 1).round())
 
-if __name__ == "__main__":
+if __name__ == "__main__" and "--real" not in __import__("sys").argv:
     for n in ["zebra", "tiger", "giraffe", "panther", "cheetah"]: brand(n)
     box()
+
+
+# ---- v2: реалистичная шкура. Основа — тёмный зелёный как на обложке с коробкой, узор — строго #415038.
+BASE = np.array([29, 29, 8], np.float32)        # средний цвет фона обложки с коробкой (до виньетки)
+PAT = G                                          # #415038
+
+def brand_real(name, pattern_is_light=True):
+    from PIL import ImageFilter
+    a = np.asarray(Image.open(os.path.join(D, f"raw_{name}.png")).convert("RGB")).astype(np.float32) / 255
+    L = a @ np.array([.299, .587, .114], np.float32)
+    th = otsu(L.ravel()[::7])
+    lo, hi = np.median(L[L < th]), np.median(L[L >= th])
+    m = 1 / (1 + np.exp(-(L - th) / ((hi - lo) * .12)))      # 1 = светлый класс
+    # фактура: яркость относительно медианы своего класса — сохраняем все ворсинки и блики
+    r_dark = np.clip(L / lo, .25, 2.2); r_light = np.clip(L / hi, .4, 1.6)
+    c_light, c_dark = (PAT, BASE) if pattern_is_light else (BASE, PAT)
+    col_d = c_dark[None, None] * r_dark[..., None] ** 1.1
+    col_l = c_light[None, None] * r_light[..., None] ** 1.6
+    out = col_d * (1 - m[..., None]) + col_l * m[..., None]
+    # виньетка как на обложке с коробкой
+    H_, W_ = L.shape; yy, xx = np.mgrid[0:H_, 0:W_].astype(np.float32)
+    rr = np.sqrt(((xx - W_ / 2) / (W_ * .75)) ** 2 + ((yy - H_ / 2) / (H_ * .75)) ** 2)
+    out *= np.clip(1.08 - .45 * rr ** 2, .55, 1.08)[..., None]
+    im = Image.fromarray(np.clip(out, 0, 255).astype(np.uint8)).resize((1080, 1920), Image.LANCZOS)
+    im.save(os.path.join(D, f"fon2_{name}.jpg"), quality=96)
+    print(name, "base≈", out[m < .5].reshape(-1, 3).mean(0).round(), "pattern≈", out[m >= .5].reshape(-1, 3).mean(0).round())
+
+if __name__ == "__main__" and "--real" in __import__("sys").argv:
+    for n in ["zebra", "tiger", "giraffe", "panther"]: brand_real(n, True)
+    brand_real("cheetah", False)
