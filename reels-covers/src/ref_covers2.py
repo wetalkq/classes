@@ -25,6 +25,8 @@ def fit(t, f, size, maxw):
 def block(im, cx, cy, lines, maxw, fill, shadow=False, lead=1.02):
     """lines: [(text, font, size)] — размеры подгоняются под ширину, интерлиньяж плотный"""
     ls = [("@WeTalk.Ru", IT, min(46, fit("@WeTalk.Ru", IT, 46, maxw)))] + [(t, f, fit(t, f, s, maxw)) for t, f, s in lines]
+    mreg = min([z for t, f, z in ls[1:] if f == REG] or [0])
+    ls = [ls[0]] + [(t, f, mreg if f == REG else z) for t, f, z in ls[1:]]   # одинаковый кегль заголовка
     hs = [s * lead for _, _, s in ls]; hs[0] += 22; tot = sum(hs)
     y = cy - tot / 2
     for (t, f, s), h in zip(ls, hs):
@@ -58,7 +60,7 @@ def glove(lines, name):
     k = .86; o = load("a_glove_g.png", k); x0 = (W - o.width / S) / 2; y0 = 1290 - 900 * k
     place(im, o, x0, y0, off=(10, 20), blur=24, k=.35)
     cx0, cy0, cx1, cy1 = x0 + 417 * k, y0 + 505 * k, x0 + 1183 * k, y0 + 895 * k
-    block(im, (cx0 + cx1) / 2, (cy0 + cy1) / 2, lines, (cx1 - cx0) * .9, G)
+    block(im, (cx0 + cx1) / 2, (cy0 + cy1) / 2, lines, (cx1 - cx0) * .8, G)
     save(im, name)
 
 # --- реф. «тиснёный овал»
@@ -89,21 +91,21 @@ def oval(lines, name):
 def frame_paper(photo, lines, name):
     im = paper(G, .07)
     (wx0, wy0, wx1, wy1), _ = frame_photo(im, photo, BE, 900, 1095)
-    block(im, (wx0 + wx1) / 2, (wy0 + wy1) / 2, lines, (wx1 - wx0) * .96, BE, shadow=True)
+    block(im, (wx0 + wx1) / 2, (wy0 + wy1) / 2, lines, (wx1 - wx0) * .8, BE, shadow=True)
     save(im, name)
 
 # --- реф. «горошек»
 def frame_polka(photo, lines, name):
     im = polka()
     (wx0, wy0, wx1, wy1), _ = frame_photo(im, photo, BE, 880, 1095)
-    block(im, (wx0 + wx1) / 2, (wy0 + wy1) / 2, lines, (wx1 - wx0) * .96, BE, shadow=True)
+    block(im, (wx0 + wx1) / 2, (wy0 + wy1) / 2, lines, (wx1 - wx0) * .8, BE, shadow=True)
     save(im, name)
 
 # --- реф. «рукопись + кружево + табличка»
 def frame_letter(photo, lines, plaque, name):
     im = letter_tex(W, H, 1.35, .38)
     (wx0, wy0, wx1, wy1), (x0, y0, fw, fh) = frame_photo(im, photo, G, 880, 1085)
-    block(im, (wx0 + wx1) / 2, (wy0 + wy1) / 2, lines, (wx1 - wx0) * .96, BE, shadow=True)
+    block(im, (wx0 + wx1) / 2, (wy0 + wy1) / 2, lines, (wx1 - wx0) * .8, BE, shadow=True)
     # табличка как на референсе: справа снизу на кромке рамки
     pw, ph = 380, 112; px, py = x0 + fw - pw + 10, y0 + fh - ph + 30
     pl = Image.new("RGBA", im.size, (0, 0, 0, 0)); d = ImageDraw.Draw(pl)
@@ -122,7 +124,7 @@ if __name__ == "__main__":
     frame_polka("photo2.jpg", [("What’s In", REG, 112), ("My Bag?", REG, 112)], "04_goroshek_bag")
     frame_letter("photo5.jpg", [("Exchanging", REG, 104), ("Opinions", REG, 104), ("With Our Students", IT, 56)], "with love", "05_pismo_opinions")
     frame_paper("photo6.jpg", [("New", REG, 112), ("Recording", REG, 112), ("By Our Student", IT, 60)], "06_ramka_recording")
-    frame_polka("photo7.jpg", [("Meet The New", REG, 104), ("Podcast", REG, 104), ("By Our Student", IT, 56)], "07_goroshek_podcast")
+    frame_polka("photo7.jpg", [("Meet The", REG, 100), ("New Podcast", REG, 100), ("By Our Student", IT, 56)], "07_goroshek_podcast")
     frame_letter("photo3.jpg", [("Coffee Talk", REG, 112), ("With Our Student", IT, 60)], "new episode", "08_pismo_coffee")
     frame_paper("photo1.jpg", [("Real Stories", REG, 108), ("By Our Students", IT, 60)], "09_ramka_stories")
     im = Image.new("RGB", (280 * 5 - 10, 370 * 2), (255, 255, 255))
