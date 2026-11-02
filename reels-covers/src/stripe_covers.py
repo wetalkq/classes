@@ -65,7 +65,7 @@ await b.close();})();"""
     open(os.path.join(TMP, "r.js"), "w").write(js)
     subprocess.run(["node", os.path.join(TMP, "r.js"), TMP], check=True)
 
-if __name__ == "__main__":
+if __name__ == "__main__" and "--cd" not in __import__("sys").argv:
     fa = fabric(A_UNIT, "fabric_A"); fb = fabric(B_UNIT, "fabric_B")
     fa.resize((W, H), Image.LANCZOS).save(os.path.join(OUT, "fon_polosy_A.jpg"), quality=96)
     fb.resize((W, H), Image.LANCZOS).save(os.path.join(OUT, "fon_polosy_B.jpg"), quality=96)
@@ -89,3 +89,41 @@ if __name__ == "__main__":
         base.alpha_composite(txt)
         base.resize((W, H), Image.LANCZOS).convert("RGB").save(os.path.join(OUT, f"{name}_polosy.jpg"), quality=95)
         print(name, kind)
+
+
+# ---- вариант C/D по новым референсам: меланжевая ткань (заметное «соль-перец» зерно)
+DK = np.array([29, 29, 8], np.float32)       # тёмный зелёный (как фон обложки с коробкой)
+C_UNIT = [(BE, 62), (G, 6), (BE, 6), (G, 6), (BE, 6), (G, 6), (BE, 62)]              # бежевая основа + тройные зелёные полоски
+D_UNIT = [(G, 70), (DK, 34), (G, 8), (BE, 6), (G, 8), (DK, 34), (G, 70), (BE, 6)]      # зелёная основа + широкие тёмные полосы и тонкие бежевые
+
+def melange(unit, name, amp=.22):
+    h, w = H * S, W * S
+    img = stripes(unit, h, w)
+    img = np.asarray(Image.fromarray(img.astype(np.uint8)).filter(ImageFilter.GaussianBlur(1.0))).astype(np.float32)
+    f = weave(h, w, amp)
+    # цветные «искры» меланжа: отдельные светлые/тёмные волокна
+    sp = rng.random((h, w)).astype(np.float32)
+    f = f * np.where(sp > .985, 1.18, np.where(sp < .015, .82, 1.0))
+    img *= f[..., None]
+    im = Image.fromarray(np.clip(img, 0, 255).astype(np.uint8))
+    return im
+
+if __name__ == "__main__" and "--cd" in __import__("sys").argv:
+    fc = melange(C_UNIT, "C"); fd = melange(D_UNIT, "D")
+    fc.resize((W, H), Image.LANCZOS).save(os.path.join(OUT, "fon_polosy_C.jpg"), quality=96)
+    fd.resize((W, H), Image.LANCZOS).save(os.path.join(OUT, "fon_polosy_D.jpg"), quality=96)
+    card_tex = weave(H * S, W * S, .07)
+    for i, (src, _, name) in enumerate(JOBS):
+        txt = Image.open(os.path.join(TMP, name + ".png")).convert("RGBA")
+        base = (fc if i % 2 == 0 else fd).copy().convert("RGBA")
+        al = txt.split()[3]
+        x0, y0, x1, y1 = al.point(lambda v: 255 if v > 20 else 0).getbbox()
+        X0, Y0, X1, Y1 = 120 * S, y0 - 150 * S, (W - 120) * S, y1 + 150 * S
+        sh = Image.new("RGBA", base.size, (10, 10, 6, 0)); m = Image.new("L", base.size, 0)
+        m.paste(255, (X0 + 14, Y0 + 30, X1 + 14, Y1 + 30)); sh.putalpha(m.point(lambda v: int(v * .6)))
+        base.alpha_composite(sh.filter(ImageFilter.GaussianBlur(40)))
+        card = BE[None, None] * card_tex[Y0:Y1, X0:X1, None]
+        base.paste(Image.fromarray(np.clip(card, 0, 255).astype(np.uint8)).convert("RGBA"), (X0, Y0))
+        base.alpha_composite(txt)
+        base.resize((W, H), Image.LANCZOS).convert("RGB").save(os.path.join(OUT, f"{name}_polosy_{'C' if i % 2 == 0 else 'D'}.jpg"), quality=95)
+        print(name)
