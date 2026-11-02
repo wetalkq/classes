@@ -9,14 +9,16 @@ SRC = os.path.join(ROOT, "v13_916"); FUR = os.path.join(ROOT, "box", "fur")
 OUT = os.path.join(ROOT, "fur_covers"); TMP = os.path.join(OUT, "tmp"); os.makedirs(TMP, exist_ok=True)
 G = (65, 80, 56); BE = "#d2cec3"
 
-JOBS = [  # исходник v13 -> фон -> имя
-    ("12_ряд07-3_podcast", "fon_1_zebra", "1_podcast_uverennost_zebra"),
-    ("16_ряд11-1_special", "fon_3_zhiraf", "2_otzyvy_zhiraf"),
-    ("59_ряд31-2_bag-49", "fon_5_gepard", "3_bag49_gepard"),
-    ("44_ряд26-1_podcast-05", "fon_2_tigr", "4_podcast5_tigr"),
-    ("48_ряд27-2_podcast-03", "fon_4_pantera", "5_podcast3_pantera"),
-    ("54_ряд29-2_bag-45", "fon_1_zebra", "6_bag45_zebra"),
+JOBS = [  # исходник v13 -> фон -> имя (порядок как прислала)
+    ("59_ряд31-2_bag-49", "fon_1_zebra", "1_bag49_zebra"),
+    ("16_ряд11-1_special", "fon_2_tigr", "2_otzyvy_tigr"),
+    ("12_ряд07-3_podcast", "fon_3_zhiraf", "3_podcast_uverennost_zhiraf"),
+    ("54_ряд29-2_bag-45", "fon_4_pantera", "4_bag45_pantera"),
+    ("48_ряд27-2_podcast-03", "fon_5_gepard", "5_podcast3_gepard"),
+    ("44_ряд26-1_podcast-05", "fon_1_zebra", "6_podcast5_zebra"),
 ]
+import sys
+PANEL = "--panel" in sys.argv
 
 for src, _, name in JOBS:
     h = open(os.path.join(SRC, src + ".html"), encoding="utf-8").read()
@@ -40,10 +42,16 @@ for src, bg, name in JOBS:
     x0, y0, x1, y1 = txt.split()[3].point(lambda v: 255 if v > 20 else 0).getbbox()
     px, py = 120, 130
     X0, Y0, X1, Y1 = 2 * 120, y0 - py, 2160 - 2 * 120, y1 + py     # одинаковая плашка на всех обложках
-    sh = Image.new("RGBA", fur.size, (0, 0, 0, 0)); m = Image.new("L", fur.size, 0)
-    m.paste(255, (X0 + 10, Y0 + 24, X1 + 10, Y1 + 24)); sh.putalpha(m.point(lambda v: int(v * .35)))
-    fur.alpha_composite(sh.filter(ImageFilter.GaussianBlur(36)))
-    fur.paste(G + (255,), (X0, Y0, X1, Y1))
+    if PANEL:
+        sh = Image.new("RGBA", fur.size, (0, 0, 0, 0)); m = Image.new("L", fur.size, 0)
+        m.paste(255, (X0 + 10, Y0 + 24, X1 + 10, Y1 + 24)); sh.putalpha(m.point(lambda v: int(v * .35)))
+        fur.alpha_composite(sh.filter(ImageFilter.GaussianBlur(36)))
+        fur.paste(G + (255,), (X0, Y0, X1, Y1))
+    else:  # без плашки: мягкое зелёное свечение #415038 вокруг букв
+        al = txt.split()[3]
+        for r, k in ((60, 1.0), (26, 1.0), (10, .9)):
+            g = Image.new("RGBA", fur.size, G + (0,)); g.putalpha(al.filter(ImageFilter.MaxFilter(9)).filter(ImageFilter.GaussianBlur(r)).point(lambda v, k=k: min(255, int(v * 2.2 * k))))
+            fur.alpha_composite(g)
     fur.alpha_composite(txt)
     out = fur.resize((1080, 1920), Image.LANCZOS).convert("RGB")
     out.save(os.path.join(OUT, name + ".jpg"), quality=95)
