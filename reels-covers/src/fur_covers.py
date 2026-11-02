@@ -16,6 +16,7 @@ JOBS = [  # исходник v13 -> фон -> имя (порядок как пр
     ("54_ряд29-2_bag-45", "fon2_panther", "4_bag45_pantera"),
     ("48_ряд27-2_podcast-03", "fon2_feathers", "5_podcast3_perya"),
     ("44_ряд26-1_podcast-05", "fon2_zebra", "6_podcast5_zebra"),
+    ("04_ряд02-2_podcast", "fon2_tiger", "7_podcast_edinburgh_tigr"),
 ]
 import sys
 PANEL = "--panel" in sys.argv
