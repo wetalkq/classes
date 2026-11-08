@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Present Perfect vs Present Perfect Continuous</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FAFAF6;
+    --panel: #FFFFFF;
+    --border: #E6E3DA;
+    --ink: #22262B;
+    --ink-soft: #656B70;
+    --pp: #2E5FD9;
+    --pp-bg: #EAF0FF;
+    --ppc: #D9731F;
+    --ppc-bg: #FDF0E3;
+    --accent: #1F6F66;
+    --accent-bg: #E7F3F0;
+    --warn: #C84B4B;
+    --warn-bg: #FCEBEB;
+    --font-display: "Fraunces", Georgia, serif;
+    --font-body: "Work Sans", -apple-system, "Segoe UI", Arial, sans-serif;
+    /* layout: single-column lesson flow, max-width 880px, sticky stage nav */
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: 17px;
+    line-height: 1.55;
+  }
+
+  body { padding-bottom: 80px; }
+
+  .wrap {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  header.hero {
+    background: linear-gradient(180deg, #FFFFFF 0%, var(--bg) 100%);
+    border-bottom: 1px solid var(--border);
+    padding: 36px 0 28px;
+  }
+
+  .eyebrow {
+    display: inline-flex;
+    gap: 8px;
+    align-items: center;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: var(--accent-bg);
+    padding: 5px 12px;
+    border-radius: 999px;
+  }
+
+  h1 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: clamp(28px, 4vw, 40px);
+    line-height: 1.15;
+    margin: 16px 0 6px;
+    text-wrap: balance;
+  }
+
+  .sub {
+    color: var(--ink-soft);
+    font-size: 16px;
+    margin: 0 0 20px;
+  }
+
+  .meta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 18px;
+  }
+
+  .chip {
+    font-size: 13px;
+    font-weight: 600;
+    padding: 6px 12px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--panel);
+    color: var(--ink-soft);
+  }
+
+  .aim-box {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 18px 20px;
+  }
+
+  .aim-box .label {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--ink-soft);
+    margin-bottom: 4px;
+  }
+
+  .aim-box p { margin: 4px 0; }
+
+  nav.stagebar {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: rgba(250,250,246,0.94);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--border);
+    overflow-x: auto;
+    white-space: nowrap;
+    padding: 10px 0;
+  }
+
+  nav.stagebar .wrap { display: flex; gap: 8px; padding: 0 24px; }
+
+  nav.stagebar a {
+    flex: none;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ink-soft);
+    text-decoration: none;
+    padding: 7px 13px;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: var(--panel);
+  }
+
+  nav.stagebar a:hover, nav.stagebar a:focus-visible { border-color: var(--accent); color: var(--accent); }
+
+  section.stage {
+    padding: 44px 0;
+    border-bottom: 1px solid var(--border);
+    scroll-margin-top: 60px;
+  }
+
+  section.stage:last-of-type { border-bottom: none; }
+
+  .stage-head {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin-bottom: 6px;
+  }
+
+  .stage-num {
+    font-family: var(--font-display);
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--accent);
+    background: var(--accent-bg);
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: none;
+  }
+
+  h2 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 24px;
+    margin: 0;
+  }
+
+  .time-tag {
+    margin-left: auto;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ink-soft);
+    white-space: nowrap;
+  }
+
+  .teacher-note {
+    font-size: 14px;
+    color: var(--ink-soft);
+    background: #F3F2EC;
+    border-left: 3px solid var(--border);
+    padding: 10px 14px;
+    border-radius: 6px;
+    margin: 14px 0;
+  }
+  .teacher-note b { color: var(--ink); }
+
+  .card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 20px 22px;
+    margin: 16px 0;
+  }
+
+  .dialogue p { margin: 10px 0; }
+  .dialogue .who { font-weight: 700; margin-right: 6px; }
+
+  mark.pp, mark.ppc {
+    padding: 1px 5px;
+    border-radius: 5px;
+    font-weight: 600;
+    background: var(--pp-bg);
+    color: var(--pp);
+  }
+  mark.ppc { background: var(--ppc-bg); color: var(--ppc); }
+
+  .legend { display: flex; gap: 18px; font-size: 14px; margin: 10px 0 0; flex-wrap: wrap; }
+  .legend span { display: inline-flex; align-items: center; gap: 6px; }
+  .legend .dot { width: 11px; height: 11px; border-radius: 50%; }
+  .dot.pp { background: var(--pp); }
+  .dot.ppc { background: var(--ppc); }
+
+  .ccq-list { margin: 14px 0; padding-left: 0; list-style: none; }
+  .ccq-list li {
+    padding: 9px 0 9px 28px;
+    position: relative;
+    border-bottom: 1px dashed var(--border);
+    font-size: 15px;
+  }
+  .ccq-list li:last-child { border-bottom: none; }
+  .ccq-list li::before {
+    content: "?";
+    position: absolute;
+    left: 0;
+    top: 9px;
+    font-family: var(--font-display);
+    font-weight: 700;
+    color: var(--accent);
+  }
+
+  .rule-box {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    padding: 16px 18px;
+    border-radius: 12px;
+    margin: 14px 0;
+  }
+  .rule-box.pp { background: var(--pp-bg); }
+  .rule-box.ppc { background: var(--ppc-bg); }
+  .rule-box .tag {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 14px;
+    flex: none;
+    padding: 4px 10px;
+    border-radius: 7px;
+    color: #fff;
+  }
+  .rule-box.pp .tag { background: var(--pp); }
+  .rule-box.ppc .tag { background: var(--ppc); }
+  .rule-box p { margin: 0; font-size: 15px; }
+
+  .ex-item {
+    display: flex;
+    gap: 12px;
+    align-items: baseline;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 16px;
+    flex-wrap: wrap;
+  }
+  .ex-item:last-child { border-bottom: none; }
+  .ex-num { font-weight: 700; color: var(--ink-soft); flex: none; width: 22px; }
+  .ex-text { flex: 1 1 320px; }
+  .blank { border-bottom: 2px solid var(--border); padding: 0 4px; font-weight: 600; color: var(--ink-soft); }
+
+  button.reveal {
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--accent);
+    background: var(--accent-bg);
+    border: none;
+    border-radius: 8px;
+    padding: 6px 12px;
+    cursor: pointer;
+    flex: none;
+  }
+  button.reveal:hover, button.reveal:focus-visible { background: var(--accent); color: #fff; }
+
+  .answer {
+    display: none;
+    font-weight: 700;
+    color: var(--accent);
+    font-size: 15px;
+    flex: 1 1 100%;
+  }
+  .answer.shown { display: block; }
+
+  .exbar {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 4px;
+  }
+  .exbar button.reveal { font-size: 13px; }
+
+  table.compare {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 15px;
+    margin: 14px 0;
+  }
+  table.compare th, table.compare td {
+    text-align: left;
+    padding: 10px 12px;
+    border: 1px solid var(--border);
+    vertical-align: top;
+  }
+  table.compare th { background: #F3F2EC; font-size: 13px; text-transform: uppercase; letter-spacing: 0.03em; }
+  table.compare td.pp-col { background: var(--pp-bg); }
+  table.compare td.ppc-col { background: var(--ppc-bg); }
+
+  .timeline { margin: 20px 0; }
+  .timeline .row { display: flex; align-items: center; gap: 14px; margin: 10px 0; }
+  .timeline .lab { width: 150px; font-size: 13px; font-weight: 700; flex: none; text-align: right; }
+  .timeline .lab.pp { color: var(--pp); }
+  .timeline .lab.ppc { color: var(--ppc); }
+  .timeline .track { position: relative; flex: 1; height: 34px; background: #F0EFE9; border-radius: 8px; }
+  .timeline .bar { position: absolute; top: 5px; bottom: 5px; border-radius: 6px; }
+  .timeline .bar.pp { right: 6px; width: 14px; background: var(--pp); }
+  .timeline .bar.ppc { left: 10%; right: 10%; background: repeating-linear-gradient(135deg, var(--ppc), var(--ppc) 6px, #f2c79b 6px, #f2c79b 12px); }
+  .timeline .now { position: absolute; right: -2px; top: -8px; bottom: -8px; width: 2px; background: var(--ink); }
+  .timeline .now::after { content: "now"; position: absolute; top: -18px; right: -10px; font-size: 11px; color: var(--ink-soft); }
+
+  .trap {
+    background: var(--warn-bg);
+    border-radius: 10px;
+    padding: 12px 16px;
+    font-size: 14px;
+    margin: 10px 0;
+    color: #7A2E2E;
+  }
+  .trap b { color: var(--warn); }
+
+  .speak-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 12px;
+    margin: 16px 0;
+  }
+  .speak-card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px;
+    font-size: 15px;
+    font-weight: 500;
+  }
+  .speak-card .num { font-size: 12px; font-weight: 700; color: var(--ink-soft); display: block; margin-bottom: 6px; }
+
+  .quiz-item { margin: 14px 0; }
+  .quiz-item .q { font-weight: 600; margin-bottom: 8px; }
+  .quiz-item .opts { display: flex; gap: 10px; flex-wrap: wrap; }
+  .quiz-item button.opt {
+    font-family: var(--font-body);
+    font-size: 14px;
+    border: 1px solid var(--border);
+    background: var(--panel);
+    border-radius: 8px;
+    padding: 8px 14px;
+    cursor: pointer;
+  }
+  .quiz-item button.opt.correct { background: #E7F4E7; border-color: #4E9A4E; color: #2C6B2C; }
+  .quiz-item button.opt.wrong { background: var(--warn-bg); border-color: var(--warn); color: var(--warn); }
+
+  .wrapup-box {
+    background: var(--accent-bg);
+    border-radius: 14px;
+    padding: 20px 22px;
+    margin-top: 18px;
+  }
+  .wrapup-box p { margin: 6px 0; }
+
+  footer.end {
+    text-align: center;
+    padding: 30px 0 10px;
+    color: var(--ink-soft);
+    font-size: 13px;
+  }
+
+  @media (max-width: 520px) {
+    .timeline .lab { width: 90px; font-size: 11px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="eyebrow">Grammar · Comparison lesson</span>
+    <h1>Present Perfect vs Present Perfect Continuous</h1>
+    <p class="sub">Result &amp; quantity vs. process &amp; duration — telling the two apart with confidence.</p>
+    <div class="meta-row">
+      <span class="chip">Level B1</span>
+      <span class="chip">60 minutes</span>
+      <span class="chip">Task-supported grammar lesson</span>
+    </div>
+    <div class="aim-box">
+      <div class="label">Main aim</div>
+      <p>By the end of the lesson, the student will be better able to choose correctly between Present Perfect and Present Perfect Continuous, based on whether the focus is on a <b>result/quantity</b> or on a <b>process/duration</b>.</p>
+      <div class="label" style="margin-top:12px;">Subsidiary aims</div>
+      <p>Clarify meaning through CCQs · practise each form in isolation · contrast the two directly · use both naturally in speech.</p>
+    </div>
+  </div>
+</header>
+
+<nav class="stagebar">
+  <div class="wrap">
+    <a href="#leadin">1. Lead-in</a>
+    <a href="#noticing">2. Noticing</a>
+    <a href="#pp">3. Present Perfect</a>
+    <a href="#ppc">4. Pres. Perf. Continuous</a>
+    <a href="#contrast">5. Contrast</a>
+    <a href="#discriminate">6. Discrimination</a>
+    <a href="#speaking">7. Speaking</a>
+    <a href="#wrapup">8. Wrap-up</a>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <section class="stage" id="leadin">
+    <div class="stage-head">
+      <span class="stage-num">1</span>
+      <h2>Lead-in</h2>
+      <span class="time-tag">4 min</span>
+    </div>
+    <div class="teacher-note">Ask out loud, no writing yet. Just get her talking — both tenses will come up naturally without you naming the grammar.</div>
+    <div class="card">
+      <p style="margin:6px 0;">• What have you been doing this week?</p>
+      <p style="margin:6px 0;">• What have you achieved so far this month?</p>
+    </div>
+  </section>
+
+  <section class="stage" id="noticing">
+    <div class="stage-head">
+      <span class="stage-num">2</span>
+      <h2>Noticing</h2>
+      <span class="time-tag">6 min</span>
+    </div>
+    <div class="teacher-note">Read the dialogue together. Ask: <b>"How many different grammar forms can you spot? What's different about them?"</b> Don't explain yet — just let her notice there are two patterns.</div>
+    <div class="card dialogue">
+      <p><span class="who">A:</span> Have you finished the report yet?</p>
+      <p><span class="who">B:</span> Almost! I<mark class="ppc">'ve been working</mark> on it all morning, but I<mark class="pp">'ve already finished</mark> the first two sections.</p>
+      <p><span class="who">A:</span> How many pages <mark class="pp">have you written</mark> so far?</p>
+      <p><span class="who">B:</span> I<mark class="pp">'ve written</mark> about ten pages. I<mark class="ppc">'ve been typing</mark> non-stop since 9 a.m.!</p>
+      <p><span class="who">A:</span> You<mark class="ppc">'ve been working</mark> so hard today!</p>
+      <p><span class="who">B:</span> I know. I<mark class="pp">'ve drunk</mark> three cups of coffee already.</p>
+      <div class="legend">
+        <span><span class="dot pp"></span> Present Perfect</span>
+        <span><span class="dot ppc"></span> Present Perfect Continuous</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="stage" id="pp">
+    <div class="stage-head">
+      <span class="stage-num">3</span>
+      <h2>Present Perfect — in isolation</h2>
+      <span class="time-tag">10 min</span>
+    </div>
+    <div class="rule-box pp">
+      <span class="tag">PP</span>
+      <p><b>have/has + past participle.</b> Used for a finished action with a result or fact that matters <i>now</i> — often with an exact quantity (how many / how much / how many times).</p>
+    </div>
+    <ul class="ccq-list">
+      <li>Is the action finished? <i>(Yes.)</i></li>
+      <li>Do we know or care exactly when it happened? <i>(No — or it's not the point.)</i></li>
+      <li>Why mention it now? <i>(Because the result is true right now.)</i></li>
+      <li>Can we count how many? <i>(Often yes — "three cups", "ten pages".)</i></li>
+    </ul>
+    <div class="card">
+      <div class="exbar"><button class="reveal" onclick="toggleAll(this,'pp1')">Show all answers</button></div>
+      <div id="pp1">
+        <div class="ex-item"><span class="ex-num">1</span><span class="ex-text">I <span class="blank">finish</span> my homework. Can I watch TV now?</span><button class="reveal" onclick="toggle(this)">Show</button><span class="answer">have finished</span></div>
+        <div class="ex-item"><span class="ex-num">2</span><span class="ex-text">She <span class="blank">write</span> three emails this morning.</span><button class="reveal" onclick="toggle(this)">Show</button><span class="answer">has written</span></div>
+        <div class="ex-item"><span class="ex-num">3</span><span class="ex-text">We <span class="blank">never / try</span> sushi before.</span><button class="reveal" onclick="toggle(this)">Show</button><span class="answer">have never tried</span></div>
+        <div class="ex-item"><span class="ex-num">4</span><span class="ex-text">He <span class="blank">lose</span> his keys again!</span><button class="reveal" onclick="toggle(this)">Show</button><span class="answer">has lost</span></div>
+        <div class="ex-item"><span class="ex-num">5</span><span class="ex-text"><span class="blank">you / see</span> the new film yet?</span><button class="reveal" onclick="toggle(this)">Show</button><span class="answer">Have you seen</span></div>
+        <div class="ex-item"><span class="ex-num">6</span><span class="ex-text">They <span class="blank">already / leave</span> the office.</span><button class="reveal" onclick="toggle(this)">Show</button><span class="answer">have already left</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="stage" id="ppc">
+    <div class="stage-head">
+      <span class="stage-num">4</span>
+      <h2>Present Perfect Continuous — in isolation</h2>
+      <span class="time-tag">10 min</span>
+    </div>
+    <div class="rule-box ppc">
+      <span class="tag">PPC</span>
+      <p><b>have/has + been + verb-ing.</b> Used for a process or activity — often still going on, or only just stopped — with the focus on duration, not on a countable result.</p>
+    </div>
+    <ul class="ccq-list">
+      <li>Is the action still happening, or did it just stop? <i>(Either — the focus is on the activity itself.)</i></li>
+      <li>Are we interested in the process or in a finished result? <i>(The process.)</i></li>
+      <li>Can we usually give an exact number? <i>(Not really — that's not the point.)</i></li>
+      <li>What question word often triggers this form? <i>("How long...?")</i></li>
+    </ul>
+    <div class="card">
+      <div class="exbar"><button class="reveal" onclick="toggleAll(this,'ppc1')">Show all answers</button></div>
+      <div id="ppc1">
+        <div class="ex-item"><span class="ex-num">1</span><span class="ex-text">It <span class="blank">rain</span> since this morning.</span><button class="reveal" onclick="toggle(this)">Show</button><span class="answer">has been raining</span></div>
+        <div class="ex-item"><span class="ex-num">2</span><span class="ex-text">I <span class="blank">learn</span> English for five years.</span><button class="reveal" onclick="toggle(this)">Show</button><span class="answer">have been learning</span></div>
+        <div class="ex-item"><span class="ex-num">3</span><span class="ex-text">She <span class="blank">wait</span> for the bus for twenty minutes.</span><button class="reveal" onclick="toggle(this)">Show</button><span class="answer">has been waiting</span></div>
+        <div class="ex-item"><span class="ex-num">4</span><span class="ex-text">We <span class="blank">work</span> on this project all week.</span><button class="reveal" onclick="toggle(this)">Show</button><span class="answer">have been working</span></div>
+        <div class="ex-item"><span class="ex-num">5</span><span class="ex-text"><span class="blank">you / feel</span> okay lately?</span><button class="reveal" onclick="toggle(this)">Show</button><span class="answer">Have you been feeling</span></div>
+        <div class="ex-item"><span class="ex-num">6</span><span class="ex-text">He <span class="blank">play</span> video games all afternoon — his eyes are red!</span><button class="reveal" onclick="toggle(this)">Show</button><span class="answer">has been playing</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="stage" id="contrast">
+    <div class="stage-head">
+      <span class="stage-num">5</span>
+      <h2>Side by side</h2>
+      <span class="time-tag">8 min</span>
+    </div>
+
+    <div class="timeline">
+      <div class="row">
+        <span class="lab pp">Result (PP)</span>
+        <div class="track"><div class="bar pp"></div><div class="now"></div></div>
+      </div>
+      <div class="row">
+        <span class="lab ppc">Process (PPC)</span>
+        <div class="track"><div class="bar ppc"></div><div class="now"></div></div>
+      </div>
+    </div>
+
+    <table class="compare">
+      <tr><th>Present Perfect</th><th>Present Perfect Continuous</th></tr>
+      <tr>
+        <td class="pp-col">Focus: <b>result / fact / quantity</b></td>
+        <td class="ppc-col">Focus: <b>process / duration / activity</b></td>
+      </tr>
+      <tr>
+        <td class="pp-col">Clues: already, just, yet, ever, never, so far, "how many/how much"</td>
+        <td class="ppc-col">Clues: all day, lately, recently, "how long"</td>
+      </tr>
+      <tr>
+        <td class="pp-col"><i>I've painted the wall.</i> (it's done — a result)</td>
+        <td class="ppc-col"><i>I've been painting the wall.</i> (the process — maybe still unfinished)</td>
+      </tr>
+    </table>
+
+    <div class="trap">
+      <b>Trap:</b> stative verbs (know, want, believe, understand, like, have = possess) never take the continuous form — even with "for/since". <br>
+      ✗ <i>I've been knowing her for years.</i> &nbsp; ✓ <i>I've known her for years.</i>
+    </div>
+    <div class="trap">
+      <b>Trap:</b> once you give an exact number, switch to Present Perfect, even if it was a long process.<br>
+      ✗ <i>I've been reading three books this month.</i> &nbsp; ✓ <i>I've read three books this month.</i>
+    </div>
+  </section>
+
+  <section class="stage" id="discriminate">
+    <div class="stage-head">
+      <span class="stage-num">6</span>
+      <h2>Discrimination practice</h2>
+      <span class="time-tag">12 min</span>
+    </div>
+
+    <h3 style="font-family:var(--font-display); font-size:17px; margin:0 0 4px;">Exercise 3 — choose the right form</h3>
+    <div class="card">
+      <div class="exbar"><button class="reveal" onclick="toggleAll(this,'ex3')">Show all answers</button></div>
+      <div id="ex3">
+        <div class="ex-item"><span class="ex-num">1</span><span class="ex-text">I <span class="blank">read</span> that book — it was great.</span><button class="reveal" onclick="toggle(this)">Show</button><span class="answer">have read <i>(result)</i></span></div>
+        <div class="ex-item"><span class="ex-num">2</span><span class="ex-text">I <span class="blank">read</span> that book for two weeks, but I'm only halfway through.</span><button class="reveal" onclick="toggle(this)">Show</button><span class="answer">have been reading <i>(process)</i></span></div>
+        <div class="ex-item"><span class="ex-num">3</span><span class="ex-text">She <span class="blank">write</span> her thesis for six months now.</span><button class="reveal" onclick="toggle(this)">Show</button><span class="answer">has been writing <i>(duration)</i></span></div>
+        <div class="ex-item"><span class="ex-num">4</span><span class="ex-text">She <span class="blank">write</span> three chapters so far.</span><button class="reveal" onclick="toggle(this)">Show</button><span class="answer">has written <i>(quantity)</i></span></div>
+        <div class="ex-item"><span class="ex-num">5</span><span class="ex-text">We <span class="blank">clean</span> the house — it looks great now!</span><button class="reveal" onclick="toggle(this)">Show</button><span class="answer">have cleaned <i>(result)</i></span></div>
+        <div class="ex-item"><span class="ex-num">6</span><span class="ex-text">We <span class="blank">clean</span> the house all day — we're exhausted.</span><button class="reveal" onclick="toggle(this)">Show</button><span class="answer">have been cleaning <i>(process)</i></span></div>
+        <div class="ex-item"><span class="ex-num">7</span><span class="ex-text">He <span class="blank">know</span> her since university.</span><button class="reveal" onclick="toggle(this)">Show</button><span class="answer">has known <i>(stative — no continuous)</i></span></div>
+        <div class="ex-item"><span class="ex-num">8</span><span class="ex-text">They <span class="blank">wait</span> for 45 minutes already.</span><button class="reveal" onclick="toggle(this)">Show</button><span class="answer">have been waiting <i>(duration)</i></span></div>
+      </div>
+    </div>
+
+    <h3 style="font-family:var(--font-display); font-size:17px; margin:24px 0 4px;">Exercise 4 — find and fix the mistake</h3>
+    <div class="card">
+      <div class="exbar"><button class="reveal" onclick="toggleAll(this,'ex4')">Show all answers</button></div>
+      <div id="ex4">
+        <div class="ex-item"><span class="ex-num">1</span><span class="ex-text">I've been knowing him for years.</span><button class="reveal" onclick="toggle(this)">Show</button><span class="answer">I've known him for years. <i>(stative verb)</i></span></div>
+        <div class="ex-item"><span class="ex-num">2</span><span class="ex-text">She has written her essay for three hours.</span><button class="reveal" onclick="toggle(this)">Show</button><span class="answer">She has been writing her essay for three hours. <i>(ongoing process)</i></span></div>
+        <div class="ex-item"><span class="ex-num">3</span><span class="ex-text">We've been finished the project.</span><button class="reveal" onclick="toggle(this)">Show</button><span class="answer">We've finished the project. <i>(result, not continuous)</i></span></div>
+        <div class="ex-item"><span class="ex-num">4</span><span class="ex-text">How many books have you been reading this month?</span><button class="reveal" onclick="toggle(this)">Show</button><span class="answer">How many books have you read this month? <i>(exact quantity → PP)</i></span></div>
+        <div class="ex-item"><span class="ex-num">5</span><span class="ex-text">He has been lost his phone twice this week.</span><button class="reveal" onclick="toggle(this)">Show</button><span class="answer">He has lost his phone twice this week. <i>(quantity → PP, no continuous)</i></span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="stage" id="speaking">
+    <div class="stage-head">
+      <span class="stage-num">7</span>
+      <h2>Over to her — freer speaking</h2>
+      <span class="time-tag">10 min</span>
+    </div>
+    <div class="teacher-note">Ask these one by one, as a real conversation. Don't correct mid-flow — note mistakes, give feedback after.</div>
+    <div class="speak-grid">
+      <div class="speak-card"><span class="num">1</span>How long have you been learning English?</div>
+      <div class="speak-card"><span class="num">2</span>What's the most interesting thing you've done this year?</div>
+      <div class="speak-card"><span class="num">3</span>How many countries have you visited?</div>
+      <div class="speak-card"><span class="num">4</span>What have you been working on lately?</div>
+      <div class="speak-card"><span class="num">5</span>Have you ever tried a food you didn't like? What was it?</div>
+      <div class="speak-card"><span class="num">6</span>What's something you've been wanting to do but haven't done yet?</div>
+    </div>
+  </section>
+
+  <section class="stage" id="wrapup">
+    <div class="stage-head">
+      <span class="stage-num">8</span>
+      <h2>Wrap-up — quick self-check</h2>
+      <span class="time-tag">5 min</span>
+    </div>
+
+    <div class="quiz-item">
+      <div class="q">1. Which sentence focuses on a RESULT?</div>
+      <div class="opts">
+        <button class="opt" onclick="pick(this,false)">I've been cooking all day.</button>
+        <button class="opt" onclick="pick(this,true)">I've cooked dinner.</button>
+      </div>
+    </div>
+    <div class="quiz-item">
+      <div class="q">2. Which sentence focuses on a PROCESS?</div>
+      <div class="opts">
+        <button class="opt" onclick="pick(this,true)">I've been painting the fence.</button>
+        <button class="opt" onclick="pick(this,false)">I've painted the fence.</button>
+      </div>
+    </div>
+    <div class="quiz-item">
+      <div class="q">3. Which verb type NEVER takes the continuous form?</div>
+      <div class="opts">
+        <button class="opt" onclick="pick(this,false)">action verbs (run, write, cook)</button>
+        <button class="opt" onclick="pick(this,true)">stative verbs (know, want, believe)</button>
+      </div>
+    </div>
+    <div class="quiz-item">
+      <div class="q">4. "I've visited Spain ___ times." Which fits?</div>
+      <div class="opts">
+        <button class="opt" onclick="pick(this,true)">three</button>
+        <button class="opt" onclick="pick(this,false)">for a while</button>
+      </div>
+    </div>
+
+    <div class="wrapup-box">
+      <p><b>Last step:</b> ask her to explain the difference in her own words, without looking at the page. If she can say it naturally, the lesson has worked.</p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="end">Present Perfect vs Present Perfect Continuous · B1 · 60-minute lesson</footer>
+
+<script>
+  function toggle(btn) {
+    var ans = btn.nextElementSibling;
+    if (ans && ans.classList.contains('answer')) {
+      ans.classList.toggle('shown');
+      btn.textContent = ans.classList.contains('shown') ? 'Hide' : 'Show';
+    }
+  }
+  function toggleAll(btn, containerId) {
+    var container = document.getElementById(containerId);
+    var answers = container.querySelectorAll('.answer');
+    var showing = btn.dataset.state !== 'on';
+    answers.forEach(function(a){ a.classList.toggle('shown', showing); });
+    container.querySelectorAll('button.reveal').forEach(function(b){ b.textContent = showing ? 'Hide' : 'Show'; });
+    btn.dataset.state = showing ? 'on' : 'off';
+    btn.textContent = showing ? 'Hide all answers' : 'Show all answers';
+  }
+  function pick(btn, isCorrect) {
+    var group = btn.parentElement.querySelectorAll('button.opt');
+    group.forEach(function(b){ b.disabled = true; });
+    btn.classList.add(isCorrect ? 'correct' : 'wrong');
+    if (!isCorrect) {
+      group.forEach(function(b){
+        if (b !== btn) { b.classList.add('correct'); }
+      });
+    }
+  }
+</script>
+
+</body>
+</html>
