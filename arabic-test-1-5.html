@@ -1,0 +1,510 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="claude:viewport-fit-sides" content="cover">
+<title>Тест §1–5</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600;700&family=PT+Sans:wght@400;700&family=Amiri:wght@400;700&display=swap">
+<style>
+  :root {
+    --bg: #f6f1e7; --surface: #fffcf5; --ink: #2b2420; --muted: #7a6f60;
+    --accent: #0f5c56; --accent-soft: #d9ece9; --gold: #b8863b; --gold-soft: #f3e6cd;
+    --bad: #a23b2e; --bad-soft: #f6e2dd; --good: #2e7d4f; --good-soft: #e1efe3;
+    --border: #e2d7c3; --head-bg: #2b2420; --head-ink: #f6f1e7;
+    color-scheme: light;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg:#1b1815; --surface:#262220; --ink:#efe8dc; --muted:#a89d8c;
+      --accent:#5fc9bd; --accent-soft:#233b38; --gold:#d9ab5f; --gold-soft:#332a1a;
+      --bad:#e08c7d; --bad-soft:#3a2420; --good:#7fcf9d; --good-soft:#1f3327;
+      --border:#3a332c; --head-bg:#efe8dc; --head-ink:#1b1815; color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg:#1b1815; --surface:#262220; --ink:#efe8dc; --muted:#a89d8c;
+    --accent:#5fc9bd; --accent-soft:#233b38; --gold:#d9ab5f; --gold-soft:#332a1a;
+    --bad:#e08c7d; --bad-soft:#3a2420; --good:#7fcf9d; --good-soft:#1f3327;
+    --border:#3a332c; --head-bg:#efe8dc; --head-ink:#1b1815; color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font-family: 'PT Sans', sans-serif;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: 18px 60px; line-height: 1.55;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; }
+  h1 { font-family: 'Lora', serif; font-size: 1.5rem; margin: 0 0 6px; text-wrap: balance; }
+  .sub { color: var(--muted); font-size: 0.92rem; margin: 0 0 16px; }
+
+  .scorebar {
+    position: sticky; top: 0; z-index: 5;
+    background: var(--bg); border-bottom: 1px solid var(--border);
+    padding: 10px 2px 12px; margin: 0 -2px 20px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .progress-track { flex: 1; min-width: 0; height: 8px; border-radius: 99px; background: var(--border); overflow: hidden; }
+  .progress-fill { height: 100%; background: var(--accent); border-radius: 99px; transition: width .25s ease; }
+  .progress-label { font-size: 0.85rem; color: var(--muted); white-space: nowrap; font-variant-numeric: tabular-nums; }
+
+  h2.sec-title {
+    font-family: 'Lora', serif; font-size: 1.1rem; color: var(--accent);
+    margin: 28px 0 4px; padding-bottom: 6px; border-bottom: 1px solid var(--border);
+  }
+  p.sec-note { color: var(--muted); font-size: 0.85rem; margin: 0 0 14px; }
+
+  .q-card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 14px;
+    padding: 16px 18px; margin-bottom: 14px;
+  }
+  .q-num { font-size: 0.75rem; color: var(--gold); font-weight: 700; letter-spacing: .03em; margin-bottom: 4px; }
+  .q-prompt { font-size: 1rem; margin: 0 0 12px; }
+  .opt-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 4px; }
+  .opt {
+    display: flex; align-items: center; gap: 10px;
+    border: 2px solid var(--border); border-radius: 10px; padding: 9px 12px;
+    cursor: pointer; background: var(--bg);
+  }
+  .opt:hover { border-color: var(--accent); }
+  .opt input { accent-color: var(--accent); flex: none; }
+  .opt .ar { font-family: 'Amiri', serif; font-size: 1.2rem; direction: rtl; }
+  .opt .tr { font-style: italic; color: var(--muted); font-size: 0.82rem; margin-left: 6px; }
+  .opt.selected { background: var(--accent-soft); border-color: var(--accent); }
+  .opt.correct { background: var(--good-soft); border-color: var(--good); }
+  .opt.wrong { background: var(--bad-soft); border-color: var(--bad); }
+
+  .q-feedback {
+    margin-top: 10px; padding-top: 10px; border-top: 1px dashed var(--border);
+    font-size: 0.87rem; display: none;
+  }
+  .q-feedback.show { display: block; }
+  .q-feedback.good-text { color: var(--good); }
+  .q-feedback.bad-text { color: var(--bad); }
+  .q-feedback b.tag { display: block; margin-bottom: 4px; }
+  .q-feedback .rule { color: var(--ink); }
+
+  .check-wrap { text-align: center; margin-top: 26px; }
+  button.btn-check {
+    font-family: inherit; font-size: 1rem; font-weight: 700;
+    background: var(--accent); color: var(--surface); border: none;
+    border-radius: 10px; padding: 13px 30px; cursor: pointer;
+  }
+  button.btn-check:hover { filter: brightness(1.05); }
+
+  .result-box {
+    display: none; background: var(--gold-soft); border: 1px solid var(--gold);
+    border-radius: 14px; padding: 18px 20px; margin-top: 24px; text-align: center;
+  }
+  .result-box.show { display: block; }
+  .result-box .big { font-family: 'Lora', serif; font-size: 1.5rem; margin-bottom: 6px; }
+  .result-box .by-section { text-align: left; margin-top: 14px; font-size: 0.88rem; }
+  .result-box .by-section div { display: flex; justify-content: space-between; padding: 4px 0; border-bottom: 1px dashed var(--border); }
+
+  footer { text-align: center; color: var(--muted); font-size: 0.8rem; font-style: italic; margin-top: 18px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1>Тест по §1–5</h1>
+  <p class="sub">21 вопрос по шпаргалке: порядок слов, падежи, هذا/هذه, местоимения, слитные суффиксы, прошедшее время. Отвечай на все вопросы и нажми «Проверить» внизу — покажу разбор по каждому.</p>
+
+  <div class="scorebar">
+    <div class="progress-track"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+    <div class="progress-label" id="progressLabel">0 / 21 отвечено</div>
+  </div>
+
+  <div id="quizRoot"></div>
+
+  <div class="check-wrap">
+    <button class="btn-check" id="checkAllBtn">Проверить</button>
+  </div>
+
+  <div class="result-box" id="resultBox">
+    <div class="big" id="resultBig"></div>
+    <div id="resultSub" style="color:var(--muted);"></div>
+    <div class="by-section" id="resultBySection"></div>
+  </div>
+
+  <footer>Arabic Classes — тест по §1–5</footer>
+</div>
+
+<script>
+(function () {
+  var sections = [
+    {
+      title: "1. Порядок слов",
+      note: "Полные предложения — выбери вариант с правильным порядком слов.",
+      questions: [
+        {
+          prompt: "«Это новая машина»",
+          options: [
+            { ar: "هَذِهِ سَيَّارَةٌ جَدِيدَةٌ", tr: "hādhihi sayyāratun jadīdatun" },
+            { ar: "سَيَّارَةٌ هَذِهِ جَدِيدَةٌ", tr: "sayyāratun hādhihi jadīdatun" },
+            { ar: "هَذِهِ جَدِيدَةٌ سَيَّارَةٌ", tr: "hādhihi jadīdatun sayyāratun" },
+            { ar: "جَدِيدَةٌ سَيَّارَةٌ هَذِهِ", tr: "jadīdatun sayyāratun hādhihi" }
+          ],
+          correct: 0,
+          explain: "Именное предложение: هَذِهِ (согласовано в роде) → сказуемое-существительное → прилагательное сразу после своего существительного."
+        },
+        {
+          prompt: "«Я взял(а) новый словарь»",
+          options: [
+            { ar: "أَخَذْتُ قَامُوسًا جَدِيدًا", tr: "akhadhtu qāmūsan jadīdan" },
+            { ar: "قَامُوسًا أَخَذْتُ جَدِيدًا", tr: "qāmūsan akhadhtu jadīdan" },
+            { ar: "أَخَذْتُ جَدِيدًا قَامُوسًا", tr: "akhadhtu jadīdan qāmūsan" },
+            { ar: "جَدِيدًا قَامُوسًا أَخَذْتُ", tr: "jadīdan qāmūsan akhadhtu" }
+          ],
+          correct: 0,
+          explain: "Глагол с окончанием -tu (подлежащее «я» спрятано в нём) — первый, затем дополнение в винительном, и сразу за ним — его прилагательное, тоже винительный."
+        },
+        {
+          prompt: "«Студент взял маленькую тетрадь»",
+          options: [
+            { ar: "أَخَذَ طَالِبٌ دَفْتَرًا صَغِيرًا", tr: "akhadha ṭālibun daftaran ṣaghīran" },
+            { ar: "طَالِبٌ دَفْتَرًا صَغِيرًا أَخَذَ", tr: "ṭālibun daftaran ṣaghīran akhadha" },
+            { ar: "أَخَذَ دَفْتَرًا صَغِيرًا طَالِبٌ", tr: "akhadha daftaran ṣaghīran ṭālibun" },
+            { ar: "أَخَذَ طَالِبٌ صَغِيرًا دَفْتَرًا", tr: "akhadha ṭālibun ṣaghīran daftaran" }
+          ],
+          correct: 0,
+          explain: "Глагол → подлежащее отдельным словом (именительный) → дополнение (винительный) → его прилагательное сразу за ним. Последний вариант неверен: прилагательное нельзя отрывать от своего существительного."
+        }
+      ]
+    },
+    {
+      title: "2. Падежи — трёхпадежные имена",
+      note: "Выбери верное окончание для подчёркнутой роли слова в предложении.",
+      questions: [
+        {
+          prompt: "«Я увидел(а) ___» (дом — прямое дополнение, неопределённое)",
+          options: [
+            { ar: "بَيْتٌ", tr: "baytun" },
+            { ar: "بَيْتًا", tr: "baytan" },
+            { ar: "بَيْتٍ", tr: "baytin" }
+          ],
+          correct: 1,
+          explain: "Прямое дополнение переходного глагола без предлога — винительный падеж. Неопределённое трёхпадежное имя → танвин -an."
+        },
+        {
+          prompt: "«...в ___» (дом, после предлога فِي, неопределённое)",
+          options: [
+            { ar: "بَيْتٌ", tr: "baytun" },
+            { ar: "بَيْتًا", tr: "baytan" },
+            { ar: "بَيْتٍ", tr: "baytin" }
+          ],
+          correct: 2,
+          explain: "После предлога — родительный падеж. Неопределённое трёхпадежное имя → танвин -in."
+        },
+        {
+          prompt: "«___ جَدِيدٌ» («книга новая» — подлежащее именного предложения, без предлога, неопределённое)",
+          options: [
+            { ar: "كِتَابٌ", tr: "kitābun" },
+            { ar: "كِتَابٍ", tr: "kitābin" },
+            { ar: "كِتَابًا", tr: "kitāban" }
+          ],
+          correct: 0,
+          explain: "Подлежащее без предлога — именительный падеж, а НЕ родительный (частая ловушка — путать с родительным по умолчанию). Неопределённое → танвин -un."
+        },
+        {
+          prompt: "«...في ___» (школа, определённая, после предлога)",
+          options: [
+            { ar: "الْمَدْرَسَةُ", tr: "al-madrasatu" },
+            { ar: "الْمَدْرَسَةِ", tr: "al-madrasati" },
+            { ar: "الْمَدْرَسَةَ", tr: "al-madrasata" }
+          ],
+          correct: 1,
+          explain: "После предлога — родительный падеж. Определённое имя (с артиклем) → окончание -i, без танвина."
+        }
+      ]
+    },
+    {
+      title: "3. Падежи — двухпадежные имена (цвета)",
+      note: "",
+      questions: [
+        {
+          prompt: "«Я увидел(а) машину ___» (красную — двухпадежное, винительный)",
+          options: [
+            { ar: "حَمْرَاءُ", tr: "ḥamrā'u" },
+            { ar: "حَمْرَاءَ", tr: "ḥamrā'a" },
+            { ar: "حَمْرَاءً", tr: "ḥamrā'an" }
+          ],
+          correct: 1,
+          explain: "Двухпадежные имена никогда не берут танвин. Винительный и родительный у них совпадают — окончание -a."
+        },
+        {
+          prompt: "«___ بَيْتٌ» («зелёный дом» — именительный, двухпадежное)",
+          options: [
+            { ar: "أَخْضَرُ", tr: "akhḍaru" },
+            { ar: "أَخْضَرٌ", tr: "akhḍarun" },
+            { ar: "أَخْضَرَ", tr: "akhḍara" }
+          ],
+          correct: 0,
+          explain: "Именительный падеж двухпадежного имени — окончание -u, без танвина."
+        },
+        {
+          prompt: "У двухпадежных имён в определённом состоянии (с ال) появляется танвин?",
+          options: [
+            { ar: "نَعَمْ", tr: "да" },
+            { ar: "لَا", tr: "нет" }
+          ],
+          correct: 1,
+          explain: "Танвина у двухпадежных имён не бывает никогда — ни в определённом, ни в неопределённом состоянии."
+        }
+      ]
+    },
+    {
+      title: "4. هَذَا / هَذِهِ",
+      note: "",
+      questions: [
+        {
+          prompt: "«Это тетрадь» (دَفْتَر — мужской род)",
+          options: [
+            { ar: "هَذَا دَفْتَرٌ", tr: "hādhā daftarun" },
+            { ar: "هَذِهِ دَفْتَرٌ", tr: "hādhihi daftarun" }
+          ],
+          correct: 0,
+          explain: "دَفْتَر — мужской род, поэтому هَذَا."
+        },
+        {
+          prompt: "«Это семья» (عَائِلَة — женский род)",
+          options: [
+            { ar: "هَذَا عَائِلَةٌ", tr: "hādhā 'ā'ilatun" },
+            { ar: "هَذِهِ عَائِلَةٌ", tr: "hādhihi 'ā'ilatun" }
+          ],
+          correct: 1,
+          explain: "عَائِلَة оканчивается на ة — женский род, поэтому هَذِهِ."
+        }
+      ]
+    },
+    {
+      title: "5. Личные местоимения",
+      note: "",
+      questions: [
+        {
+          prompt: "«ты» — к мужчине",
+          options: [
+            { ar: "أَنْتَ", tr: "anta" },
+            { ar: "أَنْتِ", tr: "anti" },
+            { ar: "أَنَا", tr: "ana" }
+          ],
+          correct: 0,
+          explain: "أَنْتَ — обращение к мужчине; أَنْتِ — к женщине."
+        },
+        {
+          prompt: "«она»",
+          options: [
+            { ar: "هُوَ", tr: "huwa" },
+            { ar: "هِيَ", tr: "hiya" }
+          ],
+          correct: 1,
+          explain: "هِيَ — она; هُوَ — он."
+        }
+      ]
+    },
+    {
+      title: "6. Слитные притяжательные местоимения",
+      note: "",
+      questions: [
+        {
+          prompt: "«моя машина» (سَيَّارَة + «мой»)",
+          options: [
+            { ar: "سَيَّارَتِي", tr: "sayyāratī" },
+            { ar: "سَيَّارَةِي", tr: "sayyārati-ī" },
+            { ar: "سَيَّارَتُي", tr: "sayyāratuī" }
+          ],
+          correct: 0,
+          explain: "При любом суффиксе ة сохраняет свою форму (с точками), но получает нужную огласовку перед суффиксом: سَيَّارَتِي. Ни артикля, ни танвина у слова с суффиксом не бывает."
+        },
+        {
+          prompt: "«его дом»",
+          options: [
+            { ar: "بَيْتُهُ", tr: "baytuhu" },
+            { ar: "بَيْتُهَا", tr: "baytuhā" },
+            { ar: "بَيْتِي", tr: "baytī" }
+          ],
+          correct: 0,
+          explain: "-hu = его. بَيْتُ + هُ = بَيْتُهُ."
+        },
+        {
+          prompt: "«твоя книга» — к женщине",
+          options: [
+            { ar: "كِتَابُكَ", tr: "kitābuka" },
+            { ar: "كِتَابُكِ", tr: "kitābuki" }
+          ],
+          correct: 1,
+          explain: "-ki — «твой», если обращаешься к женщине; -ka — к мужчине."
+        },
+        {
+          prompt: "«её школа» (مَدْرَسَة + «её»)",
+          options: [
+            { ar: "مَدْرَسَتُهَا", tr: "madrasatuhā" },
+            { ar: "مَدْرَسَةُهَا", tr: "madrasatu-hā (без сдвига огласовки)" },
+            { ar: "مَدْرَسَتِي", tr: "madrasatī" }
+          ],
+          correct: 0,
+          explain: "مَدْرَسَة + ـُهَا = مَدْرَسَتُهَا — ة получает огласовку -u прямо перед суффиксом، сохраняя свою форму (две точки)."
+        }
+      ]
+    },
+    {
+      title: "7. Прошедшее время — личные окончания",
+      note: "Справочно (это ты уже знаешь) — для закрепления вместе со всем остальным.",
+      questions: [
+        {
+          prompt: "«ты написала» — к женщине",
+          options: [
+            { ar: "كَتَبْتَ", tr: "katabta" },
+            { ar: "كَتَبْتِ", tr: "katabti" }
+          ],
+          correct: 1,
+          explain: "-ti — окончание 2-го лица ед.ч. женского рода."
+        },
+        {
+          prompt: "«она написала»",
+          options: [
+            { ar: "كَتَبَ", tr: "kataba" },
+            { ar: "كَتَبَتْ", tr: "katabat" }
+          ],
+          correct: 1,
+          explain: "-at — окончание 3-го лица ед.ч. женского рода прошедшего времени."
+        },
+        {
+          prompt: "«я написал(а)»",
+          options: [
+            { ar: "كَتَبْتُ", tr: "katabtu" },
+            { ar: "كَتَبَ", tr: "kataba" },
+            { ar: "كَتَبْتَ", tr: "katabta" }
+          ],
+          correct: 0,
+          explain: "-tu — окончание 1-го лица ед.ч."
+        }
+      ]
+    }
+  ];
+
+  // Flatten with global indices
+  var flat = [];
+  sections.forEach(function (sec, si) {
+    sec.questions.forEach(function (q, qi) {
+      flat.push({ sectionIndex: si, sectionTitle: sec.title, q: q, answered: null });
+    });
+  });
+
+  var root = document.getElementById("quizRoot");
+  var progressFill = document.getElementById("progressFill");
+  var progressLabel = document.getElementById("progressLabel");
+
+  function updateProgress() {
+    var answered = flat.filter(function (f) { return f.answered !== null; }).length;
+    progressLabel.textContent = answered + " / " + flat.length + " отвечено";
+    progressFill.style.width = (answered / flat.length * 100) + "%";
+  }
+
+  sections.forEach(function (sec, si) {
+    var h2 = document.createElement("h2");
+    h2.className = "sec-title";
+    h2.textContent = sec.title;
+    root.appendChild(h2);
+    if (sec.note) {
+      var p = document.createElement("p");
+      p.className = "sec-note";
+      p.textContent = sec.note;
+      root.appendChild(p);
+    }
+    sec.questions.forEach(function (q, qi) {
+      var globalIndex = flat.findIndex(function (f) { return f.sectionIndex === si && f.q === q; });
+      var card = document.createElement("div");
+      card.className = "q-card";
+      card.innerHTML =
+        '<div class="q-num">Вопрос ' + (globalIndex + 1) + '</div>' +
+        '<p class="q-prompt">' + q.prompt + '</p>' +
+        '<div class="opt-list"></div>' +
+        '<div class="q-feedback"></div>';
+      var optList = card.querySelector(".opt-list");
+      q.options.forEach(function (opt, oi) {
+        var label = document.createElement("label");
+        label.className = "opt";
+        label.innerHTML =
+          '<input type="radio" name="q' + globalIndex + '" value="' + oi + '">' +
+          '<span class="ar">' + opt.ar + '</span><span class="tr">' + opt.tr + '</span>';
+        label.addEventListener("click", function () {
+          flat[globalIndex].answered = oi;
+          Array.prototype.forEach.call(optList.children, function (el) { el.classList.remove("selected"); });
+          label.classList.add("selected");
+          updateProgress();
+        });
+        optList.appendChild(label);
+      });
+      root.appendChild(card);
+    });
+  });
+
+  updateProgress();
+
+  document.getElementById("checkAllBtn").addEventListener("click", function () {
+    var cards = root.querySelectorAll(".q-card");
+    var correctCount = 0;
+    var bySection = {};
+
+    cards.forEach(function (card, idx) {
+      var f = flat[idx];
+      var opts = card.querySelectorAll(".opt");
+      var feedback = card.querySelector(".q-feedback");
+      var isCorrect = f.answered === f.q.correct;
+
+      bySection[f.sectionTitle] = bySection[f.sectionTitle] || { correct: 0, total: 0 };
+      bySection[f.sectionTitle].total++;
+      if (isCorrect) { bySection[f.sectionTitle].correct++; correctCount++; }
+
+      opts.forEach(function (optEl, oi) {
+        optEl.classList.remove("selected");
+        if (oi === f.q.correct) optEl.classList.add("correct");
+        else if (oi === f.answered) optEl.classList.add("wrong");
+      });
+
+      feedback.classList.add("show");
+      if (isCorrect) {
+        feedback.className = "q-feedback show good-text";
+        feedback.innerHTML = '<b class="tag">Верно!</b><span class="rule">' + f.q.explain + '</span>';
+      } else {
+        feedback.className = "q-feedback show bad-text";
+        var correctOpt = f.q.options[f.q.correct];
+        feedback.innerHTML = '<b class="tag">' + (f.answered === null ? "Не отвечено." : "Неверно.") +
+          ' Правильный ответ: ' + correctOpt.ar + ' (' + correctOpt.tr + ')</b>' +
+          '<span class="rule">' + f.q.explain + '</span>';
+      }
+    });
+
+    var resultBox = document.getElementById("resultBox");
+    var resultBig = document.getElementById("resultBig");
+    var resultSub = document.getElementById("resultSub");
+    var resultBySection = document.getElementById("resultBySection");
+
+    resultBig.textContent = "Результат: " + correctCount + " из " + flat.length;
+    var pct = Math.round(correctCount / flat.length * 100);
+    resultSub.textContent = pct >= 85 ? "Отлично, материал усвоен крепко." :
+      pct >= 60 ? "Неплохо — но разбери внимательно разделы с ошибками ниже." :
+      "Стоит вернуться к шпаргалке по этим разделам и повторить ещё раз.";
+
+    resultBySection.innerHTML = "";
+    Object.keys(bySection).forEach(function (title) {
+      var s = bySection[title];
+      var row = document.createElement("div");
+      row.innerHTML = "<span>" + title + "</span><span>" + s.correct + " / " + s.total + "</span>";
+      resultBySection.appendChild(row);
+    });
+
+    resultBox.classList.add("show");
+    resultBox.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+})();
+</script>
+</body>
+</html>
