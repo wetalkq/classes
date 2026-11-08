@@ -1,0 +1,428 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Fermi Paradox — Vocabulary Review</title>
+<style>
+:root{
+  --bg: #e4e6ea;
+  --bg-elev: #eef0f3;
+  --bg-elev2: #f8f9fb;
+  --slate: #4a4a8c;
+  --slate-soft: #8f8fc8;
+  --ink: #232b36;
+  --ink-dim: #566072;
+  --cream: #eceef2;
+  --teal: #2f8a8a;
+  --teal-deep: #216b6b;
+  --indigo: #7159a8;
+  --indigo-deep: #543d80;
+  --charcoal: #5c6ea8;
+  --charcoal-deep: #44527c;
+  --box-bg: #5c4f8c;
+  --box-bg2: #7267a8;
+  --correct: #4f6e38;
+  --wrong: #8c3a32;
+  --hair: rgba(46,61,82,0.28);
+  --shadow: 0 8px 22px rgba(35,43,54,0.18), 0 2px 6px rgba(35,43,54,0.12);
+  --radius: 10px;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  background: radial-gradient(ellipse at top, #f0f1f4 0%, var(--bg) 55%, #d4d8de 100%);
+  color:var(--ink);
+  font-family:'TNR','Times New Roman',serif;
+  font-size:19px;
+  line-height:1.65;
+  min-height:100vh;
+}
+.wrap{max-width:900px; margin:0 auto; padding:48px 26px 100px;}
+
+header{
+  position:relative;
+  background:linear-gradient(180deg, var(--bg-elev) 0%, var(--bg-elev2) 100%);
+  border:1px solid var(--hair);
+  border-radius:var(--radius);
+  padding:36px 34px 28px;
+  box-shadow:var(--shadow);
+  margin-bottom:34px;
+  text-align:center;
+}
+header::before{
+  content:"🌌";
+  display:block;
+  font-size:26px;
+  margin-bottom:10px;
+}
+header h1{
+  font-weight:700;
+  font-size:36px;
+  margin:0 0 12px;
+  color:var(--slate);
+  letter-spacing:.5px;
+}
+header .subtitle{
+  font-style:italic;
+  color:var(--ink-dim);
+  font-size:19px;
+  margin:0 auto 18px;
+  max-width:700px;
+}
+.divider{
+  width:140px; height:1px;
+  background:linear-gradient(90deg, transparent, var(--slate), transparent);
+  margin:0 auto 18px;
+}
+.badge-row{display:flex; gap:10px; justify-content:center; flex-wrap:wrap;}
+.badge{
+  font-size:15.5px;
+  padding:6px 18px;
+  border-radius:999px;
+  border:1px solid var(--hair);
+  background:rgba(46,61,82,0.08);
+  color:var(--slate);
+  letter-spacing:.3px;
+}
+
+section{margin-bottom:46px;}
+.section-title{
+  font-weight:700;
+  font-size:29px;
+  color:var(--slate);
+  margin:0 0 6px;
+  display:flex; align-items:center; gap:10px;
+}
+.section-sub{
+  font-style:italic;
+  color:var(--ink-dim);
+  font-size:17px;
+  margin:0 0 20px;
+}
+
+.note{
+  background:var(--bg-elev);
+  border:1px solid var(--hair);
+  border-left:3px solid var(--slate);
+  border-radius:4px;
+  padding:18px 22px;
+  font-style:italic;
+  font-size:18px;
+  color:var(--ink-dim);
+  margin-bottom:28px;
+  max-width:720px;
+}
+
+/* flashcards */
+.cards-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill, minmax(230px,1fr));
+  gap:18px;
+}
+.flip-card{ perspective:1300px; height:170px; cursor:pointer; }
+.flip-inner{
+  position:relative; width:100%; height:100%;
+  transition:transform .5s cubic-bezier(.4,.2,.2,1);
+  transform-style:preserve-3d;
+}
+.flip-card.flipped .flip-inner{transform:rotateY(180deg);}
+.flip-front,.flip-back{
+  position:absolute; inset:0;
+  border-radius:var(--radius);
+  backface-visibility:hidden;
+  padding:18px;
+  display:flex; flex-direction:column; justify-content:center;
+  box-shadow:var(--shadow);
+  border:1px solid var(--hair);
+}
+.flip-front{
+  background:linear-gradient(160deg, var(--charcoal) 0%, var(--charcoal-deep) 100%);
+}
+.flip-card:nth-child(3n+2) .flip-front{
+  background:linear-gradient(160deg, var(--indigo) 0%, var(--indigo-deep) 100%);
+}
+.flip-card:nth-child(3n+3) .flip-front{
+  background:linear-gradient(160deg, var(--teal) 0%, var(--teal-deep) 100%);
+}
+.flip-back{
+  background:var(--bg-elev2);
+  transform:rotateY(180deg);
+  border:1px solid var(--slate-soft);
+}
+.flip-front .term{ font-weight:700; font-size:18px; color:#f3f1fb; line-height:1.3; }
+.flip-front .hint{ font-size:13px; color:rgba(243,241,251,0.65); margin-top:12px; font-style:italic; }
+.flip-back .ru{ font-weight:700; font-size:16.5px; color:#2e3d52; margin-bottom:9px; }
+.flip-back .ex{ font-size:14px; color:#2c3a40; font-style:italic; line-height:1.4; }
+
+/* matching */
+.match-wrap{ display:grid; grid-template-columns:1fr 1fr; gap:34px; }
+@media (max-width:640px){ .match-wrap{grid-template-columns:1fr;} }
+.match-col h4{ font-style:italic; font-size:17px; color:var(--ink-dim); margin:0 0 12px; font-weight:400;}
+.match-item{
+  background:var(--box-bg);
+  border:1px solid rgba(230,234,240,0.3);
+  border-radius:6px;
+  padding:13px 18px;
+  margin-bottom:11px;
+  cursor:pointer;
+  font-size:16.5px;
+  color:#f5f2fb;
+  transition:all .15s;
+  user-select:none;
+}
+.match-item:hover{ border-color:var(--slate-soft); background:var(--box-bg2); }
+.match-item.selected{ background:#45396e; border-color:#c7c2ea; font-weight:700; }
+.match-item.correct{ background:#2f4a30; border-color:var(--correct); color:#d2e3b8; }
+.match-item.wrong{ background:#5a2a24; border-color:var(--wrong); color:#f3d3cc; animation:shake .3s; }
+@keyframes shake{0%,100%{transform:translateX(0);}25%{transform:translateX(-4px);}75%{transform:translateX(4px);}}
+
+/* gap fill */
+.gap-item{
+  background:var(--box-bg);
+  border:1px solid rgba(230,234,240,0.3);
+  border-radius:6px;
+  padding:17px 20px;
+  margin-bottom:13px;
+  font-size:18px;
+  color:#f5f2fb;
+  line-height:1.6;
+}
+.gap-item .num{ color:#c7c2ea; font-style:italic; margin-right:4px; }
+.gap-item select{
+  font-family:'TNR','Times New Roman',serif;
+  font-size:16.5px;
+  font-weight:700;
+  padding:5px 12px;
+  border-radius:4px;
+  border:1px solid #e9e5f7;
+  background:#6a5a9e;
+  color:#fff8e4;
+}
+.gap-item.correct{ border-color:var(--correct); background:#2f4a30; }
+.gap-item.correct select{ border-color:var(--correct); color:#d2e3b8; }
+.gap-item.wrong{ border-color:var(--wrong); background:#5a2a24; }
+.gap-item.wrong select{ border-color:var(--wrong); color:#f3d3cc; }
+
+.btn{
+  font-family:'TNR','Times New Roman',serif;
+  font-weight:700;
+  font-size:19px;
+  padding:12px 32px;
+  border-radius:999px;
+  border:1px solid var(--slate-soft);
+  background:var(--box-bg);
+  color:#eceef2;
+  cursor:pointer;
+  box-shadow:var(--shadow);
+  transition:all .15s;
+  letter-spacing:.5px;
+}
+.btn:hover{ background:var(--box-bg2); transform:translateY(-1px); }
+
+.score-box{
+  font-style:italic;
+  font-size:18px;
+  margin-top:16px;
+  padding:11px 20px;
+  border-radius:6px;
+  display:inline-block;
+  border:1px solid rgba(230,234,240,0.3);
+  background:var(--box-bg);
+  color:#c7c2ea;
+}
+
+footer{
+  text-align:center;
+  font-style:italic;
+  color:var(--ink-dim);
+  font-size:15px;
+  margin-top:56px;
+  padding-top:18px;
+  border-top:1px solid var(--hair);
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <h1>The Fermi Paradox</h1>
+    <p class="subtitle">Повторение лексики после урока о парадоксе Ферми: почему, несмотря на огромное количество звёзд и планет, мы до сих пор не нашли следов внеземных цивилизаций</p>
+    <div class="divider"></div>
+    <div class="badge-row">
+      <span class="badge">Уровень B2–C1</span>
+      <span class="badge">15 слов и выражений</span>
+      <span class="badge">Повторение</span>
+    </div>
+  </header>
+
+  <div class="note">
+    Это не новый материал, а повторение слов из прошлого урока. Сначала переверни карточки, чтобы вспомнить перевод и пример. Затем пройди два упражнения — на сопоставление и fill-the-gap. Результат считается сразу, заходить никуда не нужно.
+  </div>
+
+  <section>
+    <h2 class="section-title">Словарь урока</h2>
+    <p class="section-sub">нажми на карточку, чтобы перевернуть</p>
+    <div class="cards-grid" id="cardsGrid"></div>
+  </section>
+
+  <section>
+    <h2 class="section-title">Задание I — Сопоставление</h2>
+    <p class="section-sub">нажми на выражение слева, затем на подходящий перевод справа</p>
+    <div class="match-wrap">
+      <div class="match-col"><h4>Английский</h4><div id="matchLeft"></div></div>
+      <div class="match-col"><h4>Перевод</h4><div id="matchRight"></div></div>
+    </div>
+    <div class="score-box" id="matchScore">Сопоставлено: 0 / 15</div>
+  </section>
+
+  <section>
+    <h2 class="section-title">Задание II — Fill the gap</h2>
+    <p class="section-sub">выбери подходящее выражение из списка для каждого предложения</p>
+    <div id="gapList"></div>
+    <button class="btn" id="checkGaps">Проверить</button>
+    <div class="score-box" id="gapScore" style="display:none;"></div>
+  </section>
+
+  <footer>We Talk · B2–C1 · повторение лексики урока «The Fermi Paradox»</footer>
+</div>
+
+<script>
+const vocab = [
+  {term:"self-replicating", ru:"способный к самовоспроизведению", ex:"Some scientists speculate that self-replicating probes could one day spread across an entire galaxy."},
+  {term:"to propagate", ru:"распространяться, размножаться (создавая копии)", ex:"A single technical error can propagate through the whole system within minutes."},
+  {term:"exponential growth", ru:"экспоненциальный рост", ex:"The city's population showed exponential growth once the new factories opened."},
+  {term:"broadly speaking", ru:"вообще говоря, в общих чертах", ex:"Broadly speaking, most economists agree that inflation hurts low-income households the most."},
+  {term:"transient on a cosmic scale", ru:"мимолётный, кратковременный в космическом масштабе", ex:"Even a thousand years of human civilisation is transient on a cosmic scale."},
+  {term:"to burn out", ru:"прекратить существование, «выгореть»", ex:"Without steady funding, many promising start-ups eventually burn out."},
+  {term:"to navigate challenges", ru:"преодолевать трудности, находить выход из сложных ситуаций", ex:"New team leaders often need extra support to navigate challenges they've never faced before."},
+  {term:"to pose a challenge to", ru:"представлять собой трудность, вызов для", ex:"Rising sea levels pose a challenge to coastal cities all over the world."},
+  {term:"to take into account", ru:"принимать во внимание, учитывать", ex:"When planning the trip, we should take into account the unpredictable weather."},
+  {term:"the great filter", ru:"«великий фильтр» (гипотетический барьер на пути развития цивилизации)", ex:"Some researchers believe humanity hasn't yet passed the great filter that stops most civilisations from spreading through space."},
+  {term:"notwithstanding", ru:"несмотря на (что-либо)", ex:"Notwithstanding the heavy rain, the match went ahead as scheduled."},
+  {term:"a wake-up call", ru:"тревожный сигнал, повод серьёзно задуматься", ex:"The factory fire was a wake-up call that forced the company to rewrite its safety rules."},
+  {term:"dogmatically", ru:"догматично, не допуская сомнений", ex:"He spoke so dogmatically about the theory that no one dared to question him."},
+  {term:"irreconcilable", ru:"непримиримый, несовместимый", ex:"Their views on the project turned out to be completely irreconcilable."},
+  {term:"vigilant", ru:"бдительный, настороже", ex:"Airport staff are trained to stay vigilant for any unusual behaviour."}
+];
+
+const cardsGrid = document.getElementById('cardsGrid');
+vocab.forEach(v=>{
+  const card = document.createElement('div');
+  card.className='flip-card';
+  card.innerHTML = `
+    <div class="flip-inner">
+      <div class="flip-front">
+        <div class="term">${v.term}</div>
+        <div class="hint">нажми, чтобы перевернуть</div>
+      </div>
+      <div class="flip-back">
+        <div class="ru">${v.ru}</div>
+        <div class="ex">${v.ex}</div>
+      </div>
+    </div>`;
+  card.addEventListener('click', ()=> card.classList.toggle('flipped'));
+  cardsGrid.appendChild(card);
+});
+
+function shuffle(arr){ return [...arr].sort(()=>Math.random()-0.5); }
+const leftOrder = shuffle(vocab);
+const rightOrder = shuffle(vocab);
+
+const matchLeft = document.getElementById('matchLeft');
+const matchRight = document.getElementById('matchRight');
+let selectedLeft = null;
+let matchedCount = 0;
+const matchScoreEl = document.getElementById('matchScore');
+
+leftOrder.forEach(v=>{
+  const el = document.createElement('div');
+  el.className='match-item';
+  el.textContent = v.term;
+  el.dataset.term = v.term;
+  el.addEventListener('click', ()=>{
+    if(el.classList.contains('correct')) return;
+    document.querySelectorAll('#matchLeft .match-item').forEach(i=>i.classList.remove('selected'));
+    el.classList.add('selected');
+    selectedLeft = el;
+  });
+  matchLeft.appendChild(el);
+});
+
+rightOrder.forEach(v=>{
+  const el = document.createElement('div');
+  el.className='match-item';
+  el.textContent = v.ru;
+  el.dataset.term = v.term;
+  el.addEventListener('click', ()=>{
+    if(!selectedLeft || el.classList.contains('correct')) return;
+    if(selectedLeft.dataset.term === el.dataset.term){
+      selectedLeft.classList.add('correct');
+      el.classList.add('correct');
+      matchedCount++;
+      matchScoreEl.textContent = `Сопоставлено: ${matchedCount} / 15`;
+      selectedLeft = null;
+    } else {
+      el.classList.add('wrong');
+      selectedLeft.classList.add('wrong');
+      setTimeout(()=>{
+        el.classList.remove('wrong');
+        selectedLeft.classList.remove('wrong','selected');
+        selectedLeft = null;
+      },500);
+    }
+  });
+  matchRight.appendChild(el);
+});
+
+const gaps = [
+  {before:"The probes in the simulation were designed to be", after:", creating endless copies of themselves.", answer:"self-replicating"},
+  {before:"A rumour can", after:"through an office in a single afternoon.", answer:"propagate"},
+  {before:"Online, a viral video can achieve", after:"in views within just a few hours.", answer:"exponential growth"},
+  {before:"", after:", the plan was a success, even though a few details went wrong.", answer:"Broadly speaking"},
+  {before:"Compared with the age of the universe, an entire human civilisation is", after:".", answer:"transient on a cosmic scale"},
+  {before:"Without steady funding, many promising start-ups eventually", after:".", answer:"burn out"},
+  {before:"New team leaders often need extra support to", after:"they've never faced before.", answer:"navigate challenges"},
+  {before:"Rising sea levels", after:"coastal cities all over the world.", answer:"pose a challenge to"},
+  {before:"When planning the trip, we should", after:"the unpredictable weather.", answer:"take into account"},
+  {before:"Some researchers believe humanity hasn't yet passed", after:"that stops most civilisations from spreading through space.", answer:"the great filter"},
+  {before:"", after:"the heavy rain, the match went ahead as scheduled.", answer:"Notwithstanding"},
+  {before:"The factory fire was", after:"that forced the company to rewrite its safety rules.", answer:"a wake-up call"},
+  {before:"He spoke so", after:"about the theory that no one dared to question him.", answer:"dogmatically"},
+  {before:"Their views on the project turned out to be completely", after:".", answer:"irreconcilable"},
+  {before:"Airport staff are trained to stay", after:"for any unusual behaviour.", answer:"vigilant"}
+];
+const options = ["self-replicating","propagate","exponential growth","Broadly speaking","transient on a cosmic scale","burn out","navigate challenges","pose a challenge to","take into account","the great filter","Notwithstanding","a wake-up call","dogmatically","irreconcilable","vigilant"];
+
+const gapList = document.getElementById('gapList');
+gaps.forEach((g,i)=>{
+  const div = document.createElement('div');
+  div.className='gap-item';
+  div.dataset.answer = g.answer;
+  const opts = ['<option value="">— выбери —</option>'].concat(
+    options.map(o=>`<option value="${o}">${o}</option>`)
+  ).join('');
+  div.innerHTML = `<span class="num">${i+1}.</span> ${g.before} <select>${opts}</select> ${g.after}`;
+  gapList.appendChild(div);
+});
+
+document.getElementById('checkGaps').addEventListener('click', ()=>{
+  let correct = 0;
+  document.querySelectorAll('.gap-item').forEach(item=>{
+    const select = item.querySelector('select');
+    item.classList.remove('correct','wrong');
+    if(select.value === item.dataset.answer){
+      item.classList.add('correct');
+      correct++;
+    } else if(select.value !== ""){
+      item.classList.add('wrong');
+    }
+  });
+  const scoreEl = document.getElementById('gapScore');
+  scoreEl.style.display='inline-block';
+  scoreEl.textContent = `Результат: ${correct} / ${gaps.length}`;
+});
+</script>
+</body>
+</html>
