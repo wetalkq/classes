@@ -1,0 +1,410 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Death of Privacy — Vocabulary Review</title>
+<style>
+:root{
+  --bg: #e4e6ea;
+  --bg-elev: #eef0f3;
+  --bg-elev2: #f8f9fb;
+  --slate: #4a3fa0;
+  --slate-soft: #9088c9;
+  --ink: #232b36;
+  --ink-dim: #566072;
+  --cream: #eceef2;
+  --teal: #8c3a52;
+  --teal-deep: #682a3e;
+  --indigo: #6b3a8c;
+  --indigo-deep: #4f2a68;
+  --charcoal: #5c5a8c;
+  --charcoal-deep: #44426a;
+  --box-bg: #6b3a52;
+  --box-bg2: #85506c;
+  --correct: #4f6e38;
+  --wrong: #8c3a32;
+  --hair: rgba(46,61,82,0.28);
+  --shadow: 0 8px 22px rgba(35,43,54,0.18), 0 2px 6px rgba(35,43,54,0.12);
+  --radius: 10px;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  background: radial-gradient(ellipse at top, #f0f1f4 0%, var(--bg) 55%, #d4d8de 100%);
+  color:var(--ink);
+  font-family:'TNR','Times New Roman',serif;
+  font-size:19px;
+  line-height:1.65;
+  min-height:100vh;
+}
+.wrap{max-width:900px; margin:0 auto; padding:48px 26px 100px;}
+
+header{
+  position:relative;
+  background:linear-gradient(180deg, var(--bg-elev) 0%, var(--bg-elev2) 100%);
+  border:1px solid var(--hair);
+  border-radius:var(--radius);
+  padding:36px 34px 28px;
+  box-shadow:var(--shadow);
+  margin-bottom:34px;
+  text-align:center;
+}
+header::before{
+  content:"🔒";
+  display:block;
+  font-size:26px;
+  margin-bottom:10px;
+}
+header h1{
+  font-weight:700;
+  font-size:36px;
+  margin:0 0 12px;
+  color:var(--slate);
+  letter-spacing:.5px;
+}
+header .subtitle{
+  font-style:italic;
+  color:var(--ink-dim);
+  font-size:19px;
+  margin:0 auto 18px;
+  max-width:700px;
+}
+.divider{
+  width:140px; height:1px;
+  background:linear-gradient(90deg, transparent, var(--slate), transparent);
+  margin:0 auto 18px;
+}
+.badge-row{display:flex; gap:10px; justify-content:center; flex-wrap:wrap;}
+.badge{
+  font-size:15.5px;
+  padding:6px 18px;
+  border-radius:999px;
+  border:1px solid var(--hair);
+  background:rgba(46,61,82,0.08);
+  color:var(--slate);
+  letter-spacing:.3px;
+}
+
+section{margin-bottom:46px;}
+.section-title{
+  font-weight:700;
+  font-size:29px;
+  color:var(--slate);
+  margin:0 0 6px;
+  display:flex; align-items:center; gap:10px;
+}
+.section-sub{
+  font-style:italic;
+  color:var(--ink-dim);
+  font-size:17px;
+  margin:0 0 20px;
+}
+
+.note{
+  background:var(--bg-elev);
+  border:1px solid var(--hair);
+  border-left:3px solid var(--slate);
+  border-radius:4px;
+  padding:18px 22px;
+  font-style:italic;
+  font-size:18px;
+  color:var(--ink-dim);
+  margin-bottom:28px;
+  max-width:720px;
+}
+
+/* flashcards */
+.cards-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill, minmax(230px,1fr));
+  gap:18px;
+}
+.flip-card{ perspective:1300px; height:170px; cursor:pointer; }
+.flip-inner{
+  position:relative; width:100%; height:100%;
+  transition:transform .5s cubic-bezier(.4,.2,.2,1);
+  transform-style:preserve-3d;
+}
+.flip-card.flipped .flip-inner{transform:rotateY(180deg);}
+.flip-front,.flip-back{
+  position:absolute; inset:0;
+  border-radius:var(--radius);
+  backface-visibility:hidden;
+  padding:18px;
+  display:flex; flex-direction:column; justify-content:center;
+  box-shadow:var(--shadow);
+  border:1px solid var(--hair);
+}
+.flip-front{
+  background:linear-gradient(160deg, var(--charcoal) 0%, var(--charcoal-deep) 100%);
+}
+.flip-card:nth-child(3n+2) .flip-front{
+  background:linear-gradient(160deg, var(--indigo) 0%, var(--indigo-deep) 100%);
+}
+.flip-card:nth-child(3n+3) .flip-front{
+  background:linear-gradient(160deg, var(--teal) 0%, var(--teal-deep) 100%);
+}
+.flip-back{
+  background:var(--bg-elev2);
+  transform:rotateY(180deg);
+  border:1px solid var(--slate-soft);
+}
+.flip-front .term{ font-weight:700; font-size:19px; color:#f4f1fb; line-height:1.3; }
+.flip-front .hint{ font-size:13px; color:rgba(244,241,251,0.65); margin-top:12px; font-style:italic; }
+.flip-back .ru{ font-weight:700; font-size:17px; color:#2e3d52; margin-bottom:9px; }
+.flip-back .ex{ font-size:14.5px; color:#2c3a40; font-style:italic; line-height:1.4; }
+
+/* matching */
+.match-wrap{ display:grid; grid-template-columns:1fr 1fr; gap:34px; }
+@media (max-width:640px){ .match-wrap{grid-template-columns:1fr;} }
+.match-col h4{ font-style:italic; font-size:17px; color:var(--ink-dim); margin:0 0 12px; font-weight:400;}
+.match-item{
+  background:var(--box-bg);
+  border:1px solid rgba(230,234,240,0.3);
+  border-radius:6px;
+  padding:13px 18px;
+  margin-bottom:11px;
+  cursor:pointer;
+  font-size:17px;
+  color:#fbf2f5;
+  transition:all .15s;
+  user-select:none;
+}
+.match-item:hover{ border-color:var(--slate-soft); background:var(--box-bg2); }
+.match-item.selected{ background:#4f2a68; border-color:#cfc5ea; font-weight:700; }
+.match-item.correct{ background:#2f4a30; border-color:var(--correct); color:#d2e3b8; }
+.match-item.wrong{ background:#5a2a24; border-color:var(--wrong); color:#f3d3cc; animation:shake .3s; }
+@keyframes shake{0%,100%{transform:translateX(0);}25%{transform:translateX(-4px);}75%{transform:translateX(4px);}}
+
+/* gap fill */
+.gap-item{
+  background:var(--box-bg);
+  border:1px solid rgba(230,234,240,0.3);
+  border-radius:6px;
+  padding:17px 20px;
+  margin-bottom:13px;
+  font-size:18px;
+  color:#fbf2f5;
+  line-height:1.6;
+}
+.gap-item .num{ color:#e3c7d4; font-style:italic; margin-right:4px; }
+.gap-item select{
+  font-family:'TNR','Times New Roman',serif;
+  font-size:17px;
+  font-weight:700;
+  padding:5px 12px;
+  border-radius:4px;
+  border:1px solid #f2e4ea;
+  background:#85506c;
+  color:#fff6ef;
+}
+.gap-item.correct{ border-color:var(--correct); background:#2f4a30; }
+.gap-item.correct select{ border-color:var(--correct); color:#d2e3b8; }
+.gap-item.wrong{ border-color:var(--wrong); background:#5a2a24; }
+.gap-item.wrong select{ border-color:var(--wrong); color:#f3d3cc; }
+
+.btn{
+  font-family:'TNR','Times New Roman',serif;
+  font-weight:700;
+  font-size:19px;
+  padding:12px 32px;
+  border-radius:999px;
+  border:1px solid var(--slate-soft);
+  background:var(--box-bg);
+  color:#eceef2;
+  cursor:pointer;
+  box-shadow:var(--shadow);
+  transition:all .15s;
+  letter-spacing:.5px;
+}
+.btn:hover{ background:var(--box-bg2); transform:translateY(-1px); }
+
+.score-box{
+  font-style:italic;
+  font-size:18px;
+  margin-top:16px;
+  padding:11px 20px;
+  border-radius:6px;
+  display:inline-block;
+  border:1px solid rgba(230,234,240,0.3);
+  background:var(--box-bg);
+  color:#e3c7d4;
+}
+
+footer{
+  text-align:center;
+  font-style:italic;
+  color:var(--ink-dim);
+  font-size:15px;
+  margin-top:56px;
+  padding-top:18px;
+  border-top:1px solid var(--hair);
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <h1>The Death of Privacy</h1>
+    <p class="subtitle">Повторение лексики после урока о цифровой приватности: сколько личных данных мы отдаём ради удобства и к чему это приводит</p>
+    <div class="divider"></div>
+    <div class="badge-row">
+      <span class="badge">Уровень B2–C1</span>
+      <span class="badge">6 слов и выражений</span>
+      <span class="badge">Повторение</span>
+    </div>
+  </header>
+
+  <div class="note">
+    Это не новый материал, а повторение слов из прошлого урока. Сначала переверни карточки, чтобы вспомнить перевод и пример. Затем пройди два упражнения — на сопоставление и fill-the-gap. Результат считается сразу, заходить никуда не нужно.
+  </div>
+
+  <section>
+    <h2 class="section-title">Словарь урока</h2>
+    <p class="section-sub">нажми на карточку, чтобы перевернуть</p>
+    <div class="cards-grid" id="cardsGrid"></div>
+  </section>
+
+  <section>
+    <h2 class="section-title">Задание I — Сопоставление</h2>
+    <p class="section-sub">нажми на выражение слева, затем на подходящий перевод справа</p>
+    <div class="match-wrap">
+      <div class="match-col"><h4>Английский</h4><div id="matchLeft"></div></div>
+      <div class="match-col"><h4>Перевод</h4><div id="matchRight"></div></div>
+    </div>
+    <div class="score-box" id="matchScore">Сопоставлено: 0 / 6</div>
+  </section>
+
+  <section>
+    <h2 class="section-title">Задание II — Fill the gap</h2>
+    <p class="section-sub">выбери подходящее выражение из списка для каждого предложения</p>
+    <div id="gapList"></div>
+    <button class="btn" id="checkGaps">Проверить</button>
+    <div class="score-box" id="gapScore" style="display:none;"></div>
+  </section>
+
+  <footer>We Talk · B2–C1 · повторение лексики урока «The Death of Privacy»</footer>
+</div>
+
+<script>
+const vocab = [
+  {term:"a trade-off", ru:"компромисс (жертвуешь одним ради другого)", ex:"Choosing a job with better pay but less free time is a classic trade-off."},
+  {term:"a fair exchange", ru:"честный, взаимовыгодный обмен", ex:"She felt that getting useful recommendations in exchange for her shopping data was a fair exchange."},
+  {term:"to surrender", ru:"уступать, отдавать (особенно против желания)", ex:"Passengers were asked to surrender their phones before entering the secure area."},
+  {term:"third parties", ru:"третьи лица, сторонние компании", ex:"The company promised not to share customer data with third parties."},
+  {term:"to be misused", ru:"быть использованным не по назначению, во вред", ex:"Personal photos uploaded to the app could easily be misused if the servers were ever hacked."},
+  {term:"consequences become clear", ru:"последствия становятся очевидны (со временем)", ex:"The consequences of ignoring the warning only became clear months later, when the system failed completely."}
+];
+
+const cardsGrid = document.getElementById('cardsGrid');
+vocab.forEach(v=>{
+  const card = document.createElement('div');
+  card.className='flip-card';
+  card.innerHTML = `
+    <div class="flip-inner">
+      <div class="flip-front">
+        <div class="term">${v.term}</div>
+        <div class="hint">нажми, чтобы перевернуть</div>
+      </div>
+      <div class="flip-back">
+        <div class="ru">${v.ru}</div>
+        <div class="ex">${v.ex}</div>
+      </div>
+    </div>`;
+  card.addEventListener('click', ()=> card.classList.toggle('flipped'));
+  cardsGrid.appendChild(card);
+});
+
+function shuffle(arr){ return [...arr].sort(()=>Math.random()-0.5); }
+const leftOrder = shuffle(vocab);
+const rightOrder = shuffle(vocab);
+
+const matchLeft = document.getElementById('matchLeft');
+const matchRight = document.getElementById('matchRight');
+let selectedLeft = null;
+let matchedCount = 0;
+const matchScoreEl = document.getElementById('matchScore');
+
+leftOrder.forEach(v=>{
+  const el = document.createElement('div');
+  el.className='match-item';
+  el.textContent = v.term;
+  el.dataset.term = v.term;
+  el.addEventListener('click', ()=>{
+    if(el.classList.contains('correct')) return;
+    document.querySelectorAll('#matchLeft .match-item').forEach(i=>i.classList.remove('selected'));
+    el.classList.add('selected');
+    selectedLeft = el;
+  });
+  matchLeft.appendChild(el);
+});
+
+rightOrder.forEach(v=>{
+  const el = document.createElement('div');
+  el.className='match-item';
+  el.textContent = v.ru;
+  el.dataset.term = v.term;
+  el.addEventListener('click', ()=>{
+    if(!selectedLeft || el.classList.contains('correct')) return;
+    if(selectedLeft.dataset.term === el.dataset.term){
+      selectedLeft.classList.add('correct');
+      el.classList.add('correct');
+      matchedCount++;
+      matchScoreEl.textContent = `Сопоставлено: ${matchedCount} / 6`;
+      selectedLeft = null;
+    } else {
+      el.classList.add('wrong');
+      selectedLeft.classList.add('wrong');
+      setTimeout(()=>{
+        el.classList.remove('wrong');
+        selectedLeft.classList.remove('wrong','selected');
+        selectedLeft = null;
+      },500);
+    }
+  });
+  matchRight.appendChild(el);
+});
+
+const gaps = [
+  {before:"Choosing to live in the city centre instead of a quiet suburb is often a", after:"between convenience and peace.", answer:"a trade-off"},
+  {before:"Getting free software in return for seeing adverts can feel like", after:".", answer:"a fair exchange"},
+  {before:"At airport security, travellers sometimes have to", after:"liquids over 100ml.", answer:"surrender"},
+  {before:"Before signing up, always check whether your data will be shared with", after:".", answer:"third parties"},
+  {before:"Without strong security, customer records could easily", after:"by hackers.", answer:"be misused"},
+  {before:"Many people don't think about privacy risks until the", after:"months or years later.", answer:"consequences become clear"}
+];
+const options = ["a trade-off","a fair exchange","surrender","third parties","be misused","consequences become clear"];
+
+const gapList = document.getElementById('gapList');
+gaps.forEach((g,i)=>{
+  const div = document.createElement('div');
+  div.className='gap-item';
+  div.dataset.answer = g.answer;
+  const opts = ['<option value="">— выбери —</option>'].concat(
+    options.map(o=>`<option value="${o}">${o}</option>`)
+  ).join('');
+  div.innerHTML = `<span class="num">${i+1}.</span> ${g.before} <select>${opts}</select> ${g.after}`;
+  gapList.appendChild(div);
+});
+
+document.getElementById('checkGaps').addEventListener('click', ()=>{
+  let correct = 0;
+  document.querySelectorAll('.gap-item').forEach(item=>{
+    const select = item.querySelector('select');
+    item.classList.remove('correct','wrong');
+    if(select.value === item.dataset.answer){
+      item.classList.add('correct');
+      correct++;
+    } else if(select.value !== ""){
+      item.classList.add('wrong');
+    }
+  });
+  const scoreEl = document.getElementById('gapScore');
+  scoreEl.style.display='inline-block';
+  scoreEl.textContent = `Результат: ${correct} / ${gaps.length}`;
+});
+</script>
+</body>
+</html>
