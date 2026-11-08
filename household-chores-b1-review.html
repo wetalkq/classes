@@ -373,18 +373,18 @@ rightOrder.forEach(v=>{
 });
 
 const gaps = [
-  {before:"Everyone in the flat has agreed to", after:"equally, so no one ends up doing all the cleaning.", answer:"to share the chores"},
-  {before:"He always leaves his dirty cups everywhere — he really needs to learn to", after:".", answer:"to clean up after yourself"},
-  {before:"In many modern couples, both partners take turns being the main", after:".", answer:"a breadwinner"},
-  {before:"Since she quit her job, she's become a", after:"and manages the whole house.", answer:"a stay-at-home partner"},
-  {before:"Taking the rubbish out every week is officially his", after:", not mine.", answer:"a responsibility"},
-  {before:"After a long argument, they finally agreed on a", after:"of the housework.", answer:"a fair split"},
-  {before:"My parents usually", after:"based on who has more free time that week.", answer:"to divide the chores"},
-  {before:"My younger brother never offers to", after:"with cooking or cleaning.", answer:"to help out"},
+  {before:"Everyone in the flat has agreed", after:"equally, so no one ends up doing all the cleaning.", answer:"to share the chores"},
+  {before:"He always leaves his dirty cups everywhere — he really needs", after:".", answer:"to clean up after yourself"},
+  {before:"In many modern couples, each partner can be", after:"at different times.", answer:"a breadwinner"},
+  {before:"Since she quit her job, she's become", after:"and manages the whole house.", answer:"a stay-at-home partner"},
+  {before:"Taking the rubbish out every week is officially", after:"— not mine.", answer:"his responsibility"},
+  {before:"After a long argument, they finally agreed on", after:"of the housework.", answer:"a fair split"},
+  {before:"My parents usually", after:"based on who has more free time that week.", answer:"divide the chores"},
+  {before:"My younger brother never offers", after:"with cooking or cleaning.", answer:"to help out"},
   {before:"Washing dishes, vacuuming and doing laundry are all examples of", after:".", answer:"household chores"},
-  {before:"Before bed, she always does a quick", after:"— wiping counters and loading the dishwasher.", answer:"a closing shift"}
+  {before:"Before bed, she always does a quick", after:"— wiping counters and loading the dishwasher.", answer:"closing shift"}
 ];
-const options = ["to share the chores","to clean up after yourself","a breadwinner","a stay-at-home partner","a responsibility","a fair split","to divide the chores","to help out","household chores","a closing shift"];
+const options = ["to share the chores","to clean up after yourself","a breadwinner","a stay-at-home partner","his responsibility","a fair split","divide the chores","to help out","household chores","closing shift"];
 
 const gapList = document.getElementById('gapList');
 gaps.forEach((g,i)=>{
