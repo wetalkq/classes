@@ -1,0 +1,365 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="claude:viewport-fit-sides" content="cover">
+<title>Шпаргалка §1–5</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600;700&family=PT+Sans:wght@400;700&family=Amiri:wght@400;700&display=swap">
+<style>
+  :root {
+    --bg: #f6f1e7;
+    --surface: #fffcf5;
+    --ink: #2b2420;
+    --muted: #7a6f60;
+    --accent: #0f5c56;
+    --accent-soft: #d9ece9;
+    --gold: #b8863b;
+    --gold-soft: #f3e6cd;
+    --border: #e2d7c3;
+    --head-bg: #2b2420;
+    --head-ink: #f6f1e7;
+    color-scheme: light;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #1b1815; --surface: #262220; --ink: #efe8dc; --muted: #a89d8c;
+      --accent: #5fc9bd; --accent-soft: #233b38; --gold: #d9ab5f; --gold-soft: #332a1a;
+      --border: #3a332c; --head-bg: #efe8dc; --head-ink: #1b1815;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #1b1815; --surface: #262220; --ink: #efe8dc; --muted: #a89d8c;
+    --accent: #5fc9bd; --accent-soft: #233b38; --gold: #d9ab5f; --gold-soft: #332a1a;
+    --border: #3a332c; --head-bg: #efe8dc; --head-ink: #1b1815;
+    color-scheme: dark;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'PT Sans', sans-serif;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: 18px 50px;
+    line-height: 1.55;
+  }
+  .wrap { max-width: 760px; margin: 0 auto; }
+
+  h1 { font-family: 'Lora', serif; font-size: 1.55rem; margin: 0 0 6px; text-wrap: balance; }
+  .sub { color: var(--muted); font-size: 0.92rem; margin: 0 0 18px; }
+
+  .key-rule {
+    background: var(--gold-soft);
+    border: 1px solid var(--gold);
+    border-radius: 12px;
+    padding: 14px 16px;
+    margin-bottom: 22px;
+    font-size: 0.95rem;
+  }
+  .key-rule b { color: var(--accent); }
+
+  nav.jump {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    display: flex;
+    gap: 6px;
+    overflow-x: auto;
+    padding: 8px 2px 10px;
+    margin: 0 -2px 22px;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+  }
+  nav.jump a {
+    flex: none;
+    font-size: 0.8rem;
+    color: var(--ink);
+    text-decoration: none;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 99px;
+    padding: 6px 12px;
+    white-space: nowrap;
+  }
+  nav.jump a:hover { background: var(--accent-soft); border-color: var(--accent); }
+
+  section.block {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 20px 20px 22px;
+    margin-bottom: 20px;
+    scroll-margin-top: 54px;
+  }
+  section.block h2 {
+    font-family: 'Lora', serif;
+    font-size: 1.12rem;
+    margin: 0 0 4px;
+    color: var(--accent);
+  }
+  section.block .note {
+    color: var(--muted);
+    font-size: 0.86rem;
+    margin: 0 0 14px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.88rem;
+    margin-bottom: 4px;
+  }
+  caption {
+    text-align: left;
+    font-size: 0.78rem;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+  th, td {
+    border: 1px solid var(--border);
+    padding: 8px 10px;
+    vertical-align: middle;
+    text-align: left;
+  }
+  thead th {
+    background: var(--head-bg);
+    color: var(--head-ink);
+    font-family: 'PT Sans', sans-serif;
+    font-weight: 700;
+    font-size: 0.78rem;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+  tbody tr:nth-child(even) { background: var(--accent-soft); }
+  .ar {
+    font-family: 'Amiri', serif;
+    font-size: 1.25rem;
+    direction: rtl;
+    text-align: center;
+    white-space: nowrap;
+  }
+  .ar-sm { font-size: 1.05rem; }
+  .tr { font-style: italic; color: var(--muted); white-space: nowrap; }
+  .ru { }
+  td.center { text-align: center; }
+
+  .table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
+  .foot-note {
+    font-size: 0.82rem;
+    color: var(--muted);
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px dashed var(--border);
+  }
+
+  footer {
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.8rem;
+    font-style: italic;
+    margin-top: 10px;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1>Шпаргалка по §1–5</h1>
+  <p class="sub">Словопорядок, падежные окончания и местоимения — справочная таблица по уже пройденному материалу.</p>
+
+  <div class="key-rule">
+    <b>Главное правило словопорядка:</b> если в предложении есть глагол — он почти всегда стоит первым (глагол → подлежащее → дополнение). Если глагола нет (именное предложение) — первым стоит подлежащее или указательное местоимение هَذَا / هَذِهِ.
+  </div>
+
+  <nav class="jump">
+    <a href="#order">Порядок слов</a>
+    <a href="#cases3">Падежи (3-падежные)</a>
+    <a href="#cases2">Падежи (2-падежные)</a>
+    <a href="#demo">هذا/هذه</a>
+    <a href="#pron">Местоимения</a>
+    <a href="#idafa">Мой/твой/его</a>
+    <a href="#past">Прошедшее время</a>
+  </nav>
+
+  <section class="block" id="order">
+    <h2>1. Порядок слов в предложении</h2>
+    <p class="note">Прилагательное никогда не отрывается от своего существительного — предлог или другое слово всегда идут после пары «существительное + прилагательное».</p>
+    <div class="table-scroll">
+    <table>
+      <thead>
+        <tr><th>Тип предложения</th><th>Порядок слов</th><th>Пример</th><th>Перевод</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Именное, с هَذَا/هَذِهِ</td>
+          <td>указат. → сущ. (сказуемое) → прил.</td>
+          <td class="ar ar-sm">هَذَا بَيْتٌ جَدِيدٌ</td>
+          <td class="ru">Это новый дом</td>
+        </tr>
+        <tr>
+          <td>Именное, без указательного</td>
+          <td>сущ. определённое → прил. неопределённое (сказуемое)</td>
+          <td class="ar ar-sm">الْبَيْتُ جَمِيلٌ</td>
+          <td class="ru">Дом красивый</td>
+        </tr>
+        <tr>
+          <td>Глагольное, подлежащее — окончание</td>
+          <td>глагол+окончание → дополнение → прил. дополнения</td>
+          <td class="ar ar-sm">رَأَيْتُ سَيَّارَةً جَدِيدَةً</td>
+          <td class="ru">Я увидел(а) новую машину</td>
+        </tr>
+        <tr>
+          <td>Глагольное, подлежащее — отдельное слово</td>
+          <td>глагол → подлежащее → дополнение → прил.</td>
+          <td class="ar ar-sm">أَخَذَ طَالِبٌ كِتَابًا جَدِيدًا</td>
+          <td class="ru">Студент взял новую книгу</td>
+        </tr>
+        <tr>
+          <td>Сущ. + прил. + предложная группа</td>
+          <td>сущ. → прил. → предлог → сущ. (род. п.)</td>
+          <td class="ar ar-sm">كِتَابٌ صَغِيرٌ فِي مَكْتَبَةٍ</td>
+          <td class="ru">Маленькая книга в библиотеке</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </section>
+
+  <section class="block" id="cases3">
+    <h2>2. Падежные окончания — трёхпадежные имена</h2>
+    <p class="note">Большинство существительных и прилагательных. Винительный у слов не на ة получает добавочный алиф (ـًا); у слов на ة танвин ставится прямо на ة, без алифа (ةً).</p>
+    <div class="table-scroll">
+    <table>
+      <thead>
+        <tr><th>Падеж</th><th>Неопределённое</th><th>Определённое (с الـ)</th><th>Когда используется</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Именительный</td>
+          <td class="ar center">ـٌ <span class="tr">(-un)</span></td>
+          <td class="ar center">ـُ <span class="tr">(-u)</span></td>
+          <td class="ru">подлежащее; сказуемое именного предложения</td>
+        </tr>
+        <tr>
+          <td>Родительный</td>
+          <td class="ar center">ـٍ <span class="tr">(-in)</span></td>
+          <td class="ar center">ـِ <span class="tr">(-i)</span></td>
+          <td class="ru">после предлога; второе слово идафы</td>
+        </tr>
+        <tr>
+          <td>Винительный</td>
+          <td class="ar center">ـًا / ةً <span class="tr">(-an)</span></td>
+          <td class="ar center">ـَ <span class="tr">(-a)</span></td>
+          <td class="ru">прямое дополнение глагола (без предлога)</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+    <div class="foot-note">
+      Пример слова <span class="ar ar-sm">كِتَاب</span> <span class="tr">(kitāb, книга)</span> во всех формах:
+    </div>
+    <div class="table-scroll">
+    <table>
+      <thead><tr><th>Падеж</th><th>Неопределённое</th><th>Определённое</th></tr></thead>
+      <tbody>
+        <tr><td>Именительный</td><td class="ar">كِتَابٌ <span class="tr">kitābun</span></td><td class="ar">الْكِتَابُ <span class="tr">al-kitābu</span></td></tr>
+        <tr><td>Родительный</td><td class="ar">كِتَابٍ <span class="tr">kitābin</span></td><td class="ar">الْكِتَابِ <span class="tr">al-kitābi</span></td></tr>
+        <tr><td>Винительный</td><td class="ar">كِتَابًا <span class="tr">kitāban</span></td><td class="ar">الْكِتَابَ <span class="tr">al-kitāba</span></td></tr>
+      </tbody>
+    </table>
+    </div>
+  </section>
+
+  <section class="block" id="cases2">
+    <h2>3. Падежные окончания — двухпадежные имена (цвета и др.)</h2>
+    <p class="note">Танвина не бывает никогда — ни в определённом, ни в неопределённом состоянии. Родительный и винительный совпадают.</p>
+    <div class="table-scroll">
+    <table>
+      <thead><tr><th>Падеж</th><th>Окончание (всегда, вне зависимости от артикля)</th><th>Пример (أَحْمَر — красный)</th></tr></thead>
+      <tbody>
+        <tr><td>Именительный</td><td class="ar center">ـُ <span class="tr">(-u)</span></td><td class="ar">أَحْمَرُ <span class="tr">aḥmaru</span></td></tr>
+        <tr><td>Родительный</td><td class="ar center">ـَ <span class="tr">(-a)</span></td><td class="ar">أَحْمَرَ <span class="tr">aḥmara</span></td></tr>
+        <tr><td>Винительный</td><td class="ar center">ـَ <span class="tr">(-a)</span></td><td class="ar">أَحْمَرَ <span class="tr">aḥmara</span></td></tr>
+      </tbody>
+    </table>
+    </div>
+    <div class="foot-note">Женская форма (أَحْمَر → حَمْرَاء) склоняется по тому же принципу: именительный на -u (حَمْرَاءُ), родительный/винительный на -a (حَمْرَاءَ) — и тоже никогда с танвином.</div>
+  </section>
+
+  <section class="block" id="demo">
+    <h2>4. Указательные местоимения (пока только «этот/эта»)</h2>
+    <p class="note">Неизменяемые по падежам, согласуются только в роде с тем существительным, которое указывают. «Тот/та» (ذَلِكَ/تِلْكَ) ещё не проходили.</p>
+    <div class="table-scroll">
+    <table>
+      <thead><tr><th>Форма</th><th>Транслит.</th><th>Род</th><th>Пример</th></tr></thead>
+      <tbody>
+        <tr><td class="ar">هَذَا</td><td class="tr">hādhā</td><td class="ru">муж. р.</td><td class="ar ar-sm">هَذَا بَيْتٌ <span class="tr">— это дом</span></td></tr>
+        <tr><td class="ar">هَذِهِ</td><td class="tr">hādhihi</td><td class="ru">жен. р.</td><td class="ar ar-sm">هَذِهِ سَيَّارَةٌ <span class="tr">— это машина</span></td></tr>
+      </tbody>
+    </table>
+    </div>
+  </section>
+
+  <section class="block" id="pron">
+    <h2>5. Личные местоимения (единственное число)</h2>
+    <div class="table-scroll">
+    <table>
+      <thead><tr><th>Местоимение</th><th>Транслит.</th><th>Перевод</th></tr></thead>
+      <tbody>
+        <tr><td class="ar">أَنَا</td><td class="tr">ana</td><td class="ru">я</td></tr>
+        <tr><td class="ar">أَنْتَ</td><td class="tr">anta</td><td class="ru">ты (к мужчине)</td></tr>
+        <tr><td class="ar">أَنْتِ</td><td class="tr">anti</td><td class="ru">ты (к женщине)</td></tr>
+        <tr><td class="ar">هُوَ</td><td class="tr">huwa</td><td class="ru">он</td></tr>
+        <tr><td class="ar">هِيَ</td><td class="tr">hiya</td><td class="ru">она</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </section>
+
+  <section class="block" id="idafa">
+    <h2>6. Слитные притяжательные местоимения («мой», «твой»…) — §4</h2>
+    <p class="note">Присоединяются к существительному как суффикс. Существительное с таким суффиксом автоматически становится определённым: без ال и без танвина.</p>
+    <div class="table-scroll">
+    <table>
+      <thead><tr><th>Суффикс</th><th>Транслит.</th><th>Значение</th><th>كِتَاب + суффикс</th><th>Перевод</th></tr></thead>
+      <tbody>
+        <tr><td class="ar center">ـِي</td><td class="tr">-ī</td><td class="ru">мой / моя</td><td class="ar">كِتَابِي</td><td class="ru">моя книга</td></tr>
+        <tr><td class="ar center">ـُكَ</td><td class="tr">-uka</td><td class="ru">твой (к мужчине)</td><td class="ar">كِتَابُكَ</td><td class="ru">твоя книга</td></tr>
+        <tr><td class="ar center">ـُكِ</td><td class="tr">-uki</td><td class="ru">твой (к женщине)</td><td class="ar">كِتَابُكِ</td><td class="ru">твоя книга</td></tr>
+        <tr><td class="ar center">ـُهُ</td><td class="tr">-uhu</td><td class="ru">его</td><td class="ar">كِتَابُهُ</td><td class="ru">его книга</td></tr>
+        <tr><td class="ar center">ـُهَا</td><td class="tr">-uhā</td><td class="ru">её</td><td class="ar">كِتَابُهَا</td><td class="ru">её книга</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </section>
+
+  <section class="block" id="past">
+    <h2>7. Прошедшее время — личные окончания (справочно, вы это уже знаете)</h2>
+    <p class="note">На примере правильного глагола كَتَبَ (kataba — «писал»). Окончания те же у любого правильного глагола в прошедшем времени.</p>
+    <div class="table-scroll">
+    <table>
+      <thead><tr><th>Местоимение</th><th>Окончание</th><th>Форма كتب</th><th>Перевод</th></tr></thead>
+      <tbody>
+        <tr><td class="ar">أَنَا</td><td class="ar center">ـْتُ <span class="tr">(-tu)</span></td><td class="ar">كَتَبْتُ <span class="tr">katabtu</span></td><td class="ru">я написал(а)</td></tr>
+        <tr><td class="ar">أَنْتَ</td><td class="ar center">ـْتَ <span class="tr">(-ta)</span></td><td class="ar">كَتَبْتَ <span class="tr">katabta</span></td><td class="ru">ты написал</td></tr>
+        <tr><td class="ar">أَنْتِ</td><td class="ar center">ـْتِ <span class="tr">(-ti)</span></td><td class="ar">كَتَبْتِ <span class="tr">katabti</span></td><td class="ru">ты написала</td></tr>
+        <tr><td class="ar">هُوَ</td><td class="ar center">— <span class="tr">(чистая основа)</span></td><td class="ar">كَتَبَ <span class="tr">kataba</span></td><td class="ru">он написал</td></tr>
+        <tr><td class="ar">هِيَ</td><td class="ar center">ـَتْ <span class="tr">(-at)</span></td><td class="ar">كَتَبَتْ <span class="tr">katabat</span></td><td class="ru">она написала</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </section>
+
+  <footer>Arabic Classes — справочная таблица по §1–5</footer>
+</div>
+</body>
+</html>
