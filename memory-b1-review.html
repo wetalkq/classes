@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Why We Remember (and Forget) — Повторение лексики</title>
+<style>
+  :root {
+    --slate: #5b4a99;
+    --slate-soft: #efeaf9;
+    --teal: #8a5cc2;
+    --teal-deep: #6a3fa0;
+    --indigo: #4a3f8c;
+    --indigo-deep: #3a3270;
+    --charcoal: #5a4e8c;
+    --charcoal-deep: #473d70;
+    --box-bg: #6a5aa8;
+    --box-bg2: #7a68b8;
+    --correct: #2e9e6b;
+    --wrong: #c9534a;
+    --hair: #e1d9f3;
+    --shadow: 0 6px 18px rgba(74, 63, 140, 0.12);
+    --radius: 16px;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(160deg, #f7f4fc 0%, #efeaf9 100%);
+    color: #2d2a3d;
+    padding: 24px 16px 60px;
+  }
+
+  .wrap { max-width: 880px; margin: 0 auto; }
+
+  header {
+    text-align: center;
+    padding: 28px 20px 24px;
+    background: linear-gradient(135deg, var(--slate), var(--teal));
+    border-radius: var(--radius);
+    color: #fff;
+    box-shadow: var(--shadow);
+    margin-bottom: 28px;
+  }
+
+  header .icon { font-size: 42px; margin-bottom: 6px; }
+  header h1 { margin: 0 0 8px; font-size: 1.7em; }
+  header p { margin: 0; opacity: 0.92; font-size: 0.98em; line-height: 1.5; }
+
+  section {
+    background: #fff;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 24px 20px;
+    margin-bottom: 24px;
+  }
+
+  section h2 {
+    margin-top: 0;
+    color: var(--indigo);
+    font-size: 1.25em;
+    border-bottom: 2px solid var(--hair);
+    padding-bottom: 10px;
+  }
+
+  section p.hint { color: #6b6480; font-size: 0.93em; margin-top: -4px; }
+
+  /* Flashcards */
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+    margin-top: 16px;
+  }
+
+  .flip-card { perspective: 1000px; height: 150px; cursor: pointer; }
+
+  .flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.5s;
+    transform-style: preserve-3d;
+  }
+
+  .flip-card.flipped .flip-card-inner { transform: rotateY(180deg); }
+
+  .flip-card-front, .flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 12px;
+    text-align: center;
+  }
+
+  .flip-card-front {
+    background: linear-gradient(135deg, var(--box-bg), var(--box-bg2));
+    color: #fff;
+    font-weight: 600;
+    font-size: 1.05em;
+  }
+
+  .flip-card-back {
+    background: var(--slate-soft);
+    color: var(--indigo-deep);
+    transform: rotateY(180deg);
+    font-size: 0.88em;
+    line-height: 1.4;
+  }
+
+  .flip-card-back .ru { font-weight: 700; margin-bottom: 6px; color: var(--charcoal-deep); }
+  .flip-card-back .ex { font-style: italic; color: #4a4460; }
+
+  /* Matching exercise */
+  .match-area {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px 20px;
+    margin-top: 16px;
+  }
+
+  .match-item {
+    padding: 12px 14px;
+    border: 2px solid var(--hair);
+    border-radius: 10px;
+    background: #faf8ff;
+    cursor: pointer;
+    font-size: 0.92em;
+    transition: all 0.2s;
+    user-select: none;
+  }
+
+  .match-item:hover { border-color: var(--teal); }
+  .match-item.selected { border-color: var(--teal-deep); background: #ece3fa; }
+  .match-item.correct { border-color: var(--correct); background: #e3f6ec; cursor: default; }
+  .match-item.wrong { border-color: var(--wrong); background: #fbe8e6; animation: shake 0.3s; }
+
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-4px); }
+    75% { transform: translateX(4px); }
+  }
+
+  .match-progress {
+    margin-top: 14px;
+    font-weight: 600;
+    color: var(--indigo);
+  }
+
+  /* Gap fill */
+  .gap-item { margin-bottom: 14px; line-height: 1.9; font-size: 1em; }
+  .gap-item select {
+    padding: 5px 8px;
+    border-radius: 8px;
+    border: 2px solid var(--teal);
+    background: #faf8ff;
+    font-size: 0.95em;
+    color: var(--indigo-deep);
+    font-weight: 600;
+  }
+
+  .gap-item .num { color: var(--charcoal); font-weight: 700; margin-right: 4px; }
+
+  #checkGaps {
+    margin-top: 16px;
+    background: var(--teal-deep);
+    color: #fff;
+    border: none;
+    padding: 12px 26px;
+    border-radius: 10px;
+    font-size: 1em;
+    cursor: pointer;
+    font-weight: 600;
+  }
+
+  #checkGaps:hover { background: var(--indigo-deep); }
+
+  #gapScore {
+    margin-top: 14px;
+    font-weight: 700;
+    font-size: 1.05em;
+  }
+
+  .gap-item select.ok { border-color: var(--correct); background: #e3f6ec; }
+  .gap-item select.bad { border-color: var(--wrong); background: #fbe8e6; }
+
+  footer {
+    text-align: center;
+    color: #8a84a0;
+    font-size: 0.85em;
+    margin-top: 10px;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="icon">🧠</div>
+    <h1>Why We Remember (and Forget)</h1>
+    <p>Повторение лексики по уроку о памяти: карточки, сопоставление и упражнение на заполнение пропусков.</p>
+  </header>
+
+  <section>
+    <h2>📇 Карточки (нажмите, чтобы перевернуть)</h2>
+    <p class="hint">Кликните по карточке, чтобы увидеть перевод и пример.</p>
+    <div class="cards-grid" id="cardsGrid"></div>
+  </section>
+
+  <section>
+    <h2>🔗 Сопоставьте английское выражение с переводом</h2>
+    <p class="hint">Нажмите на выражение слева, затем на подходящий перевод справа.</p>
+    <div class="match-area">
+      <div id="matchLeft"></div>
+      <div id="matchRight"></div>
+    </div>
+    <div class="match-progress" id="matchProgress">Совпадений: 0 / 12</div>
+  </section>
+
+  <section>
+    <h2>✏️ Заполните пропуски</h2>
+    <p class="hint">Выберите подходящее слово или выражение из выпадающего списка.</p>
+    <div id="gapsContainer"></div>
+    <button id="checkGaps">Проверить</button>
+    <div id="gapScore"></div>
+  </section>
+
+  <footer>We Talk · Повторение лексики</footer>
+</div>
+
+<script>
+const vocab = [
+  {term:"a photographic memory", ru:"фотографическая память", ex:"My brother has a photographic memory — he can describe a page after reading it just once."},
+  {term:"to remember every detail", ru:"помнить всё до мелочей", ex:"He could remember every detail of the trip, right down to the smallest things they bought."},
+  {term:"to learn something by heart", ru:"выучить что-либо наизусть", ex:"The actor learned his lines by heart two weeks before the play opened."},
+  {term:"to bring back memories", ru:"вызывать воспоминания, напоминать о прошлом", ex:"The smell of fresh bread always brings back memories of my grandmother's kitchen."},
+  {term:"a good short-term memory", ru:"хорошая кратковременная память", ex:"You need a good short-term memory to remember a phone number for just a few seconds."},
+  {term:"a good long-term memory", ru:"хорошая долговременная память", ex:"Thanks to her good long-term memory, she still remembers her first day at school."},
+  {term:"to go in one ear and out the other", ru:"влетать в одно ухо и вылетать в другое (быстро забываться)", ex:"I told him the instructions twice, but it just went in one ear and out the other."},
+  {term:"it slipped my mind", ru:"это вылетело у меня из головы, я забыл", ex:"I meant to call you back, but it completely slipped my mind."},
+  {term:"to refresh someone's memory", ru:"освежить чью-либо память", ex:"Could you refresh my memory? I can't remember where we left off last time."},
+  {term:"on the tip of my tongue", ru:"вертится на языке (не могу вспомнить слово)", ex:"Wait, don't tell me — his name is on the tip of my tongue!"},
+  {term:"that rings a bell", ru:"это что-то напоминает, где-то я это слышал", ex:"The name of the restaurant rings a bell, but I can't remember when we went there."},
+  {term:"my memory is playing tricks on me", ru:"память меня подводит", ex:"I was sure I'd locked the door, but maybe my memory is playing tricks on me."}
+];
+
+const gaps = [
+  {before:"My sister has", after:", so she can remember a whole page after reading it once.", answer:"a photographic memory"},
+  {before:"I can't", after:"of that day, but I remember how happy I felt.", answer:"remember every detail"},
+  {before:"She practised every day until she could", after:".", answer:"learn the whole speech by heart"},
+  {before:"Hearing that old song", after:"of our school days.", answer:"brought back memories"},
+  {before:"He has", after:", so he can repeat a list of ten words right after hearing it.", answer:"a good short-term memory"},
+  {before:"My grandfather has", after:"— he can talk about events from fifty years ago in detail.", answer:"a good long-term memory"},
+  {before:"Whatever advice I give my younger brother just", after:".", answer:"goes in one ear and out the other"},
+  {before:"I'm so sorry I missed the meeting —", after:".", answer:"it slipped my mind"},
+  {before:"Before the exam, the teacher spent ten minutes trying to", after:".", answer:"refresh our memory"},
+  {before:"I know the actor's name, but right now it's", after:".", answer:"on the tip of my tongue"},
+  {before:"I'm not sure who she is, but her face", after:".", answer:"rings a bell"},
+  {before:"I remember leaving my keys on the table, but they're not there, so", after:".", answer:"my memory is playing tricks on me"}
+];
+
+const options = ["a photographic memory","remember every detail","learn the whole speech by heart","brought back memories","a good short-term memory","a good long-term memory","goes in one ear and out the other","it slipped my mind","refresh our memory","on the tip of my tongue","rings a bell","my memory is playing tricks on me"];
+
+function shuffle(arr) {
+  const a = arr.slice();
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+// Flashcards
+const cardsGrid = document.getElementById('cardsGrid');
+vocab.forEach(item => {
+  const card = document.createElement('div');
+  card.className = 'flip-card';
+  card.innerHTML = `
+    <div class="flip-card-inner">
+      <div class="flip-card-front">${item.term}</div>
+      <div class="flip-card-back">
+        <div class="ru">${item.ru}</div>
+        <div class="ex">${item.ex}</div>
+      </div>
+    </div>`;
+  card.addEventListener('click', () => card.classList.toggle('flipped'));
+  cardsGrid.appendChild(card);
+});
+
+// Matching exercise
+const matchLeft = document.getElementById('matchLeft');
+const matchRight = document.getElementById('matchRight');
+const leftItems = shuffle(vocab);
+const rightItems = shuffle(vocab);
+let selectedLeft = null;
+let matchedCount = 0;
+
+leftItems.forEach(item => {
+  const div = document.createElement('div');
+  div.className = 'match-item';
+  div.textContent = item.term;
+  div.dataset.term = item.term;
+  div.addEventListener('click', () => {
+    if (div.classList.contains('correct')) return;
+    document.querySelectorAll('#matchLeft .match-item').forEach(el => el.classList.remove('selected'));
+    div.classList.add('selected');
+    selectedLeft = div;
+  });
+  matchLeft.appendChild(div);
+});
+
+rightItems.forEach(item => {
+  const div = document.createElement('div');
+  div.className = 'match-item';
+  div.textContent = item.ru;
+  div.dataset.term = item.term;
+  div.addEventListener('click', () => {
+    if (div.classList.contains('correct') || !selectedLeft) return;
+    if (selectedLeft.dataset.term === div.dataset.term) {
+      selectedLeft.classList.remove('selected');
+      selectedLeft.classList.add('correct');
+      div.classList.add('correct');
+      selectedLeft = null;
+      matchedCount++;
+      document.getElementById('matchProgress').textContent = `Совпадений: ${matchedCount} / ${vocab.length}`;
+    } else {
+      div.classList.add('wrong');
+      setTimeout(() => div.classList.remove('wrong'), 300);
+    }
+  });
+  matchRight.appendChild(div);
+});
+
+// Gap fill
+const gapsContainer = document.getElementById('gapsContainer');
+gaps.forEach((item, idx) => {
+  const div = document.createElement('div');
+  div.className = 'gap-item';
+  const selId = `gap-${idx}`;
+  let selectHtml = `<select id="${selId}" data-answer="${item.answer}"><option value="">—</option>`;
+  shuffle(options).forEach(opt => {
+    selectHtml += `<option value="${opt}">${opt}</option>`;
+  });
+  selectHtml += `</select>`;
+  div.innerHTML = `<span class="num">${idx + 1}.</span> ${item.before} ${selectHtml} ${item.after}`;
+  gapsContainer.appendChild(div);
+});
+
+document.getElementById('checkGaps').addEventListener('click', () => {
+  let correct = 0;
+  gaps.forEach((item, idx) => {
+    const select = document.getElementById(`gap-${idx}`);
+    select.classList.remove('ok', 'bad');
+    if (select.value === item.answer) {
+      select.classList.add('ok');
+      correct++;
+    } else {
+      select.classList.add('bad');
+    }
+  });
+  document.getElementById('gapScore').textContent = `Результат: ${correct} из ${gaps.length}`;
+});
+</script>
+</body>
+</html>
