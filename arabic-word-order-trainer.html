@@ -1,0 +1,578 @@
+<meta name="claude:viewport-fit-sides" content="cover">
+<title>Порядок слов</title>
+<style>
+  /*
+    Layout: single-card trainer, one sentence-building exercise at a time —
+    a word pool below, an answer row above, instant check with rule explanation.
+  */
+  :root {
+    --bg: #f6f1e7;
+    --surface: #fffcf5;
+    --ink: #2b2420;
+    --muted: #7a6f60;
+    --accent: #0f5c56;
+    --accent-soft: #d9ece9;
+    --gold: #b8863b;
+    --bad: #a23b2e;
+    --bad-soft: #f6e2dd;
+    --good: #2e7d4f;
+    --good-soft: #e1efe3;
+    --border: #e2d7c3;
+
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #1b1815;
+      --surface: #262220;
+      --ink: #efe8dc;
+      --muted: #a89d8c;
+      --accent: #5fc9bd;
+      --accent-soft: #233b38;
+      --gold: #d9ab5f;
+      --bad: #e08c7d;
+      --bad-soft: #3a2420;
+      --good: #7fcf9d;
+      --good-soft: #1f3327;
+      --border: #3a332c;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #1b1815;
+    --surface: #262220;
+    --ink: #efe8dc;
+    --muted: #a89d8c;
+    --accent: #5fc9bd;
+    --accent-soft: #233b38;
+    --gold: #d9ab5f;
+    --bad: #e08c7d;
+    --bad-soft: #3a2420;
+    --good: #7fcf9d;
+    --good-soft: #1f3327;
+    --border: #3a332c;
+    color-scheme: dark;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'PT Sans', sans-serif;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: 20px 40px;
+  }
+  .wrap { max-width: 620px; margin: 0 auto; }
+
+  h1 {
+    font-family: 'Lora', serif;
+    font-size: 1.5rem;
+    margin: 0 0 4px;
+    text-wrap: balance;
+  }
+  .sub {
+    color: var(--muted);
+    font-size: 0.92rem;
+    margin: 0 0 20px;
+  }
+
+  .progress-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 18px;
+  }
+  .progress-track {
+    flex: 1;
+    min-width: 0;
+    height: 8px;
+    border-radius: 99px;
+    background: var(--border);
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: var(--accent);
+    border-radius: 99px;
+    transition: width .3s ease;
+  }
+  .progress-label {
+    font-size: 0.85rem;
+    color: var(--muted);
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 22px;
+  }
+
+  .rule-tag {
+    display: inline-block;
+    font-size: 0.72rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: var(--accent-soft);
+    border-radius: 99px;
+    padding: 4px 11px;
+    margin-bottom: 14px;
+  }
+
+  .prompt {
+    font-size: 1.15rem;
+    font-family: 'Lora', serif;
+    margin: 0 0 18px;
+    text-wrap: balance;
+  }
+
+  .zone-label {
+    font-size: 0.78rem;
+    color: var(--muted);
+    letter-spacing: 0.03em;
+    margin: 0 0 8px;
+  }
+
+  .answer-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    min-height: 56px;
+    padding: 10px;
+    border: 2px dashed var(--border);
+    border-radius: 12px;
+    margin-bottom: 20px;
+    align-content: flex-start;
+  }
+  .answer-row.empty::after {
+    content: "нажимай на слова ниже, чтобы собрать предложение";
+    color: var(--muted);
+    font-size: 0.88rem;
+    padding: 6px 2px;
+  }
+
+  .pool-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 20px;
+  }
+
+  .chip {
+    font-family: 'Amiri', serif;
+    font-size: 1.35rem;
+    line-height: 1;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 10px 14px 6px;
+    cursor: pointer;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    direction: rtl;
+    transition: transform .12s ease, background .15s ease;
+    user-select: none;
+  }
+  .chip:hover { background: var(--accent-soft); }
+  .chip:active { transform: scale(0.96); }
+  .chip .tr {
+    font-family: 'PT Sans', sans-serif;
+    direction: ltr;
+    font-size: 0.72rem;
+    color: var(--muted);
+    letter-spacing: 0.01em;
+  }
+  .chip.placed { background: var(--accent-soft); border-color: var(--accent); }
+  .chip.disabled { opacity: 0.35; cursor: default; pointer-events: none; }
+
+  .actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  button {
+    font-family: inherit;
+    font-size: 0.95rem;
+    border: none;
+    border-radius: 10px;
+    padding: 11px 18px;
+    cursor: pointer;
+  }
+  .btn-check {
+    background: var(--accent);
+    color: var(--surface);
+    font-weight: 600;
+  }
+  .btn-check:disabled { opacity: 0.4; cursor: default; }
+  .btn-reset {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--ink);
+  }
+  .btn-next {
+    background: var(--gold);
+    color: var(--surface);
+    font-weight: 600;
+    display: none;
+  }
+  .btn-hint {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 0.85rem;
+  }
+
+  .feedback {
+    margin-top: 18px;
+    padding: 14px 16px;
+    border-radius: 12px;
+    display: none;
+  }
+  .feedback.good { background: var(--good-soft); color: var(--good); display: block; }
+  .feedback.bad { background: var(--bad-soft); color: var(--bad); display: block; }
+  .feedback .fb-title { font-weight: 700; margin-bottom: 6px; }
+  .feedback .fb-body { color: var(--ink); font-size: 0.93rem; line-height: 1.5; }
+  .feedback .fb-answer {
+    font-family: 'Amiri', serif;
+    font-size: 1.3rem;
+    direction: rtl;
+    margin-top: 8px;
+    display: block;
+  }
+  .feedback .fb-answer .tr {
+    font-family: 'PT Sans', sans-serif;
+    direction: ltr;
+    font-size: 0.8rem;
+    color: var(--muted);
+    display: block;
+    margin-top: 2px;
+  }
+
+  .hint-box {
+    display: none;
+    font-size: 0.87rem;
+    color: var(--muted);
+    background: var(--bg);
+    border-radius: 10px;
+    padding: 10px 12px;
+    margin-bottom: 16px;
+  }
+  .hint-box.show { display: block; }
+
+  .done-screen { text-align: center; padding: 30px 10px; }
+  .done-screen .big { font-size: 2.2rem; margin-bottom: 6px; }
+  .done-screen p { color: var(--muted); margin: 6px 0 20px; }
+</style>
+
+<div class="wrap">
+  <h1>Порядок слов в арабском предложении</h1>
+  <p class="sub">Собери слова в правильном порядке. Тренажёр к § 3 — закрепляем структуру предложения, а не только падежи.</p>
+
+  <div class="progress-row">
+    <div class="progress-track"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+    <div class="progress-label" id="progressLabel">0 / 8</div>
+  </div>
+
+  <div class="card" id="exerciseCard"></div>
+</div>
+
+<script>
+(function () {
+  var exercises = [
+    {
+      rule: "Именное предложение",
+      prompt: "«Это белый дом»",
+      words: [
+        { id: "hadha", ar: "هَذَا", tr: "hādhā" },
+        { id: "baytun", ar: "بَيْتٌ", tr: "baytun" },
+        { id: "abyadu", ar: "أَبْيَضُ", tr: "abyaḍu" }
+      ],
+      correct: ["hadha", "baytun", "abyadu"],
+      hint: "Без глагола: подлежащее (или هَذَا) → сказуемое → прилагательное сразу после своего существительного.",
+      explain: "هَذَا (это) открывает именное предложение, за ним — сказуемое «дом», а прилагательное «белый» клеится прямо к нему."
+    },
+    {
+      rule: "Глагольное предложение",
+      prompt: "«Я увидел высокого мужчину»",
+      words: [
+        { id: "raaytu", ar: "رَأَيْتُ", tr: "ra'aytu" },
+        { id: "rajulan", ar: "رَجُلًا", tr: "rajulan" },
+        { id: "tawilan", ar: "طَوِيلًا", tr: "ṭawīlan" }
+      ],
+      correct: ["raaytu", "rajulan", "tawilan"],
+      hint: "Есть глагол → порядок строго: глагол → подлежащее (здесь спрятано в окончании -tu) → дополнение → его прилагательное.",
+      explain: "رَأَيْتُ (я увидел) — глагол первый. «Мужчину» — прямое дополнение в винительном. «Высокого» — сразу после «мужчину», тоже в винительном."
+    },
+    {
+      rule: "Прилагательное + предлог",
+      prompt: "«Жёлтый карандаш в сумке»",
+      words: [
+        { id: "qalamun", ar: "قَلَمٌ", tr: "qalamun" },
+        { id: "asfaru", ar: "أَصْفَرُ", tr: "aṣfaru" },
+        { id: "fi", ar: "فِي", tr: "fī" },
+        { id: "haqibatin", ar: "حَقِيبَةٍ", tr: "ḥaqībatin" }
+      ],
+      correct: ["qalamun", "asfaru", "fi", "haqibatin"],
+      hint: "Прилагательное никогда не отрывается от своего существительного — даже если после него идёт предлог.",
+      explain: "«Карандаш» (подлежащее, именительный) + «жёлтый» сразу за ним, и только потом предлог «в» + «сумке» (родительный)."
+    },
+    {
+      rule: "Глагольное предложение",
+      prompt: "«Я купил новую машину»",
+      words: [
+        { id: "ishtaraytu", ar: "اِشْتَرَيْتُ", tr: "ishtaraytu" },
+        { id: "sayyaratan", ar: "سَيَّارَةً", tr: "sayyāratan" },
+        { id: "jadidatan", ar: "جَدِيدَةً", tr: "jadīdatan" }
+      ],
+      correct: ["ishtaraytu", "sayyaratan", "jadidatan"],
+      hint: "Глагол → дополнение (винительный, с танвином, т.к. слово трёхпадежное) → его прилагательное (тоже винительный).",
+      explain: "Глагол первый, затем «машину» и «новую» — оба трёхпадежные, поэтому оба получают танвин -ан в винительном."
+    },
+    {
+      rule: "Именное предложение",
+      prompt: "«Это большая школа»",
+      words: [
+        { id: "hadhihi", ar: "هَذِهِ", tr: "hādhihi" },
+        { id: "madrasatun", ar: "مَدْرَسَةٌ", tr: "madrasatun" },
+        { id: "kabiratun", ar: "كَبِيرَةٌ", tr: "kabīratun" }
+      ],
+      correct: ["hadhihi", "madrasatun", "kabiratun"],
+      hint: "«Школа» — женский род, поэтому указательное местоимение тоже женского рода: هَذِهِ, не هَذَا.",
+      explain: "هَذِهِ (это, ж.р.) → «школа» (сказуемое) → «большая» сразу за ней, согласуясь в роде."
+    },
+    {
+      rule: "Глагольное предложение",
+      prompt: "«Студент взял новую книгу» (имена — в неопределённом состоянии)",
+      words: [
+        { id: "akhadha", ar: "أَخَذَ", tr: "akhadha" },
+        { id: "talibun", ar: "طَالِبٌ", tr: "ṭālibun" },
+        { id: "kitaban", ar: "كِتَابًا", tr: "kitāban" },
+        { id: "jadidan", ar: "جَدِيدًا", tr: "jadīdan" }
+      ],
+      correct: ["akhadha", "talibun", "kitaban", "jadidan"],
+      hint: "Здесь подлежащее названо отдельным словом (не спрятано в глаголе) — оно идёт сразу после глагола, в именительном падеже.",
+      explain: "أَخَذَ (взял) → طَالِبٌ (студент — подлежащее, именительный, с танвином) → كِتَابًا جَدِيدًا (книгу новую — дополнение и его прилагательное, винительный)."
+    },
+    {
+      rule: "Прилагательное + предлог",
+      prompt: "«Белый нож на тарелке»",
+      words: [
+        { id: "sikkinun", ar: "سِكِّينٌ", tr: "sikkīnun" },
+        { id: "abyadu2", ar: "أَبْيَضُ", tr: "abyaḍu" },
+        { id: "ala", ar: "عَلَى", tr: "ʿalā" },
+        { id: "tabaqin", ar: "طَبَقٍ", tr: "ṭabaqin" }
+      ],
+      correct: ["sikkinun", "abyadu2", "ala", "tabaqin"],
+      hint: "«Нож» — подлежащее (именительный), «белый» (двухпадежное — без танвина) сразу за ним, затем предлог «на» + «тарелка» (родительный).",
+      explain: "سِكِّينٌ (нож, именительный) → أَبْيَضُ (белый, двухпадежное, без танвина) → عَلَى طَبَقٍ (на тарелке, родительный после предлога)."
+    },
+    {
+      rule: "Глагольное предложение",
+      prompt: "«Мужчина сел в красную машину» (имена — в неопределённом состоянии)",
+      words: [
+        { id: "rakiba", ar: "رَكِبَ", tr: "rakiba" },
+        { id: "rajulun", ar: "رَجُلٌ", tr: "rajulun" },
+        { id: "sayyaratan2", ar: "سَيَّارَةً", tr: "sayyāratan" },
+        { id: "hamraa", ar: "حَمْرَاءَ", tr: "ḥamrā'a" }
+      ],
+      correct: ["rakiba", "rajulun", "sayyaratan2", "hamraa"],
+      hint: "Глагол → подлежащее отдельным словом (именительный) → дополнение с его прилагательным (винительный; двухпадежное — без танвина).",
+      explain: "رَكِبَ (сел) → رَجُلٌ (мужчина — подлежащее, именительный) → سَيَّارَةً (машину — винительный, с танвином) حَمْرَاءَ (красную — двухпадежное, без танвина)."
+    }
+  ];
+
+  var state = { index: 0, placed: [], solved: false };
+
+  var card = document.getElementById("exerciseCard");
+  var progressFill = document.getElementById("progressFill");
+  var progressLabel = document.getElementById("progressLabel");
+
+  function loadProgress() {
+    try {
+      var saved = JSON.parse(localStorage.getItem("word-order-trainer::progress"));
+      if (saved && typeof saved.index === "number" && saved.index >= 0 && saved.index <= exercises.length) {
+        state.index = saved.index;
+      }
+    } catch (e) {}
+  }
+  function saveProgress() {
+    try {
+      localStorage.setItem("word-order-trainer::progress", JSON.stringify({ index: state.index }));
+    } catch (e) {}
+  }
+
+  function shuffled(arr) {
+    var a = arr.slice();
+    for (var i = a.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var t = a[i]; a[i] = a[j]; a[j] = t;
+    }
+    return a;
+  }
+
+  function render() {
+    progressLabel.textContent = Math.min(state.index, exercises.length) + " / " + exercises.length;
+    progressFill.style.width = (Math.min(state.index, exercises.length) / exercises.length * 100) + "%";
+
+    if (state.index >= exercises.length) {
+      card.innerHTML =
+        '<div class="done-screen">' +
+          '<div class="big">✓</div>' +
+          '<h2 style="font-family:\'Lora\',serif;margin:0 0 4px;">Все 8 собраны</h2>' +
+          '<p>Можешь начать заново, чтобы закрепить порядок ещё раз.</p>' +
+          '<button class="btn-check" id="restartBtn">Начать сначала</button>' +
+        '</div>';
+      document.getElementById("restartBtn").addEventListener("click", function () {
+        state.index = 0;
+        saveProgress();
+        startExercise();
+      });
+      return;
+    }
+
+    var ex = exercises[state.index];
+    var pool = shuffled(ex.words);
+
+    var html = '';
+    html += '<div class="rule-tag">' + ex.rule + '</div>';
+    html += '<p class="prompt">' + ex.prompt + '</p>';
+    html += '<div class="hint-box" id="hintBox">' + ex.hint + '</div>';
+    html += '<p class="zone-label">Твой порядок:</p>';
+    html += '<div class="answer-row empty" id="answerRow"></div>';
+    html += '<p class="zone-label">Слова (в разброс):</p>';
+    html += '<div class="pool-row" id="poolRow">';
+    pool.forEach(function (w) {
+      html += '<div class="chip" data-id="' + w.id + '"><span class="ar">' + w.ar + '</span><span class="tr">' + w.tr + '</span></div>';
+    });
+    html += '</div>';
+    html += '<div class="actions">';
+    html += '<button class="btn-check" id="checkBtn" disabled>Проверить</button>';
+    html += '<button class="btn-reset" id="resetBtn">Сбросить</button>';
+    html += '<button class="btn-hint" id="hintBtn">Подсказка</button>';
+    html += '<button class="btn-next" id="nextBtn">Дальше →</button>';
+    html += '</div>';
+    html += '<div class="feedback" id="feedback"></div>';
+
+    card.innerHTML = html;
+
+    var answerRow = document.getElementById("answerRow");
+    var poolRow = document.getElementById("poolRow");
+    var checkBtn = document.getElementById("checkBtn");
+    var resetBtn = document.getElementById("resetBtn");
+    var hintBtn = document.getElementById("hintBtn");
+    var hintBox = document.getElementById("hintBox");
+    var nextBtn = document.getElementById("nextBtn");
+    var feedback = document.getElementById("feedback");
+
+    var placedIds = [];
+
+    function wordById(id) {
+      for (var i = 0; i < ex.words.length; i++) if (ex.words[i].id === id) return ex.words[i];
+      return null;
+    }
+
+    function renderAnswer() {
+      if (placedIds.length === 0) {
+        answerRow.classList.add("empty");
+        answerRow.innerHTML = "";
+      } else {
+        answerRow.classList.remove("empty");
+        answerRow.innerHTML = "";
+        placedIds.forEach(function (id) {
+          var w = wordById(id);
+          var chip = document.createElement("div");
+          chip.className = "chip placed";
+          chip.setAttribute("data-id", id);
+          chip.innerHTML = '<span class="ar">' + w.ar + '</span><span class="tr">' + w.tr + '</span>';
+          chip.addEventListener("click", function () {
+            placedIds = placedIds.filter(function (x) { return x !== id; });
+            renderAnswer();
+            renderPool();
+          });
+          answerRow.appendChild(chip);
+        });
+      }
+      checkBtn.disabled = placedIds.length !== ex.words.length;
+    }
+
+    function renderPool() {
+      Array.prototype.forEach.call(poolRow.children, function (chipEl) {
+        var id = chipEl.getAttribute("data-id");
+        if (placedIds.indexOf(id) !== -1) {
+          chipEl.classList.add("disabled");
+        } else {
+          chipEl.classList.remove("disabled");
+        }
+      });
+    }
+
+    Array.prototype.forEach.call(poolRow.children, function (chipEl) {
+      chipEl.addEventListener("click", function () {
+        var id = chipEl.getAttribute("data-id");
+        if (placedIds.indexOf(id) !== -1) return;
+        placedIds.push(id);
+        renderAnswer();
+        renderPool();
+      });
+    });
+
+    resetBtn.addEventListener("click", function () {
+      placedIds = [];
+      renderAnswer();
+      renderPool();
+      feedback.className = "feedback";
+      feedback.innerHTML = "";
+    });
+
+    hintBtn.addEventListener("click", function () {
+      hintBox.classList.toggle("show");
+    });
+
+    checkBtn.addEventListener("click", function () {
+      var isCorrect = placedIds.length === ex.correct.length &&
+        placedIds.every(function (id, i) { return id === ex.correct[i]; });
+
+      if (isCorrect) {
+        feedback.className = "feedback good";
+        feedback.innerHTML =
+          '<div class="fb-title">Верно!</div>' +
+          '<div class="fb-body">' + ex.explain + '</div>';
+        nextBtn.style.display = "inline-block";
+        checkBtn.disabled = true;
+      } else {
+        feedback.className = "feedback bad";
+        var correctAr = ex.correct.map(function (id) { return wordById(id).ar; }).join(" ");
+        var correctTr = ex.correct.map(function (id) { return wordById(id).tr; }).join(" ");
+        feedback.innerHTML =
+          '<div class="fb-title">Пока не так</div>' +
+          '<div class="fb-body">' + ex.explain +
+          '<span class="fb-answer">' + correctAr + '<span class="tr">' + correctTr + '</span></span></div>';
+      }
+    });
+
+    nextBtn.addEventListener("click", function () {
+      state.index++;
+      saveProgress();
+      startExercise();
+    });
+
+    renderAnswer();
+  }
+
+  function startExercise() {
+    render();
+  }
+
+  loadProgress();
+  startExercise();
+})();
+</script>
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600&family=PT+Sans:wght@400;700&family=Amiri:wght@400;700&display=swap">
