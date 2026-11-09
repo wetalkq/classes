@@ -1,51 +1,20 @@
 <title>Корабль Тесея</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,500;1,600;0,600&family=Montserrat:wght@400;500;600&display=swap">
 <style>
-/* layout: вертикальный ствол слева, ветки открываются по тапу; примеры — переворачивающиеся карточки */
+/* Притча — бежевое поле, бордовые чернила, греческий меандр как единственный узор.
+   Один закреплённый визуальный мир (не адаптируется под системную тему) — так решила автор канала. */
 :root{
-  --bg:#eef2f1;
-  --surface:#ffffff;
-  --surface-2:#e4ebe9;
-  --ink:#16262b;
-  --ink-soft:#4a6269;
-  --accent:#a9790f;
-  --accent-ink:#5c4306;
-  --line:#c3d0ce;
-  --card-back:#16262b;
-  --card-back-ink:#eef2f1;
-  --font-display:'Fraunces',Georgia,serif;
-  --font-body:'Source Sans 3',system-ui,sans-serif;
-  --font-mono:'IBM Plex Mono',ui-monospace,monospace;
+  --bg:#F3E7D3;
+  --surface:#FBF4E7;
+  --ink:#47050A;
+  --ink-soft:#8A3B3F;
+  --panel-bg:#47050A;
+  --panel-ink:#F3E7D3;
+  --line: rgba(71,5,10,.18);
+  --font-display:'Playfair Display',Georgia,serif;
+  --font-body:'Montserrat',system-ui,sans-serif;
   color-scheme: light;
-}
-@media (prefers-color-scheme: dark){
-  :root:not([data-theme="light"]){
-    --bg:#0c1a1e;
-    --surface:#132429;
-    --surface-2:#1b3138;
-    --ink:#e8eeec;
-    --ink-soft:#9bb3b0;
-    --accent:#d9af52;
-    --accent-ink:#2a1f08;
-    --line:#2b4349;
-    --card-back:#e8eeec;
-    --card-back-ink:#132429;
-    color-scheme: dark;
-  }
-}
-:root[data-theme="dark"]{
-  --bg:#0c1a1e;
-  --surface:#132429;
-  --surface-2:#1b3138;
-  --ink:#e8eeec;
-  --ink-soft:#9bb3b0;
-  --accent:#d9af52;
-  --accent-ink:#2a1f08;
-  --line:#2b4349;
-  --card-back:#e8eeec;
-  --card-back-ink:#132429;
-  color-scheme: dark;
 }
 
 *{box-sizing:border-box}
@@ -54,161 +23,171 @@ body{
   background:var(--bg);
   color:var(--ink);
   font-family:var(--font-body);
-  line-height:1.55;
-  padding-left:max(18px, env(safe-area-inset-left,0px));
-  padding-right:max(18px, env(safe-area-inset-right,0px));
+  line-height:1.62;
+  padding-left:max(20px, env(safe-area-inset-left,0px));
+  padding-right:max(20px, env(safe-area-inset-right,0px));
 }
-.wrap{max-width:720px;margin:0 auto;padding-block:36px 64px}
+.wrap{max-width:700px;margin:0 auto;padding-block:40px 70px}
+
+/* ---------- greek key border ---------- */
+.meander{
+  height:15px;
+  width:100%;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='16' viewBox='0 0 40 16'%3E%3Cpath d='M1 1h8v8h8V1h8v14h-8V9h-8v6H1z' fill='none' stroke='%2347050A' stroke-width='1.6' stroke-linejoin='miter'/%3E%3C/svg%3E");
+  background-repeat:repeat-x;
+  background-size:40px 16px;
+  opacity:.55;
+}
+.meander.light{
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='16' viewBox='0 0 40 16'%3E%3Cpath d='M1 1h8v8h8V1h8v14h-8V9h-8v6H1z' fill='none' stroke='%23F3E7D3' stroke-width='1.6' stroke-linejoin='miter'/%3E%3C/svg%3E");
+  opacity:.65;
+}
 
 /* ---------- header ---------- */
-header{margin-bottom:34px}
+header{margin-bottom:8px}
 .eyebrow{
-  font-family:var(--font-mono);
+  font-family:var(--font-body);
+  font-weight:600;
   font-size:12px;
-  letter-spacing:.11em;
+  letter-spacing:.14em;
   text-transform:uppercase;
-  color:var(--accent-ink);
-  background:var(--accent);
-  display:inline-block;
-  padding:3px 10px;
-  border-radius:3px;
-  margin-bottom:14px;
+  color:var(--ink-soft);
+  margin-bottom:16px;
 }
 h1{
   font-family:var(--font-display);
+  font-style:italic;
   font-weight:600;
-  font-size:clamp(32px,8vw,46px);
-  line-height:1.05;
-  margin:0 0 14px;
+  font-size:clamp(34px,8.5vw,50px);
+  line-height:1.08;
+  margin:0 0 18px;
   text-wrap:balance;
 }
 .lede{
-  font-size:17px;
-  color:var(--ink-soft);
-  max-width:56ch;
-  margin:0 0 18px;
+  font-size:17.5px;
+  color:var(--ink);
+  max-width:58ch;
+  margin:0 0 20px;
 }
 .provenance{
-  font-size:14px;
+  font-size:14.5px;
   color:var(--ink-soft);
-  border-left:2px solid var(--accent);
-  padding:2px 0 2px 14px;
-  margin:0;
+  border-left:2px solid var(--ink);
+  padding:1px 0 1px 15px;
+  margin:0 0 26px;
 }
 .provenance b{color:var(--ink);font-weight:600}
+header .meander{margin-bottom:30px}
 
 /* ---------- the tree / trunk ---------- */
-.tree{position:relative;margin-top:8px}
+.tree{position:relative}
 .tree::before{
   content:"";
   position:absolute;
   left:13px;
   top:8px;
   bottom:8px;
-  width:2px;
+  width:1.5px;
   background:var(--line);
 }
-.branch{position:relative;padding-left:40px;margin-bottom:4px}
+.branch{position:relative;padding-left:42px;margin-bottom:2px}
 .branch::before{
   content:"";
   position:absolute;
   left:9px;
-  top:22px;
-  width:18px;
-  height:2px;
+  top:24px;
+  width:20px;
+  height:1.5px;
   background:var(--line);
 }
 .node-dot{
   position:absolute;
   left:3px;
-  top:14px;
+  top:16px;
   width:16px;
   height:16px;
   border-radius:50%;
   background:var(--surface);
-  border:2px solid var(--accent);
+  border:2px solid var(--ink);
 }
 .node-btn{
   width:100%;
   text-align:left;
   background:none;
   border:none;
-  padding:10px 0;
+  padding:12px 0;
   display:flex;
-  align-items:center;
-  gap:10px;
+  align-items:baseline;
+  gap:11px;
   cursor:pointer;
   color:var(--ink);
   font:inherit;
 }
 .node-btn .num{
-  font-family:var(--font-mono);
+  font-family:var(--font-body);
+  font-weight:600;
   font-size:12px;
-  color:var(--accent-ink);
-  background:var(--accent);
-  border-radius:3px;
-  padding:1px 6px;
+  letter-spacing:.06em;
+  color:var(--ink-soft);
   flex:none;
 }
 .node-btn .label{
   font-family:var(--font-display);
+  font-style:italic;
   font-weight:600;
-  font-size:19px;
+  font-size:21px;
   flex:1;
   min-width:0;
+  line-height:1.25;
 }
 .chev{
   flex:none;
-  width:18px;
-  height:18px;
+  width:16px;
+  height:16px;
+  margin-top:4px;
   transition:transform .2s ease;
   color:var(--ink-soft);
 }
 .node-btn[aria-expanded="true"] .chev{transform:rotate(90deg)}
 .panel{
-  padding:2px 0 22px;
-  color:var(--ink-soft);
-  font-size:15.5px;
-  max-width:60ch;
+  padding:2px 0 28px;
+  color:var(--ink);
+  font-size:16px;
+  max-width:62ch;
 }
 .panel[hidden]{display:none}
-.panel p{margin:0 0 12px}
+.panel p{margin:0 0 14px}
 .panel p:last-child{margin-bottom:0}
-.panel .tag{
-  font-family:var(--font-mono);
-  font-size:11px;
-  letter-spacing:.06em;
-  text-transform:uppercase;
-  color:var(--ink);
-  display:block;
-  margin-bottom:6px;
-}
-.sub-list{list-style:none;margin:10px 0 0;padding:0;display:grid;gap:10px}
+.panel em{font-style:italic;color:var(--ink)}
+
+.sub-list{list-style:none;margin:14px 0 0;padding:0;display:grid;gap:12px}
 .sub-list li{
   background:var(--surface);
   border:1px solid var(--line);
-  border-radius:8px;
-  padding:12px 14px;
+  border-radius:4px;
+  padding:14px 16px;
 }
 .sub-list .sub-title{
-  font-family:var(--font-body);
-  font-weight:700;
+  font-family:var(--font-display);
+  font-style:italic;
+  font-weight:600;
   color:var(--ink);
   display:block;
-  margin-bottom:3px;
+  margin-bottom:5px;
+  font-size:16.5px;
 }
 
 /* ---------- flip cards (examples) ---------- */
 .cards{
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:12px;
-  margin-top:6px;
+  gap:13px;
+  margin-top:8px;
 }
 @media (max-width:460px){ .cards{grid-template-columns:1fr} }
 .card{
   perspective:1200px;
-  height:168px;
+  height:185px;
 }
 .card-inner{
   position:relative;
@@ -222,8 +201,8 @@ h1{
 .card-face{
   position:absolute;inset:0;
   backface-visibility:hidden;
-  border-radius:10px;
-  padding:14px 15px;
+  border-radius:6px;
+  padding:16px 17px;
   display:flex;
   flex-direction:column;
 }
@@ -234,41 +213,51 @@ h1{
 }
 .card-front .ex-title{
   font-family:var(--font-display);
+  font-style:italic;
   font-weight:600;
-  font-size:17px;
-  line-height:1.2;
+  font-size:18px;
+  line-height:1.25;
 }
 .card-front .tap-hint{
-  font-family:var(--font-mono);
+  font-family:var(--font-body);
+  font-weight:500;
   font-size:11px;
+  letter-spacing:.07em;
+  text-transform:uppercase;
   color:var(--ink-soft);
-  letter-spacing:.04em;
 }
 .card-back{
-  background:var(--card-back);
-  color:var(--card-back-ink);
+  background:var(--panel-bg);
+  color:var(--panel-ink);
   transform:rotateY(180deg);
   font-size:13.5px;
-  line-height:1.45;
+  line-height:1.5;
   justify-content:center;
 }
 
 /* ---------- closing note ---------- */
 .closing{
-  margin-top:40px;
-  padding-top:22px;
-  border-top:1px solid var(--line);
-  font-size:13.5px;
+  margin-top:10px;
+}
+.closing p{
+  font-family:var(--font-display);
+  font-style:italic;
+  font-size:18px;
+  line-height:1.5;
+  color:var(--ink);
+  max-width:58ch;
+  margin:0 0 16px;
+}
+.sources{
+  font-family:var(--font-body);
+  font-weight:500;
+  font-size:12px;
+  letter-spacing:.02em;
+  line-height:1.7;
   color:var(--ink-soft);
 }
-.closing .sources{
-  font-family:var(--font-mono);
-  font-size:11.5px;
-  line-height:1.6;
-  margin-top:8px;
-}
 
-:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
 @media (prefers-reduced-motion:reduce){
   .card-inner,.chev{transition:none}
 }
@@ -277,10 +266,11 @@ h1{
 <div class="wrap">
 
   <header>
-    <span class="eyebrow">Разбор парадокса</span>
+    <span class="eyebrow">( Prítcha ) · философский разбор</span>
     <h1>Корабль Тесея</h1>
-    <p class="lede">Один из старейших вопросов о тождестве: когда вещь, постепенно заменённая целиком, перестаёт быть собой — и перестаёт ли вообще.</p>
-    <p class="provenance"><b>Это не моя теория.</b> Истории почти две тысячи лет, и философы до сих пор не сошлись на одном ответе — ниже только то, что реально обсуждается в философии тождества.</p>
+    <p class="lede">Корабль чинят доска за доской, пока в нём не остаётся ни одной щепки от первоначального. Вопрос звучит почти по-детски просто, а внутри — совершенно беспощаден: это всё ещё тот же корабль, или уже другой, просто занявший его место?</p>
+    <p class="provenance"><b>Ничего из этого я не придумала.</b> Истории почти две тысячи лет, за ней стоят конкретные философы — с именами, датами и книгами, — и общепринятого ответа у неё до сих пор нет. Это и есть то немногое, что в философии тождества по-настоящему держится открытым.</p>
+    <div class="meander"></div>
   </header>
 
   <div class="tree" id="tree">
@@ -293,9 +283,9 @@ h1{
         <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M9 6l6 6-6 6"/></svg>
       </button>
       <div class="panel" id="p1" hidden>
-        <p>Историю записал Плутарх в «Сравнительных жизнеописаниях». Афиняне хранили корабль, на котором Тесей вернулся с Крита, как памятник, и столетиями поддерживали его на плаву: сгнившую доску вынимали, ставили новую.</p>
-        <p>В какой-то момент не осталось ни одной доски из тех, что стояли при Тесее. Корабль стоял в той же гавани, под тем же именем, плавал так же — но был ли он всё ещё <i>тем самым</i> кораблём?</p>
-        <p>Плутарх упоминает это почти мимоходом, как бытовой факт — а философы потом два тысячелетия спорили, что это на самом деле за вопрос.</p>
+        <p>Историю записал Плутарх в «Сравнительных жизнеописаниях» — он пишет о ней почти буднично, как о музейном факте, а не как о загадке. Афиняне хранили тот самый корабль, на котором Тесей вернулся с Крита, убив Минотавра, как священную реликвию. И не просто хранили — каждый год отправляли на нём торжественное посольство на остров Делос, в честь того самого возвращения.</p>
+        <p>А раз корабль плавал, его приходилось чинить: дерево гниёт, доски трескаются. Корабельщики вынимали прогнившую доску и ставили новую — год за годом, десятилетие за десятилетием. В какой-то момент, пишет Плутарх, не осталось ни одной доски из тех, что стояли на нём при Тесее. Корабль был всё там же, в той же гавани, с тем же именем и тем же маршрутом на Делос — но был ли он тем же кораблём?</p>
+        <p>Есть и красивая историческая деталь: именно из-за этого ежегодного плавания на Делос однажды отложили казнь Сократа — пока священный корабль не в гавани, город не мог казнить человека, это осквернило бы обряд. Платон упоминает это в «Федоне». Так что корабль Тесея — не только философская абстракция, он в буквальном смысле на несколько недель продлил чужую жизнь.</p>
       </div>
     </div>
 
@@ -303,16 +293,16 @@ h1{
       <div class="node-dot"></div>
       <button class="node-btn" aria-expanded="false" data-target="p2">
         <span class="num">02</span>
-        <span class="label">Тут на самом деле два вопроса</span>
+        <span class="label">Тут на самом деле спрятаны два вопроса</span>
         <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M9 6l6 6-6 6"/></svg>
       </button>
       <div class="panel" id="p2" hidden>
-        <p>Путаница в парадоксе возникает, потому что слово «тот же» значит две разные вещи.</p>
+        <p>Путаница в парадоксе возникает не из самой истории, а из того, что слово «тот же» у нас в языке тайком означает две разные вещи, и мы их постоянно смешиваем.</p>
         <ul class="sub-list">
-          <li><span class="sub-title">Качественное тождество</span>два предмета одинаковы по свойствам. Купи две одинаковые гитары одной модели — они «те же» в этом смысле, хотя это два разных физических объекта.</li>
-          <li><span class="sub-title">Численное тождество</span>это буквально один и тот же объект, прослеженный во времени, а не просто похожий. Именно о нём спор: остаётся ли отремонтированный корабль численно тем же кораблём.</li>
+          <li><span class="sub-title">Качественное тождество</span>когда два предмета одинаковы по свойствам, но физически это разные объекты. Закажи две одинаковые свечи у одного мастера — они «те же» в этом смысле: тот же воск, тот же запах, та же форма. Но это два разных куска воска.</li>
+          <li><span class="sub-title">Численное тождество</span>когда речь об одном-единственном объекте, прослеженном во времени, а не просто о похожем. Поддельная картина может быть неотличима от оригинала мазок в мазок — качественно тождественна, — и всё равно не быть <em>тем самым</em> холстом, который держал в руках художник.</li>
         </ul>
-        <p>Корабль после ремонта почти наверняка не хуже качественно — он выглядит и плавает так же. Вопрос парадокса — только про второе: тянется ли от «Тесеева корабля» год 1 к «Тесееву кораблю» год 50 одна непрерывная нить тождества.</p>
+        <p>Корабль Тесея после полного ремонта почти наверняка не хуже в качественном смысле — выглядит так же, плавает так же, пахнет той же смолой. Весь спор — только про второе: тянется ли от корабля в день отплытия к кораблю через полвека одна непрерывная нить тождества, или это в какой-то момент незаметно стал уже другой объект, просто донашивающий то же имя.</p>
       </div>
     </div>
 
@@ -320,13 +310,13 @@ h1{
       <div class="node-dot"></div>
       <button class="node-btn" aria-expanded="false" data-target="p3">
         <span class="num">03</span>
-        <span class="label">Гоббс усложнил задачу</span>
+        <span class="label">Гоббс всё испортил — в хорошем смысле</span>
         <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M9 6l6 6-6 6"/></svg>
       </button>
       <div class="panel" id="p3" hidden>
-        <p>Спустя полторы тысячи лет Томас Гоббс в трактате «О теле» добавил деталь, после которой у философов начало по-настоящему болеть.</p>
-        <p>Представь, что кто-то собирал все снятые гнилые доски и из них, рядом, строил второй корабль — тем же способом, той же формы. К концу у нас два корабля: один в гавани, непрерывно чинившийся, второй — собранный из оригинальных досок, но заново, с нуля.</p>
-        <p>Какой из них настоящий корабль Тесея? У каждого есть веская претензия: один сохранил <i>непрерывность</i> — он всё время был кораблём, пока менялись части. Другой сохранил <i>материал</i> — он буквально сделан из тех же досок, что и в день отплытия. Оба не могут быть правы одновременно, и интуиция реально раскалывается пополам.</p>
+        <p>Спустя полторы тысячи лет после Плутарха Томас Гоббс в трактате «О теле» (1655) добавил деталь, после которой у философов начало по-настоящему болеть — и которая, в общем-то, и превратила милую байку в настоящий, неудобный парадокс.</p>
+        <p>Представь, что всё время, пока корабль чинили, рядом стоял педантичный коллекционер. Каждую снятую гнилую доску он забирал себе, сушил, пропитывал, и из них, в своей мастерской, по той же схеме собирал второй корабль. К концу истории у нас физически два корабля. Один всё время стоял в гавани, был на плаву, участвовал в церемониях — но давно сделан из нового дерева. Второй собран буквально из тех самых досок, что вышли в море с Тесеем, — но никогда до этого момента не существовал как целое судно.</p>
+        <p>Какой из двух — настоящий корабль Тесея? У каждого есть серьёзная, не шуточная претензия. Один выигрывает по <em>непрерывности</em>: он никогда не переставал быть кораблём, просто обновлялся по частям, как и положено живой, используемой вещи. Другой выигрывает по <em>материалу</em>: он сделан буквально из той древесины, что касалась воды в день возвращения с Крита. Оба условия звучат разумно — и оба не могут быть выполнены одновременно одним и тем же объектом. Гоббс использовал этот трюк не ради красного словца: он спорил со схоластами о том, что вообще делает вещь собой — форма и функция или материя, — и корабль был для него идеальным орудием спора.</p>
       </div>
     </div>
 
@@ -338,12 +328,12 @@ h1{
         <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M9 6l6 6-6 6"/></svg>
       </button>
       <div class="panel" id="p4" hidden>
-        <p>Единого ответа нет — есть несколько школ, и каждая по-прежнему всерьёз отстаивается в метафизике.</p>
+        <p>Единого ответа нет — есть несколько школ, и каждая по-прежнему всерьёз отстаивается в современной метафизике, а не осталась историческим курьёзом.</p>
         <ul class="sub-list">
-          <li><span class="sub-title">Эссенциализм (от Аристотеля)</span>тождество держится не на материале, а на форме и функции. Пока вещь сохраняет свою суть — «быть тем самым кораблём Тесея» — она остаётся собой, даже сменив все доски до единой.</li>
-          <li><span class="sub-title">Мереологический эссенциализм</span>строгая противоположность: объект — это именно сумма его частей. Замени хоть одну доску — и формально это уже другой объект. Звучит жёстко, но логически последовательно.</li>
-          <li><span class="sub-title">Четырёхмерность (пердурантизм)</span>современный взгляд: вещь — это не предмет в моменте, а «червь» во времени и пространстве, цепочка стадий. Корабль-1850 и корабль-1900 — просто два разных временных среза одного и того же протяжённого объекта, так же как рука и нога — разные пространственные части одного тела.</li>
-          <li><span class="sub-title">Конвенционализм</span>«тот же корабль» — не факт о мире, а решение, которое принимают люди. Мы продолжаем называть его кораблём Тесея, потому что непрерывность истории и назначения для нас важнее непрерывности досок.</li>
+          <li><span class="sub-title">Эссенциализм формы</span>корни этого взгляда — у Аристотеля, в его идее, что вещь — это единство материи и формы, и именно форма делает её тем, что она есть. С этой точки зрения тождество держится не на конкретных досках, а на форме, функции и непрерывности использования. Пока нечто продолжает <em>быть кораблём Тесея</em> — плавать туда же, называться так же, выполнять ту же роль, — оно остаётся собой, сменив хоть всё дерево до последней щепки.</li>
+          <li><span class="sub-title">Мереологический эссенциализм</span>строгая противоположность, которую отстаивал философ XX века Родерик Чизом: вещь — это буквально сумма своих частей, не больше и не меньше. Замени хоть одну доску — и формально перед тобой уже другой объект, просто очень похожий на прежний. Звучит неудобно и контринтуитивно, зато логически безупречно последовательно: никаких размытых границ, где «ещё тот же» превращается в «уже другой».</li>
+          <li><span class="sub-title">Четырёхмерность, или пердурантизм</span>современный взгляд, который разрабатывали Дэвид Льюис и позже Теодор Сайдер: вещь — это не предмет в одном моменте, а протяжённый во времени «червь», цепочка временных срезов. Корабль-1300 и корабль-1350 — не два разных объекта и не один неизменный, а просто разные временные части одного и того же протяжённого в пространстве-времени целого, точно так же, как рука и нога — разные пространственные части одного тела. Вопрос «тот ли это корабль» снимается сам собой: это тот же пространственно-временной червь, просто ты смотришь на два его разных сечения.</li>
+          <li><span class="sub-title">Различение Батлера</span>ещё в 1736 году епископ и философ Джозеф Батлер предложил развести два смысла слова «тождество»: строгий, философский — для него как раз и работает жёсткая логика Чизома, — и свободный, разговорный, которым мы пользуемся каждый день, когда говорим «это тот же дом» про здание, пережившее три ремонта. По Батлеру, спорящие стороны часто просто говорят о разных вещах под одним словом, и половина жара парадокса — отсюда.</li>
         </ul>
       </div>
     </div>
@@ -356,16 +346,16 @@ h1{
         <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M9 6l6 6-6 6"/></svg>
       </button>
       <div class="panel" id="p5" hidden>
-        <p>Переверни карточку — там та же логика на бытовом примере.</p>
+        <p>Самое удивительное в этом парадоксе — насколько редко он остаётся на бумаге. Переверни карточку: там та же логика на самом обычном материале.</p>
         <div class="cards">
 
           <div class="card" tabindex="0" role="button" aria-pressed="false">
             <div class="card-inner">
               <div class="card-face card-front">
                 <span class="ex-title">Твоё тело</span>
-                <span class="tap-hint">тронь карточку ↻</span>
+                <span class="tap-hint">коснись карточки</span>
               </div>
-              <div class="card-face card-back">Большая часть клеток тела со временем заменяется новыми — кожа, кровь, кишечник обновляются постоянно. Атомы, из которых ты состоял в детстве, давно не твои. И всё же ты считаешь себя тем же человеком — потому что цепочка непрерывна, а не потому, что материал совпадает.</div>
+              <div class="card-face card-back">Большая часть клеток тела со временем заменяется новыми — кожа, кровь, слизистая кишечника обновляются постоянно, из них буквально вырастают новые ткани. Атомы, из которых ты состояла в детстве, давно не твои — физически это почти другой организм. И всё же ты, не задумываясь, называешь себя той же самой собой, какой была в пять лет — потому что важна непрерывность, а не совпадение вещества.</div>
             </div>
           </div>
 
@@ -373,19 +363,29 @@ h1{
             <div class="card-inner">
               <div class="card-face card-front">
                 <span class="ex-title">Дедов нож</span>
-                <span class="tap-hint">тронь карточку ↻</span>
+                <span class="tap-hint">коснись карточки</span>
               </div>
-              <div class="card-face card-back">«Это нож моего деда — правда, за эти годы у него трижды меняли рукоять и дважды лезвие». Классический народный вариант того же парадокса: мы всё равно говорим «дедов нож», хотя физически в нём не осталось ни одной дедовой детали.</div>
+              <div class="card-face card-back">«Это нож моего деда — правда, за эти годы у него трижды меняли рукоять и дважды лезвие». Это настолько классический народный вариант того же парадокса, что у него даже есть прозвище — «топор дедушки». Физически в предмете не осталось ни одной дедовой детали, а мы всё равно говорим «дедов нож» без всякой неловкости.</div>
             </div>
           </div>
 
           <div class="card" tabindex="0" role="button" aria-pressed="false">
             <div class="card-inner">
               <div class="card-face card-front">
-                <span class="ex-title">Любимый клуб</span>
-                <span class="tap-hint">тронь карточку ↻</span>
+                <span class="ex-title">Твоя любимая книга</span>
+                <span class="tap-hint">коснись карточки</span>
               </div>
-              <div class="card-back card-face">Футбольная команда или бренд: за двадцать лет сменился весь состав, тренер, владелец, даже логотип. Формально — ни одного общего элемента с тем, что ты полюбил когда-то. Но название и история не прерывались, и для болельщика это «тот же» клуб.</div>
+              <div class="card-face card-back">Роман, который ты перечитываешь, выходил десятками изданий: другая обложка, сверенный заново перевод, иногда — восстановленные авторские купюры. Текст в руках немного другой почти при каждом переиздании. И всё же это «та самая» книга, а не новая — потому что за изданиями стоит одна и та же непрерывная история текста, а не совпадение типографской краски.</div>
+            </div>
+          </div>
+
+          <div class="card" tabindex="0" role="button" aria-pressed="false">
+            <div class="card-inner">
+              <div class="card-face card-front">
+                <span class="ex-title">Твой любимый клуб</span>
+                <span class="tap-hint">коснись карточки</span>
+              </div>
+              <div class="card-face card-back">Футбольная команда или семейное дело: за двадцать лет сменился весь состав, тренер, владелец, иногда даже эмблема. Формально — ни одного общего элемента с тем, что ты когда-то полюбила. Но название и история не прерывались ни на день, и для тебя это всё равно «тот же» клуб, а не самозванец под старой вывеской.</div>
             </div>
           </div>
 
@@ -393,9 +393,9 @@ h1{
             <div class="card-inner">
               <div class="card-face card-front">
                 <span class="ex-title">Ты на старой фотографии</span>
-                <span class="tap-hint">тронь карточку ↻</span>
+                <span class="tap-hint">коснись карточки</span>
               </div>
-              <div class="card-face card-back">Это самая острая версия парадокса — её разбирает Джон Локк. Ты смотришь на фото десятилетней давности: другие клетки, другие взгляды, другие привычки. Что делает это «тобой» — не вещество, а непрерывная нить памяти и психологии. Отсюда и мысленный эксперимент с телепортом: если тебя разберут на атомы в одной точке и соберут точную копию в другой, выйдет ли оттуда <i>ты</i>, или просто кто-то, кто уверен, что он ты?</div>
+              <div class="card-face card-back">Самая острая версия парадокса — её разбирал Джон Локк. Смотришь на фото десятилетней давности: другие клетки, другие взгляды, другой человек почти во всём измеримом смысле. Что тогда делает это «тобой»? Не вещество, а непрерывная нить памяти. Отсюда и мысленный эксперимент с телепортом: если тебя разберут на атомы в одной точке и соберут точную копию в другой — выйдет ли оттуда <em>ты</em>, или просто кто-то, кто абсолютно уверен, что он ты?</div>
             </div>
           </div>
 
@@ -411,21 +411,26 @@ h1{
         <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M9 6l6 6-6 6"/></svg>
       </button>
       <div class="panel" id="p6" hidden>
-        <p>Коротко по хронологии, если нужна опора, что это не выдумка:</p>
+        <p>Если нужна опора, что это не выдумка для красивой карточки, — вот коротко по хронологии, с именами и книгами, которые можно открыть и проверить.</p>
         <ul class="sub-list">
-          <li><span class="sub-title">I век н. э.</span>Плутарх впервые фиксирует историю в «Сравнительных жизнеописаниях».</li>
-          <li><span class="sub-title">1655</span>Томас Гоббс добавляет версию со вторым кораблём в трактате «О теле» — именно она превращает байку в настоящий логический парадокс.</li>
-          <li><span class="sub-title">1689 / 1694</span>Джон Локк выпускает «Опыт о человеческом разумении» в 1689-м, а главу именно про тождество и память — «Of Identity and Diversity» — добавляет только во 2-м издании, 1694 года. Она переносит ту же задачу на личность и память — отсюда современные споры про тождество личности.</li>
-          <li><span class="sub-title">XX–XXI века</span>аналитическая метафизика формализует позиции: четырёхмерность разрабатывают Дэвид Льюис и Теодор Сайдер, психологическую преемственность личности — Дерек Парфит. Спор по-прежнему открыт, стороны регулярно публикуются.</li>
+          <li><span class="sub-title">I век н. э.</span>Плутарх фиксирует историю в «Сравнительных жизнеописаниях», в главе о Тесее — как бытовой факт о делосском корабле, без всякого философского подтекста.</li>
+          <li><span class="sub-title">1655</span>Томас Гоббс в трактате «О теле» добавляет версию со вторым кораблём, собранным из старых досок, — именно этот ход превращает краеведческую байку в настоящий логический парадокс.</li>
+          <li><span class="sub-title">1689 / 1694</span>Джон Локк выпускает «Опыт о человеческом разумении» в 1689 году, а главу именно о тождестве и памяти — «Of Identity and Diversity» — добавляет только во втором издании, 1694 года. Она переносит ту же задачу на личность и память: что делает вчерашнего тебя и сегодняшнюю тебя одним и тем же человеком.</li>
+          <li><span class="sub-title">1736</span>епископ Джозеф Батлер в своей работе о личном тождестве разводит строгий философский смысл слова «то же самое» и свободный, обиходный — различение, которым философы пользуются до сих пор.</li>
+          <li><span class="sub-title">XX–XXI века</span>аналитическая метафизика формализует позиции: мереологический эссенциализм разрабатывает Родерик Чизом, четырёхмерность — Дэвид Льюис и Теодор Сайдер, психологическую преемственность личности — Дерек Парфит в книге «Reasons and Persons» (1984). Спор по-прежнему открыт, и стороны продолжают публиковаться друг против друга.</li>
         </ul>
       </div>
     </div>
 
   </div>
 
-  <div class="closing">
-    Общепринятого финального ответа у парадокса нет — и это не недоработка, а часть того, почему он до сих пор в программе курсов по метафизике. Каждая позиция выше реально отстаивается философами, а не придумана для этой страницы.
-    <div class="sources">Плутарх, «Сравнительные жизнеописания» · Т. Гоббс, De Corpore (1655) · Дж. Локк, «Опыт о человеческом разумении» (1689, глава о тождестве — изд. 1694) · Д. Льюис, Т. Сайдер — четырёхмерность · Д. Парфит — тождество личности</div>
+  <div class="meander light" style="background-color:var(--panel-bg);height:0;"></div>
+  <div style="background:var(--panel-bg);margin:38px -20px -70px;padding:34px 20px calc(44px + env(safe-area-inset-bottom,0px));">
+    <div class="meander light" style="margin-bottom:26px;"></div>
+    <div class="closing">
+      <p style="color:var(--panel-ink)">Общепринятого финального ответа у этого парадокса нет — и это не недоработка философии, а, пожалуй, самое в нём интересное. Каждая позиция выше по-прежнему всерьёз отстаивается живыми людьми в реальных университетах, а не придумана для одной бежевой странички. Самое верное, что с ним можно сделать, — не пытаться выбрать победителя раз и навсегда, а просто дать себе рассмотреть вещь с нескольких сторон сразу.</p>
+      <div class="sources" style="color:var(--panel-ink);opacity:.75">Плутарх, «Сравнительные жизнеописания» · Т. Гоббс, De Corpore (1655) · Дж. Локк, «Опыт о человеческом разумении» (1689, глава о тождестве — изд. 1694) · Дж. Батлер, «Of Personal Identity» (1736) · Р. Чизом — мереологический эссенциализм · Д. Льюис, Т. Сайдер — четырёхмерность · Д. Парфит, «Reasons and Persons» (1984)</div>
+    </div>
   </div>
 
 </div>
