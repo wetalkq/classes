@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vocabulary: Bullying &amp; Social Pressure (C1)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FAFAF6; --panel:#FFFFFF; --border:#E6E3DA;
+    --ink:#22262B; --ink-soft:#656B70;
+    --accent:#6E4FB3; --accent-bg:#F0EAFB;
+    --good:#2C6B2C; --good-bg:#E7F4E7;
+    --bad:#C84B4B; --bad-bg:#FCEBEB;
+    --card-back:#F3EFFB;
+    --font-display:"Fraunces", Georgia, serif;
+    --font-body:"Work Sans", -apple-system, "Segoe UI", Arial, sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font-body);font-size:17px;line-height:1.55;}
+  body{padding-bottom:80px;}
+  .wrap{max-width:900px;margin:0 auto;padding:0 24px;}
+  header.hero{background:linear-gradient(180deg,#fff 0%,var(--bg) 100%);border-bottom:1px solid var(--border);padding:36px 0 26px;}
+  .eyebrow{display:inline-flex;font-size:13px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--accent);background:var(--accent-bg);padding:5px 12px;border-radius:999px;}
+  h1{font-family:var(--font-display);font-weight:600;font-size:clamp(26px,4vw,38px);line-height:1.15;margin:16px 0 6px;text-wrap:balance;}
+  .sub{color:var(--ink-soft);font-size:16px;margin:0 0 16px;}
+  .meta-row{display:flex;flex-wrap:wrap;gap:10px;}
+  .chip{font-size:13px;font-weight:600;padding:6px 12px;border-radius:8px;border:1px solid var(--border);background:var(--panel);color:var(--ink-soft);}
+  nav.stagebar{position:sticky;top:0;z-index:10;background:rgba(250,250,246,0.94);backdrop-filter:blur(6px);border-bottom:1px solid var(--border);overflow-x:auto;white-space:nowrap;padding:10px 0;}
+  nav.stagebar .wrap{display:flex;gap:8px;padding:0 24px;}
+  nav.stagebar a{flex:none;font-size:13px;font-weight:600;color:var(--ink-soft);text-decoration:none;padding:7px 13px;border-radius:999px;border:1px solid var(--border);background:var(--panel);}
+  nav.stagebar a:hover,nav.stagebar a:focus-visible{border-color:var(--accent);color:var(--accent);}
+  section.stage{padding:40px 0;border-bottom:1px solid var(--border);scroll-margin-top:60px;}
+  section.stage:last-of-type{border-bottom:none;}
+  .stage-head{display:flex;align-items:baseline;gap:14px;margin-bottom:10px;}
+  .stage-num{font-family:var(--font-display);font-size:15px;font-weight:700;color:var(--accent);background:var(--accent-bg);border-radius:50%;width:30px;height:30px;display:inline-flex;align-items:center;justify-content:center;flex:none;}
+  h2{font-family:var(--font-display);font-weight:600;font-size:23px;margin:0;}
+  .stage-sub{color:var(--ink-soft);font-size:14px;margin:0 0 16px;}
+  .teacher-note{font-size:14px;color:var(--ink-soft);background:#F3F2EC;border-left:3px solid var(--border);padding:10px 14px;border-radius:6px;margin:12px 0 18px;}
+  .teacher-note b{color:var(--ink);}
+
+  /* Flip cards */
+  .card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:16px;}
+  .flip{perspective:1000px;height:150px;cursor:pointer;}
+  .flip-inner{position:relative;width:100%;height:100%;transition:transform .5s;transform-style:preserve-3d;}
+  .flip.flipped .flip-inner{transform:rotateY(180deg);}
+  .flip-face{position:absolute;inset:0;backface-visibility:hidden;border-radius:12px;border:1px solid var(--border);padding:14px 16px;display:flex;flex-direction:column;justify-content:center;}
+  .flip-front{background:var(--panel);}
+  .flip-front .word{font-family:var(--font-display);font-weight:600;font-size:18px;}
+  .flip-front .pos{font-size:12px;color:var(--ink-soft);margin-top:4px;}
+  .flip-front .hint{position:absolute;bottom:8px;right:10px;font-size:11px;color:var(--ink-soft);}
+  .flip-back{background:var(--card-back);transform:rotateY(180deg);}
+  .flip-back .ru{font-weight:700;color:var(--accent);font-size:16px;margin-bottom:6px;}
+  .flip-back .ex{font-size:13px;color:var(--ink-soft);font-style:italic;}
+
+  /* Match the words (click pairs) */
+  .match-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;max-width:640px;}
+  .match-col .match-item{
+    background:var(--panel);border:1px solid var(--border);border-radius:10px;
+    padding:11px 14px;margin:8px 0;cursor:pointer;font-size:15px;font-weight:500;
+    user-select:none;
+  }
+  .match-item.selected{border-color:var(--accent);background:var(--accent-bg);}
+  .match-item.correct{border-color:var(--good);background:var(--good-bg);color:var(--good);cursor:default;}
+  .match-item.wrong{border-color:var(--bad);background:var(--bad-bg);color:var(--bad);}
+  .match-status{font-size:13px;color:var(--ink-soft);margin-top:10px;}
+
+  /* Gap fill */
+  .card{background:var(--panel);border:1px solid var(--border);border-radius:14px;padding:18px 20px;margin:14px 0;}
+  .gap-item{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:10px 0;border-bottom:1px solid var(--border);font-size:16px;}
+  .gap-item:last-child{border-bottom:none;}
+  .gap-num{font-weight:700;color:var(--ink-soft);width:22px;flex:none;}
+  .gap-text{flex:1 1 380px;}
+  input.gap-input{
+    font-family:var(--font-body);font-size:15px;border:1px solid var(--border);border-radius:7px;
+    padding:5px 9px;width:130px;background:#fff;
+  }
+  input.gap-input.correct{border-color:var(--good);background:var(--good-bg);color:var(--good);}
+  input.gap-input.wrong{border-color:var(--bad);background:var(--bad-bg);color:var(--bad);}
+  button.check{
+    font-family:var(--font-body);font-size:13px;font-weight:600;color:var(--accent);
+    background:var(--accent-bg);border:none;border-radius:8px;padding:6px 12px;cursor:pointer;flex:none;
+  }
+  button.check:hover{background:var(--accent);color:#fff;}
+  .wordbank{font-size:13px;color:var(--ink-soft);margin:6px 0 14px;}
+  .wordbank b{color:var(--ink);}
+
+  /* Sentence-half match */
+  .half-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;}
+  .half-col .half-item{
+    background:var(--panel);border:1px solid var(--border);border-radius:10px;
+    padding:13px 15px;margin:8px 0;cursor:pointer;font-size:15px;
+  }
+  .half-item.selected{border-color:var(--accent);background:var(--accent-bg);}
+  .half-item.correct{border-color:var(--good);background:var(--good-bg);cursor:default;}
+  .half-item.wrong{border-color:var(--bad);background:var(--bad-bg);}
+
+  .exbar{display:flex;justify-content:flex-end;margin-bottom:6px;}
+
+  footer.end{text-align:center;padding:30px 0 10px;color:var(--ink-soft);font-size:13px;}
+  @media (max-width:560px){ .match-grid, .half-grid{grid-template-columns:1fr;} }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="eyebrow">Vocabulary · Bullying &amp; social pressure</span>
+    <h1>Key words from the "Carrie" lesson</h1>
+    <p class="sub">Flip cards, matching and gap-fill — consolidating the B1–C1 vocabulary from the discussion.</p>
+    <div class="meta-row">
+      <span class="chip">Level B1–C1</span>
+      <span class="chip">20 target items</span>
+      <span class="chip">Self-check exercises</span>
+    </div>
+  </div>
+</header>
+
+<nav class="stagebar">
+  <div class="wrap">
+    <a href="#cards">1. Flip cards</a>
+    <a href="#matchwords">2. Match the words</a>
+    <a href="#gapfill">3. Fill in the gaps</a>
+    <a href="#matchhalves">4. Match the sentences</a>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <section class="stage" id="cards">
+    <div class="stage-head"><span class="stage-num">1</span><h2>Flip cards</h2></div>
+    <p class="stage-sub">Tap a card to see the translation and an example sentence.</p>
+    <div class="card-grid" id="cardGrid"></div>
+  </section>
+
+  <section class="stage" id="matchwords">
+    <div class="stage-head"><span class="stage-num">2</span><h2>Match the words</h2></div>
+    <p class="stage-sub">Click an English word, then click its Russian translation.</p>
+    <div class="match-grid">
+      <div class="match-col" id="matchLeft"></div>
+      <div class="match-col" id="matchRight"></div>
+    </div>
+    <div class="match-status" id="matchStatus">0 / 10 matched</div>
+  </section>
+
+  <section class="stage" id="gapfill">
+    <div class="stage-head"><span class="stage-num">3</span><h2>Fill in the gaps</h2></div>
+    <p class="stage-sub">Type the missing word or phrase, then check your answer.</p>
+    <div class="wordbank"><b>Word bank:</b> fit, making, make, stand, takes, crossed, domineering, isolated, outsider, bullying</div>
+    <div class="card" id="gapList"></div>
+  </section>
+
+  <section class="stage" id="matchhalves">
+    <div class="stage-head"><span class="stage-num">4</span><h2>Match the sentence halves</h2></div>
+    <p class="stage-sub">Click a sentence beginning, then click the ending that completes it.</p>
+    <div class="half-grid">
+      <div class="half-col" id="halfLeft"></div>
+      <div class="half-col" id="halfRight"></div>
+    </div>
+    <div class="match-status" id="halfStatus">0 / 6 matched</div>
+  </section>
+
+</main>
+
+<footer class="end">Vocabulary practice · B1–C1 · bullying &amp; social pressure</footer>
+
+<script>
+/* ---------- DATA ---------- */
+const words = [
+  {w:"fit in", pos:"phrasal verb", ru:"вписываться, находить своё место", ex:"It took Maria a few weeks to fit in with her new classmates."},
+  {w:"make fun of someone", pos:"expression", ru:"высмеивать, дразнить", ex:"The older boys often made fun of him because of his accent."},
+  {w:"make things worse", pos:"expression", ru:"усугублять ситуацию", ex:"Shouting at the dog only made things worse."},
+  {w:"stand up for someone", pos:"phrasal verb", ru:"заступаться за кого-то", ex:"She finally stood up for her friend when others laughed at him."},
+  {w:"take responsibility for", pos:"expression", ru:"брать на себя ответственность", ex:"A good leader takes responsibility for their team's mistakes."},
+  {w:"cross the line", pos:"expression", ru:"переходить границы дозволенного", ex:"His joke crossed the line and upset several people."},
+  {w:"domineering", pos:"adjective", ru:"властный, деспотичный", ex:"Her domineering boss controlled every small decision in the office."},
+  {w:"isolated", pos:"adjective", ru:"изолированный, одинокий", ex:"Working from a remote village, he felt completely isolated."},
+  {w:"outsider", pos:"noun", ru:"чужак, изгой", ex:"As the only foreign student, she often felt like an outsider."},
+  {w:"bullying", pos:"noun", ru:"травля", ex:"The school introduced new rules to stop bullying in the corridors."},
+  {w:"humiliate", pos:"verb", ru:"унижать", ex:"Being corrected in front of the whole class humiliated him."},
+  {w:"spread (a rumour)", pos:"verb", ru:"распространять", ex:"Someone spread a rumour about her, and it quickly reached the whole school."},
+  {w:"cyberbullying", pos:"noun", ru:"кибербуллинг", ex:"Cyberbullying can be even harder to escape than bullying at school."},
+  {w:"anonymous", pos:"adjective", ru:"анонимный", ex:"The anonymous account posted cruel comments every day."},
+  {w:"controlling", pos:"adjective", ru:"контролирующий", ex:"His controlling parents checked his phone every evening."},
+  {w:"feel guilty about", pos:"expression", ru:"чувствовать вину", ex:"She felt guilty about leaving her friend to face the problem alone."},
+  {w:"scandal", pos:"noun", ru:"скандал", ex:"The photos caused a scandal that the whole school talked about."},
+  {w:"emerge", pos:"verb", ru:"проявляться, возникать", ex:"New evidence slowly emerged, changing everyone's opinion of the case."},
+  {w:"harmful", pos:"adjective", ru:"вредоносный", ex:"Harmful comments online can affect someone for years."},
+  {w:"verdict", pos:"noun", ru:"вердикт, решение", ex:"The committee delivered its verdict after a long discussion."}
+];
+
+const matchPairs = [
+  {en:"fit in", ru:"вписываться"},
+  {en:"make fun of", ru:"высмеивать"},
+  {en:"stand up for", ru:"заступаться"},
+  {en:"domineering", ru:"властный"},
+  {en:"isolated", ru:"одинокий"},
+  {en:"outsider", ru:"изгой"},
+  {en:"bullying", ru:"травля"},
+  {en:"humiliate", ru:"унижать"},
+  {en:"anonymous", ru:"анонимный"},
+  {en:"scandal", ru:"скандал"}
+];
+
+const gaps = [
+  {text:"He always tries to ___ in with the popular group, even if it means changing who he is.", ans:"fit"},
+  {text:"Please stop ___ fun of her accent — it isn't kind.", ans:"making"},
+  {text:"Shouting back at him will only ___ things worse.", ans:"make"},
+  {text:"I respect people who ___ up for others, even when it's not easy.", ans:"stand"},
+  {text:"A true leader ___ responsibility for the team's mistakes.", ans:"takes"},
+  {text:"That comment really ___ the line — it wasn't funny, it was cruel.", ans:"crossed"},
+  {text:"Her ___ mother decided everything for her, from her clothes to her friends.", ans:"domineering"},
+  {text:"He felt completely ___ after moving to a city where he knew no one.", ans:"isolated"},
+  {text:"As the new student, she felt like an ___ for the first few weeks.", ans:"outsider"},
+  {text:"The school has a strict policy against ___ in any form.", ans:"bullying"}
+];
+
+const halves = [
+  {start:"She finally stood up for her classmate", end:"when he was being bullied online."},
+  {start:"His domineering father", end:"controlled every part of his daily routine."},
+  {start:"The rumour spread so fast", end:"that by lunchtime the whole school knew."},
+  {start:"Because the comments crossed the line,", end:"the school called a meeting with both families."},
+  {start:"Nobody wanted to take responsibility,", end:"so the problem was never really solved."},
+  {start:"The anonymous account kept posting cruel messages", end:"until someone finally reported it."}
+];
+
+/* ---------- FLIP CARDS ---------- */
+const cardGrid = document.getElementById('cardGrid');
+words.forEach((item,i)=>{
+  const el = document.createElement('div');
+  el.className = 'flip';
+  el.innerHTML = `
+    <div class="flip-inner">
+      <div class="flip-face flip-front">
+        <div class="word">${item.w}</div>
+        <div class="pos">${item.pos}</div>
+        <div class="hint">tap</div>
+      </div>
+      <div class="flip-face flip-back">
+        <div class="ru">${item.ru}</div>
+        <div class="ex">${item.ex}</div>
+      </div>
+    </div>`;
+  el.addEventListener('click', ()=> el.classList.toggle('flipped'));
+  cardGrid.appendChild(el);
+});
+
+/* ---------- MATCH THE WORDS ---------- */
+function shuffle(arr){ return arr.map(v=>[Math.random(),v]).sort((a,b)=>a[0]-b[0]).map(v=>v[1]); }
+
+const leftCol = document.getElementById('matchLeft');
+const rightCol = document.getElementById('matchRight');
+const matchStatus = document.getElementById('matchStatus');
+let matchedCount = 0;
+let selLeft = null, selRight = null;
+
+const leftOrder = shuffle(matchPairs.map((p,i)=>i));
+const rightOrder = shuffle(matchPairs.map((p,i)=>i));
+
+leftOrder.forEach(idx=>{
+  const d = document.createElement('div');
+  d.className='match-item'; d.textContent = matchPairs[idx].en; d.dataset.idx = idx;
+  d.addEventListener('click', ()=>onMatchClick(d,'left'));
+  leftCol.appendChild(d);
+});
+rightOrder.forEach(idx=>{
+  const d = document.createElement('div');
+  d.className='match-item'; d.textContent = matchPairs[idx].ru; d.dataset.idx = idx;
+  d.addEventListener('click', ()=>onMatchClick(d,'right'));
+  rightCol.appendChild(d);
+});
+
+function onMatchClick(el, side){
+  if(el.classList.contains('correct')) return;
+  if(side==='left'){
+    if(selLeft) selLeft.classList.remove('selected');
+    selLeft = el; el.classList.add('selected');
+  } else {
+    if(selRight) selRight.classList.remove('selected');
+    selRight = el; el.classList.add('selected');
+  }
+  if(selLeft && selRight){
+    if(selLeft.dataset.idx === selRight.dataset.idx){
+      selLeft.classList.remove('selected','wrong'); selRight.classList.remove('selected','wrong');
+      selLeft.classList.add('correct'); selRight.classList.add('correct');
+      matchedCount++;
+      matchStatus.textContent = matchedCount + ' / 10 matched';
+    } else {
+      selLeft.classList.add('wrong'); selRight.classList.add('wrong');
+      setTimeout(()=>{
+        selLeft.classList.remove('selected','wrong');
+        selRight.classList.remove('selected','wrong');
+      }, 600);
+    }
+    selLeft = null; selRight = null;
+  }
+}
+
+/* ---------- GAP FILL ---------- */
+const gapList = document.getElementById('gapList');
+gaps.forEach((g,i)=>{
+  const row = document.createElement('div');
+  row.className = 'gap-item';
+  const parts = g.text.split('___');
+  row.innerHTML = `
+    <span class="gap-num">${i+1}</span>
+    <span class="gap-text">${parts[0]}<input type="text" class="gap-input" data-ans="${g.ans.toLowerCase()}">${parts[1]}</span>
+    <button class="check">Check</button>`;
+  row.querySelector('button.check').addEventListener('click', function(){
+    const input = row.querySelector('input.gap-input');
+    const val = input.value.trim().toLowerCase();
+    input.classList.remove('correct','wrong');
+    if(val === input.dataset.ans){ input.classList.add('correct'); }
+    else { input.classList.add('wrong'); }
+  });
+  gapList.appendChild(row);
+});
+
+/* ---------- MATCH SENTENCE HALVES ---------- */
+const halfLeft = document.getElementById('halfLeft');
+const halfRight = document.getElementById('halfRight');
+const halfStatus = document.getElementById('halfStatus');
+let halfMatched = 0;
+let selHL = null, selHR = null;
+
+const hLeftOrder = shuffle(halves.map((h,i)=>i));
+const hRightOrder = shuffle(halves.map((h,i)=>i));
+
+hLeftOrder.forEach(idx=>{
+  const d = document.createElement('div');
+  d.className='half-item'; d.textContent = halves[idx].start; d.dataset.idx = idx;
+  d.addEventListener('click', ()=>onHalfClick(d,'left'));
+  halfLeft.appendChild(d);
+});
+hRightOrder.forEach(idx=>{
+  const d = document.createElement('div');
+  d.className='half-item'; d.textContent = halves[idx].end; d.dataset.idx = idx;
+  d.addEventListener('click', ()=>onHalfClick(d,'right'));
+  halfRight.appendChild(d);
+});
+
+function onHalfClick(el, side){
+  if(el.classList.contains('correct')) return;
+  if(side==='left'){
+    if(selHL) selHL.classList.remove('selected');
+    selHL = el; el.classList.add('selected');
+  } else {
+    if(selHR) selHR.classList.remove('selected');
+    selHR = el; el.classList.add('selected');
+  }
+  if(selHL && selHR){
+    if(selHL.dataset.idx === selHR.dataset.idx){
+      selHL.classList.remove('selected','wrong'); selHR.classList.remove('selected','wrong');
+      selHL.classList.add('correct'); selHR.classList.add('correct');
+      halfMatched++;
+      halfStatus.textContent = halfMatched + ' / 6 matched';
+    } else {
+      selHL.classList.add('wrong'); selHR.classList.add('wrong');
+      setTimeout(()=>{
+        selHL.classList.remove('selected','wrong');
+        selHR.classList.remove('selected','wrong');
+      }, 600);
+    }
+    selHL = null; selHR = null;
+  }
+}
+</script>
+
+</body>
+</html>
