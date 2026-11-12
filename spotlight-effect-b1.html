@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vocabulary: The Spotlight Effect (B1)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;0,600;0,700;1,500&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FAFAF8;
+    --card:#FFFFFF;
+    --accent:#4A3FB5;
+    --accent-bg:#ECEAFB;
+    --good:#2C6B2C;
+    --good-bg:#E7F4E7;
+    --bad:#C84B4B;
+    --bad-bg:#FCEBEB;
+    --ink:#23262B;
+    --sub:#6B7178;
+    --line:#E7E5DD;
+    --card-back:#F1EFFB;
+    --font-display:"Fraunces", serif;
+    --font-body:"Work Sans", sans-serif;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0; background:var(--bg); color:var(--ink); font-family:var(--font-body); line-height:1.55;}
+  h1,h2,h3{font-family:var(--font-display); font-weight:600; margin:0 0 .4em;}
+  .wrap{max-width:900px; margin:0 auto; padding:0 20px 80px;}
+  header.hero{padding:48px 20px 28px; text-align:center; border-bottom:1px solid var(--line);}
+  header.hero h1{font-size:2.1rem; color:var(--accent);}
+  header.hero p{color:var(--sub); max-width:580px; margin:0 auto; font-size:1.05rem;}
+  nav.stagebar{
+    position:sticky; top:0; z-index:50; background:rgba(250,250,248,0.95); backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line); display:flex; gap:6px; flex-wrap:wrap; justify-content:center; padding:10px 12px;
+  }
+  nav.stagebar a{font-size:.82rem; font-weight:600; color:var(--accent); text-decoration:none; padding:7px 13px; border-radius:999px; background:var(--accent-bg); white-space:nowrap;}
+  section{padding:46px 0; border-bottom:1px solid var(--line);}
+  section:last-of-type{border-bottom:none;}
+  .tag{display:inline-block; font-size:.75rem; font-weight:700; letter-spacing:.04em; text-transform:uppercase; color:var(--accent); background:var(--accent-bg); padding:4px 10px; border-radius:6px; margin-bottom:10px;}
+  .sub{color:var(--sub); margin-bottom:22px; max-width:640px;}
+
+  .cardgrid{display:grid; grid-template-columns:repeat(auto-fill, minmax(190px,1fr)); gap:16px;}
+  .flip{perspective:1000px; height:190px; cursor:pointer;}
+  .flip-inner{position:relative; width:100%; height:100%; transition:transform .5s; transform-style:preserve-3d;}
+  .flip.flipped .flip-inner{transform:rotateY(180deg);}
+  .flip-face{position:absolute; inset:0; backface-visibility:hidden; border-radius:14px; border:2px solid var(--accent); display:flex; flex-direction:column; align-items:center; justify-content:center; padding:14px; text-align:center;}
+  .flip-front{background:var(--card); color:var(--accent); font-family:var(--font-display); font-weight:600; font-size:1.12rem;}
+  .flip-front small{display:block; margin-top:8px; font-family:var(--font-body); font-weight:500; color:var(--sub); font-size:.78rem;}
+  .flip-back{background:var(--card-back); transform:rotateY(180deg); font-size:.84rem;}
+  .flip-back .ru{font-family:var(--font-display); font-weight:600; color:var(--accent); font-size:1rem;}
+  .flip-back .ex{font-size:.78rem; color:var(--ink); margin-top:6px; font-style:italic;}
+
+  .matchwrap{display:grid; grid-template-columns:1fr 1fr; gap:14px; max-width:680px; margin:0 auto;}
+  .matchcol{display:flex; flex-direction:column; gap:10px;}
+  .matchitem{padding:12px 14px; border:2px solid var(--line); border-radius:10px; background:var(--card); cursor:pointer; font-weight:600; text-align:center; transition:all .15s;}
+  .matchitem.selected{border-color:var(--accent); background:var(--accent-bg);}
+  .matchitem.correct{border-color:var(--good); background:var(--good-bg); color:var(--good); cursor:default;}
+  .matchitem.wrong{border-color:var(--bad); background:var(--bad-bg); animation:shake .3s;}
+  @keyframes shake{0%,100%{transform:translateX(0);}25%{transform:translateX(-4px);}75%{transform:translateX(4px);}}
+
+  .gaprow{display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin-bottom:14px; font-size:1.02rem;}
+  .gaprow .num{font-weight:700; color:var(--accent); min-width:22px;}
+  .gap-input{border:2px solid var(--line); border-radius:8px; padding:6px 10px; font-family:var(--font-body); font-size:1rem; width:190px;}
+  .gap-input.correct{border-color:var(--good); background:var(--good-bg);}
+  .gap-input.wrong{border-color:var(--bad); background:var(--bad-bg);}
+  .checkbtn{border:none; background:var(--accent); color:#fff; padding:6px 14px; border-radius:8px; font-weight:600; cursor:pointer; font-family:var(--font-body);}
+  .wordbank{background:var(--accent-bg); border-radius:10px; padding:14px 18px; margin-bottom:22px; font-size:.9rem; color:var(--accent); font-weight:600;}
+
+  .quizrow{margin-bottom:18px; padding:14px 16px; background:var(--card); border:2px solid var(--line); border-radius:12px;}
+  .quizrow p{margin:0 0 10px; font-size:1.02rem;}
+  .quizopts{display:flex; gap:10px; flex-wrap:wrap;}
+  .quizopts button{
+    border:2px solid var(--accent); background:var(--card); color:var(--accent); font-weight:600;
+    padding:8px 16px; border-radius:999px; cursor:pointer; font-family:var(--font-body); font-size:.92rem;
+  }
+  .quizopts button.correct{background:var(--good-bg); border-color:var(--good); color:var(--good);}
+  .quizopts button.wrong{background:var(--bad-bg); border-color:var(--bad); color:var(--bad);}
+
+  footer{text-align:center; padding:30px 20px; color:var(--sub); font-size:.85rem;}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <h1>The Spotlight Effect — Vocabulary</h1>
+  <p>Phrasal verbs, idioms, and the difference between <em>see / watch / look at</em>. Level B1.</p>
+</header>
+
+<nav class="stagebar">
+  <a href="#cards">Flip cards</a>
+  <a href="#match">Match the words</a>
+  <a href="#gapfill">Fill the gaps</a>
+  <a href="#seewatch">See / Watch / Look at</a>
+</nav>
+
+<div class="wrap">
+
+<section id="cards">
+  <span class="tag">Step 1</span>
+  <h2>Flip cards</h2>
+  <p class="sub">Tap a card to see the translation and an example sentence.</p>
+  <div class="cardgrid" id="cardGrid"></div>
+</section>
+
+<section id="match">
+  <span class="tag">Step 2</span>
+  <h2>Match the words</h2>
+  <p class="sub">Click a word or phrase, then click its meaning.</p>
+  <div class="matchwrap">
+    <div class="matchcol" id="matchLeft"></div>
+    <div class="matchcol" id="matchRight"></div>
+  </div>
+</section>
+
+<section id="gapfill">
+  <span class="tag">Step 3</span>
+  <h2>Fill in the gaps</h2>
+  <p class="sub">Use the correct word or phrase from the word bank.</p>
+  <div class="wordbank">trip over · zoom in on · be hard on yourself · feel embarrassed · awkward · overthink · notice · nervous · mistake · silly</div>
+  <div id="gapList"></div>
+</section>
+
+<section id="seewatch">
+  <span class="tag">Step 4</span>
+  <h2>See / Watch / Look at</h2>
+  <p class="sub"><strong>See</strong> — notice something without trying (it just happens). <strong>Watch</strong> — pay attention to something moving or changing for a period of time. <strong>Look at</strong> — turn your eyes toward something on purpose, usually for a moment.</p>
+  <div id="quizList"></div>
+</section>
+
+</div>
+
+<footer>Made for a 1:1 lesson · We Talk</footer>
+
+<script>
+const words = [
+  {en:"trip over", ru:"споткнуться обо что-то", ex:"She tripped over a toy and nearly fell on the stairs."},
+  {en:"zoom in on", ru:"сосредоточиться на, приблизить", ex:"The article zooms in on why we feel so watched in public."},
+  {en:"be hard on yourself", ru:"быть слишком строгим к себе", ex:"Don't be so hard on yourself — everyone makes mistakes."},
+  {en:"feel embarrassed", ru:"чувствовать неловкость, смущение", ex:"I felt embarrassed when my phone rang during the meeting."},
+  {en:"awkward", ru:"неловкий, неудобный", ex:"There was an awkward silence after he forgot her name."},
+  {en:"overthink", ru:"слишком много думать, зацикливаться", ex:"He overthinks every small mistake he makes at work."},
+  {en:"notice", ru:"замечать", ex:"Nobody even noticed the stain on my shirt."},
+  {en:"nervous", ru:"нервный, взволнованный", ex:"She felt nervous before giving the presentation."},
+  {en:"mistake", ru:"ошибка", ex:"Everyone makes mistakes — it's part of learning."},
+  {en:"silly", ru:"глупый, смешной", ex:"It felt silly to worry about such a small thing."},
+  {en:"the spotlight effect", ru:"эффект прожектора (ощущение, что все на тебя смотрят)", ex:"The spotlight effect makes us think people notice our mistakes much more than they really do."}
+];
+
+function shuffle(arr){const a=[...arr]; for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]];} return a;}
+
+const cardGrid = document.getElementById('cardGrid');
+words.forEach(w=>{
+  const el=document.createElement('div'); el.className='flip';
+  el.innerHTML=`<div class="flip-inner">
+    <div class="flip-face flip-front">${w.en}<small>tap to flip</small></div>
+    <div class="flip-face flip-back"><div class="ru">${w.ru}</div><div class="ex">${w.ex}</div></div>
+  </div>`;
+  el.addEventListener('click',()=>el.classList.toggle('flipped'));
+  cardGrid.appendChild(el);
+});
+
+const matchPairs = [
+  {en:"trip over", def:"fall because you hit something with your foot"},
+  {en:"zoom in on", def:"focus closely on"},
+  {en:"be hard on yourself", def:"criticize yourself too much"},
+  {en:"feel embarrassed", def:"to feel shy or uncomfortable because you think you did something silly"},
+  {en:"awkward moment", def:"a situation that feels uncomfortable or a little embarrassing"},
+  {en:"overthink", def:"to think about something too much, often worrying without a reason"},
+  {en:"the spotlight effect", def:"the feeling that other people notice and judge you much more than they really do"}
+];
+const matchLeft=document.getElementById('matchLeft');
+const matchRight=document.getElementById('matchRight');
+const leftOrder=shuffle(matchPairs);
+const rightOrder=shuffle(matchPairs);
+let selLeft=null, selRight=null;
+leftOrder.forEach(p=>{
+  const d=document.createElement('div'); d.className='matchitem'; d.textContent=p.en; d.dataset.en=p.en;
+  d.addEventListener('click',()=>onMatchClick(d,'left'));
+  matchLeft.appendChild(d);
+});
+rightOrder.forEach(p=>{
+  const d=document.createElement('div'); d.className='matchitem'; d.textContent=p.def; d.dataset.en=p.en;
+  d.addEventListener('click',()=>onMatchClick(d,'right'));
+  matchRight.appendChild(d);
+});
+function onMatchClick(el, side){
+  if(el.classList.contains('correct')) return;
+  if(side==='left'){ if(selLeft) selLeft.classList.remove('selected'); selLeft=el; el.classList.add('selected'); }
+  else { if(selRight) selRight.classList.remove('selected'); selRight=el; el.classList.add('selected'); }
+  if(selLeft && selRight){
+    if(selLeft.dataset.en===selRight.dataset.en){
+      selLeft.classList.remove('selected'); selRight.classList.remove('selected');
+      selLeft.classList.add('correct'); selRight.classList.add('correct');
+    } else {
+      selLeft.classList.add('wrong'); selRight.classList.add('wrong');
+      setTimeout(()=>{ selLeft.classList.remove('selected','wrong'); selRight.classList.remove('selected','wrong'); },600);
+    }
+    selLeft=null; selRight=null;
+  }
+}
+
+const gaps = [
+  {text:"Be careful not to ___ the box on the floor.", ans:"trip over"},
+  {text:"Let's ___ what causes the spotlight effect.", ans:"zoom in on"},
+  {text:"Try not to ___ after a small mistake — it happens to everyone.", ans:"be hard on yourself"},
+  {text:"I always ___ when I mispronounce a word in class.", ans:"feel embarrassed"},
+  {text:"There was an ___ pause when his phone rang in the quiet room.", ans:"awkward"},
+  {text:"She tends to ___ every message before she sends it.", ans:"overthink"},
+  {text:"Did anyone ___ that I was wearing different shoes today?", ans:"notice"},
+  {text:"He felt ___ before his first lesson with a new student.", ans:"nervous"},
+  {text:"Liking an old photo by accident is a harmless ___.", ans:"mistake"},
+  {text:"It sounds ___, but I was sure everyone was staring at me.", ans:"silly"}
+];
+const gapList=document.getElementById('gapList');
+gaps.forEach((g,i)=>{
+  const [before, after] = g.text.split('___');
+  const row=document.createElement('div'); row.className='gaprow';
+  row.innerHTML=`<span class="num">${i+1}.</span><span>${before}</span>
+    <input class="gap-input" type="text" data-ans="${g.ans}"><span>${after}</span>
+    <button class="checkbtn">Check</button>`;
+  const input=row.querySelector('input'); const btn=row.querySelector('button');
+  btn.addEventListener('click',()=>{
+    const val=input.value.trim().toLowerCase();
+    if(val===g.ans.toLowerCase()){ input.classList.remove('wrong'); input.classList.add('correct'); }
+    else { input.classList.remove('correct'); input.classList.add('wrong'); }
+  });
+  gapList.appendChild(row);
+});
+
+const quiz = [
+  {text:"I ___ a strange car outside the house when I came home.", options:["saw","watched","looked at"], ans:"saw"},
+  {text:"We ___ a really good film last night.", options:["saw","watched","looked at"], ans:"watched"},
+  {text:"Can you ___ this photo and tell me what's wrong with it?", options:["see","watch","look at"], ans:"look at"},
+  {text:"I ___ him cross the street without even looking.", options:["saw","watched","looked at"], ans:"saw"},
+  {text:"She loves to ___ the sunset every evening from her balcony.", options:["see","watch","look at"], ans:"watch"},
+  {text:"He ___ at his phone for a few seconds before answering.", options:["saw","watched","looked"], ans:"looked"},
+  {text:"Did you ___ the match yesterday? It lasted three hours.", options:["see","watch","look at"], ans:"watch"},
+  {text:"I didn't ___ the mistake until my teacher pointed it out.", options:["see","watch","look at"], ans:"see"},
+  {text:"Please ___ this sentence carefully before you answer.", options:["see","watch","look at"], ans:"look at"},
+  {text:"We ___ the kids play in the park for an hour.", options:["saw","watched","looked at"], ans:"watched"}
+];
+const quizList=document.getElementById('quizList');
+quiz.forEach((q,i)=>{
+  const row=document.createElement('div'); row.className='quizrow';
+  const opts=shuffle(q.options);
+  row.innerHTML=`<p>${i+1}. ${q.text}</p><div class="quizopts"></div>`;
+  const optsDiv=row.querySelector('.quizopts');
+  opts.forEach(o=>{
+    const b=document.createElement('button'); b.textContent=o;
+    b.addEventListener('click',()=>{
+      if(optsDiv.querySelector('.correct')) return;
+      if(o===q.ans){ b.classList.add('correct'); }
+      else { b.classList.add('wrong'); setTimeout(()=>b.classList.remove('wrong'),600); }
+    });
+    optsDiv.appendChild(b);
+  });
+  quizList.appendChild(row);
+});
+</script>
+
+</body>
+</html>
