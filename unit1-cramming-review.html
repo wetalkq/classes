@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Unit 1 · Cramming for success: study and academic work · Review (C1)</title>
+<style>
+:root{--ink:#1b2340;--muted:#5a6384;--bg:#f4f6fc;--card:#ffffff;--line:#d9def0;--brand:#2f3fbf;--brand2:#e9ecff;--accent:#e8741c;--ok:#1f8f4e;--okbg:#e3f6ea;--bad:#c0392b;--badbg:#fdeaea;--shadow:0 6px 24px rgba(30,40,100,.10)}
+*{box-sizing:border-box}
+body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.55}
+header{background:linear-gradient(135deg,#1f2a7a,#3a4fe0);color:#fff;padding:36px 20px 44px}
+.wrap{max-width:980px;margin:0 auto;padding:0 16px}
+header .wrap{padding:0}
+header h1{margin:0 0 6px;font-size:clamp(24px,4.4vw,38px);line-height:1.15}
+header p{margin:0;opacity:.9;max-width:720px}
+nav{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.96);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;gap:6px;overflow-x:auto;padding:8px 16px}
+nav a{white-space:nowrap;text-decoration:none;color:var(--brand);background:var(--brand2);padding:6px 12px;border-radius:999px;font-size:14px;font-weight:600}
+section{margin:30px 0}
+h2{font-size:clamp(21px,3.4vw,28px);margin:0 0 6px}
+.lead{color:var(--muted);margin:0 0 16px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;box-shadow:var(--shadow)}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:10px 0 16px}
+button,.btn{font:inherit;cursor:pointer;border:1px solid var(--line);background:#fff;color:var(--ink);padding:8px 14px;border-radius:10px;font-weight:600}
+button:hover{border-color:var(--brand);color:var(--brand)}
+button.primary{background:var(--brand);border-color:var(--brand);color:#fff}
+button.primary:hover{color:#fff;opacity:.92}
+button.on{background:var(--brand);color:#fff;border-color:var(--brand)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px}
+.card{perspective:1000px;height:250px;cursor:pointer;outline:none}
+.card:focus-visible .inner{box-shadow:0 0 0 3px var(--accent)}
+.inner{position:relative;width:100%;height:100%;transition:transform .55s;transform-style:preserve-3d;border-radius:16px;box-shadow:var(--shadow)}
+.card.flip .inner{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:16px;padding:16px;display:flex;flex-direction:column;border:1px solid var(--line);background:var(--card);overflow:auto}
+.front{align-items:center;justify-content:center;text-align:center;background:linear-gradient(180deg,#fff,#f0f3ff)}
+.back{transform:rotateY(180deg);background:#fffaf4;font-size:14.5px}
+.en{font-size:24px;font-weight:800;line-height:1.2}
+.ipa{margin-top:8px;color:var(--brand);font-size:17px;font-family:"Segoe UI","Noto Sans","DejaVu Sans",system-ui,sans-serif}
+.tag{position:absolute;top:10px;left:12px;font-size:11px;font-weight:700;color:var(--muted);letter-spacing:.04em;text-transform:uppercase}
+.spk{position:absolute;top:6px;right:8px;padding:4px 9px;border-radius:999px;font-size:15px}
+.hint{position:absolute;bottom:10px;font-size:12px;color:var(--muted)}
+.back .ru{font-weight:800;font-size:17px;margin-bottom:6px}
+.back .df{color:var(--muted);margin-bottom:6px}
+.back .ex{border-left:3px solid var(--accent);padding-left:8px;margin:6px 0}
+.back .note{margin-top:6px;font-size:13px;background:#fff1de;border-radius:8px;padding:6px 8px}
+.known-btn{margin-top:auto;align-self:flex-start;padding:4px 10px;font-size:13px}
+.card.known .front{background:linear-gradient(180deg,#f2fbf5,#e3f6ea)}
+table{border-collapse:collapse;width:100%;font-size:15px;background:#fff}
+th,td{border:1px solid var(--line);padding:9px 10px;text-align:left;vertical-align:top}
+th{background:var(--brand2);color:#1f2a7a}
+.tscroll{overflow-x:auto;border-radius:12px}
+.pill{display:inline-block;background:var(--brand2);color:var(--brand);border-radius:999px;padding:1px 10px;font-weight:700;font-size:13px}
+.ru-s{color:var(--muted);font-size:13px}
+.ex-item{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:7px 0;border-bottom:1px dashed var(--line)}
+.ex-item:last-child{border-bottom:0}
+.w{font-weight:700;min-width:190px}
+.w small{display:block;font-weight:500;color:var(--brand);font-size:13px}
+select,input[type=text]{font:inherit;padding:6px 8px;border-radius:8px;border:1.5px solid var(--line);background:#fff;color:var(--ink);max-width:100%}
+select.ok,input.ok{border-color:var(--ok);background:var(--okbg)}
+select.bad,input.bad{border-color:var(--bad);background:var(--badbg)}
+.score{font-weight:800;color:var(--brand);margin-left:6px}
+.reading h3{margin:18px 0 6px;color:#1f2a7a;font-size:18px}
+.reading p{margin:0 0 6px;font-size:17px;line-height:2.05}
+.reading select{font-size:15px;padding:3px 5px;margin:0 2px}
+.gn{font-size:11px;color:var(--muted);vertical-align:super;margin-right:1px}
+.sent{padding:8px 0;border-bottom:1px dashed var(--line);font-size:17px;line-height:2.05}
+.sent:last-child{border-bottom:0}
+.expl{display:none;font-size:14px;color:var(--muted);margin-top:2px;line-height:1.4}
+.expl.show{display:block}
+.tip{background:#fff7ea;border:1px solid #f4d9b0;border-radius:12px;padding:10px 14px;margin:12px 0;font-size:15px}
+.tip ul{margin:6px 0 0;padding-left:20px}
+footer{padding:26px 16px 50px;text-align:center;color:var(--muted);font-size:14px}
+@media(max-width:560px){.w{min-width:100%}.card{height:270px}}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+<h1>Unit 1 · Cramming for success: study and academic work</h1>
+<p>Review page, level C1: flashcards with British pronunciation, academic terms by level, a long gap-fill text, and all conditional types with a focus on mixed conditionals.</p>
+</div></header>
+<nav><div class="wrap">
+<a href="#cards">1. Flashcards</a><a href="#ladder">2. Academic works</a><a href="#match">3. Match</a><a href="#scr">4. Unscramble</a><a href="#text">5. Text</a><a href="#cond">6. Conditionals</a><a href="#mixed">7. Mixed</a><a href="#cls">8. Which type?</a>
+</div></nav>
+<main class="wrap">
+
+<section id="cards">
+<h2>1. Flashcards</h2>
+<p class="lead">Click a card to flip it: front = word and British transcription, back = translation, meaning and example. Press 🔊 to hear the word (it works in browsers that support British English voices).</p>
+<div class="row" id="filters"></div>
+<div class="grid" id="grid"></div>
+<p class="lead" id="counter" style="margin-top:12px"></p>
+</section>
+
+<section id="ladder">
+<h2>2. Academic works: which term for which level?</h2>
+<p class="lead">Terms from section B, ordered from the shortest to the longest.</p>
+<div class="panel tscroll">
+<table>
+<tr><th>Term</th><th>Level / who writes it</th><th>Length</th><th>Meaning</th></tr>
+<tr><td><b>composition</b></td><td>school</td><td>about 50–100 words</td><td>школьное сочинение</td></tr>
+<tr><td><b>essay</b></td><td>school and university</td><td>hundreds or thousands of words</td><td>эссе, серьёзнее и длиннее composition</td></tr>
+<tr><td><b>assignment</b></td><td>university course</td><td>usually thousands of words</td><td>письменная работа по курсу (длинное эссе)</td></tr>
+<tr><td><b>project</b></td><td>school and university</td><td>varies</td><td>как assignment, но акцент на своём материале и теме</td></tr>
+<tr><td><b>portfolio</b></td><td>art, design, writing and other courses</td><td>a collection</td><td>портфолио: отдельные работы, включая рисунки и творческие работы</td></tr>
+<tr><td><b>dissertation</b></td><td><span class="pill">bachelor's / master's</span> (a degree or diploma)</td><td>perhaps 10–15,000 words</td><td>выпускная работа бакалавра или магистра</td></tr>
+<tr><td><b>thesis</b></td><td><span class="pill">PhD</span> (a higher degree)</td><td>perhaps 80–100,000 words</td><td>диссертация (докторская), оригинальное исследование</td></tr>
+</table>
+</div>
+<div class="tip"><b>Note.</b> The table follows <i>English Vocabulary in Use Advanced</i> and British usage: <b>dissertation</b> for a degree or diploma, <b>thesis</b> for a higher degree such as a PhD. In American English the two words are often used the other way round (<i>master's thesis</i>, <i>doctoral dissertation</i>). Plural of thesis: <b>theses</b> /ˈθiːsiːz/.</div>
+</section>
+
+<section id="match">
+<h2>3. Match the words with their definitions</h2>
+<p class="lead">Choose the correct definition for each word.</p>
+<div class="panel" id="matchBox">
+<div id="matchList"></div>
+<div class="row"><button class="primary" data-check="matchBox">Check</button><button data-show="matchBox">Show answers</button><button data-reset="matchBox">Reset</button><span class="score"></span></div>
+</div>
+</section>
+
+<section id="scr">
+<h2>4. Unscramble the words</h2>
+<p class="lead">Each clue is a definition. Type the word.</p>
+<div class="panel" id="scrBox">
+<div id="scrList"></div>
+<div class="row"><button class="primary" data-check="scrBox">Check</button><button data-show="scrBox">Show answers</button><button data-reset="scrBox">Reset</button><span class="score"></span></div>
+</div>
+</section>
+
+<section id="text">
+<h2>5. Reading: The cramming trap, what I learnt the hard way</h2>
+<p class="lead">Choose the correct word, phrase or verb form for each gap. Some gaps test mixed conditionals (numbers 13 to 16).</p>
+<div class="panel reading" id="textBox">
+<div id="textBody"></div>
+<div class="row"><button class="primary" data-check="textBox">Check</button><button data-show="textBox">Show answers</button><button data-reset="textBox">Reset</button><span class="score"></span></div>
+</div>
+</section>
+
+<section id="cond">
+<h2>6. Conditionals: which type do I need?</h2>
+<p class="lead">All five conditional types with examples from this unit.</p>
+<div class="panel tscroll">
+<table>
+<tr><th>Type</th><th>When to use it</th><th>Form</th><th>Example</th></tr>
+<tr><td><b>Zero</b></td><td>general truths, rules, things that are always true<br><span class="ru-s">общие истины, правила</span></td><td>if + present simple, present simple</td><td>If you don't acknowledge your sources, it counts as plagiarism.</td></tr>
+<tr><td><b>First</b></td><td>real or likely situations in the future<br><span class="ru-s">реальное будущее</span></td><td>if + present simple, will / can / imperative</td><td>If you hand in your first draft early, your tutor will give you feedback.</td></tr>
+<tr><td><b>Second</b></td><td>unreal or unlikely present or future; advice<br><span class="ru-s">нереальное настоящее или будущее, совет</span></td><td>if + past simple (were for all persons), would + infinitive</td><td>If I were you, I would make a mind map.<br>If I had more time, I would carry out more research.</td></tr>
+<tr><td><b>Third</b></td><td>unreal past: regret, criticism<br><span class="ru-s">нереальное прошлое, сожаление</span></td><td>if + past perfect, would have + past participle</td><td>If I had started my essay earlier, I would have got a much better grade.</td></tr>
+<tr><td><b>Mixed A</b></td><td>a past condition has a result in the present<br><span class="ru-s">прошлое условие → результат сейчас</span></td><td>if + past perfect, would + infinitive</td><td>If I had done some revision every week, I wouldn't be so exhausted now.</td></tr>
+<tr><td><b>Mixed B</b></td><td>a present or permanent state has a result in the past<br><span class="ru-s">состояние сейчас → результат в прошлом</span></td><td>if + past simple, would have + past participle</td><td>If I weren't so disorganised, I would have submitted it on time.</td></tr>
+</table>
+</div>
+<div class="tip"><b>How to choose.</b>
+<ul>
+<li>A rule or a fact that is always true? → <b>zero</b>.</li>
+<li>A real possibility in the future? → <b>first</b>.</li>
+<li>Imagining the present or the future as different from reality, or giving advice? → <b>second</b>.</li>
+<li>Imagining the past as different, with a result in the past? → <b>third</b>.</li>
+<li>The two times are different? Past condition + present result → <b>mixed A</b>. Present state + past result → <b>mixed B</b>.</li>
+</ul></div>
+<div class="tip"><b>Watch out.</b>
+<ul>
+<li><b>Would</b> goes only in the main clause, never in the if-clause. ✗ <i>If I would have revised…</i> ✓ <i>If I had revised…</i> По-русски «бы» стоит в обеих частях, по-английски нет.</li>
+<li>Put a comma after the if-clause when it comes first: <i>If I had started earlier, I would have passed.</i> No comma when it comes second: <i>I would have passed if I had started earlier.</i></li>
+<li><b>Were</b> is used for all persons in the if-clause of the second and mixed B types: <i>If I were… / If she were…</i></li>
+<li><b>Could</b> or <b>might</b> can replace <b>would</b>: <i>If I had revised, I might feel more confident now.</i></li>
+</ul></div>
+</section>
+
+<section id="mixed">
+<h2>7. Mixed conditionals with unit vocabulary</h2>
+<p class="lead">Choose the correct verb forms. After checking, a short explanation appears under each sentence.</p>
+<div class="panel" id="mixedBox">
+<div id="mixedList"></div>
+<div class="row"><button class="primary" data-check="mixedBox">Check</button><button data-show="mixedBox">Show answers</button><button data-reset="mixedBox">Reset</button><span class="score"></span></div>
+</div>
+</section>
+
+<section id="cls">
+<h2>8. Which conditional is it?</h2>
+<p class="lead">Decide: zero, first, second, third, mixed A or mixed B.</p>
+<div class="panel" id="clsBox">
+<div id="clsList"></div>
+<div class="row"><button class="primary" data-check="clsBox">Check</button><button data-show="clsBox">Show answers</button><button data-reset="clsBox">Reset</button><span class="score"></span></div>
+</div>
+</section>
+
+</main>
+<footer>Unit 1 review · Pronunciation: British English (check any doubtful word in the Cambridge Dictionary).</footer>
+
+<script>
+const D = {"cards": [{"g": "A", "en": "cram", "ipa": "/kræm/", "ru": "зубрить в последний момент, учить «нахрапом»", "df": "study in a very concentrated way for a short time", "ex": "Before her finals, she crammed for three nights in a row.", "say": "cram"}, {"g": "A", "en": "genius", "ipa": "/ˈdʒiːniəs/", "ru": "гений", "df": "an exceptionally clever person", "ex": "Even a genius has to do some revision before an exam.", "say": "genius"}, {"g": "A", "en": "do some revision", "ipa": "/duː səm rɪˈvɪʒn/", "ru": "повторять материал перед экзаменом", "df": "go over what you have learnt before an exam", "ex": "I try to do some revision every evening.", "say": "do some revision", "note": "В британском английском revision = повторение перед экзаменом, а не «ревизия»."}, {"g": "A", "en": "revise", "ipa": "/rɪˈvaɪz/", "ru": "повторять (материал перед экзаменом)", "df": "to go over what you have learnt before an exam (British English)", "ex": "You can revise by looking at past papers.", "say": "revise"}, {"g": "A", "en": "past papers", "ipa": "/ˌpɑːst ˈpeɪpəz/", "ru": "экзаменационные работы прошлых лет", "df": "exam papers from previous years", "ex": "Working through past papers shows you how the questions are asked.", "say": "past papers"}, {"g": "A", "en": "memorise", "ipa": "/ˈmeməraɪz/", "ru": "запоминать, заучивать", "df": "learn something so that you remember it exactly", "ex": "Dates can be memorised, but understanding takes longer.", "say": "memorise", "note": "В американском английском: memorize."}, {"g": "A", "en": "learn (off) by heart", "ipa": "/lɜːn ɒf baɪ ˈhɑːt/", "ru": "выучить наизусть", "df": "learn something so well that you can say it without looking", "ex": "We had to learn the whole poem off by heart.", "say": "learn off by heart", "note": "Прошедшее время в британском английском: learnt (или learned)."}, {"g": "A", "en": "rote-learning", "ipa": "/ˈrəʊt ˌlɜːnɪŋ/", "ru": "зубрёжка, механическое заучивание", "df": "learning purely by repetition", "ex": "Rote-learning is not sufficient for most subjects.", "say": "rote learning"}, {"g": "A", "en": "mnemonics", "ipa": "/nɪˈmɒnɪks/", "ru": "мнемоника, приёмы запоминания", "df": "tricks that help you remember something", "ex": "Mnemonics help me remember long lists.", "say": "mnemonics", "note": "Буква m в начале не читается. Единственное число: a mnemonic /nɪˈmɒnɪk/."}, {"g": "A", "en": "bury yourself in your books", "ipa": "/ˈberi jɔːˌself ɪn jɔː ˈbʊks/", "ru": "с головой уйти в учебники", "df": "spend the maximum time studying", "ex": "She buried herself in her books for the whole month before the exam.", "say": "bury yourself in your books", "note": "bury читается /ˈberi/ (как berry)."}, {"g": "A", "en": "intensively", "ipa": "/ɪnˈtensɪvli/", "ru": "интенсивно", "df": "in a very focused way", "ex": "He studied intensively for two weeks.", "say": "intensively"}, {"g": "A", "en": "know the subject inside out", "ipa": "/nəʊ ðə ˈsʌbdʒɪkt ˌɪnsaɪd ˈaʊt/", "ru": "знать предмет вдоль и поперёк", "df": "know it completely", "ex": "A good teacher knows the subject inside out.", "say": "know the subject inside out"}, {"g": "B", "en": "composition", "ipa": "/ˌkɒmpəˈzɪʃn/", "ru": "сочинение (школьное)", "df": "a short piece of writing, could be just 50–100 words, often used for school work", "ex": "At school we wrote a composition every Friday.", "say": "composition", "note": "Уровень: школа."}, {"g": "B", "en": "essay", "ipa": "/ˈeseɪ/", "ru": "эссе", "df": "longer than a composition and more serious: hundreds or thousands of words", "ex": "Her essay on climate policy was over two thousand words long.", "say": "essay", "note": "Уровень: школа и университет."}, {"g": "B", "en": "assignment", "ipa": "/əˈsaɪnmənt/", "ru": "письменная работа (по курсу)", "df": "a long essay, often part of a course, usually thousands of words", "ex": "The assignment is worth forty per cent of the final mark.", "say": "assignment", "note": "Уровень: университетский курс."}, {"g": "B", "en": "project", "ipa": "/ˈprɒdʒekt/", "ru": "проект (самостоятельная работа по своей теме)", "df": "like an assignment, but with the emphasis on the student's own material and topic", "ex": "For her project, she interviewed local teachers.", "say": "project", "note": "Существительное: ударение на первый слог."}, {"g": "B", "en": "portfolio", "ipa": "/pɔːtˈfəʊliəʊ/", "ru": "портфолио", "df": "a collection of individual pieces of work; may include drawings and other examples of creative work as well as writing", "ex": "Applicants to the art course must submit a portfolio.", "say": "portfolio"}, {"g": "B", "en": "dissertation", "ipa": "/ˌdɪsəˈteɪʃn/", "ru": "выпускная работа (бакалавриат, магистратура)", "df": "a long, research-based work, perhaps 10–15,000 words, for a degree or diploma", "ex": "He is writing his dissertation on urban planning.", "say": "dissertation", "note": "Уровень: бакалавр / магистр (по британской модели). В американском английском термины часто меняются местами."}, {"g": "B", "en": "thesis", "ipa": "/ˈθiːsɪs/", "ru": "диссертация (PhD)", "df": "a very long, original, research-based work, perhaps 80–100,000 words, for a higher degree (e.g. a PhD)", "ex": "Her PhD thesis took four years to complete.", "say": "thesis", "note": "Уровень: PhD, докторская. Множественное число: theses /ˈθiːsiːz/."}, {"g": "B", "en": "mind map", "ipa": "/ˈmaɪnd ˌmæp/", "ru": "ментальная карта, интеллект-карта", "df": "a diagram that lays out ideas for a topic and how they are connected to one another", "ex": "Start with a mind map when you prepare an essay.", "say": "mind map"}, {"g": "B", "en": "first draft", "ipa": "/ˌfɜːst ˈdrɑːft/", "ru": "черновик", "df": "the first, rough version", "ex": "Always write a first draft before the final version.", "say": "first draft"}, {"g": "B", "en": "write up (the final version)", "ipa": "/ˌraɪt ˈʌp/", "ru": "написать начисто, оформить окончательный вариант", "df": "produce the final version of your work from your notes or draft", "ex": "I will write up the final version tomorrow.", "say": "write up the final version", "note": "Фразовый глагол: write up. После before: before writing up."}, {"g": "C", "en": "plagiarism", "ipa": "/ˈpleɪdʒərɪzəm/", "ru": "плагиат", "df": "using other people's work as if it was yours", "ex": "Plagiarism is a very serious offence in colleges and universities.", "say": "plagiarism", "note": "Глагол: plagiarise /ˈpleɪdʒəraɪz/."}, {"g": "C", "en": "plagiarism form", "ipa": "/ˈpleɪdʒərɪzəm fɔːm/", "ru": "декларация об авторстве (об отсутствии плагиата)", "df": "a form that students sign to say that the work is all their own", "ex": "We have to sign a plagiarism form before every submission.", "say": "plagiarism form"}, {"g": "C", "en": "acknowledge", "ipa": "/əkˈnɒlɪdʒ/", "ru": "указывать источники, ссылаться на них", "df": "give details of (the sources you have used)", "ex": "You must acknowledge every source you have used.", "say": "acknowledge"}, {"g": "C", "en": "hand in", "ipa": "/ˌhænd ˈɪn/", "ru": "сдавать (работу)", "df": "give your work to the teacher", "ex": "Please hand in your essays by Friday.", "say": "hand in", "note": "Связывание: hand it in /hæn dɪ ˈtɪn/."}, {"g": "C", "en": "deadline", "ipa": "/ˈdedlaɪn/", "ru": "крайний срок", "df": "the date by which you must hand in the work", "ex": "The deadline for the essay is Monday at noon.", "say": "deadline"}, {"g": "C", "en": "submit", "ipa": "/səbˈmɪt/", "ru": "сдавать, подавать (формально)", "df": "hand in (formal)", "ex": "The dissertation must be submitted online.", "say": "submit", "note": "submitted = handed in (формальный вариант)."}, {"g": "C", "en": "assess", "ipa": "/əˈses/", "ru": "оценивать, ставить оценку", "df": "evaluate and give a grade", "ex": "Each essay is assessed by two examiners.", "say": "assess"}, {"g": "C", "en": "feedback", "ipa": "/ˈfiːdbæk/", "ru": "обратная связь, комментарии преподавателя", "df": "comments from the teacher or tutor", "ex": "My tutor gave me detailed feedback on my first draft.", "say": "feedback", "note": "Неисчисляемое: some feedback, не a feedback."}, {"g": "D", "en": "carry out research", "ipa": "/ˌkæri aʊt rɪˈsɜːtʃ/", "ru": "проводить исследование", "df": "do research (formal); the less formal form is do research", "ex": "University academics carry out research and publish their findings.", "say": "carry out research", "note": "Менее формально: do research."}, {"g": "D", "en": "academic journals", "ipa": "/ˌækəˈdemɪk ˈdʒɜːnlz/", "ru": "научные журналы", "df": "publications with academic articles (we do not use the word magazine for them)", "ex": "She reads academic journals every week.", "say": "academic journals"}, {"g": "D", "en": "papers / articles", "ipa": "/ˈpeɪpəz, ˈɑːtɪklz/", "ru": "научные статьи", "df": "texts on specialised subjects that academic journals publish", "ex": "The journal publishes papers on language teaching.", "say": "papers and articles"}, {"g": "D", "en": "access it online", "ipa": "/ˈækses ɪt ˌɒnˈlaɪn/", "ru": "получить доступ онлайн", "df": "get hold of it on the internet", "ex": "You can access most journals online.", "say": "access it online", "note": "access как глагол: ударение на первый слог."}, {"g": "D", "en": "inter-library loan", "ipa": "/ˌɪntə ˈlaɪbrəri ləʊn/", "ru": "межбиблиотечный абонемент", "df": "a system where libraries exchange books and journals with one another", "ex": "We ordered the book through an inter-library loan.", "say": "inter library loan"}, {"g": "D", "en": "open educational resources", "ipa": "/ˌəʊpən edʒuˌkeɪʃənl rɪˈzɔːsɪz/", "ru": "открытые образовательные ресурсы", "df": "online materials that can be freely used by teachers and students anywhere", "ex": "Open educational resources are convenient for many students.", "say": "open educational resources"}, {"g": "D", "en": "drop out", "ipa": "/ˌdrɒp ˈaʊt/", "ru": "бросить учёбу, отчислиться по собственному желанию", "df": "leave the course before the end", "ex": "Some students drop out in the first year.", "say": "drop out", "note": "Связывание: dropped out /drɒp ˈtaʊt/."}, {"g": "D", "en": "finals", "ipa": "/ˈfaɪnlz/", "ru": "выпускные экзамены (последние экзамены курса)", "df": "the last exams before the end of a college or university course", "ex": "She passed her finals with distinction.", "say": "finals"}, {"g": "D", "en": "well-qualified", "ipa": "/ˌwel ˈkwɒlɪfaɪd/", "ru": "хорошо квалифицированный", "df": "with the right formal qualifications", "ex": "He wants to become a well-qualified teacher.", "say": "well qualified", "note": "Перед существительным пишется через дефис: a well-qualified teacher. После глагола без дефиса: she is well qualified."}], "match": [{"w": "cram", "ipa": "/kræm/", "d": "study in a very concentrated way for a short time"}, {"w": "genius", "ipa": "/ˈdʒiːniəs/", "d": "an exceptionally clever person"}, {"w": "past papers", "ipa": "/ˌpɑːst ˈpeɪpəz/", "d": "exam papers from previous years"}, {"w": "rote-learning", "ipa": "/ˈrəʊt ˌlɜːnɪŋ/", "d": "learning purely by repetition"}, {"w": "mnemonics", "ipa": "/nɪˈmɒnɪks/", "d": "tricks that help you remember something"}, {"w": "portfolio", "ipa": "/pɔːtˈfəʊliəʊ/", "d": "a collection of individual pieces of work, which may include drawings"}, {"w": "dissertation", "ipa": "/ˌdɪsəˈteɪʃn/", "d": "a long, research-based work for a degree or diploma"}, {"w": "thesis", "ipa": "/ˈθiːsɪs/", "d": "a very long, original, research-based work for a higher degree, e.g. a PhD"}, {"w": "mind map", "ipa": "/ˈmaɪnd ˌmæp/", "d": "a diagram that lays out ideas for a topic and how they are connected"}, {"w": "plagiarism", "ipa": "/ˈpleɪdʒərɪzəm/", "d": "using other people's work as if it was yours"}, {"w": "acknowledge", "ipa": "/əkˈnɒlɪdʒ/", "d": "give details of the sources you have used"}, {"w": "deadline", "ipa": "/ˈdedlaɪn/", "d": "the date by which you must hand in the work"}, {"w": "feedback", "ipa": "/ˈfiːdbæk/", "d": "comments from the teacher or tutor"}, {"w": "inter-library loan", "ipa": "/ˌɪntə ˈlaɪbrəri ləʊn/", "d": "a system where libraries exchange books and journals with one another"}, {"w": "drop out", "ipa": "/ˌdrɒp ˈaʊt/", "d": "leave the course before the end"}, {"w": "finals", "ipa": "/ˈfaɪnlz/", "d": "the last exams before the end of a college or university course"}], "defs": ["tricks that help you remember something", "the date by which you must hand in the work", "give details of the sources you have used", "a system where libraries exchange books and journals with one another", "comments from the teacher or tutor", "learning purely by repetition", "a long, research-based work for a degree or diploma", "study in a very concentrated way for a short time", "an exceptionally clever person", "the last exams before the end of a college or university course", "leave the course before the end", "a collection of individual pieces of work, which may include drawings", "exam papers from previous years", "a diagram that lays out ideas for a topic and how they are connected", "using other people's work as if it was yours", "a very long, original, research-based work for a higher degree, e.g. a PhD"], "scr": [{"s": "NICOMSMEN", "a": "mnemonics", "c": "tricks that help you remember something"}, {"s": "LAMIIRSGPA", "a": "plagiarism", "c": "using other people's work as if it was yours"}, {"s": "EAINDDLE", "a": "deadline", "c": "the date by which you must hand in the work"}, {"s": "BEDAKEFC", "a": "feedback", "c": "comments from the teacher or tutor"}, {"s": "TOPILOFOR", "a": "portfolio", "c": "a collection of individual pieces of work"}, {"s": "ASNTSIEDOTIR", "a": "dissertation", "c": "a long, research-based work for a degree or diploma"}, {"s": "EYTIEINNSVL", "a": "intensively", "c": "in a very focused way"}, {"s": "NCLEAOKGWED", "a": "acknowledge", "c": "give details of the sources you have used"}], "gaps": {"1": {"a": "cram", "o": ["cram", "drop out", "submit", "acknowledge"]}, "2": {"a": "genius", "o": ["genius", "feedback", "deadline", "portfolio"]}, "3": {"a": "do some revision", "o": ["make some revision", "do some revision", "take some revision", "have some revision"]}, "4": {"a": "revise", "o": ["revision", "revised", "revising", "revise"]}, "5": {"a": "past papers", "o": ["mind maps", "past papers", "journals", "portfolios"]}, "6": {"a": "rote-learning", "o": ["deadlines", "feedback", "rote-learning", "portfolios"]}, "7": {"a": "memorised", "o": ["memorised", "acknowledged", "submitted", "assessed"]}, "8": {"a": "Mnemonics", "o": ["Deadlines", "Mnemonics", "Finals", "Portfolios"]}, "9": {"a": "mind map", "o": ["deadline", "first draft", "mind map", "portfolio"]}, "10": {"a": "inside out", "o": ["outside in", "inside out", "by hand", "on time"]}, "11": {"a": "buried myself", "o": ["buried myself", "lost myself", "drowned myself", "hid myself"]}, "12": {"a": "intensively", "o": ["intensively", "lately", "merely", "formally"]}, "13": {"a": "had done", "o": ["would have done", "did", "have done", "had done"]}, "14": {"a": "wouldn't be", "o": ["hadn't been", "wouldn't be", "won't be", "wouldn't have been"]}, "15": {"a": "were", "o": ["had been", "am", "were", "would be"]}, "16": {"a": "would have handed in", "o": ["would hand in", "will have handed in", "would have handed in", "had handed in"]}, "17": {"a": "dissertation", "o": ["portfolio", "composition", "dissertation", "thesis"]}, "18": {"a": "deadline", "o": ["finals", "deadline", "journal", "feedback"]}, "19": {"a": "thesis", "o": ["assignment", "dissertation", "thesis", "composition"]}, "20": {"a": "composition", "o": ["dissertation", "portfolio", "composition", "thesis"]}, "21": {"a": "essay", "o": ["portfolio", "composition", "thesis", "essay"]}, "22": {"a": "assignments", "o": ["assignments", "drafts", "compositions", "portfolios"]}, "23": {"a": "project", "o": ["deadline", "feedback", "composition", "project"]}, "24": {"a": "portfolio", "o": ["first draft", "portfolio", "deadline", "mind map"]}, "25": {"a": "first draft", "o": ["mind map", "thesis", "first draft", "portfolio"]}, "26": {"a": "writing up", "o": ["written up", "write up", "wrote up", "writing up"]}, "27": {"a": "hand in", "o": ["drop out", "memorise", "cram", "hand in"]}, "28": {"a": "plagiarism", "o": ["plagiarism", "deadline", "portfolio", "feedback"]}, "29": {"a": "plagiarism form", "o": ["portfolio", "first draft", "plagiarism form", "mind map"]}, "30": {"a": "acknowledge", "o": ["acknowledge", "revise", "assess", "submit"]}, "31": {"a": "submitted", "o": ["memorised", "submitted", "crammed", "buried"]}, "32": {"a": "assessed", "o": ["buried", "crammed", "assessed", "dropped"]}, "33": {"a": "feedback", "o": ["feedback", "finals", "deadline", "plagiarism"]}, "34": {"a": "carry out research", "o": ["do a research", "carry out research", "make research", "take research"]}, "35": {"a": "academic journals", "o": ["academic journals", "academic magazines", "academic books", "academic newspapers"]}, "36": {"a": "access it online", "o": ["carry it online", "access it online", "assess it online", "acknowledge it online"]}, "37": {"a": "inter-library loan", "o": ["plagiarism form", "open educational resource", "mind map", "inter-library loan"]}, "38": {"a": "open educational resources", "o": ["open educational resources", "mnemonics", "portfolios", "past papers"]}, "39": {"a": "drop out", "o": ["write up", "carry out", "hand in", "drop out"]}, "40": {"a": "finals", "o": ["feedback", "deadlines", "drafts", "finals"]}, "41": {"a": "well-qualified", "o": ["well-travelled", "well-fed", "well-behaved", "well-qualified"]}}, "text": [{"h": "Exams", "p": ["Every June, university libraries fill with students who have left everything until the last minute. Some of them ", 1, " for the exam through the night, hoping that one desperate week will make up for a whole term of neglect. Even a ", 2, " would struggle to master a year of material that way. The students who do best tend to ", 3, " every week, and they ", 4, " by working through ", 5, ", so that nothing in the exam surprises them."]}, {"h": "Memory", "p": ["Many people still rely on ", 6, ", repeating facts until they can recite them. Some things, such as dates, can be ", 7, " or learnt off by heart, but that is rarely enough for a whole subject. ", 8, " such as rhymes can help, and so can a ", 9, ", a diagram that lays out ideas and how they connect. In the end, the aim is to know the subject ", 10, "."]}, {"h": "My own mistake", "p": ["I learnt all this the hard way. In my final year I ", 11, " in my books and studied ", 12, " until dawn, but I started far too late. If I ", 13, " some revision every week, I ", 14, " so exhausted now. And if I ", 15, " more organised, I ", 16, " my bachelor's ", 17, ", a piece of research of about twelve thousand words, before the ", 18, " instead of after it. My sister, who is writing a PhD, has to produce a ", 19, " of about eighty thousand words, so I am not complaining too loudly."]}, {"h": "Writing and the rules", "p": ["At school you write a ", 20, " of perhaps a hundred words. At university you move on to the ", 21, ", which can run to thousands of words, then to ", 22, ", long pieces of work set as part of a course, and to a ", 23, " built around your own material and topic. Creative students also present a ", 24, ", a collection of individual pieces of work. Always write a ", 25, " before ", 26, " the final version, and remember to ", 27, " your work on time. Be very careful with ", 28, ": using other people's work as if it were yours is a serious offence, and most universities make you sign a ", 29, " to say that the work is your own. You must also ", 30, " every source you have used. After the work is ", 31, ", it will be ", 32, ", and you can usually get ", 33, " from your tutor."]}, {"h": "Research and the end of the course", "p": ["At university, academics ", 34, " and are expected to read ", 35, ", which publish papers and articles on specialised subjects. If your library does not have a copy of a book, you may be able to ", 36, ", or you can usually get it through an ", 37, ". You can also look for ", 38, ", free online materials that teachers and students can use anywhere. Academic study is demanding, and some students ", 39, ", but most survive until their ", 40, " and become ", 41, " members of their future professions."]}], "mixed": [{"p": ["If she ", 1, " her essay, she ", 2, " in trouble now."], "g": {"1": ["wouldn't plagiarise", "hasn't plagiarised", "hadn't plagiarised", "didn't plagiarise"], "2": ["won't be", "hadn't been", "wouldn't have been", "wouldn't be"]}, "a": {"1": "hadn't plagiarised", "2": "wouldn't be"}, "t": "A", "e": "Mixed A: past condition (she plagiarised her essay) → present result (she is in trouble now)."}, {"p": ["If I ", 1, " a genius, I ", 2, " to cram."], "g": {"1": ["would be", "had been", "were", "am"], "2": ["didn't need", "wouldn't need", "hadn't needed", "wouldn't have needed"]}, "a": {"1": "were", "2": "wouldn't have needed"}, "t": "B", "e": "Mixed B: present state (I am not a genius) → past result (I needed to cram)."}, {"p": ["If he ", 1, " more research, his thesis ", 2, " much stronger now."], "g": {"1": ["carried out", "had carried out", "would carry out", "has carried out"], "2": ["would be", "will be", "had been", "would have been"]}, "a": {"1": "had carried out", "2": "would be"}, "t": "A", "e": "Mixed A: past condition (he did not carry out enough research) → present result (the thesis is weak now)."}, {"p": ["If she ", 1, " so afraid of failure, she ", 2, " her first draft for feedback."], "g": {"1": ["weren't", "wouldn't be", "isn't", "hadn't been"], "2": ["will have submitted", "would have submitted", "had submitted", "would submit"]}, "a": {"1": "weren't", "2": "would have submitted"}, "t": "B", "e": "Mixed B: present state (she is afraid of failure) → past result (she did not submit her draft)."}, {"p": ["If they ", 1, " out of university, they ", 2, " well qualified now."], "g": {"1": ["didn't drop", "hadn't dropped", "wouldn't drop", "haven't dropped"], "2": ["would be", "will be", "had been", "would have been"]}, "a": {"1": "hadn't dropped", "2": "would be"}, "t": "A", "e": "Mixed A: past condition (they dropped out) → present result. Note: after a verb, well qualified has no hyphen."}, {"p": ["If I ", 1, " better at managing my time, I ", 2, " the assignment before the deadline."], "g": {"1": ["had been", "would be", "were", "am"], "2": ["will hand in", "would have handed in", "would hand in", "had handed in"]}, "a": {"1": "were", "2": "would have handed in"}, "t": "B", "e": "Mixed B: present state (I am bad at managing my time) → past result (I missed the deadline)."}, {"p": ["If I ", 1, " my mind map earlier, I ", 2, " so stressed now."], "g": {"1": ["started", "have started", "had started", "would start"], "2": ["wouldn't be", "hadn't been", "won't be", "wouldn't have been"]}, "a": {"1": "had started", "2": "wouldn't be"}, "t": "A", "e": "Mixed A: past condition (I started the mind map late) → present result (I am stressed now)."}, {"p": ["If he ", 1, " academic work more seriously, he ", 2, " a first draft."], "g": {"1": ["takes", "had taken", "took", "would take"], "2": ["would write", "had written", "would have written", "will have written"]}, "a": {"1": "took", "2": "would have written"}, "t": "B", "e": "Mixed B: present attitude (he does not take academic work seriously) → past result (he did not write a first draft)."}], "cls": [{"s": "If you cram, you tend to forget things quickly.", "a": "Zero"}, {"s": "If you hand in your first draft early, your tutor will give you feedback.", "a": "First"}, {"s": "If I were you, I would carry out more research.", "a": "Second"}, {"s": "If she had started her essay earlier, she would have met the deadline.", "a": "Third"}, {"s": "If I had done some revision every week, I wouldn't be so exhausted now.", "a": "Mixed A"}, {"s": "If I weren't so disorganised, I would have submitted my assignment on time.", "a": "Mixed B"}, {"s": "If students don't acknowledge their sources, it counts as plagiarism.", "a": "Zero"}, {"s": "If you cram all night, you will probably forget everything by the morning.", "a": "First"}, {"s": "If I had more time, I would read more academic journals.", "a": "Second"}, {"s": "If he hadn't missed the deadline, he wouldn't have lost marks.", "a": "Third"}, {"s": "If they hadn't dropped out, they would be well qualified now.", "a": "Mixed A"}, {"s": "If she were better qualified, she would have got the job.", "a": "Mixed B"}]};
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+function mk(tag, cls, html){ const e=document.createElement(tag); if(cls) e.className=cls; if(html!==undefined) e.innerHTML=html; return e; }
+
+/* ---------- Flashcards ---------- */
+const GROUPS = {all:'All', A:'A · Study and exams', B:'B · Academic writing', C:'C · Rules and submission', D:'D · Research and outcomes', todo:'To review'};
+let group='all', order=D.cards.map((_,i)=>i), known=new Set();
+function speak(t){
+  try{
+    if(!('speechSynthesis' in window)) return;
+    const u=new SpeechSynthesisUtterance(t); u.lang='en-GB'; u.rate=.9;
+    const v=speechSynthesis.getVoices().find(v=>v.lang==='en-GB'||v.lang==='en_GB');
+    if(v) u.voice=v;
+    speechSynthesis.cancel(); speechSynthesis.speak(u);
+  }catch(e){}
+}
+function renderFilters(){
+  const f=$('#filters'); f.innerHTML='';
+  Object.keys(GROUPS).forEach(k=>{
+    const b=mk('button', k===group?'on':'', GROUPS[k]); b.onclick=()=>{group=k;renderFilters();renderCards();}; f.appendChild(b);
+  });
+  const sh=mk('button','', '🔀 Shuffle'); sh.onclick=()=>{ order.sort(()=>Math.random()-.5); renderCards(); }; f.appendChild(sh);
+  const rs=mk('button','', 'Reset order'); rs.onclick=()=>{ order=D.cards.map((_,i)=>i); renderCards(); }; f.appendChild(rs);
+}
+function renderCards(){
+  const g=$('#grid'); g.innerHTML='';
+  const list=order.filter(i=>{ const c=D.cards[i]; if(group==='all') return true; if(group==='todo') return !known.has(i); return c.g===group; });
+  list.forEach(i=>{
+    const c=D.cards[i];
+    const w=mk('div','card'+(known.has(i)?' known':'')); w.tabIndex=0; w.setAttribute('role','button'); w.setAttribute('aria-label','Flip card: '+c.en);
+    w.innerHTML =
+      '<div class="inner">'+
+        '<div class="face front"><span class="tag">'+esc(GROUPS[c.g]||'')+'</span><button class="spk" title="Listen" aria-label="Listen">🔊</button>'+
+          '<div class="en">'+esc(c.en)+'</div><div class="ipa">'+esc(c.ipa)+'</div><div class="hint">click to flip</div></div>'+
+        '<div class="face back"><div class="ru">'+esc(c.ru)+'</div><div class="df">'+esc(c.df)+'</div>'+
+          '<div class="ex">'+esc(c.ex)+'</div>'+(c.note?'<div class="note">'+esc(c.note)+'</div>':'')+
+          '<button class="known-btn">'+(known.has(i)?'✓ I know it':'Mark as known')+'</button></div>'+
+      '</div>';
+    w.onclick=()=>w.classList.toggle('flip');
+    w.onkeydown=e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); w.classList.toggle('flip'); } };
+    w.querySelector('.spk').onclick=e=>{ e.stopPropagation(); speak(c.say); };
+    w.querySelector('.known-btn').onclick=e=>{ e.stopPropagation(); if(known.has(i)) known.delete(i); else known.add(i); renderCards(); };
+    g.appendChild(w);
+  });
+  $('#counter').textContent='Known: '+known.size+' / '+D.cards.length+'. Cards shown: '+list.length+'.';
+}
+
+/* ---------- Generic builders ---------- */
+function sel(opts, ans){
+  const s=document.createElement('select'); s.dataset.a=ans;
+  const o0=document.createElement('option'); o0.value=''; o0.textContent='…'; s.appendChild(o0);
+  opts.forEach(t=>{ const o=document.createElement('option'); o.value=t; o.textContent=t; s.appendChild(o); });
+  return s;
+}
+
+/* ---------- Match ---------- */
+(function(){
+  const box=$('#matchList');
+  D.match.forEach((m,i)=>{
+    const r=mk('div','ex-item'); r.appendChild(mk('div','w', (i+1)+'. '+esc(m.w)+'<small>'+esc(m.ipa)+'</small>'));
+    r.appendChild(sel(D.defs, m.d)); box.appendChild(r);
+  });
+})();
+
+/* ---------- Unscramble ---------- */
+(function(){
+  const box=$('#scrList');
+  D.scr.forEach((m,i)=>{
+    const r=mk('div','ex-item'); r.appendChild(mk('div','w', (i+1)+'. '+esc(m.s)+'<small>'+esc(m.c)+'</small>'));
+    const inp=document.createElement('input'); inp.type='text'; inp.dataset.a=m.a; inp.autocomplete='off'; inp.spellcheck=false; inp.setAttribute('aria-label','Answer '+(i+1)); r.appendChild(inp); box.appendChild(r);
+  });
+})();
+
+/* ---------- Reading text ---------- */
+(function(){
+  const box=$('#textBody');
+  D.text.forEach(sec=>{
+    box.appendChild(mk('h3','',esc(sec.h)));
+    const p=mk('p');
+    sec.p.forEach(x=>{
+      if(typeof x==='number'){
+        const g=D.gaps[String(x)];
+        p.appendChild(mk('span','gn',String(x)));
+        p.appendChild(sel(g.o,g.a));
+      } else p.appendChild(document.createTextNode(x));
+    });
+    box.appendChild(p);
+  });
+})();
+
+/* ---------- Mixed ---------- */
+(function(){
+  const box=$('#mixedList');
+  D.mixed.forEach((m,i)=>{
+    const d=mk('div','sent'); d.appendChild(document.createTextNode((i+1)+'. '));
+    m.p.forEach(x=>{
+      if(typeof x==='number'){ d.appendChild(sel(m.g[String(x)], m.a[String(x)])); }
+      else d.appendChild(document.createTextNode(x));
+    });
+    d.appendChild(mk('div','expl',esc(m.e)));
+    box.appendChild(d);
+  });
+})();
+
+/* ---------- Classify ---------- */
+(function(){
+  const box=$('#clsList'); const T=['Zero','First','Second','Third','Mixed A','Mixed B'];
+  D.cls.forEach((m,i)=>{
+    const d=mk('div','sent'); d.appendChild(document.createTextNode((i+1)+'. '+m.s+'  '));
+    d.appendChild(sel(T,m.a)); box.appendChild(d);
+  });
+})();
+
+/* ---------- Check / show / reset ---------- */
+const norm = s => String(s||'').trim().toLowerCase().replace(/\s+/g,' ');
+function checkBox(id){
+  const box=document.getElementById(id); let ok=0, tot=0;
+  box.querySelectorAll('[data-a]').forEach(x=>{
+    tot++; const good = norm(x.value)===norm(x.dataset.a);
+    x.classList.toggle('ok',good); x.classList.toggle('bad',!good); if(good) ok++;
+  });
+  box.querySelectorAll('.expl').forEach(e=>e.classList.add('show'));
+  box.querySelector('.score').textContent=ok+' / '+tot;
+}
+function showBox(id){
+  const box=document.getElementById(id);
+  box.querySelectorAll('[data-a]').forEach(x=>{ x.value=x.dataset.a; x.classList.remove('bad'); x.classList.add('ok'); });
+  box.querySelectorAll('.expl').forEach(e=>e.classList.add('show'));
+  const t=box.querySelectorAll('[data-a]').length; box.querySelector('.score').textContent=t+' / '+t;
+}
+function resetBox(id){
+  const box=document.getElementById(id);
+  box.querySelectorAll('[data-a]').forEach(x=>{ x.value=''; x.classList.remove('ok','bad'); });
+  box.querySelectorAll('.expl').forEach(e=>e.classList.remove('show'));
+  box.querySelector('.score').textContent='';
+}
+document.querySelectorAll('[data-check]').forEach(b=>b.onclick=()=>checkBox(b.dataset.check));
+document.querySelectorAll('[data-show]').forEach(b=>b.onclick=()=>showBox(b.dataset.show));
+document.querySelectorAll('[data-reset]').forEach(b=>b.onclick=()=>resetBox(b.dataset.reset));
+
+renderFilters(); renderCards();
+try{ if('speechSynthesis' in window) speechSynthesis.getVoices(); }catch(e){}
+</script>
+</body>
+</html>
