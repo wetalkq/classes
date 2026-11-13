@@ -48,16 +48,31 @@
     background: var(--gold-soft); border: 1px solid var(--gold); border-radius: 12px;
     padding: 14px 16px; margin-bottom: 20px; font-size: 0.9rem;
   }
-  .key-rule .rule-row { padding: 7px 0; border-bottom: 1px dashed var(--border); }
-  .key-rule .rule-row:last-child { border-bottom: none; }
-  .key-rule .rule-label { font-size: 0.86rem; margin-bottom: 3px; }
-  .key-rule .rule-ex { font-size: 0.92rem; line-height: 1.7; }
-  .key-rule .rule-ex .tok { font-family: 'Amiri', serif; font-size: 1.05rem; direction: rtl; unicode-bidi: isolate; display: inline-block; }
-  .key-rule .ex-line { margin-top: 4px; }
-  .chip-row { display: flex; flex-wrap: wrap; gap: 4px 10px; align-items: baseline; margin-top: 2px; }
-  .chip { display: inline-flex; align-items: baseline; gap: 4px; white-space: nowrap; }
-  .chip .tok { font-family: 'Amiri', serif; font-size: 1.05rem; direction: rtl; unicode-bidi: isolate; }
-  .key-rule b { color: var(--accent); }
+  .key-rule > b.heading { display: block; margin-bottom: 8px; color: var(--accent); font-size: 0.98rem; }
+  .rule-group-title { font-size: 0.88rem; font-weight: 700; margin: 14px 0 6px; }
+  .rule-group-title:first-of-type { margin-top: 2px; }
+  .rule-group-title .tok { font-family: 'Amiri', serif; font-size: 1rem; direction: rtl; unicode-bidi: isolate; }
+
+  .table-scroll { margin: 0 0 4px; }
+  table.rules-table, table.breakdown-table {
+    width: 100%; table-layout: fixed; border-collapse: collapse; font-size: 0.74rem; background: var(--surface);
+  }
+  .rules-table th, .rules-table td, .breakdown-table th, .breakdown-table td {
+    border: 1px solid var(--border); padding: 5px 5px; text-align: left; vertical-align: top;
+    word-wrap: break-word; overflow-wrap: break-word;
+  }
+  .rules-table th, .breakdown-table th {
+    background: var(--gold-soft); color: var(--accent); font-size: 0.7rem; font-weight: 700;
+  }
+  .rules-table td.rule-ex, .breakdown-table td.word-cell { text-align: center; }
+  .rules-table .tok, .breakdown-table .tok {
+    font-family: 'Amiri', serif; font-size: 1rem; direction: rtl; unicode-bidi: isolate; display: block;
+    line-height: 1.5;
+  }
+  .rules-table .translit, .breakdown-table .translit {
+    font-style: italic; color: var(--muted); font-size: 0.68rem; display: block; margin-top: 2px;
+  }
+  .breakdown-table td.role-cell { font-size: 0.7rem; }
 
   .scorebar {
     position: sticky; top: 0; z-index: 5;
@@ -74,6 +89,15 @@
     margin: 28px 0 4px; padding-bottom: 6px; border-bottom: 1px solid var(--border);
   }
   p.sec-note { color: var(--muted); font-size: 0.85rem; margin: 0 0 14px; }
+
+  .sentence-block {
+    background: var(--accent-soft); border: 1px solid var(--accent); border-radius: 12px;
+    padding: 12px 14px; margin: 24px 0 10px; font-size: 0.95rem;
+  }
+  .sentence-block .ar-big { font-family: 'Amiri', serif; font-size: 1.35rem; direction: rtl; text-align: center; margin-bottom: 6px; }
+  .sentence-block .tr-full { font-style: italic; color: var(--muted); text-align: center; font-size: 0.85rem; margin-bottom: 4px; }
+  .sentence-block .ru-full { text-align: center; font-weight: 700; margin-bottom: 10px; }
+  .sentence-block .bd-title { font-size: 0.82rem; font-weight: 700; margin: 10px 0 6px; color: var(--accent); }
 
   .q-card {
     background: var(--surface); border: 1px solid var(--border); border-radius: 14px;
@@ -106,14 +130,6 @@
   .q-feedback b.tag { display: block; margin-bottom: 4px; }
   .q-feedback .rule { color: var(--ink); }
 
-  .sentence-block {
-    background: var(--accent-soft); border: 1px solid var(--accent); border-radius: 12px;
-    padding: 12px 14px; margin: 24px 0 10px; font-size: 0.95rem;
-  }
-  .sentence-block .ar-big { font-family: 'Amiri', serif; font-size: 1.35rem; direction: rtl; text-align: center; margin-bottom: 6px; }
-  .sentence-block .tr-full { font-style: italic; color: var(--muted); text-align: center; font-size: 0.85rem; margin-bottom: 4px; }
-  .sentence-block .ru-full { text-align: center; font-weight: 700; }
-
   .check-wrap { text-align: center; margin-top: 26px; }
   button.btn-check {
     font-family: inherit; font-size: 1rem; font-weight: 700;
@@ -141,55 +157,116 @@
   <p class="sub">Слитные местоимения ед. ч. при предлогах + разбор целых предложений (падеж, окончание, почему). Весь материал — строго из §6 учебника.</p>
 
   <div class="key-rule">
-    <b>Кратко — правила §6:</b>
-    <div class="rule-row">
-      <div class="rule-label"><b>Предлоги на долгий ى:</b></div>
-      <div class="chip-row">
-        <span class="chip"><span class="tok">إِلَى</span><span>(к)</span></span>
-        <span class="chip"><span class="tok">عَلَى</span><span>(на)</span></span>
-        <span class="chip"><span class="tok">لَدَى</span><span>(у)</span></span>
-      </div>
-      <div class="rule-ex">
-        <div class="ex-line">ى → يْ (дифтонг «ай»): <span class="tok">إِلَيْكَ</span></div>
-        <div class="ex-line">هُ → هِ (после дифтонга): <span class="tok">إِلَيْهِ</span></div>
-        <div class="ex-line">«мой», слитно (с удвоением يّ): <span class="tok">إِلَيَّ</span></div>
-      </div>
+    <b class="heading">Кратко — правила §6 (таблицы для справки):</b>
+
+    <div class="rule-group-title">Предлоги на долгое <span class="tok">إِلَى، عَلَى، لَدَى</span> (к / на / у)</div>
+    <div class="table-scroll">
+      <table class="rules-table">
+        <thead><tr><th style="width:46%">Правило</th><th style="width:22%">Пример</th><th>Перевод</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>Конечная долгая ى переходит в дифтонг <b>يْ</b> («ай») перед любым слитным местоимением</td>
+            <td class="rule-ex"><span class="tok">إِلَيْكَ</span><span class="translit">ilayka</span></td>
+            <td>«к тебе»</td>
+          </tr>
+          <tr>
+            <td>После дифтонга -ай- местоимение هُ («его») меняется на هِ — так же, как после касры</td>
+            <td class="rule-ex"><span class="tok">إِلَيْهِ</span><span class="translit">ilayhi</span></td>
+            <td>«к нему»</td>
+          </tr>
+          <tr>
+            <td>Местоимение «мой» (يَ) сливается с дифтонгом через شدّة (удвоение)</td>
+            <td class="rule-ex"><span class="tok">إِلَيَّ</span><span class="translit">ilayya</span></td>
+            <td>«ко мне»</td>
+          </tr>
+          <tr>
+            <td>Женское местоимение هَا само по себе не меняется</td>
+            <td class="rule-ex"><span class="tok">لَدَيْهَا</span><span class="translit">ladayhā</span></td>
+            <td>«у неё»</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
-    <div class="rule-row">
-      <div class="rule-label"><b>Предлоги:</b></div>
-      <div class="chip-row">
-        <span class="chip"><span class="tok">مِنْ</span><span>(от, из)</span></span>
-        <span class="chip"><span class="tok">عَنْ</span><span>(о, об)</span></span>
-      </div>
-      <div class="rule-ex">
-        <div class="ex-line">перед «моим» ي буква ن удваивается:</div>
-        <div class="ex-line">«от меня» — <span class="tok">مِنِّي</span>, «обо мне» — <span class="tok">عَنِّي</span></div>
-        <div class="ex-line">в остальных лицах — обычно:</div>
-        <div class="ex-line">«от тебя» — <span class="tok">مِنْكَ</span>, «о нём» — <span class="tok">عَنْهُ</span></div>
-      </div>
+
+    <div class="rule-group-title">Предлоги <span class="tok">مِنْ</span> (от, из) и <span class="tok">عَنْ</span> (о, об)</div>
+    <div class="table-scroll">
+      <table class="rules-table">
+        <thead><tr><th style="width:46%">Правило</th><th style="width:22%">Пример</th><th>Перевод</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>Перед местоимением «я/меня» (ي) конечная ن предлога удваивается</td>
+            <td class="rule-ex"><span class="tok">مِنِّي</span><span class="translit">minnī</span></td>
+            <td>«от меня»</td>
+          </tr>
+          <tr>
+            <td>То же удвоение действует и у второго предлога</td>
+            <td class="rule-ex"><span class="tok">عَنِّي</span><span class="translit">ʿannī</span></td>
+            <td>«обо мне»</td>
+          </tr>
+          <tr>
+            <td>У остальных лиц — без удвоения, присоединяется как обычно</td>
+            <td class="rule-ex"><span class="tok">مِنْكَ</span><span class="translit">minka</span></td>
+            <td>«от тебя»</td>
+          </tr>
+          <tr>
+            <td>هُ не меняется на هِ — это простой предлог, не إلى/على/لدى/في</td>
+            <td class="rule-ex"><span class="tok">عَنْهُ</span><span class="translit">ʿanhu</span></td>
+            <td>«о нём»</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
-    <div class="rule-row">
-      <div class="rule-label"><b>Предлог:</b> <span class="tok">فِي</span> (в)</div>
-      <div class="rule-ex">
-        <div class="ex-line">«во мне»: <span class="tok">فِيَّ</span></div>
-        <div class="ex-line">«в нём» — <span class="tok">فِيهِ</span>, «в ней» — <span class="tok">فِيهَا</span></div>
-      </div>
+
+    <div class="rule-group-title">Предлог <span class="tok">فِي</span> (в)</div>
+    <div class="table-scroll">
+      <table class="rules-table">
+        <thead><tr><th style="width:46%">Правило</th><th style="width:22%">Пример</th><th>Перевод</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>«Во мне» — особое слияние предлога с يَ через شدّة</td>
+            <td class="rule-ex"><span class="tok">فِيَّ</span><span class="translit">fiyya</span></td>
+            <td>«во мне»</td>
+          </tr>
+          <tr>
+            <td>هُ меняется на هِ — после долгого [ī] (как после касры)</td>
+            <td class="rule-ex"><span class="tok">فِيهِ</span><span class="translit">fīhi</span></td>
+            <td>«в нём»</td>
+          </tr>
+          <tr>
+            <td>هَا само по себе не меняется</td>
+            <td class="rule-ex"><span class="tok">فِيهَا</span><span class="translit">fīhā</span></td>
+            <td>«в ней»</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
-    <div class="rule-row">
-      <div class="rule-label">Глагол со своим фиксированным предлогом:</div>
-      <div class="rule-ex">
-        <div class="ex-line"><span class="tok">سَأَلَ عَنْ</span> — спросить о</div>
-        <div class="ex-line"><span class="tok">بَحَثَ عَنْ</span> — искать</div>
-        <div class="ex-line"><span class="tok">دَخَلَ عَلَى</span> — зайти к</div>
-        <div class="ex-line"><span class="tok">حَضَرَ إِلَى</span> — прийти к</div>
-        <div class="ex-line"><span class="tok">طَلَبَ مِنْ</span> — просить у</div>
-      </div>
+
+    <div class="rule-group-title">Глаголы со своим фиксированным предлогом</div>
+    <div class="table-scroll">
+      <table class="rules-table">
+        <thead><tr><th style="width:27%">Глагол</th><th style="width:25%">+ предлог</th><th>Значение</th></tr></thead>
+        <tbody>
+          <tr><td class="rule-ex"><span class="tok">سَأَلَ</span><span class="translit">sa'ala</span></td><td class="rule-ex"><span class="tok">عَنْ</span><span class="translit">ʿan</span></td><td>спросить о (ком/чём-л.)</td></tr>
+          <tr><td class="rule-ex"><span class="tok">بَحَثَ</span><span class="translit">baḥatha</span></td><td class="rule-ex"><span class="tok">عَنْ</span><span class="translit">ʿan</span></td><td>искать (кого/что-л.)</td></tr>
+          <tr><td class="rule-ex"><span class="tok">دَخَلَ</span><span class="translit">dakhala</span></td><td class="rule-ex"><span class="tok">عَلَى</span><span class="translit">ʿalā</span></td><td>зайти к (кому-л.)</td></tr>
+          <tr><td class="rule-ex"><span class="tok">حَضَرَ</span><span class="translit">ḥaḍara</span></td><td class="rule-ex"><span class="tok">إِلَى</span><span class="translit">ilā</span></td><td>прийти (куда-л.)</td></tr>
+          <tr><td class="rule-ex"><span class="tok">طَلَبَ</span><span class="translit">ṭalaba</span></td><td class="rule-ex"><span class="tok">مِنْ</span><span class="translit">min</span></td><td>попросить у (кого-л.)</td></tr>
+        </tbody>
+      </table>
     </div>
-    <div class="rule-row">
-      <div class="rule-label">Прямое дополнение глагола (винительный, а не родительный!):</div>
-      <div class="rule-ex">
-        <div class="ex-line"><span class="tok">سَأَلَهَا</span> — «спросил её» (местоимение прямо на глаголе, без предлога)</div>
-      </div>
+
+    <div class="rule-group-title">Прямое дополнение глагола (без предлога!)</div>
+    <div class="table-scroll">
+      <table class="rules-table">
+        <thead><tr><th style="width:46%">Правило</th><th style="width:22%">Пример</th><th>Перевод</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>Местоимение присоединено прямо к глаголу, без предлога — это <b>винительный</b> падеж (а не родительный), хотя форма суффикса та же самая</td>
+            <td class="rule-ex"><span class="tok">سَأَلَهَا</span><span class="translit">sa'alahā</span></td>
+            <td>«спросил её»</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 
@@ -218,7 +295,7 @@
   var sections = [
     {
       title: "1. Присоединение к إِلَى / عَلَى / لَدَى",
-      note: "Эти предлоги оканчиваются на долгий [ā] (буква ى) — перед слитным местоимением она превращается в دифтонг -ай-.",
+      note: "Эти предлоги оканчиваются на долгий [ā] (буква ى) — перед слитным местоимением она превращается в дифтонг -ай-.",
       questions: [
         {
           prompt: "«к тебе» (муж. р., إِلَى)",
@@ -380,7 +457,7 @@
             { ar: "فِيهَا", tr: "fīhā" }
           ],
           correct: 1,
-          explain: "После долгого [ī] (конец في) هُ меняется на هِ — как после كسرة. فِي + هُ = فِيهِ."
+          explain: "После долгого [ī] (конец في) هُ меняется на هِ — как после كسرة. في + هُ = فِيهِ."
         },
         {
           prompt: "«в ней»",
@@ -442,166 +519,237 @@
     },
     {
       title: "5. Разбор предложения",
-      note: "Пять предложений прямо из упражнений §6. На каждое — три вопроса: падеж, почему такая форма, кто есть кто.",
-      questions: [
+      note: "Пять предложений прямо из упражнений §6. Для каждого — таблица «слово за словом» (из чего слово состоит, какой падеж и почему), а ниже — три вопроса на проверку.",
+      sentenceGroups: [
         {
-          prompt: "<span class=\"ar-inline\">سَأَلَهَا عَنِّي مُعَلِّمِي ٱلْعَرَبِيُّ.</span><br><i>(Мой арабский учитель спросил её обо мне.)</i><br>Вопрос 1: местоимение «هَا» в «سَأَلَهَا» — какой падеж по роли в предложении?",
-          options: [
-            { ar: "Винительный — прямое дополнение глагола (кого спросил? — её), без предлога", tr: "" },
-            { ar: "Родительный — потому что присоединено к глаголу", tr: "" },
-            { ar: "Именительный — это подлежащее", tr: "" }
+          ar: "سَأَلَهَا عَنِّي مُعَلِّمِي ٱلْعَرَبِيُّ.",
+          translit: "sa'alahā ʿannī muʿallimī l-ʿarabiyyu.",
+          ru: "Мой арабский учитель спросил её обо мне.",
+          breakdown: [
+            { ar: "سَأَلَهَا", translit: "sa'ala + -hā", parse: "глагол «спросил» (3 л., муж.р., ед.ч., прош.вр.) + слитное местоимение «её» — прямое дополнение, приклеено прямо к глаголу", role: "вин. (без предлога)", ru: "спросил её" },
+            { ar: "عَنِّي", translit: "ʿan + -ī", parse: "«свой» предлог глагола «спросить» (sa'ala ʿan — спросить о) + слитное «я»; ن удвоена перед ي", role: "род. (после предлога)", ru: "обо мне" },
+            { ar: "مُعَلِّمِي", translit: "muʿallim- + -ī", parse: "«учитель» + слитное «мой» (идафа) — это подлежащее, оно идёт после глагола и двух его местоимённых дополнений", role: "им. (подлежащее)", ru: "мой учитель" },
+            { ar: "ٱلْعَرَبِيُّ", translit: "al-ʿarabiyyu", parse: "прилагательное-нисба «арабский», согласовано с مُعَلِّمِي в роде, числе, падеже и определённости", role: "им. (определение)", ru: "арабский" }
           ],
-          correct: 0,
-          explain: "سَأَلَ присоединяет местоимение «кого?» напрямую, без предлога — это винительный падеж прямого дополнения. Форма суффикса (-ها) внешне совпадает с «родительной», но падеж определяется ролью в предложении, а не видом суффикса."
+          questions: [
+            {
+              prompt: "Вопрос 1: местоимение «هَا» в «سَأَلَهَا» — какой падеж по роли в предложении?",
+              options: [
+                { ar: "Винительный — прямое дополнение глагола (кого спросил? — её), без предлога", tr: "" },
+                { ar: "Родительный — потому что присоединено к глаголу", tr: "" },
+                { ar: "Именительный — это подлежащее", tr: "" }
+              ],
+              correct: 0,
+              explain: "سَأَلَ присоединяет местоимение «кого?» напрямую, без предлога — это винительный падеж прямого дополнения. Форма суффикса (-ها) внешне совпадает с «родительной», но падеж определяется ролью в предложении, а не видом суффикса."
+            },
+            {
+              prompt: "Вопрос 2: почему в «عَنِّي» буква ن удвоена?",
+              options: [
+                { ar: "Перед слитным местоимением 1-го л. ед.ч. (-ī) конечная «нун» предлогов min/ʿan всегда удваивается", tr: "" },
+                { ar: "Это обычное удвоение любой буквы «нун» в арабском языке", tr: "" },
+                { ar: "Ошибка — должно быть ʿanī без удвоения", tr: "" }
+              ],
+              correct: 0,
+              explain: "Правило §6: перед «моим» ي у مِنْ и عَنْ конечная ن удваивается (عَنِّي, مِنِّي). У других лиц удвоения нет."
+            },
+            {
+              prompt: "Вопрос 3: кто здесь подлежащее (кто совершил действие)?",
+              options: [
+                { ar: "مُعَلِّمِي ٱلْعَرَبِيُّ", tr: "мой арабский учитель" },
+                { ar: "هِيَ", tr: "она (هَا)" },
+                { ar: "أَنَا", tr: "я (عَنِّي)" }
+              ],
+              correct: 0,
+              explain: "Подлежащее — отдельное существительное مُعَلِّمِي ٱلْعَرَبِيُّ, стоящее после глагола и двух его слитных дополнений (так и бывает: местоимённые дополнения прилипают к глаголу, а полноценное подлежащее-существительное идёт следом)."
+            }
+          ]
         },
         {
-          prompt: "<span class=\"ar-inline\">سَأَلَهَا عَنِّي مُعَلِّمِي ٱلْعَرَبِيُّ.</span><br><i>(Мой арабский учитель спросил её обо мне.)</i><br>Вопрос 2: почему в «عَنِّي» буква ن удвоена?",
-          options: [
-            { ar: "Перед слитным местоимением 1-го л. ед.ч. (-ī) конечная «нун» предлогов min/ʿan всегда удваивается", tr: "" },
-            { ar: "Это обычное удвоение любой буквы «нун» в арабском языке", tr: "" },
-            { ar: "Ошибка — должно быть ʿanī без удвоения", tr: "" }
+          ar: "طَلَبْتَ مِنْهُ مِظَلَّتَكَ ٱلسَّوْدَاءَ.",
+          translit: "ṭalabta minhu miẓallataka s-sawdā'a.",
+          ru: "Ты (муж. р.) попросил у него свой чёрный зонт.",
+          breakdown: [
+            { ar: "طَلَبْتَ", translit: "ṭalab- + -ta", parse: "глагол «просить» (2 л., муж.р., ед.ч., прош.вр.) + суффикс подлежащего -تَ («ты»)", role: "сказуемое", ru: "ты попросил" },
+            { ar: "مِنْهُ", translit: "min + -hu", parse: "«свой» предлог глагола «просить» (ṭalaba min — попросить у) + слитное «он/него»; هُ не меняется на هِ, т.к. مِنْ — обычный предлог", role: "род. (после предлога)", ru: "у него" },
+            { ar: "مِظَلَّتَكَ", translit: "miẓallata- + -ka", parse: "«зонт» + слитное «твой» (идафа) — прямое дополнение глагола طَلَبَ", role: "вин. (прямое дополнение)", ru: "свой зонт" },
+            { ar: "ٱلسَّوْدَاءَ", translit: "as-sawdā'a", parse: "двухпадежное прилагательное «чёрная» (модель afʿal/faʿlā'), согласовано с مِظَلَّتَكَ в роде, числе и падеже — окончание -a, танвина нет никогда", role: "вин. (определение)", ru: "чёрный" }
           ],
-          correct: 0,
-          explain: "Правило §6: перед «моим» ي у مِنْ и عَنْ конечная ن удваивается (عَنِّي, مِنِّي). У других лиц удвоения нет."
+          questions: [
+            {
+              prompt: "Вопрос 1: падеж «مِظَلَّتَكَ ٱلسَّوْدَاءَ» (зонт + прилагательное) и почему?",
+              options: [
+                { ar: "Винительный — прямое дополнение глагола ṭalaba (что попросил?)", tr: "" },
+                { ar: "Родительный — потому что рядом стоит предлог min", tr: "" },
+                { ar: "Именительный", tr: "" }
+              ],
+              correct: 0,
+              explain: "Предлог مِنْ здесь управляет только местоимением هُ («у него»); «свой чёрный зонт» — отдельное прямое дополнение самого глагола طَلَبَ, винительный падеж."
+            },
+            {
+              prompt: "Вопрос 2: почему у «ٱلسَّوْدَاءَ» окончание -a, а не танвин -an?",
+              options: [
+                { ar: "Это двухпадежное имя (модель afʿal/faʿlā' — цвета) — танвина не бывает никогда", tr: "" },
+                { ar: "Потому что слово определено артиклем al-", tr: "" },
+                { ar: "Это ошибка, должно быть as-sawdā'an", tr: "" }
+              ],
+              correct: 0,
+              explain: "أَسْوَد/سَوْدَاء — двухпадежное имя (цвет), у него никогда нет танвина, а родительный и винительный падежи совпадают (окончание -a)."
+            },
+            {
+              prompt: "Вопрос 3: почему «مِنْهُ», а не «مِنْهِ»?",
+              options: [
+                { ar: "-hu не меняется на -hi — перед ним нет ни касры, ни дифтонга -ай- (min — обычный предлог, не ilā/ʿalā/ladā/fī)", tr: "" },
+                { ar: "-hu всегда меняется на -hi после любого предлога", tr: "" },
+                { ar: "Это дело случая, оба варианта верны", tr: "" }
+              ],
+              correct: 0,
+              explain: "Правило «هُ→هِ» действует только после كسرة или дифтонга -ай- (إلى/على/لدى/في). После простого مِنْ/عَنْ هُ остаётся هُ: مِنْهُ، عَنْهُ."
+            }
+          ]
         },
         {
-          prompt: "<span class=\"ar-inline\">سَأَلَهَا عَنِّي مُعَلِّمِي ٱلْعَرَبِيُّ.</span><br><i>(Мой арабский учитель спросил её обо мне.)</i><br>Вопрос 3: кто здесь подлежащее (кто совершил действие)?",
-          options: [
-            { ar: "مُعَلِّمِي ٱلْعَرَبِيُّ", tr: "мой арабский учитель" },
-            { ar: "هِيَ", tr: "она (هَا)" },
-            { ar: "أَنَا", tr: "я (عَنِّي)" }
+          ar: "دَخَلَ عَلَيْكَ حَفِيدُكَ ٱلْحَبِيبُ.",
+          translit: "dakhala ʿalayka ḥafīduka l-ḥabību.",
+          ru: "К тебе зашёл твой любимый внук.",
+          breakdown: [
+            { ar: "دَخَلَ", translit: "dakhala", parse: "глагол «зайти, войти» (3 л., муж.р., ед.ч., прош.вр.)", role: "сказуемое", ru: "зашёл" },
+            { ar: "عَلَيْكَ", translit: "ʿalay- + -ka", parse: "«свой» предлог глагола «зайти» (dakhala ʿalā — зайти к) + слитное «ты»; ى → يْ (дифтонг) перед суффиксом", role: "род. (после предлога)", ru: "к тебе" },
+            { ar: "حَفِيدُكَ", translit: "ḥafīdu- + -ka", parse: "«внук» + слитное «твой» (идафа) — подлежащее глагола دَخَلَ", role: "им. (подлежащее)", ru: "твой внук" },
+            { ar: "ٱلْحَبِيبُ", translit: "al-ḥabību", parse: "прилагательное «любимый», согласовано с حَفِيدُكَ", role: "им. (определение)", ru: "любимый" }
           ],
-          correct: 0,
-          explain: "Подлежащее — отдельное существительное مُعَلِّمِي ٱلْعَرَبِيُّ, стоящее после глагола и двух его слитных дополнений (так и бывает: местоимённые дополнения прилипают к глаголу, а полноценное подлежащее-существительное идёт следом)."
+          questions: [
+            {
+              prompt: "Вопрос 1: падеж «حَفِيدُكَ ٱلْحَبِيبُ» и почему?",
+              options: [
+                { ar: "Именительный — это подлежащее (кто зашёл)", tr: "" },
+                { ar: "Родительный", tr: "" },
+                { ar: "Винительный", tr: "" }
+              ],
+              correct: 0,
+              explain: "حَفِيدُكَ ٱلْحَبِيبُ — подлежащее глагола دَخَلَ, именительный падеж (окончание -у на الحبيب)."
+            },
+            {
+              prompt: "Вопрос 2: почему «عَلَيْكَ», а не «عَلَاكَ»?",
+              options: [
+                { ar: "Конечная долгая ى предлога ʿalā перед слитным местоимением переходит в дифтонг -ай-: ʿalay-", tr: "" },
+                { ar: "Это нерегулярное исключение без правила", tr: "" },
+                { ar: "Ошибка написания в учебнике", tr: "" }
+              ],
+              correct: 0,
+              explain: "Правило §6 для предлогов на долгий [ā] (إلى/على/لدى): ى → يْ перед суффиксом."
+            },
+            {
+              prompt: "Вопрос 3: кто здесь подлежащее?",
+              options: [
+                { ar: "حَفِيدُكَ ٱلْحَبِيبُ", tr: "твой любимый внук" },
+                { ar: "أَنْتَ", tr: "ты (عَلَيْكَ)" },
+                { ar: "عَلَيْكَ", tr: "к тебе" }
+              ],
+              correct: 0,
+              explain: "Подлежащее — существительное حَفِيدُكَ ٱلْحَبِيبُ, идущее после глагола и его предложной группы."
+            }
+          ]
         },
         {
-          prompt: "<span class=\"ar-inline\">طَلَبْتَ مِنْهُ مِظَلَّتَكَ ٱلسَّوْدَاءَ.</span><br><i>(Ты (муж. р.) попросил у него свой чёрный зонт.)</i><br>Вопрос 1: падеж «مِظَلَّتَكَ ٱلسَّوْدَاءَ» (зонт + прилагательное) и почему?",
-          options: [
-            { ar: "Винительный — прямое дополнение глагола ṭalaba (что попросил?)", tr: "" },
-            { ar: "Родительный — потому что рядом стоит предлог min", tr: "" },
-            { ar: "Именительный", tr: "" }
+          ar: "حَضَرَتْ إِلَيْهَا صَدِيقَتُهَا ٱلْقَدِيمَةُ.",
+          translit: "ḥaḍarat ilayhā ṣadīqatuhā l-qadīmatu.",
+          ru: "К ней пришла её старая подруга.",
+          breakdown: [
+            { ar: "حَضَرَتْ", translit: "ḥaḍara- + -t", parse: "глагол «прийти» (3 л., жен.р., ед.ч., прош.вр.); окончание -ат — согласование с подлежащим женского рода", role: "сказуемое", ru: "пришла" },
+            { ar: "إِلَيْهَا", translit: "ilay- + -hā", parse: "«свой» предлог глагола «прийти» (ḥaḍara ilā — прийти к) + слитное «она»; ى → يْ перед суффиксом", role: "род. (после предлога)", ru: "к ней" },
+            { ar: "صَدِيقَتُهَا", translit: "ṣadīqatu- + -hā", parse: "«подруга» + слитное «её» (идафа) — подлежащее глагола حَضَرَتْ", role: "им. (подлежащее)", ru: "её подруга" },
+            { ar: "ٱلْقَدِيمَةُ", translit: "al-qadīmatu", parse: "прилагательное «старая», согласовано с صَدِيقَتُهَا", role: "им. (определение)", ru: "старая" }
           ],
-          correct: 0,
-          explain: "Предлог مِنْ здесь управляет только местоимением هُ («у него»); «свой чёрный зонт» — отдельное прямое дополнение самого глагола طَلَبَ, винительный падеж."
+          questions: [
+            {
+              prompt: "Вопрос 1: почему глагол «حَضَرَتْ», а не «حَضَرَ»?",
+              options: [
+                { ar: "Подлежащее «ṣadīqatuhā» (её подруга) женского рода — глагол согласуется в роде, окончание -ат", tr: "" },
+                { ar: "Потому что действие было в прошлом", tr: "" },
+                { ar: "Потому что дальше идёт предлог ilā", tr: "" }
+              ],
+              correct: 0,
+              explain: "Глагол в прошедшем времени согласуется в роде со своим подлежащим: подлежащее женского рода → окончание -ат (حَضَرَتْ)."
+            },
+            {
+              prompt: "Вопрос 2: падеж «صَدِيقَتُهَا ٱلْقَدِيمَةُ» и почему?",
+              options: [
+                { ar: "Именительный — подлежащее", tr: "" },
+                { ar: "Родительный — потому что рядом предлог ilā", tr: "" },
+                { ar: "Винительный", tr: "" }
+              ],
+              correct: 0,
+              explain: "Предлог إِلَى относится только к местоимению هَا («к ней»); صَدِيقَتُهَا ٱلْقَدِيمَةُ — отдельное подлежащее, именительный падеж."
+            },
+            {
+              prompt: "Вопрос 3: местоимение «هَا» в «إِلَيْهَا» — какой падеж и почему?",
+              options: [
+                { ar: "Родительный — присоединено к предлогу ilā", tr: "" },
+                { ar: "Винительный — прямое дополнение глагола", tr: "" },
+                { ar: "Именительный", tr: "" }
+              ],
+              correct: 0,
+              explain: "Любое местоимение, присоединённое к предлогу, стоит в родительном падеже — так же, как и при присоединении к имени существительному."
+            }
+          ]
         },
         {
-          prompt: "<span class=\"ar-inline\">طَلَبْتَ مِنْهُ مِظَلَّتَكَ ٱلسَّوْدَاءَ.</span><br><i>(Ты (муж. р.) попросил у него свой чёрный зонт.)</i><br>Вопрос 2: почему у «ٱلسَّوْدَاءَ» окончание -a, а не танвин -an?",
-          options: [
-            { ar: "Это двухпадежное имя (модель afʿal/faʿlā' — цвета) — танвина не бывает никогда", tr: "" },
-            { ar: "Потому что слово определено артиклем al-", tr: "" },
-            { ar: "Это ошибка, должно быть as-sawdā'an", tr: "" }
+          ar: "بَحَثَتْ عَنْهَا مُعَلِّمَتُهَا ٱلْجَدِيدَةُ.",
+          translit: "baḥathat ʿanhā muʿallimatuhā l-jadīdatu.",
+          ru: "Её новая учительница искала её.",
+          breakdown: [
+            { ar: "بَحَثَتْ", translit: "baḥatha- + -t", parse: "глагол «искать» (3 л., жен.р., ед.ч., прош.вр.); окончание -ат — согласование с подлежащим женского рода", role: "сказуемое", ru: "искала" },
+            { ar: "عَنْهَا", translit: "ʿan + -hā", parse: "«свой» предлог глагола «искать» (baḥatha ʿan — искать кого-л.) + слитное «она»", role: "род. (после предлога)", ru: "её (букв. о ней)" },
+            { ar: "مُعَلِّمَتُهَا", translit: "muʿallimatu- + -hā", parse: "«учительница» + слитное «её» (идафа) — подлежащее глагола بَحَثَتْ", role: "им. (подлежащее)", ru: "её учительница" },
+            { ar: "ٱلْجَدِيدَةُ", translit: "al-jadīdatu", parse: "прилагательное «новая», согласовано с مُعَلِّمَتُهَا", role: "им. (определение)", ru: "новая" }
           ],
-          correct: 0,
-          explain: "أَسْوَد/سَوْدَاء — двухпадежное имя (цвет), у него никогда нет танвина, а родительный и винительный падежи совпадают (окончание -a)."
-        },
-        {
-          prompt: "<span class=\"ar-inline\">طَلَبْتَ مِنْهُ مِظَلَّتَكَ ٱلسَّوْدَاءَ.</span><br><i>(Ты (муж. р.) попросил у него свой чёрный зонт.)</i><br>Вопрос 3: почему «مِنْهُ», а не «مِنْهِ»?",
-          options: [
-            { ar: "-hu не меняется на -hi — перед ним нет ни касры, ни дифтонга -ай- (min — обычный предлог, не ilā/ʿalā/ladā/fī)", tr: "" },
-            { ar: "-hu всегда меняется на -hi после любого предлога", tr: "" },
-            { ar: "Это дело случая, оба варианта верны", tr: "" }
-          ],
-          correct: 0,
-          explain: "Правило «هُ→هِ» действует только после كسرة или дифтонга -ай- (إلى/على/لدى/في). После простого مِنْ/عَنْ هُ остаётся هُ: مِنْهُ، عَنْهُ."
-        },
-        {
-          prompt: "<span class=\"ar-inline\">دَخَلَ عَلَيْكَ حَفِيدُكَ ٱلْحَبِيبُ.</span><br><i>(К тебе зашёл твой любимый внук.)</i><br>Вопрос 1: падеж «حَفِيدُكَ ٱلْحَبِيبُ» и почему?",
-          options: [
-            { ar: "Именительный — это подлежащее (кто зашёл)", tr: "" },
-            { ar: "Родительный", tr: "" },
-            { ar: "Винительный", tr: "" }
-          ],
-          correct: 0,
-          explain: "حَفِيدُكَ ٱلْحَبِيبُ — подлежащее глагола دَخَلَ, именительный падеж (окончание -у на الحبيب)."
-        },
-        {
-          prompt: "<span class=\"ar-inline\">دَخَلَ عَلَيْكَ حَفِيدُكَ ٱلْحَبِيبُ.</span><br><i>(К тебе зашёл твой любимый внук.)</i><br>Вопрос 2: почему «عَلَيْكَ», а не «عَلَاكَ»?",
-          options: [
-            { ar: "Конечная долгая ى предлога ʿalā перед слитным местоимением переходит в дифтонг -ай-: ʿalay-", tr: "" },
-            { ar: "Это нерегулярное исключение без правила", tr: "" },
-            { ar: "Ошибка написания в учебнике", tr: "" }
-          ],
-          correct: 0,
-          explain: "Правило §6 для предлогов на долгий [ā] (إلى/على/لدى): ى → يْ перед суффиксом."
-        },
-        {
-          prompt: "<span class=\"ar-inline\">دَخَلَ عَلَيْكَ حَفِيدُكَ ٱلْحَبِيبُ.</span><br><i>(К тебе зашёл твой любимый внук.)</i><br>Вопрос 3: кто здесь подлежащее?",
-          options: [
-            { ar: "حَفِيدُكَ ٱلْحَبِيبُ", tr: "твой любимый внук" },
-            { ar: "أَنْتَ", tr: "ты (عَلَيْكَ)" },
-            { ar: "عَلَيْكَ", tr: "к тебе" }
-          ],
-          correct: 0,
-          explain: "Подлежащее — существительное حَفِيدُكَ ٱلْحَبِيبُ, идущее после глагола и его предложной группы."
-        },
-        {
-          prompt: "<span class=\"ar-inline\">حَضَرَتْ إِلَيْهَا صَدِيقَتُهَا ٱلْقَدِيمَةُ.</span><br><i>(К ней пришла её старая подруга.)</i><br>Вопрос 1: почему глагол «حَضَرَتْ», а не «حَضَرَ»?",
-          options: [
-            { ar: "Подлежащее «ṣadīqatuhā» (её подруга) женского рода — глагол согласуется в роде, окончание -ат", tr: "" },
-            { ar: "Потому что действие было в прошлом", tr: "" },
-            { ar: "Потому что дальше идёт предлог ilā", tr: "" }
-          ],
-          correct: 0,
-          explain: "Глагол в прошедшем времени согласуется в роде со своим подлежащим: подлежащее женского рода → окончание -ат (حَضَرَتْ)."
-        },
-        {
-          prompt: "<span class=\"ar-inline\">حَضَرَتْ إِلَيْهَا صَدِيقَتُهَا ٱلْقَدِيمَةُ.</span><br><i>(К ней пришла её старая подруга.)</i><br>Вопрос 2: падеж «صَدِيقَتُهَا ٱلْقَدِيمَةُ» и почему?",
-          options: [
-            { ar: "Именительный — подлежащее", tr: "" },
-            { ar: "Родительный — потому что рядом предлог ilā", tr: "" },
-            { ar: "Винительный", tr: "" }
-          ],
-          correct: 0,
-          explain: "Предлог إِلَى относится только к местоимению هَا («к ней»); صَدِيقَتُهَا ٱلْقَدِيمَةُ — отдельное подлежащее, именительный падеж."
-        },
-        {
-          prompt: "<span class=\"ar-inline\">حَضَرَتْ إِلَيْهَا صَدِيقَتُهَا ٱلْقَدِيمَةُ.</span><br><i>(К ней пришла её старая подруга.)</i><br>Вопрос 3: местоимение «هَا» в «إِلَيْهَا» — какой падеж и почему?",
-          options: [
-            { ar: "Родительный — присоединено к предлогу ilā", tr: "" },
-            { ar: "Винительный — прямое дополнение глагола", tr: "" },
-            { ar: "Именительный", tr: "" }
-          ],
-          correct: 0,
-          explain: "Любое местоимение, присоединённое к предлогу, стоит в родительном падеже — так же, как и при присоединении к имени существительному."
-        },
-        {
-          prompt: "<span class=\"ar-inline\">بَحَثَتْ عَنْهَا مُعَلِّمَتُهَا ٱلْجَدِيدَةُ.</span><br><i>(Её новая учительница искала её.)</i><br>Вопрос 1: кого искали?",
-          options: [
-            { ar: "عَنْهَا", tr: "её" },
-            { ar: "مُعَلِّمَتُهَا", tr: "учительницу" },
-            { ar: "ٱلْجَدِيدَةُ", tr: "новую" }
-          ],
-          correct: 0,
-          explain: "بَحَثَ عَنْ требует предлога عَنْ для того, кого/что ищут — здесь это «её» (عَنْهَا)."
-        },
-        {
-          prompt: "<span class=\"ar-inline\">بَحَثَتْ عَنْهَا مُعَلِّمَتُهَا ٱلْجَدِيدَةُ.</span><br><i>(Её новая учительница искала её.)</i><br>Вопрос 2: падеж «مُعَلِّمَتُهَا ٱلْجَدِيدَةُ» и почему?",
-          options: [
-            { ar: "Именительный — подлежащее (кто искал)", tr: "" },
-            { ar: "Родительный", tr: "" },
-            { ar: "Винительный", tr: "" }
-          ],
-          correct: 0,
-          explain: "مُعَلِّمَتُهَا ٱلْجَدِيدَةُ — подлежащее глагола بَحَثَتْ, именительный падеж."
-        },
-        {
-          prompt: "<span class=\"ar-inline\">بَحَثَتْ عَنْهَا مُعَلِّمَتُهَا ٱلْجَدِيدَةُ.</span><br><i>(Её новая учительница искала её.)</i><br>Вопрос 3: почему بَحَثَ требует именно предлога عَنْ, а не مِنْ или عَلَى?",
-          options: [
-            { ar: "Нужно просто запомнить вместе со словом — у каждого такого глагола свой фиксированный предлог (ср. ṭalaba min, dakhala ʿalā, ḥaḍara ilā)", tr: "" },
-            { ar: "ʿan можно свободно заменить на любой другой предлог без потери смысла", tr: "" },
-            { ar: "Потому что глагол стоит в прошедшем времени", tr: "" }
-          ],
-          correct: 0,
-          explain: "Как и в русском «искать (кого?)» — винительный, а не «искать (о ком?)», так и в арабском у каждого такого глагола свой закреплённый предлог, который просто запоминается вместе со словом."
+          questions: [
+            {
+              prompt: "Вопрос 1: кого искали?",
+              options: [
+                { ar: "عَنْهَا", tr: "её" },
+                { ar: "مُعَلِّمَتُهَا", tr: "учительницу" },
+                { ar: "ٱلْجَدِيدَةُ", tr: "новую" }
+              ],
+              correct: 0,
+              explain: "بَحَثَ عَنْ требует предлога عَنْ для того, кого/что ищут — здесь это «её» (عَنْهَا)."
+            },
+            {
+              prompt: "Вопрос 2: падеж «مُعَلِّمَتُهَا ٱلْجَدِيدَةُ» и почему?",
+              options: [
+                { ar: "Именительный — подлежащее (кто искал)", tr: "" },
+                { ar: "Родительный", tr: "" },
+                { ar: "Винительный", tr: "" }
+              ],
+              correct: 0,
+              explain: "مُعَلِّمَتُهَا ٱلْجَدِيدَةُ — подлежащее глагола بَحَثَتْ, именительный падеж."
+            },
+            {
+              prompt: "Вопрос 3: почему بَحَثَ требует именно предлога عَنْ, а не مِنْ или عَلَى?",
+              options: [
+                { ar: "Нужно просто запомнить вместе со словом — у каждого такого глагола свой фиксированный предлог (ср. ṭalaba min, dakhala ʿalā, ḥaḍara ilā)", tr: "" },
+                { ar: "ʿan можно свободно заменить на любой другой предлог без потери смысла", tr: "" },
+                { ar: "Потому что глагол стоит в прошедшем времени", tr: "" }
+              ],
+              correct: 0,
+              explain: "Как и в русском «искать (кого?)» — винительный, а не «искать (о ком?)», так и в арабском у каждого такого глагола свой закреплённый предлог, который просто запоминается вместе со словом."
+            }
+          ]
         }
       ]
     }
   ];
 
-  // Flatten with global indices
+  // Flatten with global indices (handles both sec.questions and sec.sentenceGroups[].questions)
   var flat = [];
+  function sectionQuestions(sec) {
+    if (sec.questions) return sec.questions;
+    var qs = [];
+    sec.sentenceGroups.forEach(function (g) { qs = qs.concat(g.questions); });
+    return qs;
+  }
   sections.forEach(function (sec, si) {
-    sec.questions.forEach(function (q, qi) {
+    sectionQuestions(sec).forEach(function (q) {
       flat.push({ sectionIndex: si, sectionTitle: sec.title, q: q, answered: null });
     });
   });
@@ -616,6 +764,55 @@
     progressFill.style.width = (answered / flat.length * 100) + "%";
   }
 
+  function makeCard(si, q) {
+    var globalIndex = flat.findIndex(function (f) { return f.sectionIndex === si && f.q === q; });
+    var card = document.createElement("div");
+    card.className = "q-card";
+    card.innerHTML =
+      '<div class="q-num">Вопрос ' + (globalIndex + 1) + '</div>' +
+      '<p class="q-prompt">' + q.prompt + '</p>' +
+      '<div class="opt-list"></div>' +
+      '<div class="q-feedback"></div>';
+    var optList = card.querySelector(".opt-list");
+    q.options.forEach(function (opt, oi) {
+      var label = document.createElement("label");
+      label.className = "opt";
+      var trHtml = opt.tr ? '<span class="tr">' + opt.tr + '</span>' : '';
+      label.innerHTML =
+        '<input type="radio" name="q' + globalIndex + '" value="' + oi + '">' +
+        '<span class="ar">' + opt.ar + '</span>' + trHtml;
+      label.addEventListener("click", function () {
+        flat[globalIndex].answered = oi;
+        Array.prototype.forEach.call(optList.children, function (el) { el.classList.remove("selected"); });
+        label.classList.add("selected");
+        updateProgress();
+      });
+      optList.appendChild(label);
+    });
+    return card;
+  }
+
+  function makeBreakdownTable(rows) {
+    var wrap = document.createElement("div");
+    wrap.className = "table-scroll";
+    var table = document.createElement("table");
+    table.className = "breakdown-table";
+    var head = '<thead><tr><th style="width:21%">Слово</th><th style="width:37%">Разбор</th><th style="width:20%">Падеж/роль</th><th style="width:22%">Перевод</th></tr></thead>';
+    var body = "<tbody>";
+    rows.forEach(function (r) {
+      body += '<tr>' +
+        '<td class="word-cell"><span class="tok">' + r.ar + '</span><span class="translit">' + r.translit + '</span></td>' +
+        '<td>' + r.parse + '</td>' +
+        '<td class="role-cell">' + r.role + '</td>' +
+        '<td>' + r.ru + '</td>' +
+        '</tr>';
+    });
+    body += "</tbody>";
+    table.innerHTML = head + body;
+    wrap.appendChild(table);
+    return wrap;
+  }
+
   sections.forEach(function (sec, si) {
     var h2 = document.createElement("h2");
     h2.className = "sec-title";
@@ -627,33 +824,26 @@
       p.textContent = sec.note;
       root.appendChild(p);
     }
-    sec.questions.forEach(function (q, qi) {
-      var globalIndex = flat.findIndex(function (f) { return f.sectionIndex === si && f.q === q; });
-      var card = document.createElement("div");
-      card.className = "q-card";
-      card.innerHTML =
-        '<div class="q-num">Вопрос ' + (globalIndex + 1) + '</div>' +
-        '<p class="q-prompt">' + q.prompt + '</p>' +
-        '<div class="opt-list"></div>' +
-        '<div class="q-feedback"></div>';
-      var optList = card.querySelector(".opt-list");
-      q.options.forEach(function (opt, oi) {
-        var label = document.createElement("label");
-        label.className = "opt";
-        var trHtml = opt.tr ? '<span class="tr">' + opt.tr + '</span>' : '';
-        label.innerHTML =
-          '<input type="radio" name="q' + globalIndex + '" value="' + oi + '">' +
-          '<span class="ar">' + opt.ar + '</span>' + trHtml;
-        label.addEventListener("click", function () {
-          flat[globalIndex].answered = oi;
-          Array.prototype.forEach.call(optList.children, function (el) { el.classList.remove("selected"); });
-          label.classList.add("selected");
-          updateProgress();
-        });
-        optList.appendChild(label);
+    if (sec.questions) {
+      sec.questions.forEach(function (q) {
+        root.appendChild(makeCard(si, q));
       });
-      root.appendChild(card);
-    });
+    } else if (sec.sentenceGroups) {
+      sec.sentenceGroups.forEach(function (g) {
+        var block = document.createElement("div");
+        block.className = "sentence-block";
+        block.innerHTML =
+          '<div class="ar-big">' + g.ar + '</div>' +
+          '<div class="tr-full">' + g.translit + '</div>' +
+          '<div class="ru-full">' + g.ru + '</div>' +
+          '<div class="bd-title">Слово за словом:</div>';
+        block.appendChild(makeBreakdownTable(g.breakdown));
+        root.appendChild(block);
+        g.questions.forEach(function (q) {
+          root.appendChild(makeCard(si, q));
+        });
+      });
+    }
   });
 
   updateProgress();
