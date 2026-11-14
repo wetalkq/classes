@@ -1,0 +1,437 @@
+<title>Эффект Зейгарник</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,500;1,600;0,600&family=Montserrat:wght@400;500;600&display=swap">
+<style>
+:root{
+  --bg:#F3E7D3;
+  --surface:#FBF4E7;
+  --ink:#8B1420;
+  --ink-soft:#A84B52;
+  --panel-bg:#3D0810;
+  --panel-ink:#F3E7D3;
+  --line: rgba(139,20,32,.22);
+  --font-display:'Playfair Display',Georgia,serif;
+  --font-body:'Montserrat',system-ui,sans-serif;
+  color-scheme: light;
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--ink);
+  font-family:var(--font-body);
+  line-height:1.62;
+  padding-left:max(20px, env(safe-area-inset-left,0px));
+  padding-right:max(20px, env(safe-area-inset-right,0px));
+}
+.wrap{max-width:700px;margin:0 auto;padding-block:40px 70px}
+
+.meander{
+  height:15px;
+  width:100%;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='16' viewBox='0 0 40 16'%3E%3Cpath d='M1 1h8v8h8V1h8v14h-8V9h-8v6H1z' fill='none' stroke='%238B1420' stroke-width='1.6' stroke-linejoin='miter'/%3E%3C/svg%3E");
+  background-repeat:repeat-x;
+  background-size:40px 16px;
+  opacity:.6;
+}
+.meander.light{
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='16' viewBox='0 0 40 16'%3E%3Cpath d='M1 1h8v8h8V1h8v14h-8V9h-8v6H1z' fill='none' stroke='%23F3E7D3' stroke-width='1.6' stroke-linejoin='miter'/%3E%3C/svg%3E");
+  opacity:.7;
+}
+
+/* ---------- header ---------- */
+header{margin-bottom:8px}
+.eyebrow{
+  font-family:var(--font-body);
+  font-weight:600;
+  font-size:12px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--ink-soft);
+  margin-bottom:16px;
+}
+h1{
+  font-family:var(--font-display);
+  font-style:italic;
+  font-weight:600;
+  font-size:clamp(34px,8.5vw,50px);
+  line-height:1.08;
+  margin:0 0 18px;
+  text-wrap:balance;
+}
+.lede{
+  font-size:17.5px;
+  color:var(--ink);
+  max-width:58ch;
+  margin:0 0 20px;
+}
+.provenance{
+  font-size:14.5px;
+  color:var(--ink-soft);
+  border-left:2px solid var(--ink);
+  padding:1px 0 1px 15px;
+  margin:0 0 26px;
+}
+header .meander{margin-bottom:10px}
+
+/* ---------- mind-map hub ---------- */
+.hub{
+  position:relative;
+  margin:30px 0 36px;
+  padding:26px 20px;
+  background:var(--surface);
+  border:1px solid var(--line);
+  border-radius:10px;
+}
+.hub-core{
+  text-align:center;
+  font-family:var(--font-display);
+  font-style:italic;
+  font-weight:600;
+  font-size:20px;
+  margin-bottom:18px;
+}
+.hub-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+}
+@media (max-width:540px){ .hub-grid{grid-template-columns:repeat(2,1fr)} }
+.hub-node{
+  border:1px dashed var(--line);
+  border-radius:8px;
+  padding:10px 8px;
+  text-align:center;
+  font-size:12.5px;
+  font-weight:500;
+  color:var(--ink);
+  line-height:1.3;
+  cursor:pointer;
+  background:transparent;
+  transition:background .2s ease, border-color .2s ease;
+}
+.hub-node:hover, .hub-node:focus-visible{background:rgba(139,20,32,.06); border-color:var(--ink)}
+.hub-node .n{display:block;font-family:var(--font-body);font-weight:600;font-size:10px;letter-spacing:.08em;color:var(--ink-soft);margin-bottom:3px}
+
+/* ---------- tree ---------- */
+.tree{position:relative}
+.tree::before{
+  content:"";
+  position:absolute;
+  left:13px;
+  top:8px;
+  bottom:8px;
+  width:1.5px;
+  background:var(--line);
+}
+.branch{position:relative;padding-left:42px;margin-bottom:2px;scroll-margin-top:20px}
+.branch::before{
+  content:"";
+  position:absolute;
+  left:9px;
+  top:24px;
+  width:20px;
+  height:1.5px;
+  background:var(--line);
+}
+.node-dot{
+  position:absolute;
+  left:3px;
+  top:16px;
+  width:16px;
+  height:16px;
+  border-radius:50%;
+  background:var(--surface);
+  border:2px solid var(--ink);
+}
+.node-btn{
+  width:100%;
+  text-align:left;
+  background:none;
+  border:none;
+  padding:12px 0;
+  display:flex;
+  align-items:baseline;
+  gap:11px;
+  cursor:pointer;
+  color:var(--ink);
+  font:inherit;
+}
+.node-btn .num{
+  font-family:var(--font-body);
+  font-weight:600;
+  font-size:12px;
+  letter-spacing:.06em;
+  color:var(--ink-soft);
+  flex:none;
+}
+.node-btn .label{
+  font-family:var(--font-display);
+  font-style:italic;
+  font-weight:600;
+  font-size:21px;
+  flex:1;
+  min-width:0;
+  line-height:1.25;
+}
+.chev{
+  flex:none;
+  width:16px;
+  height:16px;
+  margin-top:4px;
+  transition:transform .2s ease;
+  color:var(--ink-soft);
+}
+.node-btn[aria-expanded="true"] .chev{transform:rotate(90deg)}
+.panel{
+  padding:2px 0 28px;
+  color:var(--ink);
+  font-size:16px;
+  max-width:62ch;
+}
+.panel[hidden]{display:none}
+.panel p{margin:0 0 14px}
+.panel p:last-child{margin-bottom:0}
+.panel em{font-style:italic;color:var(--ink)}
+
+.sub-list{list-style:none;margin:14px 0 0;padding:0;display:grid;gap:12px}
+.sub-list li{
+  background:var(--surface);
+  border:1px solid var(--line);
+  border-radius:4px;
+  padding:14px 16px;
+}
+.sub-list .sub-title{
+  font-family:var(--font-display);
+  font-style:italic;
+  font-weight:600;
+  color:var(--ink);
+  display:block;
+  margin-bottom:5px;
+  font-size:16.5px;
+}
+
+/* ---------- flip cards ---------- */
+.cards{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:13px;
+  margin-top:8px;
+}
+@media (max-width:460px){ .cards{grid-template-columns:1fr} }
+.card{perspective:1200px;height:260px}
+.card-inner{
+  position:relative;width:100%;height:100%;
+  transition:transform .55s cubic-bezier(.3,.1,.2,1);
+  transform-style:preserve-3d;
+  cursor:pointer;
+}
+.card.flipped .card-inner{transform:rotateY(180deg)}
+.card-face{
+  position:absolute;inset:0;
+  backface-visibility:hidden;
+  border-radius:6px;
+  padding:16px 17px;
+  display:flex;
+  flex-direction:column;
+}
+.card-front{background:var(--surface);border:1px solid var(--line);justify-content:space-between}
+.card-front .ex-title{font-family:var(--font-display);font-style:italic;font-weight:600;font-size:18px;line-height:1.25}
+.card-front .tap-hint{font-family:var(--font-body);font-weight:500;font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-soft)}
+.card-back{
+  background:var(--panel-bg);color:var(--panel-ink);transform:rotateY(180deg);
+  font-size:13px;line-height:1.48;justify-content:flex-start;
+  overflow-y:auto;-webkit-overflow-scrolling:touch;
+}
+
+/* ---------- closing ---------- */
+.closing p{
+  font-family:var(--font-display);font-style:italic;font-size:18px;line-height:1.5;
+  color:var(--ink);max-width:58ch;margin:0 0 16px;
+}
+.sources{font-family:var(--font-body);font-weight:500;font-size:12px;letter-spacing:.02em;line-height:1.7;color:var(--ink-soft)}
+
+:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+@media (prefers-reduced-motion:reduce){.card-inner,.chev{transition:none}}
+</style>
+
+<div class="wrap">
+
+  <header>
+    <span class="eyebrow">( Prítcha ) · психология памяти</span>
+    <h1>Эффект Зейгарник</h1>
+    <p class="lede">Почему недопитая чашка кофе, недосмотренная серия и неотправленное сообщение занимают в голове куда больше места, чем всё, что вы уже благополучно закрыли. Это не слабость характера — это задокументированное в психологии свойство памяти, у которого есть имя, дата рождения и русская фамилия.</p>
+    <p class="provenance">Ничего здесь не придумано ради красивого текста: это реальный эксперимент почти столетней давности, с именем исследовательницы, конкретным годом и живой — местами спорной — научной историей, которая продолжается до сих пор.</p>
+    <div class="meander"></div>
+  </header>
+
+  <div class="hub">
+    <div class="hub-core">незавершённое действие ⟶ напряжение ⟶ память держит его «включённым»</div>
+    <div class="hub-grid">
+      <button class="hub-node" data-jump="p1"><span class="n">01</span>официант, который всё помнил</button>
+      <button class="hub-node" data-jump="p2"><span class="n">02</span>почему «Зейгарник»</button>
+      <button class="hub-node" data-jump="p3"><span class="n">03</span>в чём механизм</button>
+      <button class="hub-node" data-jump="p4"><span class="n">04</span>как проявляется</button>
+      <button class="hub-node" data-jump="p5"><span class="n">05</span>наука сегодня</button>
+      <button class="hub-node" data-jump="p6"><span class="n">06</span>где это используют</button>
+    </div>
+  </div>
+
+  <div class="tree" id="tree">
+
+    <div class="branch" id="b1">
+      <div class="node-dot"></div>
+      <button class="node-btn" aria-expanded="false" data-target="p1">
+        <span class="num">01</span>
+        <span class="label">Официант, который всё помнил</span>
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M9 6l6 6-6 6"/></svg>
+      </button>
+      <div class="panel" id="p1" hidden>
+        <p>История начинается в Берлине, в середине 1920-х, в кругу психолога Курта Левина — одного из основателей гештальт-психологии. По легенде, которую сам Левин потом не раз пересказывал студентам, он с коллегами сидел в венском кафе и обратил внимание на официанта: тот безошибочно помнил длинный, запутанный заказ целого столика, пока счёт не был оплачен — а через минуту после оплаты не мог вспомнить о нём почти ничего.</p>
+        <p>Левин не стал оставлять это наблюдение анекдотом. Он предложил своей студентке, Блюме Вульфовне Зейгарник, проверить эту закономерность экспериментально — так родилась тема её диссертации в Берлинском университете.</p>
+        <p>В 1927 году Зейгарник провела серию опытов: испытуемым давали от 18 до 22 несложных заданий — собрать фигурку, решить задачку, слепить что-то из пластилина — и примерно половину заданий им позволяли закончить, а другую половину прерывали на середине, якобы случайно, под благовидным предлогом. Позже, без предупреждения, людей просили вспомнить, какие задания им вообще давали. Результат оказался устойчивым: прерванные, незавершённые задания вспоминались в среднем почти вдвое чаще, чем завершённые.</p>
+      </div>
+    </div>
+
+    <div class="branch" id="b2">
+      <div class="node-dot"></div>
+      <button class="node-btn" aria-expanded="false" data-target="p2">
+        <span class="num">02</span>
+        <span class="label">Почему «Зейгарник»</span>
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M9 6l6 6-6 6"/></svg>
+      </button>
+      <div class="panel" id="p2" hidden>
+        <p>Эффект назван в честь исследовательницы, которая его описала, — это распространённая практика в психологии: открытие носит фамилию того, кто первым подтвердил его экспериментально, а не того, кто первым его заметил житейски. Блюма Вульфовна Зейгарник (1900–1988) родилась в местечке Прены на территории нынешней Литвы, в еврейской семье, образование получила в Берлинском университете, где и защитила диссертацию под руководством Левина в 1927 году.</p>
+        <p>После возвращения в СССР в начале 1930-х она не осталась специалистом по одному лабораторному эффекту — Зейгарник стала одной из основательниц советской патопсихологии, десятилетиями работала в психиатрической клинике имени Кащенко в Москве и преподавала на факультете психологии МГУ, где воспитала не одно поколение клинических психологов. Так что её имя в науке связано далеко не только с тем экспериментом, который сделал её знаменитой в популярной психологии.</p>
+      </div>
+    </div>
+
+    <div class="branch" id="b3">
+      <div class="node-dot"></div>
+      <button class="node-btn" aria-expanded="false" data-target="p3">
+        <span class="num">03</span>
+        <span class="label">В чём механизм</span>
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M9 6l6 6-6 6"/></svg>
+      </button>
+      <div class="panel" id="p3" hidden>
+        <p>Объяснение, которое предложили Левин и Зейгарник, выросло из «теории поля» — одной из центральных идей гештальт-психологии. Согласно ей, когда мы берёмся за задачу, в психике возникает своего рода квазипотребность — внутреннее напряжение, нацеленное на завершение действия. Пока задача не закончена, это напряжение сохраняется и держит её в активном, легкодоступном слое памяти — почти как открытую вкладку в браузере, которая продолжает что-то фоново считать. Как только задача завершена, напряжение разряжается, и мозг словно убирает её из оперативной памяти в архив.</p>
+        <p>Отсюда и сам эффект: незавершённые дела не потому лучше запоминаются, что мы прилагаем усилие их помнить, — а потому, что психика ещё не позволила себе их «отпустить».</p>
+      </div>
+    </div>
+
+    <div class="branch" id="b4">
+      <div class="node-dot"></div>
+      <button class="node-btn" aria-expanded="false" data-target="p4">
+        <span class="num">04</span>
+        <span class="label">Как это проявляется в жизни</span>
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M9 6l6 6-6 6"/></svg>
+      </button>
+      <div class="panel" id="p4" hidden>
+        <p>Переверни карточку — в каждой тот же механизм, просто на разном материале.</p>
+        <div class="cards">
+          <div class="card" tabindex="0" role="button" aria-pressed="false">
+            <div class="card-inner">
+              <div class="card-face card-front"><span class="ex-title">Недосмотренный сериал</span><span class="tap-hint">коснись карточки</span></div>
+              <div class="card-face card-back">Серия обрывается на самом напряжённом месте — приём, который сценаристы используют совершенно сознательно, он называется клиффхэнгер. Мозг не может «закрыть» сюжетную линию и продолжает мысленно к ней возвращаться, пока не досмотрит развязку. Этот же приём десятилетиями держал на плаву радиопостановки с продолжением и сериализованные романы, которые публиковались по главе в неделю.</div>
+            </div>
+          </div>
+          <div class="card" tabindex="0" role="button" aria-pressed="false">
+            <div class="card-inner">
+              <div class="card-face card-front"><span class="ex-title">Незакрытая задача в списке дел</span><span class="tap-hint">коснись карточки</span></div>
+              <div class="card-face card-back">Невычеркнутый пункт в to-do листе фоново «гудит» в голове весь день, даже если вы физически им не заняты. Именно поэтому простое правило — выписать дело на бумагу, а не просто держать в уме, — ощутимо снижает тревогу: внимание переносится с самого дела на материальный носитель, и напряжение частично спадает.</div>
+            </div>
+          </div>
+          <div class="card" tabindex="0" role="button" aria-pressed="false">
+            <div class="card-inner">
+              <div class="card-face card-front"><span class="ex-title">Неотправленное сообщение</span><span class="tap-hint">коснись карточки</span></div>
+              <div class="card-face card-back">Черновик, который вы не дописали и не отправили, возвращается в мысли куда настойчивее, чем письма, которые уже улетели адресату. Разговор, прерванный на полуслове, запоминается ярче, чем тот, что закончился естественно, — отсюда и бытовое наблюдение, что ссора, где кто-то демонстративно ушёл не договорив, мучает дольше, чем та, что завершилась примирением.</div>
+            </div>
+          </div>
+          <div class="card" tabindex="0" role="button" aria-pressed="false">
+            <div class="card-inner">
+              <div class="card-face card-front"><span class="ex-title">Мелодия, оборванная на полуноте</span><span class="tap-hint">коснись карточки</span></div>
+              <div class="card-face card-back">Если включить музыкальную фразу и резко остановить её до тонического завершения, большинство людей ощущают почти физический дискомфорт и мысленно «дослушивают» мелодию до конца сами. Это тот же принцип незавершённого гештальта, который лежит и в основе эффекта Зейгарник: психика стремится достроить структуру до целого.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="branch" id="b5">
+      <div class="node-dot"></div>
+      <button class="node-btn" aria-expanded="false" data-target="p5">
+        <span class="num">05</span>
+        <span class="label">Что говорит наука сегодня</span>
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M9 6l6 6-6 6"/></svg>
+      </button>
+      <div class="panel" id="p5" hidden>
+        <p>Честности ради: за почти сто лет эффект Зейгарник прошёл путь не триумфального подтверждения, а живой научной дискуссии — и это, пожалуй, самое интересное в его истории.</p>
+        <ul class="sub-list">
+          <li><span class="sub-title">Проблема с повторением</span>Более поздние попытки воспроизвести оригинальный опыт давали разные результаты: в одних исследованиях эффект повторялся надёжно, в других оказывался слабым или вовсе не проявлялся. Психологи Кеннет Макгроу и Джирина Фиала в начале 1980-х даже показали случай, где эффект обращался вспять — когда участникам предлагали денежное вознаграждение за выполнение задачи, прерванная работа запоминалась хуже, а не лучше, видимо, потому что сама мотивация и переживание прерывания менялись.</li>
+          <li><span class="sub-title">Современное прочтение</span>Исследователи Э. Дж. Масикампо и Рой Баумайстер в работе 2011 года переформулировали эффект через понятие навязчивых мыслей о незавершённых целях: именно незакрытые цели чаще вторгаются в сознание и мешают сосредоточиться на текущей задаче. Но их ключевой вывод интереснее исходной идеи — оказалось, что мешающие мысли исчезают не только после завершения дела, а уже после того, как человек просто составит конкретный план, когда и как он это дело доделает. То есть мозгу для «отпускания» задачи иногда достаточно не физического завершения, а ясного намерения.</li>
+          <li><span class="sub-title">Как к этому относиться сейчас</span>В современной психологии эффект Зейгарник чаще всего описывают не как железный закон, а как реальную, но зависящую от контекста тенденцию — связанную с конкретным переживанием прерывания, значимостью задачи и степенью тревоги человека. Это не умаляет открытия Зейгарник, а скорее показывает, насколько оно оказалось плодотворным: спустя десятилетия оно продолжает порождать новые эксперименты и уточнения.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="branch" id="b6">
+      <div class="node-dot"></div>
+      <button class="node-btn" aria-expanded="false" data-target="p6">
+        <span class="num">06</span>
+        <span class="label">Где это используют</span>
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M9 6l6 6-6 6"/></svg>
+      </button>
+      <div class="panel" id="p6" hidden>
+        <ul class="sub-list">
+          <li><span class="sub-title">Сторителлинг и сериалы</span>клиффхэнгеры в конце серий и глав существуют именно затем, чтобы удержать зрителя или читателя в состоянии незавершённости до следующего выпуска.</li>
+          <li><span class="sub-title">Реклама и маркетинг</span>тизерные кампании, которые показывают часть информации и обещают «продолжение следует», работают на том же принципе: недосказанность запоминается и заставляет возвращаться за развязкой.</li>
+          <li><span class="sub-title">Интерфейсы и приложения</span>полоски прогресса, незаполненные профили «заполнено на 80%», счётчики недочитанных сообщений — всё это сознательно эксплуатирует стремление закрыть «хвост» до конца.</li>
+          <li><span class="sub-title">Учёба и личная продуктивность</span>техника «просто начни» опирается на эффект Зейгарник в обратную сторону: начатое, пусть даже на пять минут, дело с большей вероятностью будет продолжено и доведено до конца, чем то, к которому ещё не притронулись.</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+  <div style="background:var(--panel-bg);margin:38px -20px -70px;padding:34px 20px calc(44px + env(safe-area-inset-bottom,0px));">
+    <div class="closing">
+      <p style="color:var(--panel-ink)">Пожалуй, самое честное, что можно сказать об эффекте Зейгарник: он не про то, что вы слишком многое держите в голове по собственной слабости. Он про то, что человеческая психика устроена так, чтобы стремиться к завершённости — и вплоть до сегодняшнего дня наука продолжает уточнять, при каких именно условиях это стремление становится заметным, а при каких отступает.</p>
+      <div class="sources" style="color:var(--panel-ink);opacity:.75">Б. В. Зейгарник, «Das Behalten erledigter und unerledigter Handlungen» (1927) · К. Левин — теория поля и квазипотребности · K. McGraw, J. Fiala (1982) · E. J. Masicampo, R. F. Baumeister, «Consider It Done!» (2011)</div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+document.querySelectorAll('.node-btn').forEach(function(btn){
+  btn.addEventListener('click', function(){
+    var panel = document.getElementById(btn.dataset.target);
+    var open = btn.getAttribute('aria-expanded') === 'true';
+    btn.setAttribute('aria-expanded', String(!open));
+    panel.hidden = open;
+  });
+});
+document.querySelectorAll('.card').forEach(function(card){
+  function toggle(){
+    var flipped = card.classList.toggle('flipped');
+    card.setAttribute('aria-pressed', String(flipped));
+  }
+  card.addEventListener('click', toggle);
+  card.addEventListener('keydown', function(e){
+    if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); toggle(); }
+  });
+});
+document.querySelectorAll('.hub-node').forEach(function(node){
+  node.addEventListener('click', function(){
+    var id = node.dataset.jump;
+    var btn = document.querySelector('.node-btn[data-target="'+id+'"]');
+    var panel = document.getElementById(id);
+    if(btn && panel){
+      btn.setAttribute('aria-expanded','true');
+      panel.hidden = false;
+      btn.closest('.branch').scrollIntoView({behavior:'smooth', block:'start'});
+    }
+  });
+});
+</script>
