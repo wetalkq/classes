@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Unit 2 · Education: debates and issues · Lesson page</title>
+<style>
+:root{--ink:#1b2340;--muted:#5a6384;--bg:#f4f6fc;--card:#ffffff;--line:#d9def0;--brand:#2f3fbf;--brand2:#e9ecff;--accent:#e8741c;--ok:#1f8f4e;--okbg:#e3f6ea;--bad:#c0392b;--badbg:#fdeaea;--shadow:0 6px 24px rgba(30,40,100,.10)}
+*{box-sizing:border-box}
+body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.55}
+header{background:linear-gradient(135deg,#1f2a7a,#3a4fe0);color:#fff;padding:36px 20px 44px}
+.wrap{max-width:980px;margin:0 auto;padding:0 16px}
+header .wrap{padding:0}
+header h1{margin:0 0 6px;font-size:clamp(24px,4.4vw,38px);line-height:1.15}
+header p{margin:0;opacity:.9;max-width:720px}
+nav{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.96);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;gap:6px;overflow-x:auto;padding:8px 16px}
+nav a{white-space:nowrap;text-decoration:none;color:var(--brand);background:var(--brand2);padding:6px 12px;border-radius:999px;font-size:14px;font-weight:600}
+section{margin:30px 0}
+h2{font-size:clamp(21px,3.4vw,28px);margin:0 0 6px}
+.lead{color:var(--muted);margin:0 0 16px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;box-shadow:var(--shadow)}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:10px 0 16px}
+button,.btn{font:inherit;cursor:pointer;border:1px solid var(--line);background:#fff;color:var(--ink);padding:8px 14px;border-radius:10px;font-weight:600}
+button:hover{border-color:var(--brand);color:var(--brand)}
+button.primary{background:var(--brand);border-color:var(--brand);color:#fff}
+button.primary:hover{color:#fff;opacity:.92}
+button.on{background:var(--brand);color:#fff;border-color:var(--brand)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px}
+.card{perspective:1000px;height:300px;cursor:pointer;outline:none}
+.card:focus-visible .inner{box-shadow:0 0 0 3px var(--accent)}
+.inner{position:relative;width:100%;height:100%;transition:transform .55s;transform-style:preserve-3d;border-radius:16px;box-shadow:var(--shadow)}
+.card.flip .inner{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:16px;padding:16px;display:flex;flex-direction:column;border:1px solid var(--line);background:var(--card);overflow:auto}
+.front{align-items:center;justify-content:center;text-align:center;background:linear-gradient(180deg,#fff,#f0f3ff)}
+.back{transform:rotateY(180deg);background:#fffaf4;font-size:14.5px}
+.en{font-size:24px;font-weight:800;line-height:1.2}
+.ipa{margin-top:8px;color:var(--brand);font-size:17px;font-family:"Segoe UI","Noto Sans","DejaVu Sans",system-ui,sans-serif}
+.tag{position:absolute;top:10px;left:12px;font-size:11px;font-weight:700;color:var(--muted);letter-spacing:.04em;text-transform:uppercase}
+.spk{position:absolute;top:6px;right:8px;padding:4px 9px;border-radius:999px;font-size:15px}
+.hint{position:absolute;bottom:10px;font-size:12px;color:var(--muted)}
+.back .ru{font-weight:800;font-size:17px;margin-bottom:6px}
+.back .df{color:var(--muted);margin-bottom:6px}
+.back .ex{border-left:3px solid var(--accent);padding-left:8px;margin:6px 0}
+.back .note{margin-top:6px;font-size:13px;background:#fff1de;border-radius:8px;padding:6px 8px}
+.known-btn{margin-top:auto;align-self:flex-start;padding:4px 10px;font-size:13px}
+.card.known .front{background:linear-gradient(180deg,#f2fbf5,#e3f6ea)}
+table{border-collapse:collapse;width:100%;font-size:15px;background:#fff}
+th,td{border:1px solid var(--line);padding:9px 10px;text-align:left;vertical-align:top}
+th{background:var(--brand2);color:#1f2a7a}
+.tscroll{overflow-x:auto;border-radius:12px}
+.pill{display:inline-block;background:var(--brand2);color:var(--brand);border-radius:999px;padding:1px 10px;font-weight:700;font-size:13px}
+.ru-s{color:var(--muted);font-size:13px}
+.ex-item{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:7px 0;border-bottom:1px dashed var(--line)}
+.ex-item:last-child{border-bottom:0}
+.w{font-weight:700;min-width:190px}
+.w small{display:block;font-weight:500;color:var(--brand);font-size:13px}
+select,input[type=text]{font:inherit;padding:6px 8px;border-radius:8px;border:1.5px solid var(--line);background:#fff;color:var(--ink);max-width:100%}
+select.ok,input.ok{border-color:var(--ok);background:var(--okbg)}
+select.bad,input.bad{border-color:var(--bad);background:var(--badbg)}
+.score{font-weight:800;color:var(--brand);margin-left:6px}
+.reading h3{margin:18px 0 6px;color:#1f2a7a;font-size:18px}
+.reading p{margin:0 0 6px;font-size:17px;line-height:2.05}
+.reading select{font-size:15px;padding:3px 5px;margin:0 2px}
+.gn{font-size:11px;color:var(--muted);vertical-align:super;margin-right:1px}
+.sent{padding:8px 0;border-bottom:1px dashed var(--line);font-size:17px;line-height:2.05}
+.sent:last-child{border-bottom:0}
+.expl{display:none;font-size:14px;color:var(--muted);margin-top:2px;line-height:1.4}
+.expl.show{display:block}
+.tip{background:#fff7ea;border:1px solid #f4d9b0;border-radius:12px;padding:10px 14px;margin:12px 0;font-size:15px}
+.tip ul{margin:6px 0 0;padding-left:20px}
+footer{padding:26px 16px 50px;text-align:center;color:var(--muted);font-size:14px}
+@media(max-width:560px){.w{min-width:100%}.card{height:320px}}
+details{background:#fff;border:1px solid var(--line);border-radius:12px;padding:8px 14px;margin:8px 0}
+summary{cursor:pointer;font-weight:700;color:var(--brand)}
+details p{margin:8px 0}
+audio{width:100%;margin:8px 0}
+input.wide{width:100%;font-size:16px}
+.bank{background:var(--brand2);border-radius:8px;padding:4px 10px;display:inline-block;margin:4px 0;font-weight:600}
+.legend span{display:inline-block;background:var(--brand2);border-radius:8px;padding:2px 10px;margin:2px 6px 2px 0;font-size:14px}
+.tr p{margin:0 0 10px;font-size:16px}
+.q li{margin:6px 0}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+<h1>Unit 2 · Education: debates and issues</h1>
+<p>Audio: <i>Education Matters</i> (dialogue). Lesson page with all tasks, answer checking and flashcards. Level B2 to C1.</p>
+</div></header>
+<nav><div class="wrap">
+<a href="#lead">1. Lead-in</a><a href="#listen">2. Listening</a><a href="#tfS">3. True / False</a><a href="#cardsS">4. Flashcards</a><a href="#sortS">5. Sort</a><a href="#m5a">6. Match</a><a href="#scrS">7. Scramble</a><a href="#stressS">8. Stress</a><a href="#formsS">9. Word forms</a><a href="#colloS">10. Collocations</a><a href="#compS">11. Compound adj.</a><a href="#oddS">12. Odd one out</a><a href="#ordS">13. Sentences</a><a href="#punS">14. Punctuation</a><a href="#debate">15. Debate</a><a href="#review">16. Review</a>
+</div></nav>
+<main class="wrap">
+
+<section id="lead">
+<h2>1. Lead-in</h2>
+<p class="lead">Task 1. Discuss. These are personal questions, there are no fixed answers.</p>
+<div class="panel"><ol class="q">
+<li>Do all children have the same opportunities in education? Why or why not?</li>
+<li>What types of school are there in your country?</li>
+<li>What do you think are the biggest problems in education today?</li>
+</ol></div>
+</section>
+
+<section id="listen">
+<h2>2. Listening: Education Matters</h2>
+<p class="lead">Task 2 (gist). Listen to the whole dialogue first. Don't read the text.</p>
+<div class="panel">
+<audio controls preload="none" src="education-debates-dialogue.mp3">Your browser does not support audio.</audio>
+<ol class="q">
+<li>What two main groups of issues do Emma and James discuss?</li>
+<li>Do they think real equality of opportunity has been achieved?</li>
+</ol>
+<details><summary>Show answers (Task 2)</summary>
+<p><b>1.</b> (1) Opportunity and equality: selective vs comprehensive schooling, league tables, financial support. (2) Other issues: the three Rs, curriculum reform, lifelong education, special needs, bullying, government guidelines.</p>
+<p><b>2.</b> No.</p></details>
+<details><summary>Transcript (open it after the second listening)</summary>
+<div class="tr" id="trBox"></div></details>
+</div>
+</section>
+
+<section id="tfS">
+<h2>3. True or false?</h2>
+<p class="lead">Task 3 (detail). Listen again to the whole dialogue, then decide. After checking, a short explanation appears.</p>
+<div class="panel" id="tfBox"><div id="tfList"></div>
+<div class="row"><button class="primary" data-check="tfBox">Check</button><button data-show="tfBox">Show answers</button><button data-reset="tfBox">Reset</button><span class="score"></span></div></div>
+</section>
+
+<section id="cardsS">
+<h2>4. Flashcards</h2>
+<p class="lead">All 34 words and phrases from the match tasks. Front = word and British transcription, back = translation, definition and example. Press 🔊 to hear the word.</p>
+<div class="row" id="filters"></div>
+<div class="grid" id="grid"></div>
+<p class="lead" id="counter" style="margin-top:12px"></p>
+</section>
+
+<section id="sortS">
+<h2>5. Noticing and categorisation</h2>
+<p class="lead">Task 4. Sort the words and phrases from the transcript into four groups.</p>
+<div class="panel" id="sortBox">
+<div class="legend"><span><b>A</b> School systems and structure</span><span><b>B</b> Money and support</span><span><b>C</b> People</span><span><b>D</b> Issues, skills and teaching</span></div>
+<div id="sortList"></div>
+<div class="row"><button class="primary" data-check="sortBox">Check</button><button data-show="sortBox">Show answers</button><button data-reset="sortBox">Reset</button><span class="score"></span></div></div>
+</section>
+
+<section id="m5a">
+<h2>6. Match the words with their definitions</h2>
+<p class="lead">Task 5A. British pronunciation is given under the words.</p>
+<div class="panel" id="m5aBox"><div id="m5aList"></div>
+<div class="row"><button class="primary" data-check="m5aBox">Check</button><button data-show="m5aBox">Show answers</button><button data-reset="m5aBox">Reset</button><span class="score"></span></div></div>
+<p class="lead" style="margin-top:18px">Task 5B.</p>
+<div class="panel" id="m5bBox"><div id="m5bList"></div>
+<div class="row"><button class="primary" data-check="m5bBox">Check</button><button data-show="m5bBox">Show answers</button><button data-reset="m5bBox">Reset</button><span class="score"></span></div></div>
+<p class="lead" style="margin-top:18px">Task 5C.</p>
+<div class="panel" id="m5cBox"><div id="m5cList"></div>
+<div class="row"><button class="primary" data-check="m5cBox">Check</button><button data-show="m5cBox">Show answers</button><button data-reset="m5cBox">Reset</button><span class="score"></span></div></div>
+</section>
+
+<section id="scrS">
+<h2>7. Scramble the words</h2>
+<p class="lead">Task 6. Unscramble the words. The clue helps you.</p>
+<div class="panel" id="scrBox"><div id="scrList"></div>
+<div class="row"><button class="primary" data-check="scrBox">Check</button><button data-show="scrBox">Show answers</button><button data-reset="scrBox">Reset</button><span class="score"></span></div></div>
+</section>
+
+<section id="stressS">
+<h2>8. Word stress</h2>
+<p class="lead">Task 7. Which syllable is stressed? (British English, main stress.)</p>
+<div class="panel" id="stressBox"><div id="stressList"></div>
+<div class="row"><button class="primary" data-check="stressBox">Check</button><button data-show="stressBox">Show answers</button><button data-reset="stressBox">Reset</button><span class="score"></span></div></div>
+<div class="tip"><b>Drilling:</b> word → phrase → sentence. Example: <i>tuition fees → pay tuition fees → Undergraduates pay tuition fees.</i></div>
+</section>
+
+<section id="formsS">
+<h2>9. Word forms</h2>
+<p class="lead">Task 8. Complete the sentences with the correct form of the word in brackets.</p>
+<div class="panel" id="formsBox"><div id="formsList"></div>
+<div class="row"><button class="primary" data-check="formsBox">Check</button><button data-show="formsBox">Show answers</button><button data-reset="formsBox">Reset</button><span class="score"></span></div></div>
+</section>
+
+<section id="colloS">
+<h2>10. Collocations</h2>
+<p class="lead">Task 9. Match each verb with a noun. Some verbs can go with more than one noun, and in these cases every correct answer is accepted.</p>
+<div class="panel" id="colloBox"><div id="colloList"></div>
+<div class="row"><button class="primary" data-check="colloBox">Check</button><button data-show="colloBox">Show answers</button><button data-reset="colloBox">Reset</button><span class="score"></span></div></div>
+</section>
+
+<section id="compS">
+<h2>11. Compound adjectives</h2>
+<p class="lead">Task 10. Compound adjectives such as <i>well-off, well-endowed, high-achieving, badly-performing</i> have comparative and superlative forms: <i>better-off, best-endowed, higher-achieving, worst-performing</i>. Complete the sentences with the correct form of the adjective in brackets.</p>
+<div class="panel" id="compBox"><div id="compList"></div>
+<div class="row"><button class="primary" data-check="compBox">Check</button><button data-show="compBox">Show answers</button><button data-reset="compBox">Reset</button><span class="score"></span></div></div>
+</section>
+
+<section id="oddS">
+<h2>12. Odd one out</h2>
+<p class="lead">Task 11. Which word does not belong? After checking, the reason appears.</p>
+<div class="panel" id="oddBox"><div id="oddList"></div>
+<div class="row"><button class="primary" data-check="oddBox">Check</button><button data-show="oddBox">Show answers</button><button data-reset="oddBox">Reset</button><span class="score"></span></div></div>
+</section>
+
+<section id="ordS">
+<h2>13. Scrambled sentences (debating language)</h2>
+<p class="lead">Task 12. Put the words in the correct order and type the sentence. Capital letters and commas are not checked here.</p>
+<div class="panel" id="ordBox"><div id="ordList"></div>
+<div class="row"><button class="primary" data-check="ordBox">Check</button><button data-show="ordBox">Show answers</button><button data-reset="ordBox">Reset</button><span class="score"></span></div></div>
+</section>
+
+<section id="punS">
+<h2>14. Punctuation</h2>
+<p class="lead">Task 13. Add commas where necessary: edit the sentence in the box.</p>
+<div class="tip"><b>Rule.</b> Put a comma after introductory words and phrases (<i>However, In fact, On the other hand, Generally speaking, Admittedly</i>).</div>
+<div class="panel" id="punBox"><div id="punList"></div>
+<div class="row"><button class="primary" data-check="punBox">Check</button><button data-show="punBox">Show answers</button><button data-reset="punBox">Reset</button><span class="score"></span></div></div>
+</section>
+
+<section id="debate">
+<h2>15. Prepare and hold the debate</h2>
+<p class="lead">Task 14. Choose a motion. Write 3 arguments for and 3 against. Use at least 8 words from the unit.</p>
+<div class="panel"><ul class="q">
+<li><b>Motion A:</b> Selective schooling does more harm than good.</li>
+<li><b>Motion B:</b> University tuition should be free for everyone.</li>
+<li><b>Motion C:</b> Curriculum reform should be decided by teachers, not politicians.</li>
+</ul>
+<div class="tip"><b>Useful language:</b> I strongly believe that… · One key argument is that… · I see your point, but… · On the other hand, … · Admittedly, … · That may be true; however, …</div>
+<details><summary>Model arguments for Motion A</summary>
+<p><b>Against selective schooling:</b> it encourages elitism; it perpetuates inequalities; it creates a two-tier system; less well-off children have fewer opportunities to excel.</p>
+<p><b>For selective schooling:</b> pupils are chosen for academic reasons; high-achieving pupils can excel; scholarships and bursaries make it possible for less privileged youngsters to enter.</p></details>
+<p><b>Task 15. Debate.</b> Argue for or against your motion. Use at least <b>15 words and phrases from the unit</b>. The teacher takes the opposite side.</p>
+<p><b>Task 16. Discussion.</b></p>
+<ol class="q">
+<li>How can an education system achieve real equality of opportunity?</li>
+<li>Are league tables useful or harmful?</li>
+<li>What can schools do about bullying?</li>
+<li>Why is lifelong education important nowadays?</li>
+</ol></div>
+</section>
+
+<section id="review">
+<h2>16. Review</h2>
+<p class="lead">Task 17. Close the page and recall the words from the definitions.</p>
+<div class="panel" id="recBox"><div id="recList"></div>
+<div class="row"><button class="primary" data-check="recBox">Check</button><button data-show="recBox">Show answers</button><button data-reset="recBox">Reset</button><span class="score"></span></div></div>
+<div class="tip"><b>Homework.</b>
+<ol class="q">
+<li><i>English Vocabulary in Use Advanced</i>, Unit 2: exercises 2.1, 2.2, 2.3, 2.4.</li>
+<li>Write 80–100 words: <i>“Is selective schooling fair?”</i> Use at least 10 words from the unit and a topic sentence. Put a comma after introductory words.</li>
+</ol></div>
+</section>
+
+</main>
+<footer>Unit 2 · Education: debates and issues. Pronunciation: British English (check any doubtful word in the Cambridge Dictionary).</footer>
+
+<script>
+const D = {"cards": [{"g": "A", "en": "equality of opportunity", "ipa": "/ɪˈkwɒləti əv ˌɒpəˈtjuːnəti/", "ru": "равенство возможностей", "df": "when everyone has the same chances", "ex": "A good education system aims at equality of opportunity.", "say": "equality of opportunity"}, {"g": "A", "en": "selective", "ipa": "/sɪˈlektɪv/", "ru": "отбирающий (школа с отбором при поступлении)", "df": "pupils are chosen for entry, usually for academic reasons", "ex": "She went to a selective school.", "say": "selective"}, {"g": "A", "en": "comprehensive", "ipa": "/ˌkɒmprɪˈhensɪv/", "ru": "общеобразовательная (школа без отбора)", "df": "everyone enters without exams and education is free, paid for by the government", "ex": "Our local comprehensive school takes all the pupils in the area.", "say": "comprehensive"}, {"g": "A", "en": "schooling", "ipa": "/ˈskuːlɪŋ/", "ru": "школьное образование, обучение в школе", "df": "education received at school", "ex": "He had very little formal schooling.", "say": "schooling"}, {"g": "A", "en": "elitism", "ipa": "/eɪˈliːtɪzəm/", "ru": "элитарность", "df": "when you favour a small, privileged group", "ex": "Critics accuse the system of elitism.", "say": "elitism"}, {"g": "A", "en": "inherent in", "ipa": "/ɪnˈherənt ɪn/", "ru": "присущий, неотъемлемый", "df": "existing as a basic part of something", "ex": "Some risk is inherent in any investment.", "say": "inherent in"}, {"g": "A", "en": "league tables", "ipa": "/ˈliːɡ ˌteɪblz/", "ru": "рейтинги школ (по результатам экзаменов)", "df": "lists of schools or colleges, from the best down to the worst, based on exam results and sometimes other criteria", "ex": "The school rose ten places in the league tables.", "say": "league tables"}, {"g": "A", "en": "perpetuate", "ipa": "/pəˈpetʃueɪt/", "ru": "сохранять, увековечивать", "df": "make something continue", "ex": "Stereotypes perpetuate inequality.", "say": "perpetuate"}, {"g": "A", "en": "two-tier system", "ipa": "/ˌtuː ˈtɪə ˌsɪstəm/", "ru": "двухуровневая система", "df": "a system with two separate levels, one of which is better than the other", "ex": "Critics say that selection creates a two-tier system.", "say": "two-tier system"}, {"g": "A", "en": "perceive", "ipa": "/pəˈsiːv/", "ru": "воспринимать, считать", "df": "to see or consider something in a particular way", "ex": "Many parents perceive private schools as better.", "say": "perceive"}, {"g": "B", "en": "better-off", "ipa": "/ˌbetə ˈɒf/", "ru": "более обеспеченный", "df": "richer", "ex": "Better-off families can pay for private lessons.", "say": "better-off"}, {"g": "B", "en": "well-endowed", "ipa": "/ˌwel ɪnˈdaʊd/", "ru": "хорошо обеспеченный средствами (о школе)", "df": "receiving a lot of money in grants, gifts from rich people, etc.", "ex": "The well-endowed college built a new library.", "say": "well-endowed", "note": "Сравнительная и превосходная степени: better-endowed, best-endowed."}, {"g": "B", "en": "depressing (opportunity)", "ipa": "/dɪˈpresɪŋ/", "ru": "снижающий (возможности)", "df": "reducing", "ex": "High fees are depressing opportunity for poorer students.", "say": "depressing", "note": "Глагол depress /dɪˈpres/ здесь значит reduce."}, {"g": "B", "en": "less well-off", "ipa": "/ˌles wel ˈɒf/", "ru": "менее обеспеченный", "df": "poorer", "ex": "Bursaries help less well-off students.", "say": "less well-off"}, {"g": "B", "en": "excel", "ipa": "/ɪkˈsel/", "ru": "преуспевать, выделяться", "df": "achieve an excellent standard", "ex": "She excels at mathematics.", "say": "excel", "note": "Формы: excel, excelled, excelling."}, {"g": "B", "en": "scholarship", "ipa": "/ˈskɒləʃɪp/", "ru": "стипендия (за успехи)", "df": "money given to pay for studies, usually provided on the basis of academic merit", "ex": "He won a scholarship to study in London.", "say": "scholarship"}, {"g": "B", "en": "bursary", "ipa": "/ˈbɜːsəri/", "ru": "стипендия, грант (по нуждаемости)", "df": "money given to pay for studies, usually provided on the basis of need", "ex": "She received a bursary because her family had a low income.", "say": "bursary"}, {"g": "B", "en": "tertiary", "ipa": "/ˈtɜːʃəri/", "ru": "высшее (университетское) образование", "df": "education at university or college level", "ex": "Tertiary education includes universities and colleges.", "say": "tertiary"}, {"g": "B", "en": "student loan", "ipa": "/ˈstjuːdnt ləʊn/", "ru": "студенческий кредит", "df": "money that students can borrow from a bank while studying and then pay back once they are in work", "ex": "Most undergraduates take out a student loan.", "say": "student loan"}, {"g": "B", "en": "undergraduate", "ipa": "/ˌʌndəˈɡrædʒuət/", "ru": "студент бакалавриата", "df": "a student doing a first degree", "ex": "Undergraduates attend lectures and seminars.", "say": "undergraduate"}, {"g": "B", "en": "postgraduate", "ipa": "/ˌpəʊstˈɡrædʒuət/", "ru": "студент после первого диплома (магистрант, аспирант)", "df": "a student doing a further degree", "ex": "She is a postgraduate in Linguistics.", "say": "postgraduate"}, {"g": "B", "en": "tuition fees", "ipa": "/tjuˈɪʃn fiːz/", "ru": "плата за обучение", "df": "money paid to receive teaching", "ex": "Tuition fees have risen sharply.", "say": "tuition fees"}, {"g": "C", "en": "the three Rs", "ipa": "/ðə ˌθriː ˈɑːz/", "ru": "три «R»: чтение, письмо, арифметика", "df": "reading, writing and arithmetic, the traditional basic skills", "ex": "Primary schools must teach the three Rs well.", "say": "the three Rs"}, {"g": "C", "en": "literacy", "ipa": "/ˈlɪtərəsi/", "ru": "грамотность (умение читать)", "df": "the ability to read", "ex": "Adult literacy classes are free.", "say": "literacy"}, {"g": "C", "en": "numeracy", "ipa": "/ˈnjuːmərəsi/", "ru": "умение считать, базовая математика", "df": "the ability to count / do basic maths", "ex": "Numeracy is essential in many jobs.", "say": "numeracy"}, {"g": "C", "en": "curriculum reform", "ipa": "/kəˌrɪkjələm rɪˈfɔːm/", "ru": "реформа учебной программы", "df": "changes to what is covered in the national syllabus", "ex": "Teachers are tired of constant curriculum reform.", "say": "curriculum reform"}, {"g": "C", "en": "syllabus", "ipa": "/ˈsɪləbəs/", "ru": "программа курса", "df": "the plan of what is to be studied", "ex": "The syllabus includes three novels.", "say": "syllabus"}, {"g": "C", "en": "lifelong / continuing education", "ipa": "/ˌlaɪflɒŋ, kənˌtɪnjuːɪŋ edʒuˈkeɪʃn/", "ru": "образование на протяжении жизни", "df": "education for all ages", "ex": "Lifelong education helps adults to change careers.", "say": "lifelong education"}, {"g": "C", "en": "mature students", "ipa": "/məˈtʃʊə ˈstjuːdnts/", "ru": "взрослые студенты", "df": "adult students older than the average student", "ex": "The university welcomes mature students.", "say": "mature students"}, {"g": "C", "en": "special needs education", "ipa": "/ˌspeʃl ˈniːdz edʒuˌkeɪʃn/", "ru": "специальное образование (для детей с особыми потребностями)", "df": "education for children who cannot learn in the normal way, because they have some disability", "ex": "Special needs education requires small classes.", "say": "special needs education"}, {"g": "C", "en": "one-to-one", "ipa": "/ˌwʌn tə ˈwʌn/", "ru": "индивидуально, один на один", "df": "one teacher and one pupil, not a group", "ex": "She has one-to-one lessons twice a week.", "say": "one to one"}, {"g": "C", "en": "bullying", "ipa": "/ˈbʊliɪŋ/", "ru": "буллинг, травля", "df": "threatening behaviour", "ex": "The school has a strict policy against bullying.", "say": "bullying"}, {"g": "C", "en": "guidelines", "ipa": "/ˈɡaɪdlaɪnz/", "ru": "рекомендации, инструкции", "df": "advice, often official, on how something should be done", "ex": "Schools must follow government guidelines.", "say": "guidelines"}, {"g": "C", "en": "distraction", "ipa": "/dɪˈstrækʃn/", "ru": "отвлекающий фактор", "df": "something that takes attention away from what you should be doing", "ex": "Mobile phones can be a distraction in class.", "say": "distraction"}], "m5a": {"items": [{"w": "equality of opportunity", "ipa": "/ɪˈkwɒləti əv ˌɒpəˈtjuːnəti/", "d": "when everyone has the same chances"}, {"w": "selective", "ipa": "/sɪˈlektɪv/", "d": "pupils are chosen for entry, usually for academic reasons"}, {"w": "comprehensive", "ipa": "/ˌkɒmprɪˈhensɪv/", "d": "everyone enters without exams and education is free, paid for by the government"}, {"w": "schooling", "ipa": "/ˈskuːlɪŋ/", "d": "education received at school"}, {"w": "elitism", "ipa": "/eɪˈliːtɪzəm/", "d": "when you favour a small, privileged group"}, {"w": "inherent in", "ipa": "/ɪnˈherənt ɪn/", "d": "existing as a basic part of something"}, {"w": "league tables", "ipa": "/ˈliːɡ ˌteɪblz/", "d": "lists of schools or colleges, from the best down to the worst, based on exam results and sometimes other criteria"}, {"w": "perpetuate", "ipa": "/pəˈpetʃueɪt/", "d": "make something continue"}, {"w": "two-tier system", "ipa": "/ˌtuː ˈtɪə ˌsɪstəm/", "d": "a system with two separate levels, one of which is better than the other"}, {"w": "perceive", "ipa": "/pəˈsiːv/", "d": "sees, considers"}], "defs": ["make something continue", "when everyone has the same chances", "when you favour a small, privileged group", "pupils are chosen for entry, usually for academic reasons", "education received at school", "sees, considers", "existing as a basic part of something", "a system with two separate levels, one of which is better than the other", "lists of schools or colleges, from the best down to the worst, based on exam results and sometimes other criteria", "everyone enters without exams and education is free, paid for by the government"]}, "m5b": {"items": [{"w": "better-off", "ipa": "/ˌbetə ˈɒf/", "d": "richer"}, {"w": "well-endowed", "ipa": "/ˌwel ɪnˈdaʊd/", "d": "receiving a lot of money in grants, gifts from rich people, etc."}, {"w": "depressing (opportunity)", "ipa": "/dɪˈpresɪŋ/", "d": "reducing"}, {"w": "less well-off", "ipa": "/ˌles wel ˈɒf/", "d": "poorer"}, {"w": "excel", "ipa": "/ɪkˈsel/", "d": "achieve an excellent standard"}, {"w": "scholarship", "ipa": "/ˈskɒləʃɪp/", "d": "money given to pay for studies, usually provided on the basis of academic merit"}, {"w": "bursary", "ipa": "/ˈbɜːsəri/", "d": "money given to pay for studies, usually provided on the basis of need"}, {"w": "tertiary", "ipa": "/ˈtɜːʃəri/", "d": "education at university or college level"}, {"w": "student loan", "ipa": "/ˈstjuːdnt ləʊn/", "d": "money that students can borrow from a bank while studying and then pay back once they are in work"}, {"w": "undergraduate", "ipa": "/ˌʌndəˈɡrædʒuət/", "d": "a student doing a first degree"}, {"w": "postgraduate", "ipa": "/ˌpəʊstˈɡrædʒuət/", "d": "a student doing a further degree"}, {"w": "tuition fees", "ipa": "/tjuˈɪʃn fiːz/", "d": "money paid to receive teaching"}], "defs": ["achieve an excellent standard", "receiving a lot of money in grants, gifts from rich people, etc.", "a student doing a further degree", "money given to pay for studies, usually provided on the basis of need", "money that students can borrow from a bank while studying and then pay back once they are in work", "a student doing a first degree", "money given to pay for studies, usually provided on the basis of academic merit", "money paid to receive teaching", "education at university or college level", "richer", "poorer", "reducing"]}, "m5c": {"items": [{"w": "the three Rs", "ipa": "/ðə ˌθriː ˈɑːz/", "d": "reading, writing and arithmetic, the traditional basic skills"}, {"w": "literacy", "ipa": "/ˈlɪtərəsi/", "d": "the ability to read"}, {"w": "numeracy", "ipa": "/ˈnjuːmərəsi/", "d": "the ability to count / do basic maths"}, {"w": "curriculum reform", "ipa": "/kəˌrɪkjələm rɪˈfɔːm/", "d": "changes to what is covered in the national syllabus"}, {"w": "syllabus", "ipa": "/ˈsɪləbəs/", "d": "the plan of what is to be studied"}, {"w": "lifelong / continuing education", "ipa": "/ˌlaɪflɒŋ, kənˌtɪnjuːɪŋ edʒuˈkeɪʃn/", "d": "education for all ages"}, {"w": "mature students", "ipa": "/məˈtʃʊə ˈstjuːdnts/", "d": "adult students older than the average student"}, {"w": "special needs education", "ipa": "/ˌspeʃl ˈniːdz edʒuˌkeɪʃn/", "d": "education for children who cannot learn in the normal way, because they have some disability"}, {"w": "one-to-one", "ipa": "/ˌwʌn tə ˈwʌn/", "d": "one teacher and one pupil, not a group"}, {"w": "bullying", "ipa": "/ˈbʊliɪŋ/", "d": "threatening behaviour"}, {"w": "guidelines", "ipa": "/ˈɡaɪdlaɪnz/", "d": "advice, often official, on how something should be done"}, {"w": "distraction", "ipa": "/dɪˈstrækʃn/", "d": "something that takes attention away from what you should be doing"}], "defs": ["education for children who cannot learn in the normal way, because they have some disability", "threatening behaviour", "education for all ages", "advice, often official, on how something should be done", "the ability to count / do basic maths", "one teacher and one pupil, not a group", "changes to what is covered in the national syllabus", "adult students older than the average student", "something that takes attention away from what you should be doing", "reading, writing and arithmetic, the traditional basic skills", "the ability to read", "the plan of what is to be studied"]}, "scr": [{"s": "RELTICAY", "a": "literacy", "c": "the ability to read"}, {"s": "CUMERANY", "a": "numeracy", "c": "the ability to do basic maths"}, {"s": "BASYLLUS", "a": "syllabus", "c": "the plan of what is to be studied"}, {"s": "SUBRYAR", "a": "bursary", "c": "money given to a student on the basis of need"}, {"s": "RETAIRTY", "a": "tertiary", "c": "education at university or college level"}, {"s": "MISTILE", "a": "elitism", "c": "favouring a small, privileged group"}, {"s": "PETUPRATEE", "a": "perpetuate", "c": "make something continue"}, {"s": "CATTIONDRIS", "a": "distraction", "c": "something that takes attention away"}, {"s": "LYBILNUG", "a": "bullying", "c": "threatening behaviour"}, {"s": "HOLSPHIRSCA", "a": "scholarship", "c": "money given for studies on the basis of academic merit"}, {"s": "HERENTIN", "a": "inherent", "c": "existing as a basic part of something"}], "tf": [{"s": "In a comprehensive system, pupils must pass exams to enter.", "a": "False", "e": "Everyone enters without exams."}, {"s": "James thinks league tables may increase inequalities.", "a": "True", "e": "He says they may perpetuate inequalities."}, {"s": "Better-off parents can push their children towards the top institutions.", "a": "True", "e": "Better-off parents can push children towards the institutions at the top."}, {"s": "Scholarships are given on the basis of need.", "a": "False", "e": "Scholarships are given on academic merit; bursaries are given on the basis of need."}, {"s": "Student loans allow undergraduates to pay their tuition fees and living expenses.", "a": "True", "e": "They pay their tuition fees and living expenses while they are studying."}, {"s": "Emma thinks literacy and numeracy are not important.", "a": "False", "e": "She says they are skills that no one can afford to be without."}, {"s": "James says curriculum reform is usually done for good educational reasons.", "a": "False", "e": "It is often done for political reasons."}, {"s": "Headteachers say new government guidelines are a distraction.", "a": "True", "e": "They complain that guidelines are a distraction from what they ought to be focusing on."}, {"s": "Special needs education is cheap because classes are large.", "a": "False", "e": "It is expensive, because class sizes need to be small, or one-to-one."}, {"s": "Emma and James think real equality of opportunity has been achieved.", "a": "False", "e": "James says few would claim that."}], "sortw": [{"w": "endowments", "a": "B"}, {"w": "guidelines", "a": "D"}, {"w": "inherent in", "a": "D"}, {"w": "well-endowed", "a": "B"}, {"w": "tertiary education", "a": "A"}, {"w": "scholarships", "a": "B"}, {"w": "schooling", "a": "A"}, {"w": "student loans", "a": "B"}, {"w": "one-to-one", "a": "D"}, {"w": "the three Rs", "a": "A"}, {"w": "less well-off", "a": "B"}, {"w": "curriculum reform", "a": "A"}, {"w": "numeracy", "a": "D"}, {"w": "special needs education", "a": "A"}, {"w": "syllabus", "a": "A"}, {"w": "tuition fees", "a": "B"}, {"w": "elitism", "a": "D"}, {"w": "postgraduates", "a": "C"}, {"w": "undergraduates", "a": "C"}, {"w": "depressing", "a": "D"}, {"w": "bullying", "a": "D"}, {"w": "perceive", "a": "D"}, {"w": "literacy", "a": "D"}, {"w": "better-off", "a": "B"}, {"w": "two-tier system", "a": "A"}, {"w": "distraction", "a": "D"}, {"w": "comprehensive", "a": "A"}, {"w": "mature students", "a": "C"}, {"w": "league tables", "a": "A"}, {"w": "bursaries", "a": "B"}, {"w": "perpetuate", "a": "D"}, {"w": "lifelong / continuing education", "a": "A"}, {"w": "excel", "a": "D"}, {"w": "selective", "a": "A"}], "stress": [{"w": "opportunity", "a": "3rd"}, {"w": "syllabus", "a": "1st"}, {"w": "elitism", "a": "2nd"}, {"w": "curriculum", "a": "2nd"}, {"w": "tuition", "a": "2nd"}, {"w": "literacy", "a": "1st"}, {"w": "bullying", "a": "1st"}, {"w": "excel", "a": "2nd"}, {"w": "tertiary", "a": "1st"}, {"w": "selective", "a": "2nd"}, {"w": "guidelines", "a": "1st"}, {"w": "schooling", "a": "1st"}, {"w": "scholarship", "a": "1st"}, {"w": "perceive", "a": "2nd"}, {"w": "distraction", "a": "2nd"}, {"w": "undergraduate", "a": "3rd"}, {"w": "comprehensive", "a": "3rd"}, {"w": "perpetuate", "a": "2nd"}, {"w": "bursary", "a": "1st"}], "forms": [{"h": "(elite)", "s": "There is some ___ in the system.", "a": "elitism"}, {"h": "(literate)", "s": "___ is the ability to read.", "a": "literacy"}, {"h": "(numerate)", "s": "___ is the ability to do basic maths.", "a": "numeracy"}, {"h": "(equal)", "s": "Everyone should have ___ of opportunity.", "a": "equality"}, {"h": "(select)", "s": "Pupils in a ___ school are chosen for entry.", "a": "selective"}, {"h": "(distract)", "s": "Mobile phones are a major ___ in class.", "a": "distraction"}, {"h": "(bully)", "s": "Teachers must take ___ seriously.", "a": "bullying"}], "collo": {"nouns": ["tuition fees", "a scholarship", "inequalities", "equality of opportunity", "a student loan", "curriculum reform", "government guidelines", "bullying"], "items": [{"v": "perpetuate", "a": "inequalities|bullying"}, {"v": "take out", "a": "a student loan"}, {"v": "pay", "a": "tuition fees"}, {"v": "win", "a": "a scholarship"}, {"v": "follow", "a": "government guidelines"}, {"v": "introduce", "a": "curriculum reform|government guidelines"}, {"v": "tackle", "a": "bullying|inequalities"}, {"v": "achieve", "a": "equality of opportunity"}]}, "compound": [{"s": "Families that are ___ (well-off) than average can often pay for private tuition.", "a": "better-off|better off"}, {"s": "The ___ (well-endowed) schools can offer the widest range of facilities.", "a": "best-endowed|best endowed"}, {"s": "Pupils at this school are ___ (high-achieving) than pupils at the school next door.", "a": "higher-achieving|higher achieving"}, {"s": "The ___ (badly-performing) school in the region was closed last year.", "a": "worst-performing|worst performing"}], "odd": [{"o": ["undergraduate", "postgraduate", "mature student", "headteacher"], "a": "headteacher", "e": "not a type of student"}, {"o": ["selective", "tertiary", "inherent", "comprehensive"], "a": "inherent", "e": "the others are types of education or school systems"}, {"o": ["literacy", "reading", "syllabus", "numeracy"], "a": "syllabus", "e": "the others are skills; a syllabus is a plan"}, {"o": ["guidelines", "elitism", "distraction", "bullying"], "a": "guidelines", "e": "the others are problems; guidelines are advice"}, {"o": ["better-off", "higher-achieving", "well-endowed", "less well-off"], "a": "higher-achieving", "e": "the others are about money"}], "order": [{"w": "believe / I / that / strongly / selective / schooling / elitism / encourages", "a": "I strongly believe that selective schooling encourages elitism.|I believe strongly that selective schooling encourages elitism."}, {"w": "hand / other / the / on / bursaries / help / less well-off / students", "a": "On the other hand, bursaries help less well-off students.|Bursaries, on the other hand, help less well-off students."}, {"w": "perpetuate / league tables / may / inequalities", "a": "League tables may perpetuate inequalities."}, {"w": "point / I / see / your / but / tuition fees / are / too / high", "a": "I see your point, but tuition fees are too high."}, {"w": "admittedly / numeracy / literacy / and / essential / are", "a": "Admittedly, literacy and numeracy are essential.|Admittedly, numeracy and literacy are essential."}, {"w": "no / can / one / afford / without / literacy / to / be", "a": "No one can afford to be without literacy."}], "punct": [{"s": "However some people believe that league tables raise standards.", "a": "However, some people believe that league tables raise standards."}, {"s": "On the other hand scholarships help only a few students.", "a": "On the other hand, scholarships help only a few students."}, {"s": "In fact bullying affects learning.", "a": "In fact, bullying affects learning."}, {"s": "Generally speaking comprehensive schools accept all pupils.", "a": "Generally speaking, comprehensive schools accept all pupils."}, {"s": "Few would claim that real equality of opportunity has been achieved.", "a": "Few would claim that real equality of opportunity has been achieved."}], "recall": [{"s": "the ability to read", "a": "literacy"}, {"s": "money given to a student on the basis of need", "a": "bursary"}, {"s": "education at university or college level", "a": "tertiary"}, {"s": "a student doing a further degree", "a": "postgraduate"}, {"s": "the plan of what is to be studied", "a": "syllabus"}, {"s": "when you favour a small, privileged group", "a": "elitism"}, {"s": "threatening behaviour", "a": "bullying"}, {"s": "one teacher and one pupil, not a group", "a": "one-to-one|one to one"}, {"s": "money that students can borrow while studying and pay back once they are in work", "a": "student loan|a student loan"}, {"s": "reading, writing and arithmetic, the traditional basic skills", "a": "the three Rs|three Rs"}], "transcript": "<p><b>Emma:<\/b> Hello, and welcome to Education Matters. I'm Emma, and today I'm joined by James to talk about the big debates and issues in education. James, where shall we begin?<\/p><p><b>James:<\/b> Hello, Emma. Let's begin with <b>equality of opportunity<\/b>. Ultimately, an education system can be judged by whether everyone has the same chances.<\/p><p><b>Emma:<\/b> And that is often discussed in the debate over <b>selective<\/b> versus <b>comprehensive<\/b> <b>schooling<\/b>. In a selective system, pupils are chosen for entry, usually for academic reasons. In a comprehensive system, everyone enters without exams, and education is free.<\/p><p><b>James:<\/b> Exactly. The main issue is whether everyone really has the same opportunities, or whether some <b>elitism<\/b> is <b>inherent in<\/b> the system.<\/p><p><b>Emma:<\/b> What about <b>league tables<\/b>? They claim to raise standards, don't they?<\/p><p><b>James:<\/b> They do, but they may actually <b>perpetuate<\/b> inequalities. League tables divide schools into good and bad, and the public <b>perceives<\/b> it as a <b>two-tier system<\/b>. <b>Well-endowed<\/b> schools, which receive a lot of money from <b>endowments<\/b>, and <b>better-off<\/b> parents can push children towards the institutions at the top. The <b>best-endowed<\/b> schools keep rising, while the <b>worst-performing<\/b> schools lose their <b>higher-achieving<\/b> pupils.<\/p><p><b>Emma:<\/b> And in the long term, that has the effect of <b>depressing<\/b> opportunity for the <b>less well-off<\/b>, and for children whose home environments don't give them the motivation to <b>excel<\/b>.<\/p><p><b>James:<\/b> So what can help? Financial support. <b>Scholarships<\/b> are given on the basis of academic merit, while <b>bursaries<\/b> are given on the basis of need. Both make it possible for less privileged youngsters to afford <b>tertiary<\/b> education.<\/p><p><b>Emma:<\/b> And <b>student loans<\/b> allow <b>undergraduates<\/b> to pay their <b>tuition fees<\/b> and living expenses while they are studying. <b>Postgraduates<\/b>, who are doing a further degree, often need that support too.<\/p><p><b>James:<\/b> Yet few would claim that real equality of opportunity has been achieved.<\/p><p><b>Emma:<\/b> Let's move on to some other debates. Some people think we should return to <b>the three Rs<\/b>: reading, writing and arithmetic. <b>Literacy<\/b> and <b>numeracy<\/b> are skills that no one can afford to be without.<\/p><p><b>James:<\/b> I agree. But <b>curriculum reform<\/b> is often done for political reasons rather than good educational ones. Changes to the national <b>syllabus<\/b>, the plan of what is to be studied, come and go.<\/p><p><b>Emma:<\/b> And headteachers complain that getting to grips with constant new government <b>guidelines<\/b> is a <b>distraction<\/b> from what they ought to be focusing on.<\/p><p><b>James:<\/b> Nowadays, <b>lifelong education<\/b>, or <b>continuing education<\/b>, is an issue too, and creating opportunities for <b>mature students<\/b> is important.<\/p><p><b>Emma:<\/b> As is <b>special needs education<\/b>. It is expensive, because class sizes need to be small, or even <b>one-to-one<\/b>.<\/p><p><b>James:<\/b> And finally, <b>bullying<\/b>. Children are unhappy at school if there is a lot of <b>bullying<\/b>.<\/p><p><b>Emma:<\/b> A serious note to end on. Thank you for listening, and goodbye.<\/p><p><b>James:<\/b> Goodbye.<\/p>"};
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+function mk(tag, cls, html){ const e=document.createElement(tag); if(cls) e.className=cls; if(html!==undefined) e.innerHTML=html; return e; }
+$('#trBox').innerHTML = D.transcript;
+
+const GROUPS = {all:'All', A:'A · Opportunity and school systems', B:'B · Money and students', C:'C · Curriculum, skills and issues', todo:'To review'};
+let group='all', order=D.cards.map((_,i)=>i), known=new Set();
+function speak(t){
+  try{
+    if(!('speechSynthesis' in window)) return;
+    const u=new SpeechSynthesisUtterance(t); u.lang='en-GB'; u.rate=.9;
+    const v=speechSynthesis.getVoices().find(v=>v.lang==='en-GB'||v.lang==='en_GB');
+    if(v) u.voice=v;
+    speechSynthesis.cancel(); speechSynthesis.speak(u);
+  }catch(e){}
+}
+function renderFilters(){
+  const f=$('#filters'); f.innerHTML='';
+  Object.keys(GROUPS).forEach(k=>{
+    const b=mk('button', k===group?'on':'', GROUPS[k]); b.onclick=()=>{group=k;renderFilters();renderCards();}; f.appendChild(b);
+  });
+  const sh=mk('button','', '🔀 Shuffle'); sh.onclick=()=>{ order.sort(()=>Math.random()-.5); renderCards(); }; f.appendChild(sh);
+  const rs=mk('button','', 'Reset order'); rs.onclick=()=>{ order=D.cards.map((_,i)=>i); renderCards(); }; f.appendChild(rs);
+}
+function renderCards(){
+  const g=$('#grid'); g.innerHTML='';
+  const list=order.filter(i=>{ const c=D.cards[i]; if(group==='all') return true; if(group==='todo') return !known.has(i); return c.g===group; });
+  list.forEach(i=>{
+    const c=D.cards[i];
+    const w=mk('div','card'+(known.has(i)?' known':'')); w.tabIndex=0; w.setAttribute('role','button'); w.setAttribute('aria-label','Flip card: '+c.en);
+    w.innerHTML =
+      '<div class="inner">'+
+        '<div class="face front"><span class="tag">'+esc(GROUPS[c.g]||'')+'</span><button class="spk" title="Listen" aria-label="Listen">🔊</button>'+
+          '<div class="en">'+esc(c.en)+'</div><div class="ipa">'+esc(c.ipa)+'</div><div class="hint">click to flip</div></div>'+
+        '<div class="face back"><div class="ru">'+esc(c.ru)+'</div><div class="df">'+esc(c.df)+'</div>'+
+          '<div class="ex">'+esc(c.ex)+'</div>'+(c.note?'<div class="note">'+esc(c.note)+'</div>':'')+
+          '<button class="known-btn">'+(known.has(i)?'✓ I know it':'Mark as known')+'</button></div>'+
+      '</div>';
+    w.onclick=()=>w.classList.toggle('flip');
+    w.onkeydown=e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); w.classList.toggle('flip'); } };
+    w.querySelector('.spk').onclick=e=>{ e.stopPropagation(); speak(c.say); };
+    w.querySelector('.known-btn').onclick=e=>{ e.stopPropagation(); if(known.has(i)) known.delete(i); else known.add(i); renderCards(); };
+    g.appendChild(w);
+  });
+  $('#counter').textContent='Known: '+known.size+' / '+D.cards.length+'. Cards shown: '+list.length+'.';
+}
+
+function sel(opts, ans){
+  const s=document.createElement('select'); s.dataset.a=ans;
+  const o0=document.createElement('option'); o0.value=''; o0.textContent='…'; s.appendChild(o0);
+  opts.forEach(t=>{ const o=document.createElement('option'); o.value=t; o.textContent=t; s.appendChild(o); });
+  return s;
+}
+function inp(ans, cls, def){
+  const i=document.createElement('input'); i.type='text'; i.dataset.a=ans; i.autocomplete='off'; i.spellcheck=false;
+  if(cls) i.className=cls; if(def!==undefined){ i.value=def; i.dataset.def=def; } return i;
+}
+function buildMatch(id,m){
+  const box=$(id);
+  m.items.forEach((x,i)=>{
+    const r=mk('div','ex-item'); r.appendChild(mk('div','w',(i+1)+'. '+esc(x.w)+'<small>'+esc(D.cards.find(c=>c.en===x.w).ipa)+'</small>'));
+    r.appendChild(sel(m.defs,x.d)); box.appendChild(r);
+  });
+}
+buildMatch('#m5aList',D.m5a); buildMatch('#m5bList',D.m5b); buildMatch('#m5cList',D.m5c);
+
+D.tf.forEach((m,i)=>{
+  const d=mk('div','sent'); d.appendChild(document.createTextNode((i+1)+'. '+m.s+'  '));
+  d.appendChild(sel(['True','False'],m.a)); d.appendChild(mk('div','expl',esc(m.a+'. '+m.e))); $('#tfList').appendChild(d);
+});
+D.sortw.forEach((m,i)=>{
+  const r=mk('div','ex-item'); r.appendChild(mk('div','w',(i+1)+'. '+esc(m.w))); r.appendChild(sel(['A','B','C','D'],m.a)); $('#sortList').appendChild(r);
+});
+D.scr.forEach((m,i)=>{
+  const r=mk('div','ex-item'); r.appendChild(mk('div','w',(i+1)+'. '+esc(m.s)+'<small>'+esc(m.c)+'</small>')); r.appendChild(inp(m.a)); $('#scrList').appendChild(r);
+});
+D.stress.forEach((m,i)=>{
+  const r=mk('div','ex-item'); r.appendChild(mk('div','w',(i+1)+'. '+esc(m.w))); r.appendChild(sel(['1st','2nd','3rd'],m.a)); r.appendChild(mk('span','ru-s','syllable')); $('#stressList').appendChild(r);
+});
+function gapSentence(box,i,s,ans,hint){
+  const d=mk('div','sent'); d.appendChild(document.createTextNode((i+1)+'. '+(hint?hint+' ':'')));
+  const parts=s.split('___'); d.appendChild(document.createTextNode(parts[0])); d.appendChild(inp(ans)); d.appendChild(document.createTextNode(parts[1])); box.appendChild(d);
+}
+D.forms.forEach((m,i)=>gapSentence($('#formsList'),i,m.s,m.a,m.h));
+D.collo.items.forEach((m,i)=>{
+  const r=mk('div','ex-item'); r.appendChild(mk('div','w',(i+1)+'. '+esc(m.v))); r.appendChild(sel(D.collo.nouns,m.a)); $('#colloList').appendChild(r);
+});
+D.compound.forEach((m,i)=>gapSentence($('#compList'),i,m.s,m.a,''));
+D.odd.forEach((m,i)=>{
+  const d=mk('div','sent'); d.appendChild(document.createTextNode((i+1)+'. '+m.o.join(' – ')+'  '));
+  d.appendChild(sel(m.o,m.a)); d.appendChild(mk('div','expl',esc(m.a+': '+m.e))); $('#oddList').appendChild(d);
+});
+D.order.forEach((m,i)=>{
+  const d=mk('div','sent'); d.appendChild(document.createTextNode((i+1)+'. ')); d.appendChild(mk('span','bank',esc(m.w.split(' / ').join(' / '))));
+  const x=inp(m.a,'wide'); x.dataset.loose='1'; d.appendChild(document.createElement('br')); d.appendChild(x); $('#ordList').appendChild(d);
+});
+D.punct.forEach((m,i)=>{
+  const d=mk('div','sent'); d.appendChild(document.createTextNode((i+1)+'. '));
+  d.appendChild(document.createElement('br')); d.appendChild(inp(m.a,'wide',m.s)); $('#punList').appendChild(d);
+});
+D.recall.forEach((m,i)=>{
+  const r=mk('div','ex-item'); r.appendChild(mk('div','w',(i+1)+'. '+esc(m.s))); r.appendChild(inp(m.a)); $('#recList').appendChild(r);
+});
+
+function normS(s,loose){
+  s=String(s||'').toLowerCase().replace(/[’]/g,"'").trim().replace(/\s+/g,' ');
+  if(loose) s=s.replace(/[.,;:!?]/g,'').replace(/\s+/g,' ').trim();
+  return s;
+}
+function isGood(x){
+  const loose=x.dataset.loose==='1';
+  const v=normS(x.value,loose);
+  return x.dataset.a.split('|').some(a=>normS(a,loose)===v) && v!=='';
+}
+function checkBox(id){
+  const box=document.getElementById(id); let ok=0, tot=0;
+  box.querySelectorAll('[data-a]').forEach(x=>{
+    tot++; const good=isGood(x);
+    x.classList.toggle('ok',good); x.classList.toggle('bad',!good); if(good) ok++;
+  });
+  box.querySelectorAll('.expl').forEach(e=>e.classList.add('show'));
+  box.querySelector('.score').textContent=ok+' / '+tot;
+}
+function showBox(id){
+  const box=document.getElementById(id);
+  box.querySelectorAll('[data-a]').forEach(x=>{ x.value=x.dataset.a.split('|')[0]; x.classList.remove('bad'); x.classList.add('ok'); });
+  box.querySelectorAll('.expl').forEach(e=>e.classList.add('show'));
+  const t=box.querySelectorAll('[data-a]').length; box.querySelector('.score').textContent=t+' / '+t;
+}
+function resetBox(id){
+  const box=document.getElementById(id);
+  box.querySelectorAll('[data-a]').forEach(x=>{ x.value=(x.dataset.def!==undefined?x.dataset.def:''); x.classList.remove('ok','bad'); });
+  box.querySelectorAll('.expl').forEach(e=>e.classList.remove('show'));
+  box.querySelector('.score').textContent='';
+}
+document.querySelectorAll('[data-check]').forEach(b=>b.onclick=()=>checkBox(b.dataset.check));
+document.querySelectorAll('[data-show]').forEach(b=>b.onclick=()=>showBox(b.dataset.show));
+document.querySelectorAll('[data-reset]').forEach(b=>b.onclick=()=>resetBox(b.dataset.reset));
+
+renderFilters(); renderCards();
+try{ if('speechSynthesis' in window) speechSynthesis.getVoices(); }catch(e){}
+</script>
+</body>
+</html>
