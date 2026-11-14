@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Unit 3 · Applying for a job · Review (C1)</title>
+<style>
+:root{--ink:#1b2340;--muted:#5a6384;--bg:#f4f6fc;--card:#ffffff;--line:#d9def0;--brand:#2f3fbf;--brand2:#e9ecff;--accent:#e8741c;--ok:#1f8f4e;--okbg:#e3f6ea;--bad:#c0392b;--badbg:#fdeaea;--shadow:0 6px 24px rgba(30,40,100,.10)}
+*{box-sizing:border-box}
+body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.55}
+header{background:linear-gradient(135deg,#1f2a7a,#3a4fe0);color:#fff;padding:36px 20px 44px}
+.wrap{max-width:980px;margin:0 auto;padding:0 16px}
+header .wrap{padding:0}
+header h1{margin:0 0 6px;font-size:clamp(24px,4.4vw,38px);line-height:1.15}
+header p{margin:0;opacity:.9;max-width:720px}
+nav{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.96);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;gap:6px;overflow-x:auto;padding:8px 16px}
+nav a{white-space:nowrap;text-decoration:none;color:var(--brand);background:var(--brand2);padding:6px 12px;border-radius:999px;font-size:14px;font-weight:600}
+section{margin:30px 0}
+h2{font-size:clamp(21px,3.4vw,28px);margin:0 0 6px}
+.lead{color:var(--muted);margin:0 0 16px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;box-shadow:var(--shadow)}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:10px 0 16px}
+button,.btn{font:inherit;cursor:pointer;border:1px solid var(--line);background:#fff;color:var(--ink);padding:8px 14px;border-radius:10px;font-weight:600}
+button:hover{border-color:var(--brand);color:var(--brand)}
+button.primary{background:var(--brand);border-color:var(--brand);color:#fff}
+button.primary:hover{color:#fff;opacity:.92}
+button.on{background:var(--brand);color:#fff;border-color:var(--brand)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px}
+.card{perspective:1000px;height:290px;cursor:pointer;outline:none}
+.card:focus-visible .inner{box-shadow:0 0 0 3px var(--accent)}
+.inner{position:relative;width:100%;height:100%;transition:transform .55s;transform-style:preserve-3d;border-radius:16px;box-shadow:var(--shadow)}
+.card.flip .inner{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:16px;padding:16px;display:flex;flex-direction:column;border:1px solid var(--line);background:var(--card);overflow:auto}
+.front{align-items:center;justify-content:center;text-align:center;background:linear-gradient(180deg,#fff,#f0f3ff)}
+.back{transform:rotateY(180deg);background:#fffaf4;font-size:14.5px}
+.en{font-size:24px;font-weight:800;line-height:1.2}
+.ipa{margin-top:8px;color:var(--brand);font-size:17px;font-family:"Segoe UI","Noto Sans","DejaVu Sans",system-ui,sans-serif}
+.tag{position:absolute;top:10px;left:12px;font-size:11px;font-weight:700;color:var(--muted);letter-spacing:.04em;text-transform:uppercase}
+.spk{position:absolute;top:6px;right:8px;padding:4px 9px;border-radius:999px;font-size:15px}
+.hint{position:absolute;bottom:10px;font-size:12px;color:var(--muted)}
+.back .ru{font-weight:800;font-size:17px;margin-bottom:6px}
+.back .df{color:var(--muted);margin-bottom:6px}
+.back .ex{border-left:3px solid var(--accent);padding-left:8px;margin:6px 0}
+.back .note{margin-top:6px;font-size:13px;background:#fff1de;border-radius:8px;padding:6px 8px}
+.known-btn{margin-top:auto;align-self:flex-start;padding:4px 10px;font-size:13px}
+.card.known .front{background:linear-gradient(180deg,#f2fbf5,#e3f6ea)}
+table{border-collapse:collapse;width:100%;font-size:15px;background:#fff}
+th,td{border:1px solid var(--line);padding:9px 10px;text-align:left;vertical-align:top}
+th{background:var(--brand2);color:#1f2a7a}
+.tscroll{overflow-x:auto;border-radius:12px}
+.pill{display:inline-block;background:var(--brand2);color:var(--brand);border-radius:999px;padding:1px 10px;font-weight:700;font-size:13px}
+.ru-s{color:var(--muted);font-size:13px}
+.ex-item{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:7px 0;border-bottom:1px dashed var(--line)}
+.ex-item:last-child{border-bottom:0}
+.w{font-weight:700;min-width:190px}
+.w small{display:block;font-weight:500;color:var(--brand);font-size:13px}
+select,input[type=text]{font:inherit;padding:6px 8px;border-radius:8px;border:1.5px solid var(--line);background:#fff;color:var(--ink);max-width:100%}
+select.ok,input.ok{border-color:var(--ok);background:var(--okbg)}
+select.bad,input.bad{border-color:var(--bad);background:var(--badbg)}
+.score{font-weight:800;color:var(--brand);margin-left:6px}
+.reading h3{margin:18px 0 6px;color:#1f2a7a;font-size:18px}
+.reading p{margin:0 0 6px;font-size:17px;line-height:2.05}
+.reading select{font-size:15px;padding:3px 5px;margin:0 2px}
+.gn{font-size:11px;color:var(--muted);vertical-align:super;margin-right:1px}
+.sent{padding:8px 0;border-bottom:1px dashed var(--line);font-size:17px;line-height:2.05}
+.sent:last-child{border-bottom:0}
+.expl{display:none;font-size:14px;color:var(--muted);margin-top:2px;line-height:1.4}
+.expl.show{display:block}
+.tip{background:#fff7ea;border:1px solid #f4d9b0;border-radius:12px;padding:10px 14px;margin:12px 0;font-size:15px}
+.tip ul{margin:6px 0 0;padding-left:20px}
+footer{padding:26px 16px 50px;text-align:center;color:var(--muted);font-size:14px}
+@media(max-width:560px){.w{min-width:100%}.card{height:310px}}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+<h1>Unit 3 · Applying for a job</h1>
+<p>Review page, level C1: flashcards with British pronunciation, a guide to the cover letter, key phrases, and exercises on every word from the unit (job ad and cover letter).</p>
+</div></header>
+<nav><div class="wrap">
+<a href="#cards">1. Flashcards</a><a href="#guide">2. Cover letter</a><a href="#phrases">3. Key phrases</a><a href="#matchA">4. Match</a><a href="#scr">5. Unscramble</a><a href="#tf">6. True / False</a><a href="#text">7. Text</a><a href="#prep">8. Phrases</a>
+</div></nav>
+<main class="wrap">
+
+<section id="cards">
+<h2>1. Flashcards</h2>
+<p class="lead">Click a card to flip it: front = word and British transcription, back = translation, meaning and example. Press 🔊 to hear the word (it works in browsers that support British English voices).</p>
+<div class="row" id="filters"></div>
+<div class="grid" id="grid"></div>
+<p class="lead" id="counter" style="margin-top:12px"></p>
+</section>
+
+<section id="guide">
+<h2>2. The cover letter: structure and rules</h2>
+<p class="lead">A cover letter (also called a covering letter) is sent with your CV and highlights the key points from it.</p>
+<div class="panel tscroll">
+<table>
+<tr><th>Part</th><th>What to write</th><th>Useful language</th></tr>
+<tr><td><b>1. Greeting</b></td><td>If you do not know the name of the person you are writing to</td><td>Dear Sir or Madam</td></tr>
+<tr><td><b>2. The job</b></td><td>Say at the beginning which job you are applying for</td><td>Please find attached my CV <b>in support of</b> my application for the <b>position</b> of…</td></tr>
+<tr><td><b>3. Studies and training</b></td><td>Mention any courses you have done which are relevant to the role</td><td>I have just <b>completed</b> my degree in… / modules that are <b>relevant to</b> the role</td></tr>
+<tr><td><b>4. Experience</b></td><td>Mention relevant experience and give examples of specific projects you have carried out</td><td><b>customer-facing</b> experience / projects I have <b>carried out</b></td></tr>
+<tr><td><b>5. Suitability and aims</b></td><td>Show that you are right for the role and say what you want to develop</td><td>your <b>suitability for</b> the role / I am <b>keen to gain</b> <b>hands-on</b> experience in this <b>field</b> / I am a <b>team player</b></td></tr>
+<tr><td><b>6. Previous management</b></td><td>If you have managed people before</td><td>In my <b>previous role as</b> (Sales Manager), I <b>led a team of</b> (four people).</td></tr>
+<tr><td><b>7. Closing</b></td><td>Thank the reader, then close the letter</td><td>Thank you for taking the time to consider this application. I look forward to hearing from you. <b>Yours faithfully</b></td></tr>
+</table>
+</div>
+<div class="tip"><b>Greeting and closing must match.</b>
+<ul>
+<li>You do not know the name: <b>Dear Sir or Madam</b> … <b>Yours faithfully</b>.</li>
+<li>You know the name: <b>Dear Ms White</b> … <b>Yours sincerely</b> (British English).</li>
+</ul></div>
+</section>
+
+<section id="phrases">
+<h2>3. Key phrases from the unit</h2>
+<p class="lead">Learn them with the pattern that follows.</p>
+<div class="panel tscroll">
+<table>
+<tr><th>Phrase</th><th>Pattern</th><th>Example</th></tr>
+<tr><td><b>be responsible for</b></td><td>be responsible for + noun / -ing</td><td>You will be responsible for dealing with customer enquiries.</td></tr>
+<tr><td><b>deal with</b></td><td>deal with + noun<br><span class="ru-s">deal, dealt, dealt</span></td><td>Her job involves dealing with customers on the phone.</td></tr>
+<tr><td><b>customer enquiries</b></td><td>answer / deal with customer enquiries<br><span class="ru-s">enquiry (BrE), inquiry (AmE)</span></td><td>She answers customer enquiries by phone and by email.</td></tr>
+<tr><td><b>keen to</b> / <b>keen on</b></td><td>keen <b>to</b> + infinitive<br>keen <b>on</b> + noun / -ing</td><td>I am keen to develop my career.<br>I am keen on working with clients.</td></tr>
+<tr><td><b>complete a degree</b></td><td>complete a degree in + subject</td><td>I have just completed my degree in Business Studies.</td></tr>
+<tr><td><b>gain experience</b></td><td>gain (hands-on) experience in + area</td><td>I am keen to gain experience in this area.</td></tr>
+<tr><td><b>carry out</b></td><td>carry out + a project / a task / research</td><td>Give examples of projects you have carried out.</td></tr>
+</table>
+</div>
+<div class="tip"><b>Watch out.</b>
+<ul>
+<li>The phrase from the job ad is <b>responsible for</b>. The verb <i>respond</i> goes with <b>to</b>: <i>She responded to the enquiry within an hour.</i></li>
+<li><b>Post</b>, <b>position</b> and <b>role</b> mean the job itself. <b>Openings</b> are available jobs (vacancies).</li>
+<li><b>Salary</b> is the money you are paid. The <b>benefits package</b> is everything extra the company offers (pension, healthcare plan, subsidised meals).</li>
+</ul></div>
+</section>
+
+<section id="matchA">
+<h2>4. Match the words with their definitions</h2>
+<p class="lead">Part A: the job ad.</p>
+<div class="panel" id="matchABox">
+<div id="matchAList"></div>
+<div class="row"><button class="primary" data-check="matchABox">Check</button><button data-show="matchABox">Show answers</button><button data-reset="matchABox">Reset</button><span class="score"></span></div>
+</div>
+<p class="lead" style="margin-top:18px">Part B: the cover letter.</p>
+<div class="panel" id="matchBBox">
+<div id="matchBList"></div>
+<div class="row"><button class="primary" data-check="matchBBox">Check</button><button data-show="matchBBox">Show answers</button><button data-reset="matchBBox">Reset</button><span class="score"></span></div>
+</div>
+</section>
+
+<section id="scr">
+<h2>5. Unscramble the words</h2>
+<p class="lead">Each clue is a definition. Type the word.</p>
+<div class="panel" id="scrBox">
+<div id="scrList"></div>
+<div class="row"><button class="primary" data-check="scrBox">Check</button><button data-show="scrBox">Show answers</button><button data-reset="scrBox">Reset</button><span class="score"></span></div>
+</div>
+</section>
+
+<section id="tf">
+<h2>6. True or false?</h2>
+<p class="lead">Statements 1 to 8 are about the job ad, 9 to 16 are about the cover letter. After checking, a short explanation appears.</p>
+<div class="panel" id="tfBox">
+<div id="tfList"></div>
+<div class="row"><button class="primary" data-check="tfBox">Check</button><button data-show="tfBox">Show answers</button><button data-reset="tfBox">Reset</button><span class="score"></span></div>
+</div>
+</section>
+
+<section id="text">
+<h2>7. Reading: Maya's application</h2>
+<p class="lead">Choose the correct word or phrase for each gap.</p>
+<div class="panel reading" id="textBox">
+<div id="textBody"></div>
+<div class="row"><button class="primary" data-check="textBox">Check</button><button data-show="textBox">Show answers</button><button data-reset="textBox">Reset</button><span class="score"></span></div>
+</div>
+</section>
+
+<section id="prep">
+<h2>8. Phrases and prepositions</h2>
+<p class="lead">Choose the correct option.</p>
+<div class="panel" id="prepBox">
+<div id="prepList"></div>
+<div class="row"><button class="primary" data-check="prepBox">Check</button><button data-show="prepBox">Show answers</button><button data-reset="prepBox">Reset</button><span class="score"></span></div>
+</div>
+</section>
+
+</main>
+<footer>Unit 3 review · Pronunciation: British English (check any doubtful word in the Cambridge Dictionary).</footer>
+
+<script>
+const D = {"cards": [{"g": "A", "en": "communication skills", "ipa": "/kəˌmjuːnɪˈkeɪʃn ˌskɪlz/", "ru": "коммуникативные навыки", "df": "the ability to explain things clearly and to listen well", "ex": "Good communication skills are essential for this job.", "say": "communication skills"}, {"g": "A", "en": "passion for", "ipa": "/ˈpæʃn fɔː/", "ru": "страсть к чему-то, увлечённость", "df": "a very strong liking for something (if you have a passion for something, you like it very much)", "ex": "She has a genuine passion for helping people.", "say": "passion for", "note": "После for: существительное или -ing: a passion for music, a passion for teaching."}, {"g": "A", "en": "challenging", "ipa": "/ˈtʃælɪndʒɪŋ/", "ru": "сложный, но интересный (о работе, задаче)", "df": "a positive word for something which is exciting and difficult", "ex": "I am looking for a challenging role in marketing.", "say": "challenging"}, {"g": "A", "en": "fast-paced", "ipa": "/ˌfɑːst ˈpeɪst/", "ru": "динамичный, с быстрым темпом", "df": "if an environment is fast-paced, things happen quickly there", "ex": "She enjoys working in a fast-paced environment.", "say": "fast-paced"}, {"g": "A", "en": "openings", "ipa": "/ˈəʊpnɪŋz/", "ru": "вакансии", "df": "available jobs", "ex": "The bank has several new openings in its London branches.", "say": "openings", "note": "Единственное число: an opening /ˈəʊpnɪŋ/."}, {"g": "A", "en": "report to", "ipa": "/rɪˈpɔːt tuː/", "ru": "подчиняться, отчитываться перед (начальником)", "df": "if you report to someone, he or she is your boss", "ex": "You will report to the Customer Service Manager.", "say": "report to", "note": "В объявлении: Reporting to the Customer Service Manager."}, {"g": "A", "en": "previous experience", "ipa": "/ˌpriːviəs ɪkˈspɪəriəns/", "ru": "предыдущий опыт", "df": "experience of this type of job from before", "ex": "No previous experience is necessary.", "say": "previous experience"}, {"g": "A", "en": "full training", "ipa": "/ˌfʊl ˈtreɪnɪŋ/", "ru": "полное обучение", "df": "all the training you need", "ex": "Full training will be given to all new staff.", "say": "full training"}, {"g": "A", "en": "post", "ipa": "/pəʊst/", "ru": "должность, место работы", "df": "a job", "ex": "She has applied for a post in the finance department.", "say": "post", "note": "Здесь post = job. Ещё значения: почта, столб."}, {"g": "A", "en": "career prospects", "ipa": "/kəˌrɪə ˈprɒspekts/", "ru": "карьерные перспективы", "df": "opportunities for promotion and career development", "ex": "The company offers excellent career prospects.", "say": "career prospects", "note": "Ударение в prospects на первый слог."}, {"g": "A", "en": "leadership qualities", "ipa": "/ˈliːdəʃɪp ˌkwɒlətiz/", "ru": "лидерские качества", "df": "the ability to lead a group", "ex": "Candidates who show leadership qualities will be promoted.", "say": "leadership qualities"}, {"g": "A", "en": "competitive salary", "ipa": "/kəmˌpetətɪv ˈsæləri/", "ru": "конкурентоспособная зарплата", "df": "a salary as good as, or better than, other salaries for similar jobs", "ex": "We offer a competitive salary and a bonus.", "say": "competitive salary"}, {"g": "A", "en": "benefits package", "ipa": "/ˈbenɪfɪts ˌpækɪdʒ/", "ru": "социальный пакет", "df": "all the extra benefits that a company offers (as well as a salary)", "ex": "The benefits package includes a pension and a healthcare plan.", "say": "benefits package"}, {"g": "A", "en": "healthcare plan", "ipa": "/ˈhelθkeə ˌplæn/", "ru": "план медицинского обслуживания", "df": "an arrangement in which the employer helps to pay for your medical care", "ex": "Our healthcare plan covers all full-time staff.", "say": "healthcare plan"}, {"g": "A", "en": "subsidised", "ipa": "/ˈsʌbsɪdaɪzd/", "ru": "частично оплачиваемый компанией, субсидируемый", "df": "partly paid for by the company", "ex": "Lunch is subsidised, so staff pay only two pounds.", "say": "subsidised", "note": "Американский вариант написания: subsidized."}, {"g": "A", "en": "online application form", "ipa": "/ˌɒnlaɪn ˌæplɪˈkeɪʃn fɔːm/", "ru": "онлайн-анкета для подачи заявки", "df": "a form on a website that you fill in to apply for a job", "ex": "Please fill in the online application form by Friday.", "say": "online application form"}, {"g": "A", "en": "salary expectations", "ipa": "/ˈsæləri ˌekspekˈteɪʃnz/", "ru": "ожидаемая зарплата", "df": "the amount of money you hope to be paid", "ex": "Please state your salary expectations in your application.", "say": "salary expectations"}, {"g": "B", "en": "stand out", "ipa": "/ˌstænd ˈaʊt/", "ru": "выделяться", "df": "be better than others", "ex": "A clear, well-written cover letter helps you stand out.", "say": "stand out"}, {"g": "B", "en": "cover letter", "ipa": "/ˈkʌvə ˌletə/", "ru": "сопроводительное письмо", "df": "a letter sent with a job application", "ex": "Always send a cover letter with your CV.", "say": "cover letter"}, {"g": "B", "en": "covering letter", "ipa": "/ˈkʌvərɪŋ ˌletə/", "ru": "сопроводительное письмо (другое название)", "df": "another name for a cover letter", "ex": "She attached a covering letter to her application.", "say": "covering letter", "note": "Cover letter и covering letter значат одно и то же."}, {"g": "B", "en": "Dear Sir or Madam", "ipa": "/ˌdɪə ˈsɜː ɔː ˈmædəm/", "ru": "Уважаемый господин / госпожа (имя неизвестно)", "df": "how you start a letter when you do not know the name of the person you are writing to", "ex": "Dear Sir or Madam, I am writing to apply for the post of Sales Assistant.", "say": "Dear Sir or Madam", "note": "Если имени не знаешь: Dear Sir or Madam … Yours faithfully."}, {"g": "B", "en": "Yours faithfully", "ipa": "/ˌjɔːz ˈfeɪθfəli/", "ru": "С уважением (имя адресата неизвестно)", "df": "how you finish a letter when you do not know the name of the person you are writing to", "ex": "Dear Sir or Madam, … Yours faithfully, Rebecca White.", "say": "Yours faithfully", "note": "Если имя известно (Dear Ms White), в британском английском: Yours sincerely."}, {"g": "B", "en": "in support of", "ipa": "/ɪn səˈpɔːt əv/", "ru": "в подтверждение, в поддержку (заявки)", "df": "as evidence for something, to back it up", "ex": "Please find attached my CV in support of my application.", "say": "in support of"}, {"g": "B", "en": "position", "ipa": "/pəˈzɪʃn/", "ru": "должность", "df": "a job", "ex": "I am applying for the position of Customer Service Assistant.", "say": "position", "note": "Синонимы: post, role. Вакансии: openings."}, {"g": "B", "en": "hands-on", "ipa": "/ˌhændz ˈɒn/", "ru": "практический (об опыте)", "df": "practical, direct (not theoretical)", "ex": "I am keen to gain hands-on experience in banking.", "say": "hands-on"}, {"g": "B", "en": "relevant to", "ipa": "/ˈreləvənt tuː/", "ru": "относящийся к, имеющий отношение к", "df": "connected to", "ex": "Mention any courses that are relevant to the role.", "say": "relevant to"}, {"g": "B", "en": "field", "ipa": "/fiːld/", "ru": "сфера, область (деятельности)", "df": "area of business or activity", "ex": "She has always been interested in working in the field of finance.", "say": "field"}, {"g": "B", "en": "customer-facing", "ipa": "/ˈkʌstəmə ˌfeɪsɪŋ/", "ru": "связанный с прямой работой с клиентами", "df": "dealing directly with customers", "ex": "Working in a shop gave her valuable customer-facing experience.", "say": "customer-facing"}, {"g": "B", "en": "team player", "ipa": "/ˌtiːm ˈpleɪə/", "ru": "командный игрок", "df": "a person who is good at working with others", "ex": "I am a reliable team player.", "say": "team player"}, {"g": "B", "en": "managerial experience", "ipa": "/ˌmænəˈdʒɪəriəl ɪkˈspɪəriəns/", "ru": "управленческий опыт", "df": "experience of managing other people", "ex": "Do you have any managerial experience?", "say": "managerial experience"}, {"g": "B", "en": "previous role as", "ipa": "/ˌpriːviəs ˈrəʊl əz/", "ru": "на прежней должности (в роли)", "df": "used to talk about the job you had before", "ex": "In my previous role as Sales Manager, I trained new staff.", "say": "previous role as"}, {"g": "B", "en": "lead a team of", "ipa": "/ˌliːd ə ˈtiːm əv/", "ru": "руководить командой из...", "df": "be in charge of a group of people", "ex": "In my previous role, I led a team of four people.", "say": "lead a team of", "note": "led /led/ (прошедшее время) произносится как слово lead (металл)."}, {"g": "B", "en": "suitability for", "ipa": "/ˌsuːtəˈbɪləti fɔː/", "ru": "пригодность, соответствие (должности)", "df": "how well suited you are to a job", "ex": "Mention your relevant experience to show your suitability for the role.", "say": "suitability for"}, {"g": "B", "en": "carry out", "ipa": "/ˌkæri ˈaʊt/", "ru": "выполнять, проводить", "df": "do (a project, a task, research)", "ex": "Give examples of specific projects you have carried out.", "say": "carry out"}, {"g": "C", "en": "be responsible for", "ipa": "/bi rɪˈspɒnsəbl fɔː/", "ru": "отвечать за", "df": "have the job of doing or looking after something", "ex": "You will be responsible for dealing with customer enquiries.", "say": "be responsible for", "note": "Во фразе из объявления: responsible for, а не «responding for». Respond to = отвечать на (письмо, запрос)."}, {"g": "C", "en": "deal with", "ipa": "/ˈdiːl wɪð/", "ru": "заниматься, иметь дело с", "df": "handle a task, a problem or a person", "ex": "Her job involves dealing with customers on the phone.", "say": "deal with", "note": "Формы: deal, dealt /delt/, dealing."}, {"g": "C", "en": "customer enquiries", "ipa": "/ˈkʌstəmə ɪnˈkwaɪəriz/", "ru": "запросы клиентов", "df": "questions from customers asking for information", "ex": "She answers customer enquiries by phone and by email.", "say": "customer enquiries", "note": "enquiry /ɪnˈkwaɪəri/ (британский вариант), inquiry (американский)."}, {"g": "C", "en": "keen to", "ipa": "/ˈkiːn tuː/", "ru": "стремиться, очень хотеть", "df": "very interested in doing something, wanting to do it", "ex": "I am keen to develop my career in banking.", "say": "keen to", "note": "keen to + инфинитив; keen on + существительное или -ing."}, {"g": "C", "en": "complete a degree", "ipa": "/kəmˌpliːt ə dɪˈɡriː/", "ru": "закончить университет, получить диплом", "df": "finish a university course and get the qualification", "ex": "I have just completed my degree in Business Studies.", "say": "complete a degree", "note": "Диплом в какой-то области: a degree in Law."}, {"g": "C", "en": "gain experience", "ipa": "/ˌɡeɪn ɪkˈspɪəriəns/", "ru": "приобретать опыт", "df": "get experience of doing something", "ex": "I am keen to gain experience in this area.", "say": "gain experience", "note": "gain experience in + область; gain hands-on experience."}], "matchA": {"items": [{"w": "passion for", "ipa": "/ˈpæʃn fɔː/", "d": "a very strong liking for something"}, {"w": "challenging", "ipa": "/ˈtʃælɪndʒɪŋ/", "d": "a positive word for something exciting and difficult"}, {"w": "fast-paced", "ipa": "/ˌfɑːst ˈpeɪst/", "d": "describes an environment where things happen quickly"}, {"w": "openings", "ipa": "/ˈəʊpnɪŋz/", "d": "available jobs"}, {"w": "report to", "ipa": "/rɪˈpɔːt tuː/", "d": "to have someone as your boss"}, {"w": "previous experience", "ipa": "/ˌpriːviəs ɪkˈspɪəriəns/", "d": "experience of this type of job from before"}, {"w": "full training", "ipa": "/ˌfʊl ˈtreɪnɪŋ/", "d": "all the training you need"}, {"w": "post", "ipa": "/pəʊst/", "d": "a job"}, {"w": "career prospects", "ipa": "/kəˌrɪə ˈprɒspekts/", "d": "opportunities for promotion and career development"}, {"w": "leadership qualities", "ipa": "/ˈliːdəʃɪp ˌkwɒlətiz/", "d": "the ability to lead a group"}, {"w": "competitive salary", "ipa": "/kəmˌpetətɪv ˈsæləri/", "d": "as good as, or better than, other salaries for similar jobs"}, {"w": "benefits package", "ipa": "/ˈbenɪfɪts ˌpækɪdʒ/", "d": "all the extra benefits a company offers, as well as a salary"}, {"w": "subsidised", "ipa": "/ˈsʌbsɪdaɪzd/", "d": "partly paid for by the company"}], "defs": ["describes an environment where things happen quickly", "available jobs", "all the extra benefits a company offers, as well as a salary", "as good as, or better than, other salaries for similar jobs", "partly paid for by the company", "a positive word for something exciting and difficult", "all the training you need", "a job", "a very strong liking for something", "opportunities for promotion and career development", "experience of this type of job from before", "to have someone as your boss", "the ability to lead a group"]}, "matchB": {"items": [{"w": "cover letter", "ipa": "/ˈkʌvə ˌletə/", "d": "a letter sent with a job application"}, {"w": "Dear Sir or Madam", "ipa": "/ˌdɪə ˈsɜː ɔː ˈmædəm/", "d": "how you start a letter when you do not know the name of the person"}, {"w": "hands-on", "ipa": "/ˌhændz ˈɒn/", "d": "practical, direct (not theoretical)"}, {"w": "field", "ipa": "/fiːld/", "d": "area of business or activity"}, {"w": "customer-facing", "ipa": "/ˈkʌstəmə ˌfeɪsɪŋ/", "d": "dealing directly with customers"}, {"w": "team player", "ipa": "/ˌtiːm ˈpleɪə/", "d": "a person who is good at working with others"}, {"w": "managerial experience", "ipa": "/ˌmænəˈdʒɪəriəl ɪkˈspɪəriəns/", "d": "experience of managing other people"}, {"w": "Yours faithfully", "ipa": "/ˌjɔːz ˈfeɪθfəli/", "d": "how you finish a letter when you do not know the name of the person"}], "defs": ["a person who is good at working with others", "how you finish a letter when you do not know the name of the person", "experience of managing other people", "dealing directly with customers", "a letter sent with a job application", "practical, direct (not theoretical)", "area of business or activity", "how you start a letter when you do not know the name of the person"]}, "scr": [{"s": "BISUDISDES", "a": "subsidised", "c": "partly paid for by the company"}, {"s": "LNECGILHANG", "a": "challenging", "c": "a positive word for something exciting and difficult"}, {"s": "SOEPINNG", "a": "openings", "c": "available jobs"}, {"s": "TIBLAITYSUI", "a": "suitability", "c": "how well suited you are to a job (noun)"}, {"s": "RIESQNIUE", "a": "enquiries", "c": "questions from customers asking for information (plural noun)"}, {"s": "AAELNMARGI", "a": "managerial", "c": "connected with managing other people (adjective)"}, {"s": "ITETPMEIVOC", "a": "competitive", "c": "as good as, or better than, others (of a salary)"}, {"s": "AILHFULFYT", "a": "faithfully", "c": "the last word of a letter that begins Dear Sir or Madam"}], "tf": [{"s": "The post is for a Customer Service Manager.", "a": "False", "e": "It is for a Customer Service Assistant. You would report to the Customer Service Manager."}, {"s": "Applicants need previous experience.", "a": "False", "e": "No previous experience is necessary, because full training will be given."}, {"s": "The bank will give new staff full training.", "a": "True", "e": "Full training will be given."}, {"s": "The benefits package includes subsidised meals.", "a": "True", "e": "The package includes a pension, a healthcare plan and subsidised meals."}, {"s": "The bank wants to promote people who show leadership qualities.", "a": "True", "e": "The bank is keen to promote candidates who demonstrate leadership qualities."}, {"s": "Candidates apply by posting a paper form.", "a": "False", "e": "They fill in an online application form."}, {"s": "Candidates have to give details of their salary expectations.", "a": "True", "e": "This is part of the online application form."}, {"s": "The bank describes its working environment as slow and quiet.", "a": "False", "e": "It is fast-paced: things happen quickly there."}, {"s": "Rebecca has just completed her degree in Business Studies.", "a": "True", "e": "She says so in the first paragraph."}, {"s": "Rebecca has never had a job.", "a": "False", "e": "She has worked as a part-time sales assistant for the last two years."}, {"s": "Rebecca worked in a small family shop.", "a": "False", "e": "She worked in a large department store."}, {"s": "Rebecca already has managerial experience.", "a": "False", "e": "She is keen to gain managerial experience in the future."}, {"s": "Rebecca chose several modules on banking and finance.", "a": "True", "e": "She chose them because she has always been interested in this field."}, {"s": "Rebecca began her letter with Dear Mr White.", "a": "False", "e": "She began with Dear Sir or Madam, because she did not know the name."}, {"s": "Rebecca finished her letter with Yours faithfully.", "a": "True", "e": "This ending goes with Dear Sir or Madam."}, {"s": "Rebecca is applying for the position of Customer Service Assistant.", "a": "True", "e": "She says so in the first sentence."}], "gaps": {"1": {"a": "openings", "o": ["openings", "enquiries", "prospects", "benefits"]}, "2": {"a": "post", "o": ["post", "salary", "field", "benefit"]}, "3": {"a": "communication skills", "o": ["career prospects", "salary expectations", "healthcare plans", "communication skills"]}, "4": {"a": "passion for", "o": ["passion for", "pension for", "passion with", "passion of"]}, "5": {"a": "challenging", "o": ["challenging", "challenger", "challenged", "challenge"]}, "6": {"a": "fast-paced", "o": ["part-time", "well-paid", "slow-paced", "fast-paced"]}, "7": {"a": "Reporting to", "o": ["Reporting at", "Reporting with", "Reporting to", "Reporting by"]}, "8": {"a": "responsible for", "o": ["responsible with", "responsible in", "responsible of", "responsible for"]}, "9": {"a": "dealing with", "o": ["dealing with", "dealing for", "dealing at", "dealing on"]}, "10": {"a": "enquiries", "o": ["enquires", "enquiries", "enquiring", "enquirement"]}, "11": {"a": "previous experience", "o": ["previous experience", "online form", "healthcare plan", "salary package"]}, "12": {"a": "full training", "o": ["a pension plan", "career prospects", "full training", "a cover letter"]}, "13": {"a": "leadership qualities", "o": ["subsidised meals", "healthcare plans", "salary expectations", "leadership qualities"]}, "14": {"a": "competitive salary", "o": ["competitive enquiry", "competitive training", "competitive field", "competitive salary"]}, "15": {"a": "benefits package", "o": ["benefits package", "customer package", "field package", "cover package"]}, "16": {"a": "healthcare plan", "o": ["healthcare field", "healthcare plan", "healthcare post", "healthcare opening"]}, "17": {"a": "subsidised", "o": ["subsidising", "subsidy", "subsidise", "subsidised"]}, "18": {"a": "online application form", "o": ["online covering form", "online application form", "online cover paper", "online field form"]}, "19": {"a": "salary expectations", "o": ["salary openings", "salary expectations", "salary prospects", "salary enquiries"]}, "20": {"a": "career prospects", "o": ["career packages", "career prospects", "career enquiries", "career subsidies"]}, "21": {"a": "stand out", "o": ["stand out", "keep out", "carry out", "drop out"]}, "22": {"a": "cover letter", "o": ["training form", "job opening", "salary package", "cover letter"]}, "23": {"a": "covering letter", "o": ["cover paper", "covered letter", "covering letter", "covering page"]}, "24": {"a": "Dear Sir or Madam", "o": ["Dear friend", "Dear Sir or Madam", "Dear Sirs and Madams", "Dear Mr or Mrs"]}, "25": {"a": "Yours faithfully", "o": ["Yours truthfully", "Yours sincerely", "Yours loyally", "Yours faithfully"]}, "26": {"a": "in support of", "o": ["for support of", "in support to", "in support of", "on support of"]}, "27": {"a": "position", "o": ["opposition", "condition", "position", "possession"]}, "28": {"a": "completed", "o": ["gone", "completed", "made", "become"]}, "29": {"a": "keen to gain", "o": ["keen for gain", "keen to gain", "keen to gaining", "keen on gain"]}, "30": {"a": "hands-on", "o": ["hand-made", "hand-held", "hands-off", "hands-on"]}, "31": {"a": "field", "o": ["field", "flood", "farm", "floor"]}, "32": {"a": "relevant to", "o": ["relevant with", "relevant at", "relevant of", "relevant to"]}, "33": {"a": "customer-facing", "o": ["customer-faced", "customer-facing", "customers-facing", "customer-facer"]}, "34": {"a": "team player", "o": ["team players", "team playing", "team player", "teams player"]}, "35": {"a": "managerial experience", "o": ["managerially experience", "managerial experience", "managerial experiences", "manager experience"]}, "36": {"a": "previous role as", "o": ["previous rule as", "previous role as", "previous role like", "previous roll as"]}, "37": {"a": "led a team of", "o": ["led team of", "led a team of", "leaded a team of", "lead a team of"]}, "38": {"a": "suitability for", "o": ["suitability for", "suitably for", "suitable for", "suit for"]}, "39": {"a": "carried out", "o": ["carry out", "carrying out", "carries out", "carried out"]}}, "text": [{"h": "The job ad", "p": ["Maya, a recent graduate, was looking at the careers page of a bank. FDR Bank had several new ", 1, " for customer service staff, and the ", 2, " that interested her most was Customer Service Assistant. The advert asked for excellent ", 3, " and a genuine ", 4, " customer service. It described the role as ", 5, ", which is a positive word for something exciting and difficult, and the working environment as ", 6, ", because things happen quickly there. ", 7, " the Customer Service Manager, the successful candidate would be ", 8, " ", 9, " customer ", 10, " on the phone and by email. No ", 11, " was necessary because ", 12, " would be given. The bank wanted to promote people with ", 13, ", and it also offered a ", 14, ". The ", 15, " included a pension, a ", 16, " and ", 17, " meals, so the company paid part of the cost. Candidates had to fill in an ", 18, " and give details of their ", 19, ". The post also promised excellent ", 20, ", with real opportunities for promotion."]}, {"h": "Preparing the application", "p": ["Maya wanted her application to ", 21, ", so she wrote a ", 22, " to send with her CV. Another name for it is a ", 23, ". She did not know the manager's name, so she began with ", 24, " and finished with ", 25, "."]}, {"h": "What she wrote", "p": ["In the first paragraph she wrote: “Please find attached my CV ", 26, " my application for the ", 27, " of Customer Service Assistant. I have just ", 28, " my degree in Business Studies and am ", 29, " ", 30, " experience in this ", 31, ".” She added that several modules on banking and finance were ", 32, " the role. Her part-time job in a department store had given her valuable ", 33, " experience, and she described herself as a ", 34, ". She said that she was keen to gain ", 35, " in the future. Her friend Omar already has it: in his ", 36, " Sales Manager, he ", 37, " four people. To show her ", 38, " the role, Maya also gave examples of projects she had ", 39, ". Finally, she thanked the reader and wrote that she was looking forward to hearing from the bank."]}], "prep": [{"p": ["You will be ", 0, " dealing with customer enquiries on the phone and by email."], "a": "responsible for", "o": ["responsible in", "responsible for", "responsible with", "responsible of"]}, {"p": ["Her job involves ", 0, " customers on the phone all day."], "a": "dealing with", "o": ["dealing on", "dealing at", "dealing for", "dealing with"]}, {"p": ["We deal with hundreds of customer ", 0, " every week."], "a": "enquiries", "o": ["enquirement", "enquiries", "enquiring", "enquires"]}, {"p": ["I am keen ", 0, " develop my career in banking."], "a": "to", "o": ["for", "to", "at", "on"]}, {"p": ["She is keen ", 0, " working with international clients."], "a": "on", "o": ["on", "to", "at", "for"]}, {"p": ["I have just ", 0, " my degree in Law."], "a": "completed", "o": ["gone", "become", "made", "completed"]}, {"p": ["I want to ", 0, " hands-on experience in this field."], "a": "gain", "o": ["spend", "make", "gain", "do"]}, {"p": ["Please find attached my CV ", 0, " my application."], "a": "in support of", "o": ["in support of", "for support of", "on support of", "in support to"]}, {"p": [0, " the Customer Service Manager, you will be responsible for training new staff."], "a": "Reporting to", "o": ["Reporting to", "Reporting at", "Reporting with", "Reporting by"]}, {"p": ["The company offers excellent career ", 0, "."], "a": "prospects", "o": ["prospective", "prospecting", "prospect", "prospects"]}, {"p": ["In my previous ", 0, " as Sales Manager, I led a team of four people."], "a": "role", "o": ["role", "roll", "rule", "roles"]}, {"p": ["Mention any courses that are relevant ", 0, " the job."], "a": "to", "o": ["to", "of", "at", "with"]}]};
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+function mk(tag, cls, html){ const e=document.createElement(tag); if(cls) e.className=cls; if(html!==undefined) e.innerHTML=html; return e; }
+
+const GROUPS = {all:'All', A:'A · Job ad', B:'B · Cover letter', C:'C · Key phrases', todo:'To review'};
+let group='all', order=D.cards.map((_,i)=>i), known=new Set();
+function speak(t){
+  try{
+    if(!('speechSynthesis' in window)) return;
+    const u=new SpeechSynthesisUtterance(t); u.lang='en-GB'; u.rate=.9;
+    const v=speechSynthesis.getVoices().find(v=>v.lang==='en-GB'||v.lang==='en_GB');
+    if(v) u.voice=v;
+    speechSynthesis.cancel(); speechSynthesis.speak(u);
+  }catch(e){}
+}
+function renderFilters(){
+  const f=$('#filters'); f.innerHTML='';
+  Object.keys(GROUPS).forEach(k=>{
+    const b=mk('button', k===group?'on':'', GROUPS[k]); b.onclick=()=>{group=k;renderFilters();renderCards();}; f.appendChild(b);
+  });
+  const sh=mk('button','', '🔀 Shuffle'); sh.onclick=()=>{ order.sort(()=>Math.random()-.5); renderCards(); }; f.appendChild(sh);
+  const rs=mk('button','', 'Reset order'); rs.onclick=()=>{ order=D.cards.map((_,i)=>i); renderCards(); }; f.appendChild(rs);
+}
+function renderCards(){
+  const g=$('#grid'); g.innerHTML='';
+  const list=order.filter(i=>{ const c=D.cards[i]; if(group==='all') return true; if(group==='todo') return !known.has(i); return c.g===group; });
+  list.forEach(i=>{
+    const c=D.cards[i];
+    const w=mk('div','card'+(known.has(i)?' known':'')); w.tabIndex=0; w.setAttribute('role','button'); w.setAttribute('aria-label','Flip card: '+c.en);
+    w.innerHTML =
+      '<div class="inner">'+
+        '<div class="face front"><span class="tag">'+esc(GROUPS[c.g]||'')+'</span><button class="spk" title="Listen" aria-label="Listen">🔊</button>'+
+          '<div class="en">'+esc(c.en)+'</div><div class="ipa">'+esc(c.ipa)+'</div><div class="hint">click to flip</div></div>'+
+        '<div class="face back"><div class="ru">'+esc(c.ru)+'</div><div class="df">'+esc(c.df)+'</div>'+
+          '<div class="ex">'+esc(c.ex)+'</div>'+(c.note?'<div class="note">'+esc(c.note)+'</div>':'')+
+          '<button class="known-btn">'+(known.has(i)?'✓ I know it':'Mark as known')+'</button></div>'+
+      '</div>';
+    w.onclick=()=>w.classList.toggle('flip');
+    w.onkeydown=e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); w.classList.toggle('flip'); } };
+    w.querySelector('.spk').onclick=e=>{ e.stopPropagation(); speak(c.say); };
+    w.querySelector('.known-btn').onclick=e=>{ e.stopPropagation(); if(known.has(i)) known.delete(i); else known.add(i); renderCards(); };
+    g.appendChild(w);
+  });
+  $('#counter').textContent='Known: '+known.size+' / '+D.cards.length+'. Cards shown: '+list.length+'.';
+}
+
+function sel(opts, ans){
+  const s=document.createElement('select'); s.dataset.a=ans;
+  const o0=document.createElement('option'); o0.value=''; o0.textContent='…'; s.appendChild(o0);
+  opts.forEach(t=>{ const o=document.createElement('option'); o.value=t; o.textContent=t; s.appendChild(o); });
+  return s;
+}
+function buildMatch(id, m){
+  const box=$(id);
+  m.items.forEach((x,i)=>{
+    const r=mk('div','ex-item'); r.appendChild(mk('div','w',(i+1)+'. '+esc(x.w)+'<small>'+esc(x.ipa)+'</small>'));
+    r.appendChild(sel(m.defs,x.d)); box.appendChild(r);
+  });
+}
+buildMatch('#matchAList', D.matchA); buildMatch('#matchBList', D.matchB);
+
+(function(){
+  const box=$('#scrList');
+  D.scr.forEach((m,i)=>{
+    const r=mk('div','ex-item'); r.appendChild(mk('div','w',(i+1)+'. '+esc(m.s)+'<small>'+esc(m.c)+'</small>'));
+    const inp=document.createElement('input'); inp.type='text'; inp.dataset.a=m.a; inp.autocomplete='off'; inp.spellcheck=false; inp.setAttribute('aria-label','Answer '+(i+1)); r.appendChild(inp); box.appendChild(r);
+  });
+})();
+
+(function(){
+  const box=$('#tfList');
+  D.tf.forEach((m,i)=>{
+    const d=mk('div','sent'); d.appendChild(document.createTextNode((i+1)+'. '+m.s+'  '));
+    d.appendChild(sel(['True','False'],m.a)); d.appendChild(mk('div','expl',esc(m.e))); box.appendChild(d);
+  });
+})();
+
+(function(){
+  const box=$('#textBody');
+  D.text.forEach(sec=>{
+    box.appendChild(mk('h3','',esc(sec.h)));
+    const p=mk('p');
+    sec.p.forEach(x=>{
+      if(typeof x==='number'){
+        const g=D.gaps[String(x)];
+        p.appendChild(mk('span','gn',String(x)));
+        p.appendChild(sel(g.o,g.a));
+      } else p.appendChild(document.createTextNode(x));
+    });
+    box.appendChild(p);
+  });
+})();
+
+(function(){
+  const box=$('#prepList');
+  D.prep.forEach((m,i)=>{
+    const d=mk('div','sent'); d.appendChild(document.createTextNode((i+1)+'. '));
+    m.p.forEach(x=>{ if(typeof x==='number') d.appendChild(sel(m.o,m.a)); else d.appendChild(document.createTextNode(x)); });
+    box.appendChild(d);
+  });
+})();
+
+const norm = s => String(s||'').trim().toLowerCase().replace(/\s+/g,' ');
+function checkBox(id){
+  const box=document.getElementById(id); let ok=0, tot=0;
+  box.querySelectorAll('[data-a]').forEach(x=>{
+    tot++; const good = norm(x.value)===norm(x.dataset.a);
+    x.classList.toggle('ok',good); x.classList.toggle('bad',!good); if(good) ok++;
+  });
+  box.querySelectorAll('.expl').forEach(e=>e.classList.add('show'));
+  box.querySelector('.score').textContent=ok+' / '+tot;
+}
+function showBox(id){
+  const box=document.getElementById(id);
+  box.querySelectorAll('[data-a]').forEach(x=>{ x.value=x.dataset.a; x.classList.remove('bad'); x.classList.add('ok'); });
+  box.querySelectorAll('.expl').forEach(e=>e.classList.add('show'));
+  const t=box.querySelectorAll('[data-a]').length; box.querySelector('.score').textContent=t+' / '+t;
+}
+function resetBox(id){
+  const box=document.getElementById(id);
+  box.querySelectorAll('[data-a]').forEach(x=>{ x.value=''; x.classList.remove('ok','bad'); });
+  box.querySelectorAll('.expl').forEach(e=>e.classList.remove('show'));
+  box.querySelector('.score').textContent='';
+}
+document.querySelectorAll('[data-check]').forEach(b=>b.onclick=()=>checkBox(b.dataset.check));
+document.querySelectorAll('[data-show]').forEach(b=>b.onclick=()=>showBox(b.dataset.show));
+document.querySelectorAll('[data-reset]').forEach(b=>b.onclick=()=>resetBox(b.dataset.reset));
+
+renderFilters(); renderCards();
+try{ if('speechSynthesis' in window) speechSynthesis.getVoices(); }catch(e){}
+</script>
+</body>
+</html>
