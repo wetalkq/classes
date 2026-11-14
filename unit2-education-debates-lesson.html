@@ -5,15 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Unit 2 · Education: debates and issues · Lesson page</title>
 <style>
-:root{--ink:#1b2340;--muted:#5a6384;--bg:#f4f6fc;--card:#ffffff;--line:#d9def0;--brand:#2f3fbf;--brand2:#e9ecff;--accent:#e8741c;--ok:#1f8f4e;--okbg:#e3f6ea;--bad:#c0392b;--badbg:#fdeaea;--shadow:0 6px 24px rgba(30,40,100,.10)}
+:root{--ink:#2b2118;--muted:#7a6a5a;--bg:#fbf6ee;--card:#ffffff;--line:#eadcc8;--brand:#c4551a;--brand2:#fde9d6;--accent:#2f7d6b;--ok:#1f8f4e;--okbg:#e3f6ea;--bad:#c0392b;--badbg:#fdeaea;--shadow:0 6px 24px rgba(90,50,20,.12)}
 *{box-sizing:border-box}
 body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.55}
-header{background:linear-gradient(135deg,#1f2a7a,#3a4fe0);color:#fff;padding:36px 20px 44px}
+header{background:linear-gradient(135deg,#8f3a12,#e0782a);color:#fff;padding:36px 20px 44px}
 .wrap{max-width:980px;margin:0 auto;padding:0 16px}
 header .wrap{padding:0}
 header h1{margin:0 0 6px;font-size:clamp(24px,4.4vw,38px);line-height:1.15}
 header p{margin:0;opacity:.9;max-width:720px}
-nav{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.96);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+nav{position:sticky;top:0;z-index:20;background:rgba(255,252,247,.96);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
 nav .wrap{display:flex;gap:6px;overflow-x:auto;padding:8px 16px}
 nav a{white-space:nowrap;text-decoration:none;color:var(--brand);background:var(--brand2);padding:6px 12px;border-radius:999px;font-size:14px;font-weight:600}
 section{margin:30px 0}
@@ -32,7 +32,7 @@ button.on{background:var(--brand);color:#fff;border-color:var(--brand)}
 .inner{position:relative;width:100%;height:100%;transition:transform .55s;transform-style:preserve-3d;border-radius:16px;box-shadow:var(--shadow)}
 .card.flip .inner{transform:rotateY(180deg)}
 .face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:16px;padding:16px;display:flex;flex-direction:column;border:1px solid var(--line);background:var(--card);overflow:auto}
-.front{align-items:center;justify-content:center;text-align:center;background:linear-gradient(180deg,#fff,#f0f3ff)}
+.front{align-items:center;justify-content:center;text-align:center;background:linear-gradient(180deg,#fff,#fff3e6)}
 .back{transform:rotateY(180deg);background:#fffaf4;font-size:14.5px}
 .en{font-size:24px;font-weight:800;line-height:1.2}
 .ipa{margin-top:8px;color:var(--brand);font-size:17px;font-family:"Segoe UI","Noto Sans","DejaVu Sans",system-ui,sans-serif}
@@ -47,7 +47,7 @@ button.on{background:var(--brand);color:#fff;border-color:var(--brand)}
 .card.known .front{background:linear-gradient(180deg,#f2fbf5,#e3f6ea)}
 table{border-collapse:collapse;width:100%;font-size:15px;background:#fff}
 th,td{border:1px solid var(--line);padding:9px 10px;text-align:left;vertical-align:top}
-th{background:var(--brand2);color:#1f2a7a}
+th{background:var(--brand2);color:#7a3410}
 .tscroll{overflow-x:auto;border-radius:12px}
 .pill{display:inline-block;background:var(--brand2);color:var(--brand);border-radius:999px;padding:1px 10px;font-weight:700;font-size:13px}
 .ru-s{color:var(--muted);font-size:13px}
@@ -59,7 +59,7 @@ select,input[type=text]{font:inherit;padding:6px 8px;border-radius:8px;border:1.
 select.ok,input.ok{border-color:var(--ok);background:var(--okbg)}
 select.bad,input.bad{border-color:var(--bad);background:var(--badbg)}
 .score{font-weight:800;color:var(--brand);margin-left:6px}
-.reading h3{margin:18px 0 6px;color:#1f2a7a;font-size:18px}
+.reading h3{margin:18px 0 6px;color:#7a3410;font-size:18px}
 .reading p{margin:0 0 6px;font-size:17px;line-height:2.05}
 .reading select{font-size:15px;padding:3px 5px;margin:0 2px}
 .gn{font-size:11px;color:var(--muted);vertical-align:super;margin-right:1px}
@@ -67,7 +67,7 @@ select.bad,input.bad{border-color:var(--bad);background:var(--badbg)}
 .sent:last-child{border-bottom:0}
 .expl{display:none;font-size:14px;color:var(--muted);margin-top:2px;line-height:1.4}
 .expl.show{display:block}
-.tip{background:#fff7ea;border:1px solid #f4d9b0;border-radius:12px;padding:10px 14px;margin:12px 0;font-size:15px}
+.tip{background:#eef6f2;border:1px solid #c9e3d8;border-radius:12px;padding:10px 14px;margin:12px 0;font-size:15px}
 .tip ul{margin:6px 0 0;padding-left:20px}
 footer{padding:26px 16px 50px;text-align:center;color:var(--muted);font-size:14px}
 @media(max-width:560px){.w{min-width:100%}.card{height:320px}}
@@ -259,6 +259,7 @@ function mk(tag, cls, html){ const e=document.createElement(tag); if(cls) e.clas
 $('#trBox').innerHTML = D.transcript;
 
 const GROUPS = {all:'All', A:'A · Opportunity and school systems', B:'B · Money and students', C:'C · Curriculum, skills and issues', todo:'To review'};
+const TAGS = {A:'A · School systems', B:'B · Money', C:'C · Issues'};
 let group='all', order=D.cards.map((_,i)=>i), known=new Set();
 function speak(t){
   try{
@@ -285,7 +286,7 @@ function renderCards(){
     const w=mk('div','card'+(known.has(i)?' known':'')); w.tabIndex=0; w.setAttribute('role','button'); w.setAttribute('aria-label','Flip card: '+c.en);
     w.innerHTML =
       '<div class="inner">'+
-        '<div class="face front"><span class="tag">'+esc(GROUPS[c.g]||'')+'</span><button class="spk" title="Listen" aria-label="Listen">🔊</button>'+
+        '<div class="face front"><span class="tag">'+esc(TAGS[c.g]||'')+'</span><button class="spk" title="Listen" aria-label="Listen">🔊</button>'+
           '<div class="en">'+esc(c.en)+'</div><div class="ipa">'+esc(c.ipa)+'</div><div class="hint">click to flip</div></div>'+
         '<div class="face back"><div class="ru">'+esc(c.ru)+'</div><div class="df">'+esc(c.df)+'</div>'+
           '<div class="ex">'+esc(c.ex)+'</div>'+(c.note?'<div class="note">'+esc(c.note)+'</div>':'')+
