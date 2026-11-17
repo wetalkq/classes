@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Placement Check · Spend a Day With Me</title>
+<title>Spend a Day Placement</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,400&display=swap">
@@ -27,7 +27,7 @@ header .kicker{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color
 header h1{font-size:clamp(30px,6vw,46px);color:#fff}
 header h1 em{font-style:italic;font-weight:400;color:#f0b48c}
 header p{color:#e8dfd0;max-width:640px;margin-top:12px}
-nav.steps{position:sticky;top:0;z-index:30;background:var(--cream2);border-bottom:1px solid var(--line);box-shadow:0 4px 14px rgba(0,0,0,.06)}
+nav.steps{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;background:var(--cream2);border-bottom:1px solid var(--line);box-shadow:0 4px 14px rgba(0,0,0,.06)}
 nav.steps .wrap{display:flex;gap:6px;overflow-x:auto;padding:9px 16px;scrollbar-width:none}
 nav.steps a{white-space:nowrap;text-decoration:none;color:var(--dark);font-size:14px;padding:5px 12px;border-radius:999px;border:1px solid var(--line);background:#fff}
 nav.steps a.done{background:var(--okbg);border-color:#b9dcc6;color:var(--ok)}
@@ -164,7 +164,7 @@ textarea:focus{outline:2px solid #f3c9a8;border-color:var(--orange)}
 .namebox input{font:inherit;padding:8px 12px;border-radius:10px;border:1.5px solid #6d6153;background:#2a2420;color:#fff;min-width:220px}
 footer{padding:20px 16px 60px;text-align:center;color:var(--muted);font-size:14px}
 footer a{color:var(--muted)}
-.toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);background:var(--ink);color:#fff;padding:10px 18px;border-radius:999px;font-size:15px;opacity:0;transition:opacity .25s;pointer-events:none;z-index:60}
+.toast{position:fixed;left:50%;bottom:calc(22px + env(safe-area-inset-bottom,0px));max-width:min(92vw,520px);text-align:center;transform:translateX(-50%);background:var(--ink);color:#fff;padding:10px 18px;border-radius:999px;font-size:15px;opacity:0;transition:opacity .25s;pointer-events:none;z-index:60}
 .toast.show{opacity:1}
 @media(max-width:560px){
   section.part{padding:18px 14px}
@@ -569,7 +569,9 @@ load();
 
 function $(id){ return document.getElementById(id); }
 function esc(s){ return String(s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];}); }
-function toast(msg){ var t=$("toast"); t.textContent=msg; t.classList.add("show"); clearTimeout(toast._t); toast._t=setTimeout(function(){t.classList.remove("show");},2200); }
+function toast(msg, ms){ var t=$("toast"); t.textContent=msg; t.classList.add("show"); clearTimeout(toast._t); toast._t=setTimeout(function(){t.classList.remove("show");}, ms||2200); }
+var _ask = {k:null, t:0};
+function ask(msg){ var now = Date.now(); if(_ask.k===msg && now-_ask.t < 6000){ _ask.k=null; return true; } _ask.k=msg; _ask.t=now; toast(msg.split("\n").pop().replace(/\?$/,"") + " — нажмите ещё раз, чтобы подтвердить.", 5500); return false; }
 var LETTERS = "ABCDEFGHIJKL";
 
 /* ================== PLAYER (speech synthesis) ================== */
@@ -714,7 +716,7 @@ function lockMCQ(container, list, store, diagMap, isGrammar){
 renderMCQ($("listenQs"), LQ, S.listen, "l_");
 $("checkListen").onclick = function(){
   var missing = LQ.filter(function(q){ return S.listen[q.id]==null; }).length;
-  if(missing && !confirm("You haven't answered "+missing+" question(s). Check anyway?\nВы не ответили на "+missing+" вопрос(а). Проверить всё равно?")) return;
+  if(missing && !ask("You haven't answered "+missing+" question(s). Check anyway?\nВы не ответили на "+missing+" вопрос(а). Проверить всё равно?")) return;
   S.checked.listen = true; save(); applyLocks();
   toast("Listening checked");
 };
@@ -743,7 +745,7 @@ function gapScore(g){
 }
 $("checkGaps").onclick = function(){
   var empty = GAPS.filter(function(g){ return !(S.gaps[g.id]||"").trim(); }).length;
-  if(empty && !confirm(empty+" gap(s) are empty. Check anyway?\nПустых пропусков: "+empty+". Проверить всё равно?")) return;
+  if(empty && !ask(empty+" gap(s) are empty. Check anyway?\nПустых пропусков: "+empty+". Проверить всё равно?")) return;
   S.checked.gaps = true; save(); applyLocks(); toast("Gaps checked");
 };
 
@@ -793,7 +795,7 @@ function vocabCorrect(v){
 }
 $("checkVocab").onclick = function(){
   var n = VOCAB.filter(function(v){ return S.vocab[v.i]===undefined || S.vocab[v.i]===""; }).length;
-  if(n && !confirm(n+" word(s) are not matched. Check anyway?\nНе сопоставлено слов: "+n+". Проверить всё равно?")) return;
+  if(n && !ask(n+" word(s) are not matched. Check anyway?\nНе сопоставлено слов: "+n+". Проверить всё равно?")) return;
   S.checked.vocab = true; save(); applyLocks(); toast("Vocabulary checked");
 };
 
@@ -801,7 +803,7 @@ $("checkVocab").onclick = function(){
 renderMCQ($("gramQs"), GQ, S.gram, "g_");
 $("checkGram").onclick = function(){
   var missing = GQ.filter(function(q){ return S.gram[q.id]==null; }).length;
-  if(missing && !confirm("You haven't answered "+missing+" question(s). Check anyway?\nНе отвечено: "+missing+". Проверить всё равно?")) return;
+  if(missing && !ask("You haven't answered "+missing+" question(s). Check anyway?\nНе отвечено: "+missing+". Проверить всё равно?")) return;
   S.checked.grammar = true; save(); applyLocks(); toast("Grammar checked");
 };
 
@@ -814,7 +816,7 @@ ta.addEventListener("input", function(){ S.writing = ta.value; save(); updWC(); 
 updWC();
 $("checkWriting").onclick = function(){
   var n = words(ta.value).length;
-  if(n < 60 && !confirm("Your text is only "+n+" words. Submit anyway?\nВ тексте всего "+n+" слов. Отправить всё равно?")) return;
+  if(n < 60 && !ask("Your text is only "+n+" words. Submit anyway?\nВ тексте всего "+n+" слов. Отправить всё равно?")) return;
   S.checked.writing = true; save(); applyLocks(); toast("Text submitted");
 };
 
@@ -1084,13 +1086,12 @@ function buildResults(){
 
   h.push('<details class="method"><summary>Как считается уровень</summary><p style="margin-top:8px">Каждое задание заранее отнесено к уровню (B1, B2 или C1) по шкале CEFR и English Vocabulary / Grammar Profile. Уровень навыка — это самый высокий уровень, задания которого выполнены стабильно: B1 — от 70% заданий B1; «сильный B1» — плюс 40–65% заданий B2; B2 — от 65% заданий B2; дальше учитываются задания C1. Неправильные ответы не просто считаются, а классифицируются: какой вариант выбран и о чём это говорит (например, «will после if» или «ловушка со словами из записи»). Общий итог — взвешенное среднее по навыкам. Это диагностика на одном материале, поэтому её стоит подтвердить разговорной частью на уроке.</p></details>');
 
-  h.push('<div class="check-row" style="justify-content:center;margin-top:18px"><button class="btn primary" id="copyReport">Скопировать отчёт для преподавателя</button><button class="btn" id="printReport">Распечатать / PDF</button></div>');
+  h.push('<div class="check-row" style="justify-content:center;margin-top:18px"><button class="btn primary" id="copyReport">Скопировать отчёт для преподавателя</button></div>');
 
   var res = $("results");
   res.innerHTML = '<section class="part" style="display:block"><div class="part-head"><div class="part-no">✓</div><div><h2>Ваши результаты</h2><div class="sub">Подробный разбор по каждому навыку</div></div></div>' + h.join("") + '</section>';
   res.style.display = "block";
   $("copyReport").onclick = function(){ copyText(textReport(L,V,G,W,overall)); };
-  $("printReport").onclick = function(){ window.print(); };
 }
 
 function textReport(L,V,G,W,overall){
@@ -1123,7 +1124,7 @@ function copyText(t){
 $("showResults").onclick = function(){
   var need = ["listen","gaps","vocab","grammar"].filter(function(k){ return !S.checked[k]; });
   if(need.length){ toast("Сначала проверьте части " + need.map(function(k){return {listen:"1",gaps:"2",vocab:"3",grammar:"4"}[k];}).join(", ")); return; }
-  if(!S.checked.writing && !confirm("Часть 5 (письмо) не сдана. Показать результаты без неё?")) return;
+  if(!S.checked.writing && !ask("Часть 5 (письмо) не сдана. Показать результаты без неё?")) return;
   S.checked.results = true; save();
   buildResults();
   setTimeout(function(){ $("results").scrollIntoView({behavior:"smooth"}); }, 50);
@@ -1131,8 +1132,8 @@ $("showResults").onclick = function(){
 $("navResults").onclick = function(e){ if(!S.checked.results){ e.preventDefault(); $("showResults").scrollIntoView({behavior:"smooth", block:"center"}); } };
 if(S.checked.results) buildResults();
 
-$("teacherScript").onclick = function(e){ e.preventDefault(); if(confirm("Show the full script? (For the teacher only.)\nПоказать полный текст подкаста? Это для преподавателя.")){ $("transcript").classList.add("show"); $("transcript").scrollIntoView({behavior:"smooth"}); } };
-$("resetAll").onclick = function(e){ e.preventDefault(); if(confirm("Delete all answers and start again?\nУдалить все ответы и начать заново?")){ try{ localStorage.removeItem(KEY); }catch(_){} location.hash=""; location.reload(); } };
+$("teacherScript").onclick = function(e){ e.preventDefault(); if(ask("Show the full script? (For the teacher only.)\nПоказать полный текст подкаста? Это для преподавателя.")){ $("transcript").classList.add("show"); $("transcript").scrollIntoView({behavior:"smooth"}); } };
+$("resetAll").onclick = function(e){ e.preventDefault(); if(ask("Delete all answers and start again?\nУдалить все ответы и начать заново?")){ try{ localStorage.removeItem(KEY); }catch(_){} location.hash=""; location.reload(); } };
 
 })();
 </script>
