@@ -1,0 +1,443 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="claude:viewport-fit-sides" content="cover">
+<title>§6 — интерактивная практика</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600;700&family=PT+Sans:wght@400;700&family=Noto+Naskh+Arabic:wght@400;500;700&display=swap">
+<style>
+  :root {
+    --bg: #f6f1e7; --surface: #fffcf5; --ink: #2b2420; --muted: #7a6f60;
+    --accent: #0f5c56; --accent-soft: #d9ece9; --gold: #b8863b; --gold-soft: #f3e6cd;
+    --bad: #a23b2e; --bad-soft: #f6e2dd; --good: #2e7d4f; --good-soft: #e1efe3;
+    --border: #e2d7c3; --head-bg: #2b2420; --head-ink: #f6f1e7;
+    color-scheme: light;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg:#1b1815; --surface:#262220; --ink:#efe8dc; --muted:#a89d8c;
+      --accent:#5fc9bd; --accent-soft:#233b38; --gold:#d9ab5f; --gold-soft:#332a1a;
+      --bad:#e08c7d; --bad-soft:#3a2420; --good:#7fcf9d; --good-soft:#1f3327;
+      --border:#3a332c; --head-bg:#efe8dc; --head-ink:#1b1815; color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg:#1b1815; --surface:#262220; --ink:#efe8dc; --muted:#a89d8c;
+    --accent:#5fc9bd; --accent-soft:#233b38; --gold:#d9ab5f; --gold-soft:#332a1a;
+    --bad:#e08c7d; --bad-soft:#3a2420; --good:#7fcf9d; --good-soft:#1f3327;
+    --border:#3a332c; --head-bg:#efe8dc; --head-ink:#1b1815; color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font-family: 'PT Sans', sans-serif;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: 18px 60px; line-height: 1.55;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; }
+  h1 { font-family: 'Lora', serif; font-size: 1.4rem; margin: 0 0 4px; text-wrap: balance; }
+  .sub { color: var(--muted); font-size: 0.88rem; margin: 0 0 6px; }
+  .backlink { font-size: 0.82rem; margin-bottom: 18px; }
+  .backlink a { color: var(--accent); }
+
+  .tok { font-family: 'Noto Naskh Arabic', serif; direction: rtl; unicode-bidi: isolate; }
+  .translit { font-style: italic; color: var(--muted); font-size: 0.85rem; }
+
+  /* ---- deck picker ---- */
+  .decks { display: flex; flex-direction: column; gap: 10px; margin-bottom: 22px; }
+  .deck-card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 14px;
+    padding: 14px 16px; display: flex; justify-content: space-between; align-items: center;
+    gap: 10px; cursor: pointer; transition: border-color .15s;
+  }
+  .deck-card:hover { border-color: var(--accent); }
+  .deck-card .dmeta { font-size: 0.8rem; color: var(--muted); margin-top: 2px; }
+  .deck-card .dtitle { font-family: 'Lora', serif; font-weight: 600; font-size: 1.02rem; }
+  .deck-card .dscore { font-size: 0.8rem; font-weight: 700; color: var(--accent); white-space: nowrap; }
+  .deck-card .dprog { height: 5px; border-radius: 4px; background: var(--border); margin-top: 8px; overflow: hidden; }
+  .deck-card .dprog > div { height: 100%; background: var(--accent); width: 0%; }
+
+  .overall { background: var(--gold-soft); border: 1px solid var(--gold); border-radius: 14px; padding: 14px 16px; margin-bottom: 20px; }
+  .overall b { color: var(--accent); font-family: 'Lora', serif; }
+  .overall .bar { height: 8px; border-radius: 5px; background: var(--border); margin-top: 8px; overflow: hidden; }
+  .overall .bar > div { height: 100%; background: var(--accent); }
+
+  /* ---- quiz view ---- */
+  #quizView { display: none; }
+  .qz-top { display:flex; justify-content: space-between; align-items: center; margin-bottom: 14px; gap: 10px; }
+  .qz-top .back { font-size: 0.85rem; color: var(--accent); cursor: pointer; border: none; background: none; padding: 4px 0; }
+  .qz-top .progress-txt { font-size: 0.8rem; color: var(--muted); }
+  .qz-bar { height: 6px; border-radius: 4px; background: var(--border); margin-bottom: 20px; overflow: hidden; }
+  .qz-bar > div { height: 100%; background: var(--accent); transition: width .2s; }
+
+  .q-card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
+    padding: 18px 16px; margin-bottom: 16px;
+  }
+  .q-prompt { font-size: 0.98rem; margin: 0 0 14px; }
+  .q-prompt .tok { font-size: 1.3rem; display: block; margin-bottom: 4px; text-align: center; }
+  .q-prompt .translit { display: block; text-align: center; margin-bottom: 6px; }
+
+  .opt-list { display: flex; flex-direction: column; gap: 8px; }
+  .opt-btn {
+    display: block; width: 100%; text-align: left; font: inherit; font-size: 0.92rem;
+    background: var(--bg); border: 1px solid var(--border); border-radius: 10px;
+    padding: 10px 12px; color: var(--ink); cursor: pointer; transition: border-color .12s, background .12s;
+  }
+  .opt-btn:hover:not(:disabled) { border-color: var(--accent); }
+  .opt-btn.opt-correct { background: var(--good-soft); border-color: var(--good); font-weight: 700; }
+  .opt-btn.opt-wrong { background: var(--bad-soft); border-color: var(--bad); }
+  .opt-btn:disabled { cursor: default; }
+  .opt-btn .tok { font-size: 1.1rem; }
+
+  /* order-builder */
+  .order-target {
+    min-height: 54px; border: 2px dashed var(--border); border-radius: 10px;
+    padding: 10px; margin-bottom: 12px; display: flex; flex-wrap: wrap; gap: 6px;
+    direction: rtl; align-items: center;
+  }
+  .order-target.empty::before { content: "нажимай слова снизу в нужном порядке →"; direction: ltr; color: var(--muted); font-size: 0.82rem; }
+  .order-target .wtile {
+    font-family: 'Noto Naskh Arabic', serif; font-size: 1.15rem; background: var(--accent-soft);
+    border: 1px solid var(--accent); border-radius: 8px; padding: 4px 10px; cursor: pointer;
+  }
+  .order-pool { display: flex; flex-wrap: wrap; gap: 6px; direction: rtl; margin-bottom: 14px; }
+  .order-pool .wtile {
+    font-family: 'Noto Naskh Arabic', serif; font-size: 1.15rem; background: var(--bg);
+    border: 1px solid var(--border); border-radius: 8px; padding: 4px 10px; cursor: pointer;
+  }
+  .order-pool .wtile:hover { border-color: var(--accent); }
+  .order-target .wtile.tile-correct { background: var(--good-soft); border-color: var(--good); }
+  .order-target .wtile.tile-wrong { background: var(--bad-soft); border-color: var(--bad); }
+  .order-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+
+  .btn {
+    font: inherit; font-size: 0.9rem; font-weight: 700; border-radius: 10px; border: 1px solid var(--accent);
+    background: var(--accent); color: #fff; padding: 9px 16px; cursor: pointer;
+  }
+  .btn.ghost { background: transparent; color: var(--accent); }
+  .btn:disabled { opacity: 0.45; cursor: default; }
+
+  .feedback { margin-top: 12px; padding: 10px 12px; border-radius: 10px; font-size: 0.88rem; display: none; }
+  .feedback.show { display: block; }
+  .feedback.good { background: var(--good-soft); color: var(--good); }
+  .feedback.bad { background: var(--bad-soft); color: var(--bad); }
+  .feedback .ans { color: var(--ink); font-weight: 700; margin-top: 4px; display: block; }
+
+  .qz-nav { display: flex; justify-content: space-between; margin-top: 4px; }
+
+  .done-screen { text-align: center; padding: 30px 16px; }
+  .done-screen .big { font-family: 'Lora', serif; font-size: 1.6rem; color: var(--accent); margin-bottom: 8px; }
+
+  footer { margin-top: 40px; text-align: center; color: var(--muted); font-size: 0.78rem; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div id="homeView">
+  <h1>§6 — интерактивная практика</h1>
+  <p class="sub">Проверяешь себя сама: выбираешь перевод, составляешь предложение, подбираешь местоимение и предлог — по всему материалу уроков 6.1–6.9.</p>
+  <div class="backlink"><a href="arabic-6-exercises.html">← к разбору с объяснениями</a></div>
+
+  <div class="overall" id="overallBox">
+    <b>Всего по уроку §6:</b>
+    <span id="overallTxt"></span>
+    <div class="bar"><div id="overallBar"></div></div>
+  </div>
+
+  <div class="decks" id="deckList"></div>
+</div>
+
+<div id="quizView">
+  <div class="qz-top">
+    <button class="back" id="backBtn">← к списку</button>
+    <span class="progress-txt" id="progressTxt"></span>
+  </div>
+  <div class="qz-bar"><div id="qzBarFill"></div></div>
+  <div id="qCardHolder"></div>
+</div>
+
+<footer>Arabic Classes — §6, интерактивная практика</footer>
+</div>
+
+<script>
+const DATA = {"decks": [{"id": "deck1", "title": "Слова и управление предлогами", "items": [{"type": "mcq", "ar": "لَدَى", "translit": "ladā", "prompt": "Что значит «لَدَى» (ladā)?", "options": ["у, при (предлог принадлежности — «у меня есть» = ladayya)", "присутствовать; приходить (куда-л. — إِلَى)", "письменный стол; кабинет; офис"], "answer": "у, при (предлог принадлежности — «у меня есть» = ladayya)"}, {"type": "mcq", "ar": "بَعْدَ", "translit": "baʿda", "prompt": "Что значит «بَعْدَ» (baʿda)?", "options": ["банк", "после (предлог)", "заходить (к кому-л. — عَلَى)"], "answer": "после (предлог)"}, {"type": "mcq", "ar": "حَضَرَ", "translit": "ḥaḍara", "prompt": "Что значит «حَضَرَ» (ḥaḍara)?", "options": ["присутствовать; приходить (куда-л. — إِلَى)", "чашка", "письменный стол; кабинет; офис"], "answer": "присутствовать; приходить (куда-л. — إِلَى)"}, {"type": "mcq", "ar": "بَحَثَ", "translit": "baḥatha", "prompt": "Что значит «بَحَثَ» (baḥatha)?", "options": ["банк", "искать (кого-л., что-л. — عَنْ)", "у, при (предлог принадлежности — «у меня есть» = ladayya)"], "answer": "искать (кого-л., что-л. — عَنْ)"}, {"type": "mcq", "ar": "دَخَلَ", "translit": "dakhala", "prompt": "Что значит «دَخَلَ» (dakhala)?", "options": ["чашка", "искать (кого-л., что-л. — عَنْ)", "заходить (к кому-л. — عَلَى)"], "answer": "заходить (к кому-л. — عَلَى)"}, {"type": "mcq", "ar": "طَلَبَ", "translit": "ṭalaba", "prompt": "Что значит «طَلَبَ» (ṭalaba)?", "options": ["чашка", "искать (кого-л., что-л. — عَنْ)", "просить (у кого-л. — مِنْ)"], "answer": "просить (у кого-л. — مِنْ)"}, {"type": "mcq", "ar": "هُنَا", "translit": "hunā", "prompt": "Что значит «هُنَا» (hunā)?", "options": ["искать (кого-л., что-л. — عَنْ)", "там; имеется", "здесь"], "answer": "здесь"}, {"type": "mcq", "ar": "خَرِيطَةٌ", "translit": "kharīṭatun", "prompt": "Что значит «خَرِيطَةٌ» (kharīṭatun)?", "options": ["у, при (предлог принадлежности — «у меня есть» = ladayya)", "присутствовать; приходить (куда-л. — إِلَى)", "карта"], "answer": "карта"}, {"type": "mcq", "ar": "هُنَاكَ", "translit": "hunāka", "prompt": "Что значит «هُنَاكَ» (hunāka)?", "options": ["заходить (к кому-л. — عَلَى)", "там; имеется", "просить (у кого-л. — مِنْ)"], "answer": "там; имеется"}, {"type": "mcq", "ar": "فِنْجَانٌ", "translit": "finjānun", "prompt": "Что значит «فِنْجَانٌ» (finjānun)?", "options": ["чашка", "после (предлог)", "просить (у кого-л. — مِنْ)"], "answer": "чашка"}, {"type": "mcq", "ar": "صُورَةٌ", "translit": "ṣūratun", "prompt": "Что значит «صُورَةٌ» (ṣūratun)?", "options": ["после (предлог)", "картина", "просить (у кого-л. — مِنْ)"], "answer": "картина"}, {"type": "mcq", "ar": "مَكْتَبٌ", "translit": "maktabun", "prompt": "Что значит «مَكْتَبٌ» (maktabun)?", "options": ["карта", "у, при (предлог принадлежности — «у меня есть» = ladayya)", "письменный стол; кабинет; офис"], "answer": "письменный стол; кабинет; офис"}, {"type": "mcq", "ar": "مَصْرِفٌ", "translit": "maṣrifun", "prompt": "Что значит «مَصْرِفٌ» (maṣrifun)?", "options": ["здесь", "после (предлог)", "банк"], "answer": "банк"}, {"type": "mcq", "ar": "حَضَرَ", "prompt": "Какой предлог «свой» у глагола «حَضَرَ» (приходить (куда-л.))?", "options": ["عَلَى", "مِنْ", "إِلَى"], "answer": "إِلَى"}, {"type": "mcq", "ar": "بَحَثَ", "prompt": "Какой предлог «свой» у глагола «بَحَثَ» (искать (кого-л./что-л.))?", "options": ["إِلَى", "عَنْ", "مِنْ"], "answer": "عَنْ"}, {"type": "mcq", "ar": "دَخَلَ", "prompt": "Какой предлог «свой» у глагола «دَخَلَ» (заходить (к кому-л.))?", "options": ["إِلَى", "عَلَى", "عَنْ"], "answer": "عَلَى"}, {"type": "mcq", "ar": "طَلَبَ", "prompt": "Какой предлог «свой» у глагола «طَلَبَ» (просить (у кого-л.))?", "options": ["عَنْ", "مِنْ", "عَلَى"], "answer": "مِنْ"}]}, {"id": "deck2", "title": "Местоимения при предлогах", "items": [{"type": "mcq", "prompt": "Предлог «إِلَى» + местоимение «я» — выбери верную слитную форму:", "options": ["إِلَيْكَ", "إِلَيْكِ", "إِلَيَّ", "إِلَيْهِ"], "answer": "إِلَيَّ", "hint": "ilayya"}, {"type": "mcq", "prompt": "Предлог «إِلَى» + местоимение «ты (муж.)» — выбери верную слитную форму:", "options": ["إِلَيْكَ", "إِلَيَّ", "إِلَيْهِ", "إِلَيْهَا"], "answer": "إِلَيْكَ", "hint": "ilayka"}, {"type": "mcq", "prompt": "Предлог «إِلَى» + местоимение «ты (жен.)» — выбери верную слитную форму:", "options": ["إِلَيَّ", "إِلَيْكِ", "إِلَيْهَا", "إِلَيْكَ"], "answer": "إِلَيْكِ", "hint": "ilayki"}, {"type": "mcq", "prompt": "Предлог «إِلَى» + местоимение «он» — выбери верную слитную форму:", "options": ["إِلَيْهِ", "إِلَيَّ", "إِلَيْهَا", "إِلَيْكِ"], "answer": "إِلَيْهِ", "hint": "ilayhi"}, {"type": "mcq", "prompt": "Предлог «إِلَى» + местоимение «она» — выбери верную слитную форму:", "options": ["إِلَيَّ", "إِلَيْهَا", "إِلَيْكِ", "إِلَيْهِ"], "answer": "إِلَيْهَا", "hint": "ilayhā"}, {"type": "mcq", "prompt": "Предлог «عَلَى» + местоимение «я» — выбери верную слитную форму:", "options": ["عَلَيَّ", "عَلَيْكِ", "عَلَيْكَ", "عَلَيْهِ"], "answer": "عَلَيَّ", "hint": "ʿalayya"}, {"type": "mcq", "prompt": "Предлог «عَلَى» + местоимение «ты (муж.)» — выбери верную слитную форму:", "options": ["عَلَيَّ", "عَلَيْكَ", "عَلَيْكِ", "عَلَيْهِ"], "answer": "عَلَيْكَ", "hint": "ʿalayka"}, {"type": "mcq", "prompt": "Предлог «عَلَى» + местоимение «ты (жен.)» — выбери верную слитную форму:", "options": ["عَلَيَّ", "عَلَيْهِ", "عَلَيْهَا", "عَلَيْكِ"], "answer": "عَلَيْكِ", "hint": "ʿalayki"}, {"type": "mcq", "prompt": "Предлог «عَلَى» + местоимение «он» — выбери верную слитную форму:", "options": ["عَلَيْهِ", "عَلَيْكِ", "عَلَيْكَ", "عَلَيْهَا"], "answer": "عَلَيْهِ", "hint": "ʿalayhi"}, {"type": "mcq", "prompt": "Предлог «عَلَى» + местоимение «она» — выбери верную слитную форму:", "options": ["عَلَيْهَا", "عَلَيْكِ", "عَلَيَّ", "عَلَيْكَ"], "answer": "عَلَيْهَا", "hint": "ʿalayhā"}, {"type": "mcq", "prompt": "Предлог «لَدَى» + местоимение «я» — выбери верную слитную форму:", "options": ["لَدَيْكِ", "لَدَيْهَا", "لَدَيَّ", "لَدَيْهِ"], "answer": "لَدَيَّ", "hint": "ladayya"}, {"type": "mcq", "prompt": "Предлог «لَدَى» + местоимение «ты (муж.)» — выбери верную слитную форму:", "options": ["لَدَيْكِ", "لَدَيَّ", "لَدَيْكَ", "لَدَيْهِ"], "answer": "لَدَيْكَ", "hint": "ladayka"}, {"type": "mcq", "prompt": "Предлог «لَدَى» + местоимение «ты (жен.)» — выбери верную слитную форму:", "options": ["لَدَيْكِ", "لَدَيْكَ", "لَدَيَّ", "لَدَيْهَا"], "answer": "لَدَيْكِ", "hint": "ladayki"}, {"type": "mcq", "prompt": "Предлог «لَدَى» + местоимение «он» — выбери верную слитную форму:", "options": ["لَدَيْكِ", "لَدَيْهَا", "لَدَيْكَ", "لَدَيْهِ"], "answer": "لَدَيْهِ", "hint": "ladayhi"}, {"type": "mcq", "prompt": "Предлог «لَدَى» + местоимение «она» — выбери верную слитную форму:", "options": ["لَدَيْهِ", "لَدَيَّ", "لَدَيْكَ", "لَدَيْهَا"], "answer": "لَدَيْهَا", "hint": "ladayhā"}, {"type": "mcq", "prompt": "Предлог «مِنْ» + местоимение «я» — выбери верную слитную форму:", "options": ["مِنْكَ", "مِنْكِ", "مِنْهُ", "مِنِّي"], "answer": "مِنِّي", "hint": "minnī"}, {"type": "mcq", "prompt": "Предлог «مِنْ» + местоимение «ты (муж.)» — выбери верную слитную форму:", "options": ["مِنِّي", "مِنْكَ", "مِنْهُ", "مِنْكِ"], "answer": "مِنْكَ", "hint": "minka"}, {"type": "mcq", "prompt": "Предлог «مِنْ» + местоимение «ты (жен.)» — выбери верную слитную форму:", "options": ["مِنِّي", "مِنْكِ", "مِنْهَا", "مِنْهُ"], "answer": "مِنْكِ", "hint": "minki"}, {"type": "mcq", "prompt": "Предлог «مِنْ» + местоимение «он» — выбери верную слитную форму:", "options": ["مِنْكِ", "مِنْكَ", "مِنْهُ", "مِنْهَا"], "answer": "مِنْهُ", "hint": "minhu"}, {"type": "mcq", "prompt": "Предлог «مِنْ» + местоимение «она» — выбери верную слитную форму:", "options": ["مِنْهُ", "مِنْكَ", "مِنْهَا", "مِنْكِ"], "answer": "مِنْهَا", "hint": "minhā"}, {"type": "mcq", "prompt": "Предлог «عَنْ» + местоимение «я» — выбери верную слитную форму:", "options": ["عَنِّي", "عَنْهُ", "عَنْهَا", "عَنْكِ"], "answer": "عَنِّي", "hint": "ʿannī"}, {"type": "mcq", "prompt": "Предлог «عَنْ» + местоимение «ты (муж.)» — выбери верную слитную форму:", "options": ["عَنْهُ", "عَنْكَ", "عَنْكِ", "عَنِّي"], "answer": "عَنْكَ", "hint": "ʿanka"}, {"type": "mcq", "prompt": "Предлог «عَنْ» + местоимение «ты (жен.)» — выбери верную слитную форму:", "options": ["عَنْهُ", "عَنْهَا", "عَنْكِ", "عَنْكَ"], "answer": "عَنْكِ", "hint": "ʿanki"}, {"type": "mcq", "prompt": "Предлог «عَنْ» + местоимение «он» — выбери верную слитную форму:", "options": ["عَنْهُ", "عَنْكِ", "عَنْكَ", "عَنْهَا"], "answer": "عَنْهُ", "hint": "ʿanhu"}, {"type": "mcq", "prompt": "Предлог «عَنْ» + местоимение «она» — выбери верную слитную форму:", "options": ["عَنْهُ", "عَنْكَ", "عَنْكِ", "عَنْهَا"], "answer": "عَنْهَا", "hint": "ʿanhā"}, {"type": "mcq", "prompt": "Предлог «فِي» + местоимение «я» — выбери верную слитную форму:", "options": ["فِيكِ", "فِيهِ", "فِيَّ", "فِيكَ"], "answer": "فِيَّ", "hint": "fiyya"}, {"type": "mcq", "prompt": "Предлог «فِي» + местоимение «ты (муж.)» — выбери верную слитную форму:", "options": ["فِيَّ", "فِيكَ", "فِيهَا", "فِيكِ"], "answer": "فِيكَ", "hint": "fīka"}, {"type": "mcq", "prompt": "Предлог «فِي» + местоимение «ты (жен.)» — выбери верную слитную форму:", "options": ["فِيهِ", "فِيكِ", "فِيهَا", "فِيَّ"], "answer": "فِيكِ", "hint": "fīki"}, {"type": "mcq", "prompt": "Предлог «فِي» + местоимение «он» — выбери верную слитную форму:", "options": ["فِيَّ", "فِيهِ", "فِيكَ", "فِيهَا"], "answer": "فِيهِ", "hint": "fīhi"}, {"type": "mcq", "prompt": "Предлог «فِي» + местоимение «она» — выбери верную слитную форму:", "options": ["فِيهِ", "فِيكَ", "فِيكِ", "فِيهَا"], "answer": "فِيهَا", "hint": "fīhā"}]}, {"id": "deck3", "title": "6.2 — выбери перевод", "items": [{"type": "mcq", "ar": "لَدَيَّ أَخٌ كَبِيرٌ", "translit": "ladayya akhun kabīrun", "prompt": "Выбери правильный перевод:", "options": ["У меня есть младшая сестра.", "У меня есть старший брат.", "У меня есть новая подруга."], "answer": "У меня есть старший брат."}, {"type": "mcq", "ar": "لَدَيَّ طَبِيبٌ حَسَنٌ", "translit": "ladayya ṭabībun ḥasanun", "prompt": "Выбери правильный перевод:", "options": ["У меня есть друг-араб.", "У меня есть старший брат.", "У меня есть хороший врач."], "answer": "У меня есть хороший врач."}, {"type": "mcq", "ar": "لَدَيَّ صَدِيقٌ عَرَبِيٌّ", "translit": "ladayya ṣadīqun ʿarabiyyun", "prompt": "Выбери правильный перевод:", "options": ["У меня есть хороший врач.", "У меня есть друг-араб.", "У меня есть старший брат."], "answer": "У меня есть друг-араб."}, {"type": "mcq", "ar": "لَدَيَّ صَدِيقَةٌ جَدِيدَةٌ", "translit": "ladayya ṣadīqatun jadīdatun", "prompt": "Выбери правильный перевод:", "options": ["У меня есть старший брат.", "У меня есть хороший врач.", "У меня есть новая подруга."], "answer": "У меня есть новая подруга."}, {"type": "mcq", "ar": "لَدَيَّ أُخْتٌ صَغِيرَةٌ", "translit": "ladayya ukhtun ṣaghīratun", "prompt": "Выбери правильный перевод:", "options": ["У меня есть хороший врач.", "У меня есть новая подруга.", "У меня есть младшая сестра."], "answer": "У меня есть младшая сестра."}, {"type": "mcq", "ar": "لَدَيْهِ أَخٌ صَغِيرٌ", "translit": "ladayhi akhun ṣaghīrun", "prompt": "Выбери правильный перевод:", "options": ["У него есть красивая машина.", "У него есть младший брат.", "У него есть старшая сестра."], "answer": "У него есть младший брат."}, {"type": "mcq", "ar": "لَدَيْهِ أُخْتٌ كَبِيرَةٌ", "translit": "ladayhi ukhtun kabīratun", "prompt": "Выбери правильный перевод:", "options": ["У него есть арабский словарь.", "У него есть старшая сестра.", "У него есть младший брат."], "answer": "У него есть старшая сестра."}, {"type": "mcq", "ar": "لَدَيْهِ صَدِيقٌ جَدِيدٌ", "translit": "ladayhi ṣadīqun jadīdun", "prompt": "Выбери правильный перевод:", "options": ["У него есть новый друг.", "У него есть арабский словарь.", "У него есть старшая сестра."], "answer": "У него есть новый друг."}, {"type": "mcq", "ar": "لَدَيْهِ سَيَّارَةٌ جَمِيلَةٌ", "translit": "ladayhi sayyāratun jamīlatun", "prompt": "Выбери правильный перевод:", "options": ["У него есть старшая сестра.", "У него есть красивая машина.", "У него есть новый друг."], "answer": "У него есть красивая машина."}, {"type": "mcq", "ar": "لَدَيْهِ قَامُوسٌ عَرَبِيٌّ", "translit": "ladayhi qāmūsun ʿarabiyyun", "prompt": "Выбери правильный перевод:", "options": ["У него есть арабский словарь.", "У него есть новый друг.", "У него есть младший брат."], "answer": "У него есть арабский словарь."}, {"type": "mcq", "ar": "حَضَرَ إِلَيَّ أَخِي ٱلْكَبِيرُ", "translit": "ḥaḍara ilayya akhī l-kabīru", "prompt": "Выбери правильный перевод:", "options": ["Ко мне пришёл мой любимый внук.", "Ко мне пришла моя младшая сестра.", "Ко мне пришёл мой старший брат."], "answer": "Ко мне пришёл мой старший брат."}, {"type": "mcq", "ar": "حَضَرَ إِلَيَّ صَدِيقِي ٱلْعَرَبِيُّ", "translit": "ḥaḍara ilayya ṣadīqī l-ʿarabiyyu", "prompt": "Выбери правильный перевод:", "options": ["Ко мне пришёл мой друг-араб.", "Ко мне пришёл мой любимый внук.", "Ко мне пришла моя младшая сестра."], "answer": "Ко мне пришёл мой друг-араб."}, {"type": "mcq", "ar": "حَضَرَ إِلَيَّ حَفِيدِي ٱلْحَبِيبُ", "translit": "ḥaḍara ilayya ḥafīdī l-ḥabību", "prompt": "Выбери правильный перевод:", "options": ["Ко мне пришла моя новая подруга.", "Ко мне пришёл мой старший брат.", "Ко мне пришёл мой любимый внук."], "answer": "Ко мне пришёл мой любимый внук."}, {"type": "mcq", "ar": "حَضَرَتْ إِلَيَّ أُخْتِي ٱلصَّغِيرَةُ", "translit": "ḥaḍarat ilayya ukhtī ṣ-ṣaghīratu", "prompt": "Выбери правильный перевод:", "options": ["Ко мне пришла моя новая подруга.", "Ко мне пришла моя младшая сестра.", "Ко мне пришёл мой старший брат."], "answer": "Ко мне пришла моя младшая сестра."}, {"type": "mcq", "ar": "حَضَرَتْ إِلَيَّ صَدِيقَتِي ٱلْجَدِيدَةُ", "translit": "ḥaḍarat ilayya ṣadīqatī l-jadīdatu", "prompt": "Выбери правильный перевод:", "options": ["Ко мне пришла моя младшая сестра.", "Ко мне пришёл мой старший брат.", "Ко мне пришла моя новая подруга."], "answer": "Ко мне пришла моя новая подруга."}, {"type": "mcq", "ar": "حَضَرَ إِلَيْهِ أَخِي ٱلْكَبِيرُ", "translit": "ḥaḍara ilayhi akhī l-kabīru", "prompt": "Выбери правильный перевод:", "options": ["К нему пришёл мой старший брат.", "К нему пришёл его друг-араб.", "К нему пришёл его любимый внук."], "answer": "К нему пришёл мой старший брат."}, {"type": "mcq", "ar": "حَضَرَ إِلَيْهِ صَدِيقُهُ ٱلْعَرَبِيُّ", "translit": "ḥaḍara ilayhi ṣadīquhu l-ʿarabiyyu", "prompt": "Выбери правильный перевод:", "options": ["К нему пришла его старая подруга.", "К нему пришёл его друг-араб.", "К нему пришла его младшая сестра."], "answer": "К нему пришёл его друг-араб."}, {"type": "mcq", "ar": "حَضَرَ إِلَيْهِ حَفِيدُهُ ٱلْحَبِيبُ", "translit": "ḥaḍara ilayhi ḥafīduhu l-ḥabību", "prompt": "Выбери правильный перевод:", "options": ["К нему пришла его младшая сестра.", "К нему пришёл мой старший брат.", "К нему пришёл его любимый внук."], "answer": "К нему пришёл его любимый внук."}, {"type": "mcq", "ar": "حَضَرَتْ إِلَيْهِ أُخْتُهُ ٱلصَّغِيرَةُ", "translit": "ḥaḍarat ilayhi ukhtuhu ṣ-ṣaghīratu", "prompt": "Выбери правильный перевод:", "options": ["К нему пришла его младшая сестра.", "К нему пришёл его друг-араб.", "К нему пришёл его любимый внук."], "answer": "К нему пришла его младшая сестра."}, {"type": "mcq", "ar": "حَضَرَتْ إِلَيْهِ صَدِيقَتُهُ ٱلْقَدِيمَةُ", "translit": "ḥaḍarat ilayhi ṣadīqatuhu l-qadīmatu", "prompt": "Выбери правильный перевод:", "options": ["К нему пришла его старая подруга.", "К нему пришёл его любимый внук.", "К нему пришёл мой старший брат."], "answer": "К нему пришла его старая подруга."}, {"type": "mcq", "ar": "دَخَلَ عَلَيَّ أَخِي ٱلصَّغِيرُ", "translit": "dakhala ʿalayya akhī ṣ-ṣaghīru", "prompt": "Выбери правильный перевод:", "options": ["Ко мне зашёл мой друг-араб.", "Ко мне зашла моя старшая сестра.", "Ко мне зашёл мой младший брат."], "answer": "Ко мне зашёл мой младший брат."}, {"type": "mcq", "ar": "دَخَلَ عَلَيَّ صَدِيقِي ٱلْعَرَبِيُّ", "translit": "dakhala ʿalayya ṣadīqī l-ʿarabiyyu", "prompt": "Выбери правильный перевод:", "options": ["Ко мне зашёл мой младший брат.", "Ко мне зашёл мой друг-араб.", "Ко мне зашла моя новая соседка."], "answer": "Ко мне зашёл мой друг-араб."}, {"type": "mcq", "ar": "دَخَلَتْ عَلَيَّ أُخْتِي ٱلْكَبِيرَةُ", "translit": "dakhalat ʿalayya ukhtī l-kabīratu", "prompt": "Выбери правильный перевод:", "options": ["Ко мне зашёл мой любимый внук.", "Ко мне зашёл мой друг-араб.", "Ко мне зашла моя старшая сестра."], "answer": "Ко мне зашла моя старшая сестра."}, {"type": "mcq", "ar": "دَخَلَ عَلَيَّ حَفِيدِي ٱلْحَبِيبُ", "translit": "dakhala ʿalayya ḥafīdī l-ḥabību", "prompt": "Выбери правильный перевод:", "options": ["Ко мне зашла моя старшая сестра.", "Ко мне зашёл мой любимый внук.", "Ко мне зашла моя новая соседка."], "answer": "Ко мне зашёл мой любимый внук."}, {"type": "mcq", "ar": "دَخَلَتْ عَلَيَّ جَارَتِي ٱلْجَدِيدَةُ", "translit": "dakhalat ʿalayya jāratī l-jadīdatu", "prompt": "Выбери правильный перевод:", "options": ["Ко мне зашла моя новая соседка.", "Ко мне зашёл мой любимый внук.", "Ко мне зашла моя старшая сестра."], "answer": "Ко мне зашла моя новая соседка."}, {"type": "mcq", "ar": "دَخَلَ عَلَيْهِ صَدِيقُهُ ٱلْعَرَبِيُّ", "translit": "dakhala ʿalayhi ṣadīquhu l-ʿarabiyyu", "prompt": "Выбери правильный перевод:", "options": ["К нему зашла его старшая сестра.", "К нему зашёл его друг-араб.", "К нему зашла его новая подруга."], "answer": "К нему зашёл его друг-араб."}, {"type": "mcq", "ar": "دَخَلَ عَلَيْهِ حَفِيدُهُ ٱلْحَبِيبُ", "translit": "dakhala ʿalayhi ḥafīduhu l-ḥabību", "prompt": "Выбери правильный перевод:", "options": ["К нему зашёл его любимый внук.", "К нему зашёл его старый друг.", "К нему зашла его новая подруга."], "answer": "К нему зашёл его любимый внук."}, {"type": "mcq", "ar": "دَخَلَتْ عَلَيْهِ أُخْتُهُ ٱلْكَبِيرَةُ", "translit": "dakhalat ʿalayhi ukhtuhu l-kabīratu", "prompt": "Выбери правильный перевод:", "options": ["К нему зашла его старшая сестра.", "К нему зашёл его любимый внук.", "К нему зашёл его друг-араб."], "answer": "К нему зашла его старшая сестра."}, {"type": "mcq", "ar": "دَخَلَ عَلَيْهِ صَدِيقُهُ ٱلْقَدِيمُ", "translit": "dakhala ʿalayhi ṣadīquhu l-qadīmu", "prompt": "Выбери правильный перевод:", "options": ["К нему зашёл его старый друг.", "К нему зашла его новая подруга.", "К нему зашёл его друг-араб."], "answer": "К нему зашёл его старый друг."}, {"type": "mcq", "ar": "دَخَلَتْ عَلَيْهِ صَدِيقَتُهُ ٱلْجَدِيدَةُ", "translit": "dakhalat ʿalayhi ṣadīqatuhu l-jadīdatu", "prompt": "Выбери правильный перевод:", "options": ["К нему зашла его старшая сестра.", "К нему зашёл его друг-араб.", "К нему зашла его новая подруга."], "answer": "К нему зашла его новая подруга."}, {"type": "mcq", "ar": "طَلَبْتَ مِنِّي قَلَمِي ٱلْأَحْمَرَ", "translit": "ṭalabta minnī qalamī l-aḥmara", "prompt": "Выбери правильный перевод:", "options": ["Он взял у меня мою чистую щётку.", "Ты (муж. р.) попросил у меня мою красную ручку.", "Ты (жен. р.) попросила у меня мой чёрный зонт."], "answer": "Ты (муж. р.) попросил у меня мою красную ручку."}, {"type": "mcq", "ar": "طَلَبَ مِنِّي كِتَابِي ٱلْجَدِيدَ", "translit": "ṭalaba minnī kitābī l-jadīda", "prompt": "Выбери правильный перевод:", "options": ["Она взяла у меня мой старый словарь.", "Ты (муж. р.) попросил у меня мою красную ручку.", "Он попросил у меня мою новую книгу."], "answer": "Он попросил у меня мою новую книгу."}, {"type": "mcq", "ar": "أَخَذَ مِنِّي فُرْشَاتِي ٱلنَّظِيفَةَ", "translit": "akhadha minnī furshātī n-naẓīfata", "prompt": "Выбери правильный перевод:", "options": ["Ты (муж. р.) попросил у меня мою красную ручку.", "Он взял у меня мою чистую щётку.", "Ты (жен. р.) попросила у меня мой чёрный зонт."], "answer": "Он взял у меня мою чистую щётку."}, {"type": "mcq", "ar": "طَلَبْتِ مِنِّي مِظَلَّتِي ٱلسَّوْدَاءَ", "translit": "ṭalabti minnī miẓallatī s-sawdā'a", "prompt": "Выбери правильный перевод:", "options": ["Она взяла у меня мой старый словарь.", "Ты (муж. р.) попросил у меня мою красную ручку.", "Ты (жен. р.) попросила у меня мой чёрный зонт."], "answer": "Ты (жен. р.) попросила у меня мой чёрный зонт."}, {"type": "mcq", "ar": "أَخَذَتْ مِنِّي قَامُوسِي ٱلْقَدِيمَ", "translit": "akhadhat minnī qāmūsī l-qadīma", "prompt": "Выбери правильный перевод:", "options": ["Ты (жен. р.) попросила у меня мой чёрный зонт.", "Она взяла у меня мой старый словарь.", "Он попросил у меня мою новую книгу."], "answer": "Она взяла у меня мой старый словарь."}, {"type": "mcq", "ar": "سَأَلَهَا عَنِّي مُعَلِّمِي ٱلْعَرَبِيُّ", "translit": "sa'alahā ʿannī muʿallimī l-ʿarabiyyu", "prompt": "Выбери правильный перевод:", "options": ["Твоя старшая сестра спросила меня о тебе.", "Моя старая подруга спросила меня о нём.", "Мой арабский учитель спросил её обо мне."], "answer": "Мой арабский учитель спросил её обо мне."}, {"type": "mcq", "ar": "سَأَلَتْنِي عَنْكَ أُخْتُكَ ٱلْكَبِيرَةُ", "translit": "sa'alatnī ʿanka ukhtuka l-kabīratu", "prompt": "Выбери правильный перевод:", "options": ["Мой арабский учитель спросил её обо мне.", "Его новый друг спросил его о тебе (жен.).", "Твоя старшая сестра спросила меня о тебе."], "answer": "Твоя старшая сестра спросила меня о тебе."}, {"type": "mcq", "ar": "سَأَلَهُ عَنْكِ صَدِيقُهُ ٱلْجَدِيدُ", "translit": "sa'alahu ʿanki ṣadīquhu l-jadīdu", "prompt": "Выбери правильный перевод:", "options": ["Твоя старшая сестра спросила меня о тебе.", "Моя русская учительница спросила тебя (жен.) обо мне.", "Его новый друг спросил его о тебе (жен.)."], "answer": "Его новый друг спросил его о тебе (жен.)."}, {"type": "mcq", "ar": "سَأَلَتْنِي عَنْهُ صَدِيقَتِي ٱلْقَدِيمَةُ", "translit": "sa'alatnī ʿanhu ṣadīqatī l-qadīmatu", "prompt": "Выбери правильный перевод:", "options": ["Мой арабский учитель спросил её обо мне.", "Моя старая подруга спросила меня о нём.", "Моя русская учительница спросила тебя (жен.) обо мне."], "answer": "Моя старая подруга спросила меня о нём."}, {"type": "mcq", "ar": "سَأَلَتْكِ عَنِّي مُعَلِّمَتِي ٱلرُّوسِيَّةُ", "translit": "sa'alatki ʿannī muʿallimatī r-rūsiyyatu", "prompt": "Выбери правильный перевод:", "options": ["Моя русская учительница спросила тебя (жен.) обо мне.", "Мой арабский учитель спросил её обо мне.", "Его новый друг спросил его о тебе (жен.)."], "answer": "Моя русская учительница спросила тебя (жен.) обо мне."}, {"type": "mcq", "ar": "لَدَيْكَ سَيَّارَةٌ جَمِيلَةٌ", "translit": "ladayka sayyāratun jamīlatun", "prompt": "Выбери правильный перевод:", "options": ["Её новая учительница искала её.", "У тебя (муж.) есть красивая машина.", "К тебе зашёл твой любимый внук."], "answer": "У тебя (муж.) есть красивая машина."}, {"type": "mcq", "ar": "طَلَبْتَ مِنْهُ مِظَلَّتَكَ ٱلسَّوْدَاءَ", "translit": "ṭalabta minhu miẓallataka s-sawdā'a", "prompt": "Выбери правильный перевод:", "options": ["Её новая учительница искала её.", "Ты (муж. р.) попросил у него свой чёрный зонт.", "К ней пришла её старая подруга."], "answer": "Ты (муж. р.) попросил у него свой чёрный зонт."}, {"type": "mcq", "ar": "دَخَلَ عَلَيْكَ حَفِيدُكَ ٱلْحَبِيبُ", "translit": "dakhala ʿalayka ḥafīduka l-ḥabību", "prompt": "Выбери правильный перевод:", "options": ["К тебе зашёл твой любимый внук.", "Ты (муж. р.) попросил у него свой чёрный зонт.", "У тебя (муж.) есть красивая машина."], "answer": "К тебе зашёл твой любимый внук."}, {"type": "mcq", "ar": "حَضَرَتْ إِلَيْهَا صَدِيقَتُهَا ٱلْقَدِيمَةُ", "translit": "ḥaḍarat ilayhā ṣadīqatuhā l-qadīmatu", "prompt": "Выбери правильный перевод:", "options": ["У тебя (муж.) есть красивая машина.", "К ней пришла её старая подруга.", "К тебе зашёл твой любимый внук."], "answer": "К ней пришла её старая подруга."}, {"type": "mcq", "ar": "بَحَثَتْ عَنْهَا مُعَلِّمَتُهَا ٱلْجَدِيدَةُ", "translit": "baḥathat ʿanhā muʿallimatuhā l-jadīdatu", "prompt": "Выбери правильный перевод:", "options": ["У тебя (муж.) есть красивая машина.", "Её новая учительница искала её.", "Ты (муж. р.) попросил у него свой чёрный зонт."], "answer": "Её новая учительница искала её."}]}, {"id": "deck4", "title": "Собери предложение", "items": [{"type": "order", "ru": "Мой брат спросил меня о тебе.", "tokens": ["سَأَلَنِي", "أَخِي", "عَنْكَ."]}, {"type": "order", "ru": "К тебе зашёл твой новый сосед.", "tokens": ["دَخَلَ", "عَلَيْكَ", "جَارُكَ", "ٱلْجَدِيدُ."]}, {"type": "order", "ru": "К тебе пришёл твой врач вечером.", "tokens": ["حَضَرَ", "إِلَيْكَ", "طَبِيبُكَ", "فِي", "ٱلْمَسَاءِ."]}, {"type": "order", "ru": "Её внучка пошла к тебе утром.", "tokens": ["ذَهَبَتْ", "حَفِيدَتُهَا", "إِلَيْكَ", "فِي", "ٱلصَّبَاحِ."]}, {"type": "order", "ru": "Твоя подруга попросила у тебя эту книгу.", "tokens": ["طَلَبَتْ", "صَدِيقَتُكَ", "مِنْكَ", "هَذَا", "ٱلْكِتَابَ."]}, {"type": "order", "ru": "У меня большая семья.", "tokens": ["لَدَيَّ", "عَائِلَةٌ", "كَبِيرَةٌ."]}, {"type": "order", "ru": "У меня есть новый дом.", "tokens": ["لَدَيَّ", "بَيْتٌ", "جَدِيدٌ."]}, {"type": "order", "ru": "У меня есть редкая книга.", "tokens": ["لَدَيَّ", "كِتَابٌ", "نَادِرٌ."]}, {"type": "order", "ru": "У меня есть маленький брат.", "tokens": ["لَدَيَّ", "أَخٌ", "صَغِيرٌ."]}, {"type": "order", "ru": "У меня есть близкая подруга.", "tokens": ["لَدَيَّ", "صَدِيقَةٌ", "قَرِيبَةٌ."]}, {"type": "order", "ru": "У него большая семья.", "tokens": ["لَدَيْهِ", "عَائِلَةٌ", "كَبِيرَةٌ."]}, {"type": "order", "ru": "У него есть близкий друг.", "tokens": ["لَدَيْهِ", "صَدِيقٌ", "قَرِيبٌ."]}, {"type": "order", "ru": "У него есть взрослая сестра.", "tokens": ["لَدَيْهِ", "أُخْتٌ", "كَبِيرَةٌ."]}, {"type": "order", "ru": "У него есть маленький брат.", "tokens": ["لَدَيْهِ", "أَخٌ", "صَغِيرٌ."]}, {"type": "order", "ru": "У него есть красивая машина.", "tokens": ["لَدَيْهِ", "سَيَّارَةٌ", "جَمِيلَةٌ."]}, {"type": "order", "ru": "Ко мне пришёл мой старый друг.", "tokens": ["حَضَرَ", "إِلَيَّ", "صَدِيقِي", "ٱلْقَدِيمُ."]}, {"type": "order", "ru": "Ко мне пришёл мой новый сосед.", "tokens": ["حَضَرَ", "إِلَيَّ", "جَارِي", "ٱلْجَدِيدُ."]}, {"type": "order", "ru": "Ко мне пришла моя близкая подруга.", "tokens": ["حَضَرَتْ", "إِلَيَّ", "صَدِيقَتِي", "ٱلْقَرِيبَةُ."]}, {"type": "order", "ru": "Ко мне пришёл мой любимый брат.", "tokens": ["حَضَرَ", "إِلَيَّ", "أَخِي", "ٱلْحَبِيبُ."]}, {"type": "order", "ru": "Ко мне пришла моя взрослая сестра.", "tokens": ["حَضَرَتْ", "إِلَيَّ", "أُخْتِي", "ٱلْكَبِيرَةُ."]}, {"type": "order", "ru": "К нему пришёл его новый друг.", "tokens": ["حَضَرَ", "إِلَيْهِ", "صَدِيقُهُ", "ٱلْجَدِيدُ."]}, {"type": "order", "ru": "К нему пришёл его старый учитель.", "tokens": ["حَضَرَ", "إِلَيْهِ", "مُعَلِّمُهُ", "ٱلْقَدِيمُ."]}, {"type": "order", "ru": "К нему пришла его любимая сестра.", "tokens": ["حَضَرَتْ", "إِلَيْهِ", "أُخْتُهُ", "ٱلْحَبِيبَةُ."]}, {"type": "order", "ru": "К нему пришла его взрослая дочь.", "tokens": ["حَضَرَتْ", "إِلَيْهِ", "بِنْتُهُ", "ٱلْكَبِيرَةُ."]}, {"type": "order", "ru": "К нему пришла его любимая бабушка.", "tokens": ["حَضَرَتْ", "إِلَيْهِ", "جَدَّتُهُ", "ٱلْحَبِيبَةُ."]}, {"type": "order", "ru": "Ко мне зашёл мой старый друг.", "tokens": ["دَخَلَ", "عَلَيَّ", "صَدِيقِي", "ٱلْقَدِيمُ."]}, {"type": "order", "ru": "Ко мне зашёл мой новый сосед.", "tokens": ["دَخَلَ", "عَلَيَّ", "جَارِي", "ٱلْجَدِيدُ."]}, {"type": "order", "ru": "Ко мне зашёл мой любимый брат.", "tokens": ["دَخَلَ", "عَلَيَّ", "أَخِي", "ٱلْحَبِيبُ."]}, {"type": "order", "ru": "Ко мне зашла моя взрослая сестра.", "tokens": ["دَخَلَتْ", "عَلَيَّ", "أُخْتِي", "ٱلْكَبِيرَةُ."]}, {"type": "order", "ru": "Ко мне зашла моя близкая подруга.", "tokens": ["دَخَلَتْ", "عَلَيَّ", "صَدِيقَتِي", "ٱلْقَرِيبَةُ."]}, {"type": "order", "ru": "К нему зашёл его старый друг.", "tokens": ["دَخَلَ", "عَلَيْهِ", "صَدِيقُهُ", "ٱلْقَدِيمُ."]}, {"type": "order", "ru": "К нему зашёл его новый сосед.", "tokens": ["دَخَلَ", "عَلَيْهِ", "جَارُهُ", "ٱلْجَدِيدُ."]}, {"type": "order", "ru": "К нему зашёл его близкий друг.", "tokens": ["دَخَلَ", "عَلَيْهِ", "صَدِيقُهُ", "ٱلْقَرِيبُ."]}, {"type": "order", "ru": "К нему зашла его взрослая сестра.", "tokens": ["دَخَلَتْ", "عَلَيْهِ", "أُخْتُهُ", "ٱلْكَبِيرَةُ."]}, {"type": "order", "ru": "К нему зашла его любимая дочь.", "tokens": ["دَخَلَتْ", "عَلَيْهِ", "بِنْتُهُ", "ٱلْحَبِيبَةُ."]}, {"type": "order", "ru": "Она взяла у меня мой ключ.", "tokens": ["أَخَذَتْ", "مِنِّي", "مِفْتَاحِي."]}, {"type": "order", "ru": "Ты попросил у меня мой словарь.", "tokens": ["طَلَبْتَ", "مِنِّي", "قَامُوسِي."]}, {"type": "order", "ru": "Ты попросила у меня мою тетрадь.", "tokens": ["طَلَبْتِ", "مِنِّي", "دَفْتَرِي."]}, {"type": "order", "ru": "Она искала меня в моей комнате.", "tokens": ["بَحَثَتْ", "عَنِّي", "فِي", "غُرْفَتِي."]}, {"type": "order", "ru": "Он спрашивал обо мне мою сестру.", "tokens": ["سَأَلَ", "أُخْتِي", "عَنِّي."]}, {"type": "order", "ru": "У неё есть красивая кошка.", "tokens": ["لَدَيْهَا", "قِطَّةٌ", "جَمِيلَةٌ."]}, {"type": "order", "ru": "Её новая соседка заходила к ней вчера.", "tokens": ["دَخَلَتْ", "عَلَيْهَا", "جَارَتُهَا", "ٱلْجَدِيدَةُ", "أَمْسِ."]}, {"type": "order", "ru": "Его арабский друг искал его в библиотеке.", "tokens": ["بَحَثَ", "عَنْهُ", "صَدِيقُهُ", "ٱلْعَرَبِيُّ", "فِي", "ٱلْمَكْتَبَةِ."]}, {"type": "order", "ru": "Вечером к тебе приходил твой младший брат.", "tokens": ["حَضَرَ", "إِلَيْكَ", "أَخُوكَ", "ٱلصَّغِيرُ", "فِي", "ٱلْمَسَاءِ."]}, {"type": "order", "ru": "Твой новый учитель спросил меня о тебе.", "tokens": ["سَأَلَنِي", "مُعَلِّمُكَ", "ٱلْجَدِيدُ", "عَنْكَ."]}, {"type": "order", "ru": "Это стол. На нём красивая ваза.", "tokens": ["هَذَا", "مَكْتَبٌ.", "عَلَيْهِ", "زَهْرِيَّةٌ", "جَمِيلَةٌ."]}, {"type": "order", "ru": "Это река. На ней белый пароход.", "tokens": ["هَذَا", "نَهْرٌ.", "عَلَيْهِ", "سَفِينَةٌ", "بَيْضَاءُ."]}, {"type": "order", "ru": "Это тарелка. На ней вкусный хлеб.", "tokens": ["هَذَا", "طَبَقٌ.", "عَلَيْهِ", "خُبْزٌ", "لَذِيذٌ."]}, {"type": "order", "ru": "Это карта. На ней арабская страна.", "tokens": ["هَذِهِ", "خَرِيطَةٌ.", "عَلَيْهَا", "بَلَدٌ", "عَرَبِيٌّ."]}, {"type": "order", "ru": "Это письменный стол. На нём жёлтая тетрадь.", "tokens": ["هَذَا", "مَكْتَبٌ.", "عَلَيْهِ", "دَفْتَرٌ", "أَصْفَرُ."]}, {"type": "order", "ru": "На столе чашка. В ней вкусный кофе.", "tokens": ["عَلَى", "ٱلْمَائِدَةِ", "فِنْجَانٌ.", "فِيهِ", "قَهْوَةٌ", "لَذِيذَةٌ."]}, {"type": "order", "ru": "На столе тарелка. На ней большая ложка.", "tokens": ["عَلَى", "ٱلْمَائِدَةِ", "طَبَقٌ.", "عَلَيْهِ", "مِلْعَقَةٌ", "كَبِيرَةٌ."]}, {"type": "order", "ru": "На столе ваза. В ней красивый цветок.", "tokens": ["عَلَى", "ٱلْمَائِدَةِ", "زَهْرِيَّةٌ.", "فِيهَا", "زَهْرَةٌ", "جَمِيلَةٌ."]}, {"type": "order", "ru": "В книге карта. На ней арабская страна.", "tokens": ["فِي", "ٱلْكِتَابِ", "خَرِيطَةٌ.", "عَلَيْهَا", "بَلَدٌ", "عَرَبِيٌّ."]}, {"type": "order", "ru": "В комнате письменный стол. В нём арабский словарь.", "tokens": ["فِي", "ٱلْغُرْفَةِ", "مَكْتَبٌ.", "فِيهِ", "قَامُوسٌ", "عَرَبِيٌّ."]}]}, {"id": "deck5", "title": "Местоимение по роду (ловушки)", "items": [{"type": "mcq", "prompt": "«نَهْرٌ» («река» — но в арабском МУЖСКОГО рода). Предлог «في» + это слово — какая слитная форма?", "options": ["فِيهَا", "فِيهِ", "إِلَيْهِ"], "answer": "فِيهِ"}, {"type": "mcq", "prompt": "«مَكْتَبٌ» («письменный стол», муж.р.). Предлог «على» + это слово — какая слитная форма?", "options": ["عَلَيْهِ", "عَلَيْهَا", "مِنْهُ"], "answer": "عَلَيْهِ"}, {"type": "mcq", "prompt": "«فِنْجَانٌ» («чашка» — но в арабском МУЖСКОГО рода). Предлог «في» + это слово — какая слитная форма?", "options": ["فِيهَا", "فِيهِ", "عَلَيْهِ"], "answer": "فِيهِ"}, {"type": "mcq", "prompt": "«بَحْرٌ» («море», муж.р.). Предлог «في» + это слово — какая слитная форма?", "options": ["عَنْهُ", "فِيهِ", "فِيهَا"], "answer": "فِيهِ"}, {"type": "mcq", "prompt": "«مَائِدَةٌ» («(обеденный) стол» — но в арабском ЖЕНСКОГО рода). Предлог «على» + это слово — какая слитная форма?", "options": ["عَلَيْهَا", "عَلَيْهِ", "إِلَيْهَا"], "answer": "عَلَيْهَا"}, {"type": "mcq", "prompt": "«نَهْرٌ» («река», муж.р. (как и выше)). Предлог «في» + это слово — какая слитная форма?", "options": ["عَنْهُ", "فِيهِ", "فِيهَا"], "answer": "فِيهِ"}, {"type": "mcq", "prompt": "«فِنْجَانٌ» («чашка», муж.р.). Предлог «في» + это слово — какая слитная форма?", "options": ["فِيهَا", "فِيهِ", "إِلَيْهِ"], "answer": "فِيهِ"}, {"type": "mcq", "prompt": "«كِتَابٌ» («книга» (сам предмет книга — муж.р.)). Предлог «في» + это слово — какая слитная форма?", "options": ["فِيهَا", "فِيهِ", "عَنْهُ"], "answer": "فِيهِ"}, {"type": "mcq", "prompt": "«بَحْرٌ» («море», муж.р. — здесь заменяем именно بحر, а не صورة). Предлог «في» + это слово — какая слитная форма?", "options": ["فِيهَا", "عَلَيْهِ", "فِيهِ"], "answer": "فِيهِ"}, {"type": "mcq", "prompt": "«مَكْتَبَةٌ» («библиотека», жен.р.). Предлог «في» + это слово — какая слитная форма?", "options": ["مِنْهَا", "فِيهِ", "فِيهَا"], "answer": "فِيهَا"}, {"type": "mcq", "prompt": "«مَدْرَسَةٌ» («школа», жен.р.). Предлог «في» + это слово — какая слитная форма?", "options": ["فِيهَا", "فِيهِ", "عَنْهَا"], "answer": "فِيهَا"}, {"type": "mcq", "prompt": "«عَمٌّ» («дядя», муж.р.). Предлог «إلى» + это слово — какая слитная форма?", "options": ["إِلَيْهِ", "عَنْهُ", "إِلَيْهَا"], "answer": "إِلَيْهِ"}, {"type": "mcq", "prompt": "«جَدٌّ» («дедушка», муж.р.). Предлог «إلى» + это слово — какая слитная форма?", "options": ["عَلَيْهِ", "إِلَيْهِ", "إِلَيْهَا"], "answer": "إِلَيْهِ"}, {"type": "mcq", "prompt": "«أُخْتٌ» («сестра», жен.р.). Предлог «إلى» + это слово — какая слитная форма?", "options": ["فِيهَا", "إِلَيْهِ", "إِلَيْهَا"], "answer": "إِلَيْهَا"}, {"type": "mcq", "prompt": "«صَدِيقٌ» («друг», муж.р.). Предлог «إلى» + это слово — какая слитная форма?", "options": ["إِلَيْهِ", "عَلَيْهِ", "إِلَيْهَا"], "answer": "إِلَيْهِ"}, {"type": "mcq", "prompt": "«جَامِعَةٌ» («университет», жен.р.). Предлог «إلى» + это слово — какая слитная форма?", "options": ["إِلَيْهَا", "مِنْهَا", "إِلَيْهِ"], "answer": "إِلَيْهَا"}, {"type": "mcq", "prompt": "«نَهْرٌ» («река» — муж.р. (предлог مِنْ)). Предлог «من» + это слово — какая слитная форма?", "options": ["مِنْهُ", "مِنْهَا", "إِلَيْهِ"], "answer": "مِنْهُ"}, {"type": "mcq", "prompt": "«بَحْرٌ» («море», муж.р. (предлог عَنْ)). Предлог «عن» + это слово — какая слитная форма?", "options": ["عَلَيْهِ", "عَنْهُ", "عَنْهَا"], "answer": "عَنْهُ"}, {"type": "mcq", "prompt": "«مِرْآةٌ» («зеркало» — но в арабском ЖЕНСКОГО рода (предлог مِنْ)). Предлог «من» + это слово — какая слитная форма?", "options": ["مِنْهُ", "مِنْهَا", "إِلَيْهَا"], "answer": "مِنْهَا"}, {"type": "mcq", "prompt": "«بَيْتٌ» («дом», муж.р. (предлог مِنْ)). Предлог «من» + это слово — какая слитная форма?", "options": ["مِنْهَا", "مِنْهُ", "إِلَيْهِ"], "answer": "مِنْهُ"}, {"type": "mcq", "prompt": "«نَافِذَةٌ» («окно», жен.р. (предлог عَنْ)). Предлог «عن» + это слово — какая слитная форма?", "options": ["عَنْهَا", "عَنْهُ", "عَلَيْهَا"], "answer": "عَنْهَا"}, {"type": "mcq", "prompt": "«مَصْرِفٌ» («банк», муж.р. (предлог مِنْ)). Предлог «من» + это слово — какая слитная форма?", "options": ["مِنْهَا", "إِلَيْهِ", "مِنْهُ"], "answer": "مِنْهُ"}]}]};
+
+const STORE_KEY = "arabic6_practice_progress_v1";
+function loadProgress() {
+  try { return JSON.parse(localStorage.getItem(STORE_KEY)) || {}; } catch(e) { return {}; }
+}
+function saveProgress(p) {
+  try { localStorage.setItem(STORE_KEY, JSON.stringify(p)); } catch(e) {}
+}
+let progress = loadProgress();
+
+let state = {
+  deckId: null,
+  order: [],
+  idx: 0,
+  correctCount: 0,
+  answered: false,
+  deckResults: {}, // idx -> bool
+};
+
+function shuffledIndices(n) {
+  const arr = Array.from({length:n}, (_,i)=>i);
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+
+function renderHome() {
+  document.getElementById("quizView").style.display = "none";
+  document.getElementById("homeView").style.display = "block";
+  const list = document.getElementById("deckList");
+  list.innerHTML = "";
+  let totalItems = 0, totalDone = 0, totalCorrect = 0;
+  DATA.decks.forEach(deck => {
+    const p = progress[deck.id] || {};
+    const doneCount = Object.keys(p).length;
+    const correctCount = Object.values(p).filter(v=>v).length;
+    totalItems += deck.items.length;
+    totalDone += doneCount;
+    totalCorrect += correctCount;
+    const pct = deck.items.length ? Math.round(100*doneCount/deck.items.length) : 0;
+    const card = document.createElement("div");
+    card.className = "deck-card";
+    card.innerHTML = `
+      <div style="flex:1">
+        <div class="dtitle">${deck.title}</div>
+        <div class="dmeta">${deck.items.length} заданий${doneCount ? " · пройдено " + doneCount : ""}</div>
+        <div class="dprog"><div style="width:${pct}%"></div></div>
+      </div>
+      <div class="dscore">${doneCount ? Math.round(100*correctCount/doneCount)+"%" : "начать"}</div>
+    `;
+    card.addEventListener("click", () => startDeck(deck.id));
+    list.appendChild(card);
+  });
+  const overallPct = totalItems ? Math.round(100*totalDone/totalItems) : 0;
+  document.getElementById("overallTxt").textContent =
+    ` пройдено ${totalDone} из ${totalItems} заданий` + (totalDone ? `, верно ${Math.round(100*totalCorrect/totalDone)}%` : "");
+  document.getElementById("overallBar").style.width = overallPct + "%";
+}
+
+function startDeck(deckId) {
+  const deck = DATA.decks.find(d => d.id === deckId);
+  state.deckId = deckId;
+  state.order = shuffledIndices(deck.items.length);
+  state.idx = 0;
+  state.correctCount = 0;
+  state.answered = false;
+  state.deckResults = {};
+  document.getElementById("homeView").style.display = "none";
+  document.getElementById("quizView").style.display = "block";
+  renderQuestion();
+}
+
+function currentDeck() { return DATA.decks.find(d => d.id === state.deckId); }
+
+function renderQuestion() {
+  const deck = currentDeck();
+  if (state.idx >= state.order.length) {
+    renderDone(deck);
+    return;
+  }
+  const itemIndex = state.order[state.idx];
+  const item = deck.items[itemIndex];
+  state.answered = false;
+  document.getElementById("progressTxt").textContent = `${deck.title} · ${state.idx+1}/${state.order.length}`;
+  document.getElementById("qzBarFill").style.width = Math.round(100*state.idx/state.order.length) + "%";
+
+  const holder = document.getElementById("qCardHolder");
+  holder.innerHTML = "";
+  const card = document.createElement("div");
+  card.className = "q-card";
+
+  if (item.type === "mcq") {
+    let promptHtml = `<div class="q-prompt">`;
+    if (item.ar) {
+      promptHtml += `<span class="tok">${item.ar}</span>`;
+      if (item.translit) promptHtml += `<span class="translit">${item.translit}</span>`;
+    }
+    promptHtml += `${item.prompt}</div>`;
+    card.innerHTML = promptHtml + `<div class="opt-list" id="optList"></div><div class="feedback" id="fb"></div>`;
+    holder.appendChild(card);
+    const optList = document.getElementById("optList");
+    item.options.forEach(opt => {
+      const b = document.createElement("button");
+      b.className = "opt-btn";
+      b.innerHTML = /[؀-ۿ]/.test(opt) ? `<span class="tok">${opt}</span>` : opt;
+      b.addEventListener("click", () => chooseMcq(item, opt, b, optList));
+      optList.appendChild(b);
+    });
+  } else if (item.type === "order") {
+    card.innerHTML = `
+      <div class="q-prompt">${item.ru}</div>
+      <div class="order-target empty" id="orderTarget"></div>
+      <div class="order-pool" id="orderPool"></div>
+      <div class="order-actions">
+        <button class="btn" id="checkOrderBtn">Проверить</button>
+        <button class="btn ghost" id="resetOrderBtn">Сбросить</button>
+      </div>
+      <div class="feedback" id="fb"></div>
+    `;
+    holder.appendChild(card);
+    setupOrderQuestion(item);
+  }
+}
+
+function markResult(itemIndex, correct) {
+  state.deckResults[itemIndex] = correct;
+  if (!progress[state.deckId]) progress[state.deckId] = {};
+  progress[state.deckId][itemIndex] = correct;
+  saveProgress(progress);
+}
+
+function chooseMcq(item, chosen, btn, optList) {
+  if (state.answered) return;
+  state.answered = true;
+  const correct = chosen === item.answer;
+  if (correct) state.correctCount++;
+  const itemIndex = state.order[state.idx];
+  markResult(itemIndex, correct);
+
+  [...optList.children].forEach(b => {
+    b.disabled = true;
+    const txt = b.textContent.trim();
+    if (txt === item.answer) b.classList.add("opt-correct");
+  });
+  if (!correct) btn.classList.add("opt-wrong");
+
+  const fb = document.getElementById("fb");
+  fb.className = "feedback show " + (correct ? "good" : "bad");
+  fb.innerHTML = correct ? "Верно!" : `Неверно. <span class="ans">Правильный ответ: ${item.answer}</span>`;
+
+  showNextButton();
+}
+
+function setupOrderQuestion(item) {
+  const target = document.getElementById("orderTarget");
+  const pool = document.getElementById("orderPool");
+  const tokens = item.tokens.map((t, i) => ({t, i, placed: false}));
+  const shuffled = shuffledIndices(tokens.length);
+  let placedSeq = []; // tracks the ORDER the user clicked tokens into the target, independent of original index
+
+  function renderPool() {
+    pool.innerHTML = "";
+    shuffled.forEach(i => {
+      if (tokens[i].placed) return;
+      const tile = document.createElement("span");
+      tile.className = "wtile";
+      tile.textContent = tokens[i].t;
+      tile.addEventListener("click", () => {
+        tokens[i].placed = true;
+        placedSeq.push(tokens[i]);
+        renderTarget();
+        renderPool();
+      });
+      pool.appendChild(tile);
+    });
+  }
+  function renderTarget() {
+    target.classList.toggle("empty", placedSeq.length === 0);
+    target.innerHTML = "";
+    placedSeq.forEach(tok => {
+      const tile = document.createElement("span");
+      tile.className = "wtile";
+      tile.textContent = tok.t;
+      tile.addEventListener("click", () => {
+        tok.placed = false;
+        placedSeq = placedSeq.filter(x => x !== tok);
+        renderTarget();
+        renderPool();
+      });
+      target.appendChild(tile);
+    });
+  }
+  renderPool();
+  renderTarget();
+
+  document.getElementById("resetOrderBtn").addEventListener("click", () => {
+    tokens.forEach(t => t.placed = false);
+    placedSeq = [];
+    renderPool();
+    renderTarget();
+  });
+  document.getElementById("checkOrderBtn").addEventListener("click", () => {
+    if (state.answered) return;
+    if (placedSeq.length !== tokens.length) {
+      const fb = document.getElementById("fb");
+      fb.className = "feedback show bad";
+      fb.textContent = "Сначала используй все слова.";
+      return;
+    }
+    state.answered = true;
+    let allCorrect = true;
+    [...target.children].forEach((tile, pos) => {
+      const tok = placedSeq[pos];
+      if (tok.i === pos) {
+        tile.classList.add("tile-correct");
+      } else {
+        tile.classList.add("tile-wrong");
+        allCorrect = false;
+      }
+    });
+    if (allCorrect) state.correctCount++;
+    const itemIndex = state.order[state.idx];
+    markResult(itemIndex, allCorrect);
+
+    const fb = document.getElementById("fb");
+    fb.className = "feedback show " + (allCorrect ? "good" : "bad");
+    fb.innerHTML = allCorrect ? "Верно! Порядок слов правильный." :
+      `Порядок неверный. <span class="ans">Правильно: ${item.tokens.join(" ")}</span>`;
+
+    document.getElementById("checkOrderBtn").disabled = true;
+    showNextButton();
+  });
+}
+
+function showNextButton() {
+  const holder = document.getElementById("qCardHolder");
+  const nav = document.createElement("div");
+  nav.className = "qz-nav";
+  const isLast = state.idx + 1 >= state.order.length;
+  nav.innerHTML = `<span></span><button class="btn" id="nextBtn">${isLast ? "Итоги" : "Дальше →"}</button>`;
+  holder.appendChild(nav);
+  document.getElementById("nextBtn").addEventListener("click", () => {
+    state.idx++;
+    renderQuestion();
+  });
+}
+
+function renderDone(deck) {
+  document.getElementById("progressTxt").textContent = `${deck.title} · готово`;
+  document.getElementById("qzBarFill").style.width = "100%";
+  const holder = document.getElementById("qCardHolder");
+  const pct = state.order.length ? Math.round(100*state.correctCount/state.order.length) : 0;
+  holder.innerHTML = `
+    <div class="done-screen">
+      <div class="big">${pct}%</div>
+      <p>Правильно ${state.correctCount} из ${state.order.length}.</p>
+      <button class="btn" id="retryBtn">Пройти ещё раз</button>
+      <button class="btn ghost" id="homeBtn">К списку заданий</button>
+    </div>
+  `;
+  document.getElementById("retryBtn").addEventListener("click", () => startDeck(deck.id));
+  document.getElementById("homeBtn").addEventListener("click", renderHome);
+}
+
+document.getElementById("backBtn").addEventListener("click", renderHome);
+
+renderHome();
+</script>
+</body>
+</html>
