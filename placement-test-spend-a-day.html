@@ -58,7 +58,8 @@ section.part{background:#fff;border:1px solid var(--line);border-radius:18px;pad
 .player .btn.primary{background:var(--orange);border-color:var(--orange)}
 .bar{height:6px;background:#3a332c;border-radius:6px;overflow:hidden;margin:12px 0 6px}
 .bar i{display:block;height:100%;width:0;background:var(--orange);transition:width .3s}
-.player .status{font-size:13.5px;color:#cbbfae}
+.player .status{font-size:13.5px;color:#cbbfae;margin-top:8px}
+.player audio{width:100%;margin-top:14px;display:block}
 .player details{margin-top:10px;font-size:14px}
 .player summary{cursor:pointer;color:#f0b48c}
 .player label{display:block;margin:8px 0 3px;color:#cbbfae;font-size:13px}
@@ -215,25 +216,8 @@ footer a{color:var(--muted)}
     <div class="title">Spend a Day <em>With Me</em> · episode 47</div>
     <div class="meta">≈ 3 minutes · host and a guest · natural speed</div>
     <div class="speakers"><span><b>Tom</b> — the host</span><span><b>Rachel Moore</b> — runs an events agency in Manchester</span></div>
-    <div class="bar"><i id="pbar"></i></div>
-    <div class="row">
-      <button class="btn primary" id="playBtn">▶ Play</button>
-      <button class="btn" id="restartBtn">↺ From the start</button>
-      <span class="status" id="pstatus">Not started · listens: 0</span>
-    </div>
-    <details>
-      <summary>Voice settings / Настройки голоса</summary>
-      <label for="voiceT">Tom (male voice)</label>
-      <select id="voiceT"></select>
-      <label for="voiceR">Rachel (female voice)</label>
-      <select id="voiceR"></select>
-      <label for="rate">Speed</label>
-      <select id="rate">
-        <option value="1">Natural (recommended for a level check)</option>
-        <option value="0.9">Slightly slower</option>
-      </select>
-    </details>
-    <div class="warn" id="ttsWarn">Your browser can't play synthetic speech. Please open this page in Safari or Chrome, or ask your teacher to read the script aloud. <span class="ru">Браузер не поддерживает озвучку — откройте страницу в Safari или Chrome.</span></div>
+    <audio id="podcast" controls preload="auto" src="audio/spend-a-day-podcast.mp3">Your browser can't play this audio.</audio>
+    <div class="status" id="pstatus">Listens: 0</div>
   </div>
 
   <div class="note"><b>How to do it:</b> read the questions first, then listen once and answer. You may listen a second time to check. <span class="ru">Сначала прочитайте вопросы, затем послушайте и ответьте. Можно прослушать второй раз для проверки — больше двух раз не стоит: так результат будет честнее.</span></div>
@@ -251,7 +235,7 @@ footer a{color:var(--muted)}
     <h2>Listen &amp; complete</h2>
     <div class="sub">8 gaps · write <b>one word</b> you hear in each gap</div>
   </div></div>
-  <div class="note">Use the same recording (the player in Part 1). Write exactly the word you hear. Spelling matters a little, but a small slip is counted as half a point. <span class="ru">Впишите ровно то слово, которое звучит. Небольшая опечатка — полбалла.</span></div>
+  <div class="note">Use the same recording (the player in Part 1). You can pause it while you write. Write exactly the word you hear. Spelling matters a little, but a small slip is counted as half a point. <span class="ru">Впишите ровно то слово, которое звучит. Небольшая опечатка — полбалла.</span></div>
   <div id="gapList"></div>
   <div class="check-row">
     <button class="btn primary" id="checkGaps">Check my answers</button>
@@ -408,7 +392,7 @@ var LQ = [
      ["It received a bad review from the client","trap"]],
   e:"Кейтеринг отменился за два дня (<q>our caterers cancelled</q>), но <q>somehow we pulled it off</q> — мероприятие всё же прошло. Ловушка: слово <i>cancelled</i> относится к кейтерингу, а не к конференции."},
  {id:"L8", level:"B2", skill:"логическая связь",
-  q:"Why does Rachel say she “can't afford to cut corners”?",
+  q:"Why does Rachel say she “can't afford to cut corners” in her industry?",
   o:[["Because her budget is too small to make any mistakes","trap"],
      ["Because the law in her industry is very strict","invent"],
      ["Because clients check every invoice very carefully","invent"],
@@ -420,7 +404,7 @@ var LQ = [
      ["Her days are too unpredictable to fit the idea of an “ordinary” day",1],
      ["She works much shorter hours than most people","invent"],
      ["She finds the podcast's questions boring","invent"]],
-  e:"Подкаст обещает <q>an ordinary working day</q>, а Рахель с улыбкой предупреждает, что обычных дней у неё не бывает — дальше это подтверждается (сорванные поставки, переносы, отмена кейтеринга). Это вывод из контекста, а не прямой факт."},
+  e:"Подкаст обещает <q>an ordinary working day</q>, а Рахель сразу предупреждает, что обычных дней у неё не бывает — дальше это подтверждается (сорванные поставки, переносы, отмена кейтеринга). Это вывод из контекста, а не прямой факт."},
  {id:"L10", level:"C1", skill:"вывод (inference)",
   q:"What can we infer about Rachel's assistant?",
   o:[["She handles clients' urgent calls so that Rachel can switch off",1],
@@ -478,7 +462,7 @@ var VOCAB = [
  {set:1, w:"to bounce back", lvl:"B2", d:"to recover quickly after a difficult time"},
  {set:1, w:"to cut corners", lvl:"C1", d:"to do something cheaply or carelessly, ignoring proper standards, to save time or money"},
  {set:1, w:"word of mouth", lvl:"B2", d:"the way information spreads when people tell each other about something"},
- {set:1, w:"to switch off", lvl:"B2", d:"to stop thinking about work or problems and stop paying attention to them"},
+ {set:1, w:"to switch off", lvl:"B2", d:"to stop thinking about work or problems and relax"},
  {set:1, w:"to follow up (on something)", lvl:"B2", d:"to take further action on something, for example by replying or checking what happened"},
  {set:1, w:"a lifesaver", lvl:"B2", d:"someone or something that helps you enormously when you are in difficulty"},
  {set:1, w:"to prioritise", lvl:"B2", d:"to decide which things are most important and deal with them first"}
@@ -504,7 +488,7 @@ var GQ = [
   o:[["will go","will_if"],["goes",1],["would go","conf"],["went","conf"]],
   e:"First conditional: <b>If + Present Simple, will + V</b>. После <i>if</i> не ставим <i>will</i>, даже если речь о будущем."},
  {id:"C6", type:"first", band:"B1", q:"If it rains on Saturday, we ___ the party indoors.",
-  o:[["would move","conf"],["moved","conf"],["'ll move",1],["would have moved","form"]],
+  o:[["would move","conf"],["moved","conf"],["will move",1],["would have moved","form"]],
   e:"Реальная возможность в будущем → <b>will + V</b> в главной части."},
  {id:"C7", type:"first", band:"B2", q:"You won't get the job ___ you improve your CV.",
   o:[["if","linker"],["unless",1],["in case","linker"],["as soon as","linker"]],
@@ -574,95 +558,13 @@ var _ask = {k:null, t:0};
 function ask(msg){ var now = Date.now(); if(_ask.k===msg && now-_ask.t < 6000){ _ask.k=null; return true; } _ask.k=msg; _ask.t=now; toast(msg.split("\n").pop().replace(/\?$/,"") + " — нажмите ещё раз, чтобы подтвердить.", 5500); return false; }
 var LETTERS = "ABCDEFGHIJKL";
 
-/* ================== PLAYER (speech synthesis) ================== */
-var synth = window.speechSynthesis || null;
-var voices = [], idx = 0, playing = false, token = 0;
-var FEMALE = /(female|samantha|serena|kate|martha|stephanie|sonia|libby|karen|moira|tessa|victoria|zira|hazel|susan|aria|jenny|emma|amy|olivia|ava|allison|fiona|catherine|joanna|salli|kimberly|natasha|google uk english female|google us english)/i;
-var MALE = /(\bmale\b|daniel|arthur|oliver|alex\b|fred|ryan|thomas|george|david|mark|guy|rishi|aaron|tom\b|reed|eddy|brian|matthew|james|william|google uk english male)/i;
-
-function rankVoice(v, want){
-  var s = 0, n = v.name;
-  if(/en[-_]GB/i.test(v.lang)) s += 4; else if(/en[-_](US|AU|IE|CA)/i.test(v.lang)) s += 2;
-  if(want==="f" ? FEMALE.test(n) && !/\bmale\b/i.test(n.replace(/female/i,"")) : MALE.test(n) && !/female/i.test(n)) s += 10;
-  if(/natural|neural|premium|enhanced|online/i.test(n)) s += 3;
-  if(/novelty|whisper|bad news|bells|boing|bubbles|cellos|jester|organ|trinoids|zarvox|albert|bahh|superstar|wobble|grandma|grandpa|rocko|shelley|sandy|flo|eddy|reed/i.test(n)) s -= 20;
-  return s;
-}
-function fillVoices(){
-  if(!synth) return;
-  voices = synth.getVoices().filter(function(v){ return /^en([-_]|$)/i.test(v.lang); });
-  ["voiceT","voiceR"].forEach(function(id){
-    var sel = $(id), want = id==="voiceT" ? "m" : "f";
-    var sorted = voices.slice().sort(function(a,b){ return rankVoice(b,want)-rankVoice(a,want); });
-    var prev = sel.value;
-    sel.innerHTML = sorted.map(function(v){ return '<option value="'+esc(v.name)+'">'+esc(v.name+" ("+v.lang+")")+'</option>'; }).join("");
-    if(prev && sorted.some(function(v){return v.name===prev;})) sel.value = prev;
-  });
-  if(voices.length && $("voiceT").value === $("voiceR").value && voices.length > 1){
-    var alt = voices.filter(function(v){ return v.name !== $("voiceR").value; }).sort(function(a,b){return rankVoice(b,"m")-rankVoice(a,"m");})[0];
-    if(alt) $("voiceT").value = alt.name;
-  }
-}
-function voiceFor(sp){
-  var name = $(sp==="T" ? "voiceT" : "voiceR").value;
-  for(var i=0;i<voices.length;i++) if(voices[i].name===name) return voices[i];
-  return null;
-}
-function chunks(text){ return text.match(/[^.!?]+[.!?]+["'”]?|[^.!?]+$/g).map(function(s){return s.trim();}).filter(Boolean); }
-var QUEUE = [];
-SCRIPT.forEach(function(line, li){ chunks(line[1]).forEach(function(c, ci){ QUEUE.push({sp:line[0], text:c, line:li, first:ci===0}); }); });
-
-function updatePlayer(){
-  var pct = Math.round(100*idx/QUEUE.length);
-  $("pbar").style.width = (playing || idx>0 ? pct : 0) + "%";
-  $("playBtn").textContent = playing ? "❚❚ Pause" : (idx>0 ? "▶ Continue" : "▶ Play");
-  var st = playing ? "Playing…" : (idx>0 ? "Paused" : (S.plays ? "Finished" : "Not started"));
-  $("pstatus").textContent = st + " · listens: " + S.plays;
-}
-function speakNext(my){
-  if(my !== token || !playing) return;
-  if(idx >= QUEUE.length){ playing = false; idx = 0; updatePlayer(); toast("End of the episode"); return; }
-  var item = QUEUE[idx];
-  var u = new SpeechSynthesisUtterance(item.text);
-  var v = voiceFor(item.sp);
-  if(v){ u.voice = v; u.lang = v.lang; } else { u.lang = "en-GB"; }
-  u.rate = parseFloat($("rate").value) || 1;
-  u.pitch = 1;
-  var done = false;
-  function next(){
-    if(done) return; done = true;
-    if(my !== token || !playing) return;
-    idx++; updatePlayer();
-    var gap = (idx < QUEUE.length && QUEUE[idx].first) ? 450 : 120;
-    setTimeout(function(){ speakNext(my); }, gap);
-  }
-  u.onend = next;
-  u.onerror = function(ev){ if(ev && (ev.error==="interrupted" || ev.error==="canceled")) return; next(); };
-  synth.speak(u);
-}
-function play(){
-  if(!synth){ $("ttsWarn").style.display="block"; return; }
-  if(playing){ playing = false; token++; synth.cancel(); updatePlayer(); return; }
-  if(!voices.length) fillVoices();
-  if(idx === 0){ S.plays++; save(); }
-  playing = true; token++; synth.cancel();
-  var my = token;
-  updatePlayer();
-  setTimeout(function(){ speakNext(my); }, 60);
-}
-function restart(){
-  if(!synth){ $("ttsWarn").style.display="block"; return; }
-  token++; synth.cancel(); playing = false; idx = 0; updatePlayer(); play();
-}
-if(synth){
-  fillVoices();
-  if("onvoiceschanged" in synth) synth.onvoiceschanged = fillVoices;
-  setTimeout(fillVoices, 500); setTimeout(fillVoices, 1500);
-} else {
-  $("ttsWarn").style.display = "block";
-}
-$("playBtn").onclick = play;
-$("restartBtn").onclick = restart;
+/* ================== PLAYER ================== */
+var au = $("podcast"), counted = false;
+function updatePlayer(){ $("pstatus").textContent = "Listens: " + S.plays; }
+au.addEventListener("play", function(){ if(!counted && au.currentTime < 3){ counted = true; S.plays++; save(); updatePlayer(); } });
+au.addEventListener("ended", function(){ counted = false; });
+au.addEventListener("seeked", function(){ if(au.currentTime < 1) counted = false; });
+updatePlayer();
 
 /* ================== RENDER: LISTENING ================== */
 function renderMCQ(container, list, store, prefix){
