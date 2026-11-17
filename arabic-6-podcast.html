@@ -7,7 +7,7 @@
 <title>§6 — подкаст на слух</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600;700&family=PT+Sans:wght@400;700&family=Amiri:wght@400;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600;700&family=PT+Sans:wght@400;700&family=Noto+Naskh+Arabic:wght@400;500;700&display=swap">
 <style>
   :root {
     --bg: #f6f1e7; --surface: #fffcf5; --ink: #2b2420; --muted: #7a6f60;
@@ -40,7 +40,7 @@
     padding-right: max(16px, env(safe-area-inset-right, 0px));
     padding-block: 18px 60px; line-height: 1.55;
   }
-  .wrap { max-width: 760px; margin: 0 auto; }
+  .wrap { max-width: min(1300px, 96vw); margin: 0 auto; }
   h1 { font-family: 'Lora', serif; font-size: 1.4rem; margin: 0 0 6px; text-wrap: balance; }
   .sub { color: var(--muted); font-size: 0.92rem; margin: 0 0 18px; }
 
@@ -69,8 +69,12 @@
     background: var(--accent-soft); border: 1px solid var(--accent); border-radius: 14px;
     padding: 16px 18px; margin-bottom: 18px;
   }
-  .script-box .ar-flow { font-family: 'Amiri', serif; font-size: 1.25rem; direction: rtl; text-align: right; line-height: 2.1; margin-bottom: 10px; }
-  .script-box .tr-flow { font-style: italic; color: var(--muted); font-size: 0.86rem; margin-bottom: 8px; }
+  .script-box .line-group { margin-bottom: 16px; padding-bottom: 14px; border-bottom: 1px dashed var(--border); }
+  .script-box .line-group:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+  .script-box .ar-flow { font-family: 'Noto Naskh Arabic', serif; font-size: clamp(0.95rem, 4.4vw, 1.55rem); direction: rtl; text-align: right; line-height: 1.9; margin-bottom: 6px; white-space: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .script-box .ar-flow::-webkit-scrollbar { height: 5px; }
+  .script-box .ar-flow::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 4px; }
+  .script-box .tr-flow { font-style: italic; color: var(--muted); font-size: 0.86rem; margin-bottom: 6px; }
   .script-box .ru-flow { font-weight: 700; font-size: 0.95rem; }
 
   .item {
@@ -78,7 +82,7 @@
     padding: 14px 16px; margin-bottom: 12px;
   }
   .item .num { font-size: 0.75rem; color: var(--gold); font-weight: 700; letter-spacing: .03em; margin-bottom: 6px; }
-  .item .ar-big { font-family: 'Amiri', serif; font-size: 1.3rem; direction: rtl; text-align: center; margin-bottom: 6px; }
+  .item .ar-big { font-family: 'Noto Naskh Arabic', serif; font-size: 1.45rem; direction: rtl; text-align: center; margin-bottom: 6px; }
   .item .tr-full { font-style: italic; color: var(--muted); text-align: center; font-size: 0.85rem; margin-bottom: 4px; }
   .item .ru-full { text-align: center; font-weight: 700; margin-bottom: 10px; }
   .item .bd-title { font-size: 0.82rem; font-weight: 700; margin: 10px 0 6px; color: var(--accent); }
@@ -95,7 +99,7 @@
     background: var(--gold-soft); color: var(--accent); font-size: 0.7rem; font-weight: 700;
   }
   .breakdown-table td.word-cell { text-align: center; }
-  .tok { font-family: 'Amiri', serif; font-size: 1rem; direction: rtl; unicode-bidi: isolate; display: block; line-height: 1.5; }
+  .tok { font-family: 'Noto Naskh Arabic', serif; font-size: 1.05rem; direction: rtl; unicode-bidi: isolate; display: block; line-height: 1.5; }
   .translit { font-style: italic; color: var(--muted); font-size: 0.68rem; display: block; margin-top: 2px; }
 
   footer { text-align: center; color: var(--muted); font-size: 0.8rem; font-style: italic; margin-top: 28px; }
@@ -130,9 +134,46 @@
   <p class="sec-note">Все слова и конструкции — из уже пройденного материала (§1–§6): <bdi>لَدَى</bdi> «у меня есть», идафа (<bdi>دَخَلَ</bdi>، <bdi>سَأَلَ</bdi>، <bdi>طَلَبَ</bdi>، <bdi>أَخَذَ</bdi>، <bdi>حَضَرَ</bdi>، <bdi>ذَهَبَ</bdi> + свой предлог), согласование прилагательных, двухпадежный цвет <bdi>أَحْمَر/حَمْرَاء</bdi>.</p>
 
   <div class="script-box">
-    <div class="ar-flow"><bdi>لَدَيَّ صَدِيقَةٌ جَدِيدَةٌ. بَيْتُ صَدِيقَتِي قَرِيبٌ مِنْ بَيْتِي. حَضَرَتْ إِلَيَّ صَدِيقَتِي أَمْسِ. لَدَيْهَا سَيَّارَةٌ حَمْرَاءُ وَزَهْرَةٌ جَمِيلَةٌ. طَلَبَتْ مِنِّي كِتَابِي ٱلْجَدِيدَ. أَخَذَتْ كِتَابِي ٱلْجَدِيدَ وَذَهَبَتْ إِلَى بَيْتِهَا. وَدَخَلَ عَلَيَّ جَارِي ٱلْجَدِيدُ. سَأَلَ عَنْ صَدِيقَتِي ٱلْجَدِيدَةِ</bdi>.</div>
-    <div class="tr-flow">ladayya ṣadīqatun jadīdatun. baytu ṣadīqatī qarībun min baytī. ḥaḍarat ilayya ṣadīqatī amsi. ladayhā sayyāratun ḥamrā'u wa-zahratun jamīlatun. ṭalabat minnī kitābī l-jadīda. akhadhat kitābī l-jadīda wa-dhahabat ilā baytihā. wa-dakhala ʿalayya jārī l-jadīdu. sa'ala ʿan ṣadīqatī l-jadīdati.</div>
-    <div class="ru-flow">У меня есть новая подруга. Дом моей подруги близко от моего дома. Моя подруга пришла ко мне вчера. У неё красная машина и красивый цветок. Она попросила у меня мою новую книгу. Она взяла мою новую книгу и пошла к себе домой. И ко мне зашёл мой новый сосед. Он спросил о моей новой подруге.</div>
+    <div class="line-group">
+      <div class="ar-flow"><bdi>لَدَيَّ صَدِيقَةٌ جَدِيدَةٌ.</bdi></div>
+      <div class="tr-flow">ladayya ṣadīqatun jadīdatun.</div>
+      <div class="ru-flow">У меня есть новая подруга.</div>
+    </div>
+    <div class="line-group">
+      <div class="ar-flow"><bdi>بَيْتُ صَدِيقَتِي قَرِيبٌ مِنْ بَيْتِي.</bdi></div>
+      <div class="tr-flow">baytu ṣadīqatī qarībun min baytī.</div>
+      <div class="ru-flow">Дом моей подруги близко от моего дома.</div>
+    </div>
+    <div class="line-group">
+      <div class="ar-flow"><bdi>حَضَرَتْ إِلَيَّ صَدِيقَتِي أَمْسِ.</bdi></div>
+      <div class="tr-flow">ḥaḍarat ilayya ṣadīqatī amsi.</div>
+      <div class="ru-flow">Моя подруга пришла ко мне вчера.</div>
+    </div>
+    <div class="line-group">
+      <div class="ar-flow"><bdi>لَدَيْهَا سَيَّارَةٌ حَمْرَاءُ وَزَهْرَةٌ جَمِيلَةٌ.</bdi></div>
+      <div class="tr-flow">ladayhā sayyāratun ḥamrā'u wa-zahratun jamīlatun.</div>
+      <div class="ru-flow">У неё красная машина и красивый цветок.</div>
+    </div>
+    <div class="line-group">
+      <div class="ar-flow"><bdi>طَلَبَتْ مِنِّي كِتَابِي ٱلْجَدِيدَ.</bdi></div>
+      <div class="tr-flow">ṭalabat minnī kitābī l-jadīda.</div>
+      <div class="ru-flow">Она попросила у меня мою новую книгу.</div>
+    </div>
+    <div class="line-group">
+      <div class="ar-flow"><bdi>أَخَذَتْ كِتَابِي ٱلْجَدِيدَ وَذَهَبَتْ إِلَى بَيْتِهَا.</bdi></div>
+      <div class="tr-flow">akhadhat kitābī l-jadīda wa-dhahabat ilā baytihā.</div>
+      <div class="ru-flow">Она взяла мою новую книгу и пошла к себе домой.</div>
+    </div>
+    <div class="line-group">
+      <div class="ar-flow"><bdi>وَدَخَلَ عَلَيَّ جَارِي ٱلْجَدِيدُ.</bdi></div>
+      <div class="tr-flow">wa-dakhala ʿalayya jārī l-jadīdu.</div>
+      <div class="ru-flow">И ко мне зашёл мой новый сосед.</div>
+    </div>
+    <div class="line-group">
+      <div class="ar-flow"><bdi>سَأَلَ عَنْ صَدِيقَتِي ٱلْجَدِيدَةِ.</bdi></div>
+      <div class="tr-flow">sa'ala ʿan ṣadīqatī l-jadīdati.</div>
+      <div class="ru-flow">Он спросил о моей новой подруге.</div>
+    </div>
   </div>
 
   <h2 class="sec-title">Разбор по предложениям</h2>
