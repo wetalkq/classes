@@ -103,8 +103,10 @@
   .sentence-block .ar-big { font-family: 'Amiri', serif; font-size: 1.35rem; direction: rtl; text-align: center; margin-bottom: 6px; }
   .sentence-block .tr-full { font-style: italic; color: var(--muted); text-align: center; font-size: 0.85rem; margin-bottom: 4px; }
   .sentence-block .ru-full { text-align: center; font-weight: 700; margin-bottom: 10px; }
+  .sentence-block .ru-literal { text-align: center; font-size: 0.82rem; font-style: italic; color: var(--accent); margin: -6px 0 10px; }
   .sentence-block .bd-title { font-size: 0.82rem; font-weight: 700; margin: 10px 0 6px; color: var(--accent); }
   .bd-title { font-size: 0.82rem; font-weight: 700; margin: 10px 0 6px; color: var(--accent); }
+  .lit-inline { display: block; font-size: 0.76rem; font-style: italic; color: var(--accent); margin-top: 3px; }
 
   .q-card {
     background: var(--surface); border: 1px solid var(--border); border-radius: 14px;
@@ -181,6 +183,7 @@
 <div class="ar-big"><bdi>لَدَيَّ أَخٌ كَبِيرٌ</bdi>.</div>
 <div class="tr-full">ladayya akhun kabīrun.</div>
 <div class="ru-full">У меня есть старший брат.</div>
+<div class="ru-literal">дословно: у меня — брат старший</div>
 <div class="bd-title">Слово за словом:</div>
 <div class="table-scroll"><table class="breakdown-table">
 <thead><tr><th style="width:21%">Слово</th><th style="width:37%">Разбор</th><th style="width:20%">Падеж/роль</th><th style="width:22%">Перевод</th></tr></thead><tbody>
@@ -193,10 +196,10 @@
 <div class="table-scroll"><table class="breakdown-table compact-ex">
 <thead><tr><th style="width:6%">№</th><th style="width:34%">Арабский</th><th style="width:28%">Перевод</th><th style="width:32%">Пояснение</th></tr></thead>
 <tbody>
-<tr><td class="word-cell">2</td><td class="word-cell"><span class="tok"><bdi>لَدَيَّ طَبِيبٌ حَسَنٌ</bdi>.</span> <span class="translit">ladayya ṭabībun ḥasanun.</span></td><td>У меня есть хороший врач.</td><td><bdi>حَسَنٌ</bdi> здесь — прилагательное «хороший», не имя.</td></tr>
-<tr><td class="word-cell">3</td><td class="word-cell"><span class="tok"><bdi>لَدَيَّ صَدِيقٌ عَرَبِيٌّ</bdi>.</span> <span class="translit">ladayya ṣadīqun ʿarabiyyun.</span></td><td>У меня есть друг-араб.</td><td><bdi>عَرَبِيٌّ</bdi> — нисба «арабский», согласована в роде/числе/падеже.</td></tr>
-<tr><td class="word-cell">4</td><td class="word-cell"><span class="tok"><bdi>لَدَيَّ صَدِيقَةٌ جَدِيدَةٌ</bdi>.</span> <span class="translit">ladayya ṣadīqatun jadīdatun.</span></td><td>У меня есть новая подруга.</td><td><bdi>صَدِيقَةٌ</bdi> жен.р. (окончание <bdi>ة</bdi>) → прилагательное тоже с <bdi>ة</bdi>: <bdi>جَدِيدَةٌ</bdi>.</td></tr>
-<tr><td class="word-cell">5</td><td class="word-cell"><span class="tok"><bdi>لَدَيَّ أُخْتٌ صَغِيرَةٌ</bdi>.</span> <span class="translit">ladayya ukhtun ṣaghīratun.</span></td><td>У меня есть младшая сестра.</td><td><bdi>أُخْتٌ</bdi> — сестра (жен.р. без внешнего <bdi>ة</bdi> в основе, но согласование как у жен.р.).</td></tr>
+<tr><td class="word-cell">2</td><td class="word-cell"><span class="tok"><bdi>لَدَيَّ طَبِيبٌ حَسَنٌ</bdi>.</span> <span class="translit">ladayya ṭabībun ḥasanun.</span></td><td>У меня есть хороший врач.<br><span class="lit-inline">дословно: у меня — врач хороший</span></td><td><bdi>حَسَنٌ</bdi> здесь — прилагательное «хороший», не имя.</td></tr>
+<tr><td class="word-cell">3</td><td class="word-cell"><span class="tok"><bdi>لَدَيَّ صَدِيقٌ عَرَبِيٌّ</bdi>.</span> <span class="translit">ladayya ṣadīqun ʿarabiyyun.</span></td><td>У меня есть друг-араб.<br><span class="lit-inline">дословно: у меня — друг арабский</span></td><td><bdi>عَرَبِيٌّ</bdi> — нисба «арабский», согласована в роде/числе/падеже.</td></tr>
+<tr><td class="word-cell">4</td><td class="word-cell"><span class="tok"><bdi>لَدَيَّ صَدِيقَةٌ جَدِيدَةٌ</bdi>.</span> <span class="translit">ladayya ṣadīqatun jadīdatun.</span></td><td>У меня есть новая подруга.<br><span class="lit-inline">дословно: у меня — подруга новая</span></td><td><bdi>صَدِيقَةٌ</bdi> жен.р. (окончание <bdi>ة</bdi>) → прилагательное тоже с <bdi>ة</bdi>: <bdi>جَدِيدَةٌ</bdi>.</td></tr>
+<tr><td class="word-cell">5</td><td class="word-cell"><span class="tok"><bdi>لَدَيَّ أُخْتٌ صَغِيرَةٌ</bdi>.</span> <span class="translit">ladayya ukhtun ṣaghīratun.</span></td><td>У меня есть младшая сестра.<br><span class="lit-inline">дословно: у меня — сестра младшая</span></td><td><bdi>أُخْتٌ</bdi> — сестра (жен.р. без внешнего <bdi>ة</bdi> в основе, но согласование как у жен.р.).</td></tr>
 </tbody></table></div>
 
 <div class="group-label">Группа б) — <bdi>لَدَيْهِ</bdi> «у него есть» <span class="engl">EN: "he has"</span> <span class="rusl">RU: «у него есть»</span></div>
@@ -204,6 +207,7 @@
 <div class="ar-big"><bdi>لَدَيْهِ أَخٌ صَغِيرٌ</bdi>.</div>
 <div class="tr-full">ladayhi akhun ṣaghīrun.</div>
 <div class="ru-full">У него есть младший брат.</div>
+<div class="ru-literal">дословно: у него — брат младший</div>
 <div class="bd-title">Слово за словом:</div>
 <div class="table-scroll"><table class="breakdown-table">
 <thead><tr><th style="width:21%">Слово</th><th style="width:37%">Разбор</th><th style="width:20%">Падеж/роль</th><th style="width:22%">Перевод</th></tr></thead><tbody>
@@ -216,10 +220,10 @@
 <div class="table-scroll"><table class="breakdown-table compact-ex">
 <thead><tr><th style="width:6%">№</th><th style="width:34%">Арабский</th><th style="width:28%">Перевод</th><th style="width:32%">Пояснение</th></tr></thead>
 <tbody>
-<tr><td class="word-cell">2</td><td class="word-cell"><span class="tok"><bdi>لَدَيْهِ أُخْتٌ كَبِيرَةٌ</bdi>.</span> <span class="translit">ladayhi ukhtun kabīratun.</span></td><td>У него есть старшая сестра.</td><td><bdi>كَبِيرَةٌ</bdi> согласовано в жен.р. с <bdi>أُخْتٌ</bdi>.</td></tr>
-<tr><td class="word-cell">3</td><td class="word-cell"><span class="tok"><bdi>لَدَيْهِ صَدِيقٌ جَدِيدٌ</bdi>.</span> <span class="translit">ladayhi ṣadīqun jadīdun.</span></td><td>У него есть новый друг.</td><td>обычное согласование муж.р.</td></tr>
-<tr><td class="word-cell">4</td><td class="word-cell"><span class="tok"><bdi>لَدَيْهِ سَيَّارَةٌ جَمِيلَةٌ</bdi>.</span> <span class="translit">ladayhi sayyāratun jamīlatun.</span></td><td>У него есть красивая машина.</td><td><bdi>سَيَّارَةٌ</bdi> жен.р.</td></tr>
-<tr><td class="word-cell">5</td><td class="word-cell"><span class="tok"><bdi>لَدَيْهِ قَامُوسٌ عَرَبِيٌّ</bdi>.</span> <span class="translit">ladayhi qāmūsun ʿarabiyyun.</span></td><td>У него есть арабский словарь.</td><td><bdi>قَامُوسٌ</bdi> муж.р., <bdi>ن</bdi>исба <bdi>عَرَبِيٌّ</bdi> в муж.р.</td></tr>
+<tr><td class="word-cell">2</td><td class="word-cell"><span class="tok"><bdi>لَدَيْهِ أُخْتٌ كَبِيرَةٌ</bdi>.</span> <span class="translit">ladayhi ukhtun kabīratun.</span></td><td>У него есть старшая сестра.<br><span class="lit-inline">дословно: у него — сестра старшая</span></td><td><bdi>كَبِيرَةٌ</bdi> согласовано в жен.р. с <bdi>أُخْتٌ</bdi>.</td></tr>
+<tr><td class="word-cell">3</td><td class="word-cell"><span class="tok"><bdi>لَدَيْهِ صَدِيقٌ جَدِيدٌ</bdi>.</span> <span class="translit">ladayhi ṣadīqun jadīdun.</span></td><td>У него есть новый друг.<br><span class="lit-inline">дословно: у него — друг новый</span></td><td>обычное согласование муж.р.</td></tr>
+<tr><td class="word-cell">4</td><td class="word-cell"><span class="tok"><bdi>لَدَيْهِ سَيَّارَةٌ جَمِيلَةٌ</bdi>.</span> <span class="translit">ladayhi sayyāratun jamīlatun.</span></td><td>У него есть красивая машина.<br><span class="lit-inline">дословно: у него — машина красивая</span></td><td><bdi>سَيَّارَةٌ</bdi> жен.р.</td></tr>
+<tr><td class="word-cell">5</td><td class="word-cell"><span class="tok"><bdi>لَدَيْهِ قَامُوسٌ عَرَبِيٌّ</bdi>.</span> <span class="translit">ladayhi qāmūsun ʿarabiyyun.</span></td><td>У него есть арабский словарь.<br><span class="lit-inline">дословно: у него — словарь арабский</span></td><td><bdi>قَامُوسٌ</bdi> муж.р., <bdi>ن</bdi>исба <bdi>عَرَبِيٌّ</bdi> в муж.р.</td></tr>
 </tbody></table></div>
 
 <div class="group-label">Группа в) — <bdi>حَضَرَ/حَضَرَتْ إِلَيَّ</bdi> «ко мне пришёл/пришла» <span class="engl">EN: "came to me"</span> <span class="rusl">RU: «пришёл/пришла ко мне»</span></div>
@@ -227,6 +231,7 @@
 <div class="ar-big"><bdi>حَضَرَ إِلَيَّ أَخِي ٱلْكَبِيرُ</bdi>.</div>
 <div class="tr-full">ḥaḍara ilayya akhī l-kabīru.</div>
 <div class="ru-full">Ко мне пришёл мой старший брат.</div>
+<div class="ru-literal">дословно: пришёл ко мне брат мой старший</div>
 <div class="bd-title">Слово за словом:</div>
 <div class="table-scroll"><table class="breakdown-table">
 <thead><tr><th style="width:21%">Слово</th><th style="width:37%">Разбор</th><th style="width:20%">Падеж/роль</th><th style="width:22%">Перевод</th></tr></thead><tbody>
@@ -240,10 +245,10 @@
 <div class="table-scroll"><table class="breakdown-table compact-ex">
 <thead><tr><th style="width:6%">№</th><th style="width:34%">Арабский</th><th style="width:28%">Перевод</th><th style="width:32%">Пояснение</th></tr></thead>
 <tbody>
-<tr><td class="word-cell">2</td><td class="word-cell"><span class="tok"><bdi>حَضَرَ إِلَيَّ صَدِيقِي ٱلْعَرَبِيُّ</bdi>.</span> <span class="translit">ḥaḍara ilayya ṣadīqī l-ʿarabiyyu.</span></td><td>Ко мне пришёл мой друг-араб.</td><td>та же модель, муж.р.</td></tr>
-<tr><td class="word-cell">3</td><td class="word-cell"><span class="tok"><bdi>حَضَرَ إِلَيَّ حَفِيدِي ٱلْحَبِيبُ</bdi>.</span> <span class="translit">ḥaḍara ilayya ḥafīdī l-ḥabību.</span></td><td>Ко мне пришёл мой любимый внук.</td><td><bdi>حَفِيدِي</bdi> — «внук» + «мой».</td></tr>
-<tr><td class="word-cell">4</td><td class="word-cell"><span class="tok"><bdi>حَضَرَتْ إِلَيَّ أُخْتِي ٱلصَّغِيرَةُ</bdi>.</span> <span class="translit">ḥaḍarat ilayya ukhtī ṣ-ṣaghīratu.</span></td><td>Ко мне пришла моя младшая сестра.</td><td>подлежащее жен.р. → глагол с -<bdi>ت</bdi>: <bdi>حَضَرَتْ</bdi>.</td></tr>
-<tr><td class="word-cell">5</td><td class="word-cell"><span class="tok"><bdi>حَضَرَتْ إِلَيَّ صَدِيقَتِي ٱلْجَدِيدَةُ</bdi>.</span> <span class="translit">ḥaḍarat ilayya ṣadīqatī l-jadīdatu.</span></td><td>Ко мне пришла моя новая подруга.</td><td>то же согласование жен.р.</td></tr>
+<tr><td class="word-cell">2</td><td class="word-cell"><span class="tok"><bdi>حَضَرَ إِلَيَّ صَدِيقِي ٱلْعَرَبِيُّ</bdi>.</span> <span class="translit">ḥaḍara ilayya ṣadīqī l-ʿarabiyyu.</span></td><td>Ко мне пришёл мой друг-араб.<br><span class="lit-inline">дословно: пришёл ко мне друг мой арабский</span></td><td>та же модель, муж.р.</td></tr>
+<tr><td class="word-cell">3</td><td class="word-cell"><span class="tok"><bdi>حَضَرَ إِلَيَّ حَفِيدِي ٱلْحَبِيبُ</bdi>.</span> <span class="translit">ḥaḍara ilayya ḥafīdī l-ḥabību.</span></td><td>Ко мне пришёл мой любимый внук.<br><span class="lit-inline">дословно: пришёл ко мне внук мой любимый</span></td><td><bdi>حَفِيدِي</bdi> — «внук» + «мой».</td></tr>
+<tr><td class="word-cell">4</td><td class="word-cell"><span class="tok"><bdi>حَضَرَتْ إِلَيَّ أُخْتِي ٱلصَّغِيرَةُ</bdi>.</span> <span class="translit">ḥaḍarat ilayya ukhtī ṣ-ṣaghīratu.</span></td><td>Ко мне пришла моя младшая сестра.<br><span class="lit-inline">дословно: пришла ко мне сестра моя младшая</span></td><td>подлежащее жен.р. → глагол с -<bdi>ت</bdi>: <bdi>حَضَرَتْ</bdi>.</td></tr>
+<tr><td class="word-cell">5</td><td class="word-cell"><span class="tok"><bdi>حَضَرَتْ إِلَيَّ صَدِيقَتِي ٱلْجَدِيدَةُ</bdi>.</span> <span class="translit">ḥaḍarat ilayya ṣadīqatī l-jadīdatu.</span></td><td>Ко мне пришла моя новая подруга.<br><span class="lit-inline">дословно: пришла ко мне подруга моя новая</span></td><td>то же согласование жен.р.</td></tr>
 </tbody></table></div>
 
 <div class="group-label">Группа г) — <bdi>حَضَرَ/حَضَرَتْ إِلَيْهِ</bdi> «к нему пришёл/пришла» <span class="engl">EN: "came to him"</span> <span class="rusl">RU: «пришёл/пришла к нему»</span></div>
@@ -251,6 +256,7 @@
 <div class="ar-big"><bdi>حَضَرَ إِلَيْهِ أَخِي ٱلْكَبِيرُ</bdi>.</div>
 <div class="tr-full">ḥaḍara ilayhi akhī l-kabīru.</div>
 <div class="ru-full">К нему пришёл мой старший брат.</div>
+<div class="ru-literal">дословно: пришёл к нему брат мой старший</div>
 <div class="bd-title">Слово за словом:</div>
 <div class="table-scroll"><table class="breakdown-table">
 <thead><tr><th style="width:21%">Слово</th><th style="width:37%">Разбор</th><th style="width:20%">Падеж/роль</th><th style="width:22%">Перевод</th></tr></thead><tbody>
@@ -264,10 +270,10 @@
 <div class="table-scroll"><table class="breakdown-table compact-ex">
 <thead><tr><th style="width:6%">№</th><th style="width:34%">Арабский</th><th style="width:28%">Перевод</th><th style="width:32%">Пояснение</th></tr></thead>
 <tbody>
-<tr><td class="word-cell">2</td><td class="word-cell"><span class="tok"><bdi>حَضَرَ إِلَيْهِ صَدِيقُهُ ٱلْعَرَبِيُّ</bdi>.</span> <span class="translit">ḥaḍara ilayhi ṣadīquhu l-ʿarabiyyu.</span></td><td>К нему пришёл его друг-араб.</td><td><bdi>صَدِيقُهُ</bdi> — «друг» + «его»; здесь и подлежащее, и предлог — про «него» (третье лицо последовательно).</td></tr>
-<tr><td class="word-cell">3</td><td class="word-cell"><span class="tok"><bdi>حَضَرَ إِلَيْهِ حَفِيدُهُ ٱلْحَبِيبُ</bdi>.</span> <span class="translit">ḥaḍara ilayhi ḥafīduhu l-ḥabību.</span></td><td>К нему пришёл его любимый внук.</td><td><bdi>حَفِيدُهُ</bdi> — «внук» + «его».</td></tr>
-<tr><td class="word-cell">4</td><td class="word-cell"><span class="tok"><bdi>حَضَرَتْ إِلَيْهِ أُخْتُهُ ٱلصَّغِيرَةُ</bdi>.</span> <span class="translit">ḥaḍarat ilayhi ukhtuhu ṣ-ṣaghīratu.</span></td><td>К нему пришла его младшая сестра.</td><td>подлежащее жен.р. → <bdi>حَضَرَتْ</bdi>.</td></tr>
-<tr><td class="word-cell">5</td><td class="word-cell"><span class="tok"><bdi>حَضَرَتْ إِلَيْهِ صَدِيقَتُهُ ٱلْقَدِيمَةُ</bdi>.</span> <span class="translit">ḥaḍarat ilayhi ṣadīqatuhu l-qadīmatu.</span></td><td>К нему пришла его старая подруга.</td><td><bdi>صَدِيقَتُهُ</bdi> — «подруга» + «его».</td></tr>
+<tr><td class="word-cell">2</td><td class="word-cell"><span class="tok"><bdi>حَضَرَ إِلَيْهِ صَدِيقُهُ ٱلْعَرَبِيُّ</bdi>.</span> <span class="translit">ḥaḍara ilayhi ṣadīquhu l-ʿarabiyyu.</span></td><td>К нему пришёл его друг-араб.<br><span class="lit-inline">дословно: пришёл к нему друг его арабский</span></td><td><bdi>صَدِيقُهُ</bdi> — «друг» + «его»; здесь и подлежащее, и предлог — про «него» (третье лицо последовательно).</td></tr>
+<tr><td class="word-cell">3</td><td class="word-cell"><span class="tok"><bdi>حَضَرَ إِلَيْهِ حَفِيدُهُ ٱلْحَبِيبُ</bdi>.</span> <span class="translit">ḥaḍara ilayhi ḥafīduhu l-ḥabību.</span></td><td>К нему пришёл его любимый внук.<br><span class="lit-inline">дословно: пришёл к нему внук его любимый</span></td><td><bdi>حَفِيدُهُ</bdi> — «внук» + «его».</td></tr>
+<tr><td class="word-cell">4</td><td class="word-cell"><span class="tok"><bdi>حَضَرَتْ إِلَيْهِ أُخْتُهُ ٱلصَّغِيرَةُ</bdi>.</span> <span class="translit">ḥaḍarat ilayhi ukhtuhu ṣ-ṣaghīratu.</span></td><td>К нему пришла его младшая сестра.<br><span class="lit-inline">дословно: пришла к нему сестра его младшая</span></td><td>подлежащее жен.р. → <bdi>حَضَرَتْ</bdi>.</td></tr>
+<tr><td class="word-cell">5</td><td class="word-cell"><span class="tok"><bdi>حَضَرَتْ إِلَيْهِ صَدِيقَتُهُ ٱلْقَدِيمَةُ</bdi>.</span> <span class="translit">ḥaḍarat ilayhi ṣadīqatuhu l-qadīmatu.</span></td><td>К нему пришла его старая подруга.<br><span class="lit-inline">дословно: пришла к нему подруга его старая</span></td><td><bdi>صَدِيقَتُهُ</bdi> — «подруга» + «его».</td></tr>
 </tbody></table></div>
 
 <div class="group-label">Группа д) — <bdi>دَخَلَ/دَخَلَتْ عَلَيَّ</bdi> «ко мне зашёл/зашла» <span class="engl">EN: "came in on me / visited me"</span> <span class="rusl">RU: «зашёл/зашла ко мне»</span></div>
@@ -275,6 +281,7 @@
 <div class="ar-big"><bdi>دَخَلَ عَلَيَّ أَخِي ٱلصَّغِيرُ</bdi>.</div>
 <div class="tr-full">dakhala ʿalayya akhī ṣ-ṣaghīru.</div>
 <div class="ru-full">Ко мне зашёл мой младший брат.</div>
+<div class="ru-literal">дословно: зашёл ко мне брат мой младший</div>
 <div class="bd-title">Слово за словом:</div>
 <div class="table-scroll"><table class="breakdown-table">
 <thead><tr><th style="width:21%">Слово</th><th style="width:37%">Разбор</th><th style="width:20%">Падеж/роль</th><th style="width:22%">Перевод</th></tr></thead><tbody>
@@ -288,10 +295,10 @@
 <div class="table-scroll"><table class="breakdown-table compact-ex">
 <thead><tr><th style="width:6%">№</th><th style="width:34%">Арабский</th><th style="width:28%">Перевод</th><th style="width:32%">Пояснение</th></tr></thead>
 <tbody>
-<tr><td class="word-cell">2</td><td class="word-cell"><span class="tok"><bdi>دَخَلَ عَلَيَّ صَدِيقِي ٱلْعَرَبِيُّ</bdi>.</span> <span class="translit">dakhala ʿalayya ṣadīqī l-ʿarabiyyu.</span></td><td>Ко мне зашёл мой друг-араб.</td><td></td></tr>
-<tr><td class="word-cell">3</td><td class="word-cell"><span class="tok"><bdi>دَخَلَتْ عَلَيَّ أُخْتِي ٱلْكَبِيرَةُ</bdi>.</span> <span class="translit">dakhalat ʿalayya ukhtī l-kabīratu.</span></td><td>Ко мне зашла моя старшая сестра.</td><td>жен.р. подлежащего → <bdi>دَخَلَتْ</bdi>.</td></tr>
-<tr><td class="word-cell">4</td><td class="word-cell"><span class="tok"><bdi>دَخَلَ عَلَيَّ حَفِيدِي ٱلْحَبِيبُ</bdi>.</span> <span class="translit">dakhala ʿalayya ḥafīdī l-ḥabību.</span></td><td>Ко мне зашёл мой любимый внук.</td><td></td></tr>
-<tr><td class="word-cell">5</td><td class="word-cell"><span class="tok"><bdi>دَخَلَتْ عَلَيَّ جَارَتِي ٱلْجَدِيدَةُ</bdi>.</span> <span class="translit">dakhalat ʿalayya jāratī l-jadīdatu.</span></td><td>Ко мне зашла моя новая соседка.</td><td><bdi>جَارَتِي</bdi> — «соседка» (жен.р. от <bdi>جَارٌ</bdi>) + «моя».</td></tr>
+<tr><td class="word-cell">2</td><td class="word-cell"><span class="tok"><bdi>دَخَلَ عَلَيَّ صَدِيقِي ٱلْعَرَبِيُّ</bdi>.</span> <span class="translit">dakhala ʿalayya ṣadīqī l-ʿarabiyyu.</span></td><td>Ко мне зашёл мой друг-араб.<br><span class="lit-inline">дословно: зашёл ко мне друг мой арабский</span></td><td></td></tr>
+<tr><td class="word-cell">3</td><td class="word-cell"><span class="tok"><bdi>دَخَلَتْ عَلَيَّ أُخْتِي ٱلْكَبِيرَةُ</bdi>.</span> <span class="translit">dakhalat ʿalayya ukhtī l-kabīratu.</span></td><td>Ко мне зашла моя старшая сестра.<br><span class="lit-inline">дословно: зашла ко мне сестра моя старшая</span></td><td>жен.р. подлежащего → <bdi>دَخَلَتْ</bdi>.</td></tr>
+<tr><td class="word-cell">4</td><td class="word-cell"><span class="tok"><bdi>دَخَلَ عَلَيَّ حَفِيدِي ٱلْحَبِيبُ</bdi>.</span> <span class="translit">dakhala ʿalayya ḥafīdī l-ḥabību.</span></td><td>Ко мне зашёл мой любимый внук.<br><span class="lit-inline">дословно: зашёл ко мне внук мой любимый</span></td><td></td></tr>
+<tr><td class="word-cell">5</td><td class="word-cell"><span class="tok"><bdi>دَخَلَتْ عَلَيَّ جَارَتِي ٱلْجَدِيدَةُ</bdi>.</span> <span class="translit">dakhalat ʿalayya jāratī l-jadīdatu.</span></td><td>Ко мне зашла моя новая соседка.<br><span class="lit-inline">дословно: зашла ко мне соседка моя новая</span></td><td><bdi>جَارَتِي</bdi> — «соседка» (жен.р. от <bdi>جَارٌ</bdi>) + «моя».</td></tr>
 </tbody></table></div>
 
 <div class="group-label">Группа е) — <bdi>دَخَلَ/دَخَلَتْ عَلَيْهِ</bdi> «к нему зашёл/зашла» <span class="engl">EN: "visited him"</span> <span class="rusl">RU: «зашёл/зашла к нему»</span></div>
@@ -299,6 +306,7 @@
 <div class="ar-big"><bdi>دَخَلَ عَلَيْهِ صَدِيقُهُ ٱلْعَرَبِيُّ</bdi>.</div>
 <div class="tr-full">dakhala ʿalayhi ṣadīquhu l-ʿarabiyyu.</div>
 <div class="ru-full">К нему зашёл его друг-араб.</div>
+<div class="ru-literal">дословно: зашёл к нему друг его арабский</div>
 <div class="bd-title">Слово за словом:</div>
 <div class="table-scroll"><table class="breakdown-table">
 <thead><tr><th style="width:21%">Слово</th><th style="width:37%">Разбор</th><th style="width:20%">Падеж/роль</th><th style="width:22%">Перевод</th></tr></thead><tbody>
@@ -312,10 +320,10 @@
 <div class="table-scroll"><table class="breakdown-table compact-ex">
 <thead><tr><th style="width:6%">№</th><th style="width:34%">Арабский</th><th style="width:28%">Перевод</th><th style="width:32%">Пояснение</th></tr></thead>
 <tbody>
-<tr><td class="word-cell">2</td><td class="word-cell"><span class="tok"><bdi>دَخَلَ عَلَيْهِ حَفِيدُهُ ٱلْحَبِيبُ</bdi>.</span> <span class="translit">dakhala ʿalayhi ḥafīduhu l-ḥabību.</span></td><td>К нему зашёл его любимый внук.</td><td></td></tr>
-<tr><td class="word-cell">3</td><td class="word-cell"><span class="tok"><bdi>دَخَلَتْ عَلَيْهِ أُخْتُهُ ٱلْكَبِيرَةُ</bdi>.</span> <span class="translit">dakhalat ʿalayhi ukhtuhu l-kabīratu.</span></td><td>К нему зашла его старшая сестра.</td><td>жен.р. → <bdi>دَخَلَتْ</bdi>.</td></tr>
-<tr><td class="word-cell">4</td><td class="word-cell"><span class="tok"><bdi>دَخَلَ عَلَيْهِ صَدِيقُهُ ٱلْقَدِيمُ</bdi>.</span> <span class="translit">dakhala ʿalayhi ṣadīquhu l-qadīmu.</span></td><td>К нему зашёл его старый друг.</td><td></td></tr>
-<tr><td class="word-cell">5</td><td class="word-cell"><span class="tok"><bdi>دَخَلَتْ عَلَيْهِ صَدِيقَتُهُ ٱلْجَدِيدَةُ</bdi>.</span> <span class="translit">dakhalat ʿalayhi ṣadīqatuhu l-jadīdatu.</span></td><td>К нему зашла его новая подруга.</td><td></td></tr>
+<tr><td class="word-cell">2</td><td class="word-cell"><span class="tok"><bdi>دَخَلَ عَلَيْهِ حَفِيدُهُ ٱلْحَبِيبُ</bdi>.</span> <span class="translit">dakhala ʿalayhi ḥafīduhu l-ḥabību.</span></td><td>К нему зашёл его любимый внук.<br><span class="lit-inline">дословно: зашёл к нему внук его любимый</span></td><td></td></tr>
+<tr><td class="word-cell">3</td><td class="word-cell"><span class="tok"><bdi>دَخَلَتْ عَلَيْهِ أُخْتُهُ ٱلْكَبِيرَةُ</bdi>.</span> <span class="translit">dakhalat ʿalayhi ukhtuhu l-kabīratu.</span></td><td>К нему зашла его старшая сестра.<br><span class="lit-inline">дословно: зашла к нему сестра его старшая</span></td><td>жен.р. → <bdi>دَخَلَتْ</bdi>.</td></tr>
+<tr><td class="word-cell">4</td><td class="word-cell"><span class="tok"><bdi>دَخَلَ عَلَيْهِ صَدِيقُهُ ٱلْقَدِيمُ</bdi>.</span> <span class="translit">dakhala ʿalayhi ṣadīquhu l-qadīmu.</span></td><td>К нему зашёл его старый друг.<br><span class="lit-inline">дословно: зашёл к нему друг его старый</span></td><td></td></tr>
+<tr><td class="word-cell">5</td><td class="word-cell"><span class="tok"><bdi>دَخَلَتْ عَلَيْهِ صَدِيقَتُهُ ٱلْجَدِيدَةُ</bdi>.</span> <span class="translit">dakhalat ʿalayhi ṣadīqatuhu l-jadīdatu.</span></td><td>К нему зашла его новая подруга.<br><span class="lit-inline">дословно: зашла к нему подруга его новая</span></td><td></td></tr>
 </tbody></table></div>
 
 <div class="group-label">Группа ж) — <bdi>طَلَبَ</bdi> / <bdi>أَخَذَ مِنِّي</bdi> «попросил / взял у меня» <span class="engl">EN: "asked / took from me"</span> <span class="rusl">RU: «попросил/взял у меня»</span></div>
@@ -323,6 +331,7 @@
 <div class="ar-big"><bdi>طَلَبْتَ مِنِّي قَلَمِي ٱلْأَحْمَرَ</bdi>.</div>
 <div class="tr-full">ṭalabta minnī qalamī l-aḥmara.</div>
 <div class="ru-full">Ты (муж. р.) попросил у меня мою красную ручку.</div>
+<div class="ru-literal">дословно: попросил ты у меня ручку мою красную</div>
 <div class="bd-title">Слово за словом:</div>
 <div class="table-scroll"><table class="breakdown-table">
 <thead><tr><th style="width:21%">Слово</th><th style="width:37%">Разбор</th><th style="width:20%">Падеж/роль</th><th style="width:22%">Перевод</th></tr></thead><tbody>
@@ -336,10 +345,10 @@
 <div class="table-scroll"><table class="breakdown-table compact-ex">
 <thead><tr><th style="width:6%">№</th><th style="width:34%">Арабский</th><th style="width:28%">Перевод</th><th style="width:32%">Пояснение</th></tr></thead>
 <tbody>
-<tr><td class="word-cell">2</td><td class="word-cell"><span class="tok"><bdi>طَلَبَ مِنِّي كِتَابِي ٱلْجَدِيدَ</bdi>.</span> <span class="translit">ṭalaba minnī kitābī l-jadīda.</span></td><td>Он попросил у меня мою новую книгу.</td><td><bdi>ٱلْجَدِيدَ</bdi> — обычное (не двухпадежное) прилагательное, вин.п. с танвином был бы -an, но оно определено идафой → без танвина, окончание -a.</td></tr>
-<tr><td class="word-cell">3</td><td class="word-cell"><span class="tok"><bdi>أَخَذَ مِنِّي فُرْشَاتِي ٱلنَّظِيفَةَ</bdi>.</span> <span class="translit">akhadha minnī furshātī n-naẓīfata.</span></td><td>Он взял у меня мою чистую щётку.</td><td><bdi>أَخَذَ</bdi> «взял» — тоже управляет <bdi>مِنْ</bdi> («взял у кого-л.»).</td></tr>
-<tr><td class="word-cell">4</td><td class="word-cell"><span class="tok"><bdi>طَلَبْتِ مِنِّي مِظَلَّتِي ٱلسَّوْدَاءَ</bdi>.</span> <span class="translit">ṭalabti minnī miẓallatī s-sawdā'a.</span></td><td>Ты (жен. р.) попросила у меня мой чёрный зонт.</td><td><bdi>طَلَبْتِ</bdi> — суффикс -<bdi>تِ</bdi> (ты, жен.р.), отличается от -<bdi>تَ</bdi> одной гласной.</td></tr>
-<tr><td class="word-cell">5</td><td class="word-cell"><span class="tok"><bdi>أَخَذَتْ مِنِّي قَامُوسِي ٱلْقَدِيمَ</bdi>.</span> <span class="translit">akhadhat minnī qāmūsī l-qadīma.</span></td><td>Она взяла у меня мой старый словарь.</td><td></td></tr>
+<tr><td class="word-cell">2</td><td class="word-cell"><span class="tok"><bdi>طَلَبَ مِنِّي كِتَابِي ٱلْجَدِيدَ</bdi>.</span> <span class="translit">ṭalaba minnī kitābī l-jadīda.</span></td><td>Он попросил у меня мою новую книгу.<br><span class="lit-inline">дословно: попросил он у меня книгу мою новую</span></td><td><bdi>ٱلْجَدِيدَ</bdi> — обычное (не двухпадежное) прилагательное, вин.п. с танвином был бы -an, но оно определено идафой → без танвина, окончание -a.</td></tr>
+<tr><td class="word-cell">3</td><td class="word-cell"><span class="tok"><bdi>أَخَذَ مِنِّي فُرْشَاتِي ٱلنَّظِيفَةَ</bdi>.</span> <span class="translit">akhadha minnī furshātī n-naẓīfata.</span></td><td>Он взял у меня мою чистую щётку.<br><span class="lit-inline">дословно: взял он у меня щётку мою чистую</span></td><td><bdi>أَخَذَ</bdi> «взял» — тоже управляет <bdi>مِنْ</bdi> («взял у кого-л.»).</td></tr>
+<tr><td class="word-cell">4</td><td class="word-cell"><span class="tok"><bdi>طَلَبْتِ مِنِّي مِظَلَّتِي ٱلسَّوْدَاءَ</bdi>.</span> <span class="translit">ṭalabti minnī miẓallatī s-sawdā'a.</span></td><td>Ты (жен. р.) попросила у меня мой чёрный зонт.<br><span class="lit-inline">дословно: попросила ты у меня зонт мой чёрный</span></td><td><bdi>طَلَبْتِ</bdi> — суффикс -<bdi>تِ</bdi> (ты, жен.р.), отличается от -<bdi>تَ</bdi> одной гласной.</td></tr>
+<tr><td class="word-cell">5</td><td class="word-cell"><span class="tok"><bdi>أَخَذَتْ مِنِّي قَامُوسِي ٱلْقَدِيمَ</bdi>.</span> <span class="translit">akhadhat minnī qāmūsī l-qadīma.</span></td><td>Она взяла у меня мой старый словарь.<br><span class="lit-inline">дословно: взяла она у меня словарь мой старый</span></td><td></td></tr>
 </tbody></table></div>
 
 <div class="group-label">Группа з) — <bdi>سَأَلَ</bdi> ... <bdi>عَنْ</bdi> ... «спросил X о Y» — ДВА местоимения в одном предложении <span class="engl">EN: "sa'ala ... ʿan ..." = "to ask X about Y"</span> <span class="rusl">RU: «sa'ala ... ʿan ...» = «спросить X о Y»</span></div>
@@ -350,6 +359,7 @@
 <div class="ar-big"><bdi>سَأَلَهَا عَنِّي مُعَلِّمِي ٱلْعَرَبِيُّ</bdi>.</div>
 <div class="tr-full">sa'alahā ʿannī muʿallimī l-ʿarabiyyu.</div>
 <div class="ru-full">Мой арабский учитель спросил её обо мне.</div>
+<div class="ru-literal">дословно: спросил её обо мне учитель мой арабский</div>
 <div class="sec-note" style="margin:4px 0 8px;">Порядок по-русски обратный тому, как слова идут в арабском: сначала «глагол+кого», потом «+о ком», и только в конце — «кто» (подлежащее).</div>
 <div class="bd-title">Слово за словом:</div>
 <div class="table-scroll"><table class="breakdown-table">
@@ -366,10 +376,10 @@
 <div class="table-scroll"><table class="breakdown-table compact-ex">
 <thead><tr><th style="width:6%">№</th><th style="width:34%">Арабский</th><th style="width:28%">Перевод</th><th style="width:32%">Пояснение</th></tr></thead>
 <tbody>
-<tr><td class="word-cell">2</td><td class="word-cell"><span class="tok"><bdi>سَأَلَتْنِي عَنْكَ أُخْتُكَ ٱلْكَبِيرَةُ</bdi>.</span> <span class="translit">sa'alatnī ʿanka ukhtuka l-kabīratu.</span></td><td>Твоя старшая сестра спросила меня о тебе.</td><td><bdi>سَأَلَتْنِي</bdi> = «спросила»(жен., -ат) + «меня»(-<bdi>نِي</bdi>, после согласной <bdi>بَين</bdi> глаголом и <bdi>ي</bdi> вставляется н); <bdi>عَنْكَ</bdi> = «о тебе»(муж.).</td></tr>
-<tr><td class="word-cell">3</td><td class="word-cell"><span class="tok"><bdi>سَأَلَهُ عَنْكِ صَدِيقُهُ ٱلْجَدِيدُ</bdi>.</span> <span class="translit">sa'alahu ʿanki ṣadīquhu l-jadīdu.</span></td><td>Его новый друг спросил его о тебе (жен.).</td><td><bdi>سَأَلَهُ</bdi> = спросил + «его»(вин., прямое доп.); <bdi>عَنْكِ</bdi> = «о тебе»(жен.).</td></tr>
-<tr><td class="word-cell">4</td><td class="word-cell"><span class="tok"><bdi>سَأَلَتْنِي عَنْهُ صَدِيقَتِي ٱلْقَدِيمَةُ</bdi>.</span> <span class="translit">sa'alatnī ʿanhu ṣadīqatī l-qadīmatu.</span></td><td>Моя старая подруга спросила меня о нём.</td><td><bdi>عَنْهُ</bdi> — <bdi>هُ</bdi> НЕ меняется на <bdi>هِ</bdi> (это простой предлог <bdi>عَنْ</bdi>, не <bdi>إلى/على/لدى/في</bdi>).</td></tr>
-<tr><td class="word-cell">5</td><td class="word-cell"><span class="tok"><bdi>سَأَلَتْكِ عَنِّي مُعَلِّمَتِي ٱلرُّوسِيَّةُ</bdi>.</span> <span class="translit">sa'alatki ʿannī muʿallimatī r-rūsiyyatu.</span></td><td>Моя русская учительница спросила тебя (жен.) обо мне.</td><td><bdi>سَأَلَتْكِ</bdi> = спросила(жен.) + «тебя»(жен., вин.).</td></tr>
+<tr><td class="word-cell">2</td><td class="word-cell"><span class="tok"><bdi>سَأَلَتْنِي عَنْكَ أُخْتُكَ ٱلْكَبِيرَةُ</bdi>.</span> <span class="translit">sa'alatnī ʿanka ukhtuka l-kabīratu.</span></td><td>Твоя старшая сестра спросила меня о тебе.<br><span class="lit-inline">дословно: спросила меня о тебе сестра твоя старшая</span></td><td><bdi>سَأَلَتْنِي</bdi> = «спросила»(жен., -ат) + «меня»(-<bdi>نِي</bdi>, после согласной <bdi>بَين</bdi> глаголом и <bdi>ي</bdi> вставляется н); <bdi>عَنْكَ</bdi> = «о тебе»(муж.).</td></tr>
+<tr><td class="word-cell">3</td><td class="word-cell"><span class="tok"><bdi>سَأَلَهُ عَنْكِ صَدِيقُهُ ٱلْجَدِيدُ</bdi>.</span> <span class="translit">sa'alahu ʿanki ṣadīquhu l-jadīdu.</span></td><td>Его новый друг спросил его о тебе (жен.).<br><span class="lit-inline">дословно: спросил его о тебе друг его новый</span></td><td><bdi>سَأَلَهُ</bdi> = спросил + «его»(вин., прямое доп.); <bdi>عَنْكِ</bdi> = «о тебе»(жен.).</td></tr>
+<tr><td class="word-cell">4</td><td class="word-cell"><span class="tok"><bdi>سَأَلَتْنِي عَنْهُ صَدِيقَتِي ٱلْقَدِيمَةُ</bdi>.</span> <span class="translit">sa'alatnī ʿanhu ṣadīqatī l-qadīmatu.</span></td><td>Моя старая подруга спросила меня о нём.<br><span class="lit-inline">дословно: спросила меня о нём подруга моя старая</span></td><td><bdi>عَنْهُ</bdi> — <bdi>هُ</bdi> НЕ меняется на <bdi>هِ</bdi> (это простой предлог <bdi>عَنْ</bdi>, не <bdi>إلى/على/لدى/في</bdi>).</td></tr>
+<tr><td class="word-cell">5</td><td class="word-cell"><span class="tok"><bdi>سَأَلَتْكِ عَنِّي مُعَلِّمَتِي ٱلرُّوسِيَّةُ</bdi>.</span> <span class="translit">sa'alatki ʿannī muʿallimatī r-rūsiyyatu.</span></td><td>Моя русская учительница спросила тебя (жен.) обо мне.<br><span class="lit-inline">дословно: спросила тебя обо мне учительница моя русская</span></td><td><bdi>سَأَلَتْكِ</bdi> = спросила(жен.) + «тебя»(жен., вин.).</td></tr>
 </tbody></table></div>
 
 <div class="group-label">Группа и) — смешанные предложения: <bdi>لَدَى</bdi> / <bdi>طَلَبَ</bdi> / <bdi>دَخَلَ</bdi> / <bdi>حَضَرَ</bdi> / <bdi>بَحَثَ</bdi> <span class="engl">EN: mixed — "to have / to ask / to visit / to come / to look for"</span> <span class="rusl">RU: смешанные — «иметь / просить / заходить / приходить / искать»</span></div>
@@ -379,13 +389,14 @@
 <div class="table-scroll"><table class="breakdown-table compact-ex">
 <thead><tr><th style="width:6%">№</th><th style="width:34%">Арабский</th><th style="width:28%">Перевод</th><th style="width:32%">Пояснение</th></tr></thead>
 <tbody>
-<tr><td class="word-cell">1</td><td class="word-cell"><span class="tok"><bdi>لَدَيْكَ سَيَّارَةٌ جَمِيلَةٌ</bdi>.</span> <span class="translit">ladayka sayyāratun jamīlatun.</span></td><td>У тебя (муж.) есть красивая машина.</td><td>Только одно местоимение — простое предложение, как модель группы б).</td></tr>
+<tr><td class="word-cell">1</td><td class="word-cell"><span class="tok"><bdi>لَدَيْكَ سَيَّارَةٌ جَمِيلَةٌ</bdi>.</span> <span class="translit">ladayka sayyāratun jamīlatun.</span></td><td>У тебя (муж.) есть красивая машина.<br><span class="lit-inline">дословно: у тебя — машина красивая</span></td><td>Только одно местоимение — простое предложение, как модель группы б).</td></tr>
 </tbody></table></div>
 
 <div class="sentence-block">
 <div class="ar-big"><bdi>طَلَبْتَ مِنْهُ مِظَلَّتَكَ ٱلسَّوْدَاءَ</bdi>.</div>
 <div class="tr-full">ṭalabta minhu miẓallataka s-sawdā'a.</div>
 <div class="ru-full">Ты (муж. р.) попросил у него свой чёрный зонт.</div>
+<div class="ru-literal">дословно: попросил ты у него зонт твой чёрный</div>
 <div class="bd-title">Слово за словом:</div>
 <div class="table-scroll"><table class="breakdown-table">
 <thead><tr><th style="width:21%">Слово</th><th style="width:37%">Разбор</th><th style="width:20%">Падеж/роль</th><th style="width:22%">Перевод</th></tr></thead><tbody>
@@ -400,6 +411,7 @@
 <div class="ar-big"><bdi>دَخَلَ عَلَيْكَ حَفِيدُكَ ٱلْحَبِيبُ</bdi>.</div>
 <div class="tr-full">dakhala ʿalayka ḥafīduka l-ḥabību.</div>
 <div class="ru-full">К тебе зашёл твой любимый внук.</div>
+<div class="ru-literal">дословно: зашёл к тебе внук твой любимый</div>
 <div class="bd-title">Слово за словом:</div>
 <div class="table-scroll"><table class="breakdown-table">
 <thead><tr><th style="width:21%">Слово</th><th style="width:37%">Разбор</th><th style="width:20%">Падеж/роль</th><th style="width:22%">Перевод</th></tr></thead><tbody>
@@ -414,6 +426,7 @@
 <div class="ar-big"><bdi>حَضَرَتْ إِلَيْهَا صَدِيقَتُهَا ٱلْقَدِيمَةُ</bdi>.</div>
 <div class="tr-full">ḥaḍarat ilayhā ṣadīqatuhā l-qadīmatu.</div>
 <div class="ru-full">К ней пришла её старая подруга.</div>
+<div class="ru-literal">дословно: пришла к ней подруга её старая</div>
 <div class="bd-title">Слово за словом:</div>
 <div class="table-scroll"><table class="breakdown-table">
 <thead><tr><th style="width:21%">Слово</th><th style="width:37%">Разбор</th><th style="width:20%">Падеж/роль</th><th style="width:22%">Перевод</th></tr></thead><tbody>
@@ -428,6 +441,7 @@
 <div class="ar-big"><bdi>بَحَثَتْ عَنْهَا مُعَلِّمَتُهَا ٱلْجَدِيدَةُ</bdi>.</div>
 <div class="tr-full">baḥathat ʿanhā muʿallimatuhā l-jadīdatu.</div>
 <div class="ru-full">Её новая учительница искала её.</div>
+<div class="ru-literal">дословно: искала о ней учительница её новая</div>
 <div class="bd-title">Слово за словом:</div>
 <div class="table-scroll"><table class="breakdown-table">
 <thead><tr><th style="width:21%">Слово</th><th style="width:37%">Разбор</th><th style="width:20%">Падеж/роль</th><th style="width:22%">Перевод</th></tr></thead><tbody>
