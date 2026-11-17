@@ -65,24 +65,38 @@
   }
   p.sec-note { color: var(--muted); font-size: 0.85rem; margin: 0 0 14px; }
 
+  .script-box {
+    background: var(--accent-soft); border: 1px solid var(--accent); border-radius: 14px;
+    padding: 16px 18px; margin-bottom: 18px;
+  }
+  .script-box .ar-flow { font-family: 'Amiri', serif; font-size: 1.25rem; direction: rtl; text-align: right; line-height: 2.1; margin-bottom: 10px; }
+  .script-box .tr-flow { font-style: italic; color: var(--muted); font-size: 0.86rem; margin-bottom: 8px; }
+  .script-box .ru-flow { font-weight: 700; font-size: 0.95rem; }
+
   .item {
     background: var(--surface); border: 1px solid var(--border); border-radius: 14px;
     padding: 14px 16px; margin-bottom: 12px;
   }
   .item .num { font-size: 0.75rem; color: var(--gold); font-weight: 700; letter-spacing: .03em; margin-bottom: 6px; }
-  .item .prompt { font-size: 0.95rem; color: var(--muted); margin: 0 0 8px; }
+  .item .ar-big { font-family: 'Amiri', serif; font-size: 1.3rem; direction: rtl; text-align: center; margin-bottom: 6px; }
+  .item .tr-full { font-style: italic; color: var(--muted); text-align: center; font-size: 0.85rem; margin-bottom: 4px; }
+  .item .ru-full { text-align: center; font-weight: 700; margin-bottom: 10px; }
+  .item .bd-title { font-size: 0.82rem; font-weight: 700; margin: 10px 0 6px; color: var(--accent); }
 
-  details.answer { margin-top: 2px; }
-  details.answer > summary {
-    cursor: pointer; list-style: none; color: var(--accent); font-weight: 700; font-size: 0.86rem;
-    padding: 6px 10px; border: 1px solid var(--accent); border-radius: 8px; display: inline-block;
+  .table-scroll { margin: 0 0 4px; overflow-x: auto; }
+  table.breakdown-table {
+    width: 100%; table-layout: fixed; border-collapse: collapse; font-size: 0.74rem; background: var(--surface);
   }
-  details.answer > summary::-webkit-details-marker { display: none; }
-  details.answer[open] > summary { margin-bottom: 10px; }
-  .answer-body { background: var(--accent-soft); border: 1px solid var(--accent); border-radius: 12px; padding: 12px 14px; }
-  .answer-body .ar-big { font-family: 'Amiri', serif; font-size: 1.3rem; direction: rtl; text-align: center; margin-bottom: 6px; }
-  .answer-body .tr-full { font-style: italic; color: var(--muted); text-align: center; font-size: 0.85rem; margin-bottom: 4px; }
-  .answer-body .ru-full { text-align: center; font-weight: 700; }
+  .breakdown-table th, .breakdown-table td {
+    border: 1px solid var(--border); padding: 5px 5px; text-align: left; vertical-align: top;
+    word-wrap: break-word; overflow-wrap: break-word;
+  }
+  .breakdown-table th {
+    background: var(--gold-soft); color: var(--accent); font-size: 0.7rem; font-weight: 700;
+  }
+  .breakdown-table td.word-cell { text-align: center; }
+  .tok { font-family: 'Amiri', serif; font-size: 1rem; direction: rtl; unicode-bidi: isolate; display: block; line-height: 1.5; }
+  .translit { font-style: italic; color: var(--muted); font-size: 0.68rem; display: block; margin-top: 2px; }
 
   footer { text-align: center; color: var(--muted); font-size: 0.8rem; font-style: italic; margin-top: 28px; }
   .back-link { display:block; text-align:center; font-size:0.85rem; color: var(--muted); margin: 0 0 18px; text-decoration:none; border-bottom:1px dotted var(--muted); }
@@ -94,124 +108,151 @@
   <a class="back-link" href="arabic-6-exercises.html">← назад к разбору упражнений §6</a>
 
   <h1>§6 — подкаст на слух</h1>
-  <p class="sub">8 предложений строго из упражнений §6 (6.2), каждое прочитано дважды носителем литературного арабского (фусха). Цель — тренировка лысинга: слушать и понимать арабскую речь без опоры на текст.</p>
+  <p class="sub">Небольшой связный рассказ (8 предложений, прочитан дважды подряд, ≈45 секунд), составленный только из уже пройденной лексики и грамматики §1–§6: подруга, дом, сосед, красная машина, красивый цветок, новая книга и т.д. Цель — тренировка лысинга: слушать и понимать связную арабскую речь.</p>
 
   <div class="key-rule">
     <b class="heading">Как заниматься</b>
     <ol>
-      <li>Включите плеер ниже и слушайте подряд. Арабский текст и перевод каждого предложения скрыты ниже под кнопкой «Показать ответ» — не открывайте её, пока не попробуете перевести на слух.</li>
-      <li>После каждого предложения (оно звучит дважды) — поставьте на паузу и попробуйте вслух перевести его на русский.</li>
-      <li>Нажмите «Показать ответ» под нужным номером, чтобы свериться: арабский текст, транслитерация и перевод.</li>
-      <li>Если не поняли с первого раза — переслушайте этот же номер ещё раз (в плеере можно перемотать), прежде чем открывать ответ.</li>
+      <li>Сначала включите плеер и послушайте весь рассказ, не глядя в текст ниже — попробуйте уловить общий смысл и границы предложений на слух.</li>
+      <li>Затем прочитайте текст подкаста (скрипт) в разделе ниже и сверьте с тем, что услышали.</li>
+      <li>Послушайте ещё раз, уже читая арабский текст глазами одновременно — это помогает связать звук и написание.</li>
+      <li>В конце — разбор по предложениям с грамматикой (падеж, окончание, почему), если нужно разобраться в деталях.</li>
     </ol>
   </div>
 
   <div class="player-box">
-    <b style="color:var(--accent);">Аудио (8 предложений, ≈1 минута)</b>
+    <b style="color:var(--accent);">Аудио (связный рассказ, прочитан дважды, ≈45 сек)</b>
     <audio controls preload="metadata" src="audio/arabic-6-podcast.mp3"></audio>
-    <div class="cap">Каждое предложение объявлено по-арабски («Предложение первое / второе / ...») и затем произнесено дважды подряд.</div>
+    <div class="cap">Голос — носитель литературного арабского (фусха).</div>
   </div>
 
-  <h2 class="sec-title">Проверка по предложениям</h2>
-  <p class="sec-note">Все восемь предложений взяты без изменений из разбора упражнения 6.2 (группы а, б, в, д, ж, з) — см. <a href="arabic-6-exercises.html#s62">полный разбор §6</a>, если нужно освежить грамматику по конкретному предложению.</p>
+  <h2 class="sec-title">Текст подкаста (скрипт)</h2>
+  <p class="sec-note">Все слова и конструкции — из уже пройденного материала (§1–§6): <bdi>لَدَى</bdi> «у меня есть», идафа (<bdi>دَخَلَ</bdi>، <bdi>سَأَلَ</bdi>، <bdi>طَلَبَ</bdi>، <bdi>أَخَذَ</bdi>، <bdi>حَضَرَ</bdi>، <bdi>ذَهَبَ</bdi> + свой предлог), согласование прилагательных, двухпадежный цвет <bdi>أَحْمَر/حَمْرَاء</bdi>.</p>
 
-  <div class="item">
-    <div class="num">№1 — Группа а) (6.2)</div>
-    <div class="prompt">Прослушайте и переведите:</div>
-    <details class="answer"><summary>Показать ответ</summary>
-      <div class="answer-body">
-        <div class="ar-big"><bdi>لَدَيَّ أَخٌ كَبِيرٌ</bdi>.</div>
-        <div class="tr-full">ladayya akhun kabīrun.</div>
-        <div class="ru-full">У меня есть старший брат.</div>
-      </div>
-    </details>
+  <div class="script-box">
+    <div class="ar-flow"><bdi>لَدَيَّ صَدِيقَةٌ جَدِيدَةٌ. بَيْتُ صَدِيقَتِي قَرِيبٌ مِنْ بَيْتِي. حَضَرَتْ إِلَيَّ صَدِيقَتِي أَمْسِ. لَدَيْهَا سَيَّارَةٌ حَمْرَاءُ وَزَهْرَةٌ جَمِيلَةٌ. طَلَبَتْ مِنِّي كِتَابِي ٱلْجَدِيدَ. أَخَذَتْ كِتَابِي ٱلْجَدِيدَ وَذَهَبَتْ إِلَى بَيْتِهَا. وَدَخَلَ عَلَيَّ جَارِي ٱلْجَدِيدُ. سَأَلَ عَنْ صَدِيقَتِي ٱلْجَدِيدَةِ</bdi>.</div>
+    <div class="tr-flow">ladayya ṣadīqatun jadīdatun. baytu ṣadīqatī qarībun min baytī. ḥaḍarat ilayya ṣadīqatī amsi. ladayhā sayyāratun ḥamrā'u wa-zahratun jamīlatun. ṭalabat minnī kitābī l-jadīda. akhadhat kitābī l-jadīda wa-dhahabat ilā baytihā. wa-dakhala ʿalayya jārī l-jadīdu. sa'ala ʿan ṣadīqatī l-jadīdati.</div>
+    <div class="ru-flow">У меня есть новая подруга. Дом моей подруги близко от моего дома. Моя подруга пришла ко мне вчера. У неё красная машина и красивый цветок. Она попросила у меня мою новую книгу. Она взяла мою новую книгу и пошла к себе домой. И ко мне зашёл мой новый сосед. Он спросил о моей новой подруге.</div>
   </div>
 
-  <div class="item">
-    <div class="num">№2 — Группа б) (6.2)</div>
-    <div class="prompt">Прослушайте и переведите:</div>
-    <details class="answer"><summary>Показать ответ</summary>
-      <div class="answer-body">
-        <div class="ar-big"><bdi>لَدَيْهِ أَخٌ صَغِيرٌ</bdi>.</div>
-        <div class="tr-full">ladayhi akhun ṣaghīrun.</div>
-        <div class="ru-full">У него есть младший брат.</div>
-      </div>
-    </details>
-  </div>
+  <h2 class="sec-title">Разбор по предложениям</h2>
+  <p class="sec-note">Каждое предложение — отдельно, с переводом и разбором ключевых слов (падеж/окончание/почему).</p>
 
   <div class="item">
-    <div class="num">№3 — Группа в) (6.2)</div>
-    <div class="prompt">Прослушайте и переведите:</div>
-    <details class="answer"><summary>Показать ответ</summary>
-      <div class="answer-body">
-        <div class="ar-big"><bdi>حَضَرَ إِلَيَّ أَخِي ٱلْكَبِيرُ</bdi>.</div>
-        <div class="tr-full">ḥaḍara ilayya akhī l-kabīru.</div>
-        <div class="ru-full">Ко мне пришёл мой старший брат.</div>
-      </div>
-    </details>
+    <div class="num">№1</div>
+    <div class="ar-big"><bdi>لَدَيَّ صَدِيقَةٌ جَدِيدَةٌ</bdi>.</div>
+    <div class="tr-full">ladayya ṣadīqatun jadīdatun.</div>
+    <div class="ru-full">У меня есть новая подруга.</div>
+    <div class="bd-title">Слово за словом:</div>
+    <div class="table-scroll"><table class="breakdown-table">
+    <thead><tr><th style="width:28%">Слово</th><th>Разбор</th><th style="width:24%">Падеж/роль</th></tr></thead><tbody>
+    <tr><td class="word-cell"><span class="tok"><bdi>لَدَيَّ</bdi></span> <span class="translit">ladayya</span></td><td>предлог принадлежности <bdi>لَدَى</bdi> + слитное «я» (дифтонг <bdi>ـَيْ</bdi>)</td><td>обстоят. места/обладания</td></tr>
+    <tr><td class="word-cell"><span class="tok"><bdi>صَدِيقَةٌ</bdi></span> <span class="translit">ṣadīqatun</span></td><td>существительное «подруга», неопределённое, жен.р. — подлежащее при предлоге-сказуемом «у меня есть»</td><td>им. (танвин -ун)</td></tr>
+    <tr><td class="word-cell"><span class="tok"><bdi>جَدِيدَةٌ</bdi></span> <span class="translit">jadīdatun</span></td><td>прилагательное «новая», согласовано с <bdi>صَدِيقَةٌ</bdi> в роде/числе/падеже/определённости</td><td>им. (танвин -ун)</td></tr>
+    </tbody></table></div>
   </div>
 
   <div class="item">
-    <div class="num">№4 — Группа д) (6.2)</div>
-    <div class="prompt">Прослушайте и переведите:</div>
-    <details class="answer"><summary>Показать ответ</summary>
-      <div class="answer-body">
-        <div class="ar-big"><bdi>دَخَلَ عَلَيَّ أَخِي ٱلصَّغِيرُ</bdi>.</div>
-        <div class="tr-full">dakhala ʿalayya akhī ṣ-ṣaghīru.</div>
-        <div class="ru-full">Ко мне зашёл мой младший брат.</div>
-      </div>
-    </details>
+    <div class="num">№2</div>
+    <div class="ar-big"><bdi>بَيْتُ صَدِيقَتِي قَرِيبٌ مِنْ بَيْتِي</bdi>.</div>
+    <div class="tr-full">baytu ṣadīqatī qarībun min baytī.</div>
+    <div class="ru-full">Дом моей подруги близко от моего дома.</div>
+    <div class="bd-title">Слово за словом:</div>
+    <div class="table-scroll"><table class="breakdown-table">
+    <thead><tr><th style="width:28%">Слово</th><th>Разбор</th><th style="width:24%">Падеж/роль</th></tr></thead><tbody>
+    <tr><td class="word-cell"><span class="tok"><bdi>بَيْتُ</bdi></span> <span class="translit">baytu</span></td><td>«дом» — мудаф (1-й член идафы), подлежащее предложения; без танвина, т.к. мудаф никогда не принимает танвин</td><td>им. (дамма, без танвина)</td></tr>
+    <tr><td class="word-cell"><span class="tok"><bdi>صَدِيقَتِي</bdi></span> <span class="translit">ṣadīqatī</span></td><td>«моей подруги» — мудаф илейх (2-й член идафы) + слитное «я»; окончание не видно из-за местоимения</td><td>род. (скрыт местоимением)</td></tr>
+    <tr><td class="word-cell"><span class="tok"><bdi>قَرِيبٌ</bdi></span> <span class="translit">qarībun</span></td><td>«близкий» — именное сказуемое (хабар) к подлежащему <bdi>بَيْتُ</bdi>, неопределённое</td><td>им. (танвин -ун)</td></tr>
+    <tr><td class="word-cell"><span class="tok"><bdi>مِنْ بَيْتِي</bdi></span> <span class="translit">min baytī</span></td><td>«مِنْ» (от) + «بَيْتِي» (мой дом) — связка <bdi>قَرِيبٌ مِنْ</bdi> «близко ОТ» (не другой предлог)</td><td>род. (скрыт местоимением)</td></tr>
+    </tbody></table></div>
   </div>
 
   <div class="item">
-    <div class="num">№5 — Группа ж) (6.2)</div>
-    <div class="prompt">Прослушайте и переведите:</div>
-    <details class="answer"><summary>Показать ответ</summary>
-      <div class="answer-body">
-        <div class="ar-big"><bdi>طَلَبْتَ مِنِّي قَلَمِي ٱلْأَحْمَرَ</bdi>.</div>
-        <div class="tr-full">ṭalabta minnī qalamī l-aḥmara.</div>
-        <div class="ru-full">Ты (муж. р.) попросил у меня мою красную ручку.</div>
-      </div>
-    </details>
+    <div class="num">№3</div>
+    <div class="ar-big"><bdi>حَضَرَتْ إِلَيَّ صَدِيقَتِي أَمْسِ</bdi>.</div>
+    <div class="tr-full">ḥaḍarat ilayya ṣadīqatī amsi.</div>
+    <div class="ru-full">Моя подруга пришла ко мне вчера.</div>
+    <div class="bd-title">Слово за словом:</div>
+    <div class="table-scroll"><table class="breakdown-table">
+    <thead><tr><th style="width:28%">Слово</th><th>Разбор</th><th style="width:24%">Падеж/роль</th></tr></thead><tbody>
+    <tr><td class="word-cell"><span class="tok"><bdi>حَضَرَتْ</bdi></span> <span class="translit">ḥaḍarat</span></td><td>глагол «пришла» (прош.вр., 3 л. жен.р. ед.ч., -َتْ) — согласуется с подлежащим после себя</td><td>глагол</td></tr>
+    <tr><td class="word-cell"><span class="tok"><bdi>إِلَيَّ</bdi></span> <span class="translit">ilayya</span></td><td>свой предлог глагола <bdi>حَضَرَ إِلَى</bdi> «прийти к» + слитное «я»</td><td>—</td></tr>
+    <tr><td class="word-cell"><span class="tok"><bdi>صَدِيقَتِي</bdi></span> <span class="translit">ṣadīqatī</span></td><td>подлежащее, стоит ПОСЛЕ глагола (обычный порядок VSO); окончание скрыто местоимением «моя»</td><td>им. (скрыт местоимением)</td></tr>
+    <tr><td class="word-cell"><span class="tok"><bdi>أَمْسِ</bdi></span> <span class="translit">amsi</span></td><td>«вчера» — наречие времени, всегда с фиксированной касрой на конце (застывшая форма)</td><td>наречие</td></tr>
+    </tbody></table></div>
   </div>
 
   <div class="item">
-    <div class="num">№6 — упражнение 6.5, группа ж)</div>
-    <div class="prompt">Прослушайте и переведите:</div>
-    <details class="answer"><summary>Показать ответ</summary>
-      <div class="answer-body">
-        <div class="ar-big"><bdi>بَحَثَتْ عَنْهَا مُعَلِّمَتُهَا ٱلْجَدِيدَةُ</bdi>.</div>
-        <div class="tr-full">baḥathat ʿanhā muʿallimatuhā l-jadīdatu.</div>
-        <div class="ru-full">Её новая учительница искала её.</div>
-      </div>
-    </details>
+    <div class="num">№4</div>
+    <div class="ar-big"><bdi>لَدَيْهَا سَيَّارَةٌ حَمْرَاءُ وَزَهْرَةٌ جَمِيلَةٌ</bdi>.</div>
+    <div class="tr-full">ladayhā sayyāratun ḥamrā'u wa-zahratun jamīlatun.</div>
+    <div class="ru-full">У неё красная машина и красивый цветок.</div>
+    <div class="bd-title">Слово за словом:</div>
+    <div class="table-scroll"><table class="breakdown-table">
+    <thead><tr><th style="width:28%">Слово</th><th>Разбор</th><th style="width:24%">Падеж/роль</th></tr></thead><tbody>
+    <tr><td class="word-cell"><span class="tok"><bdi>لَدَيْهَا</bdi></span> <span class="translit">ladayhā</span></td><td><bdi>لَدَى</bdi> + слитное «она» (после дифтонга <bdi>ـَيْ</bdi> — <bdi>هَا</bdi>, не <bdi>هِا</bdi>)</td><td>обстоят. обладания</td></tr>
+    <tr><td class="word-cell"><span class="tok"><bdi>سَيَّارَةٌ</bdi></span> <span class="translit">sayyāratun</span></td><td>«машина» — подлежащее при لدى, неопределённое</td><td>им. (танвин -ун)</td></tr>
+    <tr><td class="word-cell"><span class="tok"><bdi>حَمْرَاءُ</bdi></span> <span class="translit">ḥamrā'u</span></td><td>«красная» — ДВУХПАДЕЖНОЕ слово (цвет): именительный без танвина, только -у</td><td>им. (без танвина!)</td></tr>
+    <tr><td class="word-cell"><span class="tok"><bdi>زَهْرَةٌ جَمِيلَةٌ</bdi></span> <span class="translit">zahratun jamīlatun</span></td><td>второе подлежащее через <bdi>وَ</bdi> «и» — «(красивый) цветок», обычное трёхпадежное слово + обычное прилагательное</td><td>им. (танвин -ун)</td></tr>
+    </tbody></table></div>
   </div>
 
   <div class="item">
-    <div class="num">№7 — Группа з) (6.2) — ДВА местоимения</div>
-    <div class="prompt">Прослушайте и переведите (в этом предложении два разных слитных местоимения):</div>
-    <details class="answer"><summary>Показать ответ</summary>
-      <div class="answer-body">
-        <div class="ar-big"><bdi>سَأَلَهَا عَنِّي مُعَلِّمِي ٱلْعَرَبِيُّ</bdi>.</div>
-        <div class="tr-full">sa'alahā ʿannī muʿallimī l-ʿarabiyyu.</div>
-        <div class="ru-full">Мой арабский учитель спросил её обо мне.</div>
-      </div>
-    </details>
+    <div class="num">№5</div>
+    <div class="ar-big"><bdi>طَلَبَتْ مِنِّي كِتَابِي ٱلْجَدِيدَ</bdi>.</div>
+    <div class="tr-full">ṭalabat minnī kitābī l-jadīda.</div>
+    <div class="ru-full">Она попросила у меня мою новую книгу.</div>
+    <div class="bd-title">Слово за словом:</div>
+    <div class="table-scroll"><table class="breakdown-table">
+    <thead><tr><th style="width:28%">Слово</th><th>Разбор</th><th style="width:24%">Падеж/роль</th></tr></thead><tbody>
+    <tr><td class="word-cell"><span class="tok"><bdi>طَلَبَتْ</bdi></span> <span class="translit">ṭalabat</span></td><td>глагол «попросила» (подлежащее «она» = подруга из пред. предложения, не повторяется)</td><td>глагол</td></tr>
+    <tr><td class="word-cell"><span class="tok"><bdi>مِنِّي</bdi></span> <span class="translit">minnī</span></td><td>свой предлог <bdi>طَلَبَ مِنْ</bdi> «попросить у» + слитное «я» (<bdi>ن</bdi> удвоена перед <bdi>ي</bdi>)</td><td>—</td></tr>
+    <tr><td class="word-cell"><span class="tok"><bdi>كِتَابِي ٱلْجَدِيدَ</bdi></span> <span class="translit">kitābī l-jadīda</span></td><td>прямое дополнение: «моя книга» (идафа, мудаф без танвина) + «новая» — прилагательное показывает падеж вместо скрытого мудафа</td><td>вин. (-َ на прилагательном)</td></tr>
+    </tbody></table></div>
   </div>
 
   <div class="item">
-    <div class="num">№8 — упражнение 6.5, группа в)</div>
-    <div class="prompt">Прослушайте и переведите:</div>
-    <details class="answer"><summary>Показать ответ</summary>
-      <div class="answer-body">
-        <div class="ar-big"><bdi>حَضَرَتْ إِلَيْهَا صَدِيقَتُهَا ٱلْقَدِيمَةُ</bdi>.</div>
-        <div class="tr-full">ḥaḍarat ilayhā ṣadīqatuhā l-qadīmatu.</div>
-        <div class="ru-full">К ней пришла её старая подруга.</div>
-      </div>
-    </details>
+    <div class="num">№6</div>
+    <div class="ar-big"><bdi>أَخَذَتْ كِتَابِي ٱلْجَدِيدَ وَذَهَبَتْ إِلَى بَيْتِهَا</bdi>.</div>
+    <div class="tr-full">akhadhat kitābī l-jadīda wa-dhahabat ilā baytihā.</div>
+    <div class="ru-full">Она взяла мою новую книгу и пошла к себе домой.</div>
+    <div class="bd-title">Слово за словом:</div>
+    <div class="table-scroll"><table class="breakdown-table">
+    <thead><tr><th style="width:28%">Слово</th><th>Разбор</th><th style="width:24%">Падеж/роль</th></tr></thead><tbody>
+    <tr><td class="word-cell"><span class="tok"><bdi>أَخَذَتْ</bdi></span> <span class="translit">akhadhat</span></td><td>глагол «взяла» + прямое дополнение <bdi>كِتَابِي ٱلْجَدِيدَ</bdi> — та же модель, что в №5</td><td>глагол</td></tr>
+    <tr><td class="word-cell"><span class="tok"><bdi>وَذَهَبَتْ</bdi></span> <span class="translit">wa-dhahabat</span></td><td>«وَ» (и) + «пошла» — второй глагол при том же подлежащем «она»</td><td>глагол</td></tr>
+    <tr><td class="word-cell"><span class="tok"><bdi>إِلَى بَيْتِهَا</bdi></span> <span class="translit">ilā baytihā</span></td><td><bdi>إِلَى</bdi> (к) + «её дом» (идафа + слитное «она»); окончание скрыто местоимением</td><td>род. (скрыт местоимением)</td></tr>
+    </tbody></table></div>
   </div>
 
-  <footer>Arabic Classes — §6, подкаст на слух (8 предложений из упражнений 6.2 и 6.5)</footer>
+  <div class="item">
+    <div class="num">№7</div>
+    <div class="ar-big"><bdi>وَدَخَلَ عَلَيَّ جَارِي ٱلْجَدِيدُ</bdi>.</div>
+    <div class="tr-full">wa-dakhala ʿalayya jārī l-jadīdu.</div>
+    <div class="ru-full">И ко мне зашёл мой новый сосед.</div>
+    <div class="bd-title">Слово за словом:</div>
+    <div class="table-scroll"><table class="breakdown-table">
+    <thead><tr><th style="width:28%">Слово</th><th>Разбор</th><th style="width:24%">Падеж/роль</th></tr></thead><tbody>
+    <tr><td class="word-cell"><span class="tok"><bdi>وَدَخَلَ</bdi></span> <span class="translit">wa-dakhala</span></td><td>«وَ» (и) + глагол «зашёл» (муж.р., ед.ч., -َ) — новый персонаж, глагол согласован с подлежащим после себя</td><td>глагол</td></tr>
+    <tr><td class="word-cell"><span class="tok"><bdi>عَلَيَّ</bdi></span> <span class="translit">ʿalayya</span></td><td>свой предлог <bdi>دَخَلَ عَلَى</bdi> «зайти к» + слитное «я»</td><td>—</td></tr>
+    <tr><td class="word-cell"><span class="tok"><bdi>جَارِي ٱلْجَدِيدُ</bdi></span> <span class="translit">jārī l-jadīdu</span></td><td>подлежащее «мой новый сосед» (идафа + слитное «я»), после глагола; падеж виден на прилагательном</td><td>им. (-ُ на прилагательном)</td></tr>
+    </tbody></table></div>
+  </div>
+
+  <div class="item">
+    <div class="num">№8</div>
+    <div class="ar-big"><bdi>سَأَلَ عَنْ صَدِيقَتِي ٱلْجَدِيدَةِ</bdi>.</div>
+    <div class="tr-full">sa'ala ʿan ṣadīqatī l-jadīdati.</div>
+    <div class="ru-full">Он спросил о моей новой подруге.</div>
+    <div class="bd-title">Слово за словом:</div>
+    <div class="table-scroll"><table class="breakdown-table">
+    <thead><tr><th style="width:28%">Слово</th><th>Разбор</th><th style="width:24%">Падеж/роль</th></tr></thead><tbody>
+    <tr><td class="word-cell"><span class="tok"><bdi>سَأَلَ</bdi></span> <span class="translit">sa'ala</span></td><td>глагол «спросил» (подлежащее «он» = сосед из пред. предложения, не повторяется)</td><td>глагол</td></tr>
+    <tr><td class="word-cell"><span class="tok"><bdi>عَنْ صَدِيقَتِي ٱلْجَدِيدَةِ</bdi></span> <span class="translit">ʿan ṣadīqatī l-jadīdati</span></td><td>свой предлог <bdi>سَأَلَ عَنْ</bdi> «спросить о» + «моя новая подруга» (идафа + прилагательное); падеж виден на прилагательном</td><td>род. (-ِ на прилагательном)</td></tr>
+    </tbody></table></div>
+  </div>
+
+  <footer>Arabic Classes — §6, подкаст на слух (связный рассказ из лексики §1–§6)</footer>
 </div>
 </body>
 </html>
