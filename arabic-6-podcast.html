@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="claude:viewport-fit-sides" content="cover">
+<title>§6 — подкаст на слух</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600;700&family=PT+Sans:wght@400;700&family=Amiri:wght@400;700&display=swap">
+<style>
+  :root {
+    --bg: #f6f1e7; --surface: #fffcf5; --ink: #2b2420; --muted: #7a6f60;
+    --accent: #0f5c56; --accent-soft: #d9ece9; --gold: #b8863b; --gold-soft: #f3e6cd;
+    --bad: #a23b2e; --bad-soft: #f6e2dd; --good: #2e7d4f; --good-soft: #e1efe3;
+    --border: #e2d7c3; --head-bg: #2b2420; --head-ink: #f6f1e7;
+    color-scheme: light;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg:#1b1815; --surface:#262220; --ink:#efe8dc; --muted:#a89d8c;
+      --accent:#5fc9bd; --accent-soft:#233b38; --gold:#d9ab5f; --gold-soft:#332a1a;
+      --bad:#e08c7d; --bad-soft:#3a2420; --good:#7fcf9d; --good-soft:#1f3327;
+      --border:#3a332c; --head-bg:#efe8dc; --head-ink:#1b1815; color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg:#1b1815; --surface:#262220; --ink:#efe8dc; --muted:#a89d8c;
+    --accent:#5fc9bd; --accent-soft:#233b38; --gold:#d9ab5f; --gold-soft:#332a1a;
+    --bad:#e08c7d; --bad-soft:#3a2420; --good:#7fcf9d; --good-soft:#1f3327;
+    --border:#3a332c; --head-bg:#efe8dc; --head-ink:#1b1815; color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font-family: 'PT Sans', sans-serif;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: 18px 60px; line-height: 1.55;
+  }
+  .wrap { max-width: 760px; margin: 0 auto; }
+  h1 { font-family: 'Lora', serif; font-size: 1.4rem; margin: 0 0 6px; text-wrap: balance; }
+  .sub { color: var(--muted); font-size: 0.92rem; margin: 0 0 18px; }
+
+  .key-rule {
+    background: var(--gold-soft); border: 1px solid var(--gold); border-radius: 12px;
+    padding: 14px 16px; margin-bottom: 20px; font-size: 0.9rem;
+  }
+  .key-rule > b.heading { display: block; margin-bottom: 8px; color: var(--accent); font-size: 0.98rem; }
+  .key-rule ol { margin: 6px 0 0; padding-left: 20px; }
+  .key-rule li { margin-bottom: 4px; }
+
+  .player-box {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 14px;
+    padding: 16px 18px; margin: 0 0 24px; text-align: center;
+  }
+  .player-box audio { width: 100%; margin-top: 8px; }
+  .player-box .cap { font-size: 0.82rem; color: var(--muted); margin-top: 8px; }
+
+  h2.sec-title {
+    font-family: 'Lora', serif; font-size: 1.12rem; color: var(--accent);
+    margin: 30px 0 4px; padding-bottom: 6px; border-bottom: 1px solid var(--border);
+  }
+  p.sec-note { color: var(--muted); font-size: 0.85rem; margin: 0 0 14px; }
+
+  .item {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 14px;
+    padding: 14px 16px; margin-bottom: 12px;
+  }
+  .item .num { font-size: 0.75rem; color: var(--gold); font-weight: 700; letter-spacing: .03em; margin-bottom: 6px; }
+  .item .prompt { font-size: 0.95rem; color: var(--muted); margin: 0 0 8px; }
+
+  details.answer { margin-top: 2px; }
+  details.answer > summary {
+    cursor: pointer; list-style: none; color: var(--accent); font-weight: 700; font-size: 0.86rem;
+    padding: 6px 10px; border: 1px solid var(--accent); border-radius: 8px; display: inline-block;
+  }
+  details.answer > summary::-webkit-details-marker { display: none; }
+  details.answer[open] > summary { margin-bottom: 10px; }
+  .answer-body { background: var(--accent-soft); border: 1px solid var(--accent); border-radius: 12px; padding: 12px 14px; }
+  .answer-body .ar-big { font-family: 'Amiri', serif; font-size: 1.3rem; direction: rtl; text-align: center; margin-bottom: 6px; }
+  .answer-body .tr-full { font-style: italic; color: var(--muted); text-align: center; font-size: 0.85rem; margin-bottom: 4px; }
+  .answer-body .ru-full { text-align: center; font-weight: 700; }
+
+  footer { text-align: center; color: var(--muted); font-size: 0.8rem; font-style: italic; margin-top: 28px; }
+  .back-link { display:block; text-align:center; font-size:0.85rem; color: var(--muted); margin: 0 0 18px; text-decoration:none; border-bottom:1px dotted var(--muted); }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <a class="back-link" href="arabic-6-exercises.html">← назад к разбору упражнений §6</a>
+
+  <h1>§6 — подкаст на слух</h1>
+  <p class="sub">8 предложений строго из упражнений §6 (6.2), каждое прочитано дважды носителем литературного арабского (фусха). Цель — тренировка лысинга: слушать и понимать арабскую речь без опоры на текст.</p>
+
+  <div class="key-rule">
+    <b class="heading">Как заниматься</b>
+    <ol>
+      <li>Включите плеер ниже и слушайте подряд, не подглядывая в текст.</li>
+      <li>После каждого предложения (оно звучит дважды) — поставьте на паузу и попробуйте вслух перевести его на русский.</li>
+      <li>Нажмите «Показать ответ» под нужным номером, чтобы свериться: арабский текст, транслитерация и перевод.</li>
+      <li>Если не поняли с первого раза — переслушайте этот же номер ещё раз (в плеере можно перемотать), прежде чем открывать ответ.</li>
+    </ol>
+  </div>
+
+  <div class="player-box">
+    <b style="color:var(--accent);">Аудио (8 предложений, ≈1 минута)</b>
+    <audio controls preload="metadata" src="audio/arabic-6-podcast.mp3"></audio>
+    <div class="cap">Каждое предложение объявлено по-арабски («Предложение первое / второе / ...») и затем произнесено дважды подряд.</div>
+  </div>
+
+  <h2 class="sec-title">Проверка по предложениям</h2>
+  <p class="sec-note">Все восемь предложений взяты без изменений из разбора упражнения 6.2 (группы а, б, в, д, ж, з) — см. <a href="arabic-6-exercises.html#s62">полный разбор §6</a>, если нужно освежить грамматику по конкретному предложению.</p>
+
+  <div class="item">
+    <div class="num">№1 — Группа а) (6.2)</div>
+    <div class="prompt">Прослушайте и переведите:</div>
+    <details class="answer"><summary>Показать ответ</summary>
+      <div class="answer-body">
+        <div class="ar-big"><bdi>لَدَيَّ أَخٌ كَبِيرٌ</bdi>.</div>
+        <div class="tr-full">ladayya akhun kabīrun.</div>
+        <div class="ru-full">У меня есть старший брат.</div>
+      </div>
+    </details>
+  </div>
+
+  <div class="item">
+    <div class="num">№2 — Группа б) (6.2)</div>
+    <div class="prompt">Прослушайте и переведите:</div>
+    <details class="answer"><summary>Показать ответ</summary>
+      <div class="answer-body">
+        <div class="ar-big"><bdi>لَدَيْهِ أَخٌ صَغِيرٌ</bdi>.</div>
+        <div class="tr-full">ladayhi akhun ṣaghīrun.</div>
+        <div class="ru-full">У него есть младший брат.</div>
+      </div>
+    </details>
+  </div>
+
+  <div class="item">
+    <div class="num">№3 — Группа в) (6.2)</div>
+    <div class="prompt">Прослушайте и переведите:</div>
+    <details class="answer"><summary>Показать ответ</summary>
+      <div class="answer-body">
+        <div class="ar-big"><bdi>حَضَرَ إِلَيَّ أَخِي ٱلْكَبِيرُ</bdi>.</div>
+        <div class="tr-full">ḥaḍara ilayya akhī l-kabīru.</div>
+        <div class="ru-full">Ко мне пришёл мой старший брат.</div>
+      </div>
+    </details>
+  </div>
+
+  <div class="item">
+    <div class="num">№4 — Группа д) (6.2)</div>
+    <div class="prompt">Прослушайте и переведите:</div>
+    <details class="answer"><summary>Показать ответ</summary>
+      <div class="answer-body">
+        <div class="ar-big"><bdi>دَخَلَ عَلَيَّ أَخِي ٱلصَّغِيرُ</bdi>.</div>
+        <div class="tr-full">dakhala ʿalayya akhī ṣ-ṣaghīru.</div>
+        <div class="ru-full">Ко мне зашёл мой младший брат.</div>
+      </div>
+    </details>
+  </div>
+
+  <div class="item">
+    <div class="num">№5 — Группа ж) (6.2)</div>
+    <div class="prompt">Прослушайте и переведите:</div>
+    <details class="answer"><summary>Показать ответ</summary>
+      <div class="answer-body">
+        <div class="ar-big"><bdi>طَلَبْتَ مِنِّي قَلَمِي ٱلْأَحْمَرَ</bdi>.</div>
+        <div class="tr-full">ṭalabta minnī qalamī l-aḥmara.</div>
+        <div class="ru-full">Ты (муж. р.) попросил у меня мою красную ручку.</div>
+      </div>
+    </details>
+  </div>
+
+  <div class="item">
+    <div class="num">№6 — упражнение 6.5, группа ж)</div>
+    <div class="prompt">Прослушайте и переведите:</div>
+    <details class="answer"><summary>Показать ответ</summary>
+      <div class="answer-body">
+        <div class="ar-big"><bdi>بَحَثَتْ عَنْهَا مُعَلِّمَتُهَا ٱلْجَدِيدَةُ</bdi>.</div>
+        <div class="tr-full">baḥathat ʿanhā muʿallimatuhā l-jadīdatu.</div>
+        <div class="ru-full">Её новая учительница искала её.</div>
+      </div>
+    </details>
+  </div>
+
+  <div class="item">
+    <div class="num">№7 — Группа з) (6.2) — ДВА местоимения</div>
+    <div class="prompt">Прослушайте и переведите (в этом предложении два разных слитных местоимения):</div>
+    <details class="answer"><summary>Показать ответ</summary>
+      <div class="answer-body">
+        <div class="ar-big"><bdi>سَأَلَهَا عَنِّي مُعَلِّمِي ٱلْعَرَبِيُّ</bdi>.</div>
+        <div class="tr-full">sa'alahā ʿannī muʿallimī l-ʿarabiyyu.</div>
+        <div class="ru-full">Мой арабский учитель спросил её обо мне.</div>
+      </div>
+    </details>
+  </div>
+
+  <div class="item">
+    <div class="num">№8 — упражнение 6.5, группа в)</div>
+    <div class="prompt">Прослушайте и переведите:</div>
+    <details class="answer"><summary>Показать ответ</summary>
+      <div class="answer-body">
+        <div class="ar-big"><bdi>حَضَرَتْ إِلَيْهَا صَدِيقَتُهَا ٱلْقَدِيمَةُ</bdi>.</div>
+        <div class="tr-full">ḥaḍarat ilayhā ṣadīqatuhā l-qadīmatu.</div>
+        <div class="ru-full">К ней пришла её старая подруга.</div>
+      </div>
+    </details>
+  </div>
+
+  <footer>Arabic Classes — §6, подкаст на слух (8 предложений из упражнений 6.2 и 6.5)</footer>
+</div>
+</body>
+</html>
