@@ -63,10 +63,28 @@
   .emoji-pill span.label{font-size:.9rem; font-family:var(--font-body); font-weight:700; color:var(--ink);}
 
   /* interactive scene */
-  .scenewrap{display:flex; gap:24px; flex-wrap:wrap; align-items:flex-start; margin-top:18px;}
+  .howto{
+    background:var(--yellow-bg); border:3px solid var(--yellow); border-radius:18px; padding:18px 20px; margin-bottom:18px;
+  }
+  .howto h4{color:var(--yellow); margin-bottom:10px;}
+  .howto ol{margin:0; padding-left:22px;}
+  .howto li{margin-bottom:8px; font-weight:700; font-size:1.02rem;}
+  .howto li span.small{display:block; font-weight:400; color:var(--sub); font-size:.9rem; margin-top:2px;}
+
+  .scenewrap{display:flex; flex-direction:column; gap:18px; align-items:center; margin-top:18px;}
   .scene{
-    position:relative; width:280px; height:230px; background:var(--card); border:3px solid var(--teal);
-    border-radius:20px; flex-shrink:0; overflow:visible;
+    position:relative; width:100%; max-width:300px; height:230px; background:var(--card); border:3px solid var(--teal);
+    border-radius:20px; flex-shrink:0; overflow:visible; margin:0 auto;
+  }
+  .progresswrap{
+    width:100%; max-width:560px; margin:0 auto; text-align:center; font-family:var(--font-head); font-weight:700;
+    color:var(--teal); font-size:.95rem;
+  }
+  .progressbar{
+    width:100%; height:10px; background:var(--teal-bg); border-radius:999px; overflow:hidden; margin-top:6px;
+  }
+  .progressbar-fill{
+    height:100%; background:var(--teal); width:0%; transition:width .3s;
   }
   .scene .boxshape, .scene .boxshape2{
     position:absolute; width:100px; height:72px; background:var(--orange); border-radius:6px 6px 18px 18px;
@@ -85,12 +103,21 @@
     position:absolute; bottom:6px; left:50%; transform:translateX(-50%); font-family:var(--font-head); font-weight:700;
     color:var(--teal); font-size:1rem; text-align:center; width:90%;
   }
-  .prepbtns{display:flex; flex-direction:column; gap:8px; flex:1; min-width:220px;}
+  .prepbtns{
+    display:grid; grid-template-columns:repeat(2, 1fr); gap:10px; width:100%; max-width:560px; margin:0 auto;
+  }
   .prepbtns button{
-    font-family:var(--font-head); font-weight:700; font-size:.95rem; border:3px solid var(--teal); background:var(--card);
-    color:var(--teal); padding:8px 14px; border-radius:12px; cursor:pointer; text-align:left;
+    font-family:var(--font-head); font-weight:700; font-size:1.02rem; border:3px solid var(--teal); background:var(--card);
+    color:var(--teal); padding:14px 10px; border-radius:14px; cursor:pointer; text-align:center;
+    -webkit-tap-highlight-color:transparent; position:relative; min-height:52px;
   }
   .prepbtns button.active{background:var(--teal); color:#fff;}
+  .prepbtns button.tried::after{
+    content:"✅"; position:absolute; top:-8px; right:-8px; font-size:1rem;
+  }
+  @media (min-width:650px){
+    .prepbtns{grid-template-columns:repeat(3, 1fr);}
+  }
 
   .pairwrap{display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:20px; margin-top:16px;}
   .paircard{background:var(--card); border:3px solid var(--pink); border-radius:18px; padding:18px;}
@@ -204,15 +231,30 @@
 
 <section id="scene">
   <span class="tag">Шаг 2</span>
-  <h2>Интерактивная сцена: где мяч? 🎮</h2>
-  <p class="sub">Нажимай на кнопки слева — мяч будет двигаться вокруг коробки! Смотри и запоминай.</p>
+  <h2>Игра: где мяч? 🎮</h2>
+  <div class="howto">
+    <h4>📱 Как играть (работает и на телефоне, и на планшете, и на компьютере)</h4>
+    <ol>
+      <li>Посмотри вниз — там кнопки со словами (in, on, under...).
+        <span class="small">Листай вниз, если не видишь все кнопки.</span></li>
+      <li>Нажми пальцем на любую кнопку (например «under»).
+        <span class="small">Просто тапни по ней один раз — как по значку на экране.</span></li>
+      <li>Смотри на картинку с коробкой и мячиком — мяч сам переместится в нужное место.</li>
+      <li>Прочитай подпись под картинкой — там написано слово и перевод.</li>
+      <li>Попробуй нажать на ВСЕ кнопки по очереди — за каждую получишь ✅ и заполнишь шкалу внизу.</li>
+    </ol>
+  </div>
   <div class="scenewrap">
     <div class="scene" id="mainScene">
       <div class="floor"></div>
       <div class="boxshape2" id="boxShape2"></div>
       <div class="boxshape" id="boxShape"></div>
       <div class="ball" id="mainBall">⚽</div>
-      <div class="scenelabel" id="sceneLabel">in — в коробке</div>
+      <div class="scenelabel" id="sceneLabel">нажми на кнопку внизу 👇</div>
+    </div>
+    <div class="progresswrap">
+      <span id="progressText">Попробовано: 0 из 11</span>
+      <div class="progressbar"><div class="progressbar-fill" id="progressFill"></div></div>
     </div>
     <div class="prepbtns" id="prepBtns"></div>
   </div>
@@ -331,6 +373,10 @@ const boxShape=document.getElementById('boxShape');
 const boxShape2=document.getElementById('boxShape2');
 const sceneLabel=document.getElementById('sceneLabel');
 const prepBtns=document.getElementById('prepBtns');
+const progressText=document.getElementById('progressText');
+const progressFill=document.getElementById('progressFill');
+const totalPreps = Object.keys(scenePositions).length;
+const triedPreps = new Set();
 
 function applyScene(key){
   const p = scenePositions[key];
@@ -346,18 +392,27 @@ function applyScene(key){
     boxShape2.style.opacity = "0";
   }
 }
-Object.keys(scenePositions).forEach((key,i)=>{
+function updateProgress(){
+  progressText.textContent = `Попробовано: ${triedPreps.size} из ${totalPreps}`;
+  progressFill.style.width = Math.round((triedPreps.size/totalPreps)*100) + '%';
+  if(triedPreps.size === totalPreps){
+    progressText.textContent += ' 🎉 Отлично, всё попробовал(а)!';
+  }
+}
+Object.keys(scenePositions).forEach((key)=>{
   const b=document.createElement('button');
   b.textContent = key;
-  if(i===0) b.classList.add('active');
   b.addEventListener('click',()=>{
     document.querySelectorAll('#prepBtns button').forEach(x=>x.classList.remove('active'));
     b.classList.add('active');
+    b.classList.add('tried');
+    triedPreps.add(key);
+    updateProgress();
     applyScene(key);
   });
   prepBtns.appendChild(b);
 });
-applyScene("in");
+updateProgress();
 
 /* ---- mini static scenes for confusable pairs ---- */
 function buildMiniScene(containerId, leftPos, rightPos){
