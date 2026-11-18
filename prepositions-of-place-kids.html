@@ -311,7 +311,8 @@
 
 <section id="ex2">
   <span class="tag">Упражнение 2</span>
-  <h2>Вставь нужный предлог</h2>
+  <h2>Выбери и вставь нужный предлог</h2>
+  <p class="sub">В скобках — подсказка на русском. Нажми на слово, которое подходит по смыслу.</p>
   <div id="gapList"></div>
 </section>
 
@@ -494,29 +495,36 @@ quiz.forEach((q,i)=>{
   quizList.appendChild(row);
 });
 
-/* ---- ex2: gap fill ---- */
+/* ---- ex2: choose the right preposition for the gap ---- */
 const gaps = [
-  {text:"The book is ___ the table.", ans:"on"},
-  {text:"The toy is ___ the box.", ans:"in"},
-  {text:"The cat is ___ the sofa.", ans:"under"},
-  {text:"The lamp is ___ the desk, high up.", ans:"above"},
-  {text:"The shop is ___ my house (not far).", ans:"near"},
-  {text:"The picture is ___ the mirror.", ans:"behind"},
-  {text:"My bag is ___ my chair, touching it.", ans:"next to"},
-  {text:"The dog is ___ the two trees.", ans:"between"}
+  {text:"The ball is ___ the box. (мяч точно под коробкой, касается её)", options:["under","above","on"], ans:"under"},
+  {text:"The picture is ___ the shelf, a little to the side. (картина ниже полки, но не прямо под ней)", options:["below","under","in"], ans:"below"},
+  {text:"My phone is ___ the table. (телефон лежит на столе, сверху)", options:["on","in","near"], ans:"on"},
+  {text:"The keys are ___ my bag. (ключи лежат внутри сумки)", options:["in","on","behind"], ans:"in"},
+  {text:"The dog is ___ the sofa, hiding. (собака прячется сзади)", options:["behind","in front of","next to"], ans:"behind"},
+  {text:"She is sitting ___ her best friend, right beside her. (сидит вплотную рядом)", options:["next to","near","between"], ans:"next to"},
+  {text:"The shop is ___ my house, a five-minute walk away. (недалеко, но не вплотную)", options:["near","next to","under"], ans:"near"},
+  {text:"The ball is ___ the two chairs. (мяч точно посередине)", options:["between","behind","above"], ans:"between"}
 ];
 const gapList=document.getElementById('gapList');
 gaps.forEach((g,i)=>{
   const [before, after] = g.text.split('___');
-  const row=document.createElement('div'); row.className='gaprow';
-  row.innerHTML=`<span class="num">${i+1}.</span><span>${before}</span>
-    <input class="gap-input" type="text" data-ans="${g.ans}"><span>${after}</span>
-    <button class="checkbtn">Проверить</button>`;
-  const input=row.querySelector('input'); const btn=row.querySelector('button');
-  btn.addEventListener('click',()=>{
-    const val=input.value.trim().toLowerCase();
-    if(val===g.ans){ input.classList.remove('wrong'); input.classList.add('correct'); }
-    else { input.classList.remove('correct'); input.classList.add('wrong'); }
+  const row=document.createElement('div'); row.className='quizrow';
+  const opts = shuffle(g.options);
+  row.innerHTML = `<p>${i+1}. ${before}<span style="color:var(--orange);">[ ___ ]</span>${after}</p>
+    <div class="quizopts"></div>`;
+  const optsDiv = row.querySelector('.quizopts');
+  opts.forEach(o=>{
+    const b=document.createElement('button'); b.textContent=o;
+    b.addEventListener('click',()=>{
+      if(optsDiv.querySelector('.correct')) return;
+      if(o===g.ans){ b.classList.add('correct'); }
+      else {
+        b.classList.add('wrong');
+        setTimeout(()=>b.classList.remove('wrong'),600);
+      }
+    });
+    optsDiv.appendChild(b);
   });
   gapList.appendChild(row);
 });
