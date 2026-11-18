@@ -190,6 +190,7 @@ footer a{color:var(--muted)}
     <div class="namebox">
       <input id="studentName" type="text" placeholder="Your name" autocomplete="given-name">
       <span class="ru" style="color:#cbbfae">≈ 40–50 минут · словарями и переводчиком не пользуемся</span>
+      <button class="btn small" id="resetTop" type="button" style="background:transparent;color:#fff;border-color:#8a7d6c">↺ Начать заново</button>
     </div>
   </div>
 </header>
@@ -307,7 +308,7 @@ footer a{color:var(--muted)}
 <footer>
   We Talk · placement check “Spend a Day With Me” ·
   <a href="#" id="teacherScript">teacher: show script</a> ·
-  <a href="#" id="resetAll">start again</a>
+  <a href="#" id="resetAll">начать заново</a>
 </footer>
 <div class="toast" id="toast"></div>
 
@@ -545,7 +546,7 @@ var GDIAG = {
 var TYPE_NAMES = {zero:"Zero conditional", first:"First conditional", second:"Second conditional", third:"Third conditional"};
 
 /* ================== STATE ================== */
-var KEY = "wetalk-placement-spend-a-day-v1";
+var KEY = "wetalk-placement-spend-a-day-v1:" + location.pathname.split("/").pop();
 var S = {name:"", plays:0, started:Date.now(), listen:{}, gaps:{}, vocab:{}, gram:{}, writing:"", checked:{}};
 function save(){ try{ localStorage.setItem(KEY, JSON.stringify(S)); }catch(e){} }
 function load(){ try{ var x = JSON.parse(localStorage.getItem(KEY)||"null"); if(x && typeof x==="object"){ for(var k in x){ S[k]=x[k]; } } }catch(e){} }
@@ -1035,7 +1036,9 @@ $("navResults").onclick = function(e){ if(!S.checked.results){ e.preventDefault(
 if(S.checked.results) buildResults();
 
 $("teacherScript").onclick = function(e){ e.preventDefault(); if(ask("Show the full script? (For the teacher only.)\nПоказать полный текст подкаста? Это для преподавателя.")){ $("transcript").classList.add("show"); $("transcript").scrollIntoView({behavior:"smooth"}); } };
-$("resetAll").onclick = function(e){ e.preventDefault(); if(ask("Delete all answers and start again?\nУдалить все ответы и начать заново?")){ try{ localStorage.removeItem(KEY); }catch(_){} location.hash=""; location.reload(); } };
+function doReset(e){ if(e) e.preventDefault(); if(ask("Delete all answers and start again?\nУдалить все ответы и начать заново?")){ try{ localStorage.removeItem(KEY); }catch(_){} location.hash=""; location.reload(); } }
+$("resetAll").onclick = doReset;
+$("resetTop").onclick = doReset;
 
 })();
 </script>
