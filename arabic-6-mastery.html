@@ -1,0 +1,435 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>§6 — Карточки и составление предложений</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;0,700;1,500&family=PT+Sans:wght@400;700&family=Noto+Naskh+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#fbf6ec;
+  --surface:#fffdf8;
+  --ink:#2b2420;
+  --muted:#7a6a55;
+  --accent:#0f5c56;
+  --accent-soft:#e3efe9;
+  --gold:#b8863b;
+  --gold-soft:#f3e6c9;
+  --wine:#7d2b3b;
+  --wine-soft:#f5e3e6;
+  --bad:#b23a3a;
+  --bad-soft:#fbe4e2;
+  --good:#1f7a4d;
+  --good-soft:#e2f2e8;
+  --border:#d9c79e;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#1b1711; --surface:#241f17; --ink:#f1e8d6; --muted:#b8a680;
+    --accent:#3fa89a; --accent-soft:#1d332f; --gold:#d9ac55; --gold-soft:#3a2f17;
+    --wine:#d98a98; --wine-soft:#3a1f26; --bad:#e2756f; --bad-soft:#3a1f1d;
+    --good:#5cc08a; --good-soft:#163524; --border:#4a3c22;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#1b1711; --surface:#241f17; --ink:#f1e8d6; --muted:#b8a680;
+  --accent:#3fa89a; --accent-soft:#1d332f; --gold:#d9ac55; --gold-soft:#3a2f17;
+  --wine:#d98a98; --wine-soft:#3a1f26; --bad:#e2756f; --bad-soft:#3a1f1d;
+  --good:#5cc08a; --good-soft:#163524; --border:#4a3c22;
+}
+*{box-sizing:border-box;}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:'PT Sans', sans-serif; line-height:1.55;
+  background-image:
+    radial-gradient(circle at 10% 8%, var(--gold-soft) 0, transparent 40%),
+    radial-gradient(circle at 92% 90%, var(--accent-soft) 0, transparent 40%);
+}
+.wrap{max-width:900px; margin:0 auto; padding:18px 16px 60px;}
+h1,h2,h3{font-family:'Lora', serif;}
+.hero{
+  text-align:center; padding:26px 14px 22px; position:relative;
+}
+.hero .orn{font-size:1.6rem; color:var(--gold); letter-spacing:.3em;}
+.hero h1{font-size:1.6rem; margin:6px 0 4px; color:var(--wine);}
+.hero p{color:var(--muted); margin:0; font-size:.95rem;}
+.arabdiv{
+  height:10px; margin:14px 0 20px;
+  background-image: repeating-linear-gradient(135deg, var(--gold) 0 8px, transparent 8px 16px);
+  opacity:.55; border-radius:3px;
+}
+.tabsbar{display:flex; gap:8px; justify-content:center; margin-bottom:18px; flex-wrap:wrap;}
+.tabbtn{
+  font-family:'Lora', serif; font-weight:600; font-size:.95rem;
+  padding:9px 18px; border-radius:999px; border:1.5px solid var(--border);
+  background:var(--surface); color:var(--ink); cursor:pointer;
+}
+.tabbtn.active{background:var(--wine); color:#fff8ef; border-color:var(--wine);}
+.panel{display:none;}
+.panel.show{display:block;}
+
+.card-frame{
+  background:var(--surface); border:1.5px solid var(--border); border-radius:18px;
+  padding:18px 16px; box-shadow:0 4px 18px rgba(0,0,0,.06); position:relative;
+}
+.card-frame::before, .card-frame::after{
+  content:""; position:absolute; width:28px; height:28px; border:2.5px solid var(--gold); opacity:.7;
+}
+.card-frame::before{top:-2px; left:-2px; border-right:none; border-bottom:none; border-radius:10px 0 0 0;}
+.card-frame::after{bottom:-2px; right:-2px; border-left:none; border-top:none; border-radius:0 0 10px 0;}
+
+/* ---------- Flashcards ---------- */
+.deckbar{display:flex; gap:6px; flex-wrap:wrap; margin-bottom:14px; justify-content:center;}
+.catbtn{
+  font-size:.82rem; padding:6px 12px; border-radius:999px; border:1px solid var(--border);
+  background:var(--accent-soft); color:var(--accent); cursor:pointer; font-weight:700;
+}
+.catbtn.active{background:var(--accent); color:#fff;}
+.fc-stage{display:flex; flex-direction:column; align-items:center; gap:14px;}
+.fc-counter{color:var(--muted); font-size:.85rem;}
+.flip-card{
+  width:100%; max-width:420px; height:230px; perspective:1200px; cursor:pointer;
+}
+.flip-inner{
+  position:relative; width:100%; height:100%; transition:transform .5s;
+  transform-style:preserve-3d;
+}
+.flip-card.flipped .flip-inner{transform:rotateY(180deg);}
+.flip-face{
+  position:absolute; inset:0; backface-visibility:hidden; border-radius:16px;
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  text-align:center; padding:18px; border:2px solid var(--gold); background:var(--surface);
+  box-shadow:0 6px 20px rgba(0,0,0,.08);
+}
+.flip-front{background:linear-gradient(160deg, var(--surface), var(--gold-soft));}
+.flip-back{transform:rotateY(180deg); background:linear-gradient(160deg, var(--surface), var(--accent-soft));}
+.fc-ar{font-family:'Noto Naskh Arabic', serif; font-size:2rem; direction:rtl; margin-bottom:8px; line-height:1.3;}
+.fc-tr{color:var(--muted); font-size:.95rem; font-style:italic; margin-bottom:4px;}
+.fc-ru{font-size:1.15rem; font-weight:700; color:var(--wine); margin-bottom:4px;}
+.fc-en{color:var(--accent); font-size:.85rem;}
+.fc-hint{position:absolute; bottom:8px; right:12px; font-size:.7rem; color:var(--muted);}
+.fc-controls{display:flex; gap:10px;}
+.fc-btn{
+  font-family:'Lora', serif; font-weight:600; border-radius:12px; border:none; padding:11px 20px;
+  cursor:pointer; font-size:.95rem; color:#fff;
+}
+.fc-btn.know{background:var(--good);}
+.fc-btn.again{background:var(--bad);}
+.fc-nav{display:flex; gap:10px; margin-top:4px;}
+.fc-navbtn{
+  background:none; border:1px solid var(--border); border-radius:10px; padding:7px 14px;
+  cursor:pointer; color:var(--muted); font-size:.85rem;
+}
+.fc-done{text-align:center; padding:30px 10px;}
+.fc-done .big{font-size:2.4rem;}
+
+/* ---------- Order builder ---------- */
+.ob-progress{height:8px; background:var(--border); border-radius:6px; overflow:hidden; margin-bottom:14px;}
+.ob-progress-fill{height:100%; background:var(--accent); transition:width .3s;}
+.ob-group{font-size:.82rem; color:var(--gold); font-weight:700; text-align:center; margin-bottom:4px;}
+.ob-ru{font-size:1.08rem; font-weight:700; text-align:center; margin-bottom:4px; color:var(--ink);}
+.ob-lit{font-size:.82rem; color:var(--muted); text-align:center; margin-bottom:16px; font-style:italic;}
+.ob-target{
+  min-height:64px; border:2px dashed var(--border); border-radius:12px; padding:10px;
+  display:flex; direction:rtl; gap:8px; flex-wrap:wrap; justify-content:flex-start;
+  margin-bottom:16px; background:var(--accent-soft);
+}
+.ob-pool{display:flex; direction:rtl; gap:8px; flex-wrap:wrap; justify-content:center; margin-bottom:18px; min-height:50px;}
+.ob-tile{
+  font-family:'Noto Naskh Arabic', serif; font-size:1.3rem; padding:8px 14px;
+  background:var(--surface); border:1.5px solid var(--gold); border-radius:10px; cursor:pointer;
+  box-shadow:0 2px 6px rgba(0,0,0,.08);
+}
+.ob-tile:hover{background:var(--gold-soft);}
+.ob-actions{display:flex; gap:10px; justify-content:center; margin-bottom:10px;}
+.ob-feedback{text-align:center; padding:12px; border-radius:12px; margin-bottom:12px; font-weight:700;}
+.ob-feedback.good{background:var(--good-soft); color:var(--good);}
+.ob-feedback.bad{background:var(--bad-soft); color:var(--bad);}
+.ob-answer{font-family:'Noto Naskh Arabic', serif; font-size:1.3rem; direction:rtl; text-align:center; margin-top:6px;}
+.ob-stats{text-align:center; color:var(--muted); font-size:.82rem; margin-bottom:10px;}
+.hidden{display:none !important;}
+
+@media (max-width:480px){
+  .fc-ar{font-size:1.6rem;} .ob-tile{font-size:1.1rem; padding:7px 10px;}
+  .hero h1{font-size:1.3rem;}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="hero">
+    <div class="orn">﷽ ۞ ﷽</div>
+    <h1>الدرس السادس — § 6: Карточки и составление предложений</h1>
+    <p>Сначала выучи слова и связки «глагол + предлог», потом собери из них предложения.</p>
+  </div>
+  <div class="arabdiv"></div>
+
+  <div class="tabsbar">
+    <button class="tabbtn active" data-tab="fc">1. Карточки (слова)</button>
+    <button class="tabbtn" data-tab="ob">2. Собери предложение</button>
+  </div>
+
+  <div class="panel show" id="panel-fc">
+    <div class="card-frame">
+      <div class="deckbar" id="deckbar"></div>
+      <div class="fc-counter" id="fcCounter"></div>
+      <div class="fc-stage" id="fcStage"></div>
+    </div>
+  </div>
+
+  <div class="panel" id="panel-ob">
+    <div class="card-frame">
+      <div class="ob-progress"><div class="ob-progress-fill" id="obProgressFill" style="width:0%"></div></div>
+      <div class="ob-stats" id="obStats"></div>
+      <div id="obStage"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+const FLASHCARDS = [{"cat": "verbs", "ar": "سَأَلَ عَنْ", "tr": "sa'ala ʿan", "ru": "спросить о", "en": "to ask about"}, {"cat": "verbs", "ar": "بَحَثَ عَنْ", "tr": "baḥatha ʿan", "ru": "искать", "en": "to search for"}, {"cat": "verbs", "ar": "دَخَلَ عَلَى", "tr": "dakhala ʿalā", "ru": "зайти к (кому-л.)", "en": "to come in on sb"}, {"cat": "verbs", "ar": "حَضَرَ إِلَى", "tr": "ḥaḍara ilā", "ru": "прийти к", "en": "to come to"}, {"cat": "verbs", "ar": "طَلَبَ مِنْ", "tr": "ṭalaba min", "ru": "попросить у", "en": "to ask sb for"}, {"cat": "verbs", "ar": "أَخَذَ (مِنْ)", "tr": "akhadha (min)", "ru": "взять (у)", "en": "to take (from)"}, {"cat": "verbs", "ar": "ذَهَبَ إِلَى", "tr": "dhahaba ilā", "ru": "пойти, идти (к/в)", "en": "to go to"}, {"cat": "verbs", "ar": "لَدَى", "tr": "ladā", "ru": "у, при (у меня есть = لَدَيَّ)", "en": "to have (lit. 'at')"}, {"cat": "time", "ar": "أَمْسِ", "tr": "amsi", "ru": "вчера", "en": "yesterday"}, {"cat": "time", "ar": "صَبَاح", "tr": "ṣabāḥun", "ru": "утро", "en": "morning"}, {"cat": "time", "ar": "ظُهْر", "tr": "ẓuhrun", "ru": "полдень", "en": "noon"}, {"cat": "time", "ar": "مَسَاء", "tr": "masā'un", "ru": "вечер", "en": "evening"}, {"cat": "adj", "ar": "جَدِيد / جَدِيدَة", "tr": "jadīdun/-а", "ru": "новый/новая", "en": "new"}, {"cat": "adj", "ar": "كَبِير / كَبِيرَة", "tr": "kabīrun/-а", "ru": "большой/большая; старший", "en": "big; older"}, {"cat": "adj", "ar": "صَغِير / صَغِيرَة", "tr": "ṣaghīrun/-а", "ru": "маленький/маленькая; младший", "en": "small; younger"}, {"cat": "adj", "ar": "جَمِيل / جَمِيلَة", "tr": "jamīlun/-а", "ru": "красивый/красивая", "en": "beautiful"}, {"cat": "adj", "ar": "حَبِيب / حَبِيبَة", "tr": "ḥabībun/-а", "ru": "любимый/любимая", "en": "dear, beloved"}, {"cat": "adj", "ar": "قَدِيم / قَدِيمَة", "tr": "qadīmun/-а", "ru": "старый/старая (о вещи)", "en": "old (thing)"}, {"cat": "adj", "ar": "نَظِيف", "tr": "naẓīfun", "ru": "чистый", "en": "clean"}, {"cat": "adj", "ar": "عَرِيض", "tr": "ʿarīḍun", "ru": "широкий", "en": "wide"}, {"cat": "adj", "ar": "طَوِيل", "tr": "ṭawīlun", "ru": "длинный", "en": "long"}, {"cat": "adj", "ar": "نَادِر", "tr": "nādirun", "ru": "редкий", "en": "rare"}, {"cat": "adj", "ar": "لَذِيذ / لَذِيذَة", "tr": "ladhīdhun/-а", "ru": "вкусный/вкусная", "en": "tasty"}, {"cat": "adj", "ar": "قَرِيب / بَعِيد", "tr": "qarībun/baʿīdun", "ru": "близкий / далёкий (مِنْ قريب — عَنْ بعيد!)", "en": "near / far"}, {"cat": "colors", "ar": "أَحْمَر / حَمْرَاء", "tr": "aḥmaru/ḥamrā'u", "ru": "красный/-ая", "en": "red"}, {"cat": "colors", "ar": "أَزْرَق / زَرْقَاء", "tr": "azraqu/zarqā'u", "ru": "синий/-яя", "en": "blue"}, {"cat": "colors", "ar": "أَصْفَر / صَفْرَاء", "tr": "aṣfaru/ṣafrā'u", "ru": "жёлтый/-ая", "en": "yellow"}, {"cat": "colors", "ar": "أَخْضَر / خَضْرَاء", "tr": "akhḍaru/khaḍrā'u", "ru": "зелёный/-ая", "en": "green"}, {"cat": "colors", "ar": "أَسْوَد / سَوْدَاء", "tr": "aswadu/sawdā'u", "ru": "чёрный/-ая", "en": "black"}, {"cat": "colors", "ar": "أَبْيَض / بَيْضَاء", "tr": "abyaḍu/bayḍā'u", "ru": "белый/-ая", "en": "white"}, {"cat": "nisba", "ar": "عَرَبِيّ / عَرَبِيَّة", "tr": "ʿarabiyyun/-а", "ru": "арабский/-ая", "en": "Arab"}, {"cat": "nisba", "ar": "مِصْرِيّ / مِصْرِيَّة", "tr": "miṣriyyun/-а", "ru": "египетский/-ая", "en": "Egyptian"}, {"cat": "nisba", "ar": "إِسْلَامِيّ", "tr": "islāmiyyun", "ru": "исламский", "en": "Islamic"}, {"cat": "nisba", "ar": "لُبْنَانِيّ / لُبْنَانِيَّة", "tr": "lubnāniyyun/-а", "ru": "ливанский/-ая", "en": "Lebanese"}, {"cat": "nisba", "ar": "سُودَانِيّ / سُودَانِيَّة", "tr": "sūdāniyyun/-а", "ru": "суданский/-ая", "en": "Sudanese"}, {"cat": "nisba", "ar": "فَرَنْسِيّ / فَرَنْسِيَّة", "tr": "faransiyyun/-а", "ru": "французский/-ая", "en": "French"}, {"cat": "nisba", "ar": "عِلْمِيّ / عِلْمِيَّة", "tr": "ʿilmiyyun/-а", "ru": "научный/-ая", "en": "scientific"}, {"cat": "family", "ar": "أَب", "tr": "abun", "ru": "отец", "en": "father"}, {"cat": "family", "ar": "أُمّ", "tr": "ummun", "ru": "мать, мама", "en": "mother"}, {"cat": "family", "ar": "اِبْن / اِبْنَة", "tr": "ibnun/ibnatun", "ru": "сын/дочь", "en": "son/daughter"}, {"cat": "family", "ar": "بِنْت", "tr": "bintun", "ru": "дочь", "en": "daughter"}, {"cat": "family", "ar": "جَدّ / جَدَّة", "tr": "jaddun/jaddatun", "ru": "дедушка/бабушка", "en": "grandfather/grandmother"}, {"cat": "family", "ar": "عَمّ / عَمَّة", "tr": "ʿammun/ʿammatun", "ru": "дядя/тётя (по отцу)", "en": "uncle/aunt (paternal)"}, {"cat": "family", "ar": "خَال / خَالَة", "tr": "khālun/khālatun", "ru": "дядя/тётя (по матери)", "en": "uncle/aunt (maternal)"}, {"cat": "family", "ar": "زَوْج / زَوْجَة", "tr": "zawjun/zawjatun", "ru": "муж/жена", "en": "husband/wife"}, {"cat": "family", "ar": "حَفِيد / حَفِيدَة", "tr": "ḥafīdun/ḥafīdatun", "ru": "внук/внучка", "en": "grandson/granddaughter"}, {"cat": "family", "ar": "عَائِلَة / أُسْرَة", "tr": "ʿā'ilatun/usratun", "ru": "семья", "en": "family"}, {"cat": "people", "ar": "صَدِيق / صَدِيقَة", "tr": "ṣadīqun/-а", "ru": "друг/подруга", "en": "friend"}, {"cat": "people", "ar": "جَار / جَارَة", "tr": "jārun/-а", "ru": "сосед/соседка", "en": "neighbor"}, {"cat": "people", "ar": "طَالِب / طَالِبَة", "tr": "ṭālibun/-а", "ru": "студент/студентка", "en": "student"}, {"cat": "people", "ar": "تِلْمِيذ / تِلْمِيذَة", "tr": "tilmīdhun/-а", "ru": "ученик/ученица", "en": "pupil"}, {"cat": "people", "ar": "مُدَرِّس / مُعَلِّمَة", "tr": "mudarrisun / muʿallimatun", "ru": "преподаватель / учительница", "en": "teacher"}, {"cat": "people", "ar": "مُرَاسِل", "tr": "murāsilun", "ru": "корреспондент", "en": "correspondent"}, {"cat": "people", "ar": "طَبِيب", "tr": "ṭabībun", "ru": "врач", "en": "doctor"}, {"cat": "people", "ar": "اِمْرَأَة", "tr": "imra'atun", "ru": "женщина", "en": "woman"}, {"cat": "home", "ar": "بَيْت", "tr": "baytun", "ru": "дом", "en": "house"}, {"cat": "home", "ar": "بَاب", "tr": "bābun", "ru": "дверь", "en": "door"}, {"cat": "home", "ar": "نَافِذَة", "tr": "nāfidhatun", "ru": "окно", "en": "window"}, {"cat": "home", "ar": "غُرْفَة", "tr": "ghurfatun", "ru": "комната", "en": "room"}, {"cat": "home", "ar": "مِرْآة", "tr": "mir'ātun", "ru": "зеркало", "en": "mirror"}, {"cat": "home", "ar": "مِفْتَاح", "tr": "miftāḥun", "ru": "ключ", "en": "key"}, {"cat": "home", "ar": "مِظَلَّة", "tr": "miẓallatun", "ru": "зонт", "en": "umbrella"}, {"cat": "home", "ar": "سَيَّارَة", "tr": "sayyāratun", "ru": "машина", "en": "car"}, {"cat": "home", "ar": "كِتَاب", "tr": "kitābun", "ru": "книга", "en": "book"}, {"cat": "home", "ar": "دَفْتَر", "tr": "daftarun", "ru": "тетрадь (دَفْتَر — муж.р.!)", "en": "notebook"}, {"cat": "home", "ar": "قَامُوس", "tr": "qāmūsun", "ru": "словарь", "en": "dictionary"}, {"cat": "home", "ar": "مَكْتَبَة", "tr": "maktabatun", "ru": "библиотека", "en": "library"}, {"cat": "home", "ar": "مَكْتَب", "tr": "maktabun", "ru": "письм. стол; кабинет; офис", "en": "desk; office"}, {"cat": "home", "ar": "فُرْشَاة", "tr": "furshātun", "ru": "щётка", "en": "brush"}, {"cat": "home", "ar": "خَرِيطَة", "tr": "kharīṭatun", "ru": "карта", "en": "map"}, {"cat": "home", "ar": "صُورَة", "tr": "ṣūratun", "ru": "картина", "en": "picture"}, {"cat": "home", "ar": "زَهْرِيَّة", "tr": "zahriyyatun", "ru": "ваза", "en": "vase"}, {"cat": "home", "ar": "سِكِّين", "tr": "sikkīnun", "ru": "нож", "en": "knife"}, {"cat": "home", "ar": "مِلْعَقَة", "tr": "milʿaqatun", "ru": "ложка", "en": "spoon"}, {"cat": "home", "ar": "شَوْكَة", "tr": "shawkatun", "ru": "вилка", "en": "fork"}, {"cat": "home", "ar": "فِنْجَان", "tr": "finjānun", "ru": "чашка (فِنْجَان — муж.р.!)", "en": "cup"}, {"cat": "home", "ar": "طَبَق", "tr": "ṭabaqun", "ru": "тарелка", "en": "plate"}, {"cat": "home", "ar": "مَائِدَة", "tr": "mā'idatun", "ru": "(обеденный) стол (мائدة — жен.р.!)", "en": "table"}, {"cat": "school", "ar": "مَدْرَسَة", "tr": "madrasatun", "ru": "школа", "en": "school"}, {"cat": "school", "ar": "جَامِعَة", "tr": "jāmiʿatun", "ru": "университет", "en": "university"}, {"cat": "school", "ar": "دَرْس", "tr": "darsun", "ru": "урок", "en": "lesson"}, {"cat": "school", "ar": "قِصَّة", "tr": "qiṣṣatun", "ru": "рассказ", "en": "story"}, {"cat": "school", "ar": "صَفّ", "tr": "ṣaffun", "ru": "класс", "en": "class"}, {"cat": "school", "ar": "كَلَام", "tr": "kalāmun", "ru": "речь, слова", "en": "speech, words"}, {"cat": "school", "ar": "خَبَر", "tr": "khabarun", "ru": "новость", "en": "news"}, {"cat": "nature", "ar": "زَهْرَة", "tr": "zahratun", "ru": "цветок", "en": "flower"}, {"cat": "nature", "ar": "نَهْر", "tr": "nahrun", "ru": "река (نَهْر — муж.р.!)", "en": "river"}, {"cat": "nature", "ar": "بَحْر", "tr": "baḥrun", "ru": "море", "en": "sea"}, {"cat": "nature", "ar": "سَفِينَة", "tr": "safīnatun", "ru": "пароход, корабль", "en": "ship"}, {"cat": "nature", "ar": "فُنْدُق", "tr": "funduqun", "ru": "гостиница", "en": "hotel"}, {"cat": "nature", "ar": "مَصْرِف", "tr": "maṣrifun", "ru": "банк", "en": "bank"}, {"cat": "nature", "ar": "قَرْيَة", "tr": "qaryatun", "ru": "деревня", "en": "village"}, {"cat": "nature", "ar": "مَدِينَة", "tr": "madīnatun", "ru": "город", "en": "city"}, {"cat": "nature", "ar": "بَلَد", "tr": "baladun", "ru": "страна", "en": "country"}, {"cat": "nature", "ar": "ثَلْج", "tr": "thaljun", "ru": "снег", "en": "snow"}, {"cat": "nature", "ar": "حَجَر", "tr": "ḥajarun", "ru": "камень", "en": "stone"}, {"cat": "misc", "ar": "قَهْوَة", "tr": "qahwatun", "ru": "кофе", "en": "coffee"}, {"cat": "misc", "ar": "لَبَن", "tr": "labanun", "ru": "молоко", "en": "milk"}, {"cat": "misc", "ar": "خُبْز", "tr": "khubzun", "ru": "хлеб", "en": "bread"}, {"cat": "misc", "ar": "جَزَر", "tr": "jazarun", "ru": "морковь", "en": "carrot"}, {"cat": "misc", "ar": "رَأْس", "tr": "ra'sun", "ru": "голова", "en": "head"}, {"cat": "misc", "ar": "يَد", "tr": "yadun", "ru": "рука", "en": "hand"}, {"cat": "misc", "ar": "عَيْن", "tr": "ʿaynun", "ru": "глаз", "en": "eye"}, {"cat": "misc", "ar": "لَوْن", "tr": "lawnun", "ru": "цвет", "en": "color"}, {"cat": "misc", "ar": "صِحَّة", "tr": "ṣiḥḥatun", "ru": "здоровье", "en": "health"}, {"cat": "misc", "ar": "قِطَّة", "tr": "qiṭṭatun", "ru": "кошка", "en": "cat"}, {"cat": "other", "ar": "هَذَا", "tr": "hādhā", "ru": "этот/это (муж.р.)", "en": "this (m.)"}, {"cat": "other", "ar": "هَذِهِ", "tr": "hādhihi", "ru": "эта/это (жен.р.)", "en": "this (f.)"}, {"cat": "other", "ar": "هُنَا / هُنَاكَ", "tr": "hunā/hunāka", "ru": "здесь / там, имеется", "en": "here / there"}, {"cat": "other", "ar": "بَعْدَ", "tr": "baʿda", "ru": "после", "en": "after"}];
+const SENTENCES = [{"ar": ["لَدَيَّ", "صَدِيقٌ", "جَمِيلٌ"], "ru": "У меня (есть) красивый друг.", "group": "لَدَى — у меня/у тебя есть...", "literal": "у меня — друг — красивый"}, {"ar": ["لَدَيْكَ", "جَارٌ", "نَظِيفٌ"], "ru": "У тебя (м.) (есть) чистый сосед.", "group": "لَدَى — у меня/у тебя есть...", "literal": "у тебя — сосед — чистый"}, {"ar": ["لَدَيْكِ", "مَكْتَبَةٌ", "جَدِيدَةٌ"], "ru": "У тебя (ж.) (есть) новая библиотека.", "group": "لَدَى — у меня/у тебя есть...", "literal": "у тебя — библиотека — новая"}, {"ar": ["لَدَيْهِ", "حَفِيدٌ", "صَغِيرٌ"], "ru": "У него (есть) маленький внук.", "group": "لَدَى — у меня/у тебя есть...", "literal": "у него — внук — маленький"}, {"ar": ["لَدَيْهَا", "فُرْشَاةٌ", "جَدِيدَةٌ"], "ru": "У неё (есть) новая щётка.", "group": "لَدَى — у меня/у тебя есть...", "literal": "у неё — щётка — новая"}, {"ar": ["لَدَيَّ", "مِفْتَاحٌ", "طَوِيلٌ"], "ru": "У меня (есть) длинный ключ.", "group": "لَدَى — у меня/у тебя есть...", "literal": "у меня — ключ — длинный"}, {"ar": ["لَدَيْكَ", "دَفْتَرٌ", "نَادِرٌ"], "ru": "У тебя (м.) (есть) редкая тетрадь. (دَفْتَر — муж. род в арабском, хотя по-русски «тетрадь» женского!)", "group": "لَدَى — у меня/у тебя есть...", "literal": "у тебя — тетрадь — редкая"}, {"ar": ["لَدَيْهِ", "قَامُوسٌ", "كَبِيرٌ"], "ru": "У него (есть) большой словарь.", "group": "لَدَى — у меня/у тебя есть...", "literal": "у него — словарь — большой"}, {"ar": ["لَدَيْهَا", "خَرِيطَةٌ", "قَرِيبَةٌ"], "ru": "У неё (есть) близкая карта.", "group": "لَدَى — у меня/у тебя есть...", "literal": "у неё — карта — близкая"}, {"ar": ["لَدَيَّ", "زَهْرِيَّةٌ", "صَغِيرَةٌ"], "ru": "У меня (есть) маленькая ваза.", "group": "لَدَى — у меня/у тебя есть...", "literal": "у меня — ваза — маленькая"}, {"ar": ["حَضَرَ", "إِلَيَّ", "مُعَلِّمِي", "ٱلْجَدِيدُ"], "ru": "Ко мне пришёл мой новый учитель.", "group": "حَضَرَ إِلَى — пришёл к...", "literal": "пришёл — ко мне — учитель мой — новый"}, {"ar": ["حَضَرَ", "إِلَيْكَ", "طَالِبُكَ", "ٱلْصَغِيرُ"], "ru": "К тебе (м.) пришёл твой маленький студент.", "group": "حَضَرَ إِلَى — пришёл к...", "literal": "пришёл — к тебе — студент твой — маленький"}, {"ar": ["حَضَرَ", "إِلَيْكِ", "جَدُّكِ", "ٱلْكَبِيرُ"], "ru": "К тебе (ж.) пришёл твой старший дедушка.", "group": "حَضَرَ إِلَى — пришёл к...", "literal": "пришёл — к тебе — дедушка твой — старший"}, {"ar": ["حَضَرَ", "إِلَيْهِ", "عَمُّهُ", "ٱلْقَدِيمُ"], "ru": "К нему пришёл его старый дядя (по отцу).", "group": "حَضَرَ إِلَى — пришёл к...", "literal": "пришёл — к нему — дядя его — старый"}, {"ar": ["حَضَرَ", "إِلَيْهَا", "خَالُهَا", "ٱلْحَبِيبُ"], "ru": "К ней пришёл её любимый дядя (по матери).", "group": "حَضَرَ إِلَى — пришёл к...", "literal": "пришёл — к ней — дядя её — любимый"}, {"ar": ["دَخَلَ", "عَلَيَّ", "زَوْجِي", "ٱلْصَغِيرُ"], "ru": "Ко мне зашёл мой молодой муж.", "group": "دَخَلَ عَلَى — зашёл к...", "literal": "зашёл — ко мне — муж мой — молодой"}, {"ar": ["دَخَلَ", "عَلَيْكَ", "مُرَاسِلُكَ", "ٱلْحَبِيبُ"], "ru": "К тебе (м.) зашёл твой дорогой корреспондент.", "group": "دَخَلَ عَلَى — зашёл к...", "literal": "зашёл — к тебе — корреспондент твой — дорогой"}, {"ar": ["دَخَلَتْ", "عَلَيْكِ", "طَالِبَتُكِ", "ٱلْجَدِيدَةُ"], "ru": "К тебе (ж.) зашла твоя новая студентка.", "group": "دَخَلَ عَلَى — зашёл к...", "literal": "зашла — к тебе — студентка твоя — новая"}, {"ar": ["دَخَلَتْ", "عَلَيْهِ", "عَمَّتُهُ", "ٱلْكَبِيرَةُ"], "ru": "К нему зашла его старшая тётя (по отцу).", "group": "دَخَلَ عَلَى — зашёл к...", "literal": "зашла — к нему — тётя его — старшая"}, {"ar": ["دَخَلَتْ", "عَلَيْهَا", "جَدَّتُهَا", "ٱلْقَدِيمَةُ"], "ru": "К ней зашла её пожилая бабушка.", "group": "دَخَلَ عَلَى — зашёл к...", "literal": "зашла — к ней — бабушка её — пожилая"}, {"ar": ["طَلَبْتَ", "مِنِّي", "كِتَابِي", "ٱلْكَبِيرَ"], "ru": "Ты (м.) попросил у меня мою большую книгу.", "group": "طَلَبَ/أَخَذَ مِنْ — попросил/взял у...", "literal": "попросил — у меня — книгу мою — большую"}, {"ar": ["أَخَذْتِ", "مِنِّي", "قَامُوسِي", "ٱلْقَدِيمَ"], "ru": "Ты (ж.) взяла у меня мой старый словарь.", "group": "طَلَبَ/أَخَذَ مِنْ — попросил/взял у...", "literal": "взяла — у меня — словарь мой — старый"}, {"ar": ["طَلَبَ", "مِنِّي", "دَفْتَرِي", "ٱلْحَبِيبَ"], "ru": "Он попросил у меня мою любимую тетрадь.", "group": "طَلَبَ/أَخَذَ مِنْ — попросил/взял у...", "literal": "попросил — у меня — тетрадь мою — любимую"}, {"ar": ["أَخَذَتْ", "مِنِّي", "فُرْشَاتِي", "ٱلْجَدِيدَةَ"], "ru": "Она взяла у меня мою новую щётку.", "group": "طَلَبَ/أَخَذَ مِنْ — попросил/взял у...", "literal": "взяла — у меня — щётку мою — новую"}, {"ar": ["أَخَذْتَ", "مِنِّي", "خَرِيطَتِي", "ٱلْصَغِيرَةَ"], "ru": "Ты (м.) взял у меня мою маленькую карту.", "group": "طَلَبَ/أَخَذَ مِنْ — попросил/взял у...", "literal": "взял — у меня — карту мою — маленькую"}, {"ar": ["سَأَلَكِ", "عَنِّي", "مُعَلِّمُهُ", "ٱلْجَدِيدُ"], "ru": "Он спросил тебя (ж.) обо мне: его новый учитель.", "group": "سَأَلَ ... عَنْ ... — спросил кого-то о ком-то", "literal": "спросил-её[=тебя] — обо мне — учитель его — новый"}, {"ar": ["سَأَلَتْنِي", "عَنْكَ", "طَالِبَتُهَا", "ٱلْصَغِيرَةُ"], "ru": "Она спросила меня о тебе (м.): её маленькая студентка.", "group": "سَأَلَ ... عَنْ ... — спросил кого-то о ком-то", "literal": "спросила-меня — о тебе — студентка её — маленькая"}, {"ar": ["سَأَلْتَهُ", "عَنْهَا", "طَالِبُكَ", "ٱلْحَبِيبُ"], "ru": "Ты (м.) спросил его о ней: твой любимый студент.", "group": "سَأَلَ ... عَنْ ... — спросил кого-то о ком-то", "literal": "спросил-его — о ней — студент твой — любимый"}, {"ar": ["سَأَلْتِهَا", "عَنْهُ", "مُعَلِّمَتُكِ", "ٱلْكَبِيرَةُ"], "ru": "Ты (ж.) спросила её о нём: твоя старшая учительница.", "group": "سَأَلَ ... عَنْ ... — спросил кого-то о ком-то", "literal": "спросила-её — о нём — учительница твоя — старшая"}, {"ar": ["سَأَلَنِي", "عَنْكِ", "جَارُهُ", "ٱلْقَدِيمُ"], "ru": "Он спросил меня о тебе (ж.): его старый сосед.", "group": "سَأَلَ ... عَنْ ... — спросил кого-то о ком-то", "literal": "спросил-меня — о тебе — сосед его — старый"}];
+
+const CAT_LABELS = {
+  verbs:"Глаголы + предлоги", time:"Время", adj:"Прилагательные", colors:"Цвета",
+  nisba:"Нисба", family:"Семья", people:"Люди", home:"Дом/предметы",
+  school:"Школа", nature:"Природа/места", misc:"Еда/тело", other:"Разное"
+};
+const CAT_ORDER = ["verbs","time","adj","colors","nisba","family","people","home","school","nature","misc","other"];
+
+/* ---------------- storage helpers ---------------- */
+function loadJSON(key, fallback){
+  try{ const v = localStorage.getItem(key); return v ? JSON.parse(v) : fallback; }catch(e){ return fallback; }
+}
+function saveJSON(key, val){
+  try{ localStorage.setItem(key, JSON.stringify(val)); }catch(e){}
+}
+
+/* ---------------- Flashcards ---------------- */
+let fcCat = "verbs";
+let fcIdx = 0;
+let fcKnown = loadJSON("arabic6_mastery_fc_known_v1", {}); // id -> true
+
+function fcId(cat, i){ return cat+"_"+i; }
+
+function buildDeckbar(){
+  const bar = document.getElementById("deckbar");
+  bar.innerHTML = "";
+  CAT_ORDER.forEach(cat=>{
+    const items = FLASHCARDS.filter(c=>c.cat===cat);
+    if(!items.length) return;
+    const knownCount = items.filter((c,i)=>fcKnown[fcId(cat,i)]).length;
+    const btn = document.createElement("button");
+    btn.className = "catbtn" + (cat===fcCat ? " active":"");
+    btn.textContent = CAT_LABELS[cat] + " ("+knownCount+"/"+items.length+")";
+    btn.onclick = ()=>{ fcCat = cat; fcIdx = 0; renderFlashcards(); };
+    bar.appendChild(btn);
+  });
+}
+
+function currentDeck(){ return FLASHCARDS.filter(c=>c.cat===fcCat); }
+
+function renderFlashcards(){
+  buildDeckbar();
+  const deck = currentDeck();
+  document.getElementById("fcCounter").textContent =
+    "Карточка "+Math.min(fcIdx+1, deck.length)+" из "+deck.length;
+  const stage = document.getElementById("fcStage");
+  if(fcIdx >= deck.length){
+    const knownCount = deck.filter((c,i)=>fcKnown[fcId(fcCat,i)]).length;
+    stage.innerHTML = '<div class="fc-done"><div class="big">🏺</div>'+
+      '<p>Колода «'+CAT_LABELS[fcCat]+'» пройдена!<br>Знаешь твёрдо: '+knownCount+' из '+deck.length+'.</p>'+
+      '<div class="fc-nav"><button class="fc-navbtn" id="fcRestart">Повторить всю колоду</button>'+
+      '<button class="fc-navbtn" id="fcRetryUnknown">Повторить только незнакомые</button></div></div>';
+    document.getElementById("fcRestart").onclick = ()=>{ fcIdx=0; renderFlashcards(); };
+    document.getElementById("fcRetryUnknown").onclick = ()=>{
+      fcOnlyUnknown = true; fcIdx = 0; renderFlashcards();
+    };
+    return;
+  }
+  const item = deck[fcIdx];
+  stage.innerHTML =
+    '<div class="flip-card" id="flipCard"><div class="flip-inner">'+
+      '<div class="flip-face flip-front"><div class="fc-ar">'+item.ar+'</div><div class="fc-tr">'+item.tr+'</div><div class="fc-hint">нажми, чтобы перевернуть</div></div>'+
+      '<div class="flip-face flip-back"><div class="fc-ru">'+item.ru+'</div>'+(item.en?'<div class="fc-en">'+item.en+'</div>':'')+'</div>'+
+    '</div></div>'+
+    '<div class="fc-controls"><button class="fc-btn again" id="fcAgain">Повторить</button>'+
+    '<button class="fc-btn know" id="fcKnow">Знаю ✓</button></div>'+
+    '<div class="fc-nav"><button class="fc-navbtn" id="fcPrev">← назад</button><button class="fc-navbtn" id="fcSkip">пропустить →</button></div>';
+
+  const flipCard = document.getElementById("flipCard");
+  flipCard.onclick = ()=> flipCard.classList.toggle("flipped");
+
+  document.getElementById("fcKnow").onclick = (e)=>{
+    e.stopPropagation();
+    fcKnown[fcId(fcCat, FLASHCARDS.filter(c=>c.cat===fcCat).indexOf(item))] = true;
+    saveJSON("arabic6_mastery_fc_known_v1", fcKnown);
+    fcIdx++; renderFlashcards();
+  };
+  document.getElementById("fcAgain").onclick = (e)=>{
+    e.stopPropagation();
+    fcKnown[fcId(fcCat, FLASHCARDS.filter(c=>c.cat===fcCat).indexOf(item))] = false;
+    saveJSON("arabic6_mastery_fc_known_v1", fcKnown);
+    fcIdx++; renderFlashcards();
+  };
+  document.getElementById("fcSkip").onclick = (e)=>{ e.stopPropagation(); fcIdx++; renderFlashcards(); };
+  document.getElementById("fcPrev").onclick = (e)=>{ e.stopPropagation(); if(fcIdx>0){fcIdx--; renderFlashcards();} };
+}
+
+/* ---------------- Order builder (drill-to-mastery) ---------------- */
+// Build a repeating queue: each sentence needs 2 consecutive correct passes to retire.
+let obQueue = []; // array of {idx, streak}
+let obTotal = SENTENCES.length;
+let obRetired = 0;
+let obCurrent = null;
+let obTokens = [];   // [{word,i,placed}]
+let obPlacedSeq = []; // explicit placement-order tracking (NOT tokens.filter!)
+let obAnswered = false;
+
+function shuffle(arr){
+  for(let i=arr.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [arr[i],arr[j]]=[arr[j],arr[i]]; }
+  return arr;
+}
+
+function initObQueue(){
+  const saved = loadJSON("arabic6_mastery_ob_progress_v1", null);
+  if(saved && saved.length === obTotal){
+    obQueue = shuffle(saved.filter(s=>s.streak < 2).map(s=>({idx:s.idx, streak:s.streak})));
+    obRetired = saved.filter(s=>s.streak >= 2).length;
+  } else {
+    obQueue = shuffle(SENTENCES.map((s,i)=>({idx:i, streak:0})));
+    obRetired = 0;
+  }
+  nextObItem();
+}
+
+function persistObProgress(){
+  const all = [];
+  for(let i=0;i<obTotal;i++){
+    const inQueue = obQueue.find(q=>q.idx===i);
+    all.push({idx:i, streak: inQueue ? inQueue.streak : 2});
+  }
+  saveJSON("arabic6_mastery_ob_progress_v1", all);
+}
+
+function updateObProgressBar(){
+  const pct = Math.round(100*obRetired/obTotal);
+  document.getElementById("obProgressFill").style.width = pct+"%";
+  document.getElementById("obStats").textContent =
+    "Усвоено: "+obRetired+" / "+obTotal+" · осталось повторений в очереди: "+obQueue.length;
+}
+
+function nextObItem(){
+  updateObProgressBar();
+  const stage = document.getElementById("obStage");
+  if(obQueue.length === 0){
+    stage.innerHTML = '<div class="fc-done"><div class="big">🕌</div><p>Все '+obTotal+' предложений усвоены (минимум 2 раза подряд верно)!</p>'+
+      '<div class="fc-nav"><button class="fc-navbtn" id="obRestartAll">Начать заново (сбросить прогресс)</button></div></div>';
+    document.getElementById("obRestartAll").onclick = ()=>{
+      saveJSON("arabic6_mastery_ob_progress_v1", null);
+      obQueue = shuffle(SENTENCES.map((s,i)=>({idx:i, streak:0})));
+      obRetired = 0; nextObItem();
+    };
+    return;
+  }
+  const slot = obQueue[0];
+  obCurrent = slot;
+  const s = SENTENCES[slot.idx];
+  obTokens = shuffle(s.ar.map((w,i)=>({word:w,i,placed:false})));
+  obPlacedSeq = [];
+  obAnswered = false;
+  renderObStage(s, slot);
+}
+
+function renderObStage(s, slot){
+  const stage = document.getElementById("obStage");
+  stage.innerHTML =
+    '<div class="ob-group">'+s.group+'</div>'+
+    '<div class="ob-ru">'+s.ru+'</div>'+
+    '<div class="ob-lit">дословно: '+s.literal+'</div>'+
+    '<div class="ob-target" id="obTarget"></div>'+
+    '<div class="ob-pool" id="obPool"></div>'+
+    '<div class="ob-actions"><button class="fc-navbtn" id="obReset">Сбросить</button>'+
+    '<button class="fc-btn know" id="obCheck">Проверить</button></div>'+
+    '<div id="obFeedbackZone"></div>';
+  renderObTilesAndTarget();
+  document.getElementById("obReset").onclick = ()=>{
+    obTokens.forEach(t=>t.placed=false); obPlacedSeq=[]; renderObTilesAndTarget();
+  };
+  document.getElementById("obCheck").onclick = checkObAnswer;
+}
+
+function renderObTilesAndTarget(){
+  const pool = document.getElementById("obPool");
+  const target = document.getElementById("obTarget");
+  pool.innerHTML = ""; target.innerHTML = "";
+  obTokens.filter(t=>!t.placed).forEach(tok=>{
+    const el = document.createElement("div");
+    el.className = "ob-tile"; el.textContent = tok.word;
+    el.onclick = ()=>{
+      if(obAnswered) return;
+      tok.placed = true; obPlacedSeq.push(tok);
+      renderObTilesAndTarget();
+    };
+    pool.appendChild(el);
+  });
+  obPlacedSeq.forEach(tok=>{
+    const el = document.createElement("div");
+    el.className = "ob-tile"; el.textContent = tok.word;
+    el.onclick = ()=>{
+      if(obAnswered) return;
+      tok.placed = false; obPlacedSeq = obPlacedSeq.filter(x=>x!==tok);
+      renderObTilesAndTarget();
+    };
+    target.appendChild(el);
+  });
+}
+
+function checkObAnswer(){
+  if(obPlacedSeq.length !== obTokens.length) return;
+  obAnswered = true;
+  const s = SENTENCES[obCurrent.idx];
+  let correct = true;
+  for(let pos=0; pos<obPlacedSeq.length; pos++){
+    if(obPlacedSeq[pos].i !== pos){ correct = false; break; }
+  }
+  const zone = document.getElementById("obFeedbackZone");
+  if(correct){
+    obCurrent.streak++;
+    zone.innerHTML = '<div class="ob-feedback good">Верно! Порядок слов правильный.'+
+      (obCurrent.streak>=2 ? ' Это предложение усвоено.' : ' Ещё раз правильно — и будет усвоено.')+'</div>'+
+      '<div class="ob-actions"><button class="fc-btn know" id="obNext">Дальше →</button></div>';
+  } else {
+    obCurrent.streak = 0;
+    zone.innerHTML = '<div class="ob-feedback bad">Порядок неверный.</div>'+
+      '<div class="ob-answer">'+s.ar.join(' ')+'</div>'+
+      '<div class="ob-actions"><button class="fc-btn again" id="obNext">Дальше →</button></div>';
+  }
+  if(obCurrent.streak >= 2){
+    obQueue.shift();
+    obRetired++;
+  } else {
+    obQueue.shift();
+    const insertAt = Math.min(obQueue.length, 3 + Math.floor(Math.random()*3));
+    obQueue.splice(insertAt, 0, obCurrent);
+  }
+  persistObProgress();
+  document.getElementById("obNext").onclick = nextObItem;
+}
+
+/* ---------------- Tabs ---------------- */
+document.querySelectorAll(".tabbtn").forEach(btn=>{
+  btn.onclick = ()=>{
+    document.querySelectorAll(".tabbtn").forEach(b=>b.classList.remove("active"));
+    btn.classList.add("active");
+    document.querySelectorAll(".panel").forEach(p=>p.classList.remove("show"));
+    document.getElementById("panel-"+btn.dataset.tab).classList.add("show");
+  };
+});
+
+renderFlashcards();
+initObQueue();
+</script>
+</body>
+</html>
