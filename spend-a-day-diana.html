@@ -1,0 +1,1046 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Spend a Day Placement</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,400&display=swap">
+<style>
+:root{
+  --orange:#da5200; --orange-soft:#fbe6d6; --cream:#F5EEE1; --cream2:#FBF7EE; --sand:#E9DFCB;
+  --ink:#1C1916; --dark:#51483E; --muted:#7a6f62; --line:#e2d6c0;
+  --ok:#2e7d4f; --okbg:#e4f3e9; --bad:#b3361f; --badbg:#fbe7e2; --mid:#a8740c; --midbg:#fbf0d6;
+  --serif:'Playfair Display',Georgia,'Times New Roman',serif;
+  --sans:system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+  color-scheme: light;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:70px}
+body{margin:0;background:var(--cream);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.6;overflow-x:hidden}
+h1,h2,h3{font-family:var(--serif);font-weight:700;line-height:1.2;margin:0}
+p{margin:0 0 10px}
+.wrap{max-width:860px;margin:0 auto;padding:0 16px}
+header{background:var(--ink);color:var(--cream2);padding:40px 0 34px}
+header .kicker{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#f0b48c;margin-bottom:10px}
+header h1{font-size:clamp(30px,6vw,46px);color:#fff}
+header h1 em{font-style:italic;font-weight:400;color:#f0b48c}
+header p{color:#e8dfd0;max-width:640px;margin-top:12px}
+nav.steps{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;background:var(--cream2);border-bottom:1px solid var(--line);box-shadow:0 4px 14px rgba(0,0,0,.06)}
+nav.steps .wrap{display:flex;gap:6px;overflow-x:auto;padding:9px 16px;scrollbar-width:none}
+nav.steps a{white-space:nowrap;text-decoration:none;color:var(--dark);font-size:14px;padding:5px 12px;border-radius:999px;border:1px solid var(--line);background:#fff}
+nav.steps a.done{background:var(--okbg);border-color:#b9dcc6;color:var(--ok)}
+nav.steps a.done::before{content:"✓ "}
+section.part{background:#fff;border:1px solid var(--line);border-radius:18px;padding:22px 20px;margin:26px 0;box-shadow:0 6px 22px rgba(60,40,10,.06)}
+.part-head{display:flex;gap:14px;align-items:flex-start;margin-bottom:14px}
+.part-no{flex:0 0 auto;width:42px;height:42px;border-radius:50%;background:var(--orange);color:#fff;font-family:var(--serif);font-size:22px;display:flex;align-items:center;justify-content:center}
+.part-head h2{font-size:clamp(22px,4vw,28px)}
+.part-head .sub{color:var(--muted);font-size:15px;margin-top:3px}
+.ru{color:var(--muted);font-size:14.5px}
+.note{background:var(--cream2);border:1px solid var(--line);border-radius:12px;padding:11px 14px;margin:12px 0;font-size:15.5px}
+.note b{color:var(--orange)}
+.btn{font:inherit;font-size:16px;cursor:pointer;border:1.5px solid var(--ink);background:#fff;color:var(--ink);padding:9px 18px;border-radius:999px;font-weight:600}
+.btn:hover{border-color:var(--orange);color:var(--orange)}
+.btn.primary{background:var(--orange);border-color:var(--orange);color:#fff}
+.btn.primary:hover{background:#b94600;color:#fff}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.btn.small{font-size:14px;padding:6px 13px}
+.row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.check-row{margin-top:18px;display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.check-row .msg{color:var(--muted);font-size:14.5px}
+/* player */
+.player{background:var(--ink);color:var(--cream2);border-radius:16px;padding:16px;margin:8px 0 16px}
+.player .title{font-family:var(--serif);font-size:20px;color:#fff}
+.player .title em{color:#f0b48c}
+.player .meta{font-size:14px;color:#cbbfae;margin:2px 0 12px}
+.player .btn{background:transparent;color:#fff;border-color:#8a7d6c}
+.player .btn.primary{background:var(--orange);border-color:var(--orange)}
+.bar{height:6px;background:#3a332c;border-radius:6px;overflow:hidden;margin:12px 0 6px}
+.bar i{display:block;height:100%;width:0;background:var(--orange);transition:width .3s}
+.player .status{font-size:13.5px;color:#cbbfae;margin-top:8px}
+.player audio{width:100%;margin-top:14px;display:block}
+.player details{margin-top:10px;font-size:14px}
+.player summary{cursor:pointer;color:#f0b48c}
+.player label{display:block;margin:8px 0 3px;color:#cbbfae;font-size:13px}
+.player select{width:100%;max-width:420px}
+.speakers{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:14px;color:#e8dfd0;margin-top:4px}
+.speakers b{color:#f0b48c;font-weight:600}
+.warn{background:#4a2a14;color:#ffd9bf;border-radius:10px;padding:9px 12px;font-size:14px;margin-top:10px;display:none}
+/* questions */
+.q{border-top:1px dashed var(--line);padding:14px 0}
+.q:first-of-type{border-top:0}
+.q .qt{font-weight:600;margin-bottom:8px}
+.q .qt .n{color:var(--orange);font-family:var(--serif);margin-right:4px}
+.opts{display:grid;gap:7px}
+.opt{display:flex;gap:10px;align-items:flex-start;padding:9px 12px;border:1.5px solid var(--line);border-radius:12px;cursor:pointer;background:#fff;font-size:16px;line-height:1.45}
+.opt:hover{border-color:#d9b89c}
+.opt input{margin-top:4px;accent-color:var(--orange);flex:0 0 auto}
+.opt.sel{border-color:var(--orange);background:#fff8f2}
+.opt.right{border-color:var(--ok);background:var(--okbg)}
+.opt.wrong{border-color:var(--bad);background:var(--badbg)}
+.locked .opt{cursor:default}
+.fb{display:none;margin-top:9px;font-size:15px;border-radius:10px;padding:9px 12px;line-height:1.5}
+.fb.show{display:block}
+.fb.good{background:var(--okbg);color:#1d4d31}
+.fb.badf{background:var(--badbg);color:#6b2414}
+.fb q{font-style:italic}
+.tag{display:inline-block;font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;border:1px solid var(--line);border-radius:999px;padding:0 8px;color:var(--muted);margin-left:6px;vertical-align:2px;font-weight:600}
+/* gaps */
+.gap-line{padding:9px 0;border-top:1px dashed var(--line);font-size:16.5px;line-height:2}
+.gap-line:first-child{border-top:0}
+.gap-line .n{color:var(--orange);font-family:var(--serif);margin-right:4px}
+.gap-line .sp{color:var(--muted);font-size:13px;text-transform:uppercase;letter-spacing:.08em;margin-right:4px}
+input.gap{font:inherit;font-size:16px;width:150px;max-width:60vw;padding:3px 8px;border:none;border-bottom:2px solid var(--orange);background:#fff8f2;border-radius:6px 6px 0 0}
+input.gap:focus{outline:2px solid #f3c9a8}
+input.gap.right{border-color:var(--ok);background:var(--okbg)}
+input.gap.near{border-color:var(--mid);background:var(--midbg)}
+input.gap.wrong{border-color:var(--bad);background:var(--badbg)}
+.gap-fb{font-size:14px;margin-left:6px}
+/* vocab */
+.vset{margin:6px 0 20px}
+.vset h3{font-size:19px;margin:6px 0 10px}
+.defs{list-style:none;margin:0 0 14px;padding:0;display:grid;gap:6px}
+.defs li{display:flex;gap:10px;padding:8px 11px;background:var(--cream2);border:1px solid var(--line);border-radius:10px;font-size:15.5px;line-height:1.45}
+.defs li .L{font-family:var(--serif);font-weight:700;color:var(--orange);min-width:18px}
+.defs li.used{opacity:.5}
+.defs li .who{margin-left:auto;font-size:13px;color:var(--ok);white-space:nowrap;padding-left:8px}
+.words{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:8px}
+.word{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:8px 10px 8px 13px;border:1.5px solid var(--line);border-radius:12px;background:#fff}
+.word b{font-weight:600}
+.word select{font:inherit;font-size:16px;padding:4px 6px;border-radius:8px;border:1.5px solid var(--line);background:#fff;min-width:64px}
+.word.right{border-color:var(--ok);background:var(--okbg)}
+.word.wrong{border-color:var(--bad);background:var(--badbg)}
+.word .corr{display:block;font-size:13px;color:var(--bad)}
+/* writing */
+textarea{width:100%;min-height:260px;font:inherit;font-size:16.5px;line-height:1.6;padding:12px 14px;border:1.5px solid var(--line);border-radius:12px;background:var(--cream2);resize:vertical}
+textarea:focus{outline:2px solid #f3c9a8;border-color:var(--orange)}
+.wc{font-size:14px;color:var(--muted);margin-top:6px}
+.wc b{color:var(--ink)}
+.prompt-list{margin:6px 0 12px;padding-left:20px}
+.prompt-list li{margin:3px 0}
+/* results */
+#results{display:none}
+.verdict{background:var(--ink);color:var(--cream2);border-radius:18px;padding:22px 20px;margin-bottom:18px}
+.verdict .lvl{font-family:var(--serif);font-size:clamp(40px,9vw,64px);color:#fff;line-height:1}
+.verdict .lvl small{font-size:.38em;color:#f0b48c;font-style:italic;font-weight:400;margin-left:8px}
+.verdict p{color:#e8dfd0;margin-top:10px}
+.verdict .claim{border-top:1px solid #4a4038;margin-top:14px;padding-top:12px;font-size:15.5px}
+.scale{display:flex;gap:4px;margin-top:16px}
+.scale span{flex:1;text-align:center;font-size:12px;padding:5px 0;border-radius:6px;background:#3a332c;color:#9d907f}
+.scale span.on{background:var(--orange);color:#fff;font-weight:700}
+.scale span.claimed{outline:2px dashed #f0b48c;outline-offset:-2px;color:#f0b48c}
+.skill{border:1px solid var(--line);border-radius:16px;padding:16px 16px 10px;margin:14px 0;background:#fff}
+.skill-head{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap}
+.skill-head h3{font-size:21px}
+.chip{font-family:var(--serif);font-weight:700;font-size:20px;color:#fff;background:var(--orange);border-radius:10px;padding:2px 12px}
+.chip.soft{background:var(--sand);color:var(--ink)}
+.bands{display:grid;gap:7px;margin:12px 0}
+.band{display:grid;grid-template-columns:150px 1fr 54px;gap:10px;align-items:center;font-size:14.5px}
+.band .track{height:10px;background:var(--sand);border-radius:6px;overflow:hidden}
+.band .track i{display:block;height:100%;border-radius:6px}
+.band .v{text-align:right;font-variant-numeric:tabular-nums;color:var(--dark)}
+.ev{margin:8px 0;font-size:15.5px}
+.ev h4{margin:10px 0 4px;font-size:14px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-family:var(--sans)}
+.ev ul{margin:0;padding-left:20px}
+.ev li{margin:4px 0}
+.ev li.plus::marker{content:"✓  ";color:var(--ok)}
+.ev li.minus::marker{content:"✗  ";color:var(--bad)}
+.ev li.info::marker{content:"→  ";color:var(--orange)}
+.types{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;margin:10px 0}
+.type{border:1px solid var(--line);border-radius:12px;padding:8px 10px;font-size:14px;background:var(--cream2)}
+.type b{display:block;font-size:15px}
+.type .s{font-family:var(--serif);font-size:20px}
+.reco{background:var(--orange-soft);border:1px solid #f1c9a8;border-radius:14px;padding:14px 16px;margin:16px 0}
+.reco h3{font-size:20px;margin-bottom:6px}
+.reco ol{margin:0;padding-left:22px}
+.reco li{margin:5px 0}
+.method{font-size:14px;color:var(--muted)}
+.method summary{cursor:pointer;color:var(--dark);font-weight:600}
+.transcript{display:none;margin-top:16px;border-top:1px solid var(--line);padding-top:12px}
+.transcript.show{display:block}
+.transcript p{margin:0 0 8px;font-size:15.5px}
+.transcript p b{color:var(--orange);font-weight:600}
+.namebox{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:16px}
+.namebox input{font:inherit;padding:8px 12px;border-radius:10px;border:1.5px solid #6d6153;background:#2a2420;color:#fff;min-width:220px}
+footer{padding:20px 16px 60px;text-align:center;color:var(--muted);font-size:14px}
+footer a{color:var(--muted)}
+.toast{position:fixed;left:50%;bottom:calc(22px + env(safe-area-inset-bottom,0px));max-width:min(92vw,520px);text-align:center;transform:translateX(-50%);background:var(--ink);color:#fff;padding:10px 18px;border-radius:999px;font-size:15px;opacity:0;transition:opacity .25s;pointer-events:none;z-index:60}
+.toast.show{opacity:1}
+@media(max-width:560px){
+  section.part{padding:18px 14px}
+  .band{grid-template-columns:110px 1fr 46px;font-size:13.5px}
+  .part-no{width:36px;height:36px;font-size:19px}
+}
+@media print{
+  nav.steps,.player,.check-row,.btn,footer,section.part{display:none!important}
+  #results{display:block!important}
+  body{background:#fff}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="kicker">We Talk · placement check · B1–B2</div>
+    <h1>Spend a Day <em>With Me</em></h1>
+    <p>A short level check built around one podcast episode. You'll listen, answer questions, match vocabulary, do a grammar task on conditionals and write a short text. At the end you'll get a detailed report: your likely level in each skill and <b>why</b>.</p>
+    <p class="ru" style="color:#cbbfae">Проверка уровня на основе одного подкаста: аудирование, лексика, грамматика (conditionals), письмо. В конце — подробный разбор на русском: какой у вас уровень по каждому навыку и на основании чего.</p>
+    <div class="namebox">
+      <input id="studentName" type="text" placeholder="Your name" autocomplete="given-name">
+      <span class="ru" style="color:#cbbfae">≈ 40–50 минут · словарями и переводчиком не пользуемся</span>
+      <button class="btn small" id="resetTop" type="button" style="background:transparent;color:#fff;border-color:#8a7d6c">↺ Начать заново</button>
+    </div>
+  </div>
+</header>
+
+<nav class="steps"><div class="wrap">
+  <a href="#p1" data-step="listen">1 · Listening</a>
+  <a href="#p2" data-step="gaps">2 · Listen &amp; complete</a>
+  <a href="#p3" data-step="vocab">3 · Vocabulary</a>
+  <a href="#p4" data-step="grammar">4 · Conditionals</a>
+  <a href="#p5" data-step="writing">5 · Writing</a>
+  <a href="#results" id="navResults">Results</a>
+</div></nav>
+
+<main class="wrap">
+
+<!-- ============ PART 1 ============ -->
+<section class="part" id="p1">
+  <div class="part-head"><div class="part-no">1</div><div>
+    <h2>Listening: understanding the episode</h2>
+    <div class="sub">11 questions · choose the best answer</div>
+  </div></div>
+
+  <div class="player" id="player">
+    <div class="title">Spend a Day <em>With Me</em> · episode 47</div>
+    <div class="meta">≈ 3 minutes · host and a guest · natural speed</div>
+    <div class="speakers"><span><b>Tom</b> — the host</span><span><b>Rachel Moore</b> — runs an events agency in Manchester</span></div>
+    <audio id="podcast" controls preload="auto" src="audio/spend-a-day-podcast.mp3">Your browser can't play this audio.</audio>
+    <div class="status" id="pstatus">Listens: 0</div>
+  </div>
+
+  <div class="note"><b>How to do it:</b> read the questions first, then listen once and answer. You may listen a second time to check. <span class="ru">Сначала прочитайте вопросы, затем послушайте и ответьте. Можно прослушать второй раз для проверки — больше двух раз не стоит: так результат будет честнее.</span></div>
+
+  <div id="listenQs"></div>
+  <div class="check-row">
+    <button class="btn primary" id="checkListen">Check my answers</button>
+    <span class="msg" id="msgListen">Answers are checked once and then locked. <span class="ru">Проверка — один раз, после неё ответы не меняются.</span></span>
+  </div>
+</section>
+
+<!-- ============ PART 2 ============ -->
+<section class="part" id="p2">
+  <div class="part-head"><div class="part-no">2</div><div>
+    <h2>Listen &amp; complete</h2>
+    <div class="sub">8 gaps · write <b>one word</b> you hear in each gap</div>
+  </div></div>
+  <div class="note">Use the same recording (the player in Part 1). You can pause it while you write. Write exactly the word you hear. Spelling matters a little, but a small slip is counted as half a point. <span class="ru">Впишите ровно то слово, которое звучит. Небольшая опечатка — полбалла.</span></div>
+  <div id="gapList"></div>
+  <div class="check-row">
+    <button class="btn primary" id="checkGaps">Check my answers</button>
+    <span class="msg">After checking, the full transcript appears below. <span class="ru">После проверки откроется полный текст подкаста.</span></span>
+  </div>
+  <div class="transcript" id="transcript"><h3 style="font-size:20px;margin-bottom:10px">Transcript</h3><div id="transcriptBody"></div></div>
+</section>
+
+<!-- ============ PART 3 ============ -->
+<section class="part" id="p3">
+  <div class="part-head"><div class="part-no">3</div><div>
+    <h2>Vocabulary from the episode</h2>
+    <div class="sub">24 words and phrases · match each one to its definition</div>
+  </div></div>
+  <div class="note">Every phrase was used in the podcast. For each word, choose the letter of the matching definition. Each letter is used once in its set. <span class="ru">Все слова звучали в подкасте. Для каждого выберите букву подходящего определения; в каждом наборе каждая буква используется один раз.</span></div>
+  <div id="vocabSets"></div>
+  <div class="check-row">
+    <button class="btn primary" id="checkVocab">Check my answers</button>
+    <span class="msg" id="msgVocab"></span>
+  </div>
+</section>
+
+<!-- ============ PART 4 ============ -->
+<section class="part" id="p4">
+  <div class="part-head"><div class="part-no">4</div><div>
+    <h2>Grammar: conditionals</h2>
+    <div class="sub">20 questions · zero, first, second and third conditionals</div>
+  </div></div>
+  <div class="note">Some questions ask for the correct form, others ask what a sentence <b>means</b>. Choose one answer. <span class="ru">В одних вопросах нужно выбрать правильную форму, в других — понять, что значит предложение.</span></div>
+  <div id="gramQs"></div>
+  <div class="check-row">
+    <button class="btn primary" id="checkGram">Check my answers</button>
+    <span class="msg" id="msgGram"></span>
+  </div>
+</section>
+
+<!-- ============ PART 5 ============ -->
+<section class="part" id="p5">
+  <div class="part-head"><div class="part-no">5</div><div>
+    <h2>Writing: your turn on the podcast</h2>
+    <div class="sub">120–180 words · about 15 minutes</div>
+  </div></div>
+  <p>Imagine Tom has invited <b>you</b> onto <i>Spend a Day With Me</i>. Write what you'd say about your typical working day. Make sure you mention:</p>
+  <ul class="prompt-list">
+    <li>how your day usually starts and what it involves;</li>
+    <li>what usually happens when something goes wrong, and what you'll do if a plan of yours works out soon;</li>
+    <li>one thing you would change about your day if you could;</li>
+    <li>a decision or event in your past that changed your working life, and how things might have been different.</li>
+  </ul>
+  <p class="ru">Напишите 120–180 слов о своём обычном рабочем дне, как будто вы гостья подкаста. Не пользуйтесь переводчиком — нам важен ваш настоящий уровень.</p>
+  <textarea id="writing" placeholder="Start writing here…" spellcheck="false" autocomplete="off" autocorrect="off" autocapitalize="sentences"></textarea>
+  <div class="wc" id="wc">Words: <b>0</b> / 120–180</div>
+  <div class="check-row">
+    <button class="btn primary" id="checkWriting">Submit my text</button>
+    <span class="msg">Your text is analysed automatically for range and accuracy; your teacher will also read it. <span class="ru">Текст анализируется автоматически, а затем его прочитает преподаватель.</span></span>
+  </div>
+</section>
+
+<div class="check-row" style="justify-content:center;margin:10px 0 30px">
+  <button class="btn primary" id="showResults" style="font-size:18px;padding:12px 26px">See my results →</button>
+  <span class="msg" id="msgResults"></span>
+</div>
+
+<!-- ============ RESULTS ============ -->
+<section id="results"></section>
+
+</main>
+
+<footer>
+  We Talk · placement check “Spend a Day With Me” ·
+  <a href="#" id="teacherScript">teacher: show script</a> ·
+  <a href="#" id="resetAll">начать заново</a>
+</footer>
+<div class="toast" id="toast"></div>
+
+<script>
+(function(){
+"use strict";
+
+/* ================== CONTENT ================== */
+
+var SCRIPT = [
+ ["T","Hello, and welcome back to Spend a Day With Me, the podcast where we follow one person through an ordinary working day. I'm Tom, and today I'm in Manchester with Rachel Moore, who runs a small events agency. Rachel, thanks for letting us tag along."],
+ ["R","It's a pleasure, although I should warn you: my days are rarely ordinary."],
+ ["T","Let's start at the beginning. What time does your alarm go off?"],
+ ["R","Half past five. I know that sounds extreme, but if I don't get an hour to myself before the emails start, I'm completely useless for the rest of the day. So I make a coffee, go for a short run and decide on my top three priorities."],
+ ["T","Only three?"],
+ ["R","Only three. I've learnt to prioritise. When I started the business, I tried to do everything myself, and I was absolutely swamped. I was juggling clients, suppliers, invoices. Within a year I was heading for burnout. That was a real wake-up call, and these days I delegate far more."],
+ ["T","How did the business start, actually?"],
+ ["R","Completely by accident. I was working for a big marketing firm, and they made half the team redundant. If I hadn't lost that job, I would never have taken the plunge. The first year was tough. We barely made ends meet. But I don't regret it for a second."],
+ ["T","So what does the rest of the morning look like?"],
+ ["R","At half eight I touch base with my team, just a quick fifteen-minute call, and after that it's usually back-to-back meetings. Today I've got a client call at nine, a proposal with a twelve o'clock deadline, and then I'm visiting a venue for a wedding we're organising in June. I like to be hands-on, so I always check venues in person. Photos can be very misleading."],
+ ["T","And the afternoon?"],
+ ["R","That's when things tend to go wrong. A supplier runs late, a client changes the date, and suddenly I have to reschedule everything. Last month our caterers cancelled two days before a big conference. Somehow we pulled it off, but honestly, it was overwhelming."],
+ ["T","That sounds like a serious setback."],
+ ["R","It was, but you learn to bounce back. In this industry, you can't afford to cut corners, because almost all our work comes through word of mouth. One bad review and people stop recommending you."],
+ ["T","What about the evening? Do you ever switch off?"],
+ ["R","I try to. I follow up on anything urgent before six, and then my phone goes in a drawer. If a client really needs me, they call my assistant first. She's been a lifesaver, to be honest."],
+ ["T","Last question. If you could change one thing about your day, what would it be?"],
+ ["R","If I had more time, I'd learn to cook properly. At the moment, dinner is usually toast! But if this contract with a tech company goes through next month, I'll finally be able to hire a second assistant. And then maybe I'll actually have time to unwind."],
+ ["T","Rachel Moore, thank you, and good luck with the contract."],
+ ["R","Thanks, Tom. Fingers crossed."]
+];
+
+/* Listening comprehension. level: B1 / B2 / C1. Each wrong option has a diagnostic tag. */
+var LQ = [
+ {id:"L1", level:"B1", skill:"основная мысль",
+  q:"What is the main purpose of the podcast?",
+  o:[["To give advice to people who want to start their own business","trap"],
+     ["To show what one person's working day is really like",1],
+     ["To discuss the biggest problems in the events industry","trap"],
+     ["To compare the working days of several business owners","detail"]],
+  e:"Ведущий прямо говорит: <q>the podcast where we follow one person through an ordinary working day</q>. Темы бизнеса и проблем в индустрии звучат, но это детали, а не цель выпуска."},
+ {id:"L2", level:"B1", skill:"конкретный факт",
+  q:"What does Rachel do first thing in the morning?",
+  o:[["She replies to the most urgent emails","trap"],
+     ["She has a short call with her team","detail"],
+     ["She spends some time on herself before work starts",1],
+     ["She goes to the gym with her assistant","invent"]],
+  e:"<q>If I don't get an hour to myself before the emails start…</q> — кофе, пробежка, план на день. Почта упоминается, но как раз <i>до</i> неё она проводит время сама с собой. Звонок команде — в 8:30, позже."},
+ {id:"L3", level:"B1", skill:"конкретный факт",
+  q:"How did Rachel's business start?",
+  o:[["She lost her job when her company cut staff",1],
+     ["A client asked her to organise an event for free","invent"],
+     ["She left a marketing firm because she was bored","trap"],
+     ["She won some money in a business competition","invent"]],
+  e:"<q>They made half the team redundant. If I hadn't lost that job, I would never have taken the plunge.</q> Make redundant = сократить. Она не уходила сама — её сократили."},
+ {id:"L4", level:"B2", skill:"причина (перефраз)",
+  q:"Why did Rachel start delegating more?",
+  o:[["Her team complained that they had too little responsibility","invent"],
+     ["She wanted more time to plan her top three priorities","trap"],
+     ["Her first assistant persuaded her to do it","trap"],
+     ["She realised that doing everything herself was exhausting her",1]],
+  e:"<q>Within a year I was heading for burnout. That was a real wake-up call, and these days I delegate far more.</q> В ответе это сказано другими словами — проверяется понимание перефраза, а не узнавание слов."},
+ {id:"L5", level:"B2", skill:"причина (перефраз)",
+  q:"Why does Rachel always visit venues in person?",
+  o:[["Because her clients insist that she does","invent"],
+     ["Because it's cheaper than sending a member of her team","invent"],
+     ["Because pictures don't always show what a place is really like",1],
+     ["Because she enjoys meeting people face to face","trap"]],
+  e:"<q>I like to be hands-on, so I always check venues in person. Photos can be very misleading.</q> Misleading = вводящий в заблуждение."},
+ {id:"L6", level:"B2", skill:"детали + структура дня",
+  q:"According to Rachel, the afternoon is usually…",
+  o:[["when unexpected problems start to appear",1],
+     ["when she has most of her meetings","detail"],
+     ["when she deals with urgent messages","detail"],
+     ["the quietest part of her day","literal"]],
+  e:"<q>That's when things tend to go wrong.</q> Встречи — утром (<q>back-to-back meetings</q>), срочные сообщения — вечером, до шести."},
+ {id:"L7", level:"B2", skill:"детали + результат",
+  q:"What happened with the conference last month?",
+  o:[["It had to be cancelled two days before it started","trap"],
+     ["It was moved to a different date","trap"],
+     ["It went ahead successfully despite a last-minute problem",1],
+     ["It received a bad review from the client","trap"]],
+  e:"Кейтеринг отменился за два дня (<q>our caterers cancelled</q>), но <q>somehow we pulled it off</q> — мероприятие всё же прошло. Ловушка: слово <i>cancelled</i> относится к кейтерингу, а не к конференции."},
+ {id:"L8", level:"B2", skill:"логическая связь",
+  q:"Why does Rachel say she “can't afford to cut corners” in her industry?",
+  o:[["Because her budget is too small to make any mistakes","trap"],
+     ["Because the law in her industry is very strict","invent"],
+     ["Because clients check every invoice very carefully","invent"],
+     ["Because her company's reputation depends on recommendations",1]],
+  e:"<q>…because almost all our work comes through word of mouth. One bad review and people stop recommending you.</q> <i>Can't afford</i> здесь не про деньги, а «не может себе позволить» в переносном смысле — ловушка для тех, кто слышит отдельные слова."},
+ {id:"L9", level:"C1", skill:"подтекст / ирония",
+  q:"What does Rachel suggest when she says “my days are rarely ordinary”?",
+  o:[["She isn't sure she's the right guest for the show","literal"],
+     ["Her days are too unpredictable to fit the idea of an “ordinary” day",1],
+     ["She works much shorter hours than most people","invent"],
+     ["She finds the podcast's questions boring","invent"]],
+  e:"Подкаст обещает <q>an ordinary working day</q>, а Рахель сразу предупреждает, что обычных дней у неё не бывает — дальше это подтверждается (сорванные поставки, переносы, отмена кейтеринга). Это вывод из контекста, а не прямой факт."},
+ {id:"L10", level:"C1", skill:"вывод (inference)",
+  q:"What can we infer about Rachel's assistant?",
+  o:[["She handles clients' urgent calls so that Rachel can switch off",1],
+     ["She only works in the evenings","literal"],
+     ["She is going to leave the company soon","invent"],
+     ["She was hired after the conference went wrong","invent"]],
+  e:"<q>If a client really needs me, they call my assistant first. She's been a lifesaver.</q> Прямо не сказано «ассистентка защищает мои вечера», но это следует из контекста про <q>switch off</q>."},
+ {id:"L11", level:"C1", skill:"отношение говорящего",
+  q:"How does Rachel feel about the future?",
+  o:[["Certain — the tech contract has already been signed","trap"],
+     ["Frustrated that she will never have time to cook","literal"],
+     ["Worried that she might have to close the business","invent"],
+     ["Hopeful, but aware that things depend on the contract",1]],
+  e:"<q>But <b>if</b> this contract… goes through, I'll finally be able to hire…</q> и в конце <q>Fingers crossed</q> («скрестим пальцы»). Контракт ещё не подписан — она надеется, но не уверена. Здесь слух и грамматика (first conditional = реальная, но не гарантированная возможность) работают вместе."}
+];
+
+var LDIAG = {
+ trap:"вариант со словами из записи, но с другим смыслом — признак того, что вы опираетесь на отдельные услышанные слова, а не на смысл фразы целиком",
+ detail:"перепутана деталь или время события — информация была в записи, но относится к другому моменту",
+ literal:"слишком буквальное понимание — смысл, который выводится из контекста, не считан",
+ invent:"этого в записи не было — скорее всего, ответ дан наугад или по логике, а не по услышанному"
+};
+
+/* Listen & complete. answer list = accepted forms. */
+var GAPS = [
+ {id:"G1", level:"B1", sp:"Rachel", pre:"Half past", post:". I know that sounds extreme…", a:["five","5"]},
+ {id:"G2", level:"B2", sp:"Rachel", pre:"…go for a short run and decide on my top three", post:".", a:["priorities"]},
+ {id:"G3", level:"B2", sp:"Rachel", pre:"I was juggling clients, suppliers,", post:".", a:["invoices"]},
+ {id:"G4", level:"B2", sp:"Rachel", pre:"…and they made half the team", post:".", a:["redundant"]},
+ {id:"G5", level:"B2", sp:"Rachel", pre:"…and then I'm visiting a", post:"for a wedding we're organising in June.", a:["venue"]},
+ {id:"G6", level:"C1", sp:"Rachel", pre:"Photos can be very", post:".", a:["misleading"]},
+ {id:"G7", level:"B1", sp:"Rachel", pre:"One bad", post:"and people stop recommending you.", a:["review"]},
+ {id:"G8", level:"B1", sp:"Rachel", pre:"…and then my phone goes in a", post:".", a:["drawer"]}
+];
+
+/* Vocabulary: two sets of 12. d = definition. */
+var VOCAB = [
+ {set:0, w:"swamped", lvl:"C1", d:"having far too much work to deal with"},
+ {set:0, w:"to juggle (things)", lvl:"B2", d:"to try to deal with several jobs or responsibilities at the same time"},
+ {set:0, w:"burnout", lvl:"B2", d:"a state of total physical and mental exhaustion caused by working too hard for too long"},
+ {set:0, w:"a wake-up call", lvl:"C1", d:"an event that makes you realise you need to change something"},
+ {set:0, w:"to delegate", lvl:"B2", d:"to give part of your work or responsibilities to someone else"},
+ {set:0, w:"to take the plunge", lvl:"C1", d:"to finally do something risky or important that you have been thinking about"},
+ {set:0, w:"to make ends meet", lvl:"B2", d:"to have just enough money to pay for the things you need"},
+ {set:0, w:"to touch base (with someone)", lvl:"C1", d:"to contact someone briefly to share news or see how things are going"},
+ {set:0, w:"back-to-back", lvl:"B2", d:"happening one after another, with no break in between"},
+ {set:0, w:"a deadline", lvl:"B1", d:"the time or date by which a piece of work must be finished"},
+ {set:0, w:"hands-on", lvl:"B2", d:"personally involved in doing something, rather than managing it from a distance"},
+ {set:0, w:"to unwind", lvl:"B2", d:"to relax and let the tension go after a busy or stressful period"},
+ {set:1, w:"to run late", lvl:"B1", d:"to be behind schedule"},
+ {set:1, w:"to reschedule", lvl:"B1", d:"to change the time or date of something that has been planned"},
+ {set:1, w:"to pull (something) off", lvl:"C1", d:"to succeed in doing something difficult or unexpected"},
+ {set:1, w:"overwhelming", lvl:"B2", d:"so great or intense that it is very hard to cope with"},
+ {set:1, w:"a setback", lvl:"B2", d:"a problem that delays progress or makes a situation worse"},
+ {set:1, w:"to bounce back", lvl:"B2", d:"to recover quickly after a difficult time"},
+ {set:1, w:"to cut corners", lvl:"C1", d:"to do something cheaply or carelessly, ignoring proper standards, to save time or money"},
+ {set:1, w:"word of mouth", lvl:"B2", d:"the way information spreads when people tell each other about something"},
+ {set:1, w:"to switch off", lvl:"B2", d:"to stop thinking about work or problems and relax"},
+ {set:1, w:"to follow up (on something)", lvl:"B2", d:"to take further action on something, for example by replying or checking what happened"},
+ {set:1, w:"a lifesaver", lvl:"B2", d:"someone or something that helps you enormously when you are in difficulty"},
+ {set:1, w:"to prioritise", lvl:"B2", d:"to decide which things are most important and deal with them first"}
+];
+/* fixed scrambled order of definitions within each set (indices into that set's items) */
+var DEF_ORDER = [[4,9,0,7,2,11,5,10,1,8,3,6],[6,2,10,0,8,4,11,1,5,9,3,7]];
+
+/* Grammar. type: zero/first/second/third; band: B1 (core forms) / B2 (meaning, variations, linkers). */
+var GQ = [
+ {id:"C1", type:"zero", band:"B1", q:"If water ___ 100°C, it boils.",
+  o:[["reaches",1],["will reach","will_if"],["would reach","conf"],["reached","conf"]],
+  e:"Zero conditional — общий факт: <b>If + Present Simple, Present Simple</b>."},
+ {id:"C2", type:"zero", band:"B1", q:"If I don't get enough sleep, I ___ completely useless. It happens every time.",
+  o:[["would be","conf"],["am",1],["had been","form"],["am being","form"]],
+  e:"Это привычка, которая повторяется всегда (<i>It happens every time</i>) → zero conditional: Present Simple в обеих частях."},
+ {id:"C3", type:"zero", band:"B2", q:"“If I drink coffee after 4 p.m., I can't sleep.” What does this sentence describe?",
+  o:[["A plan for this evening","meaning"],["Something that always happens to the speaker",1],["An imaginary situation","meaning"],["A regret about yesterday","meaning"]],
+  e:"Present Simple в обеих частях = общая закономерность, «так бывает всегда»."},
+ {id:"C4", type:"zero", band:"B2", q:"Plants die ___ they get enough light.",
+  o:[["if","linker"],["in case","linker"],["unless",1],["as long as","linker"]],
+  e:"<b>unless</b> = if … not: растения погибают, <i>если не</i> получают достаточно света."},
+ {id:"C5", type:"first", band:"B1", q:"If the contract ___ through, we'll hire a second assistant.",
+  o:[["will go","will_if"],["goes",1],["would go","conf"],["went","conf"]],
+  e:"First conditional: <b>If + Present Simple, will + V</b>. После <i>if</i> не ставим <i>will</i>, даже если речь о будущем."},
+ {id:"C6", type:"first", band:"B1", q:"If it rains on Saturday, we ___ the party indoors.",
+  o:[["would move","conf"],["moved","conf"],["will move",1],["would have moved","form"]],
+  e:"Реальная возможность в будущем → <b>will + V</b> в главной части."},
+ {id:"C7", type:"first", band:"B2", q:"You won't get the job ___ you improve your CV.",
+  o:[["if","linker"],["unless",1],["in case","linker"],["as soon as","linker"]],
+  e:"<b>unless</b> = if … not: «не получишь работу, <i>если не</i> улучшишь резюме»."},
+ {id:"C8", type:"first", band:"B2", q:"“I'll take my laptop in case the client asks to see the slides.” What does this mean?",
+  o:[["I'll take it only if the client asks for it","linker"],["The client has already asked to see the slides","meaning"],["I'll take it anyway, because the client might ask",1],["I won't need my laptop at the meeting","meaning"]],
+  e:"<b>in case</b> = «на случай, если»: действие делаем заранее, в любом случае. <i>If</i> значило бы «только если попросят»."},
+ {id:"C9", type:"first", band:"B2", q:"We'll sign the contract as long as they ___ the price.",
+  o:[["won't raise","will_if"],["wouldn't raise","conf"],["didn't raise","conf"],["don't raise",1]],
+  e:"<b>as long as</b> (= при условии, что) ведёт себя как <i>if</i>: после него Present Simple, а не <i>will</i>."},
+ {id:"C10", type:"second", band:"B1", q:"If I ___ more time, I'd learn to cook properly.",
+  o:[["have","conf"],["had",1],["would have","will_if"],["will have","will_if"]],
+  e:"Second conditional: <b>If + Past Simple, would + V</b> — нереальная ситуация в настоящем."},
+ {id:"C11", type:"second", band:"B1", q:"If I were you, I ___ that job offer.",
+  o:[["will accept","conf"],["accepted","form"],["would have accepted","conf"],["would accept",1]],
+  e:"Совет: <b>If I were you, I would + V</b>."},
+ {id:"C12", type:"second", band:"B2", q:"“If I had more time, I'd learn to cook.” What do we know about the speaker?",
+  o:[["They're busy, so they aren't learning to cook",1],["They had free time in the past and learnt to cook","meaning"],["They're definitely going to learn next month","meaning"],["They're learning to cook at the moment","meaning"]],
+  e:"Past Simple после <i>if</i> здесь не про прошлое, а про нереальность сейчас: времени нет → готовить не учится."},
+ {id:"C13", type:"second", band:"B2", q:"Which sentence shows that the speaker thinks a promotion is <b>unlikely</b>?",
+  o:[["If I get the promotion, I'll buy a flat.","conf"],["If I got the promotion, I'd buy a flat.",1],["When I get the promotion, I'll buy a flat.","conf"],["If I get the promotion, I buy a flat.","conf"]],
+  e:"Second conditional показывает, что говорящий считает ситуацию маловероятной. First — реальная возможность, <i>when</i> — уверенность."},
+ {id:"C14", type:"second", band:"B2", q:"Choose the correct sentence.",
+  o:[["If she would know the answer, she would tell us.","will_if"],["If she knows the answer, she would tell us.","conf"],["If she knew the answer, she would tell us.",1],["If she knew the answer, she will tell us.","conf"]],
+  e:"Форма second conditional не смешивается: <b>knew … would tell</b>. <i>Would</i> в части с <i>if</i> — ошибка."},
+ {id:"C15", type:"third", band:"B1", q:"If I hadn't lost that job, I would never ___ the plunge.",
+  o:[["take","form"],["had taken","form"],["have taken",1],["took","form"]],
+  e:"Third conditional: <b>If + had + V3, would have + V3</b>."},
+ {id:"C16", type:"third", band:"B1", q:"If we ___ earlier, we would have caught the train.",
+  o:[["left","form"],["would have left","will_if"],["have left","form"],["had left",1]],
+  e:"Сожаление о прошлом → в части с <i>if</i> нужен Past Perfect: <b>had left</b>."},
+ {id:"C17", type:"third", band:"B2", q:"“If the caterers hadn't cancelled, the conference would have been less stressful.” What happened?",
+  o:[["The caterers cancelled, and the conference was stressful",1],["The caterers didn't cancel, and the conference was easy","meaning"],["The conference hasn't happened yet","meaning"],["The caterers might cancel next time","meaning"]],
+  e:"Third conditional описывает обратное реальности: на самом деле кейтеринг отменился, и было тяжело."},
+ {id:"C18", type:"third", band:"B2", q:"She ___ the deadline if she had asked for help.",
+  o:[["might have met",1],["might meet","form"],["had met","form"],["will have met","form"]],
+  e:"В третьем типе вместо <i>would</i> можно <b>might / could have + V3</b> — «возможно, успела бы»."},
+ {id:"C19", type:"third", band:"B2", q:"Choose the correct sentence.",
+  o:[["If they would have invited me, I would have gone.","will_if"],["If they invited me, I would have gone.","form"],["If they had invited me, I would have gone.",1],["If they had invited me, I will have gone.","form"]],
+  e:"<b>had invited … would have gone</b>. <i>Would have</i> после <i>if</i> встречается в разговорной американской речи, но в нормативном английском это ошибка."},
+ {id:"C20", type:"third", band:"B2", q:"What would you have done if the client ___ the date?",
+  o:[["changed","form"],["had changed",1],["would change","will_if"],["has changed","form"]],
+  e:"Вопрос о прошлом (<i>would you have done</i>) → в части с <i>if</i> нужен Past Perfect."}
+];
+
+var GDIAG = {
+ will_if:{t:"will / would в части с if", d:"Вы ставите <i>will / would</i> сразу после <i>if</i>. Это прямой перенос русского «если <u>будет</u>…». Ошибка типична для A2–B1; на уровне B2 её уже практически не бывает."},
+ conf:{t:"путаница реального и нереального условия", d:"Вы смешиваете типы: реальная возможность (first) и нереальная / маловероятная ситуация (second). Чаще всего это значит, что формы выучены, но разница в <b>смысле</b> между ними пока не прочувствована."},
+ form:{t:"форма глагола в конструкции", d:"Нарушена форма: например, <i>took / had taken</i> вместо <i>have taken</i> после <i>would</i>, или Past Simple вместо Past Perfect в третьем типе. Конструкция узнаётся, но собирается неточно."},
+ meaning:{t:"понимание смысла условного предложения", d:"Форма может быть знакома, но вы не всегда считываете, что предложение говорит о реальности: было/не было, есть/нет. Для B2 это ключевой навык — понимать <b>значение</b>, а не только выбирать форму."},
+ linker:{t:"unless / in case / as long as", d:"Союзы, которые заменяют <i>if</i>, пока не различаются. Это лексико-грамматический материал уровня B2."}
+};
+
+var TYPE_NAMES = {zero:"Zero conditional", first:"First conditional", second:"Second conditional", third:"Third conditional"};
+
+/* ================== STATE ================== */
+var KEY = "wetalk-placement-spend-a-day-v1:" + location.pathname.split("/").pop();
+var S = {name:"", plays:0, started:Date.now(), listen:{}, gaps:{}, vocab:{}, gram:{}, writing:"", checked:{}};
+function save(){ try{ localStorage.setItem(KEY, JSON.stringify(S)); }catch(e){} }
+function load(){ try{ var x = JSON.parse(localStorage.getItem(KEY)||"null"); if(x && typeof x==="object"){ for(var k in x){ S[k]=x[k]; } } }catch(e){} }
+load();
+
+function $(id){ return document.getElementById(id); }
+function esc(s){ return String(s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];}); }
+function toast(msg, ms){ var t=$("toast"); t.textContent=msg; t.classList.add("show"); clearTimeout(toast._t); toast._t=setTimeout(function(){t.classList.remove("show");}, ms||2200); }
+var _ask = {k:null, t:0};
+function ask(msg){ var now = Date.now(); if(_ask.k===msg && now-_ask.t < 6000){ _ask.k=null; return true; } _ask.k=msg; _ask.t=now; toast(msg.split("\n").pop().replace(/\?$/,"") + " — нажмите ещё раз, чтобы подтвердить.", 5500); return false; }
+var LETTERS = "ABCDEFGHIJKL";
+
+/* ================== PLAYER ================== */
+var au = $("podcast"), counted = false;
+function updatePlayer(){ $("pstatus").textContent = "Listens: " + S.plays; }
+au.addEventListener("play", function(){ if(!counted && au.currentTime < 3){ counted = true; S.plays++; save(); updatePlayer(); } });
+au.addEventListener("ended", function(){ counted = false; });
+au.addEventListener("seeked", function(){ if(au.currentTime < 1) counted = false; });
+updatePlayer();
+
+/* ================== RENDER: LISTENING ================== */
+function renderMCQ(container, list, store, prefix){
+  container.innerHTML = list.map(function(item, n){
+    var opts = item.o.map(function(o, k){
+      return '<label class="opt" data-q="'+item.id+'" data-k="'+k+'"><input type="radio" name="'+prefix+item.id+'" value="'+k+'"><span>'+o[0]+'</span></label>';
+    }).join("");
+    return '<div class="q" id="q-'+item.id+'"><div class="qt"><span class="n">'+(n+1)+'.</span> '+item.q+'</div><div class="opts">'+opts+'</div><div class="fb" id="fb-'+item.id+'"></div></div>';
+  }).join("");
+  container.addEventListener("change", function(ev){
+    var t = ev.target; if(t.type!=="radio") return;
+    var lab = t.closest(".opt"), qid = lab.getAttribute("data-q");
+    store[qid] = +t.value; save();
+    markSel(container, qid, store[qid]);
+  });
+  list.forEach(function(item){ if(store[item.id]!=null){ var r = container.querySelector('input[name="'+prefix+item.id+'"][value="'+store[item.id]+'"]'); if(r){ r.checked = true; markSel(container,item.id,store[item.id]); } } });
+}
+function markSel(container, qid, k){
+  container.querySelectorAll('.opt[data-q="'+qid+'"]').forEach(function(l){ l.classList.toggle("sel", +l.getAttribute("data-k")===k); });
+}
+function lockMCQ(container, list, store, diagMap, isGrammar){
+  container.classList.add("locked");
+  container.querySelectorAll("input").forEach(function(i){ i.disabled = true; });
+  list.forEach(function(item){
+    var chosen = store[item.id], correctK = -1;
+    item.o.forEach(function(o,k){ if(o[1]===1) correctK = k; });
+    container.querySelectorAll('.opt[data-q="'+item.id+'"]').forEach(function(l){
+      var k = +l.getAttribute("data-k");
+      l.classList.remove("sel");
+      if(k===correctK) l.classList.add("right");
+      else if(k===chosen) l.classList.add("wrong");
+    });
+    var fb = $("fb-"+item.id), html;
+    if(chosen===correctK){
+      fb.className = "fb show good";
+      html = "<b>Верно.</b> " + item.e;
+    } else {
+      fb.className = "fb show badf";
+      var tag = chosen!=null ? item.o[chosen][1] : null;
+      var why = "";
+      if(chosen==null) why = "<b>Нет ответа.</b> ";
+      else if(isGrammar) why = "<b>Вы выбрали «"+item.o[chosen][0]+"»</b> — " + (diagMap[tag] ? diagMap[tag].t : "") + ". ";
+      else why = "<b>Вы выбрали: «"+item.o[chosen][0]+"»</b> — " + (diagMap[tag]||"") + ". ";
+      html = why + "Правильно: <b>«" + item.o[correctK][0] + "»</b>. " + item.e;
+    }
+    var lvl = item.level || item.band;
+    fb.innerHTML = html + ' <span class="tag">'+(isGrammar? TYPE_NAMES[item.type]+" · "+lvl : lvl+" · "+item.skill)+'</span>';
+  });
+}
+
+renderMCQ($("listenQs"), LQ, S.listen, "l_");
+$("checkListen").onclick = function(){
+  var missing = LQ.filter(function(q){ return S.listen[q.id]==null; }).length;
+  if(missing && !ask("You haven't answered "+missing+" question(s). Check anyway?\nВы не ответили на "+missing+" вопрос(а). Проверить всё равно?")) return;
+  S.checked.listen = true; save(); applyLocks();
+  toast("Listening checked");
+};
+
+/* ================== RENDER: GAPS ================== */
+$("gapList").innerHTML = GAPS.map(function(g,n){
+  return '<div class="gap-line"><span class="n">'+(n+1)+'.</span><span class="sp">'+g.sp+':</span> '+esc(g.pre)+' <input class="gap" id="in-'+g.id+'" type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" aria-label="gap '+(n+1)+'"> '+esc(g.post)+'<span class="gap-fb" id="gfb-'+g.id+'"></span></div>';
+}).join("");
+GAPS.forEach(function(g){
+  var inp = $("in-"+g.id);
+  if(S.gaps[g.id]) inp.value = S.gaps[g.id];
+  inp.addEventListener("input", function(){ S.gaps[g.id] = inp.value; save(); });
+});
+function lev(a,b){
+  var m=a.length,n=b.length,d=[],i,j;
+  for(i=0;i<=m;i++){ d[i]=[i]; } for(j=0;j<=n;j++) d[0][j]=j;
+  for(i=1;i<=m;i++) for(j=1;j<=n;j++) d[i][j]=Math.min(d[i-1][j]+1,d[i][j-1]+1,d[i-1][j-1]+(a[i-1]===b[j-1]?0:1));
+  return d[m][n];
+}
+function gapScore(g){
+  var v = (S.gaps[g.id]||"").trim().toLowerCase().replace(/[.,!?;:"']/g,"");
+  if(!v) return {s:0, kind:"empty"};
+  for(var i=0;i<g.a.length;i++){ if(v===g.a[i]) return {s:1, kind:"right"}; }
+  for(i=0;i<g.a.length;i++){ if(g.a[i].length>=5 && lev(v,g.a[i])<=1) return {s:0.5, kind:"near"}; if(g.a[i].length>=8 && lev(v,g.a[i])<=2) return {s:0.5, kind:"near"}; }
+  return {s:0, kind:"wrong"};
+}
+$("checkGaps").onclick = function(){
+  var empty = GAPS.filter(function(g){ return !(S.gaps[g.id]||"").trim(); }).length;
+  if(empty && !ask(empty+" gap(s) are empty. Check anyway?\nПустых пропусков: "+empty+". Проверить всё равно?")) return;
+  S.checked.gaps = true; save(); applyLocks(); toast("Gaps checked");
+};
+
+/* transcript */
+$("transcriptBody").innerHTML = SCRIPT.map(function(l){ return '<p><b>'+(l[0]==="T"?"Tom":"Rachel")+':</b> '+esc(l[1])+'</p>'; }).join("");
+
+/* ================== RENDER: VOCAB ================== */
+var SETS = [[],[]];
+VOCAB.forEach(function(v,i){ v.i=i; SETS[v.set].push(v); });
+$("vocabSets").innerHTML = SETS.map(function(items, si){
+  var defs = DEF_ORDER[si].map(function(itemIdx, pos){ return '<li data-set="'+si+'" data-pos="'+pos+'"><span class="L">'+LETTERS[pos]+'</span><span>'+esc(items[itemIdx].d)+'</span><span class="who"></span></li>'; }).join("");
+  var words = items.map(function(v){
+    var opts = '<option value="">—</option>' + DEF_ORDER[si].map(function(_,pos){ return '<option value="'+pos+'">'+LETTERS[pos]+'</option>'; }).join("");
+    return '<div class="word" id="w-'+v.i+'"><span><b>'+esc(v.w)+'</b><span class="corr" id="wc-'+v.i+'"></span></span><select data-i="'+v.i+'" aria-label="'+esc(v.w)+'">'+opts+'</select></div>';
+  }).join("");
+  return '<div class="vset"><h3>Set '+(si===0?"A":"B")+' · '+(si===0?"words 1–12":"words 13–24")+'</h3><ol class="defs">'+defs+'</ol><div class="words">'+words+'</div></div>';
+}).join("");
+function refreshUsed(){
+  [0,1].forEach(function(si){
+    var used = {};
+    SETS[si].forEach(function(v){ var x = S.vocab[v.i]; if(x!==undefined && x!=="") used[x] = v.w; });
+    document.querySelectorAll('.defs li[data-set="'+si+'"]').forEach(function(li){
+      var pos = li.getAttribute("data-pos");
+      li.classList.toggle("used", used[pos]!==undefined);
+      li.querySelector(".who").textContent = used[pos]!==undefined ? "← "+used[pos] : "";
+    });
+  });
+  var n = Object.keys(S.vocab).filter(function(k){ return S.vocab[k]!==""; }).length;
+  $("msgVocab").textContent = n+" / 24 matched";
+}
+document.querySelectorAll("#vocabSets select").forEach(function(sel){
+  var i = +sel.getAttribute("data-i");
+  if(S.vocab[i]!==undefined) sel.value = S.vocab[i];
+  sel.addEventListener("change", function(){
+    var v = VOCAB[i];
+    if(sel.value!==""){
+      SETS[v.set].forEach(function(o){ if(o.i!==i && S.vocab[o.i]===sel.value){ S.vocab[o.i]=""; var s2=document.querySelector('#vocabSets select[data-i="'+o.i+'"]'); if(s2) s2.value=""; } });
+    }
+    S.vocab[i] = sel.value; save(); refreshUsed();
+  });
+});
+refreshUsed();
+function vocabCorrect(v){
+  var items = SETS[v.set], posInSet = items.indexOf(v);
+  var correctPos = DEF_ORDER[v.set].indexOf(posInSet);
+  return {ok: S.vocab[v.i]!==undefined && S.vocab[v.i]!=="" && +S.vocab[v.i]===correctPos, letter: LETTERS[correctPos]};
+}
+$("checkVocab").onclick = function(){
+  var n = VOCAB.filter(function(v){ return S.vocab[v.i]===undefined || S.vocab[v.i]===""; }).length;
+  if(n && !ask(n+" word(s) are not matched. Check anyway?\nНе сопоставлено слов: "+n+". Проверить всё равно?")) return;
+  S.checked.vocab = true; save(); applyLocks(); toast("Vocabulary checked");
+};
+
+/* ================== RENDER: GRAMMAR ================== */
+renderMCQ($("gramQs"), GQ, S.gram, "g_");
+$("checkGram").onclick = function(){
+  var missing = GQ.filter(function(q){ return S.gram[q.id]==null; }).length;
+  if(missing && !ask("You haven't answered "+missing+" question(s). Check anyway?\nНе отвечено: "+missing+". Проверить всё равно?")) return;
+  S.checked.grammar = true; save(); applyLocks(); toast("Grammar checked");
+};
+
+/* ================== WRITING ================== */
+var ta = $("writing");
+ta.value = S.writing || "";
+function words(t){ return (t.match(/[A-Za-z]+(?:['’][A-Za-z]+)*/g)||[]); }
+function updWC(){ var n = words(ta.value).length; $("wc").innerHTML = "Words: <b>"+n+"</b> / 120–180" + (n>200?" · a little long":""); }
+ta.addEventListener("input", function(){ S.writing = ta.value; save(); updWC(); });
+updWC();
+$("checkWriting").onclick = function(){
+  var n = words(ta.value).length;
+  if(n < 60 && !ask("Your text is only "+n+" words. Submit anyway?\nВ тексте всего "+n+" слов. Отправить всё равно?")) return;
+  S.checked.writing = true; save(); applyLocks(); toast("Text submitted");
+};
+
+/* ================== NAME ================== */
+$("studentName").value = S.name || "";
+$("studentName").addEventListener("input", function(e){ S.name = e.target.value; save(); });
+
+/* ================== LOCKS / NAV ================== */
+function applyLocks(){
+  if(S.checked.listen) lockMCQ($("listenQs"), LQ, S.listen, LDIAG, false);
+  if(S.checked.gaps){
+    GAPS.forEach(function(g){
+      var inp = $("in-"+g.id), r = gapScore(g); inp.disabled = true;
+      inp.classList.add(r.kind==="right"?"right":(r.kind==="near"?"near":"wrong"));
+      $("gfb-"+g.id).innerHTML = r.kind==="right" ? '<span style="color:var(--ok)">✓</span>' :
+        (r.kind==="near" ? '<span style="color:var(--mid)">≈ <b>'+g.a[0]+'</b> (опечатка, ½ балла)</span>' : '<span style="color:var(--bad)">✗ <b>'+g.a[0]+'</b></span>');
+    });
+    $("transcript").classList.add("show");
+  }
+  if(S.checked.vocab){
+    VOCAB.forEach(function(v){
+      var r = vocabCorrect(v), box = $("w-"+v.i);
+      box.classList.add(r.ok?"right":"wrong");
+      box.querySelector("select").disabled = true;
+      if(!r.ok) $("wc-"+v.i).textContent = "correct: "+r.letter;
+    });
+  }
+  if(S.checked.grammar) lockMCQ($("gramQs"), GQ, S.gram, GDIAG, true);
+  if(S.checked.writing){ ta.readOnly = true; }
+  var map = {listen:"listen", gaps:"gaps", vocab:"vocab", grammar:"grammar", writing:"writing"};
+  ["listen","gaps","vocab","grammar","writing"].forEach(function(k){
+    var b = {listen:"checkListen",gaps:"checkGaps",vocab:"checkVocab",grammar:"checkGram",writing:"checkWriting"}[k];
+    if(S.checked[k]){ $(b).disabled = true; $(b).textContent = "✓ Checked"; }
+    var a = document.querySelector('nav.steps a[data-step="'+map[k]+'"]'); if(a) a.classList.toggle("done", !!S.checked[k]);
+  });
+  var need = ["listen","gaps","vocab","grammar"].filter(function(k){ return !S.checked[k]; });
+  $("msgResults").textContent = need.length ? "Сначала проверьте части: " + need.map(function(k){return {listen:"1",gaps:"2",vocab:"3",grammar:"4"}[k];}).join(", ") + (S.checked.writing ? "" : " (часть 5 — желательно)") : (S.checked.writing ? "" : "Часть 5 (письмо) не сдана — отчёт будет без неё.");
+}
+applyLocks();
+
+/* ================== SCORING ================== */
+var SCALE = ["A2","B1−","B1","B1+","B2","B2+","C1"];
+var SCALE_RU = {"A2":"A2 (ниже B1)","B1−":"начальный B1","B1":"B1 (середина)","B1+":"сильный B1, переход к B2","B2":"B2","B2+":"сильный B2","C1":"C1"};
+function bandLevel(b1, b2, c1){
+  if(b1 < 0.5) return 0;
+  if(b1 < 0.7) return 1;
+  if(b2 < 0.4) return 2;
+  if(b2 < 0.65) return 3;
+  if(c1 == null) return b2 < 0.85 ? 4 : 5;
+  if(c1 < 0.34) return 4;
+  if(c1 < 0.67) return 5;
+  return 6;
+}
+function pct(a){ return a.n ? a.s/a.n : 0; }
+function fmt(a){ return (Math.round(a.s*10)/10) + "/" + a.n; }
+
+function scoreListening(){
+  var B = {B1:{s:0,n:0}, B2:{s:0,n:0}, C1:{s:0,n:0}}, diags = {}, wrongItems = [], right = [];
+  LQ.forEach(function(q){
+    var ch = S.listen[q.id], ok = ch!=null && q.o[ch][1]===1;
+    B[q.level].n++; if(ok){ B[q.level].s++; right.push(q); } else { wrongItems.push(q); var t = ch!=null ? q.o[ch][1] : "none"; diags[t]=(diags[t]||0)+1; }
+  });
+  var gapRes = GAPS.map(function(g){ var r = gapScore(g); B[g.level].n++; B[g.level].s += r.s; return {g:g, r:r}; });
+  return {B:B, diags:diags, wrong:wrongItems, right:right, gaps:gapRes, level: bandLevel(pct(B.B1), pct(B.B2), pct(B.C1))};
+}
+function scoreVocab(){
+  var B = {B1:{s:0,n:0}, B2:{s:0,n:0}, C1:{s:0,n:0}}, wrong = [], right = [];
+  VOCAB.forEach(function(v){ var ok = vocabCorrect(v).ok; B[v.lvl].n++; if(ok){ B[v.lvl].s++; right.push(v); } else wrong.push(v); });
+  return {B:B, wrong:wrong, right:right, level: bandLevel(pct(B.B1), pct(B.B2), pct(B.C1))};
+}
+function scoreGrammar(){
+  var B = {B1:{s:0,n:0}, B2:{s:0,n:0}}, T = {zero:{s:0,n:0}, first:{s:0,n:0}, second:{s:0,n:0}, third:{s:0,n:0}}, diags = {}, wrong = [];
+  var meaning = {s:0,n:0};
+  GQ.forEach(function(q){
+    var ch = S.gram[q.id], ok = ch!=null && q.o[ch][1]===1;
+    B[q.band].n++; T[q.type].n++;
+    var isMeaning = q.o.some(function(o){ return o[1]==="meaning"; });
+    if(isMeaning) meaning.n++;
+    if(ok){ B[q.band].s++; T[q.type].s++; if(isMeaning) meaning.s++; }
+    else { wrong.push(q); var t = ch!=null ? q.o[ch][1] : "none"; if(t!=="none") diags[t]=(diags[t]||0)+1; }
+  });
+  return {B:B, T:T, diags:diags, wrong:wrong, meaning:meaning, level: bandLevel(pct(B.B1), pct(B.B2), null)};
+}
+
+/* writing analysis (heuristic) */
+var B2_LINKERS = ["although","even though","though","whereas","however","therefore","as a result","consequently","on the other hand","in addition","moreover","furthermore","despite","in spite of","nevertheless","unless","provided","as long as","in case","eventually","meanwhile","otherwise","as soon as","apart from","instead","overall","while","by the time","once","not only"];
+var B1_LINKERS = ["and","but","because","so","then","also","after that","first","finally","when","before","after","or"];
+var ADV = ["swamped","juggl","burnout","burn out","burnt out","burned out","delegat","plunge","ends meet","touch base","back-to-back","back to back","hands-on","reschedul","pull it off","pulled it off","pull off","overwhelm","setback","bounce back","bounced back","cut corners","word of mouth","switch off","follow up","followed up","lifesaver","unwind","prioriti","productiv","efficien","exhaust","demanding","cope with","responsib","workload","commut","flexib","deal with","in charge of","run late","running late","deadline","challeng","achiev","opportunit","career","entrepreneur","freelanc","negotiat","revenue","profit","stakeholder","colleague","approach","manage to","managed to","handle","schedule","routine","balance","burden","rewarding","fulfilling","exhausting","stressful","determined","eventually","realis","realiz"];
+function analyseWriting(){
+  var text = (S.writing||"").replace(/[’]/g,"'");
+  var w = words(text), n = w.length;
+  if(n === 0) return null;
+  var lower = " " + text.toLowerCase().replace(/\s+/g," ") + " ";
+  var sentences = text.replace(/([.!?])\s+/g,"$1\n").split(/\n+/).map(function(s){return s.trim();}).filter(function(s){ return words(s).length >= 2; });
+  var avg = sentences.length ? n / sentences.length : n;
+  var cond = {zero:0, first:0, second:0, third:0}, willIf = [], condSents = [];
+  sentences.forEach(function(s){
+    var sl = " " + s.toLowerCase() + " ";
+    var m = sl.match(/\b(if|unless)\b/);
+    if(!m) return;
+    var after = sl.slice(m.index);
+    var before = sl.slice(0, m.index);
+    var comma = after.indexOf(",");
+    var ifPart, main;
+    if(before.trim().length > 3){ ifPart = after; main = before; }
+    else if(comma > -1){ ifPart = after.slice(0, comma); main = after.slice(comma+1); }
+    else { ifPart = after; main = ""; }
+    if(/\b(will|won't|would|wouldn't)\b|'ll\b/.test(ifPart) && !/\bif you would like\b|\bif you'd like\b/.test(ifPart)) willIf.push(s);
+    var type = null;
+    if(/\bhad(n't| not)?\b/.test(ifPart) && /\b(would|could|might|should)(n't)?( not| never| probably| definitely| certainly| still| also| even| ever)? have\b|'d( never| not)? have\b/.test(main+" "+ifPart)) type = "third";
+    else if(/\b(would|could|might)(n't)?( not)? (?!have\b)[a-z]+|'d (?!have\b)[a-z]+/.test(main)) type = "second";
+    else if(/\b(will|won't|can|must|should|may|might|going to)\b|'ll\b/.test(main)) type = "first";
+    else if(main.trim()) type = "zero";
+    if(type){ cond[type]++; condSents.push({t:type, s:s}); }
+  });
+  var b2l = B2_LINKERS.filter(function(l){ return new RegExp("\\b"+l.replace(/ /g,"\\s+")+"\\b").test(lower); });
+  var b1l = B1_LINKERS.filter(function(l){ return new RegExp("\\b"+l+"\\b").test(lower); });
+  var adv = ADV.filter(function(a){ return lower.indexOf(a) > -1; });
+  var sample = w.slice(0, 120).map(function(x){return x.toLowerCase();});
+  var ttr = sample.length ? (new Set(sample)).size / sample.length : 0;
+  var lowerI = (text.match(/(^|[\s,.;])i(?=[\s,'’.;])/g)||[]).length;
+  var noCap = sentences.filter(function(s){ return /^[a-z]/.test(s); }).length;
+  var types = ["zero","first","second","third"].filter(function(t){ return cond[t] > 0; });
+  var pts = 0;
+  pts += avg >= 15 ? 1 : (avg >= 11 ? 0.5 : 0);
+  pts += b2l.length >= 3 ? 1.5 : (b2l.length >= 1 ? 0.75 : 0);
+  pts += types.length >= 3 ? 1.5 : (types.length === 2 ? 1 : (types.length === 1 ? 0.5 : 0));
+  pts += cond.third ? 0.5 : 0;
+  pts += ttr >= 0.66 ? 1 : (ttr >= 0.56 ? 0.5 : 0);
+  pts += adv.length >= 5 ? 1 : (adv.length >= 2 ? 0.5 : 0);
+  pts -= willIf.length ? 1 : 0;
+  pts -= (lowerI > 1 || noCap > 1) ? 0.5 : 0;
+  var level = pts < 1.5 ? 0 : pts < 2.5 ? 1 : pts < 3.5 ? 2 : pts < 4.5 ? 3 : pts < 5.5 ? 4 : 5;
+  if(n < 80) level = Math.min(level, 2);
+  return {n:n, sentences:sentences.length, avg:avg, cond:cond, condSents:condSents, types:types, willIf:willIf, b2l:b2l, b1l:b1l, adv:adv, ttr:ttr, lowerI:lowerI, noCap:noCap, pts:pts, level:level};
+}
+
+/* ================== RESULTS ================== */
+function bandRow(label, a, color){
+  var p = Math.round(100*pct(a));
+  var c = color || (p >= 70 ? "var(--ok)" : p >= 45 ? "var(--mid)" : "var(--bad)");
+  return '<div class="band"><span>'+label+'</span><span class="track"><i style="width:'+p+'%;background:'+c+'"></i></span><span class="v">'+fmt(a)+'</span></div>';
+}
+function judge(a, strong, ok){ var p = pct(a); return p >= strong ? "plus" : (p >= ok ? "info" : "minus"); }
+
+function buildResults(){
+  var L = scoreListening(), V = scoreVocab(), G = scoreGrammar(), W = S.checked.writing ? analyseWriting() : null;
+  var name = (S.name||"").trim();
+  var h = [];
+
+  /* overall */
+  var parts = [{k:"L", lvl:L.level, w:0.35}, {k:"G", lvl:G.level, w:0.30}, {k:"V", lvl:V.level, w:0.25}];
+  if(W) parts.push({k:"W", lvl:W.level, w:0.10});
+  var tw = parts.reduce(function(s,p){return s+p.w;},0);
+  var avg = parts.reduce(function(s,p){return s+p.lvl*p.w;},0)/tw;
+  var rawOverall = Math.round(avg), overall = Math.min(rawOverall, 5);
+  var lv = parts.map(function(p){return p.lvl;});
+  var spread = Math.max.apply(null,lv) - Math.min.apply(null,lv);
+  var claimed = 2;
+  var claimTxt;
+  if(overall === claimed) claimTxt = "Заявленный уровень <b>B1 (середина)</b> <b>подтверждается</b>: результаты в целом соответствуют середине B1.";
+  else if(overall === 3) claimTxt = "Заявленный уровень <b>B1 (середина)</b> <b>скорее занижен</b>: результаты ближе к <b>верхней границе B1</b> — вы уже справляетесь с частью заданий уровня B2, но пока нестабильно.";
+  else if(overall > 3) claimTxt = "Заявленный уровень <b>B1 (середина)</b> <b>занижен</b>: по большинству навыков результаты соответствуют уровню <b>"+SCALE[overall]+"</b>.";
+  else if(overall === 1) claimTxt = "Заявленный уровень <b>B1 (середина)</b> <b>немного завышен</b>: база B1 есть, но она пока неустойчивая — это скорее <b>начало B1</b>.";
+  else claimTxt = "Заявленный уровень <b>B1 (середина)</b> <b>завышен</b>: значительная часть заданий уровня B1 вызвала трудности — результаты ближе к <b>A2</b>.";
+
+  var whyOverall = "Итог считается по трём обязательным частям (аудирование 35%, грамматика 30%, лексика 25%)" + (W ? " и письму (10%, ориентировочно)" : "") + ". " +
+    (spread >= 3 ? "Профиль <b>неровный</b>: навыки сильно отличаются друг от друга — это нормально для людей, которые учили язык самостоятельно или много используют его в одной сфере. Смотрите оценки по каждому навыку ниже — они информативнее общей цифры." :
+     spread === 2 ? "Навыки немного отличаются друг от друга — ниже видно, какие сильнее, а какие тянут общий результат вниз." :
+     "Навыки развиты ровно — общая оценка хорошо отражает реальный уровень.");
+
+  h.push('<div class="verdict"><div style="font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:#f0b48c;margin-bottom:8px">'+(name?esc(name)+" · ":"")+'итог проверки</div>');
+  h.push('<div class="lvl">'+SCALE[overall]+'<small>'+SCALE_RU[SCALE[overall]]+'</small></div>');
+  h.push('<p>'+whyOverall+(rawOverall>5?' Результаты выше потолка этого теста: он рассчитан на B1–B2, поэтому максимум здесь — сильный B2. Чтобы подтвердить C1, нужна отдельная проверка.':'')+'</p>');
+  h.push('<div class="scale">'+SCALE.map(function(s,i){ return '<span class="'+(i===overall?"on":"")+(i===claimed?" claimed":"")+'">'+s+'</span>'; }).join("")+'</div>');
+  h.push('<div style="font-size:12.5px;color:#9d907f;margin-top:6px">оранжевым — результат теста · пунктиром — заявленный уровень</div>');
+  h.push('<div class="claim">'+claimTxt+'</div></div>');
+
+  /* ---- listening ---- */
+  var lb = L.B;
+  h.push('<div class="skill"><div class="skill-head"><h3>Аудирование</h3><span class="chip">'+SCALE[L.level]+'</span></div>');
+  h.push('<div class="bands">'+bandRow("B1 · факты", lb.B1)+bandRow("B2 · перефраз, причины", lb.B2)+bandRow("C1 · выводы, подтекст", lb.C1)+'</div>');
+  h.push('<div class="ev"><h4>Почему такой вывод</h4><ul>');
+  var l1 = judge(lb.B1,0.7,0.5), l2 = judge(lb.B2,0.65,0.4), l3 = judge(lb.C1,0.67,0.34);
+  h.push('<li class="'+l1+'">Задания B1 (основная мысль, факты, которые прямо звучат в записи): <b>'+fmt(lb.B1)+'</b>. '+(l1==="plus"?"Вы уверенно понимаете общий смысл и конкретную информацию в естественной речи — это и есть B1.":l1==="info"?"Общий смысл в основном понятен, но часть прямо названных фактов ускользает — B1 пока неустойчивый.":"Даже прямо названные факты понимаются с трудом — естественная скорость речи пока сложна.")+'</li>');
+  h.push('<li class="'+l2+'">Задания B2 (информация сказана другими словами, причины, последовательность событий, ключевые слова на слух): <b>'+fmt(lb.B2)+'</b>. '+(l2==="plus"?"Вы понимаете перефраз и связываете причины и следствия — это отличительный признак B2.":l2==="info"?"Часть таких заданий получается — признак перехода от B1 к B2.":"Когда ответ сформулирован не теми словами, что в записи, начинаются ошибки — типично для B1.")+'</li>');
+  h.push('<li class="'+l3+'">Задания C1 (подтекст, ирония, выводы, отношение говорящего): <b>'+fmt(lb.C1)+'</b>. '+(l3==="plus"?"Вы считываете то, что не сказано прямо, — это уже уровень выше B2.":l3==="info"?"Иногда вы улавливаете подтекст — это хороший задел, но для B1–B2 такие задания и не обязательны.":"Подтекст пока не считывается — для уровня B1–B2 это нормально.")+'</li>');
+  var trapN = L.diags.trap||0, invN = L.diags.invent||0, detN = L.diags.detail||0, litN = L.diags.literal||0;
+  if(trapN >= 2) h.push('<li class="minus">'+trapN+' раз(а) выбран вариант-ловушка со словами из записи, но с другим смыслом. Это значит, что вы опираетесь на <b>узнанные слова</b>, а не на смысл фразы целиком — классическая стратегия уровня B1.</li>');
+  else if(trapN === 1) h.push('<li class="info">Один раз выбран вариант-ловушка (слова из записи, но смысл другой). Будьте внимательны к таким вариантам.</li>');
+  if(detN) h.push('<li class="info">Перепутанные детали (что и когда происходило): '+detN+'. Информация была услышана, но отнесена не к тому моменту — помогает конспект по ходу прослушивания.</li>');
+  if(litN) h.push('<li class="info">Слишком буквальное понимание: '+litN+'. Вывод из контекста — навык уровня B2+/C1.</li>');
+  if(invN >= 2) h.push('<li class="minus">'+invN+' ответа(ов) не основаны на записи (этого не говорили) — похоже на угадывание, когда фрагмент не был понят.</li>');
+  var gapOK = L.gaps.filter(function(x){return x.r.s===1;}).length, gapNear = L.gaps.filter(function(x){return x.r.kind==="near";}).length;
+  h.push('<li class="'+(gapOK>=6?"plus":gapOK>=4?"info":"minus")+'">Пропуски на слух: <b>'+gapOK+'/8</b> точно'+(gapNear?(", ещё "+gapNear+" с опечаткой"):"")+'. '+(gapOK>=6?"Вы хорошо выделяете отдельные слова из потока речи, включая слова уровня B2 (invoices, redundant, venue).":"Отдельные слова в быстрой речи пока сливаются; чаще всего трудны слова уровня B2 и безударные позиции.")+'</li>');
+  if(S.plays > 3) h.push('<li class="info">Запись прослушана '+S.plays+' раз(а) — больше рекомендованных двух. Результат по аудированию может быть немного завышен.</li>');
+  else h.push('<li class="info">Прослушиваний: '+S.plays+'.</li>');
+  h.push('</ul></div></div>');
+
+  /* ---- vocabulary ---- */
+  var vb = V.B;
+  h.push('<div class="skill"><div class="skill-head"><h3>Лексика</h3><span class="chip">'+SCALE[V.level]+'</span></div>');
+  h.push('<div class="bands">'+bandRow("B1 слова", vb.B1)+bandRow("B2 слова", vb.B2)+bandRow("C1 идиомы", vb.C1)+'</div>');
+  h.push('<div class="ev"><h4>Почему такой вывод</h4><ul>');
+  var v1=judge(vb.B1,0.67,0.5), v2=judge(vb.B2,0.65,0.4), v3=judge(vb.C1,0.67,0.34);
+  h.push('<li class="'+v1+'">Слова B1 (deadline, run late, reschedule): <b>'+fmt(vb.B1)+'</b>. '+(v1==="plus"?"Базовая рабочая лексика освоена.":"Даже базовая рабочая лексика знакома не полностью.")+'</li>');
+  h.push('<li class="'+v2+'">Слова и выражения B2 (delegate, burnout, hands-on, setback, word of mouth…): <b>'+fmt(vb.B2)+'</b>. '+(v2==="plus"?"Вы знаете большую часть лексики B2 по теме «работа и стресс» — это сильный показатель B2.":v2==="info"?"Примерно половина лексики B2 знакома — словарь растёт в сторону B2, но пока неполный.":"Лексика B2 пока в основном незнакома — словарный запас на уровне B1 или ниже.")+'</li>');
+  h.push('<li class="'+v3+'">Идиомы C1 (take the plunge, cut corners, pull off, touch base…): <b>'+fmt(vb.C1)+'</b>. '+(v3==="plus"?"Вы знаете даже идиоматику C1 — словарь заметно выше среднего.":v3==="info"?"Часть идиом знакома — хороший задел.":"Идиомы C1 пока незнакомы — для B1–B2 это ожидаемо.")+'</li>');
+  if(V.wrong.length){
+    h.push('<li class="info">Ошибки или незнакомые слова: '+V.wrong.map(function(v){ return '<b>'+esc(v.w)+'</b> <span class="tag">'+v.lvl+'</span>'; }).join(", ")+'.</li>');
+  }
+  h.push('<li class="info">Важно: в сопоставлении последние пары можно угадать методом исключения, поэтому оценка по лексике может быть чуть выше реальной.</li>');
+  h.push('</ul></div></div>');
+
+  /* ---- grammar ---- */
+  var gb = G.B, T = G.T;
+  h.push('<div class="skill"><div class="skill-head"><h3>Грамматика: conditionals</h3><span class="chip">'+SCALE[G.level]+'</span></div>');
+  h.push('<div class="types">'+["zero","first","second","third"].map(function(t){
+    var a = T[t], p = pct(a); var st = p>=0.8?"освоен":p>=0.6?"почти освоен":p>=0.4?"неустойчиво":"не освоен";
+    var col = p>=0.8?"var(--ok)":p>=0.6?"var(--mid)":"var(--bad)";
+    return '<div class="type"><b>'+TYPE_NAMES[t]+'</b><span class="s" style="color:'+col+'">'+fmt(a)+'</span> · '+st+'</div>';
+  }).join("")+'</div>');
+  h.push('<div class="bands">'+bandRow("B1 · базовые формы", gb.B1)+bandRow("B2 · смысл, unless, might have…", gb.B2)+bandRow("Понимание смысла", G.meaning)+'</div>');
+  h.push('<div class="ev"><h4>Почему такой вывод</h4><ul>');
+  var g1=judge(gb.B1,0.75,0.5), g2=judge(gb.B2,0.7,0.4);
+  h.push('<li class="'+g1+'">Базовые формы всех четырёх типов: <b>'+fmt(gb.B1)+'</b>. '+(g1==="plus"?"Формы собираются правильно — это база B1.":g1==="info"?"Формы в основном знакомы, но часть собирается с ошибками.":"Базовые формы условных предложений пока не автоматизированы.")+'</li>');
+  h.push('<li class="'+g2+'">Задания уровня B2 (что предложение <i>значит</i>, разница между first и second, unless / in case / as long as, might have): <b>'+fmt(gb.B2)+'</b>. '+(g2==="plus"?"Вы понимаете не только форму, но и смысл, и используете варианты — это B2.":g2==="info"?"Часть таких заданий получается — грамматика движется к B2.":"Пока вы опираетесь на заученные формулы, а не на смысл — типично для B1.")+'</li>');
+  ["zero","first","second","third"].forEach(function(t){
+    var p = pct(T[t]);
+    if(p < 0.6) h.push('<li class="minus">'+TYPE_NAMES[t]+': '+fmt(T[t])+' — тип требует отработки.</li>');
+  });
+  var dk = Object.keys(G.diags).sort(function(a,b){return G.diags[b]-G.diags[a];});
+  dk.forEach(function(k){ if(GDIAG[k]) h.push('<li class="'+(G.diags[k]>=2?"minus":"info")+'"><b>'+GDIAG[k].t+'</b> — '+G.diags[k]+' раз(а). '+GDIAG[k].d+'</li>'); });
+  if(!G.wrong.length) h.push('<li class="plus">Ни одной ошибки — все четыре типа и их смысл освоены. Для следующего шага подойдут mixed conditionals и инверсия (Had I known…), которые здесь не проверялись.</li>');
+  h.push('</ul></div></div>');
+
+  /* ---- writing ---- */
+  if(W){
+    h.push('<div class="skill"><div class="skill-head"><h3>Письмо</h3><span class="chip soft">≈ '+SCALE[W.level]+'</span></div>');
+    h.push('<div class="ev"><h4>Что показал автоматический анализ</h4><ul>');
+    h.push('<li class="'+(W.n>=120&&W.n<=200?"plus":W.n>=90?"info":"minus")+'">Объём: <b>'+W.n+'</b> слов, '+W.sentences+' предложений'+(W.n<120?" — меньше требуемых 120.":W.n>200?" — больше нужного; умение уложиться в объём тоже часть задания.":" — в пределах задания.")+'</li>');
+    h.push('<li class="'+(W.avg>=15?"plus":W.avg>=11?"info":"minus")+'">Средняя длина предложения: <b>'+W.avg.toFixed(1)+'</b> слова. '+(W.avg>=15?"Длинные, сложные предложения — характерно для B2.":W.avg>=11?"Предложения средней длины — уровень B1.":"Короткие простые предложения — характерно для A2–B1.")+'</li>');
+    h.push('<li class="'+(W.b2l.length>=3?"plus":W.b2l.length>=1?"info":"minus")+'">Связки уровня B2: '+(W.b2l.length? W.b2l.map(function(x){return "<b>"+x+"</b>";}).join(", ") : "<b>нет</b>")+'. '+(W.b2l.length>=3?"Разнообразные связки — признак B2.":W.b2l.length?"Есть, но немного; на B1 обычно хватает and / but / because / so.":"Используются только базовые связки"+(W.b1l.length?" ("+W.b1l.slice(0,6).join(", ")+")":"")+" — уровень B1.")+'</li>');
+    h.push('<li class="'+(W.types.length>=3?"plus":W.types.length>=1?"info":"minus")+'">Условные предложения в тексте: '+(W.types.length? W.types.map(function(t){return TYPE_NAMES[t]+" ×"+W.cond[t];}).join(", ") : "<b>не найдено</b>")+'. '+(W.types.length>=3?"Вы сами используете три и больше типов — активное владение, а не только узнавание.":W.types.length?"Использовано не всё, что просило задание (обычное, будущее, нереальное, прошлое).":"Задание прямо подсказывало условные предложения, но в тексте их нет — значит, в активной речи они пока не используются.")+'</li>');
+    if(W.condSents.length) h.push('<li class="info">Найденные примеры: '+W.condSents.slice(0,4).map(function(c){ return '<i>«'+esc(c.s)+'»</i> <span class="tag">'+c.t+'</span>'; }).join(" ")+'</li>');
+    if(W.willIf.length) h.push('<li class="minus">Возможная ошибка <b>will / would после if</b>: '+W.willIf.slice(0,3).map(function(s){return '<i>«'+esc(s)+'»</i>';}).join(" ")+' — та же ошибка, что и в грамматической части.</li>');
+    h.push('<li class="'+(W.adv.length>=5?"plus":W.adv.length>=2?"info":"minus")+'">Лексика B2+ (в том числе из подкаста): '+(W.adv.length? W.adv.slice(0,10).map(function(x){return "<b>"+x+"…</b>";}).join(", ") : "<b>не найдена</b>")+'. '+(W.adv.length>=5?"Вы активно используете продвинутую лексику.":W.adv.length>=2?"Немного продвинутой лексики есть.":"Словарь текста в основном базовый.")+'</li>');
+    h.push('<li class="'+(W.ttr>=0.66?"plus":W.ttr>=0.56?"info":"minus")+'">Разнообразие слов (доля неповторяющихся в первых 120 словах): <b>'+Math.round(W.ttr*100)+'%</b>. '+(W.ttr>=0.66?"Высокое разнообразие — мало повторов.":W.ttr>=0.56?"Среднее разнообразие.":"Много повторов одних и тех же слов.")+'</li>');
+    if(W.lowerI>1 || W.noCap>1) h.push('<li class="minus">Оформление: '+(W.lowerI>1?"местоимение <b>I</b> написано со строчной ("+W.lowerI+" раз). ":"")+(W.noCap>1?"предложения начинаются со строчной буквы ("+W.noCap+"). ":"")+'</li>');
+    h.push('<li class="info"><b>Ограничение:</b> автоматический анализ оценивает диапазон (длину предложений, связки, лексику, грамматические конструкции), но не точность каждого предложения. Окончательную оценку письма даёт преподаватель — поэтому в итоговом уровне письмо весит всего 10%.</li>');
+    h.push('</ul></div></div>');
+  } else {
+    h.push('<div class="skill"><div class="skill-head"><h3>Письмо</h3><span class="chip soft">—</span></div><p class="ru">Часть 5 не сдана, поэтому письмо в итоге не учитывается.</p></div>');
+  }
+
+  /* ---- recommendations ---- */
+  var rec = [];
+  if((G.diags.will_if||0) >= 1 || (W && W.willIf.length)) rec.push("Убрать <b>will / would после if</b>: отработать на 20–30 коротких фразах о своей работе (If the client calls, I'll… / If I had more staff, I'd…).");
+  if((G.diags.conf||0) >= 2) rec.push("Разница <b>first vs second</b>: не формы, а смысл — «реально / маловероятно». Упражнение: одну и ту же ситуацию сказать двумя способами и объяснить разницу.");
+  if(pct(T.third) < 0.7 || (G.diags.form||0) >= 2) rec.push("<b>Third conditional</b>: собрать форму had + V3 / would have + V3 и научиться говорить о решениях в прошлом («If I hadn't…, I wouldn't have…»).");
+  if((G.diags.linker||0) >= 1) rec.push("Союзы <b>unless, in case, as long as, provided that</b> — заменители if уровня B2.");
+  if(pct(lb.B2) < 0.65) rec.push("Аудирование B2: слушать подкасты на 3–5 минут и отвечать на вопросы, где ответ сформулирован <b>другими словами</b>; привычка ловить ловушки «слово совпало — смысл нет».");
+  if(pct(vb.B2) < 0.65) rec.push("Лексика B2 по теме «работа, стресс, бизнес»: delegate, prioritise, setback, hands-on, word of mouth и др. — учить в словосочетаниях, а не по одному слову.");
+  if(W && W.b2l.length < 3) rec.push("Письмо: добавить связки B2 (although, however, as a result, whereas, unless) и сложные предложения.");
+  if(!rec.length) rec.push("Серьёзных пробелов на уровне B1–B2 не видно. Следующий шаг — mixed conditionals, инверсия, идиоматика C1 и развёрнутое письмо.");
+  h.push('<div class="reco"><h3>Над чем работать в первую очередь</h3><ol>'+rec.map(function(r){return "<li>"+r+"</li>";}).join("")+'</ol></div>');
+
+  h.push('<details class="method"><summary>Как считается уровень</summary><p style="margin-top:8px">Каждое задание заранее отнесено к уровню (B1, B2 или C1) по шкале CEFR и English Vocabulary / Grammar Profile. Уровень навыка — это самый высокий уровень, задания которого выполнены стабильно: B1 — от 70% заданий B1; «сильный B1» — плюс 40–65% заданий B2; B2 — от 65% заданий B2; дальше учитываются задания C1. Неправильные ответы не просто считаются, а классифицируются: какой вариант выбран и о чём это говорит (например, «will после if» или «ловушка со словами из записи»). Общий итог — взвешенное среднее по навыкам. Это диагностика на одном материале, поэтому её стоит подтвердить разговорной частью на уроке.</p></details>');
+
+  h.push('<div class="check-row" style="justify-content:center;margin-top:18px"><button class="btn primary" id="copyReport">Скопировать отчёт для преподавателя</button></div>');
+
+  var res = $("results");
+  res.innerHTML = '<section class="part" style="display:block"><div class="part-head"><div class="part-no">✓</div><div><h2>Ваши результаты</h2><div class="sub">Подробный разбор по каждому навыку</div></div></div>' + h.join("") + '</section>';
+  res.style.display = "block";
+  $("copyReport").onclick = function(){ copyText(textReport(L,V,G,W,overall)); };
+}
+
+function textReport(L,V,G,W,overall){
+  var mins = Math.round((Date.now() - (S.started||Date.now()))/60000);
+  var out = [];
+  out.push("PLACEMENT CHECK — Spend a Day With Me");
+  out.push("Student: " + ((S.name||"").trim() || "—") + " · " + new Date().toLocaleString("ru-RU") + " · time on page ≈ " + mins + " min");
+  out.push("Overall: " + SCALE[overall] + " (" + SCALE_RU[SCALE[overall]] + "); claimed: B1 (mid)");
+  out.push("");
+  out.push("LISTENING: " + SCALE[L.level] + " | B1 " + fmt(L.B.B1) + " · B2 " + fmt(L.B.B2) + " · C1 " + fmt(L.B.C1) + " | listens: " + S.plays);
+  out.push("  wrong MCQ: " + (L.wrong.map(function(q){ var c=S.listen[q.id]; return q.id+"("+q.level+(c!=null?", chose: "+q.o[c][0]:", no answer")+")"; }).join("; ") || "none"));
+  out.push("  gaps: " + L.gaps.map(function(x){ return (S.gaps[x.g.id]||"—") + (x.r.kind==="right"?" ✓":x.r.kind==="near"?" ≈"+x.g.a[0]:" ✗"+x.g.a[0]); }).join(", "));
+  out.push("VOCABULARY: " + SCALE[V.level] + " | B1 " + fmt(V.B.B1) + " · B2 " + fmt(V.B.B2) + " · C1 " + fmt(V.B.C1));
+  out.push("  wrong: " + (V.wrong.map(function(v){return v.w+" ("+v.lvl+")";}).join(", ") || "none"));
+  out.push("GRAMMAR (conditionals): " + SCALE[G.level] + " | B1 forms " + fmt(G.B.B1) + " · B2 " + fmt(G.B.B2) + " | zero " + fmt(G.T.zero) + ", first " + fmt(G.T.first) + ", second " + fmt(G.T.second) + ", third " + fmt(G.T.third));
+  out.push("  error types: " + (Object.keys(G.diags).map(function(k){ return (GDIAG[k]?GDIAG[k].t:k)+" ×"+G.diags[k]; }).join("; ") || "none"));
+  out.push("  wrong: " + (G.wrong.map(function(q){ var c=S.gram[q.id]; return q.id+" "+q.q.replace(/<[^>]+>/g,"")+" → "+(c!=null?q.o[c][0]:"no answer"); }).join(" | ") || "none"));
+  if(W){
+    out.push("WRITING (auto, indicative): ≈ " + SCALE[W.level] + " | " + W.n + " words, avg sentence " + W.avg.toFixed(1) + ", B2 linkers: " + (W.b2l.join(", ")||"none") + ", conditionals: " + (W.types.join(", ")||"none") + (W.willIf.length?", will/would after if found":""));
+    out.push("--- text ---");
+    out.push(S.writing);
+  } else out.push("WRITING: not submitted");
+  return out.join("\n");
+}
+function copyText(t){
+  function fallback(){ var a=document.createElement("textarea"); a.value=t; a.style.position="fixed"; a.style.opacity="0"; document.body.appendChild(a); a.select(); try{ document.execCommand("copy"); toast("Отчёт скопирован"); }catch(e){ toast("Не удалось скопировать"); } document.body.removeChild(a); }
+  if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(t).then(function(){ toast("Отчёт скопирован"); }, fallback); } else fallback();
+}
+
+$("showResults").onclick = function(){
+  var need = ["listen","gaps","vocab","grammar"].filter(function(k){ return !S.checked[k]; });
+  if(need.length){ toast("Сначала проверьте части " + need.map(function(k){return {listen:"1",gaps:"2",vocab:"3",grammar:"4"}[k];}).join(", ")); return; }
+  if(!S.checked.writing && !ask("Часть 5 (письмо) не сдана. Показать результаты без неё?")) return;
+  S.checked.results = true; save();
+  buildResults();
+  setTimeout(function(){ $("results").scrollIntoView({behavior:"smooth"}); }, 50);
+};
+$("navResults").onclick = function(e){ if(!S.checked.results){ e.preventDefault(); $("showResults").scrollIntoView({behavior:"smooth", block:"center"}); } };
+if(S.checked.results) buildResults();
+
+$("teacherScript").onclick = function(e){ e.preventDefault(); if(ask("Show the full script? (For the teacher only.)\nПоказать полный текст подкаста? Это для преподавателя.")){ $("transcript").classList.add("show"); $("transcript").scrollIntoView({behavior:"smooth"}); } };
+function doReset(e){ if(e) e.preventDefault(); if(ask("Delete all answers and start again?\nУдалить все ответы и начать заново?")){ try{ localStorage.removeItem(KEY); }catch(_){} location.hash=""; location.reload(); } }
+$("resetAll").onclick = doReset;
+$("resetTop").onclick = doReset;
+
+})();
+</script>
+</body>
+</html>

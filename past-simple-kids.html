@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Past Simple — учим вместе! 🕰️</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#F2F7FF;
+    --card:#FFFFFF;
+    --blue:#2E7FE0; --blue-bg:#E4F0FE;
+    --orange:#F28C28; --orange-bg:#FFEEDB;
+    --green:#2FA84F; --green-bg:#E6F7EA;
+    --pink:#E0558B; --pink-bg:#FDE9F1;
+    --purple:#7B5CE0; --purple-bg:#EEE9FD;
+    --red:#E0453F; --red-bg:#FDE8E7;
+    --ink:#262A33;
+    --sub:#6B7280;
+    --line:#DCE6F5;
+    --font-head:"Baloo 2", sans-serif;
+    --font-body:"Nunito", sans-serif;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0; background:var(--bg); color:var(--ink); font-family:var(--font-body); font-size:17px; line-height:1.6;}
+  h1,h2,h3{font-family:var(--font-head); font-weight:700; margin:0 0 .4em;}
+  .wrap{max-width:920px; margin:0 auto; padding:0 20px 90px;}
+  header.hero{
+    text-align:center; padding:40px 20px 28px;
+    background:linear-gradient(180deg,#E3EDFF 0%,var(--bg) 100%);
+    border-bottom:4px dashed var(--blue);
+  }
+  header.hero h1{font-size:2.4rem; color:var(--purple);}
+  header.hero p{color:var(--sub); max-width:580px; margin:0 auto; font-size:1.15rem;}
+  nav.stagebar{
+    position:sticky; top:0; z-index:50; background:rgba(242,247,255,0.97); backdrop-filter:blur(6px);
+    border-bottom:3px solid var(--line); display:flex; gap:8px; flex-wrap:wrap; justify-content:center; padding:10px 10px;
+  }
+  nav.stagebar a{
+    font-family:var(--font-head); font-size:.86rem; font-weight:600; color:var(--purple);
+    text-decoration:none; padding:8px 14px; border-radius:999px; background:var(--purple-bg); white-space:nowrap;
+  }
+  section{padding:42px 0; border-bottom:3px dashed var(--line);}
+  section:last-of-type{border-bottom:none;}
+  .tag{
+    display:inline-block; font-family:var(--font-head); font-size:.9rem; font-weight:700;
+    color:#fff; background:var(--purple); padding:5px 14px; border-radius:999px; margin-bottom:10px;
+  }
+  .sub{color:var(--sub); margin-bottom:20px; max-width:700px; font-size:1.02rem;}
+
+  .rulebox{
+    background:var(--card); border:3px solid var(--purple); border-radius:18px; padding:20px 24px; margin-bottom:16px;
+  }
+  .rulebox h3{color:var(--purple); margin-bottom:8px;}
+  .emoji-row{display:flex; gap:18px; flex-wrap:wrap; margin-top:14px;}
+  .emoji-pill{
+    background:var(--orange-bg); border-radius:14px; padding:10px 16px; font-weight:700; font-size:1.3rem;
+    display:flex; align-items:center; gap:8px; color:var(--orange);
+  }
+  .emoji-pill span.label{font-size:.9rem; font-family:var(--font-body); font-weight:700; color:var(--ink);}
+
+  table.conj{width:100%; border-collapse:collapse; background:var(--card); border-radius:16px; overflow:hidden; box-shadow:0 2px 0 var(--line);}
+  table.conj th{font-family:var(--font-head); background:var(--purple); color:#fff; padding:12px; font-size:1rem;}
+  table.conj td{padding:12px 14px; border-bottom:1px solid var(--line); font-size:1rem;}
+  table.conj tr:last-child td{border-bottom:none;}
+  table.conj td.lab{font-weight:800; color:var(--blue); background:var(--blue-bg);}
+  table.conj .pos{color:var(--green); font-weight:700;}
+  table.conj .neg{color:var(--red); font-weight:700;}
+  table.conj .q{color:var(--purple); font-weight:700;}
+
+  .rulecards{display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:16px; margin:18px 0;}
+  .rulecard{border-radius:16px; padding:16px 18px; color:#fff;}
+  .rulecard h4{font-family:var(--font-head); margin:0 0 8px; font-size:1.05rem;}
+  .rulecard .examples{font-size:.95rem; background:rgba(255,255,255,.18); border-radius:10px; padding:8px 12px; margin-top:8px;}
+  .rc1{background:var(--blue);}
+  .rc2{background:var(--orange);}
+  .rc3{background:var(--purple);}
+  .rc4{background:var(--pink);}
+
+  .verbpool{display:flex; flex-wrap:wrap; gap:10px; margin:16px 0;}
+  .verbchip{
+    padding:10px 16px; border-radius:999px; border:3px solid var(--line); background:var(--card);
+    font-weight:700; cursor:pointer; font-size:1rem;
+  }
+  .verbchip.answered{cursor:default;}
+  .verbchip .answer{display:block; font-size:.82rem; font-weight:700; margin-top:4px;}
+
+  .irrbox{
+    background:var(--pink-bg); border:3px solid var(--pink); border-radius:16px; padding:18px 20px; margin:16px 0;
+  }
+  .irrbox h4{color:var(--pink); margin-bottom:8px;}
+  .irrgrid{display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:10px; margin-top:12px;}
+  .irritem{background:#fff; border-radius:10px; padding:8px 12px; text-align:center; font-weight:700;}
+  .irritem .arrow{color:var(--pink); font-weight:800;}
+
+  .vswrap{display:grid; grid-template-columns:1fr 1fr; gap:18px;}
+  .vsbox{border-radius:16px; padding:18px; }
+  .vsbox.tobe{background:var(--pink-bg); border:3px solid var(--pink);}
+  .vsbox.ps{background:var(--green-bg); border:3px solid var(--green);}
+  .vsbox h4{font-family:var(--font-head); margin-bottom:8px;}
+  .vsbox.tobe h4{color:var(--pink);}
+  .vsbox.ps h4{color:var(--green);}
+  .vsbox ul{padding-left:20px; margin:8px 0;}
+
+  .cardgrid{display:grid; grid-template-columns:repeat(auto-fill, minmax(190px,1fr)); gap:16px;}
+  .flip{perspective:1000px; height:180px; cursor:pointer;}
+  .flip-inner{position:relative; width:100%; height:100%; transition:transform .5s; transform-style:preserve-3d;}
+  .flip.flipped .flip-inner{transform:rotateY(180deg);}
+  .flip-face{position:absolute; inset:0; backface-visibility:hidden; border-radius:16px; border:3px solid var(--purple); display:flex; flex-direction:column; align-items:center; justify-content:center; padding:12px; text-align:center;}
+  .flip-front{background:var(--card); color:var(--purple); font-family:var(--font-head); font-weight:700; font-size:1.3rem;}
+  .flip-front small{display:block; margin-top:8px; font-family:var(--font-body); font-weight:700; color:var(--sub); font-size:.78rem;}
+  .flip-front .tagtype{display:inline-block; margin-top:6px; font-size:.72rem; font-family:var(--font-body); font-weight:800; padding:2px 10px; border-radius:999px;}
+  .tagtype.reg{background:var(--green-bg); color:var(--green);}
+  .tagtype.irr{background:var(--pink-bg); color:var(--pink);}
+  .flip-back{background:var(--purple-bg); transform:rotateY(180deg); font-size:.86rem;}
+  .flip-back .ru{font-family:var(--font-head); font-weight:700; color:var(--purple); font-size:1.05rem;}
+  .flip-back .pastform{color:var(--orange); font-weight:800; margin-top:4px; font-size:1.1rem;}
+  .flip-back .ex{font-size:.8rem; color:var(--ink); margin-top:6px; font-style:italic;}
+
+  .quizrow{margin-bottom:16px; padding:16px 18px; background:var(--card); border:3px solid var(--line); border-radius:16px;}
+  .quizrow p{margin:0 0 10px; font-size:1.05rem; font-weight:700;}
+  .quizopts{display:flex; gap:10px; flex-wrap:wrap;}
+  .quizopts button{
+    border:3px solid var(--purple); background:var(--card); color:var(--purple); font-weight:700;
+    padding:9px 18px; border-radius:999px; cursor:pointer; font-family:var(--font-body); font-size:1rem;
+  }
+  .quizopts button.correct{background:var(--green-bg); border-color:var(--green); color:var(--green);}
+  .quizopts button.wrong{background:var(--red-bg); border-color:var(--red); color:var(--red);}
+
+  .gaprow{display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin-bottom:14px; font-size:1.05rem; font-weight:700;}
+  .gaprow .num{color:var(--blue); min-width:24px;}
+  .gap-input{border:3px solid var(--line); border-radius:10px; padding:7px 12px; font-family:var(--font-body); font-size:1rem; width:120px; font-weight:700; text-align:center;}
+  .gap-input.correct{border-color:var(--green); background:var(--green-bg);}
+  .gap-input.wrong{border-color:var(--red); background:var(--red-bg);}
+  .checkbtn{border:none; background:var(--purple); color:#fff; padding:7px 16px; border-radius:10px; font-weight:700; cursor:pointer; font-family:var(--font-head);}
+
+  .tfrow{display:flex; align-items:center; justify-content:space-between; gap:12px; padding:14px 16px; background:var(--card); border:3px solid var(--line); border-radius:14px; margin-bottom:12px; font-weight:700;}
+  .tfbtns button{border:3px solid var(--line); background:var(--card); font-weight:800; padding:8px 16px; border-radius:999px; cursor:pointer; margin-left:6px; font-family:var(--font-head);}
+  .tfbtns button.correct{background:var(--green-bg); border-color:var(--green); color:var(--green);}
+  .tfbtns button.wrong{background:var(--red-bg); border-color:var(--red); color:var(--red);}
+
+  .buildrow{margin-bottom:26px; padding:16px 18px; background:var(--card); border:3px solid var(--line); border-radius:16px;}
+  .buildrow .prompt{font-weight:700; color:var(--blue); margin-bottom:10px;}
+  .buildanswer{min-height:48px; border:3px dashed var(--purple); border-radius:12px; padding:8px 10px; display:flex; gap:8px; flex-wrap:wrap; margin-bottom:10px; background:var(--purple-bg);}
+  .buildpool{display:flex; gap:8px; flex-wrap:wrap;}
+  .wordchip{background:var(--card); border:3px solid var(--blue); color:var(--blue); font-weight:700; padding:7px 14px; border-radius:999px; cursor:pointer;}
+  .wordchip.used{opacity:.3; pointer-events:none;}
+  .buildanswer .wordchip{border-color:var(--purple); color:var(--purple); cursor:pointer;}
+  .buildresult{font-weight:800; margin-top:6px;}
+  .buildresult.correct{color:var(--green);}
+  .buildresult.wrong{color:var(--red);}
+
+  .sortwrap{display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:16px;}
+  .sortcol{border-radius:16px; padding:14px; min-height:160px;}
+  .sortcol.regcol{background:var(--green-bg); border:3px solid var(--green);}
+  .sortcol.irrcol{background:var(--pink-bg); border:3px solid var(--pink);}
+  .sortcol h4{font-family:var(--font-head); margin-bottom:10px;}
+  .sortcol.regcol h4{color:var(--green);}
+  .sortcol.irrcol h4{color:var(--pink);}
+  .sortpool{display:flex; flex-wrap:wrap; gap:10px; margin-bottom:18px;}
+  .sortitem{background:var(--card); border:3px solid var(--line); border-radius:12px; padding:8px 14px; font-weight:700; cursor:pointer;}
+  .sortitem.used{opacity:0; pointer-events:none;}
+  .sortcol .items span{display:inline-block; background:#fff; border-radius:10px; padding:6px 12px; margin:4px; font-weight:700;}
+  .flash{text-align:center; font-weight:800; color:var(--red); min-height:22px;}
+
+  footer{text-align:center; padding:30px 20px; color:var(--sub); font-size:.9rem;}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <h1>Past Simple 🕰️ Учим вместе!</h1>
+  <p>Правильные и неправильные глаголы, правило, таблица и весёлые задания — чтобы Past Simple запомнился легко!</p>
+</header>
+
+<nav class="stagebar">
+  <a href="#rule">1. Правило</a>
+  <a href="#table">2. Таблица</a>
+  <a href="#endings">3. Окончание -ed</a>
+  <a href="#irregular">4. Неправильные глаголы</a>
+  <a href="#tobe">5. was/were vs did</a>
+  <a href="#cards">6. Карточки</a>
+  <a href="#ex1">7. Выбери форму</a>
+  <a href="#ex2">8. did/was/were</a>
+  <a href="#ex3">9. Правда/неправда</a>
+  <a href="#ex4">10. Собери предложение</a>
+  <a href="#ex5">11. Переведи</a>
+  <a href="#ex6">12. Рассортируй</a>
+</nav>
+
+<div class="wrap">
+
+<section id="rule">
+  <span class="tag">Шаг 1</span>
+  <h2>Что такое Past Simple?</h2>
+  <div class="rulebox">
+    <h3>🧠 Простое правило</h3>
+    <p>Past Simple — это время, которое мы используем, когда говорим о том, что <b>уже закончилось в прошлом</b>. Действие произошло и всё — оно не происходит сейчас.</p>
+    <div class="emoji-row">
+      <div class="emoji-pill">⏪ <span class="label">вчера</span></div>
+      <div class="emoji-pill">📆 <span class="label">на прошлой неделе</span></div>
+      <div class="emoji-pill">✅ <span class="label">уже случилось</span></div>
+    </div>
+    <p style="margin-top:14px;"><b>Слова-подсказки:</b> yesterday (вчера), last week/year (на прошлой неделе/в прошлом году), two days ago (два дня назад), in 2020 (в 2020 году)</p>
+    <p><b>Примеры:</b><br>
+    I played football yesterday. — Я играл в футбол вчера.<br>
+    She went to the cinema last Friday. — Она ходила в кино в прошлую пятницу.</p>
+  </div>
+</section>
+
+<section id="table">
+  <span class="tag">Шаг 2</span>
+  <h2>Таблица: как строим предложения</h2>
+  <p class="sub">Хорошая новость: в Past Simple форма глагола <b>одинаковая для всех</b> — I, you, he, she, it, we, they!</p>
+  <table class="conj">
+    <tr><th></th><th>Утверждение (+)</th><th>Отрицание (−)</th><th>Вопрос (?)</th></tr>
+    <tr><td class="lab">I / You / He / She / It / We / They</td><td class="pos">played / went</td><td class="neg">didn't play / didn't go</td><td class="q">Did ... play? / Did ... go?</td></tr>
+  </table>
+  <p class="sub" style="margin-top:14px;">⚠️ Важно: в отрицании и вопросе с <b>did</b> глагол возвращается в простую (начальную) форму — <b>без -ed</b> и без изменений! Не "didn't played", а "didn't play". Не "Did she went?", а "Did she go?"</p>
+</section>
+
+<section id="endings">
+  <span class="tag">Шаг 3</span>
+  <h2>Окончание -ed у правильных глаголов</h2>
+  <p class="sub">Правильные глаголы (regular verbs) в прошедшем времени получают окончание <b>-ed</b>. Но есть четыре маленьких правила написания:</p>
+  <div class="rulecards">
+    <div class="rulecard rc1">
+      <h4>1️⃣ Обычный глагол → + ed</h4>
+      <p>play → play<b>ed</b><br>watch → watch<b>ed</b><br>clean → clean<b>ed</b></p>
+    </div>
+    <div class="rulecard rc2">
+      <h4>2️⃣ Глагол уже на -e → только + d</h4>
+      <p>like → like<b>d</b><br>dance → dance<b>d</b><br>hope → hope<b>d</b></p>
+    </div>
+    <div class="rulecard rc3">
+      <h4>3️⃣ Согласная + y → меняем y на ied</h4>
+      <p>study → stud<b>ied</b><br>carry → carr<b>ied</b><br>try → tr<b>ied</b></p>
+      <div class="examples">А если перед y гласная — просто +ed: play → played, stay → stayed</div>
+    </div>
+    <div class="rulecard rc4">
+      <h4>4️⃣ Короткий глагол (согл-гл-согл) → удваиваем последнюю букву + ed</h4>
+      <p>stop → stop<b>p</b>ed<br>plan → plan<b>n</b>ed<br>chat → chat<b>t</b>ed</p>
+    </div>
+  </div>
+
+  <h3 style="margin-top:22px;">🎮 Тренажёр: кликни на глагол и узнай правильную форму</h3>
+  <p class="sub">Нажми на карточку — появится правильная форма прошедшего времени.</p>
+  <div class="verbpool" id="endingPool"></div>
+</section>
+
+<section id="irregular">
+  <span class="tag">Шаг 4</span>
+  <h2>Неправильные глаголы (irregular verbs)</h2>
+  <div class="irrbox">
+    <h4>⚡ Эти глаголы не слушаются правил!</h4>
+    <p>У некоторых глаголов форма прошедшего времени совсем другая — её нужно просто <b>запомнить наизусть</b>. Правило -ed тут не работает!</p>
+    <div class="irrgrid">
+      <div class="irritem">go <span class="arrow">→</span> went</div>
+      <div class="irritem">eat <span class="arrow">→</span> ate</div>
+      <div class="irritem">see <span class="arrow">→</span> saw</div>
+      <div class="irritem">have <span class="arrow">→</span> had</div>
+      <div class="irritem">do <span class="arrow">→</span> did</div>
+      <div class="irritem">make <span class="arrow">→</span> made</div>
+      <div class="irritem">write <span class="arrow">→</span> wrote</div>
+      <div class="irritem">read <span class="arrow">→</span> read</div>
+      <div class="irritem">give <span class="arrow">→</span> gave</div>
+      <div class="irritem">take <span class="arrow">→</span> took</div>
+      <div class="irritem">come <span class="arrow">→</span> came</div>
+      <div class="irritem">run <span class="arrow">→</span> ran</div>
+      <div class="irritem">sit <span class="arrow">→</span> sat</div>
+      <div class="irritem">drink <span class="arrow">→</span> drank</div>
+      <div class="irritem">buy <span class="arrow">→</span> bought</div>
+      <div class="irritem">think <span class="arrow">→</span> thought</div>
+      <div class="irritem">know <span class="arrow">→</span> knew</div>
+      <div class="irritem">get <span class="arrow">→</span> got</div>
+      <div class="irritem">say <span class="arrow">→</span> said</div>
+      <div class="irritem">find <span class="arrow">→</span> found</div>
+    </div>
+    <p style="margin-top:14px;">☝️ Но даже с неправильными глаголами отрицание и вопрос строятся через <b>did</b> + начальная форма: <b>didn't go</b> (а не "didn't went"), <b>Did she go?</b> (а не "Did she went?").</p>
+  </div>
+</section>
+
+<section id="tobe">
+  <span class="tag">Шаг 5</span>
+  <h2>was / were и did — в чём разница?</h2>
+  <div class="rulebox">
+    <p><b>was / were</b> — это прошедшее время глагола <b>to be</b> (am/is/are → was/were). Он сам по себе главный в предложении, помощник did ему не нужен.</p>
+    <p><b>did</b> — это помощник для Past Simple с обычными глаголами (play, go, eat...) в вопросах и отрицаниях.</p>
+  </div>
+  <div class="vswrap">
+    <div class="vsbox tobe">
+      <h4>🩷 was / were (прошлое от to be)</h4>
+      <ul>
+        <li>I <b>was</b> at home. (Я был дома.)</li>
+        <li>She <b>was</b> happy. (Она была счастлива.)</li>
+        <li>They <b>were</b> at school. (Они были в школе.)</li>
+      </ul>
+      <p>❌ Отрицание: I <b>wasn't</b> tired. (НЕ "I didn't was tired"!)<br>
+      ❓ Вопрос: <b>Were</b> they happy? (НЕ "Did they were happy"!)</p>
+    </div>
+    <div class="vsbox ps">
+      <h4>💚 Past Simple (played, went, ate...)</h4>
+      <ul>
+        <li>I <b>played</b> football. (Я играл в футбол.)</li>
+        <li>She <b>went</b> to the shop. (Она пошла в магазин.)</li>
+        <li>They <b>ate</b> pizza. (Они ели пиццу.)</li>
+      </ul>
+      <p>❌ Отрицание: I <b>didn't play</b> chess.<br>
+      ❓ Вопрос: <b>Did</b> she <b>go</b> home?</p>
+    </div>
+  </div>
+</section>
+
+<section id="cards">
+  <span class="tag">Шаг 6</span>
+  <h2>Карточки-перевёртыши 🔄</h2>
+  <p class="sub">Нажми на карточку — увидишь перевод, прошедшую форму и пример. Зелёная метка — правильный глагол, розовая — неправильный.</p>
+  <div class="cardgrid" id="cardGrid"></div>
+</section>
+
+<section id="ex1">
+  <span class="tag">Упражнение 1</span>
+  <h2>Выбери правильную форму глагола</h2>
+  <div id="quizList"></div>
+</section>
+
+<section id="ex2">
+  <span class="tag">Упражнение 2</span>
+  <h2>Вставь did, was или were</h2>
+  <div id="gapList"></div>
+</section>
+
+<section id="ex3">
+  <span class="tag">Упражнение 3</span>
+  <h2>Правда или неправда? 🤔</h2>
+  <div id="tfList"></div>
+</section>
+
+<section id="ex4">
+  <span class="tag">Упражнение 4</span>
+  <h2>Собери предложение из слов</h2>
+  <p class="sub">Кликай на слова по порядку, чтобы собрать правильное предложение.</p>
+  <div id="buildList"></div>
+</section>
+
+<section id="ex5">
+  <span class="tag">Упражнение 5</span>
+  <h2>Переведи на английский</h2>
+  <div id="translateList"></div>
+</section>
+
+<section id="ex6">
+  <span class="tag">Упражнение 6</span>
+  <h2>Рассортируй: правильный или неправильный глагол?</h2>
+  <p class="sub">Нажми на глагол в прошедшем времени, а потом — на нужную колонку.</p>
+  <div class="sortpool" id="sortPool"></div>
+  <div class="flash" id="sortFlash"></div>
+  <div class="sortwrap">
+    <div class="sortcol regcol" data-key="reg"><h4>💚 Правильный (+ed)</h4><div class="items"></div></div>
+    <div class="sortcol irrcol" data-key="irr"><h4>🩷 Неправильный</h4><div class="items"></div></div>
+  </div>
+</section>
+
+</div>
+
+<footer>Past Simple для детей · We Talk 🕰️</footer>
+
+<script>
+function shuffle(arr){const a=[...arr]; for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]];} return a;}
+
+/* ---- endings trainer ---- */
+const endingWords = [
+  {v:"play", form:"played", note:"обычный глагол +ed"},
+  {v:"watch", form:"watched", note:"обычный глагол +ed"},
+  {v:"clean", form:"cleaned", note:"обычный глагол +ed"},
+  {v:"like", form:"liked", note:"глагол на -e → +d"},
+  {v:"dance", form:"danced", note:"глагол на -e → +d"},
+  {v:"hope", form:"hoped", note:"глагол на -e → +d"},
+  {v:"study", form:"studied", note:"согласная+y → ied"},
+  {v:"carry", form:"carried", note:"согласная+y → ied"},
+  {v:"try", form:"tried", note:"согласная+y → ied"},
+  {v:"stop", form:"stopped", note:"удвоение согласной +ed"},
+  {v:"plan", form:"planned", note:"удвоение согласной +ed"},
+  {v:"chat", form:"chatted", note:"удвоение согласной +ed"}
+];
+const endingPool = document.getElementById('endingPool');
+endingWords.forEach(w=>{
+  const d=document.createElement('div');
+  d.className='verbchip';
+  d.innerHTML = w.v;
+  d.addEventListener('click',()=>{
+    if(d.classList.contains('answered')) return;
+    d.classList.add('answered');
+    d.innerHTML = w.v + `<span class="answer">→ ${w.form} (${w.note})</span>`;
+  });
+  endingPool.appendChild(d);
+});
+
+/* ---- flip cards ---- */
+const cardWords = [
+  {en:"play", ru:"играть", past:"played", type:"reg", ex:"He played football yesterday."},
+  {en:"watch", ru:"смотреть", past:"watched", type:"reg", ex:"She watched a film last night."},
+  {en:"study", ru:"учиться, изучать", past:"studied", type:"reg", ex:"He studied English last year."},
+  {en:"stop", ru:"останавливаться", past:"stopped", type:"reg", ex:"The bus stopped near the school."},
+  {en:"go", ru:"идти, ходить", past:"went", type:"irr", ex:"She went to the park yesterday."},
+  {en:"eat", ru:"есть, кушать", past:"ate", type:"irr", ex:"He ate an apple after lunch."},
+  {en:"see", ru:"видеть", past:"saw", type:"irr", ex:"I saw my friend at the shop."},
+  {en:"have", ru:"иметь", past:"had", type:"irr", ex:"They had a party last weekend."},
+  {en:"make", ru:"делать, создавать", past:"made", type:"irr", ex:"She made a cake for her mum."},
+  {en:"come", ru:"приходить", past:"came", type:"irr", ex:"He came home late yesterday."},
+  {en:"take", ru:"брать", past:"took", type:"irr", ex:"She took her bag and left."},
+  {en:"write", ru:"писать", past:"wrote", type:"irr", ex:"He wrote a letter to his friend."}
+];
+const cardGrid=document.getElementById('cardGrid');
+cardWords.forEach(w=>{
+  const el=document.createElement('div'); el.className='flip';
+  el.innerHTML=`<div class="flip-inner">
+    <div class="flip-face flip-front">${w.en}<span class="tagtype ${w.type}">${w.type==='reg'?'правильный':'неправильный'}</span><small>нажми!</small></div>
+    <div class="flip-face flip-back">
+      <div class="ru">${w.ru}</div>
+      <div class="pastform">${w.past}</div>
+      <div class="ex">${w.ex}</div>
+    </div>
+  </div>`;
+  el.addEventListener('click',()=>el.classList.toggle('flipped'));
+  cardGrid.appendChild(el);
+});
+
+/* ---- ex1: choose correct form ---- */
+const quiz = [
+  {text:"She ___ football yesterday.", options:["play","played"], ans:"played"},
+  {text:"I ___ to the park last Sunday.", options:["go","went"], ans:"went"},
+  {text:"He ___ a cake for his mum.", options:["make","made"], ans:"made"},
+  {text:"They ___ a film last night.", options:["watch","watched"], ans:"watched"},
+  {text:"We ___ English yesterday.", options:["study","studied"], ans:"studied"},
+  {text:"She ___ a letter to her friend.", options:["write","wrote"], ans:"wrote"},
+  {text:"The car ___ near the shop.", options:["stop","stopped"], ans:"stopped"},
+  {text:"He ___ an apple after lunch.", options:["eat","ate"], ans:"ate"}
+];
+const quizList=document.getElementById('quizList');
+quiz.forEach((q,i)=>{
+  const row=document.createElement('div'); row.className='quizrow';
+  const opts=shuffle(q.options);
+  row.innerHTML=`<p>${i+1}. ${q.text}</p><div class="quizopts"></div>`;
+  const optsDiv=row.querySelector('.quizopts');
+  opts.forEach(o=>{
+    const b=document.createElement('button'); b.textContent=o;
+    b.addEventListener('click',()=>{
+      if(optsDiv.querySelector('.correct')) return;
+      if(o===q.ans){ b.classList.add('correct'); }
+      else { b.classList.add('wrong'); setTimeout(()=>b.classList.remove('wrong'),600); }
+    });
+    optsDiv.appendChild(b);
+  });
+  quizList.appendChild(row);
+});
+
+/* ---- ex2: did/was/were ---- */
+const gaps = [
+  {text:"___ you play football yesterday?", ans:"did"},
+  {text:"She ___ happy last weekend.", ans:"was"},
+  {text:"___ they go to school on Monday?", ans:"did"},
+  {text:"We ___ at the cinema last night.", ans:"were"},
+  {text:"He ___ tired after school.", ans:"was"},
+  {text:"___ she watch TV yesterday?", ans:"did"},
+  {text:"My parents ___ at home all day.", ans:"were"},
+  {text:"___ you eat breakfast this morning?", ans:"did"}
+];
+const gapList=document.getElementById('gapList');
+gaps.forEach((g,i)=>{
+  const [before, after] = g.text.split('___');
+  const row=document.createElement('div'); row.className='gaprow';
+  row.innerHTML=`<span class="num">${i+1}.</span><span>${before}</span>
+    <input class="gap-input" type="text" data-ans="${g.ans}"><span>${after}</span>
+    <button class="checkbtn">Проверить</button>`;
+  const input=row.querySelector('input'); const btn=row.querySelector('button');
+  btn.addEventListener('click',()=>{
+    const val=input.value.trim().toLowerCase();
+    if(val===g.ans){ input.classList.remove('wrong'); input.classList.add('correct'); }
+    else { input.classList.remove('correct'); input.classList.add('wrong'); }
+  });
+  gapList.appendChild(row);
+});
+
+/* ---- ex3: true/false ---- */
+const tf = [
+  {text:"В Past Simple форма глагола одинаковая для всех: I played, she played, they played.", ans:true},
+  {text:"У правильных глаголов есть только одно правило написания -ed, без исключений.", ans:false},
+  {text:"В вопросе с did глагол ставится в прошедшем времени: Did she went?", ans:false},
+  {text:"go в прошедшем времени — went, и это нужно просто запомнить.", ans:true},
+  {text:"was/were — это прошедшее время глагола to be.", ans:true},
+  {text:"study в прошедшем времени — studyed.", ans:false}
+];
+const tfList=document.getElementById('tfList');
+tf.forEach((t,i)=>{
+  const row=document.createElement('div'); row.className='tfrow';
+  row.innerHTML=`<span>${i+1}. ${t.text}</span>
+    <span class="tfbtns"><button data-v="true">Правда</button><button data-v="false">Неправда</button></span>`;
+  row.querySelectorAll('button').forEach(b=>{
+    b.addEventListener('click',()=>{
+      if(row.querySelector('.correct')) return;
+      const chosen = b.dataset.v === 'true';
+      if(chosen === t.ans){ b.classList.add('correct'); }
+      else {
+        b.classList.add('wrong');
+        row.querySelectorAll('button').forEach(x=>{ if((x.dataset.v==='true')===t.ans) x.classList.add('correct'); });
+      }
+    });
+  });
+  tfList.appendChild(row);
+});
+
+/* ---- ex4: build the sentence ---- */
+const builds = [
+  {words:["She","played","football","yesterday","."], hintRu:"Она играла в футбол вчера."},
+  {words:["Did","you","go","to","school","?"], hintRu:"Ты ходил в школу? (вопрос)"},
+  {words:["He","didn't","watch","TV","."], hintRu:"Он не смотрел телевизор. (отрицание)"},
+  {words:["Were","they","at","home","?"], hintRu:"Они были дома? (вопрос с were)"},
+  {words:["I","wasn't","tired","."], hintRu:"Я не был уставшим. (отрицание с was)"}
+];
+const buildList=document.getElementById('buildList');
+builds.forEach((b,i)=>{
+  const row=document.createElement('div'); row.className='buildrow';
+  const correctOrder = b.words;
+  row.innerHTML = `<div class="prompt">${i+1}. 🇷🇺 ${b.hintRu}</div>
+    <div class="buildanswer" data-slot="${i}"></div>
+    <div class="buildpool" data-pool="${i}"></div>
+    <div class="buildresult"></div>`;
+  const pool = row.querySelector('.buildpool');
+  const answer = row.querySelector('.buildanswer');
+  const result = row.querySelector('.buildresult');
+  const scrambled = shuffle(correctOrder);
+  let chosen = [];
+  scrambled.forEach((word)=>{
+    const chip=document.createElement('span'); chip.className='wordchip'; chip.textContent=word;
+    chip.addEventListener('click',()=>{
+      if(chip.classList.contains('used')) return;
+      chip.classList.add('used');
+      chosen.push(word);
+      const achip=document.createElement('span'); achip.className='wordchip'; achip.textContent=word;
+      achip.addEventListener('click',()=>{
+        const idx = chosen.indexOf(word);
+        if(idx>-1){ chosen.splice(idx,1); }
+        achip.remove();
+        chip.classList.remove('used');
+        result.textContent='';
+        result.className='buildresult';
+      });
+      answer.appendChild(achip);
+      if(chosen.length === correctOrder.length){
+        const ok = chosen.join(' ') === correctOrder.join(' ');
+        result.textContent = ok ? '✅ Верно!' : '❌ Попробуй ещё раз — нажми на слова в ответе, чтобы убрать их.';
+        result.className = 'buildresult ' + (ok ? 'correct' : 'wrong');
+      }
+    });
+    pool.appendChild(chip);
+  });
+  buildList.appendChild(row);
+});
+
+/* ---- ex5: translate ---- */
+const translations = [
+  {ru:"Я играл в футбол вчера.", answers:["i played football yesterday"]},
+  {ru:"Она ходила в школу в понедельник.", answers:["she went to school on monday"]},
+  {ru:"Он не ел завтрак сегодня утром.", answers:["he didn't eat breakfast this morning","he did not eat breakfast this morning"]},
+  {ru:"Тебе понравился фильм?", answers:["did you like the film"]},
+  {ru:"Они были дома вчера.", answers:["they were at home yesterday"]}
+];
+const translateList=document.getElementById('translateList');
+translations.forEach((t,i)=>{
+  const row=document.createElement('div'); row.className='gaprow'; row.style.flexDirection='column'; row.style.alignItems='flex-start';
+  row.innerHTML = `<span><span class="num">${i+1}.</span> 🇷🇺 ${t.ru}</span>
+    <span style="display:flex; gap:10px; align-items:center; margin-top:6px;">
+      <input class="gap-input" style="width:300px; text-align:left;" type="text" placeholder="введи перевод...">
+      <button class="checkbtn">Проверить</button>
+    </span>`;
+  const input=row.querySelector('input'); const btn=row.querySelector('button');
+  btn.addEventListener('click',()=>{
+    const val=input.value.trim().toLowerCase().replace(/[.!?]/g,'');
+    const ok = t.answers.some(a=>a===val);
+    if(ok){ input.classList.remove('wrong'); input.classList.add('correct'); }
+    else { input.classList.remove('correct'); input.classList.add('wrong'); }
+  });
+  translateList.appendChild(row);
+});
+
+/* ---- ex6: sort regular vs irregular ---- */
+const sortVerbs = [
+  {text:"played", key:"reg"},
+  {text:"went", key:"irr"},
+  {text:"watched", key:"reg"},
+  {text:"ate", key:"irr"},
+  {text:"studied", key:"reg"},
+  {text:"wrote", key:"irr"},
+  {text:"stopped", key:"reg"},
+  {text:"had", key:"irr"}
+];
+const sortPool=document.getElementById('sortPool');
+const sortFlash=document.getElementById('sortFlash');
+let selectedSort=null;
+shuffle(sortVerbs).forEach(s=>{
+  const d=document.createElement('div'); d.className='sortitem'; d.textContent=s.text; d.dataset.key=s.key;
+  d.addEventListener('click',()=>{
+    if(d.classList.contains('used')) return;
+    if(selectedSort) selectedSort.style.outline='';
+    selectedSort=d; d.style.outline='3px solid var(--purple)';
+  });
+  sortPool.appendChild(d);
+});
+document.querySelectorAll('.sortcol').forEach(col=>{
+  col.addEventListener('click',()=>{
+    if(!selectedSort) return;
+    if(selectedSort.dataset.key === col.dataset.key){
+      const span=document.createElement('span'); span.textContent=selectedSort.textContent;
+      col.querySelector('.items').appendChild(span);
+      selectedSort.classList.add('used');
+      selectedSort.style.outline='';
+      selectedSort=null;
+      sortFlash.textContent='';
+    } else {
+      sortFlash.textContent='Не туда — попробуй другую колонку!';
+      setTimeout(()=>sortFlash.textContent='',1200);
+    }
+  });
+});
+</script>
+
+</body>
+</html>
