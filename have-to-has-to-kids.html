@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Have to / Has to 👑💖</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&family=Grand+Hotel&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FFF1F7;
+    --card:#FFFFFF;
+    --pink:#FF6FA5; --pink-bg:#FFE3EF;
+    --gold:#E8A317; --gold-bg:#FFF2D6;
+    --lav:#9B6BE0; --lav-bg:#F1E8FD;
+    --rose:#FF93BE; --rose-bg:#FFEDF4;
+    --green:#2FA84F; --green-bg:#E6F7EA;
+    --red:#E0453F; --red-bg:#FDE8E7;
+    --ink:#3A2A33;
+    --sub:#8A6B7A;
+    --line:#FBD6E6;
+    --font-title:"Grand Hotel", cursive;
+    --font-head:"Baloo 2", sans-serif;
+    --font-body:"Nunito", sans-serif;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0; background:var(--bg); color:var(--ink); font-family:var(--font-body); font-size:17px; line-height:1.6;}
+  h2,h3{font-family:var(--font-head); font-weight:700; margin:0 0 .4em;}
+  .wrap{max-width:900px; margin:0 auto; padding:0 20px 90px;}
+  header.hero{
+    text-align:center; padding:36px 20px 26px;
+    background:linear-gradient(180deg,#FFD9E9 0%,var(--bg) 100%);
+    border-bottom:4px dashed var(--pink);
+  }
+  header.hero h1{font-family:var(--font-title); font-size:3.6rem; color:var(--pink); margin:0 0 .1em; text-shadow:2px 2px 0 var(--gold-bg);}
+  header.hero p{color:var(--sub); max-width:560px; margin:0 auto; font-size:1.12rem; font-weight:700;}
+  nav.stagebar{
+    position:sticky; top:0; z-index:50; background:rgba(255,241,247,0.97); backdrop-filter:blur(6px);
+    border-bottom:3px solid var(--line); display:flex; gap:8px; flex-wrap:wrap; justify-content:center; padding:10px 10px;
+  }
+  nav.stagebar a{
+    font-family:var(--font-head); font-size:.85rem; font-weight:600; color:var(--pink);
+    text-decoration:none; padding:8px 14px; border-radius:999px; background:var(--pink-bg); white-space:nowrap;
+  }
+  section{padding:38px 0; border-bottom:3px dashed var(--line);}
+  section:last-of-type{border-bottom:none;}
+  .tag{
+    display:inline-block; font-family:var(--font-head); font-size:.9rem; font-weight:700;
+    color:#fff; background:var(--pink); padding:5px 14px; border-radius:999px; margin-bottom:10px;
+  }
+  .sub{color:var(--sub); margin-bottom:18px; max-width:700px; font-size:1.02rem;}
+
+  .rulebox{
+    background:var(--card); border:3px solid var(--pink); border-radius:20px; padding:20px 24px; margin-bottom:16px;
+  }
+  .rulebox h3{color:var(--pink); margin-bottom:8px;}
+  .emoji-row{display:flex; gap:16px; flex-wrap:wrap; margin-top:14px;}
+  .emoji-pill{
+    background:var(--gold-bg); border-radius:14px; padding:10px 16px; font-weight:700; font-size:1.3rem;
+    display:flex; align-items:center; gap:8px; color:var(--gold);
+  }
+  .emoji-pill span.label{font-size:.9rem; font-family:var(--font-body); font-weight:700; color:var(--ink);}
+  .note{background:var(--lav-bg); border:3px solid var(--lav); border-radius:16px; padding:14px 18px; margin-top:14px; font-weight:700; color:var(--ink);}
+  .note b{color:var(--lav);}
+
+  /* pronoun table */
+  .pronounrow{display:flex; gap:10px; flex-wrap:wrap; margin:16px 0;}
+  .pronounrow button{
+    font-family:var(--font-head); font-weight:700; font-size:1.05rem; border:3px solid var(--pink); background:var(--card);
+    color:var(--pink); padding:12px 18px; border-radius:999px; cursor:pointer; min-width:70px;
+  }
+  .pronounrow button.active{background:var(--pink); color:#fff;}
+  .resultpanel{
+    background:var(--card); border:3px solid var(--lav); border-radius:18px; padding:20px 22px; min-height:170px;
+  }
+  .resultpanel .formbig{font-family:var(--font-head); font-size:1.3rem; color:var(--lav); margin-bottom:12px;}
+  .resultpanel .row{margin-bottom:10px; font-size:1.02rem;}
+  .resultpanel .row b{color:var(--pink);}
+  .resultpanel .ru{color:var(--sub); font-style:italic; font-size:.92rem;}
+
+  .cardgrid{display:grid; grid-template-columns:repeat(auto-fill, minmax(190px,1fr)); gap:16px;}
+  .flip{perspective:1000px; height:170px; cursor:pointer;}
+  .flip-inner{position:relative; width:100%; height:100%; transition:transform .5s; transform-style:preserve-3d;}
+  .flip.flipped .flip-inner{transform:rotateY(180deg);}
+  .flip-face{position:absolute; inset:0; backface-visibility:hidden; border-radius:18px; border:3px solid var(--pink); display:flex; flex-direction:column; align-items:center; justify-content:center; padding:12px; text-align:center;}
+  .flip-front{background:var(--card); color:var(--pink); font-family:var(--font-head); font-weight:700; font-size:1.15rem;}
+  .flip-front small{display:block; margin-top:8px; font-family:var(--font-body); font-weight:700; color:var(--sub); font-size:.78rem;}
+  .flip-back{background:var(--pink-bg); transform:rotateY(180deg); font-size:.86rem;}
+  .flip-back .ru{font-family:var(--font-head); font-weight:700; color:var(--pink); font-size:1.02rem;}
+  .flip-back .ex{font-size:.82rem; color:var(--ink); margin-top:8px; font-style:italic;}
+
+  .quizrow{margin-bottom:16px; padding:16px 18px; background:var(--card); border:3px solid var(--line); border-radius:18px;}
+  .quizrow p{margin:0 0 10px; font-size:1.03rem; font-weight:700;}
+  .quizopts{display:flex; gap:10px; flex-wrap:wrap;}
+  .quizopts button{
+    border:3px solid var(--pink); background:var(--card); color:var(--pink); font-weight:700;
+    padding:9px 18px; border-radius:999px; cursor:pointer; font-family:var(--font-body); font-size:1rem;
+  }
+  .quizopts button.correct{background:var(--green-bg); border-color:var(--green); color:var(--green);}
+  .quizopts button.wrong{background:var(--red-bg); border-color:var(--red); color:var(--red);}
+
+  footer{text-align:center; padding:30px 20px; color:var(--sub); font-size:.9rem;}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <h1>Have to / Has to</h1>
+  <p>👑 Волшебное правило про «я должна» — учим вместе, принцесса! 💖</p>
+</header>
+
+<nav class="stagebar">
+  <a href="#rule">1. Правило</a>
+  <a href="#table">2. Волшебная табличка</a>
+  <a href="#cards">3. Карточки</a>
+  <a href="#ex1">4. Упражнение 1</a>
+  <a href="#ex2">5. Упражнение 2</a>
+</nav>
+
+<div class="wrap">
+
+<section id="rule">
+  <span class="tag">Шаг 1 ✨</span>
+  <h2>Что значит have to / has to?</h2>
+  <div class="rulebox">
+    <h3>👑 Простое правило</h3>
+    <p><b>have to</b> и <b>has to</b> переводятся как «<b>должен / должна / обязан</b>», «<b>нужно</b>». Мы используем их, когда что-то <b>обязательно нужно сделать</b> — это не наш выбор, а правило или обязанность.</p>
+    <div class="emoji-row">
+      <div class="emoji-pill">📏 <span class="label">это правило</span></div>
+      <div class="emoji-pill">✅ <span class="label">обязательно</span></div>
+      <div class="emoji-pill">👑 <span class="label">не выбор, а надо!</span></div>
+    </div>
+    <p style="margin-top:14px;"><b>Примеры:</b><br>
+    I <b>have to</b> go to school. — Я <b>должна</b> ходить в школу.<br>
+    She <b>has to</b> clean her room. — Она <b>должна</b> убирать свою комнату.</p>
+    <div class="note">
+      <b>Главный секрет:</b> с I, you, we, they — говорим <b>have to</b>.<br>
+      С he, she, it — говорим <b>has to</b> (добавляем -s, как в Present Simple!).
+    </div>
+  </div>
+</section>
+
+<section id="table">
+  <span class="tag">Шаг 2 ✨</span>
+  <h2>Волшебная табличка 🪄</h2>
+  <p class="sub">Нажми на любое слово (I, you, he, she...) — и увидишь внизу, как составить предложение, вопрос и отрицание с этим словом!</p>
+  <div class="pronounrow" id="pronounRow"></div>
+  <div class="resultpanel" id="resultPanel"></div>
+</section>
+
+<section id="cards">
+  <span class="tag">Шаг 3 ✨</span>
+  <h2>Карточки-перевёртыши 🔄</h2>
+  <p class="sub">Нажми на карточку — увидишь перевод и пример с have to / has to.</p>
+  <div class="cardgrid" id="cardGrid"></div>
+</section>
+
+<section id="ex1">
+  <span class="tag">Упражнение 1 💕</span>
+  <h2>Выбери have to или has to</h2>
+  <div id="quizList1"></div>
+</section>
+
+<section id="ex2">
+  <span class="tag">Упражнение 2 💕</span>
+  <h2>Вопрос или отрицание — выбери правильное слово</h2>
+  <div id="quizList2"></div>
+</section>
+
+</div>
+
+<footer>Have to / Has to для принцесс 👑 · We Talk</footer>
+
+<script>
+function shuffle(arr){const a=[...arr]; for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]];} return a;}
+
+/* ---- pronoun table ---- */
+const pronounData = [
+  {p:"I", form:"have", verb:"do my homework", ru:"Я должна делать домашнее задание.", qword:"Do", negword:"don't"},
+  {p:"You", form:"have", verb:"brush your teeth", ru:"Ты должна чистить зубы.", qword:"Do", negword:"don't"},
+  {p:"He", form:"has", verb:"feed the dog", ru:"Он должен кормить собаку.", qword:"Does", negword:"doesn't"},
+  {p:"She", form:"has", verb:"clean her room", ru:"Она должна убирать свою комнату.", qword:"Does", negword:"doesn't"},
+  {p:"It", form:"has", verb:"go for a walk", ru:"Он (питомец) должен гулять.", qword:"Does", negword:"doesn't"},
+  {p:"We", form:"have", verb:"wear a uniform", ru:"Мы должны носить форму.", qword:"Do", negword:"don't"},
+  {p:"They", form:"have", verb:"finish their homework", ru:"Они должны закончить домашнее задание.", qword:"Do", negword:"don't"}
+];
+const pronounRow=document.getElementById('pronounRow');
+const resultPanel=document.getElementById('resultPanel');
+
+function showPronoun(d){
+  resultPanel.innerHTML = `
+    <div class="formbig">${d.p} ${d.form} to ${d.verb}. 👑</div>
+    <div class="row">✅ <b>Утверждение:</b> ${d.p} ${d.form} to ${d.verb}.</div>
+    <div class="row">❓ <b>Вопрос:</b> ${d.qword} ${d.p.toLowerCase()==='i'?'I':d.p} have to ${d.verb}?</div>
+    <div class="row">🚫 <b>Отрицание:</b> ${d.p} ${d.negword} have to ${d.verb}.</div>
+    <div class="ru">🇷🇺 ${d.ru}</div>
+  `;
+}
+pronounData.forEach((d,i)=>{
+  const b=document.createElement('button');
+  b.textContent=d.p;
+  if(i===0) b.classList.add('active');
+  b.addEventListener('click',()=>{
+    document.querySelectorAll('#pronounRow button').forEach(x=>x.classList.remove('active'));
+    b.classList.add('active');
+    showPronoun(d);
+  });
+  pronounRow.appendChild(b);
+});
+showPronoun(pronounData[0]);
+
+/* ---- flip cards ---- */
+const cardWords = [
+  {en:"do my homework", ru:"делать домашнее задание", ex:"I have to do my homework every day."},
+  {en:"clean my room", ru:"убирать свою комнату", ex:"She has to clean her room on Saturday."},
+  {en:"brush my teeth", ru:"чистить зубы", ex:"You have to brush your teeth twice a day."},
+  {en:"feed the pet", ru:"кормить питомца", ex:"He has to feed the dog every morning."},
+  {en:"make my bed", ru:"заправлять кровать", ex:"I have to make my bed before school."},
+  {en:"go to bed early", ru:"ложиться спать рано", ex:"We have to go to bed early on school nights."},
+  {en:"wash the dishes", ru:"мыть посуду", ex:"She has to wash the dishes after dinner."},
+  {en:"tidy my toys", ru:"убирать игрушки", ex:"He has to tidy his toys before dinner."}
+];
+const cardGrid=document.getElementById('cardGrid');
+cardWords.forEach(w=>{
+  const el=document.createElement('div'); el.className='flip';
+  el.innerHTML=`<div class="flip-inner">
+    <div class="flip-face flip-front">${w.en}<small>нажми! 💖</small></div>
+    <div class="flip-face flip-back">
+      <div class="ru">${w.ru}</div>
+      <div class="ex">${w.ex}</div>
+    </div>
+  </div>`;
+  el.addEventListener('click',()=>el.classList.toggle('flipped'));
+  cardGrid.appendChild(el);
+});
+
+/* ---- ex1: have or has ---- */
+const quiz1 = [
+  {text:"I ___ to go to school. (я должна)", options:["have","has"], ans:"have"},
+  {text:"She ___ to clean her room. (она должна)", options:["has","have"], ans:"has"},
+  {text:"They ___ to finish their homework. (они должны)", options:["have","has"], ans:"have"},
+  {text:"He ___ to feed the dog. (он должен)", options:["has","have"], ans:"has"},
+  {text:"We ___ to wear a uniform. (мы должны)", options:["have","has"], ans:"have"},
+  {text:"The cat ___ to eat every day. (кот должен)", options:["has","have"], ans:"has"},
+  {text:"You ___ to brush your teeth. (ты должна)", options:["have","has"], ans:"have"},
+  {text:"My brother ___ to do his homework. (мой брат должен)", options:["has","have"], ans:"has"}
+];
+const quizList1=document.getElementById('quizList1');
+quiz1.forEach((q,i)=>{
+  const row=document.createElement('div'); row.className='quizrow';
+  const opts=shuffle(q.options);
+  row.innerHTML=`<p>${i+1}. ${q.text}</p><div class="quizopts"></div>`;
+  const optsDiv=row.querySelector('.quizopts');
+  opts.forEach(o=>{
+    const b=document.createElement('button'); b.textContent=o;
+    b.addEventListener('click',()=>{
+      if(optsDiv.querySelector('.correct')) return;
+      if(o===q.ans){ b.classList.add('correct'); }
+      else { b.classList.add('wrong'); setTimeout(()=>b.classList.remove('wrong'),600); }
+    });
+    optsDiv.appendChild(b);
+  });
+  quizList1.appendChild(row);
+});
+
+/* ---- ex2: question/negative words ---- */
+const quiz2 = [
+  {text:"___ you have to wake up early? (вопрос)", options:["Do","Does"], ans:"Do"},
+  {text:"___ he have to feed the dog? (вопрос)", options:["Does","Do"], ans:"Does"},
+  {text:"She ___ have to cook dinner. (отрицание — не обязательно)", options:["doesn't","don't"], ans:"doesn't"},
+  {text:"We ___ have to wear a uniform on Friday. (отрицание)", options:["don't","doesn't"], ans:"don't"},
+  {text:"___ they have to clean the house? (вопрос)", options:["Do","Does"], ans:"Do"},
+  {text:"He ___ have to wash the dishes today. (отрицание)", options:["doesn't","don't"], ans:"doesn't"}
+];
+const quizList2=document.getElementById('quizList2');
+quiz2.forEach((q,i)=>{
+  const row=document.createElement('div'); row.className='quizrow';
+  const opts=shuffle(q.options);
+  row.innerHTML=`<p>${i+1}. ${q.text}</p><div class="quizopts"></div>`;
+  const optsDiv=row.querySelector('.quizopts');
+  opts.forEach(o=>{
+    const b=document.createElement('button'); b.textContent=o;
+    b.addEventListener('click',()=>{
+      if(optsDiv.querySelector('.correct')) return;
+      if(o===q.ans){ b.classList.add('correct'); }
+      else { b.classList.add('wrong'); setTimeout(()=>b.classList.remove('wrong'),600); }
+    });
+    optsDiv.appendChild(b);
+  });
+  quizList2.appendChild(row);
+});
+</script>
+
+</body>
+</html>
