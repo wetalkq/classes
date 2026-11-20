@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Have to / Has to 👑💖</title>
+<title>Have to / Has to 💖🌸</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&family=Grand+Hotel&display=swap" rel="stylesheet">
@@ -107,7 +107,7 @@
 
 <header class="hero">
   <h1>Have to / Has to</h1>
-  <p>👑 Волшебное правило про «я должна» — учим вместе! 💖</p>
+  <p>💖 Волшебное правило про «я должна» — учим вместе! 🌸🎀</p>
 </header>
 
 <nav class="stagebar">
@@ -121,15 +121,15 @@
 <div class="wrap">
 
 <section id="rule">
-  <span class="tag">Шаг 1 ✨</span>
+  <span class="tag">Шаг 1 🎀</span>
   <h2>Что значит have to / has to?</h2>
   <div class="rulebox">
-    <h3>👑 Простое правило</h3>
+    <h3>🌸 Простое правило</h3>
     <p><b>have to</b> и <b>has to</b> переводятся как «<b>должен / должна / обязан</b>», «<b>нужно</b>». Мы используем их, когда что-то <b>обязательно нужно сделать</b> — это не наш выбор, а правило или обязанность.</p>
     <div class="emoji-row">
       <div class="emoji-pill">📏 <span class="label">это правило</span></div>
       <div class="emoji-pill">✅ <span class="label">обязательно</span></div>
-      <div class="emoji-pill">👑 <span class="label">не выбор, а надо!</span></div>
+      <div class="emoji-pill">🩷 <span class="label">не выбор, а надо!</span></div>
     </div>
     <p style="margin-top:14px;"><b>Примеры:</b><br>
     I <b>have to</b> go to school. — Я <b>должна</b> ходить в школу.<br>
@@ -142,7 +142,7 @@
 </section>
 
 <section id="table">
-  <span class="tag">Шаг 2 ✨</span>
+  <span class="tag">Шаг 2 🩷</span>
   <h2>Волшебная табличка 🪄</h2>
   <p class="sub">Нажми на любое слово (I, you, he, she...) — и увидишь внизу, как составить предложение, вопрос и отрицание с этим словом!</p>
   <div class="pronounrow" id="pronounRow"></div>
@@ -150,7 +150,7 @@
 </section>
 
 <section id="cards">
-  <span class="tag">Шаг 3 ✨</span>
+  <span class="tag">Шаг 3 🌷</span>
   <h2>Карточки-перевёртыши 🔄</h2>
   <p class="sub">Нажми на карточку — увидишь перевод и пример с have to / has to.</p>
   <div class="cardgrid" id="cardGrid"></div>
@@ -163,14 +163,14 @@
 </section>
 
 <section id="ex2">
-  <span class="tag">Упражнение 2 💕</span>
+  <span class="tag">Упражнение 2 🦩</span>
   <h2>Вопрос или отрицание — выбери правильное слово</h2>
   <div id="quizList2"></div>
 </section>
 
 </div>
 
-<footer>Have to / Has to 👑 · We Talk</footer>
+<footer>Have to / Has to 🌸🎀 · We Talk</footer>
 
 <script>
 function shuffle(arr){const a=[...arr]; for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]];} return a;}
@@ -190,7 +190,7 @@ const resultPanel=document.getElementById('resultPanel');
 
 function showPronoun(d){
   resultPanel.innerHTML = `
-    <div class="formbig">${d.p} ${d.form} to ${d.verb}. 👑</div>
+    <div class="formbig">${d.p} ${d.form} to ${d.verb}. 🩷</div>
     <div class="row">✅ <b>Утверждение:</b> ${d.p} ${d.form} to ${d.verb}.</div>
     <div class="row">❓ <b>Вопрос:</b> ${d.qword} ${d.p.toLowerCase()==='i'?'I':d.p} have to ${d.verb}?</div>
     <div class="row">🚫 <b>Отрицание:</b> ${d.p} ${d.negword} have to ${d.verb}.</div>
@@ -225,7 +225,7 @@ const cardGrid=document.getElementById('cardGrid');
 cardWords.forEach(w=>{
   const el=document.createElement('div'); el.className='flip';
   el.innerHTML=`<div class="flip-inner">
-    <div class="flip-face flip-front">${w.en}<small>нажми! 💖</small></div>
+    <div class="flip-face flip-front">${w.en}<small>нажми! 🌷</small></div>
     <div class="flip-face flip-back">
       <div class="ru">${w.ru}</div>
       <div class="ex">${w.ex}</div>
