@@ -510,6 +510,14 @@ nav{height:auto}
   .navcta{order:-1;flex:1 1 100%;text-align:center}
   .navlinks{position:static;transform:none;margin:0 auto}
 }
+/* меню по левому краю — от начала текста на ярлыке первого листа */
+@media(min-width:1041px){
+  .navrow{max-width:1000px;padding-left:0;padding-right:0;justify-content:space-between}
+  .navlinks{position:static;transform:none;margin:0 0 0 80px;justify-items:start;justify-content:start;width:auto}
+  .navcta{flex:0 0 auto}
+}
+@media(min-width:1041px) and (max-width:1044px){.navrow{padding-left:22px;padding-right:22px}}
+@media(min-width:1041px){.navrow{width:min(1000px,calc(100% - 44px));max-width:none;padding-left:0!important;padding-right:0!important;margin:0 auto}}
 </style>
 <script>document.documentElement.classList.add('js')</script>
 </head>
