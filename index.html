@@ -644,6 +644,50 @@ nav{height:auto}
   .ddi{flex-basis:30px;width:30px;height:30px}
 }
 .ddm a{justify-content:flex-start!important;text-align:left!important}.ddm a span:last-child{text-align:left}
+
+/* ===== таблица «Сроки» — новый вид ===== */
+.lv-wrap{margin-top:var(--s4);overflow-x:auto;border:1px solid var(--line);border-radius:14px;background:var(--paper)}
+.lv{width:100%;border-collapse:separate;border-spacing:0;font-size:15px}
+.lv th,.lv td{padding:16px 18px;border-bottom:1px solid var(--line);white-space:nowrap;vertical-align:middle}
+.lv thead th{background:var(--paper2);border-bottom:1px solid var(--line);font-size:11px;letter-spacing:.12em;color:var(--ink);padding-top:14px;padding-bottom:12px}
+.lv thead small{font-size:11.5px;margin-top:3px;color:var(--muted);opacity:1}
+.lv tbody tr:last-child th,.lv tbody tr:last-child td{border-bottom:0}
+.lv tbody tr:hover{background:rgba(218,82,0,.04)}
+.lv tbody th,.lv tfoot th{position:sticky;left:0;background:inherit;z-index:1}
+.lv tbody tr{background:var(--paper)}
+.lv tbody tr:hover th{background:#fbf3ea}
+.lv-lv{display:inline-flex;align-items:center;gap:8px}
+.lv-lv b{display:inline-flex;align-items:center;justify-content:center;min-width:34px;height:26px;padding:0 8px;border-radius:999px;border:1px solid rgba(28,25,22,.25);font-size:12.5px;font-weight:600;letter-spacing:.04em;color:var(--ink);background:var(--paper)}
+.lv-lv b.to{border-color:var(--orange);color:var(--orange)}
+.lv-lv i{font-style:normal;color:var(--muted);font-size:13px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.lv-hr{display:flex;flex-direction:column;gap:6px;min-width:96px;font-weight:600}
+.lv-bar{display:block;height:4px;border-radius:4px;background:rgba(28,25,22,.08);overflow:hidden}
+.lv-bar i{display:block;height:100%;border-radius:4px;background:var(--orange)}
+.lv tfoot th,.lv tfoot td{background:var(--green);color:var(--paper2)!important;border:0!important;font-weight:600;padding-top:18px;padding-bottom:18px}
+.lv tfoot td{color:#f6b98a!important;font-size:15.5px}
+.lv tfoot .lv-lv b{background:transparent;color:var(--paper2);border-color:rgba(251,247,238,.5)}
+.lv tfoot .lv-lv b.to{border-color:#f6b98a;color:#f6b98a}
+.lv tfoot .lv-lv i{color:rgba(251,247,238,.7)}
+.lv-tot{display:block;margin-top:6px;font-size:11px;font-weight:400;font-style:italic;letter-spacing:.06em;color:rgba(251,247,238,.75)}
+@media(max-width:760px){.lv{font-size:13.5px}.lv th,.lv td{padding:12px 12px}.lv-lv b{min-width:30px;height:24px;font-size:11.5px}}
+
+/* телефон: карточки вместо широкой таблицы */
+@media(max-width:600px){
+  .lv-wrap{border:0;background:none;overflow:visible;border-radius:0}
+  .lv,.lv tbody,.lv tfoot,.lv tr,.lv th,.lv td{display:block;width:auto}
+  .lv thead{display:none}
+  .lv tr{border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin-bottom:10px;background:var(--paper);display:grid!important;grid-template-columns:1fr 1fr 1fr;gap:10px 12px}
+  .lv th,.lv td{padding:0!important;border:0!important;white-space:normal;position:static!important;background:none!important}
+  .lv th{grid-column:1/-1;display:flex!important;align-items:center;justify-content:space-between}
+  .lv td[data-l="Учебных часов"]{grid-column:1/-1}
+  .lv td::before{content:attr(data-l);display:block;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:3px}
+  .lv-hr{min-width:0;flex-direction:row;align-items:center;gap:12px}.lv-hr .lv-bar{flex:1}
+  .lv tfoot tr{background:var(--green)!important;border-color:var(--green)}
+  .lv tfoot td::before{color:rgba(251,247,238,.65)}
+  .lv-tot{margin:0}
+}
+@media(max-width:600px){.lv td::before{letter-spacing:0;font-size:10px;white-space:nowrap}}
 </style>
 <script>document.documentElement.classList.add('js')</script>
 </head>
@@ -892,9 +936,9 @@ nav{height:auto}
   <h2 class="h2">Сколько времени нужно на каждый уровень</h2>
   <p class="body">Cambridge English публикует ориентиры: сколько учебных часов в среднем нужно, чтобы перейти на следующий уровень. Мы пересчитали их в месяцы при разном расписании.</p>
   <div class="lv-wrap"><table class="lv">
-    <thead><tr><th scope="col">Уровень</th><th scope="col">Часов</th><th scope="col">3 ч в неделю<small>12 ч в месяц</small></th><th scope="col">2 ч в неделю<small>8 ч в месяц</small></th><th scope="col">1,5 ч в неделю<small>6 ч в месяц</small></th></tr></thead>
-    <tbody><tr><th scope="row">С нуля → A1</th><td>90–100</td><td>≈ 8 мес</td><td>≈ 12 мес</td><td>≈ 16 мес</td></tr><tr><th scope="row">A1 → A2</th><td>90–100</td><td>≈ 8 мес</td><td>≈ 12 мес</td><td>≈ 16 мес</td></tr><tr><th scope="row">A2 → B1</th><td>170–200</td><td>14–17 мес</td><td>21–25 мес</td><td>28–33 мес</td></tr><tr><th scope="row">B1 → B2</th><td>150–200</td><td>13–17 мес</td><td>19–25 мес</td><td>25–33 мес</td></tr><tr><th scope="row">B2 → C1</th><td>≈ 200</td><td>≈ 17 мес</td><td>≈ 25 мес</td><td>≈ 33 мес</td></tr></tbody>
-    <tfoot><tr><th scope="row">С нуля → C1</th><td>700–800</td><td>≈ 5–5,5 лет</td><td>≈ 7–8 лет</td><td>≈ 10–11 лет</td></tr></tfoot>
+    <thead><tr><th scope="col">Уровень</th><th scope="col">Учебных часов</th><th scope="col">3 ч в неделю<small>12 ч в месяц</small></th><th scope="col">2 ч в неделю<small>8 ч в месяц</small></th><th scope="col">1,5 ч в неделю<small>6 ч в месяц</small></th></tr></thead>
+    <tbody><tr><th scope="row"><span class="lv-lv"><b>0</b><i aria-hidden="true">→</i><b class="to">A1</b></span><span class="sr">С нуля → A1</span></th><td data-l="Учебных часов"><span class="lv-hr"><span>90–100</span><span class="lv-bar" aria-hidden="true"><i style="width:50%"></i></span></span></td><td data-l="3 ч в неделю">≈ 8 мес</td><td data-l="2 ч в неделю">≈ 12 мес</td><td data-l="1,5 ч в неделю">≈ 16 мес</td></tr><tr><th scope="row"><span class="lv-lv"><b>A1</b><i aria-hidden="true">→</i><b class="to">A2</b></span><span class="sr">A1 → A2</span></th><td data-l="Учебных часов"><span class="lv-hr"><span>90–100</span><span class="lv-bar" aria-hidden="true"><i style="width:50%"></i></span></span></td><td data-l="3 ч в неделю">≈ 8 мес</td><td data-l="2 ч в неделю">≈ 12 мес</td><td data-l="1,5 ч в неделю">≈ 16 мес</td></tr><tr><th scope="row"><span class="lv-lv"><b>A2</b><i aria-hidden="true">→</i><b class="to">B1</b></span><span class="sr">A2 → B1</span></th><td data-l="Учебных часов"><span class="lv-hr"><span>170–200</span><span class="lv-bar" aria-hidden="true"><i style="width:100%"></i></span></span></td><td data-l="3 ч в неделю">14–17 мес</td><td data-l="2 ч в неделю">21–25 мес</td><td data-l="1,5 ч в неделю">28–33 мес</td></tr><tr><th scope="row"><span class="lv-lv"><b>B1</b><i aria-hidden="true">→</i><b class="to">B2</b></span><span class="sr">B1 → B2</span></th><td data-l="Учебных часов"><span class="lv-hr"><span>150–200</span><span class="lv-bar" aria-hidden="true"><i style="width:100%"></i></span></span></td><td data-l="3 ч в неделю">13–17 мес</td><td data-l="2 ч в неделю">19–25 мес</td><td data-l="1,5 ч в неделю">25–33 мес</td></tr><tr><th scope="row"><span class="lv-lv"><b>B2</b><i aria-hidden="true">→</i><b class="to">C1</b></span><span class="sr">B2 → C1</span></th><td data-l="Учебных часов"><span class="lv-hr"><span>≈ 200</span><span class="lv-bar" aria-hidden="true"><i style="width:100%"></i></span></span></td><td data-l="3 ч в неделю">≈ 17 мес</td><td data-l="2 ч в неделю">≈ 25 мес</td><td data-l="1,5 ч в неделю">≈ 33 мес</td></tr></tbody>
+    <tfoot><tr><th scope="row"><span class="lv-lv"><b>0</b><i aria-hidden="true">→</i><b class="to">C1</b></span><span class="lv-tot">весь путь</span></th><td data-l="Учебных часов">700–800</td><td data-l="3 ч в неделю">≈ 5–5,5 лет</td><td data-l="2 ч в неделю">≈ 7–8 лет</td><td data-l="1,5 ч в неделю">≈ 10–11 лет</td></tr></tfoot>
   </table></div>
   <p class="fn">Расчёт — только для занятий с преподавателем; самостоятельная работа сокращает сроки. Источник: <a href="https://support.cambridgeenglish.org/hc/en-gb/articles/202838506-Guided-learning-hours" target="_blank" rel="noopener">Cambridge English, Guided learning hours</a>.</p>
   <div class="lv-note">
