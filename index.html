@@ -342,6 +342,55 @@ body{font-size:17px;line-height:1.6}
 .fig img,.fig button:hover img{box-shadow:none}
 /* скрины подкастов вместо фото */
 .stackp .photo>img{max-height:520px;width:auto;max-width:100%;margin:0 auto}
+
+/* ===== компактнее ===== */
+body{font-size:16px;line-height:1.6}
+.page{padding-top:44px}
+.sheet{padding:56px 56px 52px;margin-bottom:80px;max-width:1000px}
+.statrow{max-width:1000px;margin-bottom:80px}
+.title{font-size:clamp(30px,5.2vw,60px)}
+.tag{font-size:14px;margin-top:16px}
+.hero{padding-top:64px;padding-bottom:56px}
+.hero h2{font-size:clamp(20px,2.3vw,28px);margin-top:30px}
+.hero .body{font-size:15px;margin:20px auto 28px}
+.h2{font-size:clamp(21px,2.1vw,27px)}
+.h2.sm{font-size:clamp(20px,2vw,25px)}
+.body{margin-top:16px;font-size:15.5px}
+.cols,.tiles{margin-top:34px}
+.col h4,.tile h4{font-size:12.5px;margin-bottom:8px}
+.col p,.tile p,.pill p,.review p,.price-row .lbl,.trial p,.tg-text p{font-size:14.5px}
+.tile{padding:24px 22px 22px}
+.stat{padding:38px 16px 28px}
+.stat b{font-size:clamp(24px,2.3vw,32px)}
+.stat span{font-size:11px;margin-top:12px}
+.tile .no,.tg-text .no{font-size:24px}
+.quote{margin-bottom:84px}
+.quote p{font-size:clamp(18px,2vw,24px)}
+.final h2{font-size:clamp(21px,2.3vw,28px)}
+.final p{font-size:15px}
+.price{padding:30px 28px 26px}
+.price h3{font-size:15px}
+.price-row .amt{font-size:18px}
+.review{padding:26px 22px 22px}
+.review .who{font-size:15px}
+.btn{padding:12px 24px;font-size:12px}
+.kicker,.issue{font-size:11px}
+.badge{font-size:12px;padding:10px 14px}
+.face.front b{font-size:22px}
+.tg-final b{font-size:21px}
+.strip{--h:380px}
+.strip.tall{--h:440px}
+@media(max-width:980px){.strip{--h:340px}.strip.tall{--h:400px}}
+@media(max-width:600px){.strip{--h:300px}.strip.tall{--h:360px}}
+@media(max-width:760px){.sheet{padding:48px 20px 38px;margin-bottom:68px}body{font-size:15px}}
+/* без декоративных фото */
+.cols2.one,.cols2.rev{grid-template-columns:1fr}
+/* подкасты */
+.pods{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;align-items:start}
+.pods button{padding:0;border:0;background:none;cursor:zoom-in}
+.pods img{display:block;width:100%;height:auto;border:1px solid var(--line);transition:transform .4s var(--ease)}
+.pods button:hover img{transform:translateY(-4px)}
+@media(max-width:600px){.pods{grid-template-columns:1fr}}
 </style>
 <script>document.documentElement.classList.add('js')</script>
 </head>
@@ -402,7 +451,6 @@ body{font-size:17px;line-height:1.6}
   </div>
 </header>
 
-<div class="shot"><div class="photo" style="--r:1deg"><img src="wetalk-img/photo-hero.webp" width="1600" height="900" alt="" loading="lazy" decoding="async"></div></div>
 
 <!-- GOALS -->
 <section class="sheet beige" id="goals" style="--r:.5deg">
@@ -446,14 +494,13 @@ body{font-size:17px;line-height:1.6}
 <!-- TEACHERS -->
 <section class="sheet" style="--r:.6deg">
   <span class="kicker">Обучение</span>
-  <div class="cols2">
+  <div class="cols2 one">
     <div>
       <h2 class="h2">Преподаватели We Talk</h2>
       <p class="body">Мы — лингвисты, выпускницы факультета иностранных языков Чеченского государственного университета. У нас подтверждённый уровень английского C1 и около 10 лет преподавательского опыта.</p>
       <p class="body">За эти годы мы поработали в центре раннего развития, гимназии и языковых школах, вели частную практику и курировали начинающих преподавателей. Мы участвовали в собеседованиях при найме (job interview), а также в устных собеседованиях ОГЭ и ЕГЭ в качестве экзаменаторов.</p>
       <p class="body">В нашем опыте — обучение по программе Erasmus+ в университете Фехты (Германия), а также разговорный и книжный клубы на английском в Национальной библиотеке Чеченской Республики. И мы продолжаем учиться: регулярно повышаем квалификацию на международных образовательных платформах — edX (в том числе дистанционный курс Harvard University), Udemy и Open University (Великобритания).</p>
     </div>
-    <div class="photo" style="--r:2deg;margin-top:26px"><svg class="orange-pin" viewBox="0 0 44 48" aria-hidden="true"><use href="#orng"/></svg><img src="wetalk-img/photo-teach.webp" width="1000" height="1000" alt="" loading="lazy" decoding="async"></div>
   </div>
 </section>
 
@@ -469,7 +516,6 @@ body{font-size:17px;line-height:1.6}
   </div>
 </section>
 
-<div class="shot"><div class="photo" style="--r:-1deg"><img src="wetalk-img/photo-shelf.webp" width="1200" height="839" alt="" loading="lazy" decoding="async"></div></div>
 
 <!-- QUOTE -->
 <section class="quote"><p>«Мы создаём пространство, где женщины учатся говорить <span class="nb">по-английски</span> уверенно и без страха ошибок»</p></section>
@@ -535,10 +581,7 @@ body{font-size:17px;line-height:1.6}
       <p class="body">От «What's in my bag?» до разговоров о своих увлечениях и открытиях — это способ прокачать speaking, выйти из «учебной зоны» в реальную практику и начать звучать уверенно.</p>
       <p class="body">Помимо подкастов студентки пишут сочинения и эссе — мы работаем над языком по всем фронтам: говорение, аудирование, чтение и письмо.</p>
     </div>
-    <div class="stackp">
-      <div class="photo" style="--r:2deg"><img src="wetalk-img/rv-23.webp" width="828" height="1024" alt="" loading="lazy" decoding="async"></div>
-      <div class="photo" style="--r:-1.6deg"><img src="wetalk-img/rv-25.webp" width="828" height="1091" alt="" loading="lazy" decoding="async"></div>
-    </div>
+    <div class="pods"><button type="button" data-g="pod" data-i="0" aria-label="Открыть подкаст 1"><img src="wetalk-img/rv-03.webp" width="828" height="1063" alt="Подкаст студентки WeTalk" loading="lazy" decoding="async"></button><button type="button" data-g="pod" data-i="1" aria-label="Открыть подкаст 2"><img src="wetalk-img/rv-02.webp" width="828" height="648" alt="Подкаст студентки WeTalk" loading="lazy" decoding="async"></button><button type="button" data-g="pod" data-i="2" aria-label="Открыть подкаст 3"><img src="wetalk-img/rv-10.webp" width="828" height="732" alt="Подкаст студентки WeTalk" loading="lazy" decoding="async"></button><button type="button" data-g="pod" data-i="3" aria-label="Открыть подкаст 4"><img src="wetalk-img/rv-04.webp" width="828" height="656" alt="Подкаст студентки WeTalk" loading="lazy" decoding="async"></button></div>
   </div>
 </section>
 
@@ -602,7 +645,6 @@ body{font-size:17px;line-height:1.6}
   <p class="fn">* Доступ к Telegram в РФ ограничен.</p>
 </section>
 
-<div class="shot sm"><div class="photo" style="--r:1.4deg"><img src="wetalk-img/photo-final.webp" width="1200" height="900" alt="" loading="lazy" decoding="async"></div></div>
 
 <!-- FINAL -->
 <section class="final">
@@ -635,7 +677,7 @@ body{font-size:17px;line-height:1.6}
 <script>
 (function(){
 var de=document.documentElement,reduced=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
-var GAL={"pov": ["wetalk-img/pov-02.webp", "wetalk-img/pov-03.webp", "wetalk-img/pov-04.webp", "wetalk-img/pov-05.webp", "wetalk-img/pov-06.webp", "wetalk-img/pov-07.webp", "wetalk-img/pov-08.webp", "wetalk-img/pov-09.webp"], "all": ["wetalk-img/pov-02.webp", "wetalk-img/pov-03.webp", "wetalk-img/pov-04.webp", "wetalk-img/pov-05.webp", "wetalk-img/pov-06.webp", "wetalk-img/pov-07.webp", "wetalk-img/pov-08.webp", "wetalk-img/pov-09.webp", "wetalk-img/rv-01.webp", "wetalk-img/rv-02.webp", "wetalk-img/rv-03.webp", "wetalk-img/rv-04.webp", "wetalk-img/rv-05.webp", "wetalk-img/rv-06.webp", "wetalk-img/rv-07.webp", "wetalk-img/rv-08.webp", "wetalk-img/rv-09.webp", "wetalk-img/rv-10.webp", "wetalk-img/rv-11.webp", "wetalk-img/rv-12.webp", "wetalk-img/rv-13.webp", "wetalk-img/rv-14.webp", "wetalk-img/rv-15.webp", "wetalk-img/rv-16.webp", "wetalk-img/rv-17.webp", "wetalk-img/rv-18.webp", "wetalk-img/rv-19.webp", "wetalk-img/rv-20.webp", "wetalk-img/rv-21.webp", "wetalk-img/rv-22.webp", "wetalk-img/rv-23.webp", "wetalk-img/rv-24.webp", "wetalk-img/rv-25.webp"], "pl": ["wetalk-img/pl-01.webp", "wetalk-img/pl-02.webp", "wetalk-img/pl-03.webp", "wetalk-img/pl-04.webp", "wetalk-img/pl-05.webp", "wetalk-img/pl-06.webp", "wetalk-img/pl-07.webp", "wetalk-img/pl-08.webp", "wetalk-img/pl-09.webp", "wetalk-img/pl-10.webp", "wetalk-img/pl-11.webp"], "ms": ["wetalk-img/ms-1.webp", "wetalk-img/ms-2.webp", "wetalk-img/ms-3.webp", "wetalk-img/ms-4.webp", "wetalk-img/ms-5.webp"], "tg": ["wetalk-img/tg-1.webp", "wetalk-img/tg-2.webp", "wetalk-img/tg-3.webp", "wetalk-img/tg-4.webp"]};
+var GAL={"pov": ["wetalk-img/pov-02.webp", "wetalk-img/pov-03.webp", "wetalk-img/pov-04.webp", "wetalk-img/pov-05.webp", "wetalk-img/pov-06.webp", "wetalk-img/pov-07.webp", "wetalk-img/pov-08.webp", "wetalk-img/pov-09.webp"], "all": ["wetalk-img/pov-02.webp", "wetalk-img/pov-03.webp", "wetalk-img/pov-04.webp", "wetalk-img/pov-05.webp", "wetalk-img/pov-06.webp", "wetalk-img/pov-07.webp", "wetalk-img/pov-08.webp", "wetalk-img/pov-09.webp", "wetalk-img/rv-01.webp", "wetalk-img/rv-02.webp", "wetalk-img/rv-03.webp", "wetalk-img/rv-04.webp", "wetalk-img/rv-05.webp", "wetalk-img/rv-06.webp", "wetalk-img/rv-07.webp", "wetalk-img/rv-08.webp", "wetalk-img/rv-09.webp", "wetalk-img/rv-10.webp", "wetalk-img/rv-11.webp", "wetalk-img/rv-12.webp", "wetalk-img/rv-13.webp", "wetalk-img/rv-14.webp", "wetalk-img/rv-15.webp", "wetalk-img/rv-16.webp", "wetalk-img/rv-17.webp", "wetalk-img/rv-18.webp", "wetalk-img/rv-19.webp", "wetalk-img/rv-20.webp", "wetalk-img/rv-21.webp", "wetalk-img/rv-22.webp", "wetalk-img/rv-23.webp", "wetalk-img/rv-24.webp", "wetalk-img/rv-25.webp"], "pl": ["wetalk-img/pl-01.webp", "wetalk-img/pl-02.webp", "wetalk-img/pl-03.webp", "wetalk-img/pl-04.webp", "wetalk-img/pl-05.webp", "wetalk-img/pl-06.webp", "wetalk-img/pl-07.webp", "wetalk-img/pl-08.webp", "wetalk-img/pl-09.webp", "wetalk-img/pl-10.webp", "wetalk-img/pl-11.webp"], "ms": ["wetalk-img/ms-1.webp", "wetalk-img/ms-2.webp", "wetalk-img/ms-3.webp", "wetalk-img/ms-4.webp", "wetalk-img/ms-5.webp"], "tg": ["wetalk-img/tg-1.webp", "wetalk-img/tg-2.webp", "wetalk-img/tg-3.webp", "wetalk-img/tg-4.webp"], "pod": ["wetalk-img/rv-03.webp", "wetalk-img/rv-02.webp", "wetalk-img/rv-10.webp", "wetalk-img/rv-04.webp"]};
 
 /* буквы заголовка WE TALK появляются по очереди */
 var t=document.querySelector('.title');
