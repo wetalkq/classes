@@ -511,13 +511,13 @@ nav{height:auto}
   .navlinks{position:static;transform:none;margin:0 auto}
 }
 /* меню по левому краю — от начала текста на ярлыке первого листа */
-@media(min-width:1041px){
+@media(min-width:900px){
   .navrow{max-width:1000px;padding-left:0;padding-right:0;justify-content:space-between}
   .navlinks{position:static;transform:none;margin:0 0 0 80px;justify-items:start;justify-content:start;width:auto}
   .navcta{flex:0 0 auto}
 }
 @media(min-width:1041px) and (max-width:1044px){.navrow{padding-left:22px;padding-right:22px}}
-@media(min-width:1041px){.navrow{width:min(1000px,calc(100% - 44px));max-width:none;padding-left:0!important;padding-right:0!important;margin:0 auto}}
+@media(min-width:900px){.navrow{width:min(1000px,calc(100% - 44px));max-width:none;padding-left:0!important;padding-right:0!important;margin:0 auto}}
 
 /* ===== папки с закладками ===== */
 .folder{position:relative;max-width:1000px;margin:0 auto var(--s6);padding-top:34px}
@@ -530,12 +530,12 @@ nav{height:auto}
 .ftabs button:hover{color:var(--orange)}
 .ftabs button.on{background:var(--paper);color:var(--ink);transform:none;z-index:1}
 .ftabs button:focus-visible{outline:2px solid var(--orange);outline-offset:-2px}
-.fpanel.flip{animation:flipIn .45s var(--ease)}
+.fpanel.fanim{animation:flipIn .45s var(--ease)}
 @keyframes flipIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 .folder .sheet::before{display:none}
 .folder::after{content:"";position:absolute;left:9px;right:-9px;top:43px;bottom:-9px;background:var(--beige);z-index:-1;box-shadow:0 18px 40px -18px rgba(0,0,0,.5)}
 @media(max-width:760px){.folder{margin-bottom:64px}.ftabs{left:12px;right:0}.ftabs button{font-size:10px;padding:7px 18px 5px;letter-spacing:.12em}.folder::after{left:5px;right:-5px;top:40px;bottom:-6px}}
-@media(prefers-reduced-motion:reduce){.fpanel.flip{animation:none}}
+@media(prefers-reduced-motion:reduce){.fpanel.fanim{animation:none}}
 .ftabs button{color:rgba(28,25,22,.72)}
 
 /* ===== меню по группам ===== */
@@ -554,6 +554,47 @@ nav{height:auto}
   .ngi a{white-space:nowrap}
 }
 .ngi{justify-items:start}.ngi a{justify-content:flex-start!important;text-align:left!important}
+
+/* ===== меню: подписи групп — курсив, полужирный; всё по левому краю ===== */
+.ngl{font-size:10.5px;font-style:italic;font-weight:600;letter-spacing:.14em;text-align:left}
+.ng{align-items:flex-start;text-align:left}
+.ngi{grid-template-columns:repeat(2,auto)!important;justify-content:start}
+@media(min-width:761px){.navlinks{justify-content:flex-start!important}}
+
+/* ===== таблица «Сроки» ===== */
+.lv-wrap{margin-top:var(--s4);overflow-x:auto}
+.lv{width:100%;border-collapse:collapse;font-size:14.5px;font-variant-numeric:tabular-nums}
+.lv th,.lv td{padding:12px 14px;text-align:left;border-bottom:1px solid var(--line);white-space:nowrap}
+.lv thead th{font-size:11.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;border-bottom:1.5px solid var(--ink);vertical-align:bottom}
+.lv thead small{display:block;font-size:11px;font-weight:400;letter-spacing:0;text-transform:none;font-style:italic;opacity:.75;margin-top:2px}
+.lv tbody th{font-weight:600}
+.lv tfoot th,.lv tfoot td{font-weight:600;color:var(--orange);border-top:1.5px solid var(--ink);border-bottom:0}
+.lv tbody tr:hover{background:var(--paper2)}
+.lv-note{margin-top:var(--s5);padding-top:var(--s4);border-top:1px solid var(--line)}
+.lv-h{font-size:clamp(18px,1.8vw,22px);font-style:italic;font-weight:600;color:var(--ink);line-height:1.3}
+.lv-note .body:first-of-type{margin-top:var(--s2)}
+@media(max-width:760px){.lv{font-size:13.5px}.lv th,.lv td{padding:10px}}
+/* меню: 4 группы компактнее; при нехватке места кнопка — справа над меню нет, меню слева */
+@media(min-width:761px){
+  .ng+.ng{margin-left:16px;padding-left:16px}
+  .ngi{gap:0 12px}
+}
+@media(min-width:761px) and (max-width:899px){
+  .navrow{flex-wrap:wrap;justify-content:flex-start;row-gap:8px;width:min(1000px,calc(100% - 44px))!important;margin:0 auto;padding-left:0!important;padding-right:0!important}
+  .navcta{order:-1;flex:1 1 100%;text-align:left;padding-left:80px}
+  .navlinks{position:static!important;transform:none!important;margin:0 0 0 80px!important}
+}
+@media(min-width:761px) and (max-width:900px){.navcta,.navlinks{padding-left:0}.navlinks{margin-left:0!important}.navcta{padding-left:0}}
+/* меню: в группе подпись и ссылки столбиком */
+@media(min-width:761px){
+  .ngi{display:flex!important;flex-direction:column;gap:1px}
+  .ng{gap:2px}
+  .ng+.ng{margin-left:26px;padding-left:26px}
+  .navrow{min-height:0;padding-top:9px;padding-bottom:9px}
+}
+
+@media(min-width:900px){.navrow{flex-wrap:nowrap!important}.navcta{order:0!important;flex:0 0 auto!important;padding-left:0!important}.navlinks{margin:0 0 0 80px!important;position:static!important;transform:none!important}}
+@media(min-width:761px) and (max-width:899px){.navrow{width:calc(100% - 44px)!important;margin:0 auto}.navlinks{margin-left:80px!important}.navcta{padding-left:80px!important;text-align:left}}
 </style>
 <script>document.documentElement.classList.add('js')</script>
 </head>
@@ -579,9 +620,10 @@ nav{height:auto}
   <div class="navrow">
     <div class="navsp"></div>
     <div class="navlinks">
-      <div class="ng"><span class="ngl">Знакомство</span><div class="ngi" style="--c:2"><a href="#goals">Чем мы поможем</a><a href="#about">О нас</a><a href="#geo">География</a></div></div>
-      <div class="ng"><span class="ngl">Обучение</span><div class="ngi" style="--c:3"><a href="#how">Как проходят занятия</a><a href="#platform">Платформа</a><a href="#telegram">Telegram</a><a href="#minisites">Бонус к лексике</a><a href="#podcasts">Успехи студенток</a></div></div>
-      <div class="ng"><span class="ngl">Запись</span><div class="ngi" style="--c:1"><a href="#pricing">Пакеты и цены</a><a href="#reviews">Отзывы</a></div></div>
+      <div class="ng"><span class="ngl">Знакомство</span><div class="ngi" style="--c:2"><a href="#about">О нас</a><a href="#geo">География</a></div></div>
+      <div class="ng"><span class="ngl">Обучение</span><div class="ngi" style="--c:2"><a href="#how">Занятия</a><a href="#platform">Платформа</a></div></div>
+      <div class="ng"><span class="ngl">Сроки</span><div class="ngi" style="--c:2"><a href="#levels">Уровни</a><a href="#minisites">Бонус к лексике</a></div></div>
+      <div class="ng"><span class="ngl">Запись</span><div class="ngi" style="--c:2"><a href="#pricing">Пакеты и цены</a><a href="#reviews">Отзывы и результаты</a></div></div>
     </div>
     <div class="navcta"><a class="cta" href="#trial">Пробное занятие</a></div>
   </div>
@@ -758,7 +800,7 @@ nav{height:auto}
 
 <!-- ПАКЕТЫ И ЦЕНЫ -->
 <div class="folder" id="f-price">
-  <div class="ftabs" role="tablist" aria-label="Пакеты и цены"><button type="button" role="tab" id="t-steps" data-tab="steps" aria-selected="true" class="on">Пробное занятие</button><button type="button" role="tab" id="t-pricing" data-tab="pricing" aria-selected="false">Пакеты и цены</button></div>
+  <div class="ftabs" role="tablist" aria-label="Пакеты и цены"><button type="button" role="tab" id="t-steps" data-tab="steps" aria-selected="true" class="on">Пробное занятие</button><button type="button" role="tab" id="t-pricing" data-tab="pricing" aria-selected="false">Пакеты и цены</button><button type="button" role="tab" id="t-levels" data-tab="levels" aria-selected="false">Сроки</button></div>
 <section role="tabpanel" aria-labelledby="t-steps" class="sheet fpanel" id="steps" style="--r:-.5deg">
   <span class="kicker">Пробное занятие</span>
   <h2 class="h2">Что происходит на пробном</h2>
@@ -796,7 +838,26 @@ nav{height:auto}
     <div class="pill"><h4 class="semi">Поддержка между уроками</h4><p>Подскажем, направим и поможем с любым вопросом.</p></div>
   </div>
 </section>
+<section hidden role="tabpanel" aria-labelledby="t-levels" class="sheet fpanel" id="levels">
+  <span class="kicker">Сроки</span>
+  <h2 class="h2">Сколько времени нужно на каждый уровень</h2>
+  <p class="body">Cambridge English публикует ориентиры: сколько учебных часов в среднем нужно, чтобы перейти на следующий уровень. Мы пересчитали их в месяцы при разном расписании.</p>
+  <div class="lv-wrap"><table class="lv">
+    <thead><tr><th scope="col">Уровень</th><th scope="col">Часов</th><th scope="col">3 ч в неделю<small>12 ч в месяц</small></th><th scope="col">2 ч в неделю<small>8 ч в месяц</small></th><th scope="col">1,5 ч в неделю<small>6 ч в месяц</small></th></tr></thead>
+    <tbody><tr><th scope="row">С нуля → A1</th><td>90–100</td><td>≈ 8 мес</td><td>≈ 12 мес</td><td>≈ 16 мес</td></tr><tr><th scope="row">A1 → A2</th><td>90–100</td><td>≈ 8 мес</td><td>≈ 12 мес</td><td>≈ 16 мес</td></tr><tr><th scope="row">A2 → B1</th><td>170–200</td><td>14–17 мес</td><td>21–25 мес</td><td>28–33 мес</td></tr><tr><th scope="row">B1 → B2</th><td>150–200</td><td>13–17 мес</td><td>19–25 мес</td><td>25–33 мес</td></tr><tr><th scope="row">B2 → C1</th><td>≈ 200</td><td>≈ 17 мес</td><td>≈ 25 мес</td><td>≈ 33 мес</td></tr></tbody>
+    <tfoot><tr><th scope="row">С нуля → C1</th><td>700–800</td><td>≈ 5–5,5 лет</td><td>≈ 7–8 лет</td><td>≈ 10–11 лет</td></tr></tfoot>
+  </table></div>
+  <p class="fn">Расчёт — только для занятий с преподавателем; самостоятельная работа сокращает сроки. Источник: <a href="https://support.cambridgeenglish.org/hc/en-gb/articles/202838506-Guided-learning-hours" target="_blank" rel="noopener">Cambridge English, Guided learning hours</a>.</p>
+  <div class="lv-note">
+    <h3 class="lv-h">Сроки обучения зависят не от нас, а от количества практики</h3>
+    <p class="body">В месяце 720 часов. При трёх уроках в неделю вы проводите с преподавателем 12 из них — меньше 2% времени. Всё остальное время вы работаете сами.</p>
+    <p class="body">Мы даём всё необходимое: платформу, материалы, домашние задания, бонусы к лексике и поддержку в Telegram. Но большая часть результата зависит от того, как вы занимаетесь между уроками: повторяете ли материал, выполняете ли домашние задания, следуете ли рекомендациям преподавателя.</p>
+    <p class="body">Если заниматься раз в неделю и не повторять дома, изучение языка растянется на годы. Чем больше практики между уроками, тем быстрее результат.</p>
+  </div>
+</section>
 </div>
+
+
 
 
 
@@ -962,7 +1023,7 @@ function show(sid,scroll){var p=document.getElementById(sid);if(!p||!p.classList
 [].forEach.call(f.querySelectorAll('.ftabs [data-tab]'),function(t){var on=t.getAttribute('data-tab')===sid;t.classList.toggle('on',on);t.setAttribute('aria-selected',on?'true':'false')});
 var tb=f.querySelector('.ftabs .on');if(tb)tb.parentElement.scrollTo({left:Math.max(0,tb.offsetLeft-24),behavior:'smooth'});
 p.classList.add('in');[].forEach.call(p.querySelectorAll('.rv'),function(e){e.classList.add('in')});
-p.classList.remove('flip');void p.offsetWidth;p.classList.add('flip');
+p.classList.remove('fanim');void p.offsetWidth;p.classList.add('fanim');
 window.dispatchEvent(new Event('resize'));
 if(scroll){var top=f.getBoundingClientRect().top+scrollY-(document.querySelector('nav').offsetHeight+12);if(Math.abs(top-scrollY)>40||f.getBoundingClientRect().top<0)scrollTo({top:top,behavior:reduced?'auto':'smooth'})}
 return true}
