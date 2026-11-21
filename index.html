@@ -399,6 +399,71 @@ body{font-size:16px;line-height:1.6}
 .pods button{flex:var(--ar) 1 0;min-width:0}
 .pods img{border:1px solid var(--line);border-radius:6px}
 @media(max-width:600px){.pods{flex-direction:column}.pods button{flex:none;width:100%}}
+
+/* ===== единая сетка отступов ===== */
+:root{--s1:8px;--s2:16px;--s3:24px;--s4:32px;--s5:48px;--s6:80px}
+body{padding-top:96px;hyphens:manual;-webkit-hyphens:manual;overflow-wrap:normal;word-break:normal}
+p,.body,.tile p,.col p,.review p,.pill p,.trial p,.tg-text p,.price-row .lbl{line-height:1.65;text-wrap:pretty}
+/* разделы */
+.sheet,.hero{padding:56px 56px 56px;margin-bottom:var(--s6)}
+.hero{padding-top:72px;padding-bottom:64px}
+.statrow,.quote,.final{margin-bottom:var(--s6)}
+/* заголовок → текст → блоки */
+.h2,.h2.sm{font-size:clamp(21px,2.1vw,27px);line-height:1.25}
+.h2+.body,.h2+.strip,.h2+.tg-list{margin-top:20px}
+.body{margin-top:20px;max-width:62ch}
+.body+.body{margin-top:14px}
+.cols,.tiles,.strip,.tg-list,.pods,.pills,.trial,.try,.allbtn,.tg-final,.cols2 .badges{margin-top:var(--s4)}
+.cols2 .badges{margin-top:0}
+.flips{margin-top:var(--s2)}
+.pods{margin-top:var(--s4)}
+.cols2{gap:var(--s5)}
+/* сетки — один шаг */
+.tiles,.statrow .tiles,.pills,.flips{gap:var(--s2)}
+.strip-track,.pods{gap:var(--s2)}
+.cols.c4{row-gap:var(--s4)}
+.tg-list{gap:var(--s5)}
+/* карточки — одинаковые внутренние поля */
+.tile,.review,.pill,.price{padding:var(--s3)}
+.stat{padding:var(--s4) var(--s2) var(--s3)}
+.trial{padding:var(--s3) 28px}
+.tile h4,.col h4,.pill h4,.price h3,.trial h4,.tg-text h4{margin-bottom:var(--s1)}
+.review .stars{margin-bottom:12px}
+.review p{margin-bottom:var(--s2)}
+.price .sub{margin-bottom:var(--s2)}
+.col .dot{margin:4px 0 14px 3px}
+.tile .no{margin-bottom:var(--s1)}
+.fn{margin-top:var(--s2)}
+/* меню: все разделы, два ряда */
+nav{height:auto}
+.navrow{height:auto;min-height:61px;padding-top:10px;padding-bottom:10px;align-items:center}
+.navlinks{flex:0 1 700px;display:flex;flex-wrap:wrap;justify-content:center;gap:6px 22px}
+.navlinks a{font-size:11px;letter-spacing:.14em;padding:3px 0;white-space:nowrap}
+@media(max-width:1100px){.navlinks{flex-basis:560px;gap:5px 16px}.navlinks a{font-size:10.5px;letter-spacing:.1em}}
+@media(max-width:760px){
+  .navrow{flex-wrap:wrap;padding:8px 0 6px;gap:6px}
+  .navcta{order:1;flex:1 1 100%;text-align:center}
+  .navlinks{display:flex;order:2;flex:1 1 100%;flex-wrap:nowrap;justify-content:flex-start;overflow-x:auto;scrollbar-width:none;padding:2px 16px 4px;gap:18px}
+  .navlinks::-webkit-scrollbar{display:none}
+  .sheet,.hero{padding:44px 20px 40px;margin-bottom:64px}
+  .statrow,.quote,.final{margin-bottom:64px}
+}
+@media(min-width:761px){
+  .navlinks{display:grid;grid-template-columns:repeat(6,auto);justify-content:center;gap:6px 20px;flex:0 1 auto}
+  .navlinks a{text-align:center}
+}
+@media(min-width:761px) and (max-width:1100px){
+  .navsp{display:none}
+  .navrow{padding-left:20px;padding-right:20px}
+  .navlinks{gap:6px 14px}
+  .navlinks a{font-size:10px;letter-spacing:.07em}
+  .cta{padding:8px 14px;font-size:11px;letter-spacing:.1em}
+}
+@media(min-width:761px) and (max-width:1100px){.navlinks{margin:0 auto}.navcta{flex:0 0 auto}}
+@media(min-width:761px) and (max-width:900px){
+  .navrow{flex-wrap:wrap;justify-content:center;row-gap:8px}
+  .navcta{order:-1;flex:1 1 100%;text-align:center}
+}
 </style>
 <script>document.documentElement.classList.add('js')</script>
 </head>
@@ -424,8 +489,16 @@ body{font-size:16px;line-height:1.6}
   <div class="navrow">
     <div class="navsp"></div>
     <div class="navlinks">
+      <a href="#goals">Чем мы поможем</a>
       <a href="#about">О нас</a>
-      <a href="#how">Как проходят занятия</a>
+      <a href="#teachers">Преподаватели</a>
+      <a href="#geo">География</a>
+      <a href="#how">Как проходят занятия</a>
+      <a href="#platform">Платформа</a>
+      <a href="#telegram">Telegram</a>
+      <a href="#minisites">Мини-сайты</a>
+      <a href="#podcasts">Подкасты</a>
+      <a href="#steps">Пробное занятие</a>
       <a href="#pricing">Пакеты и цены</a>
       <a href="#reviews">Отзывы</a>
     </div>
@@ -434,7 +507,7 @@ body{font-size:16px;line-height:1.6}
 </nav>
 <div class="rail" aria-label="Навигация по странице">
   <div class="trk"></div>
-  <a class="dot" href="#about" data-t="about" aria-label="О нас"><span>О нас</span></a>
+  <a class="dot" href="#about" data-t="about" aria-label="О нас"><span>О нас</span></a>
   <a class="dot" href="#platform" data-t="platform" aria-label="Платформа"><span>Платформа</span></a>
   <a class="dot" href="#telegram" data-t="telegram" aria-label="Telegram"><span>Telegram</span></a>
   <a class="dot" href="#pricing" data-t="pricing" aria-label="Цены"><span>Цены</span></a>
@@ -449,8 +522,8 @@ body{font-size:16px;line-height:1.6}
 <!-- HERO -->
 <header class="sheet hero" style="--r:-.5deg">
   <div class="issue">Online English classes for women</div>
-  <h1 class="title">WE TALK</h1>
-  <div class="tag">«The only time I set the bar low is for limbo.» — Michael Scott</div>
+  <h1 class="title">WE TALK</h1>
+  <div class="tag">«The only time I set the bar low is for limbo.» — Michael Scott</div>
   <h2>Английский, на котором ты <em>заговоришь уверенно</em></h2>
   <p class="body">We Talk — <span class="nb">онлайн-комьюнити</span> для женщин, которые хотят говорить <span class="nb">по-английски</span> свободно и грамотно. Занимаемся индивидуально и в <span class="nb">мини-группах</span>: с нуля до уровня C1, в комфортной среде и из любой точки мира.</p>
   <div class="herobtns">
@@ -463,10 +536,10 @@ body{font-size:16px;line-height:1.6}
 <!-- GOALS -->
 <section class="sheet beige" id="goals" style="--r:.5deg">
   <span class="kicker">Английский с WeTalk</span>
-  <h2 class="h2">Чем мы можем помочь</h2>
+  <h2 class="h2">Чем мы можем помочь</h2>
   <div class="cols c4">
     <div class="col"><span class="dot"></span><h4 class="semi">Язык для общения</h4><p>Разговорный английский для повседневных ситуаций: свободно говорить, понимать собеседника и не бояться ошибок.</p></div>
-    <div class="col"><span class="dot"></span><h4 class="semi">Язык для переезда</h4><p>Уверенность в новой стране: учёба, работа, документы, быт и знакомства на английском.</p></div>
+    <div class="col"><span class="dot"></span><h4 class="semi">Язык для переезда</h4><p>Уверенность в новой стране: учёба, работа, документы, быт и знакомства на английском.</p></div>
     <div class="col"><span class="dot"></span><h4 class="semi">Язык для путешествий</h4><p>Английский, который поможет свободно путешествовать и чувствовать себя уверенно в любой точке мира.</p></div>
     <div class="col"><span class="dot"></span><h4 class="semi">Бизнес-английский</h4><p>Для работы, переговоров, деловой переписки и карьерного роста.</p></div>
   </div>
@@ -488,7 +561,7 @@ body{font-size:16px;line-height:1.6}
   <div class="cols2">
     <div>
       <h2 class="h2">Мы — женское комьюнити</h2>
-      <p class="body">We Talk — языковая школа, где методика преподавания сочетает современные подходы с проверенными приёмами классических методов. Результаты исследования этой методики легли в основу научной статьи, проиндексированной в базе Web of Science.</p>
+      <p class="body">We Talk — языковая школа, где методика преподавания сочетает современные подходы с проверенными приёмами классических методов. Результаты исследования этой методики легли в основу научной статьи, проиндексированной в базе Web of Science.</p>
     </div>
     <div class="badges">
       <span class="badge">Коммуникативный подход</span>
@@ -500,20 +573,20 @@ body{font-size:16px;line-height:1.6}
 </section>
 
 <!-- TEACHERS -->
-<section class="sheet" style="--r:.6deg">
+<section class="sheet" id="teachers" style="--r:.6deg">
   <span class="kicker">Обучение</span>
   <div class="cols2 one">
     <div>
       <h2 class="h2">Преподаватели We Talk</h2>
-      <p class="body">Мы — лингвисты, выпускницы факультета иностранных языков Чеченского государственного университета. У нас подтверждённый уровень английского C1 и около 10 лет преподавательского опыта.</p>
-      <p class="body">За эти годы мы поработали в центре раннего развития, гимназии и языковых школах, вели частную практику и курировали начинающих преподавателей. Мы участвовали в собеседованиях при найме (job interview), а также в устных собеседованиях ОГЭ и ЕГЭ в качестве экзаменаторов.</p>
-      <p class="body">В нашем опыте — обучение по программе Erasmus+ в университете Фехты (Германия), а также разговорный и книжный клубы на английском в Национальной библиотеке Чеченской Республики. И мы продолжаем учиться: регулярно повышаем квалификацию на международных образовательных платформах — edX (в том числе дистанционный курс Harvard University), Udemy и Open University (Великобритания).</p>
+      <p class="body">Мы — лингвисты, выпускницы факультета иностранных языков Чеченского государственного университета. У нас подтверждённый уровень английского C1 и около 10 лет преподавательского опыта.</p>
+      <p class="body">За эти годы мы поработали в центре раннего развития, гимназии и языковых школах, вели частную практику и курировали начинающих преподавателей. Мы участвовали в собеседованиях при найме (job interview), а также в устных собеседованиях ОГЭ и ЕГЭ в качестве экзаменаторов.</p>
+      <p class="body">В нашем опыте — обучение по программе Erasmus+ в университете Фехты (Германия), а также разговорный и книжный клубы на английском в Национальной библиотеке Чеченской Республики. И мы продолжаем учиться: регулярно повышаем квалификацию на международных образовательных платформах — edX (в том числе дистанционный курс Harvard University), Udemy и Open University (Великобритания).</p>
     </div>
   </div>
 </section>
 
 <!-- GEO -->
-<section class="sheet" style="--r:-.4deg">
+<section class="sheet" id="geo" style="--r:-.4deg">
   <span class="kicker">География</span>
   <h2 class="h2 sm">Откуда наши студентки</h2>
   <div class="tiles c4">
@@ -526,12 +599,12 @@ body{font-size:16px;line-height:1.6}
 
 
 <!-- QUOTE -->
-<section class="quote"><p>«Мы создаём пространство, где женщины учатся говорить <span class="nb">по-английски</span> уверенно и без страха ошибок»</p></section>
+<section class="quote"><p>«Мы создаём пространство, где женщины учатся говорить <span class="nb">по-английски</span> уверенно и без страха ошибок»</p></section>
 
 <!-- METHODS -->
 <section class="sheet" id="how" style="--r:.5deg">
   <span class="kicker">Методика</span>
-  <h2 class="h2">Как мы преподаём</h2>
+  <h2 class="h2">Как мы преподаём</h2>
   <div class="tiles c4">
     <div class="tile"><h4 class="semi">Коммуникативный подход</h4><p>Фокус на практике языка, ситуации из жизни, без зубрёжки.</p></div>
     <div class="tile s"><h4 class="semi"><span class="nb">Task-Based</span> Learning</h4><p>Задачно-ориентированное обучение: мотивация и критическое мышление.</p></div>
@@ -543,63 +616,63 @@ body{font-size:16px;line-height:1.6}
 <!-- PLATFORM -->
 <section class="sheet" id="platform" style="--r:-.5deg">
   <span class="kicker">Платформа</span>
-  <h2 class="h2">Вся учёба — в личном кабинете</h2>
-  <p class="body">Занятия проходят на интерактивной платформе 2EASY: у каждой студентки есть собственный кабинет, где собрано всё необходимое для учёбы.</p>
+  <h2 class="h2">Вся учёба — в личном кабинете</h2>
+  <p class="body">Занятия проходят на интерактивной платформе 2EASY: у каждой студентки есть собственный кабинет, где собрано всё необходимое для учёбы.</p>
   <div class="tiles c3">
     <div class="tile"><h4 class="semi">Личный кабинет</h4><p>Уроки, задания и материалы собраны в одном месте.</p></div>
-    <div class="tile s"><h4 class="semi">Возвращайся к урокам</h4><p>Все уроки сохраняются в кабинете — их можно пересматривать и повторять в любой момент.</p></div>
-    <div class="tile"><h4 class="semi">Чат с преподавателем</h4><p>Можно задать вопрос в чате, в том числе во время урока.</p></div>
+    <div class="tile s"><h4 class="semi">Возвращайся к урокам</h4><p>Все уроки сохраняются в кабинете — их можно пересматривать и повторять в любой момент.</p></div>
+    <div class="tile"><h4 class="semi">Чат с преподавателем</h4><p>Можно задать вопрос в чате, в том числе во время урока.</p></div>
     <div class="tile s"><h4 class="semi">Личный словарик</h4><p>Студентка сама пополняет словарь и повторяет слова в удобное время.</p></div>
     <div class="tile"><h4 class="semi">Домашние задания</h4><p>Домашние задания тоже выполняются на платформе.</p></div>
     <div class="tile s"><h4 class="semi">Видео, аудио и упражнения</h4><p>Десятки упражнений, видео- и аудиоматериалы для увлекательного и эффективного обучения.</p></div>
   </div>
-  <div class="strip tall"><div class="strip-head"><span class="strip-label">Так выглядит платформа изнутри</span><div class="strip-arrows"><button type="button" class="sp" aria-label="Назад">‹</button><button type="button" class="sn" aria-label="Вперёд">›</button></div></div><div class="strip-track" tabindex="0" aria-label="Так выглядит платформа изнутри"><figure class="fig"><button type="button" data-g="pl" data-i="0" aria-label="Открыть: Платформа: Личный кабинет"><img src="wetalk-img/pl-01.webp" width="828" height="661" alt="Платформа: Личный кабинет" loading="lazy" decoding="async"></button><figcaption>Личный кабинет</figcaption></figure><figure class="fig"><button type="button" data-g="pl" data-i="1" aria-label="Открыть: Платформа: Свой словарь"><img src="wetalk-img/pl-02.webp" width="828" height="1349" alt="Платформа: Свой словарь" loading="lazy" decoding="async"></button><figcaption>Свой словарь</figcaption></figure><figure class="fig"><button type="button" data-g="pl" data-i="2" aria-label="Открыть: Платформа: Новая лексика"><img src="wetalk-img/pl-03.webp" width="828" height="1061" alt="Платформа: Новая лексика" loading="lazy" decoding="async"></button><figcaption>Новая лексика</figcaption></figure><figure class="fig"><button type="button" data-g="pl" data-i="3" aria-label="Открыть: Платформа: Видео прямо в уроке"><img src="wetalk-img/pl-04.webp" width="828" height="856" alt="Платформа: Видео прямо в уроке" loading="lazy" decoding="async"></button><figcaption>Видео прямо в уроке</figcaption></figure><figure class="fig"><button type="button" data-g="pl" data-i="4" aria-label="Открыть: Платформа: Проверка понимания"><img src="wetalk-img/pl-05.webp" width="828" height="1054" alt="Платформа: Проверка понимания" loading="lazy" decoding="async"></button><figcaption>Проверка понимания</figcaption></figure><figure class="fig"><button type="button" data-g="pl" data-i="5" aria-label="Открыть: Платформа: От общего к деталям"><img src="wetalk-img/pl-06.webp" width="828" height="1008" alt="Платформа: От общего к деталям" loading="lazy" decoding="async"></button><figcaption>От общего к деталям</figcaption></figure><figure class="fig"><button type="button" data-g="pl" data-i="6" aria-label="Открыть: Платформа: True / False / Not given"><img src="wetalk-img/pl-07.webp" width="828" height="1130" alt="Платформа: True / False / Not given" loading="lazy" decoding="async"></button><figcaption>True / False / Not given</figcaption></figure><figure class="fig"><button type="button" data-g="pl" data-i="7" aria-label="Открыть: Платформа: Заполни пропуски"><img src="wetalk-img/pl-08.webp" width="828" height="1344" alt="Платформа: Заполни пропуски" loading="lazy" decoding="async"></button><figcaption>Заполни пропуски</figcaption></figure><figure class="fig"><button type="button" data-g="pl" data-i="8" aria-label="Открыть: Платформа: Квизы по видео"><img src="wetalk-img/pl-09.webp" width="828" height="1530" alt="Платформа: Квизы по видео" loading="lazy" decoding="async"></button><figcaption>Квизы по видео</figcaption></figure><figure class="fig"><button type="button" data-g="pl" data-i="9" aria-label="Открыть: Платформа: Темы для обсуждения"><img src="wetalk-img/pl-10.webp" width="828" height="1486" alt="Платформа: Темы для обсуждения" loading="lazy" decoding="async"></button><figcaption>Темы для обсуждения</figcaption></figure><figure class="fig"><button type="button" data-g="pl" data-i="10" aria-label="Открыть: Платформа: Понятная домашка"><img src="wetalk-img/pl-11.webp" width="828" height="1362" alt="Платформа: Понятная домашка" loading="lazy" decoding="async"></button><figcaption>Понятная домашка</figcaption></figure></div><div class="strip-bar" aria-hidden="true"><i></i></div></div>
+  <div class="strip tall"><div class="strip-head"><span class="strip-label">Так выглядит платформа изнутри</span><div class="strip-arrows"><button type="button" class="sp" aria-label="Назад">‹</button><button type="button" class="sn" aria-label="Вперёд">›</button></div></div><div class="strip-track" tabindex="0" aria-label="Так выглядит платформа изнутри"><figure class="fig"><button type="button" data-g="pl" data-i="0" aria-label="Открыть: Платформа: Личный кабинет"><img src="wetalk-img/pl-01.webp" width="828" height="661" alt="Платформа: Личный кабинет" loading="lazy" decoding="async"></button><figcaption>Личный кабинет</figcaption></figure><figure class="fig"><button type="button" data-g="pl" data-i="1" aria-label="Открыть: Платформа: Свой словарь"><img src="wetalk-img/pl-02.webp" width="828" height="1349" alt="Платформа: Свой словарь" loading="lazy" decoding="async"></button><figcaption>Свой словарь</figcaption></figure><figure class="fig"><button type="button" data-g="pl" data-i="2" aria-label="Открыть: Платформа: Новая лексика"><img src="wetalk-img/pl-03.webp" width="828" height="1061" alt="Платформа: Новая лексика" loading="lazy" decoding="async"></button><figcaption>Новая лексика</figcaption></figure><figure class="fig"><button type="button" data-g="pl" data-i="3" aria-label="Открыть: Платформа: Видео прямо в уроке"><img src="wetalk-img/pl-04.webp" width="828" height="856" alt="Платформа: Видео прямо в уроке" loading="lazy" decoding="async"></button><figcaption>Видео прямо в уроке</figcaption></figure><figure class="fig"><button type="button" data-g="pl" data-i="4" aria-label="Открыть: Платформа: Проверка понимания"><img src="wetalk-img/pl-05.webp" width="828" height="1054" alt="Платформа: Проверка понимания" loading="lazy" decoding="async"></button><figcaption>Проверка понимания</figcaption></figure><figure class="fig"><button type="button" data-g="pl" data-i="5" aria-label="Открыть: Платформа: От общего к деталям"><img src="wetalk-img/pl-06.webp" width="828" height="1008" alt="Платформа: От общего к деталям" loading="lazy" decoding="async"></button><figcaption>От общего к деталям</figcaption></figure><figure class="fig"><button type="button" data-g="pl" data-i="6" aria-label="Открыть: Платформа: True / False / Not given"><img src="wetalk-img/pl-07.webp" width="828" height="1130" alt="Платформа: True / False / Not given" loading="lazy" decoding="async"></button><figcaption>True / False / Not given</figcaption></figure><figure class="fig"><button type="button" data-g="pl" data-i="7" aria-label="Открыть: Платформа: Заполни пропуски"><img src="wetalk-img/pl-08.webp" width="828" height="1344" alt="Платформа: Заполни пропуски" loading="lazy" decoding="async"></button><figcaption>Заполни пропуски</figcaption></figure><figure class="fig"><button type="button" data-g="pl" data-i="8" aria-label="Открыть: Платформа: Квизы по видео"><img src="wetalk-img/pl-09.webp" width="828" height="1530" alt="Платформа: Квизы по видео" loading="lazy" decoding="async"></button><figcaption>Квизы по видео</figcaption></figure><figure class="fig"><button type="button" data-g="pl" data-i="9" aria-label="Открыть: Платформа: Темы для обсуждения"><img src="wetalk-img/pl-10.webp" width="828" height="1486" alt="Платформа: Темы для обсуждения" loading="lazy" decoding="async"></button><figcaption>Темы для обсуждения</figcaption></figure><figure class="fig"><button type="button" data-g="pl" data-i="10" aria-label="Открыть: Платформа: Понятная домашка"><img src="wetalk-img/pl-11.webp" width="828" height="1362" alt="Платформа: Понятная домашка" loading="lazy" decoding="async"></button><figcaption>Понятная домашка</figcaption></figure></div><div class="strip-bar" aria-hidden="true"><i></i></div></div>
 </section>
 
 <!-- TELEGRAM -->
 <section class="sheet" id="telegram">
   <span class="kicker">Telegram</span>
-  <h2 class="h2">Telegram-канал для домашки</h2>
-  <p class="body">У каждой группы — свой Telegram-канал. Домашка, ссылки и вопросы к преподавателю лежат по порядку, без бардака.</p>
-  <ul class="tg-list"><li class="tg-row"><button type="button" class="tg-shot" data-g="tg" data-i="0" aria-label="Открыть: Канал группы с расписанием и подсказкой «Домашку ищем по датам»"><img src="wetalk-img/tg-1.webp" width="828" height="817" alt="Канал группы с расписанием и подсказкой «Домашку ищем по датам»" loading="lazy" decoding="async"><span class="tg-pin">📌 Свой канал</span></button><div class="tg-text"><h4 class="semi">Свой канал у каждой группы</h4><p>В описании — расписание занятий и одно правило: домашку ищем по датам. Только ваша группа и ваш преподаватель.</p></div></li><li class="tg-row"><button type="button" class="tg-shot" data-g="tg" data-i="1" aria-label="Открыть: Пост с домашкой за 26.08 и 29.08"><img src="wetalk-img/tg-2.webp" width="828" height="1241" alt="Пост с домашкой за 26.08 и 29.08" loading="lazy" decoding="async"><span class="tg-pin">📅 По датам</span></button><div class="tg-text"><h4 class="semi">Всё по датам</h4><p>Каждое задание — отдельный пост с датой урока. Нужна домашка от 26 августа? Находится за секунду, без прокрутки бесконечного чата.</p></div></li><li class="tg-row"><button type="button" class="tg-shot" data-g="tg" data-i="2" aria-label="Открыть: Задание на сочинение и 34 комментария под ним"><img src="wetalk-img/tg-3.webp" width="828" height="738" alt="Задание на сочинение и 34 комментария под ним" loading="lazy" decoding="async"><span class="tg-pin">💬 34 комментария</span></button><div class="tg-text"><h4 class="semi">Вопросы — прямо под домашкой</h4><p>Под каждым заданием открыты комментарии. Спросили — получили ответ преподавателя, и всё осталось на месте. В любой момент можно открыть урок и вспомнить, что обсуждали с преподавателем и одногруппницами.</p></div></li><li class="tg-row"><button type="button" class="tg-shot" data-g="tg" data-i="3" aria-label="Открыть: Пост со ссылками на игры, в которые играли на уроке"><img src="wetalk-img/tg-4.webp" width="828" height="582" alt="Пост со ссылками на игры, в которые играли на уроке" loading="lazy" decoding="async"><span class="tg-pin">🔗 Ссылки с урока</span></button><div class="tg-text"><h4 class="semi">Ничего не теряется</h4><p>Игры с урока, статьи, аудио и видео лежат в канале. Не нужно искать ссылку, которая утонула в переписке неделю назад.</p></div></li></ul>
-  <div class="tg-final"><b>Всё чётко и системно</b><span>Платформа и Telegram — и больше никаких лишних вкладок.</span></div>
+  <h2 class="h2">Telegram-канал для домашки</h2>
+  <p class="body">У каждой группы — свой Telegram-канал. Домашка, ссылки и вопросы к преподавателю лежат по порядку, без бардака.</p>
+  <ul class="tg-list"><li class="tg-row"><button type="button" class="tg-shot" data-g="tg" data-i="0" aria-label="Открыть: Канал группы с расписанием и подсказкой «Домашку ищем по датам»"><img src="wetalk-img/tg-1.webp" width="828" height="817" alt="Канал группы с расписанием и подсказкой «Домашку ищем по датам»" loading="lazy" decoding="async"><span class="tg-pin">📌 Свой канал</span></button><div class="tg-text"><h4 class="semi">Свой канал у каждой группы</h4><p>В описании — расписание занятий и одно правило: домашку ищем по датам. Только ваша группа и ваш преподаватель.</p></div></li><li class="tg-row"><button type="button" class="tg-shot" data-g="tg" data-i="1" aria-label="Открыть: Пост с домашкой за 26.08 и 29.08"><img src="wetalk-img/tg-2.webp" width="828" height="1241" alt="Пост с домашкой за 26.08 и 29.08" loading="lazy" decoding="async"><span class="tg-pin">📅 По датам</span></button><div class="tg-text"><h4 class="semi">Всё по датам</h4><p>Каждое задание — отдельный пост с датой урока. Нужна домашка от 26 августа? Находится за секунду, без прокрутки бесконечного чата.</p></div></li><li class="tg-row"><button type="button" class="tg-shot" data-g="tg" data-i="2" aria-label="Открыть: Задание на сочинение и 34 комментария под ним"><img src="wetalk-img/tg-3.webp" width="828" height="738" alt="Задание на сочинение и 34 комментария под ним" loading="lazy" decoding="async"><span class="tg-pin">💬 34 комментария</span></button><div class="tg-text"><h4 class="semi">Вопросы — прямо под домашкой</h4><p>Под каждым заданием открыты комментарии. Спросили — получили ответ преподавателя, и всё осталось на месте. В любой момент можно открыть урок и вспомнить, что обсуждали с преподавателем и одногруппницами.</p></div></li><li class="tg-row"><button type="button" class="tg-shot" data-g="tg" data-i="3" aria-label="Открыть: Пост со ссылками на игры, в которые играли на уроке"><img src="wetalk-img/tg-4.webp" width="828" height="582" alt="Пост со ссылками на игры, в которые играли на уроке" loading="lazy" decoding="async"><span class="tg-pin">🔗 Ссылки с урока</span></button><div class="tg-text"><h4 class="semi">Ничего не теряется</h4><p>Игры с урока, статьи, аудио и видео лежат в канале. Не нужно искать ссылку, которая утонула в переписке неделю назад.</p></div></li></ul>
+  <div class="tg-final"><b>Всё чётко и системно</b><span>Платформа и Telegram — и больше никаких лишних вкладок.</span></div>
 </section>
 
 <!-- MINI-SITES -->
 <section class="sheet" id="minisites">
   <span class="kicker">Практика лексики</span>
-  <h2 class="h2">Мини-сайты к каждому уроку</h2>
-  <p class="body">Платформа закрывает все задачи. Но мы идём дальше: к темам уроков делаем отдельные мини-сайты для дополнительной практики, чтобы новые слова точно остались в голове.</p>
-  <div class="try">Попробуй сама — нажми на карточку</div>
-  <div class="flips"><button type="button" class="flip" aria-pressed="false" aria-label="Карточка domineering: нажмите, чтобы перевернуть"><span class="flip-in"><span class="face front"><b>domineering</b><i>нажми, чтобы перевернуть</i></span><span class="face back"><b>властный, деспотичный</b><i>Her domineering boss controlled every small decision in the office.</i></span></span></button><button type="button" class="flip" aria-pressed="false" aria-label="Карточка isolated: нажмите, чтобы перевернуть"><span class="flip-in"><span class="face front"><b>isolated</b><i>нажми, чтобы перевернуть</i></span><span class="face back"><b>изолированный, одинокий</b><i>Working from a remote village, he felt completely isolated.</i></span></span></button><button type="button" class="flip" aria-pressed="false" aria-label="Карточка outsider: нажмите, чтобы перевернуть"><span class="flip-in"><span class="face front"><b>outsider</b><i>нажми, чтобы перевернуть</i></span><span class="face back"><b>чужак, изгой</b><i>As the only foreign student, she often felt like an outsider.</i></span></span></button></div>
+  <h2 class="h2">Мини-сайты к каждому уроку</h2>
+  <p class="body">Платформа закрывает все задачи. Но мы идём дальше: к темам уроков делаем отдельные мини-сайты для дополнительной практики, чтобы новые слова точно остались в голове.</p>
+  <div class="try">Попробуй сама — нажми на карточку</div>
+  <div class="flips"><button type="button" class="flip" aria-pressed="false" aria-label="Карточка domineering: нажмите, чтобы перевернуть"><span class="flip-in"><span class="face front"><b>domineering</b><i>нажми, чтобы перевернуть</i></span><span class="face back"><b>властный, деспотичный</b><i>Her domineering boss controlled every small decision in the office.</i></span></span></button><button type="button" class="flip" aria-pressed="false" aria-label="Карточка isolated: нажмите, чтобы перевернуть"><span class="flip-in"><span class="face front"><b>isolated</b><i>нажми, чтобы перевернуть</i></span><span class="face back"><b>изолированный, одинокий</b><i>Working from a remote village, he felt completely isolated.</i></span></span></button><button type="button" class="flip" aria-pressed="false" aria-label="Карточка outsider: нажмите, чтобы перевернуть"><span class="flip-in"><span class="face front"><b>outsider</b><i>нажми, чтобы перевернуть</i></span><span class="face back"><b>чужак, изгой</b><i>As the only foreign student, she often felt like an outsider.</i></span></span></button></div>
   <div class="tiles c3">
-    <div class="tile"><h4 class="semi">Под вашу тему</h4><p>Слова берём из урока, который прошла ваша группа.</p></div>
-    <div class="tile s"><h4 class="semi">Разные форматы</h4><p>Карточки, «соедини слово с переводом», пропуски в предложениях.</p></div>
-    <div class="tile k"><h4 class="semi">С телефона за 5 минут</h4><p>Ссылка приходит в Telegram-канал группы: открыли в дороге и повторили слова.</p></div>
+    <div class="tile"><h4 class="semi">Под вашу тему</h4><p>Слова берём из урока, который прошла ваша группа.</p></div>
+    <div class="tile s"><h4 class="semi">Разные форматы</h4><p>Карточки, «соедини слово с переводом», пропуски в предложениях.</p></div>
+    <div class="tile k"><h4 class="semi">С телефона за 5 минут</h4><p>Ссылка приходит в Telegram-канал группы: открыли в дороге и повторили слова.</p></div>
   </div>
-  <div class="strip tall"><div class="strip-head"><span class="strip-label">Примеры мини-сайтов</span><div class="strip-arrows"><button type="button" class="sp" aria-label="Назад">‹</button><button type="button" class="sn" aria-label="Вперёд">›</button></div></div><div class="strip-track" tabindex="0" aria-label="Примеры мини-сайтов"><figure class="fig"><button type="button" data-g="ms" data-i="0" aria-label="Открыть: Мини-сайт: Карточки со словами"><img src="wetalk-img/ms-1.webp" width="828" height="1179" alt="Мини-сайт: Карточки со словами" loading="lazy" decoding="async"></button><figcaption>Карточки со словами</figcaption></figure><figure class="fig"><button type="button" data-g="ms" data-i="1" aria-label="Открыть: Мини-сайт: Соедини слово с переводом"><img src="wetalk-img/ms-2.webp" width="828" height="1450" alt="Мини-сайт: Соедини слово с переводом" loading="lazy" decoding="async"></button><figcaption>Соедини слово с переводом</figcaption></figure><figure class="fig"><button type="button" data-g="ms" data-i="2" aria-label="Открыть: Мини-сайт: Словарь урока"><img src="wetalk-img/ms-3.webp" width="828" height="957" alt="Мини-сайт: Словарь урока" loading="lazy" decoding="async"></button><figcaption>Словарь урока</figcaption></figure><figure class="fig"><button type="button" data-g="ms" data-i="3" aria-label="Открыть: Мини-сайт: Заполни пропуск"><img src="wetalk-img/ms-4.webp" width="828" height="899" alt="Мини-сайт: Заполни пропуск" loading="lazy" decoding="async"></button><figcaption>Заполни пропуск</figcaption></figure><figure class="fig"><button type="button" data-g="ms" data-i="4" aria-label="Открыть: Мини-сайт: Карточка с примером"><img src="wetalk-img/ms-5.webp" width="828" height="953" alt="Мини-сайт: Карточка с примером" loading="lazy" decoding="async"></button><figcaption>Карточка с примером</figcaption></figure></div><div class="strip-bar" aria-hidden="true"><i></i></div></div>
+  <div class="strip tall"><div class="strip-head"><span class="strip-label">Примеры мини-сайтов</span><div class="strip-arrows"><button type="button" class="sp" aria-label="Назад">‹</button><button type="button" class="sn" aria-label="Вперёд">›</button></div></div><div class="strip-track" tabindex="0" aria-label="Примеры мини-сайтов"><figure class="fig"><button type="button" data-g="ms" data-i="0" aria-label="Открыть: Мини-сайт: Карточки со словами"><img src="wetalk-img/ms-1.webp" width="828" height="1179" alt="Мини-сайт: Карточки со словами" loading="lazy" decoding="async"></button><figcaption>Карточки со словами</figcaption></figure><figure class="fig"><button type="button" data-g="ms" data-i="1" aria-label="Открыть: Мини-сайт: Соедини слово с переводом"><img src="wetalk-img/ms-2.webp" width="828" height="1450" alt="Мини-сайт: Соедини слово с переводом" loading="lazy" decoding="async"></button><figcaption>Соедини слово с переводом</figcaption></figure><figure class="fig"><button type="button" data-g="ms" data-i="2" aria-label="Открыть: Мини-сайт: Словарь урока"><img src="wetalk-img/ms-3.webp" width="828" height="957" alt="Мини-сайт: Словарь урока" loading="lazy" decoding="async"></button><figcaption>Словарь урока</figcaption></figure><figure class="fig"><button type="button" data-g="ms" data-i="3" aria-label="Открыть: Мини-сайт: Заполни пропуск"><img src="wetalk-img/ms-4.webp" width="828" height="899" alt="Мини-сайт: Заполни пропуск" loading="lazy" decoding="async"></button><figcaption>Заполни пропуск</figcaption></figure><figure class="fig"><button type="button" data-g="ms" data-i="4" aria-label="Открыть: Мини-сайт: Карточка с примером"><img src="wetalk-img/ms-5.webp" width="828" height="953" alt="Мини-сайт: Карточка с примером" loading="lazy" decoding="async"></button><figcaption>Карточка с примером</figcaption></figure></div><div class="strip-bar" aria-hidden="true"><i></i></div></div>
 </section>
 
 <!-- FORMAT -->
-<section class="sheet" style="--r:.6deg">
+<section class="sheet" id="podcasts" style="--r:.6deg">
   <span class="kicker">Фирменный формат</span>
   <div class="cols2 rev">
     <div>
       <h2 class="h2">Студентки записывают <span class="nb">мини-подкасты</span> на английском</h2>
-      <p class="body">От «What's in my bag?» до разговоров о своих увлечениях и открытиях — это способ прокачать speaking, выйти из «учебной зоны» в реальную практику и начать звучать уверенно.</p>
-      <p class="body">Помимо подкастов студентки пишут сочинения и эссе — мы работаем над языком по всем фронтам: говорение, аудирование, чтение и письмо.</p>
+      <p class="body">От «What's in my bag?» до разговоров о своих увлечениях и открытиях — это способ прокачать speaking, выйти из «учебной зоны» в реальную практику и начать звучать уверенно.</p>
+      <p class="body">Помимо подкастов студентки пишут сочинения и эссе — мы работаем над языком по всем фронтам: говорение, аудирование, чтение и письмо.</p>
     </div>
     <div class="pods"><button type="button" data-g="pod" data-i="0" style="--ar:1.2778" aria-label="Открыть подкаст 1"><img src="wetalk-img/rv-02.webp" width="828" height="648" alt="Подкаст студентки WeTalk" loading="lazy" decoding="async"></button><button type="button" data-g="pod" data-i="1" style="--ar:1.2622" aria-label="Открыть подкаст 2"><img src="wetalk-img/rv-04.webp" width="828" height="656" alt="Подкаст студентки WeTalk" loading="lazy" decoding="async"></button></div>
   </div>
 </section>
 
 <!-- STEPS -->
-<section class="sheet" style="--r:-.5deg">
+<section class="sheet" id="steps" style="--r:-.5deg">
   <span class="kicker">Пробное занятие</span>
-  <h2 class="h2">Что происходит на пробном</h2>
+  <h2 class="h2">Что происходит на пробном</h2>
   <div class="tiles c3">
     <div class="tile"><span class="no">01</span><h4 class="semi">Выбираем удобное время</h4><p>Согласовываем дату и время созвона с преподавателем — гибко и без навязанных рамок.</p></div>
-    <div class="tile k"><span class="no">02</span><h4 class="semi">Встречаемся онлайн</h4><p>Перед занятием — короткий 15-минутный тест на уровень. Созвон идёт 20⁠–⁠30 минут, камера не нужна — только микрофон.</p></div>
+    <div class="tile k"><span class="no">02</span><h4 class="semi">Встречаемся онлайн</h4><p>Перед занятием — короткий 15-минутный тест на уровень. Созвон идёт 20⁠–⁠30 минут, камера не нужна — только микрофон.</p></div>
     <div class="tile s"><span class="no">03</span><h4 class="semi">Знакомимся с подходом к обучению</h4><p>Преподаватель рассказывает про методику, показывает материалы, помогает выбрать формат и расписание — и отвечает на любые вопросы.</p></div>
   </div>
 </section>
@@ -628,7 +701,7 @@ body{font-size:16px;line-height:1.6}
     <a class="btn btn-k btn-mid" href="https://wa.me/79911186796" target="_blank" rel="noopener">Записаться</a>
   </div>
   <div class="pills">
-    <div class="pill"><h4 class="semi">Всё включено</h4><p>Платформа 2EASY и домашние задания входят в стоимость обучения.</p></div>
+    <div class="pill"><h4 class="semi">Всё включено</h4><p>Платформа 2EASY и домашние задания входят в стоимость обучения.</p></div>
     <div class="pill"><h4 class="semi">1000+ ресурсов бесплатно</h4><p>Подборки лексики, книги, фильмы, конспекты преподавателей — в закрытом Telegram-канале*.</p></div>
     <div class="pill"><h4 class="semi">Поддержка между уроками</h4><p>Подскажем, направим и поможем с любым вопросом.</p></div>
   </div>
@@ -637,20 +710,20 @@ body{font-size:16px;line-height:1.6}
 <!-- REVIEWS -->
 <section class="sheet" id="reviews" style="--r:-.5deg">
   <span class="kicker">Отзывы</span>
-  <h2 class="h2">Что говорят наши студентки</h2>
-  <div class="strip" data-auto="1"><div class="strip-head"><span class="strip-label">Скриншоты отзывов из нашего Telegram</span><div class="strip-arrows"><button type="button" class="sp" aria-label="Назад">‹</button><button type="button" class="sn" aria-label="Вперёд">›</button></div></div><div class="strip-track" tabindex="0" aria-label="Скриншоты отзывов из нашего Telegram"><figure class="fig"><button type="button" data-g="pov" data-i="0" aria-label="Открыть: Отзывы студенток WeTalk, слайд 02"><img src="wetalk-img/pov-02.webp" width="1080" height="1350" alt="Отзывы студенток WeTalk, слайд 02" loading="lazy" decoding="async"></button></figure><figure class="fig"><button type="button" data-g="pov" data-i="1" aria-label="Открыть: Отзывы студенток WeTalk, слайд 03"><img src="wetalk-img/pov-03.webp" width="1080" height="1350" alt="Отзывы студенток WeTalk, слайд 03" loading="lazy" decoding="async"></button></figure><figure class="fig"><button type="button" data-g="pov" data-i="2" aria-label="Открыть: Отзывы студенток WeTalk, слайд 04"><img src="wetalk-img/pov-04.webp" width="1080" height="1350" alt="Отзывы студенток WeTalk, слайд 04" loading="lazy" decoding="async"></button></figure><figure class="fig"><button type="button" data-g="pov" data-i="3" aria-label="Открыть: Отзывы студенток WeTalk, слайд 05"><img src="wetalk-img/pov-05.webp" width="1080" height="1350" alt="Отзывы студенток WeTalk, слайд 05" loading="lazy" decoding="async"></button></figure><figure class="fig"><button type="button" data-g="pov" data-i="4" aria-label="Открыть: Отзывы студенток WeTalk, слайд 06"><img src="wetalk-img/pov-06.webp" width="1080" height="1350" alt="Отзывы студенток WeTalk, слайд 06" loading="lazy" decoding="async"></button></figure><figure class="fig"><button type="button" data-g="pov" data-i="5" aria-label="Открыть: Отзывы студенток WeTalk, слайд 07"><img src="wetalk-img/pov-07.webp" width="1080" height="1350" alt="Отзывы студенток WeTalk, слайд 07" loading="lazy" decoding="async"></button></figure><figure class="fig"><button type="button" data-g="pov" data-i="6" aria-label="Открыть: Отзывы студенток WeTalk, слайд 08"><img src="wetalk-img/pov-08.webp" width="1080" height="1350" alt="Отзывы студенток WeTalk, слайд 08" loading="lazy" decoding="async"></button></figure><figure class="fig"><button type="button" data-g="pov" data-i="7" aria-label="Открыть: Отзывы студенток WeTalk, слайд 09"><img src="wetalk-img/pov-09.webp" width="1080" height="1350" alt="Отзывы студенток WeTalk, слайд 09" loading="lazy" decoding="async"></button></figure></div><div class="strip-bar" aria-hidden="true"><i></i></div></div>
+  <h2 class="h2">Что говорят наши студентки</h2>
+  <div class="strip" data-auto="1"><div class="strip-head"><span class="strip-label">Скриншоты отзывов из нашего Telegram</span><div class="strip-arrows"><button type="button" class="sp" aria-label="Назад">‹</button><button type="button" class="sn" aria-label="Вперёд">›</button></div></div><div class="strip-track" tabindex="0" aria-label="Скриншоты отзывов из нашего Telegram"><figure class="fig"><button type="button" data-g="pov" data-i="0" aria-label="Открыть: Отзывы студенток WeTalk, слайд 02"><img src="wetalk-img/pov-02.webp" width="1080" height="1350" alt="Отзывы студенток WeTalk, слайд 02" loading="lazy" decoding="async"></button></figure><figure class="fig"><button type="button" data-g="pov" data-i="1" aria-label="Открыть: Отзывы студенток WeTalk, слайд 03"><img src="wetalk-img/pov-03.webp" width="1080" height="1350" alt="Отзывы студенток WeTalk, слайд 03" loading="lazy" decoding="async"></button></figure><figure class="fig"><button type="button" data-g="pov" data-i="2" aria-label="Открыть: Отзывы студенток WeTalk, слайд 04"><img src="wetalk-img/pov-04.webp" width="1080" height="1350" alt="Отзывы студенток WeTalk, слайд 04" loading="lazy" decoding="async"></button></figure><figure class="fig"><button type="button" data-g="pov" data-i="3" aria-label="Открыть: Отзывы студенток WeTalk, слайд 05"><img src="wetalk-img/pov-05.webp" width="1080" height="1350" alt="Отзывы студенток WeTalk, слайд 05" loading="lazy" decoding="async"></button></figure><figure class="fig"><button type="button" data-g="pov" data-i="4" aria-label="Открыть: Отзывы студенток WeTalk, слайд 06"><img src="wetalk-img/pov-06.webp" width="1080" height="1350" alt="Отзывы студенток WeTalk, слайд 06" loading="lazy" decoding="async"></button></figure><figure class="fig"><button type="button" data-g="pov" data-i="5" aria-label="Открыть: Отзывы студенток WeTalk, слайд 07"><img src="wetalk-img/pov-07.webp" width="1080" height="1350" alt="Отзывы студенток WeTalk, слайд 07" loading="lazy" decoding="async"></button></figure><figure class="fig"><button type="button" data-g="pov" data-i="6" aria-label="Открыть: Отзывы студенток WeTalk, слайд 08"><img src="wetalk-img/pov-08.webp" width="1080" height="1350" alt="Отзывы студенток WeTalk, слайд 08" loading="lazy" decoding="async"></button></figure><figure class="fig"><button type="button" data-g="pov" data-i="7" aria-label="Открыть: Отзывы студенток WeTalk, слайд 09"><img src="wetalk-img/pov-09.webp" width="1080" height="1350" alt="Отзывы студенток WeTalk, слайд 09" loading="lazy" decoding="async"></button></figure></div><div class="strip-bar" aria-hidden="true"><i></i></div></div>
   <div class="tiles c3">
-    <div class="review"><div class="stars">★★★★★</div><p>«Занимаюсь в школе чуть меньше года. До этого пробовала заниматься английским в других местах — есть с чем сравнивать. Хочу отметить сочетание профессионализма и комфортной среды при обучении.»</p><div class="who">Индивидуальное обучение</div></div>
-    <div class="review"><div class="stars">★★★★★</div><p>«За 10 месяцев обучения с Диной я не только выучила язык, но и изменилась сама. Теперь я с лёгкостью пишу заметки, отправляю сообщения и, главное, перестала бояться ошибок.»</p><div class="who">Индивидуальное обучение</div></div>
-    <div class="review"><div class="stars">★★★★★</div><p>«Тактика преподавания нацелена на результат. Все задания продуманы, домашнее задание направлено на закрепление пройденных тем.»</p><div class="who">Индивидуальное обучение</div></div>
-    <div class="review"><div class="stars">★★★★★</div><p>«Я ни разу не пожалела, что перешла на коллективный формат обучения. На Беллу можно положиться как на наставника.»</p><div class="who">Групповое обучение</div></div>
-    <div class="review"><div class="stars">★★★★★</div><p>«Сама скептически отношусь к приложениям при обучении, но выбранные We Talk считаю очень успешными. По моей рекомендации уже обучается моя лучшая подруга.»</p><div class="who">Групповое обучение</div></div>
-    <div class="review"><div class="stars">★★★★★</div><p>«Мне очень понравилось, занятия интересные и информация хорошо преподносится. Я планирую продолжать.»</p><div class="who">Групповое обучение</div></div>
+    <div class="review"><div class="stars">★★★★★</div><p>«Занимаюсь в школе чуть меньше года. До этого пробовала заниматься английским в других местах — есть с чем сравнивать. Хочу отметить сочетание профессионализма и комфортной среды при обучении.»</p><div class="who">Индивидуальное обучение</div></div>
+    <div class="review"><div class="stars">★★★★★</div><p>«За 10 месяцев обучения с Диной я не только выучила язык, но и изменилась сама. Теперь я с лёгкостью пишу заметки, отправляю сообщения и, главное, перестала бояться ошибок.»</p><div class="who">Индивидуальное обучение</div></div>
+    <div class="review"><div class="stars">★★★★★</div><p>«Тактика преподавания нацелена на результат. Все задания продуманы, домашнее задание направлено на закрепление пройденных тем.»</p><div class="who">Индивидуальное обучение</div></div>
+    <div class="review"><div class="stars">★★★★★</div><p>«Я ни разу не пожалела, что перешла на коллективный формат обучения. На Беллу можно положиться как на наставника.»</p><div class="who">Групповое обучение</div></div>
+    <div class="review"><div class="stars">★★★★★</div><p>«Сама скептически отношусь к приложениям при обучении, но выбранные We Talk считаю очень успешными. По моей рекомендации уже обучается моя лучшая подруга.»</p><div class="who">Групповое обучение</div></div>
+    <div class="review"><div class="stars">★★★★★</div><p>«Мне очень понравилось, занятия интересные и информация хорошо преподносится. Я планирую продолжать.»</p><div class="who">Групповое обучение</div></div>
   </div>
-  <div class="allbtn"><button type="button" class="btn btn-o" data-g="all" data-i="0">Смотреть все отзывы<small>33</small></button></div>
-  <p class="body" style="margin-top:46px">Посмотреть, как проходят уроки, и увидеть результаты тестирований можно в нашем Telegram-канале с честными и реальными отзывами и успехами студенток*.</p>
+  <div class="allbtn"><button type="button" class="btn btn-o" data-g="all" data-i="0">Смотреть все отзывы<small>33</small></button></div>
+  <p class="body" style="margin-top:46px">Посмотреть, как проходят уроки, и увидеть результаты тестирований можно в нашем Telegram-канале с честными и реальными отзывами и успехами студенток*.</p>
   <p style="margin:22px 0 0"><a class="btn btn-g" href="https://t.me/wetalklessons" target="_blank" rel="noopener">Перейти в Telegram-канал</a></p>
-  <p class="fn">* Доступ к Telegram в РФ ограничен.</p>
+  <p class="fn">* Доступ к Telegram в РФ ограничен.</p>
 </section>
 
 
@@ -667,11 +740,11 @@ body{font-size:16px;line-height:1.6}
   <div>We Talk — онлайн уроки английского для женщин</div>
   <div class="footlinks">
     <a href="https://www.instagram.com/wetalk.ru" target="_blank" rel="noopener">Instagram*</a>
-    <a href="https://t.me/booksbywetalk" target="_blank" rel="noopener">Канал с ресурсами*</a>
-    <a href="https://t.me/wetalklessons" target="_blank" rel="noopener">Канал с отзывами и успехами*</a>
+    <a href="https://t.me/booksbywetalk" target="_blank" rel="noopener">Канал с ресурсами*</a>
+    <a href="https://t.me/wetalklessons" target="_blank" rel="noopener">Канал с отзывами и успехами*</a>
     <a href="https://wa.me/79911186796" target="_blank" rel="noopener">WhatsApp</a>
   </div>
-  <p class="fn" style="flex-basis:100%;margin:0">* Instagram принадлежит компании Meta, признанной экстремистской организацией и запрещённой в РФ. Доступ к Telegram в РФ ограничен.</p>
+  <p class="fn" style="flex-basis:100%;margin:0">* Instagram принадлежит компании Meta, признанной экстремистской организацией и запрещённой в РФ. Доступ к Telegram в РФ ограничен.</p>
 </div></footer>
 
 <div class="lb" id="lb" hidden role="dialog" aria-modal="true" aria-label="Галерея">
@@ -679,13 +752,16 @@ body{font-size:16px;line-height:1.6}
   <div class="lb-track" id="lbTrack"></div>
   <button type="button" class="lb-arrow lb-prev" id="lbPrev" aria-label="Предыдущее">‹</button>
   <button type="button" class="lb-arrow lb-next" id="lbNext" aria-label="Следующее">›</button>
-  <div class="lb-hint">Листайте в стороны · двойное нажатие увеличивает · свайп вниз закрывает</div>
+  <div class="lb-hint">Листайте в стороны · двойное нажатие увеличивает · свайп вниз закрывает</div>
 </div>
 
 <script>
 (function(){
 var de=document.documentElement,reduced=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
 var GAL={"pov": ["wetalk-img/pov-02.webp", "wetalk-img/pov-03.webp", "wetalk-img/pov-04.webp", "wetalk-img/pov-05.webp", "wetalk-img/pov-06.webp", "wetalk-img/pov-07.webp", "wetalk-img/pov-08.webp", "wetalk-img/pov-09.webp"], "all": ["wetalk-img/pov-02.webp", "wetalk-img/pov-03.webp", "wetalk-img/pov-04.webp", "wetalk-img/pov-05.webp", "wetalk-img/pov-06.webp", "wetalk-img/pov-07.webp", "wetalk-img/pov-08.webp", "wetalk-img/pov-09.webp", "wetalk-img/rv-01.webp", "wetalk-img/rv-02.webp", "wetalk-img/rv-03.webp", "wetalk-img/rv-04.webp", "wetalk-img/rv-05.webp", "wetalk-img/rv-06.webp", "wetalk-img/rv-07.webp", "wetalk-img/rv-08.webp", "wetalk-img/rv-09.webp", "wetalk-img/rv-10.webp", "wetalk-img/rv-11.webp", "wetalk-img/rv-12.webp", "wetalk-img/rv-13.webp", "wetalk-img/rv-14.webp", "wetalk-img/rv-15.webp", "wetalk-img/rv-16.webp", "wetalk-img/rv-17.webp", "wetalk-img/rv-18.webp", "wetalk-img/rv-19.webp", "wetalk-img/rv-20.webp", "wetalk-img/rv-21.webp", "wetalk-img/rv-22.webp", "wetalk-img/rv-23.webp", "wetalk-img/rv-24.webp", "wetalk-img/rv-25.webp"], "pl": ["wetalk-img/pl-01.webp", "wetalk-img/pl-02.webp", "wetalk-img/pl-03.webp", "wetalk-img/pl-04.webp", "wetalk-img/pl-05.webp", "wetalk-img/pl-06.webp", "wetalk-img/pl-07.webp", "wetalk-img/pl-08.webp", "wetalk-img/pl-09.webp", "wetalk-img/pl-10.webp", "wetalk-img/pl-11.webp"], "ms": ["wetalk-img/ms-1.webp", "wetalk-img/ms-2.webp", "wetalk-img/ms-3.webp", "wetalk-img/ms-4.webp", "wetalk-img/ms-5.webp"], "tg": ["wetalk-img/tg-1.webp", "wetalk-img/tg-2.webp", "wetalk-img/tg-3.webp", "wetalk-img/tg-4.webp"], "pod": ["wetalk-img/rv-02.webp", "wetalk-img/rv-04.webp"]};
+/* высота меню (в два ряда) — отступ страницы под ним */
+function navFit(){var n=document.querySelector('nav');if(!n)return;var h=n.offsetHeight;document.body.style.paddingTop=h+'px';de.style.scrollPaddingTop=(h+24)+'px';var r=document.querySelector('.rail');if(r)r.style.top=(h+36)+'px'}
+navFit();addEventListener('resize',navFit);addEventListener('load',navFit);
 
 /* буквы заголовка WE TALK появляются по очереди */
 var t=document.querySelector('.title');
