@@ -491,6 +491,25 @@ nav{height:auto}
 @media(min-width:761px){.navlinks{gap:4px 14px}.navlinks .nbr{margin-top:-4px}}
 @media(min-width:761px) and (max-width:1100px){.navlinks{gap:4px 10px}.navlinks a{font-size:10px;letter-spacing:.08em;padding:3px 4px}}
 @media(max-width:760px){.navlinks{gap:14px}.navlinks a{padding:4px 2px;font-size:11px}}
+/* меню строго по центру страницы */
+@media(min-width:901px){
+  .navrow{position:relative;justify-content:flex-end}
+  .navsp{display:none}
+  .navlinks{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);margin:0;width:max-content}
+}
+@media(min-width:761px){
+  .navlinks{display:grid;grid-template-columns:repeat(5,auto);justify-items:center;justify-content:center;column-gap:26px;row-gap:2px}
+  .navlinks .nbr{display:none}
+}
+@media(min-width:761px) and (max-width:1100px){.navlinks{column-gap:16px}}
+@media(min-width:761px){.navlinks{column-gap:18px}.navlinks a{font-size:10px;letter-spacing:.1em;padding:3px 2px}}
+@media(min-width:761px) and (max-width:1100px){.navlinks{column-gap:14px}.navlinks a{letter-spacing:.07em}}
+/* до 1040px — кнопка над меню, меню по центру */
+@media(min-width:761px) and (max-width:1040px){
+  .navrow{flex-wrap:wrap;justify-content:center;row-gap:6px}
+  .navcta{order:-1;flex:1 1 100%;text-align:center}
+  .navlinks{position:static;transform:none;margin:0 auto}
+}
 </style>
 <script>document.documentElement.classList.add('js')</script>
 </head>
