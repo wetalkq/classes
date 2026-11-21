@@ -7,8 +7,6 @@
 <title>We Talk — английский для женщин</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cousine&family=Cutive+Mono&family=Old+Standard+TT:wght@400;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cousine&family=Cutive+Mono&family=Old+Standard+TT:wght@400;700&display=swap"></noscript>
 <style>
 :root{
   /* фирменные цвета We Talk */
@@ -314,6 +312,36 @@ p,.body{text-wrap:pretty}
   .js .title .ch{opacity:1;transform:none;filter:none}
   .js .h2::after{clip-path:none}
 }
+
+/* ===== Times New Roman везде, спокойные размеры ===== */
+:root{--type:'Times New Roman',Times,'Liberation Serif',serif;--hand:'Times New Roman',Times,'Liberation Serif',serif}
+*{-webkit-text-stroke:0!important}
+body{font-size:17px;line-height:1.6}
+.semi,.col h4,.tile h4,.price h3,.trial h4,.pill h4,.tg-text h4{font-weight:600}
+.btn,.cta{font-weight:600}
+.title{font-size:clamp(34px,7vw,84px);font-weight:600;letter-spacing:.08em}
+.tag{font-style:italic;font-size:16px}
+.hero h2{font-size:clamp(24px,3vw,38px);font-weight:400}
+.hero h2 em{font-style:italic}
+.h2{font-size:clamp(24px,2.6vw,34px);font-style:italic;font-weight:600;letter-spacing:0}
+.h2.sm{font-size:clamp(22px,2.3vw,30px)}
+.h2::after,.quote p::after{display:none!important}
+.stat b{font-size:clamp(28px,2.8vw,38px);font-weight:600}
+.tile .no,.tg-text .no{font-size:28px;font-style:italic}
+.quote p{font-size:clamp(20px,2.4vw,30px);font-style:italic}
+.final h2{font-size:clamp(24px,2.8vw,36px);font-style:italic;font-weight:600}
+.price-row .amt{font-size:21px;font-weight:600}
+.review .who{font-size:17px;font-style:italic}
+.face.front b{font-size:26px;font-style:italic}
+.tg-final b{font-size:24px;font-style:italic}
+/* апельсин меньше */
+.rail .thumb{width:22px;height:24px;margin-left:-11px}
+.photo .orange-pin{width:28px;height:30px;top:-14px}
+@media(max-width:760px){.rail .thumb{width:20px;height:22px;margin-left:-10px}}
+/* без тени у фото в лентах */
+.fig img,.fig button:hover img{box-shadow:none}
+/* скрины подкастов вместо фото */
+.stackp .photo>img{max-height:520px;width:auto;max-width:100%;margin:0 auto}
 </style>
 <script>document.documentElement.classList.add('js')</script>
 </head>
@@ -508,8 +536,8 @@ p,.body{text-wrap:pretty}
       <p class="body">Помимо подкастов студентки пишут сочинения и эссе — мы работаем над языком по всем фронтам: говорение, аудирование, чтение и письмо.</p>
     </div>
     <div class="stackp">
-      <div class="photo" style="--r:2deg"><img src="wetalk-img/photo-phones.webp" width="900" height="675" alt="" loading="lazy" decoding="async"></div>
-      <div class="photo" style="--r:-1.6deg"><img src="wetalk-img/photo-note.webp" width="900" height="675" alt="" loading="lazy" decoding="async"></div>
+      <div class="photo" style="--r:2deg"><img src="wetalk-img/rv-23.webp" width="828" height="1024" alt="" loading="lazy" decoding="async"></div>
+      <div class="photo" style="--r:-1.6deg"><img src="wetalk-img/rv-25.webp" width="828" height="1091" alt="" loading="lazy" decoding="async"></div>
     </div>
   </div>
 </section>
@@ -561,11 +589,11 @@ p,.body{text-wrap:pretty}
   <h2 class="h2">Что говорят наши студентки</h2>
   <div class="strip" data-auto="1"><div class="strip-head"><span class="strip-label">Скриншоты отзывов из нашего Telegram</span><div class="strip-arrows"><button type="button" class="sp" aria-label="Назад">‹</button><button type="button" class="sn" aria-label="Вперёд">›</button></div></div><div class="strip-track" tabindex="0" aria-label="Скриншоты отзывов из нашего Telegram"><figure class="fig"><button type="button" data-g="pov" data-i="0" aria-label="Открыть: Отзывы студенток WeTalk, слайд 02"><img src="wetalk-img/pov-02.webp" width="1080" height="1350" alt="Отзывы студенток WeTalk, слайд 02" loading="lazy" decoding="async"></button></figure><figure class="fig"><button type="button" data-g="pov" data-i="1" aria-label="Открыть: Отзывы студенток WeTalk, слайд 03"><img src="wetalk-img/pov-03.webp" width="1080" height="1350" alt="Отзывы студенток WeTalk, слайд 03" loading="lazy" decoding="async"></button></figure><figure class="fig"><button type="button" data-g="pov" data-i="2" aria-label="Открыть: Отзывы студенток WeTalk, слайд 04"><img src="wetalk-img/pov-04.webp" width="1080" height="1350" alt="Отзывы студенток WeTalk, слайд 04" loading="lazy" decoding="async"></button></figure><figure class="fig"><button type="button" data-g="pov" data-i="3" aria-label="Открыть: Отзывы студенток WeTalk, слайд 05"><img src="wetalk-img/pov-05.webp" width="1080" height="1350" alt="Отзывы студенток WeTalk, слайд 05" loading="lazy" decoding="async"></button></figure><figure class="fig"><button type="button" data-g="pov" data-i="4" aria-label="Открыть: Отзывы студенток WeTalk, слайд 06"><img src="wetalk-img/pov-06.webp" width="1080" height="1350" alt="Отзывы студенток WeTalk, слайд 06" loading="lazy" decoding="async"></button></figure><figure class="fig"><button type="button" data-g="pov" data-i="5" aria-label="Открыть: Отзывы студенток WeTalk, слайд 07"><img src="wetalk-img/pov-07.webp" width="1080" height="1350" alt="Отзывы студенток WeTalk, слайд 07" loading="lazy" decoding="async"></button></figure><figure class="fig"><button type="button" data-g="pov" data-i="6" aria-label="Открыть: Отзывы студенток WeTalk, слайд 08"><img src="wetalk-img/pov-08.webp" width="1080" height="1350" alt="Отзывы студенток WeTalk, слайд 08" loading="lazy" decoding="async"></button></figure><figure class="fig"><button type="button" data-g="pov" data-i="7" aria-label="Открыть: Отзывы студенток WeTalk, слайд 09"><img src="wetalk-img/pov-09.webp" width="1080" height="1350" alt="Отзывы студенток WeTalk, слайд 09" loading="lazy" decoding="async"></button></figure></div><div class="strip-bar" aria-hidden="true"><i></i></div></div>
   <div class="tiles c3">
-    <div class="review"><div class="stars">★★★★★</div><p>«Занимаюсь в школе чуть меньше года. До этого пробовала заниматься английским в других местах — есть с чем сравнивать. Хочу отметить сочетание профессионализма и комфортной среды при обучении.»</p><div class="who">Групповое обучение</div></div>
+    <div class="review"><div class="stars">★★★★★</div><p>«Занимаюсь в школе чуть меньше года. До этого пробовала заниматься английским в других местах — есть с чем сравнивать. Хочу отметить сочетание профессионализма и комфортной среды при обучении.»</p><div class="who">Индивидуальное обучение</div></div>
     <div class="review"><div class="stars">★★★★★</div><p>«За 10 месяцев обучения с Диной я не только выучила язык, но и изменилась сама. Теперь я с лёгкостью пишу заметки, отправляю сообщения и, главное, перестала бояться ошибок.»</p><div class="who">Индивидуальное обучение</div></div>
-    <div class="review"><div class="stars">★★★★★</div><p>«Тактика преподавания нацелена на результат. Все задания продуманы, домашнее задание направлено на закрепление пройденных тем.»</p><div class="who">Групповое обучение</div></div>
+    <div class="review"><div class="stars">★★★★★</div><p>«Тактика преподавания нацелена на результат. Все задания продуманы, домашнее задание направлено на закрепление пройденных тем.»</p><div class="who">Индивидуальное обучение</div></div>
     <div class="review"><div class="stars">★★★★★</div><p>«Я ни разу не пожалела, что перешла на коллективный формат обучения. На Беллу можно положиться как на наставника.»</p><div class="who">Групповое обучение</div></div>
-    <div class="review"><div class="stars">★★★★★</div><p>«Сама скептически отношусь к приложениям при обучении, но выбранные We Talk считаю очень успешными. По моей рекомендации уже обучается моя лучшая подруга.»</p><div class="who">Индивидуальное обучение</div></div>
+    <div class="review"><div class="stars">★★★★★</div><p>«Сама скептически отношусь к приложениям при обучении, но выбранные We Talk считаю очень успешными. По моей рекомендации уже обучается моя лучшая подруга.»</p><div class="who">Групповое обучение</div></div>
     <div class="review"><div class="stars">★★★★★</div><p>«Мне очень понравилось, занятия интересные и информация хорошо преподносится. Я планирую продолжать.»</p><div class="who">Групповое обучение</div></div>
   </div>
   <div class="allbtn"><button type="button" class="btn btn-o" data-g="all" data-i="0">Смотреть все отзывы<small>33</small></button></div>
