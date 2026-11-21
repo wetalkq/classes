@@ -518,6 +518,25 @@ nav{height:auto}
 }
 @media(min-width:1041px) and (max-width:1044px){.navrow{padding-left:22px;padding-right:22px}}
 @media(min-width:1041px){.navrow{width:min(1000px,calc(100% - 44px));max-width:none;padding-left:0!important;padding-right:0!important;margin:0 auto}}
+
+/* ===== папки с закладками ===== */
+.folder{position:relative;max-width:1000px;margin:0 auto var(--s6);padding-top:34px}
+.folder>.fpanel{margin-bottom:0}
+.fpanel>.kicker{display:none}
+.ftabs{position:absolute;top:0;left:52px;right:20px;display:flex;gap:2px;z-index:2;overflow-x:auto;scrollbar-width:none}
+.ftabs::-webkit-scrollbar{display:none}
+.ftabs button{flex:0 0 auto;border:0;cursor:pointer;font:400 11px/1.5 var(--type);letter-spacing:.18em;text-transform:uppercase;color:rgba(28,25,22,.62);
+  background:#d8cdb6;padding:8px 24px 6px;clip-path:polygon(0 100%,8% 0,92% 0,100% 100%);margin-right:-8px;transition:color .2s,background .2s,transform .2s;transform:translateY(4px)}
+.ftabs button:hover{color:var(--orange)}
+.ftabs button.on{background:var(--paper);color:var(--ink);transform:none;z-index:1}
+.ftabs button:focus-visible{outline:2px solid var(--orange);outline-offset:-2px}
+.fpanel.flip{animation:flipIn .45s var(--ease)}
+@keyframes flipIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.folder .sheet::before{display:none}
+.folder::after{content:"";position:absolute;left:9px;right:-9px;top:43px;bottom:-9px;background:var(--beige);z-index:-1;box-shadow:0 18px 40px -18px rgba(0,0,0,.5)}
+@media(max-width:760px){.folder{margin-bottom:64px}.ftabs{left:12px;right:0}.ftabs button{font-size:10px;padding:7px 18px 5px;letter-spacing:.12em}.folder::after{left:5px;right:-5px;top:40px;bottom:-6px}}
+@media(prefers-reduced-motion:reduce){.fpanel.flip{animation:none}}
+.ftabs button{color:rgba(28,25,22,.72)}
 </style>
 <script>document.documentElement.classList.add('js')</script>
 </head>
@@ -560,10 +579,9 @@ nav{height:auto}
 </nav>
 <div class="rail" aria-label="Навигация по странице">
   <div class="trk"></div>
-  <a class="dot" href="#about" data-t="about" aria-label="О нас"><span>О нас</span></a>
-  <a class="dot" href="#platform" data-t="platform" aria-label="Платформа"><span>Платформа</span></a>
-  <a class="dot" href="#telegram" data-t="telegram" aria-label="Telegram"><span>Telegram</span></a>
-  <a class="dot" href="#pricing" data-t="pricing" aria-label="Цены"><span>Цены</span></a>
+  <a class="dot" href="#f-about" data-t="f-about" aria-label="О нас"><span>О нас</span></a>
+  <a class="dot" href="#f-learn" data-t="f-learn" aria-label="Занятия"><span>Занятия</span></a>
+  <a class="dot" href="#f-price" data-t="f-price" aria-label="Цены"><span>Цены</span></a>
   <a class="dot" href="#reviews" data-t="reviews" aria-label="Отзывы"><span>Отзывы</span></a>
   <div class="thumb" role="slider" aria-label="Прокрутка страницы" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><svg viewBox="0 0 44 48" aria-hidden="true"><g id="orngSpin"><use href="#orng"/></g></svg></div>
 </div>
@@ -586,8 +604,10 @@ nav{height:auto}
 </header>
 
 
-<!-- GOALS -->
-<section class="sheet beige" id="goals" style="--r:.5deg">
+<!-- О НАС -->
+<div class="folder" id="f-about">
+  <div class="ftabs" role="tablist" aria-label="О нас"><button type="button" role="tab" id="t-goals" data-tab="goals" aria-selected="true" class="on">Чем мы поможем</button><button type="button" role="tab" id="t-about" data-tab="about" aria-selected="false">О нас</button><button type="button" role="tab" id="t-teachers" data-tab="teachers" aria-selected="false">Преподаватели</button><button type="button" role="tab" id="t-geo" data-tab="geo" aria-selected="false">География</button></div>
+<section role="tabpanel" aria-labelledby="t-goals" class="sheet fpanel beige" id="goals" style="--r:.5deg">
   <span class="kicker">Английский с WeTalk</span>
   <h2 class="h2">Чем мы можем помочь</h2>
   <div class="cols c4">
@@ -597,19 +617,7 @@ nav{height:auto}
     <div class="col"><span class="dot"></span><h4 class="semi">Бизнес-английский</h4><p>Для работы, переговоров, деловой переписки и карьерного роста.</p></div>
   </div>
 </section>
-
-<!-- STATS -->
-<section class="statrow">
-  <div class="tiles c4">
-    <div class="tile stat"><b>1000+</b><span>Студенток за 10 лет</span></div>
-    <div class="tile stat k"><b>WOS</b><span>Результаты исследования методики вошли в научную статью, проиндексированную в Web of Science</span></div>
-    <div class="tile stat"><b>A0–C1</b><span>Доводим с любого уровня</span></div>
-    <div class="tile stat s"><b>4</b><span>Человека максимум в группе</span></div>
-  </div>
-</section>
-
-<!-- ABOUT -->
-<section class="sheet" id="about" style="--r:-.6deg">
+<section hidden role="tabpanel" aria-labelledby="t-about" class="sheet fpanel" id="about" style="--r:-.6deg">
   <span class="kicker">О нас</span>
   <div class="cols2">
     <div>
@@ -624,9 +632,7 @@ nav{height:auto}
     </div>
   </div>
 </section>
-
-<!-- TEACHERS -->
-<section class="sheet" id="teachers" style="--r:.6deg">
+<section hidden role="tabpanel" aria-labelledby="t-teachers" class="sheet fpanel" id="teachers" style="--r:.6deg">
   <span class="kicker">Обучение</span>
   <div class="cols2 one">
     <div>
@@ -637,9 +643,7 @@ nav{height:auto}
     </div>
   </div>
 </section>
-
-<!-- GEO -->
-<section class="sheet" id="geo" style="--r:-.4deg">
+<section hidden role="tabpanel" aria-labelledby="t-geo" class="sheet fpanel" id="geo" style="--r:-.4deg">
   <span class="kicker">География</span>
   <h2 class="h2 sm">Откуда наши студентки</h2>
   <div class="tiles c4">
@@ -649,13 +653,34 @@ nav{height:auto}
     <div class="tile"><h4>Северная Америка</h4><p>США</p></div>
   </div>
 </section>
+</div>
+
+
+
+<!-- STATS -->
+<section class="statrow">
+  <div class="tiles c4">
+    <div class="tile stat"><b>1000+</b><span>Студенток за 10 лет</span></div>
+    <div class="tile stat k"><b>WOS</b><span>Результаты исследования методики вошли в научную статью, проиндексированную в Web of Science</span></div>
+    <div class="tile stat"><b>A0–C1</b><span>Доводим с любого уровня</span></div>
+    <div class="tile stat s"><b>4</b><span>Человека максимум в группе</span></div>
+  </div>
+</section>
+
+
+
+
+
+
 
 
 <!-- QUOTE -->
 <section class="quote"><p>«Мы создаём пространство, где женщины учатся говорить <span class="nb">по-английски</span> уверенно и без страха ошибок»</p></section>
 
-<!-- METHODS -->
-<section class="sheet" id="how" style="--r:.5deg">
+<!-- КАК ПРОХОДЯТ ЗАНЯТИЯ -->
+<div class="folder" id="f-learn">
+  <div class="ftabs" role="tablist" aria-label="Как проходят занятия"><button type="button" role="tab" id="t-how" data-tab="how" aria-selected="true" class="on">Методика</button><button type="button" role="tab" id="t-platform" data-tab="platform" aria-selected="false">Платформа</button><button type="button" role="tab" id="t-telegram" data-tab="telegram" aria-selected="false">Telegram</button><button type="button" role="tab" id="t-minisites" data-tab="minisites" aria-selected="false">Бонус к лексике</button><button type="button" role="tab" id="t-podcasts" data-tab="podcasts" aria-selected="false">Успехи студенток</button></div>
+<section role="tabpanel" aria-labelledby="t-how" class="sheet fpanel" id="how" style="--r:.5deg">
   <span class="kicker">Методика</span>
   <h2 class="h2">Как мы преподаём</h2>
   <div class="tiles c4">
@@ -665,9 +690,7 @@ nav{height:auto}
     <div class="tile"><h4 class="semi">Прямой метод</h4><p>Усвоение языка через практику и погружение в языковую среду.</p></div>
   </div>
 </section>
-
-<!-- PLATFORM -->
-<section class="sheet" id="platform" style="--r:-.5deg">
+<section hidden role="tabpanel" aria-labelledby="t-platform" class="sheet fpanel" id="platform" style="--r:-.5deg">
   <span class="kicker">Платформа</span>
   <h2 class="h2">Вся учёба — в личном кабинете</h2>
   <p class="body">Занятия проходят на интерактивной платформе 2EASY: у каждой студентки есть собственный кабинет, где собрано всё необходимое для учёбы.</p>
@@ -681,18 +704,14 @@ nav{height:auto}
   </div>
   <div class="strip tall"><div class="strip-head"><span class="strip-label">Так выглядит платформа изнутри</span><div class="strip-arrows"><button type="button" class="sp" aria-label="Назад">‹</button><button type="button" class="sn" aria-label="Вперёд">›</button></div></div><div class="strip-track" tabindex="0" aria-label="Так выглядит платформа изнутри"><figure class="fig"><button type="button" data-g="pl" data-i="0" aria-label="Открыть: Платформа: Личный кабинет"><img src="wetalk-img/pl-01.webp" width="828" height="661" alt="Платформа: Личный кабинет" loading="lazy" decoding="async"></button><figcaption>Личный кабинет</figcaption></figure><figure class="fig"><button type="button" data-g="pl" data-i="1" aria-label="Открыть: Платформа: Свой словарь"><img src="wetalk-img/pl-02.webp" width="828" height="1349" alt="Платформа: Свой словарь" loading="lazy" decoding="async"></button><figcaption>Свой словарь</figcaption></figure><figure class="fig"><button type="button" data-g="pl" data-i="2" aria-label="Открыть: Платформа: Новая лексика"><img src="wetalk-img/pl-03.webp" width="828" height="1061" alt="Платформа: Новая лексика" loading="lazy" decoding="async"></button><figcaption>Новая лексика</figcaption></figure><figure class="fig"><button type="button" data-g="pl" data-i="3" aria-label="Открыть: Платформа: Видео прямо в уроке"><img src="wetalk-img/pl-04.webp" width="828" height="856" alt="Платформа: Видео прямо в уроке" loading="lazy" decoding="async"></button><figcaption>Видео прямо в уроке</figcaption></figure><figure class="fig"><button type="button" data-g="pl" data-i="4" aria-label="Открыть: Платформа: Проверка понимания"><img src="wetalk-img/pl-05.webp" width="828" height="1054" alt="Платформа: Проверка понимания" loading="lazy" decoding="async"></button><figcaption>Проверка понимания</figcaption></figure><figure class="fig"><button type="button" data-g="pl" data-i="5" aria-label="Открыть: Платформа: От общего к деталям"><img src="wetalk-img/pl-06.webp" width="828" height="1008" alt="Платформа: От общего к деталям" loading="lazy" decoding="async"></button><figcaption>От общего к деталям</figcaption></figure><figure class="fig"><button type="button" data-g="pl" data-i="6" aria-label="Открыть: Платформа: True / False / Not given"><img src="wetalk-img/pl-07.webp" width="828" height="1130" alt="Платформа: True / False / Not given" loading="lazy" decoding="async"></button><figcaption>True / False / Not given</figcaption></figure><figure class="fig"><button type="button" data-g="pl" data-i="7" aria-label="Открыть: Платформа: Заполни пропуски"><img src="wetalk-img/pl-08.webp" width="828" height="1344" alt="Платформа: Заполни пропуски" loading="lazy" decoding="async"></button><figcaption>Заполни пропуски</figcaption></figure><figure class="fig"><button type="button" data-g="pl" data-i="8" aria-label="Открыть: Платформа: Квизы по видео"><img src="wetalk-img/pl-09.webp" width="828" height="1530" alt="Платформа: Квизы по видео" loading="lazy" decoding="async"></button><figcaption>Квизы по видео</figcaption></figure><figure class="fig"><button type="button" data-g="pl" data-i="9" aria-label="Открыть: Платформа: Темы для обсуждения"><img src="wetalk-img/pl-10.webp" width="828" height="1486" alt="Платформа: Темы для обсуждения" loading="lazy" decoding="async"></button><figcaption>Темы для обсуждения</figcaption></figure><figure class="fig"><button type="button" data-g="pl" data-i="10" aria-label="Открыть: Платформа: Понятная домашка"><img src="wetalk-img/pl-11.webp" width="828" height="1362" alt="Платформа: Понятная домашка" loading="lazy" decoding="async"></button><figcaption>Понятная домашка</figcaption></figure></div><div class="strip-bar" aria-hidden="true"><i></i></div></div>
 </section>
-
-<!-- TELEGRAM -->
-<section class="sheet" id="telegram">
+<section hidden role="tabpanel" aria-labelledby="t-telegram" class="sheet fpanel" id="telegram">
   <span class="kicker">Telegram</span>
   <h2 class="h2">Telegram-канал для домашки</h2>
   <p class="body">У каждой группы — свой Telegram-канал. Домашка, ссылки и вопросы к преподавателю лежат по порядку, без бардака.</p>
   <ul class="tg-list"><li class="tg-row"><button type="button" class="tg-shot" data-g="tg" data-i="0" aria-label="Открыть: Канал группы с расписанием и подсказкой «Домашку ищем по датам»"><img src="wetalk-img/tg-1.webp" width="828" height="817" alt="Канал группы с расписанием и подсказкой «Домашку ищем по датам»" loading="lazy" decoding="async"><span class="tg-pin">📌 Свой канал</span></button><div class="tg-text"><h4 class="semi">Свой канал у каждой группы</h4><p>В описании — расписание занятий и одно правило: домашку ищем по датам. Только ваша группа и ваш преподаватель.</p></div></li><li class="tg-row"><button type="button" class="tg-shot" data-g="tg" data-i="1" aria-label="Открыть: Пост с домашкой за 26.08 и 29.08"><img src="wetalk-img/tg-2.webp" width="828" height="1241" alt="Пост с домашкой за 26.08 и 29.08" loading="lazy" decoding="async"><span class="tg-pin">📅 По датам</span></button><div class="tg-text"><h4 class="semi">Всё по датам</h4><p>Каждое задание — отдельный пост с датой урока. Нужна домашка от 26 августа? Находится за секунду, без прокрутки бесконечного чата.</p></div></li><li class="tg-row"><button type="button" class="tg-shot" data-g="tg" data-i="2" aria-label="Открыть: Задание на сочинение и 34 комментария под ним"><img src="wetalk-img/tg-3.webp" width="828" height="738" alt="Задание на сочинение и 34 комментария под ним" loading="lazy" decoding="async"><span class="tg-pin">💬 34 комментария</span></button><div class="tg-text"><h4 class="semi">Вопросы — прямо под домашкой</h4><p>Под каждым заданием открыты комментарии. Спросили — получили ответ преподавателя, и всё осталось на месте. В любой момент можно открыть урок и вспомнить, что обсуждали с преподавателем и одногруппницами.</p></div></li><li class="tg-row"><button type="button" class="tg-shot" data-g="tg" data-i="3" aria-label="Открыть: Пост со ссылками на игры, в которые играли на уроке"><img src="wetalk-img/tg-4.webp" width="828" height="582" alt="Пост со ссылками на игры, в которые играли на уроке" loading="lazy" decoding="async"><span class="tg-pin">🔗 Ссылки с урока</span></button><div class="tg-text"><h4 class="semi">Ничего не теряется</h4><p>Игры с урока, статьи, аудио и видео лежат в канале. Не нужно искать ссылку, которая утонула в переписке неделю назад.</p></div></li></ul>
   <div class="tg-final"><b>Всё чётко и системно</b><span>Платформа и Telegram — и больше никаких лишних вкладок.</span></div>
 </section>
-
-<!-- MINI-SITES -->
-<section class="sheet" id="minisites">
+<section hidden role="tabpanel" aria-labelledby="t-minisites" class="sheet fpanel" id="minisites">
   <span class="kicker">Бонус от преподавателя</span>
   <h2 class="h2">Дополнительная практика к каждому уроку</h2>
   <p class="body">Платформа закрывает все задачи. Но мы идём дальше: к темам уроков преподаватель готовит отдельные странички с упражнениями для дополнительной практики, чтобы новые слова точно остались в голове.</p>
@@ -705,9 +724,7 @@ nav{height:auto}
   </div>
   <div class="strip tall"><div class="strip-head"><span class="strip-label">Примеры заданий</span><div class="strip-arrows"><button type="button" class="sp" aria-label="Назад">‹</button><button type="button" class="sn" aria-label="Вперёд">›</button></div></div><div class="strip-track" tabindex="0" aria-label="Примеры заданий"><figure class="fig"><button type="button" data-g="ms" data-i="0" aria-label="Открыть: Дополнительная практика: Карточки со словами"><img src="wetalk-img/ms-1.webp" width="828" height="1179" alt="Дополнительная практика: Карточки со словами" loading="lazy" decoding="async"></button><figcaption>Карточки со словами</figcaption></figure><figure class="fig"><button type="button" data-g="ms" data-i="1" aria-label="Открыть: Дополнительная практика: Соедини слово с переводом"><img src="wetalk-img/ms-2.webp" width="828" height="1450" alt="Дополнительная практика: Соедини слово с переводом" loading="lazy" decoding="async"></button><figcaption>Соедини слово с переводом</figcaption></figure><figure class="fig"><button type="button" data-g="ms" data-i="2" aria-label="Открыть: Дополнительная практика: Словарь урока"><img src="wetalk-img/ms-3.webp" width="828" height="957" alt="Дополнительная практика: Словарь урока" loading="lazy" decoding="async"></button><figcaption>Словарь урока</figcaption></figure><figure class="fig"><button type="button" data-g="ms" data-i="3" aria-label="Открыть: Дополнительная практика: Заполни пропуск"><img src="wetalk-img/ms-4.webp" width="828" height="899" alt="Дополнительная практика: Заполни пропуск" loading="lazy" decoding="async"></button><figcaption>Заполни пропуск</figcaption></figure><figure class="fig"><button type="button" data-g="ms" data-i="4" aria-label="Открыть: Дополнительная практика: Карточка с примером"><img src="wetalk-img/ms-5.webp" width="828" height="953" alt="Дополнительная практика: Карточка с примером" loading="lazy" decoding="async"></button><figcaption>Карточка с примером</figcaption></figure></div><div class="strip-bar" aria-hidden="true"><i></i></div></div>
 </section>
-
-<!-- FORMAT -->
-<section class="sheet" id="podcasts" style="--r:.6deg">
+<section hidden role="tabpanel" aria-labelledby="t-podcasts" class="sheet fpanel" id="podcasts" style="--r:.6deg">
   <span class="kicker">Фирменный формат</span>
   <div class="cols2 rev">
     <div>
@@ -718,9 +735,22 @@ nav{height:auto}
     <div class="pods"><button type="button" data-g="pod" data-i="0" style="--ar:1.2778" aria-label="Открыть подкаст 1"><img src="wetalk-img/rv-02.webp" width="828" height="648" alt="Подкаст студентки WeTalk" loading="lazy" decoding="async"></button><button type="button" data-g="pod" data-i="1" style="--ar:1.2622" aria-label="Открыть подкаст 2"><img src="wetalk-img/rv-04.webp" width="828" height="656" alt="Подкаст студентки WeTalk" loading="lazy" decoding="async"></button></div>
   </div>
 </section>
+</div>
 
-<!-- STEPS -->
-<section class="sheet" id="steps" style="--r:-.5deg">
+
+
+
+
+
+
+
+
+
+
+<!-- ПАКЕТЫ И ЦЕНЫ -->
+<div class="folder" id="f-price">
+  <div class="ftabs" role="tablist" aria-label="Пакеты и цены"><button type="button" role="tab" id="t-steps" data-tab="steps" aria-selected="true" class="on">Пробное занятие</button><button type="button" role="tab" id="t-pricing" data-tab="pricing" aria-selected="false">Пакеты и цены</button></div>
+<section role="tabpanel" aria-labelledby="t-steps" class="sheet fpanel" id="steps" style="--r:-.5deg">
   <span class="kicker">Пробное занятие</span>
   <h2 class="h2">Что происходит на пробном</h2>
   <div class="tiles c3">
@@ -729,9 +759,7 @@ nav{height:auto}
     <div class="tile s"><span class="no">03</span><h4 class="semi">Знакомимся с подходом к обучению</h4><p>Преподаватель рассказывает про методику, показывает материалы, помогает выбрать формат и расписание — и отвечает на любые вопросы.</p></div>
   </div>
 </section>
-
-<!-- PRICING -->
-<section class="sheet" id="pricing" style="--r:.4deg">
+<section hidden role="tabpanel" aria-labelledby="t-pricing" class="sheet fpanel" id="pricing" style="--r:.4deg">
   <span class="kicker">Пакеты и цены</span>
   <h2 class="h2">Выбирай формат под себя</h2>
   <div class="tiles c2">
@@ -759,6 +787,11 @@ nav{height:auto}
     <div class="pill"><h4 class="semi">Поддержка между уроками</h4><p>Подскажем, направим и поможем с любым вопросом.</p></div>
   </div>
 </section>
+</div>
+
+
+
+
 
 <!-- REVIEWS -->
 <section class="sheet" id="reviews" style="--r:-.5deg">
@@ -911,7 +944,28 @@ place();upd();
 function hl(){var y=innerHeight*.3,cur=-1;secs.forEach(function(s,i){if(s&&s.getBoundingClientRect().top<y)cur=i});
 links.forEach(function(a,i){a.classList.toggle('on',i===cur)});
 var on=links[cur];if(on&&innerWidth<=760){var n=on.parentElement;var l=on.offsetLeft-n.clientWidth/2+on.offsetWidth/2;if(Math.abs(n.scrollLeft-l)>40)n.scrollTo({left:l,behavior:'smooth'})}}
-addEventListener('scroll',hl,{passive:true});hl();})();
+})();
+
+/* папки: переключение закладок */
+(function(){
+function show(sid,scroll){var p=document.getElementById(sid);if(!p||!p.classList.contains('fpanel'))return false;var f=p.closest('.folder');
+[].forEach.call(f.querySelectorAll('.fpanel'),function(x){x.hidden=(x!==p)});
+[].forEach.call(f.querySelectorAll('.ftabs [data-tab]'),function(t){var on=t.getAttribute('data-tab')===sid;t.classList.toggle('on',on);t.setAttribute('aria-selected',on?'true':'false')});
+var tb=f.querySelector('.ftabs .on');if(tb)tb.parentElement.scrollTo({left:Math.max(0,tb.offsetLeft-24),behavior:'smooth'});
+p.classList.add('in');[].forEach.call(p.querySelectorAll('.rv'),function(e){e.classList.add('in')});
+p.classList.remove('flip');void p.offsetWidth;p.classList.add('flip');
+window.dispatchEvent(new Event('resize'));
+if(scroll){var top=f.getBoundingClientRect().top+scrollY-(document.querySelector('nav').offsetHeight+12);if(Math.abs(top-scrollY)>40||f.getBoundingClientRect().top<0)scrollTo({top:top,behavior:reduced?'auto':'smooth'})}
+return true}
+document.addEventListener('click',function(e){var t=e.target.closest('.ftabs [data-tab]');if(t){show(t.getAttribute('data-tab'),true);return}
+var a=e.target.closest('a[href^="#"]');if(a){var id=a.getAttribute('href').slice(1);if(id&&show(id,true))e.preventDefault()}});
+[].forEach.call(document.querySelectorAll('.ftabs'),function(bar){bar.addEventListener('keydown',function(e){if(e.key!=='ArrowRight'&&e.key!=='ArrowLeft')return;var ts=[].slice.call(bar.querySelectorAll('[data-tab]')),i=ts.indexOf(document.activeElement);if(i<0)return;var n=ts[(i+(e.key==='ArrowRight'?1:ts.length-1))%ts.length];n.focus();show(n.getAttribute('data-tab'),false)})});
+if(location.hash)show(location.hash.slice(1),true);
+/* подсветка меню с учётом папок */
+var links=[].slice.call(document.querySelectorAll('.navlinks a'));
+function hl2(){var y=innerHeight*.3,cur=null,best=-1e9;links.forEach(function(a){var t=document.querySelector(a.getAttribute('href'));if(!t)return;var box=t.closest('.folder')||t;var top=box.getBoundingClientRect().top;if(top<y&&top>best-1){if(t.hidden)return;if(top>=best){best=top;cur=a}}});links.forEach(function(a){a.classList.toggle('on',a===cur)})}
+addEventListener('scroll',hl2,{passive:true});document.addEventListener('click',function(){setTimeout(hl2,50)});hl2();
+})();
 })();
 
 </script>
