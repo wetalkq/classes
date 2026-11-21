@@ -394,6 +394,11 @@ body{font-size:16px;line-height:1.6}
 .pods{max-width:820px}
 .pods img{border:0}
 .title{font-style:italic;font-weight:400;letter-spacing:.06em}
+/* подкасты: целиком, одинаковой высоты */
+.pods{display:flex;gap:16px;align-items:flex-start;max-width:900px}
+.pods button{flex:var(--ar) 1 0;min-width:0}
+.pods img{border:1px solid var(--line);border-radius:6px}
+@media(max-width:600px){.pods{flex-direction:column}.pods button{flex:none;width:100%}}
 </style>
 <script>document.documentElement.classList.add('js')</script>
 </head>
@@ -584,7 +589,7 @@ body{font-size:16px;line-height:1.6}
       <p class="body">От «What's in my bag?» до разговоров о своих увлечениях и открытиях — это способ прокачать speaking, выйти из «учебной зоны» в реальную практику и начать звучать уверенно.</p>
       <p class="body">Помимо подкастов студентки пишут сочинения и эссе — мы работаем над языком по всем фронтам: говорение, аудирование, чтение и письмо.</p>
     </div>
-    <div class="pods"><button type="button" data-g="pod" data-i="0" aria-label="Открыть подкаст 1"><img src="wetalk-img/pod-1.webp" width="600" height="616" alt="Подкаст студентки WeTalk" loading="lazy" decoding="async"></button><button type="button" data-g="pod" data-i="1" aria-label="Открыть подкаст 2"><img src="wetalk-img/pod-2.webp" width="600" height="616" alt="Подкаст студентки WeTalk" loading="lazy" decoding="async"></button></div>
+    <div class="pods"><button type="button" data-g="pod" data-i="0" style="--ar:1.2778" aria-label="Открыть подкаст 1"><img src="wetalk-img/rv-02.webp" width="828" height="648" alt="Подкаст студентки WeTalk" loading="lazy" decoding="async"></button><button type="button" data-g="pod" data-i="1" style="--ar:1.2622" aria-label="Открыть подкаст 2"><img src="wetalk-img/rv-04.webp" width="828" height="656" alt="Подкаст студентки WeTalk" loading="lazy" decoding="async"></button></div>
   </div>
 </section>
 
@@ -680,7 +685,7 @@ body{font-size:16px;line-height:1.6}
 <script>
 (function(){
 var de=document.documentElement,reduced=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
-var GAL={"pov": ["wetalk-img/pov-02.webp", "wetalk-img/pov-03.webp", "wetalk-img/pov-04.webp", "wetalk-img/pov-05.webp", "wetalk-img/pov-06.webp", "wetalk-img/pov-07.webp", "wetalk-img/pov-08.webp", "wetalk-img/pov-09.webp"], "all": ["wetalk-img/pov-02.webp", "wetalk-img/pov-03.webp", "wetalk-img/pov-04.webp", "wetalk-img/pov-05.webp", "wetalk-img/pov-06.webp", "wetalk-img/pov-07.webp", "wetalk-img/pov-08.webp", "wetalk-img/pov-09.webp", "wetalk-img/rv-01.webp", "wetalk-img/rv-02.webp", "wetalk-img/rv-03.webp", "wetalk-img/rv-04.webp", "wetalk-img/rv-05.webp", "wetalk-img/rv-06.webp", "wetalk-img/rv-07.webp", "wetalk-img/rv-08.webp", "wetalk-img/rv-09.webp", "wetalk-img/rv-10.webp", "wetalk-img/rv-11.webp", "wetalk-img/rv-12.webp", "wetalk-img/rv-13.webp", "wetalk-img/rv-14.webp", "wetalk-img/rv-15.webp", "wetalk-img/rv-16.webp", "wetalk-img/rv-17.webp", "wetalk-img/rv-18.webp", "wetalk-img/rv-19.webp", "wetalk-img/rv-20.webp", "wetalk-img/rv-21.webp", "wetalk-img/rv-22.webp", "wetalk-img/rv-23.webp", "wetalk-img/rv-24.webp", "wetalk-img/rv-25.webp"], "pl": ["wetalk-img/pl-01.webp", "wetalk-img/pl-02.webp", "wetalk-img/pl-03.webp", "wetalk-img/pl-04.webp", "wetalk-img/pl-05.webp", "wetalk-img/pl-06.webp", "wetalk-img/pl-07.webp", "wetalk-img/pl-08.webp", "wetalk-img/pl-09.webp", "wetalk-img/pl-10.webp", "wetalk-img/pl-11.webp"], "ms": ["wetalk-img/ms-1.webp", "wetalk-img/ms-2.webp", "wetalk-img/ms-3.webp", "wetalk-img/ms-4.webp", "wetalk-img/ms-5.webp"], "tg": ["wetalk-img/tg-1.webp", "wetalk-img/tg-2.webp", "wetalk-img/tg-3.webp", "wetalk-img/tg-4.webp"], "pod": ["wetalk-img/pod-1.webp", "wetalk-img/pod-2.webp"]};
+var GAL={"pov": ["wetalk-img/pov-02.webp", "wetalk-img/pov-03.webp", "wetalk-img/pov-04.webp", "wetalk-img/pov-05.webp", "wetalk-img/pov-06.webp", "wetalk-img/pov-07.webp", "wetalk-img/pov-08.webp", "wetalk-img/pov-09.webp"], "all": ["wetalk-img/pov-02.webp", "wetalk-img/pov-03.webp", "wetalk-img/pov-04.webp", "wetalk-img/pov-05.webp", "wetalk-img/pov-06.webp", "wetalk-img/pov-07.webp", "wetalk-img/pov-08.webp", "wetalk-img/pov-09.webp", "wetalk-img/rv-01.webp", "wetalk-img/rv-02.webp", "wetalk-img/rv-03.webp", "wetalk-img/rv-04.webp", "wetalk-img/rv-05.webp", "wetalk-img/rv-06.webp", "wetalk-img/rv-07.webp", "wetalk-img/rv-08.webp", "wetalk-img/rv-09.webp", "wetalk-img/rv-10.webp", "wetalk-img/rv-11.webp", "wetalk-img/rv-12.webp", "wetalk-img/rv-13.webp", "wetalk-img/rv-14.webp", "wetalk-img/rv-15.webp", "wetalk-img/rv-16.webp", "wetalk-img/rv-17.webp", "wetalk-img/rv-18.webp", "wetalk-img/rv-19.webp", "wetalk-img/rv-20.webp", "wetalk-img/rv-21.webp", "wetalk-img/rv-22.webp", "wetalk-img/rv-23.webp", "wetalk-img/rv-24.webp", "wetalk-img/rv-25.webp"], "pl": ["wetalk-img/pl-01.webp", "wetalk-img/pl-02.webp", "wetalk-img/pl-03.webp", "wetalk-img/pl-04.webp", "wetalk-img/pl-05.webp", "wetalk-img/pl-06.webp", "wetalk-img/pl-07.webp", "wetalk-img/pl-08.webp", "wetalk-img/pl-09.webp", "wetalk-img/pl-10.webp", "wetalk-img/pl-11.webp"], "ms": ["wetalk-img/ms-1.webp", "wetalk-img/ms-2.webp", "wetalk-img/ms-3.webp", "wetalk-img/ms-4.webp", "wetalk-img/ms-5.webp"], "tg": ["wetalk-img/tg-1.webp", "wetalk-img/tg-2.webp", "wetalk-img/tg-3.webp", "wetalk-img/tg-4.webp"], "pod": ["wetalk-img/rv-02.webp", "wetalk-img/rv-04.webp"]};
 
 /* буквы заголовка WE TALK появляются по очереди */
 var t=document.querySelector('.title');
