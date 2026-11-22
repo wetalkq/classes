@@ -715,10 +715,12 @@ nav{height:auto}
 .trk-tx i{font-size:14px;color:var(--muted);opacity:.85}
 .trk-it input:checked~.trk-tx b{text-decoration:line-through;text-decoration-color:var(--orange)}
 .chk+.tiles{margin-top:28px}
-/* цитата с кнопкой теста */
-.quote.qtest{margin-top:var(--s6,64px)}
-.qbtn{margin-top:26px;background:transparent;color:var(--paper2);border-color:var(--paper2);font-style:normal}
+/* цитата с кнопкой теста — на подложке, как у папок */
+.quote.qtest{margin-top:var(--s6,64px);max-width:900px;background:var(--paper);color:var(--ink);border-top:3px solid var(--orange);box-shadow:0 18px 50px rgba(0,0,0,.35);padding:40px clamp(20px,5vw,56px) 42px}
+.quote.qtest p{color:var(--orange)}
+.qbtn{margin-top:24px;background:var(--ink);color:var(--paper);border-color:var(--ink);font-style:normal}
 .qbtn:hover{background:var(--orange);border-color:var(--orange);color:#fff}
+@media(max-width:760px){.quote.qtest{margin-left:16px;margin-right:16px}}
 </style>
 <script>document.documentElement.classList.add('js')</script>
 </head>
