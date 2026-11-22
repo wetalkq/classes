@@ -113,6 +113,13 @@ section{margin-bottom:46px;}
   max-width:720px;
 }
 
+.group-label{
+  font-weight:700;
+  font-size:20px;
+  color:var(--slate);
+  margin:30px 0 12px;
+}
+
 /* flashcards */
 .cards-grid{
   display:grid;
@@ -149,7 +156,7 @@ section{margin-bottom:46px;}
   transform:rotateY(180deg);
   border:1px solid var(--slate-soft);
 }
-.flip-front .term{ font-weight:700; font-size:18px; color:#eef1f5; line-height:1.3; }
+.flip-front .term{ font-weight:700; font-size:17px; color:#eef1f5; line-height:1.3; }
 .flip-front .ipa{ font-size:14px; color:rgba(238,241,245,0.75); margin-top:6px; font-style:italic; }
 .flip-front .listen-row{display:flex; align-items:center; gap:8px; margin-top:12px;}
 .flip-front .listen-btn{
@@ -158,8 +165,8 @@ section{margin-bottom:46px;}
 }
 .flip-front .listen-btn:hover{ background:rgba(255,255,255,0.18); }
 .flip-front .hint{ font-size:12px; color:rgba(238,241,245,0.6); margin-top:10px; font-style:italic; }
-.flip-back .ru{ font-weight:700; font-size:17px; color:#2e3d52; margin-bottom:9px; }
-.flip-back .ex{ font-size:14.5px; color:#2c3a40; font-style:italic; line-height:1.4; }
+.flip-back .ru{ font-weight:700; font-size:16.5px; color:#2e3d52; margin-bottom:9px; }
+.flip-back .ex{ font-size:14px; color:#2c3a40; font-style:italic; line-height:1.4; }
 
 /* gap-fill text */
 .story-box{
@@ -170,6 +177,7 @@ section{margin-bottom:46px;}
   font-size:18.5px;
   color:#fdf9ef;
   line-height:2;
+  margin-bottom:16px;
 }
 .story-box select{
   font-family:'TNR','Times New Roman',serif;
@@ -198,14 +206,16 @@ section{margin-bottom:46px;}
   box-shadow:var(--shadow);
   transition:all .15s;
   letter-spacing:.5px;
-  margin-top:20px;
+  margin-top:4px;
+  margin-bottom:34px;
 }
 .btn:hover{ background:var(--box-bg2); transform:translateY(-1px); }
 
 .score-box{
   font-style:italic;
   font-size:18px;
-  margin-top:16px;
+  margin-top:-20px;
+  margin-bottom:34px;
   padding:11px 20px;
   border-radius:6px;
   display:inline-block;
@@ -219,7 +229,7 @@ footer{
   font-style:italic;
   color:var(--ink-dim);
   font-size:15px;
-  margin-top:56px;
+  margin-top:20px;
   padding-top:18px;
   border-top:1px solid var(--hair);
 }
@@ -230,142 +240,210 @@ footer{
 
   <header>
     <h1>Greek Myths, Modern Problems</h1>
-    <p class="subtitle">Как древнегреческие мифы помогают говорить о современных проблемах — прокрастинации, гордыне, тщеславии и скрытых слабостях</p>
+    <p class="subtitle">Идиомы из греческой мифологии и лексика о Гомере, Александре Македонском, афинской демократии и Олимпийских играх</p>
     <div class="divider"></div>
     <div class="badge-row">
       <span class="badge">Уровень B2–C1</span>
-      <span class="badge">10 слов и выражений</span>
-      <span class="badge">Новая лексика</span>
+      <span class="badge">22 слова и выражения</span>
+      <span class="badge">Британское произношение</span>
     </div>
   </header>
 
   <div class="note">
-    Сначала переверни карточки: нажми 🔊, чтобы послушать произношение, посмотри транскрипцию, переверни карточку — увидишь перевод и пример. Затем прочитай текст про Алекс и вставь эти слова в пропуски.
+    Сначала переверни карточки: нажми 🔊, чтобы послушать британское произношение, посмотри транскрипцию, переверни карточку — увидишь перевод и пример. Затем вставь эти слова в пропуски в двух текстах ниже.
   </div>
 
   <section>
     <h2 class="section-title">Словарь урока</h2>
     <p class="section-sub">нажми 🔊, чтобы послушать слово, нажми на карточку, чтобы перевернуть</p>
-    <div class="cards-grid" id="cardsGrid"></div>
+
+    <div class="group-label">Идиомы из мифологии</div>
+    <div class="cards-grid" id="cardsGridIdioms"></div>
+
+    <div class="group-label">Лексика из видео об истории Греции</div>
+    <div class="cards-grid" id="cardsGridHistory"></div>
   </section>
 
   <section>
     <h2 class="section-title">Задание — вставь слова в текст</h2>
     <p class="section-sub">выбери подходящее слово или выражение из списка для каждого пропуска</p>
-    <div class="story-box" id="storyBox"></div>
-    <button class="btn" id="checkGaps">Проверить</button>
-    <div class="score-box" id="gapScore" style="display:none;"></div>
+
+    <div class="group-label">Текст 1 — идиомы</div>
+    <div class="story-box" id="storyBox1"></div>
+    <button class="btn" id="checkGaps1">Проверить</button>
+    <div class="score-box" id="gapScore1" style="display:none;"></div>
+
+    <div class="group-label">Текст 2 — история Древней Греции</div>
+    <div class="story-box" id="storyBox2"></div>
+    <button class="btn" id="checkGaps2">Проверить</button>
+    <div class="score-box" id="gapScore2" style="display:none;"></div>
   </section>
 
-  <footer>We Talk · B2–C1 · новая лексика по теме Greek Myths, Modern Problems</footer>
+  <footer>We Talk · B2–C1 · идиомы из греческой мифологии + лексика по видео об истории Древней Греции</footer>
 </div>
 
 <script>
-const vocab = [
-  {term:"Sisyphean", key:"Sisyphean", ipa:"/ˌsɪsɪˈfiːən/", ru:"бессмысленный и бесконечный (как наказание Сизифа)", ex:"Cleaning the house with three kids around felt like a Sisyphean task."},
-  {term:"hubris", key:"hubris", ipa:"/ˈhjuːbrɪs/", ru:"гордыня, непомерная самоуверенность", ex:"His hubris convinced him that the safety rules simply didn't apply to him."},
-  {term:"to succumb (to something)", key:"succumb", ipa:"/səˈkʌm/", ru:"поддаться, не устоять", ex:"After resisting for weeks, she finally succumbed to the temptation."},
-  {term:"an Achilles' heel", key:"Achilles' heel", ipa:"/əˈkɪliːz hiːl/", ru:"уязвимое место, слабость", ex:"Public speaking was his Achilles' heel, even after years of experience."},
-  {term:"self-absorbed", key:"self-absorbed", ipa:"/ˌself əbˈzɔːbd/", ru:"самовлюблённый, поглощённый собой", ex:"He was so self-absorbed that he never noticed how his friends were feeling."},
-  {term:"to unleash", key:"unleash", ipa:"/ʌnˈliːʃ/", ru:"выпустить на волю, развязать", ex:"One angry comment was enough to unleash a wave of criticism online."},
-  {term:"relentless", key:"relentless", ipa:"/rɪˈlentləs/", ru:"неустанный, безжалостный", ex:"The relentless stream of notifications made it impossible to focus."},
-  {term:"to tempt fate", key:"tempt fate", ipa:"/tempt feɪt/", ru:"испытывать судьбу", ex:"Ignoring every warning sign, he kept tempting fate."},
-  {term:"an underlying flaw", key:"underlying flaw", ipa:"/ˌʌndəˈlaɪɪŋ flɔː/", ru:"скрытый недостаток, изъян", ex:"Beneath the perfect plan lay an underlying flaw nobody had noticed."},
-  {term:"to be doomed", key:"doomed", ipa:"/duːmd/", ru:"быть обречённым", ex:"Without a backup plan, the whole project felt doomed from the start."}
+const vocabIdioms = [
+  {term:"worth doing", key:"worth doing", ipa:"/wɜːθ ˈduːɪŋ/", ru:"стоящий того, чтобы это сделать", ex:"Learning to sail is hard work, but it's definitely worth doing."},
+  {term:"sooner or later", key:"sooner or later", ipa:"/ˈsuːnər ɔː ˈleɪtə/", ru:"рано или поздно", ex:"You can avoid the problem for now, but sooner or later you'll have to face it."},
+  {term:"doomed to fail", key:"doomed to fail", ipa:"/duːmd tuː feɪl/", ru:"обречённый на провал", ex:"Without major changes, the old business model was doomed to fail."},
+  {term:"seize the opportunity", key:"seize the opportunity", ipa:"/siːz ði ˌɒpəˈtjuːnəti/", ru:"воспользоваться возможностью", ex:"When the position opened up, she decided to seize the opportunity."},
+  {term:"game the system", key:"game the system", ipa:"/ɡeɪm ðə ˈsɪstəm/", ru:"обходить систему, хитрить с правилами", ex:"He found a clever way to game the system and avoid paying full price."},
+  {term:"in any way, shape, or form", key:"in any way, shape, or form", ipa:"/ɪn ˈeni weɪ ʃeɪp ɔː fɔːm/", ru:"никоим образом", ex:"She wasn't involved in the decision in any way, shape, or form."},
+  {term:"Achilles' heel", key:"Achilles' heel", ipa:"/əˈkɪliːz hiːl/", ru:"ахиллесова пята, слабое место", ex:"Public speaking has always been his Achilles' heel."},
+  {term:"opening Pandora's box", key:"opening Pandora's box", ipa:"/ˈəʊpənɪŋ pænˈdɔːrəz bɒks/", ru:"открыть ящик Пандоры (вызвать лавину проблем)", ex:"Changing that one rule turned out to be opening Pandora's box."},
+  {term:"a Herculean task", key:"a Herculean task", ipa:"/ə ˌhɜːkjʊˈliːən tɑːsk/", ru:"титанический труд, геркулесова задача", ex:"Cleaning the entire house in a single day felt like a Herculean task."},
+  {term:"caught between a rock and a hard place", key:"caught between a rock and a hard place", ipa:"/kɔːt bɪˈtwiːn ə rɒk ənd ə hɑːd pleɪs/", ru:"между молотом и наковальней", ex:"He was caught between a rock and a hard place, unable to please both sides."},
+  {term:"a Trojan horse", key:"a Trojan horse", ipa:"/ə ˈtrəʊdʒən hɔːs/", ru:"троянский конь (скрытая угроза)", ex:"The free software update turned out to be a Trojan horse full of bugs."},
+  {term:"a siren song", key:"a siren song", ipa:"/ə ˈsaɪrən sɒŋ/", ru:"зов сирен (соблазнительное, но опасное искушение)", ex:"The promise of easy money was a siren song that led him into debt."}
+];
+
+const vocabHistory = [
+  {term:"to conquer", key:"conquer", ipa:"/ˈkɒŋkə/", ru:"завоёвывать", ex:"Alexander the Great conquered vast stretches of territory across three continents."},
+  {term:"to immigrate", key:"immigrate", ipa:"/ˈɪmɪɡreɪt/", ru:"иммигрировать, переселяться", ex:"Thousands of people immigrated to the new cultural centre in search of opportunity."},
+  {term:"to maintain", key:"maintain", ipa:"/meɪnˈteɪn/", ru:"поддерживать в должном состоянии", ex:"The old library slowly fell apart because nobody properly maintained it."},
+  {term:"valuable", key:"valuable", ipa:"/ˈvæljuəbl/", ru:"ценный", ex:"The collection contained thousands of valuable manuscripts."},
+  {term:"a tutor", key:"tutor", ipa:"/ˈtjuːtə/", ru:"наставник, репетитор", ex:"The philosopher worked as a tutor to the young prince for several years."},
+  {term:"to dominate", key:"dominate", ipa:"/ˈdɒmɪneɪt/", ru:"доминировать, господствовать", ex:"Wealthy families continued to dominate the government for generations."},
+  {term:"enslaved", key:"enslaved", ipa:"/ɪnˈsleɪvd/", ru:"порабощённый, обращённый в рабство", ex:"Enslaved people were given no voice in the political system."},
+  {term:"a sanctuary", key:"sanctuary", ipa:"/ˈsæŋktʃuəri/", ru:"святилище, место поклонения", ex:"The ancient site was a sanctuary dedicated to one of the gods."},
+  {term:"sacred", key:"sacred", ipa:"/ˈseɪkrɪd/", ru:"священный", ex:"Winners were crowned with a branch cut from a sacred tree."},
+  {term:"to elect", key:"elect", ipa:"/ɪˈlekt/", ru:"избирать", ex:"Instead of holding elections, many officials were chosen by lottery."}
 ];
 
 function speak(text){
   if(!('speechSynthesis' in window)) return;
   window.speechSynthesis.cancel();
   const u = new SpeechSynthesisUtterance(text);
-  u.lang = 'en-US';
+  u.lang = 'en-GB';
   u.rate = 0.9;
   window.speechSynthesis.speak(u);
 }
 
-const cardsGrid = document.getElementById('cardsGrid');
-vocab.forEach(v=>{
-  const card = document.createElement('div');
-  card.className='flip-card';
-  card.innerHTML = `
-    <div class="flip-inner">
-      <div class="flip-front">
-        <div class="term">${v.term}</div>
-        <div class="ipa">${v.ipa}</div>
-        <div class="listen-row"><button type="button" class="listen-btn">🔊 слушать</button></div>
-        <div class="hint">нажми карточку, чтобы перевернуть</div>
-      </div>
-      <div class="flip-back">
-        <div class="ru">${v.ru}</div>
-        <div class="ex">${v.ex}</div>
-      </div>
-    </div>`;
-  card.querySelector('.listen-btn').addEventListener('click', (e)=>{
-    e.stopPropagation();
-    speak(v.term.replace(/^(a|an|to)\s+/i,''));
+function buildCards(list, gridId){
+  const grid = document.getElementById(gridId);
+  list.forEach(v=>{
+    const card = document.createElement('div');
+    card.className='flip-card';
+    card.innerHTML = `
+      <div class="flip-inner">
+        <div class="flip-front">
+          <div class="term">${v.term}</div>
+          <div class="ipa">${v.ipa}</div>
+          <div class="listen-row"><button type="button" class="listen-btn">🔊 слушать</button></div>
+          <div class="hint">нажми карточку, чтобы перевернуть</div>
+        </div>
+        <div class="flip-back">
+          <div class="ru">${v.ru}</div>
+          <div class="ex">${v.ex}</div>
+        </div>
+      </div>`;
+    card.querySelector('.listen-btn').addEventListener('click', (e)=>{
+      e.stopPropagation();
+      speak(v.term.replace(/^(a|an|to)\s+/i,''));
+    });
+    card.addEventListener('click', ()=> card.classList.toggle('flipped'));
+    grid.appendChild(card);
   });
-  card.addEventListener('click', ()=> card.classList.toggle('flipped'));
-  cardsGrid.appendChild(card);
-});
+}
+buildCards(vocabIdioms, 'cardsGridIdioms');
+buildCards(vocabHistory, 'cardsGridHistory');
 
-const storyParts = [
-  "Every Monday, Alex's inbox filled up again like a ",
-  "GAP:Sisyphean",
-  " task — the moment she cleared it, new messages seemed to multiply overnight. She used to believe she could handle absolutely everything alone, and that kind of ",
-  "GAP:hubris",
-  " made her ignore every warning sign of burnout. Still, whenever a trendy app promised an \"easy fix,\" she was quick to ",
-  "GAP:succumb",
-  " to it, downloading one more productivity tool that she would abandon within a week. Multitasking was her ",
+const storyParts1 = [
+  "At work, Nina often feels that extra training is ",
+  "GAP:worth doing",
+  ", even when she doesn't have much free time. She knows that ",
+  "GAP:sooner or later",
+  ", her manager will notice her effort. Still, she worries that without stronger results, the whole project might be ",
+  "GAP:doomed to fail",
+  ". When a sudden opening came up on another team, she decided to ",
+  "GAP:seize the opportunity",
+  " and apply straight away. Meanwhile, one colleague keeps trying to ",
+  "GAP:game the system",
+  " by claiming credit for work he didn't do. Nina wasn't involved in his scheme ",
+  "GAP:in any way, shape, or form",
+  ", but it still makes her uncomfortable. Public speaking has always been her ",
   "GAP:Achilles' heel",
-  ": however hard she tried, she could never really focus on just one thing. Spending hours scrolling through her own photos and captions, she worried she was becoming too ",
-  "GAP:self-absorbed",
-  ", caring more about likes than about the people around her. One careless click was enough to ",
-  "GAP:unleash",
-  " a storm of pop-up ads across her screen. The ",
-  "GAP:relentless",
-  " stream of notifications left her exhausted before nine in the morning. Her friends warned her she was starting to ",
-  "GAP:tempt fate",
-  " by working through every single weekend without a break. Deep down, she knew there was an ",
-  "GAP:underlying flaw",
-  " in her daily routine — she simply refused to slow down. Without a real change, her burnout felt almost ",
-  "GAP:doomed",
+  ", even though she handles everything else with confidence. When she agreed to take on one more small task, it felt like ",
+  "GAP:opening Pandora's box",
+  " — suddenly everyone wanted her help with something. Organising the entire company conference in two weeks seemed like ",
+  "GAP:a Herculean task",
+  ". She felt ",
+  "GAP:caught between a rock and a hard place",
+  ", unsure whether to disappoint her boss or her team. The \"quick fix\" software her colleague recommended turned out to be ",
+  "GAP:a Trojan horse",
+  ", hiding a dozen new bugs. And the offer of an easy promotion with no real responsibility sounded like ",
+  "GAP:a siren song",
+  " she knew she should resist."
+];
+
+const storyParts2 = [
+  "Ancient Greek history is full of fascinating details. Alexander the Great managed to ",
+  "GAP:conquer",
+  " huge stretches of land across three continents, and many Greeks later chose to ",
+  "GAP:immigrate",
+  " to the new cities that were built there. One of these cities held a huge library, but the building slowly fell apart because nobody bothered to ",
+  "GAP:maintain",
+  " it properly. Still, people say it once held thousands of incredibly ",
+  "GAP:valuable",
+  " scrolls and books. Aristotle, one of the greatest thinkers of his time, worked as a ",
+  "GAP:tutor",
+  " to the young Alexander. In Athens, rich families often tried to ",
+  "GAP:dominate",
+  " political life, which is partly why many city-states preferred to pick officials by lottery rather than ",
+  "GAP:elect",
+  " them. Ancient Greek society also included a large number of ",
+  "GAP:enslaved",
+  " people who had absolutely no political rights. Meanwhile, the site of Olympia functioned as a ",
+  "GAP:sanctuary",
+  " dedicated to the god Zeus, and the olive trees that grew there were considered ",
+  "GAP:sacred",
   "."
 ];
 
-const options = vocab.map(v=>v.key);
 function shuffle(arr){ return [...arr].sort(()=>Math.random()-0.5); }
-const optsHtml = ['<option value="">— выбери —</option>'].concat(
-  shuffle(options).map(o=>`<option value="${o}">${o}</option>`)
-).join('');
 
-const storyBox = document.getElementById('storyBox');
-let html = '';
-storyParts.forEach(part=>{
-  if(part.startsWith('GAP:')){
-    const answer = part.slice(4);
-    html += `<select data-answer="${answer}">${optsHtml}</select>`;
-  } else {
-    html += part;
-  }
-});
-storyBox.innerHTML = html;
-
-document.getElementById('checkGaps').addEventListener('click', ()=>{
-  let correct = 0;
-  const selects = storyBox.querySelectorAll('select');
-  selects.forEach(sel=>{
-    sel.classList.remove('correct','wrong');
-    if(sel.value === sel.dataset.answer){
-      sel.classList.add('correct');
-      correct++;
-    } else if(sel.value !== ""){
-      sel.classList.add('wrong');
+function renderStory(storyParts, options, boxId){
+  const optsHtml = ['<option value="">— выбери —</option>'].concat(
+    shuffle(options).map(o=>`<option value="${o}">${o}</option>`)
+  ).join('');
+  const box = document.getElementById(boxId);
+  let html = '';
+  storyParts.forEach(part=>{
+    if(part.startsWith('GAP:')){
+      const answer = part.slice(4);
+      html += `<select data-answer="${answer}">${optsHtml}</select>`;
+    } else {
+      html += part;
     }
   });
-  const scoreEl = document.getElementById('gapScore');
-  scoreEl.style.display='inline-block';
-  scoreEl.textContent = `Результат: ${correct} / ${selects.length}`;
-});
+  box.innerHTML = html;
+}
+
+renderStory(storyParts1, vocabIdioms.map(v=>v.key), 'storyBox1');
+renderStory(storyParts2, vocabHistory.map(v=>v.key), 'storyBox2');
+
+function wireCheck(boxId, buttonId, scoreId){
+  document.getElementById(buttonId).addEventListener('click', ()=>{
+    const box = document.getElementById(boxId);
+    let correct = 0;
+    const selects = box.querySelectorAll('select');
+    selects.forEach(sel=>{
+      sel.classList.remove('correct','wrong');
+      if(sel.value === sel.dataset.answer){
+        sel.classList.add('correct');
+        correct++;
+      } else if(sel.value !== ""){
+        sel.classList.add('wrong');
+      }
+    });
+    const scoreEl = document.getElementById(scoreId);
+    scoreEl.style.display='inline-block';
+    scoreEl.textContent = `Результат: ${correct} / ${selects.length}`;
+  });
+}
+wireCheck('storyBox1','checkGaps1','gapScore1');
+wireCheck('storyBox2','checkGaps2','gapScore2');
 </script>
 </body>
 </html>
