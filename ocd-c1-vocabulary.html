@@ -233,14 +233,14 @@ footer{
     <p class="subtitle">Лексика для разговора об обсессивно-компульсивном расстройстве: навязчивые мысли, ритуалы и попытки справиться с тревогой</p>
     <div class="divider"></div>
     <div class="badge-row">
-      <span class="badge">Уровень C1</span>
-      <span class="badge">8 слов и выражений</span>
+      <span class="badge">Уровень B2–C1</span>
+      <span class="badge">18 слов и выражений</span>
       <span class="badge">Новая лексика</span>
     </div>
   </header>
 
   <div class="note">
-    Сначала переверни карточки: нажми 🔊, чтобы послушать произношение, посмотри транскрипцию, переведи карточку — увидишь перевод и пример. Затем прочитай короткий текст и вставь эти слова в пропуски.
+    Сначала переверни карточки: нажми 🔊, чтобы послушать произношение, посмотри транскрипцию, переверни карточку — увидишь перевод и пример. Затем прочитай короткий текст про Марию и вставь эти слова в пропуски.
   </div>
 
   <section>
@@ -257,19 +257,29 @@ footer{
     <div class="score-box" id="gapScore" style="display:none;"></div>
   </section>
 
-  <footer>We Talk · C1 · новая лексика по теме OCD</footer>
+  <footer>We Talk · B2–C1 · новая лексика по теме OCD</footer>
 </div>
 
 <script>
 const vocab = [
-  {term:"an intrusive thought", ipa:"/ɪnˈtruːsɪv θɔːt/", key:"intrusive thought", ru:"навязчивая мысль", ex:"An intrusive thought about losing control crossed her mind, even though she knew it wasn't rational."},
-  {term:"a compulsion", ipa:"/kəmˈpʌlʃn/", key:"compulsion", ru:"компульсия, непреодолимое побуждение", ex:"His compulsion to recheck the locks left him exhausted every morning."},
-  {term:"to ruminate on something", ipa:"/ˈruːmɪneɪt/", key:"ruminate on", ru:"бесконечно прокручивать в голове, зацикливаться на чём-то", ex:"He couldn't stop ruminating on the same worry for hours."},
-  {term:"to be plagued by doubt", ipa:"/pleɪɡd baɪ daʊt/", key:"plagued by doubt", ru:"быть одолеваемым сомнениями", ex:"Even with no real reason, she was constantly plagued by doubt."},
-  {term:"a ritual", ipa:"/ˈrɪtʃuəl/", key:"ritual", ru:"ритуал (повторяющееся действие)", ex:"Washing his hands five times became a ritual he couldn't skip."},
-  {term:"to seek reassurance", ipa:"/siːk ˌriːəˈʃʊərəns/", key:"seek reassurance", ru:"искать подтверждения, успокоения", ex:"She texted her husband twice an hour to seek reassurance that he was safe."},
-  {term:"intolerance of uncertainty", ipa:"/ɪnˈtɒlərəns əv ʌnˈsɜːtnti/", key:"intolerance of uncertainty", ru:"непереносимость неопределённости", ex:"His intolerance of uncertainty made even small decisions feel unbearable."},
-  {term:"to spiral out of control", ipa:"/ˈspaɪrəl aʊt əv kənˈtrəʊl/", key:"spiral out of control", ru:"выходить из-под контроля, закручиваться по нарастающей", ex:"One small worry could spiral out of control within minutes."}
+  {term:"debilitating", key:"debilitating", ipa:"/dɪˈbɪlɪteɪtɪŋ/", ru:"ослабляющий, изнуряющий", ex:"Chronic anxiety can have a debilitating effect on everyday life."},
+  {term:"meticulous", key:"meticulous", ipa:"/məˈtɪkjələs/", ru:"дотошный, скрупулёзный", ex:"He was meticulous about checking every detail twice."},
+  {term:"time-consuming", key:"time-consuming", ipa:"/ˈtaɪm kənˌsjuːmɪŋ/", ru:"отнимающий много времени", ex:"Her morning routine became so time-consuming that she was always late."},
+  {term:"contamination", key:"contamination", ipa:"/kənˌtæmɪˈneɪʃn/", ru:"загрязнение", ex:"He was terrified of contamination every time he touched a door handle."},
+  {term:"to interfere", key:"interfere", ipa:"/ˌɪntəˈfɪə(r)/", ru:"мешать, вмешиваться", ex:"These worries interfere with his ability to focus at work."},
+  {term:"fastidious", key:"fastidious", ipa:"/fæˈstɪdiəs/", ru:"придирчивый, разборчивый", ex:"She was so fastidious that even a crooked picture frame upset her."},
+  {term:"to sap someone's strength", key:"sap her strength", ipa:"/sæp/", ru:"истощать силы", ex:"Constant worrying can really sap your strength over time."},
+  {term:"a reprieve", key:"reprieve", ipa:"/rɪˈpriːv/", ru:"временная передышка, облегчение", ex:"A few quiet minutes gave her a brief reprieve from her anxious thoughts."},
+  {term:"to envision", key:"envision", ipa:"/ɪnˈvɪʒn/", ru:"представлять, живо воображать", ex:"He tried to envision a calm, peaceful place to ease his mind."},
+  {term:"to loosen up", key:"loosen up", ipa:"/ˈluːsn ʌp/", ru:"расслабиться", ex:"Rolling her shoulders helped her loosen up a little."},
+  {term:"an intrusive thought", key:"intrusive thought", ipa:"/ɪnˈtruːsɪv θɔːt/", ru:"навязчивая мысль", ex:"An intrusive thought about losing control crossed her mind."},
+  {term:"obsessive", key:"obsessive", ipa:"/əbˈsesɪv/", ru:"одержимый, навязчивый", ex:"He couldn't shake the obsessive dialogue running through his head."},
+  {term:"to impair", key:"impair", ipa:"/ɪmˈpeə(r)/", ru:"нарушать, ухудшать (функции)", ex:"Severe anxiety can impair a person's ability to concentrate."},
+  {term:"to accomplish", key:"accomplish", ipa:"/əˈkʌmplɪʃ/", ru:"выполнять, достигать", ex:"It took him hours to accomplish even the simplest task."},
+  {term:"to ruin", key:"ruin", ipa:"/ˈruːɪn/", ru:"разрушать, портить", ex:"Left untreated, these patterns can ruin a person's daily life."},
+  {term:"to cope with", key:"cope with", ipa:"/kəʊp wɪð/", ru:"справляться с", ex:"Learning healthy ways to cope with stress takes practice."},
+  {term:"exposure therapy", key:"exposure therapy", ipa:"/ɪkˈspəʊʒə ˈθerəpi/", ru:"терапия с экспозицией", ex:"Exposure therapy is one of the most effective treatments for OCD."},
+  {term:"to savor", key:"savor", ipa:"/ˈseɪvə(r)/", ru:"наслаждаться, смаковать", ex:"Try to savor small, calming moments throughout your day."}
 ];
 
 function speak(text){
@@ -307,23 +317,43 @@ vocab.forEach(v=>{
 });
 
 const storyParts = [
-  "Sam has always been a careful person, but lately something has changed. Every morning before leaving the house, he feels a strange ",
+  "Maria has always been a ",
+  "GAP:meticulous",
+  " person, but over the past year, a ",
+  "GAP:debilitating",
+  " pattern has taken hold. Every morning, she feels a strange ",
   "GAP:intrusive thought",
-  " that the front door is unlocked. To calm himself, he repeats a strict ",
-  "GAP:ritual",
-  ": checking the lock exactly seven times. If he skips even one check, he starts to ",
-  "GAP:ruminate on",
-  " the same fear for the rest of the day. His mind is constantly ",
-  "GAP:plagued by doubt",
-  ", even when there is no real reason to worry. Several times a day, he calls his sister just to ",
-  "GAP:seek reassurance",
-  " that everything at home is fine. Deep down, Sam knows this is really about his ",
-  "GAP:intolerance of uncertainty",
-  " — he simply cannot bear not knowing for sure. Without support, a small worry like this can quickly ",
-  "GAP:spiral out of control",
-  ", and the need to check things becomes a daily ",
-  "GAP:compulsion",
-  " he can't resist."
+  " that the stove is still on. Checking the switch becomes a ritual that is so ",
+  "GAP:time-consuming",
+  " it makes her late for work. If she skips a single check, an ",
+  "GAP:obsessive",
+  " worry about ",
+  "GAP:contamination",
+  " starts to ",
+  "GAP:interfere",
+  " with everything else she tries to do. Her fear of germs is so ",
+  "GAP:fastidious",
+  " that she washes her hands until they're raw. These thoughts ",
+  "GAP:impair",
+  " her ability to ",
+  "GAP:accomplish",
+  " even the simplest tasks, and the constant worry can ",
+  "GAP:sap her strength",
+  " completely. Left untreated, Maria is afraid these patterns could ",
+  "GAP:ruin",
+  " her relationships and her career. Learning to ",
+  "GAP:cope with",
+  " these feelings hasn't been easy, but her therapist suggested ",
+  "GAP:exposure therapy",
+  ", slowly facing her fears instead of avoiding them. On good days, she finds small moments of ",
+  "GAP:reprieve",
+  " — a walk outside, rolling her shoulders to ",
+  "GAP:loosen up",
+  ", or trying to ",
+  "GAP:envision",
+  " a calm, quiet place in her mind. She is learning, slowly, to ",
+  "GAP:savor",
+  " these little victories."
 ];
 
 const options = vocab.map(v=>v.key);
