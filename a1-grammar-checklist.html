@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A1 Grammar Checklist — We Talk</title>
+<style>
+  :root{
+    --slate:#2f3a4a;
+    --teal:#2f8f7f;
+    --indigo:#4b5aa8;
+    --charcoal:#20242c;
+    --box-bg:#f4f6f5;
+    --border:#dfe4e2;
+    --correct:#2f8f5a;
+    --wrong:#c0504d;
+    --gold:#c99a3b;
+  }
+  *{box-sizing:border-box;}
+  body{
+    font-family:'TNR','Times New Roman',serif;
+    background:#faf9f6;
+    color:var(--charcoal);
+    margin:0;
+    padding:30px 16px 60px;
+    font-size:19px;
+    line-height:1.5;
+  }
+  .wrap{max-width:900px;margin:0 auto;}
+  header{
+    text-align:center;
+    margin-bottom:28px;
+    position:relative;
+    padding-top:10px;
+  }
+  header::before{
+    content:"📘";
+    font-size:46px;
+    display:block;
+    margin-bottom:6px;
+  }
+  h1{
+    margin:0 0 6px;
+    font-size:32px;
+    color:var(--slate);
+    letter-spacing:0.5px;
+  }
+  .subtitle{
+    color:#5a6472;
+    font-style:italic;
+    font-size:18px;
+  }
+  .badge-row{
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    margin:16px 0 0;
+    flex-wrap:wrap;
+  }
+  .badge{
+    background:var(--indigo);
+    color:#fff;
+    padding:5px 16px;
+    border-radius:20px;
+    font-size:15px;
+    font-style:normal;
+  }
+  .badge.teal{background:var(--teal);}
+  .badge.gold{background:var(--gold);}
+  .note{
+    background:var(--box-bg);
+    border-left:4px solid var(--indigo);
+    padding:14px 18px;
+    margin:24px 0;
+    font-style:italic;
+    font-size:17px;
+    border-radius:6px;
+  }
+  .progress-wrap{
+    margin:24px 0 32px;
+    background:var(--box-bg);
+    border-radius:10px;
+    padding:14px 18px;
+    border:1px solid var(--border);
+  }
+  .progress-label{
+    display:flex;
+    justify-content:space-between;
+    font-size:16px;
+    margin-bottom:8px;
+    color:var(--slate);
+  }
+  .progress-bar-bg{
+    background:#e4e8e6;
+    border-radius:8px;
+    height:16px;
+    overflow:hidden;
+  }
+  .progress-bar-fill{
+    height:100%;
+    background:linear-gradient(90deg, var(--teal), var(--indigo));
+    width:0%;
+    transition:width 0.3s ease;
+  }
+  .group{
+    margin-bottom:26px;
+    background:#fff;
+    border:1px solid var(--border);
+    border-radius:10px;
+    overflow:hidden;
+  }
+  .group-header{
+    background:var(--slate);
+    color:#fff;
+    padding:12px 18px;
+    font-size:20px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .group-header .num{
+    background:rgba(255,255,255,0.2);
+    border-radius:50%;
+    width:28px;
+    height:28px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:15px;
+    flex-shrink:0;
+  }
+  .items{padding:6px 0;}
+  .item{
+    display:flex;
+    align-items:flex-start;
+    gap:12px;
+    padding:10px 18px;
+    border-bottom:1px solid #eef1ef;
+    transition:background 0.15s;
+  }
+  .item:last-child{border-bottom:none;}
+  .item:hover{background:#fafbfa;}
+  .item input[type="checkbox"]{
+    width:20px;
+    height:20px;
+    margin-top:3px;
+    flex-shrink:0;
+    accent-color:var(--teal);
+    cursor:pointer;
+  }
+  .item label{
+    cursor:pointer;
+    flex:1;
+  }
+  .item.checked label .term{
+    color:var(--correct);
+    text-decoration:line-through;
+    text-decoration-color:rgba(47,143,90,0.5);
+  }
+  .term{
+    font-weight:bold;
+    color:var(--slate);
+  }
+  .desc{
+    display:block;
+    font-size:16px;
+    color:#5a6472;
+    margin-top:2px;
+  }
+  .ex{
+    display:block;
+    font-size:15.5px;
+    color:#7a8290;
+    font-style:italic;
+    margin-top:3px;
+  }
+  .border-tag{
+    display:inline-block;
+    background:#fff3d6;
+    color:#8a6a1e;
+    border:1px solid #e9d08a;
+    font-size:13px;
+    font-style:normal;
+    padding:1px 8px;
+    border-radius:10px;
+    margin-left:8px;
+    vertical-align:middle;
+  }
+  .btn-row{
+    display:flex;
+    justify-content:center;
+    gap:14px;
+    margin:30px 0 10px;
+    flex-wrap:wrap;
+  }
+  .btn{
+    background:var(--indigo);
+    color:#fff;
+    border:none;
+    padding:10px 26px;
+    border-radius:24px;
+    font-size:17px;
+    font-family:inherit;
+    cursor:pointer;
+  }
+  .btn.secondary{background:#9aa3ad;}
+  .btn:hover{opacity:0.9;}
+  footer{
+    text-align:center;
+    margin-top:40px;
+    color:#9aa3ad;
+    font-size:15px;
+    font-style:italic;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <h1>Грамматический чек-лист — уровень A1</h1>
+    <div class="subtitle">Стандарт CEFR (Common European Framework of Reference)</div>
+    <div class="badge-row">
+      <span class="badge">15 тем</span>
+      <span class="badge teal">Core A1 + мостик к A2</span>
+      <span class="badge gold">We Talk</span>
+    </div>
+  </header>
+
+  <div class="note">
+    Отмечай темы, которые уже пройдены / усвоены. Прогресс сохраняется автоматически в этом браузере.
+    Темы с пометкой <span class="border-tag">A1/A2</span> — пограничные: в разных программах (Cambridge English Profile, Eaquals, разные учебники) их иногда относят уже к A2.
+  </div>
+
+  <div class="progress-wrap">
+    <div class="progress-label">
+      <span>Прогресс</span>
+      <span id="progressText">0 / 24</span>
+    </div>
+    <div class="progress-bar-bg"><div class="progress-bar-fill" id="progressBar"></div></div>
+  </div>
+
+  <div id="checklist"></div>
+
+  <div class="btn-row">
+    <button class="btn secondary" id="resetBtn">Сбросить всё</button>
+  </div>
+
+  <footer>We Talk · we-talk.ru</footer>
+</div>
+
+<script>
+const data = [
+  {
+    title: "1. Глагол to be",
+    items: [
+      {id:"be-forms", term:"am / is / are", desc:"утверждение, отрицание, вопрос", ex:"I am a teacher. She isn't tired. Are you ready?"},
+      {id:"be-short", term:"Краткие формы", desc:"I'm, he's, we're, isn't, aren't, wasn't", ex:"He's my brother. They aren't here."}
+    ]
+  },
+  {
+    title: "2. Местоимения",
+    items: [
+      {id:"pron-subj", term:"Личные (подлежащие)", desc:"I, you, he, she, it, we, they", ex:"She lives in Grozny."},
+      {id:"pron-obj", term:"Объектные", desc:"me, you, him, her, it, us, them", ex:"Give it to me, please."},
+      {id:"pron-poss-adj", term:"Притяжательные прилагательные", desc:"my, your, his, her, its, our, their", ex:"This is my book."},
+      {id:"pron-demo", term:"Указательные", desc:"this, that, these, those", ex:"This is a pen. Those are my keys."}
+    ]
+  },
+  {
+    title: "3. Существительные и артикли",
+    items: [
+      {id:"articles", term:"Артикли a / an / the / —", desc:"базовое использование", ex:"A cat is on the table."},
+      {id:"plural", term:"Множественное число", desc:"регулярное -s/-es + базовые неправильные формы", ex:"two books, three children, two men"},
+      {id:"poss-s", term:"Притяжательный падеж 's", desc:"", ex:"Dina's school is in Grozny."},
+      {id:"count-uncount", term:"Исчисляемые / неисчисляемые + some/any", desc:"", ex:"There is some water. Are there any apples?"},
+      {id:"how-much-many", term:"How much / How many", desc:"", ex:"How much money? How many students?"}
+    ]
+  },
+  {
+    title: "4. There is / There are",
+    items: [
+      {id:"there-is-are", term:"There is / There are", desc:"утверждение, отрицание, вопрос", ex:"There is a cat in the garden. Are there any chairs?"}
+    ]
+  },
+  {
+    title: "5. Предлоги",
+    items: [
+      {id:"prep-place", term:"Места", desc:"in, on, at, under, next to, between, in front of, behind", ex:"The book is on the table."},
+      {id:"prep-time", term:"Времени", desc:"in, on, at", ex:"in May, on Monday, at 5 o'clock"},
+      {id:"prep-move", term:"Движения", desc:"to, from", ex:"She goes to school. He is from Russia."}
+    ]
+  },
+  {
+    title: "6. Present Simple",
+    items: [
+      {id:"pres-simple", term:"Present Simple", desc:"утверждение / отрицание / вопрос, 3-е лицо -s, do/does", ex:"She works every day. Does he live here?"},
+      {id:"adv-freq", term:"Наречия частотности", desc:"always, usually, often, sometimes, never — место в предложении", ex:"I always drink tea in the morning."}
+    ]
+  },
+  {
+    title: "7. Present Continuous",
+    items: [
+      {id:"pres-cont", term:"Present Continuous", desc:"am/is/are + -ing, для действий «сейчас»", ex:"I am writing a letter now."}
+    ]
+  },
+  {
+    title: "8. Have got / Has got",
+    items: [
+      {id:"have-got", term:"Have got / Has got", desc:"утверждение, отрицание, вопрос", ex:"I've got a sister. Has she got a car?"}
+    ]
+  },
+  {
+    title: "9. Can",
+    items: [
+      {id:"can", term:"Can / can't", desc:"умение и возможность", ex:"I can swim. She can't drive."}
+    ]
+  },
+  {
+    title: "10. Императив",
+    items: [
+      {id:"imperative", term:"Повелительное наклонение", desc:"команды и просьбы", ex:"Sit down. Don't talk, please."}
+    ]
+  },
+  {
+    title: "11. Вопросы",
+    items: [
+      {id:"wh-words", term:"Вопросительные слова", desc:"what, where, when, who, why, how, how old, how much, how many", ex:"Where do you live? How old are you?"},
+      {id:"word-order-q", term:"Порядок слов в вопросе", desc:"", ex:"Do you like coffee? Where is she from?"}
+    ]
+  },
+  {
+    title: "12. Прилагательные",
+    items: [
+      {id:"adj-order", term:"Порядок: adjective + noun", desc:"", ex:"a big house, a nice day"},
+      {id:"adj-comp", term:"Сравнительные -er / more", desc:"базовый уровень", ex:"bigger, nicer, more interesting", border:true}
+    ]
+  },
+  {
+    title: "13. Числительные",
+    items: [
+      {id:"num-card", term:"Количественные числительные", desc:"", ex:"one, two, twenty, a hundred"},
+      {id:"num-ord", term:"Порядковые числительные (базовые)", desc:"1st–10th", ex:"first, second, third"}
+    ]
+  },
+  {
+    title: "14. Союзы",
+    items: [
+      {id:"conj", term:"and, but, or, because", desc:"базовые простые союзы", ex:"I like tea, but I don't like coffee."}
+    ]
+  },
+  {
+    title: "15. Past Simple (базовый уровень)",
+    items: [
+      {id:"past-be", term:"was / were", desc:"глагол to be в прошедшем времени", ex:"I was at home. They were tired."},
+      {id:"past-reg", term:"Правильные глаголы -ed", desc:"ограниченный набор, часто переходит в A2", ex:"She worked yesterday.", border:true},
+      {id:"going-to", term:"Going to (планы на будущее)", desc:"", ex:"I'm going to visit my parents.", border:true}
+    ]
+  }
+];
+
+const STORAGE_KEY = "a1GrammarChecklistProgress";
+
+function loadProgress(){
+  try{
+    return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
+  }catch(e){ return {}; }
+}
+function saveProgress(progress){
+  try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(progress)); }catch(e){}
+}
+
+let progress = loadProgress();
+
+function totalItems(){
+  return data.reduce((sum, g) => sum + g.items.length, 0);
+}
+
+function updateProgressBar(){
+  const total = totalItems();
+  const done = Object.values(progress).filter(Boolean).length;
+  document.getElementById('progressText').textContent = done + " / " + total;
+  document.getElementById('progressBar').style.width = (total ? (done/total*100) : 0) + "%";
+}
+
+function render(){
+  const container = document.getElementById('checklist');
+  container.innerHTML = "";
+  data.forEach((group, gi) => {
+    const groupDiv = document.createElement('div');
+    groupDiv.className = 'group';
+
+    const header = document.createElement('div');
+    header.className = 'group-header';
+    header.innerHTML = '<span class="num">' + (gi+1) + '</span><span>' + group.title.replace(/^\d+\.\s*/, '') + '</span>';
+    groupDiv.appendChild(header);
+
+    const itemsDiv = document.createElement('div');
+    itemsDiv.className = 'items';
+
+    group.items.forEach(item => {
+      const row = document.createElement('div');
+      row.className = 'item' + (progress[item.id] ? ' checked' : '');
+
+      const checkbox = document.createElement('input');
+      checkbox.type = 'checkbox';
+      checkbox.id = item.id;
+      checkbox.checked = !!progress[item.id];
+      checkbox.addEventListener('change', () => {
+        progress[item.id] = checkbox.checked;
+        saveProgress(progress);
+        row.classList.toggle('checked', checkbox.checked);
+        updateProgressBar();
+      });
+
+      const label = document.createElement('label');
+      label.setAttribute('for', item.id);
+      label.innerHTML =
+        '<span class="term">' + item.term + '</span>' +
+        (item.border ? '<span class="border-tag">A1/A2</span>' : '') +
+        (item.desc ? '<span class="desc">' + item.desc + '</span>' : '') +
+        (item.ex ? '<span class="ex">' + item.ex + '</span>' : '');
+
+      row.appendChild(checkbox);
+      row.appendChild(label);
+      itemsDiv.appendChild(row);
+    });
+
+    groupDiv.appendChild(itemsDiv);
+    container.appendChild(groupDiv);
+  });
+  updateProgressBar();
+}
+
+document.getElementById('resetBtn').addEventListener('click', () => {
+  progress = {};
+  saveProgress(progress);
+  render();
+});
+
+render();
+</script>
+</body>
+</html>
