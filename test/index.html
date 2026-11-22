@@ -298,8 +298,8 @@ function listening(){var L=LISTEN[S.listen];
  render(steps(3)+'<span class="kicker">Часть 4 из 4 · аудирование</span><h2>'+L.title+'</h2><p class="muted">Нажмите ▶ и послушайте разговор. Его можно прослушать два раза. Затем ответьте на вопросы.</p>'+
  '<div class="player"><button class="play" id="play" aria-label="Слушать">▶</button><div><b id="pst">Прослушиваний: 0 из '+MAXPLAYS+'</b><small>Говорят Tom и Rachel</small></div><audio id="au" preload="auto" src="'+AUDIO[S.listen]+'"></audio></div>'+qblock(L.q,"l")+
  '<div class="err" id="err"></div><div class="nav"><span></span><button class="btn" id="next">Узнать результат</button></div>');
- var au=document.getElementById("au"),pb=document.getElementById("play"),pst=document.getElementById("pst"),hasFile=false;
- au.addEventListener("canplaythrough",function(){hasFile=true});au.addEventListener("error",function(){hasFile=false});
+ var au=document.getElementById("au"),pb=document.getElementById("play"),pst=document.getElementById("pst"),hasFile=true;
+ au.addEventListener("error",function(){hasFile=false});
  au.onended=function(){pb.textContent="▶";upd()};
  function upd(){pst.textContent="Прослушиваний: "+S.plays+" из "+MAXPLAYS;if(S.plays>=MAXPLAYS)pb.disabled=true}
  pb.onclick=function(){if(S.plays>=MAXPLAYS)return;
