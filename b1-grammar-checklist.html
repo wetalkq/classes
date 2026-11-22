@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>B1 Grammar Checklist — We Talk</title>
+<style>
+  :root{
+    --slate:#2f3a4a;
+    --teal:#2f8f7f;
+    --indigo:#4b5aa8;
+    --charcoal:#20242c;
+    --box-bg:#f4f6f5;
+    --border:#dfe4e2;
+    --correct:#2f8f5a;
+    --wrong:#c0504d;
+    --gold:#c99a3b;
+  }
+  *{box-sizing:border-box;}
+  body{
+    font-family:'TNR','Times New Roman',serif;
+    background:#faf9f6;
+    color:var(--charcoal);
+    margin:0;
+    padding:30px 16px 60px;
+    font-size:19px;
+    line-height:1.5;
+  }
+  .wrap{max-width:900px;margin:0 auto;}
+  header{
+    text-align:center;
+    margin-bottom:28px;
+    position:relative;
+    padding-top:10px;
+  }
+  header::before{
+    content:"📙";
+    font-size:46px;
+    display:block;
+    margin-bottom:6px;
+  }
+  h1{
+    margin:0 0 6px;
+    font-size:32px;
+    color:var(--slate);
+    letter-spacing:0.5px;
+  }
+  .subtitle{
+    color:#5a6472;
+    font-style:italic;
+    font-size:18px;
+  }
+  .badge-row{
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    margin:16px 0 0;
+    flex-wrap:wrap;
+  }
+  .badge{
+    background:var(--indigo);
+    color:#fff;
+    padding:5px 16px;
+    border-radius:20px;
+    font-size:15px;
+    font-style:normal;
+  }
+  .badge.teal{background:var(--teal);}
+  .badge.gold{background:var(--gold);}
+  .note{
+    background:var(--box-bg);
+    border-left:4px solid var(--indigo);
+    padding:14px 18px;
+    margin:24px 0;
+    font-style:italic;
+    font-size:17px;
+    border-radius:6px;
+  }
+  .progress-wrap{
+    margin:24px 0 32px;
+    background:var(--box-bg);
+    border-radius:10px;
+    padding:14px 18px;
+    border:1px solid var(--border);
+  }
+  .progress-label{
+    display:flex;
+    justify-content:space-between;
+    font-size:16px;
+    margin-bottom:8px;
+    color:var(--slate);
+  }
+  .progress-bar-bg{
+    background:#e4e8e6;
+    border-radius:8px;
+    height:16px;
+    overflow:hidden;
+  }
+  .progress-bar-fill{
+    height:100%;
+    background:linear-gradient(90deg, var(--teal), var(--indigo));
+    width:0%;
+    transition:width 0.3s ease;
+  }
+  .group{
+    margin-bottom:26px;
+    background:#fff;
+    border:1px solid var(--border);
+    border-radius:10px;
+    overflow:hidden;
+  }
+  .group-header{
+    background:var(--slate);
+    color:#fff;
+    padding:12px 18px;
+    font-size:20px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .group-header .num{
+    background:rgba(255,255,255,0.2);
+    border-radius:50%;
+    width:28px;
+    height:28px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:15px;
+    flex-shrink:0;
+  }
+  .items{padding:6px 0;}
+  .item{
+    display:flex;
+    align-items:flex-start;
+    gap:12px;
+    padding:10px 18px;
+    border-bottom:1px solid #eef1ef;
+    transition:background 0.15s;
+  }
+  .item:last-child{border-bottom:none;}
+  .item:hover{background:#fafbfa;}
+  .item input[type="checkbox"]{
+    width:20px;
+    height:20px;
+    margin-top:3px;
+    flex-shrink:0;
+    accent-color:var(--teal);
+    cursor:pointer;
+  }
+  .item label{
+    cursor:pointer;
+    flex:1;
+  }
+  .item.checked label .term{
+    color:var(--correct);
+    text-decoration:line-through;
+    text-decoration-color:rgba(47,143,90,0.5);
+  }
+  .term{
+    font-weight:bold;
+    color:var(--slate);
+  }
+  .desc{
+    display:block;
+    font-size:16px;
+    color:#5a6472;
+    margin-top:2px;
+  }
+  .ex{
+    display:block;
+    font-size:15.5px;
+    color:#7a8290;
+    font-style:italic;
+    margin-top:3px;
+  }
+  .border-tag{
+    display:inline-block;
+    background:#fff3d6;
+    color:#8a6a1e;
+    border:1px solid #e9d08a;
+    font-size:13px;
+    font-style:normal;
+    padding:1px 8px;
+    border-radius:10px;
+    margin-left:8px;
+    vertical-align:middle;
+  }
+  .btn-row{
+    display:flex;
+    justify-content:center;
+    gap:14px;
+    margin:30px 0 10px;
+    flex-wrap:wrap;
+  }
+  .btn{
+    background:var(--indigo);
+    color:#fff;
+    border:none;
+    padding:10px 26px;
+    border-radius:24px;
+    font-size:17px;
+    font-family:inherit;
+    cursor:pointer;
+  }
+  .btn.secondary{background:#9aa3ad;}
+  .btn:hover{opacity:0.9;}
+  footer{
+    text-align:center;
+    margin-top:40px;
+    color:#9aa3ad;
+    font-size:15px;
+    font-style:italic;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <h1>Грамматический чек-лист — уровень B1</h1>
+    <div class="subtitle">Стандарт CEFR (Common European Framework of Reference)</div>
+    <div class="badge-row">
+      <span class="badge">24 темы</span>
+      <span class="badge teal">Core B1 + мостик к B2</span>
+      <span class="badge gold">We Talk</span>
+    </div>
+  </header>
+
+  <div class="note">
+    Отмечай темы, которые уже пройдены / усвоены. Прогресс сохраняется автоматически в этом браузере.
+    Темы с пометкой <span class="border-tag">B1/B2</span> — пограничные: в разных программах (Cambridge English Profile, Eaquals, разные учебники) их иногда относят уже к B2.
+  </div>
+
+  <div class="progress-wrap">
+    <div class="progress-label">
+      <span>Прогресс</span>
+      <span id="progressText">0 / 0</span>
+    </div>
+    <div class="progress-bar-bg"><div class="progress-bar-fill" id="progressBar"></div></div>
+  </div>
+
+  <div id="checklist"></div>
+
+  <div class="btn-row">
+    <button class="btn secondary" id="resetBtn">Сбросить всё</button>
+  </div>
+
+  <footer>We Talk · we-talk.ru</footer>
+</div>
+
+<script>
+const data = [
+  {
+    title: "1. Present Perfect Continuous",
+    items: [
+      {id:"pres-perf-cont", term:"have/has been + -ing", desc:"длительность действия, которое продолжается или недавно закончилось", ex:"I've been waiting for an hour. She's been studying all day."}
+    ]
+  },
+  {
+    title: "2. Present Perfect vs Past Simple",
+    items: [
+      {id:"pp-vs-past", term:"Углублённый контраст", desc:"recently, lately, so far, up to now vs конкретное время в прошлом", ex:"I've recently moved. I moved in June."}
+    ]
+  },
+  {
+    title: "3. Past Perfect Simple",
+    items: [
+      {id:"past-perfect", term:"had + V3", desc:"действие, случившееся раньше другого действия в прошлом", ex:"When I arrived, she had already left."}
+    ]
+  },
+  {
+    title: "4. Past Perfect Continuous",
+    items: [
+      {id:"past-perfect-cont", term:"had been + -ing", desc:"длительное действие до другого момента в прошлом", ex:"I was tired because I had been running.", border:true}
+    ]
+  },
+  {
+    title: "5. Условные предложения (расширение)",
+    items: [
+      {id:"zero-cond", term:"Zero Conditional", desc:"общие истины и законы природы", ex:"If you heat water, it boils."},
+      {id:"second-cond", term:"Second Conditional", desc:"if + Past Simple, would + infinitive — нереальная/маловероятная ситуация в настоящем", ex:"If I had more time, I would learn Spanish."}
+    ]
+  },
+  {
+    title: "6. Third Conditional",
+    items: [
+      {id:"third-cond", term:"if + Past Perfect, would have + V3", desc:"нереальная ситуация в прошлом", ex:"If I had studied, I would have passed the exam.", border:true}
+    ]
+  },
+  {
+    title: "7. Будущее время (расширение)",
+    items: [
+      {id:"future-cont", term:"Future Continuous", desc:"will be + -ing — действие в процессе в будущем", ex:"This time tomorrow I'll be flying to Dubai."},
+      {id:"future-perfect", term:"Future Perfect", desc:"will have + V3 — действие завершится к определённому моменту", ex:"By 2030 I will have finished my studies.", border:true}
+    ]
+  },
+  {
+    title: "8. Пассивный залог (расширение)",
+    items: [
+      {id:"passive-tenses", term:"Passive в разных временах", desc:"Present/Past Simple, Present Perfect Passive", ex:"The house was built in 1990. The email has been sent."},
+      {id:"passive-modal", term:"Passive с модальными глаголами", desc:"", ex:"This must be done today. It should be fixed."}
+    ]
+  },
+  {
+    title: "9. Косвенная речь",
+    items: [
+      {id:"reported-statements", term:"Утверждения (backshift)", desc:"согласование времён", ex:"\"I'm tired,\" she said. → She said she was tired."},
+      {id:"reported-questions", term:"Вопросы", desc:"yes/no и wh-вопросы в косвенной речи", ex:"She asked if I was ready. He asked where I lived."},
+      {id:"reported-commands", term:"Просьбы и команды", desc:"told to / asked to", ex:"He told me to wait. She asked me not to be late."}
+    ]
+  },
+  {
+    title: "10. Модальные глаголы предположения",
+    items: [
+      {id:"deduction-present", term:"Предположение в настоящем", desc:"must / might / could / can't + infinitive", ex:"She must be tired. He can't be at home."},
+      {id:"deduction-past", term:"Предположение в прошлом", desc:"must have / might have / can't have + V3", ex:"They must have left already."}
+    ]
+  },
+  {
+    title: "11. Сожаление и критика (прошлое)",
+    items: [
+      {id:"should-have", term:"should have / shouldn't have", desc:"", ex:"You should have told me. I shouldn't have said that."}
+    ]
+  },
+  {
+    title: "12. Относительные придаточные (расширение)",
+    items: [
+      {id:"rel-defining", term:"Defining relative clauses", desc:"who, which, that, whose, where, when", ex:"The woman whose car was stolen called the police."},
+      {id:"rel-non-defining", term:"Non-defining relative clauses", desc:"дополнительная информация, выделяется запятыми", ex:"My brother, who lives in Paris, is visiting us.", border:true}
+    ]
+  },
+  {
+    title: "13. Герундий и инфинитив (расширение)",
+    items: [
+      {id:"gerund-expanded", term:"verb + -ing (расширенный список)", desc:"avoid, suggest, mind, consider, admit", ex:"She suggested going for a walk."},
+      {id:"inf-expanded", term:"verb + to-infinitive (расширенный список)", desc:"manage, afford, promise, refuse, agree", ex:"He managed to finish on time."},
+      {id:"both-diff-meaning", term:"Глаголы с -ing и to (разный смысл)", desc:"stop, remember, forget, try", ex:"I stopped smoking. / I stopped to smoke."}
+    ]
+  },
+  {
+    title: "14. Каузативная конструкция",
+    items: [
+      {id:"causative", term:"have / get something done", desc:"", ex:"I had my hair cut. We're getting the car repaired."}
+    ]
+  },
+  {
+    title: "15. Квантификаторы и детерминативы",
+    items: [
+      {id:"quantifiers-ext", term:"all, both, neither, either, none, each, every", desc:"", ex:"Both of them agreed. Neither of us was late."}
+    ]
+  },
+  {
+    title: "16. So / such ... that",
+    items: [
+      {id:"so-such", term:"Придаточные результата", desc:"", ex:"It was so cold that we stayed home. It was such a good film that I watched it twice."}
+    ]
+  },
+  {
+    title: "17. Сравнительные конструкции (расширение)",
+    items: [
+      {id:"double-comp", term:"the + comparative, the + comparative", desc:"", ex:"The more you practise, the better you get."},
+      {id:"modifiers-comp", term:"much / a bit / a lot / far + comparative", desc:"", ex:"This is much better. It's a bit faster."}
+    ]
+  },
+  {
+    title: "18. Wish / If only",
+    items: [
+      {id:"wish-present", term:"wish + Past Simple", desc:"сожаление о настоящем", ex:"I wish I had more free time."},
+      {id:"wish-past", term:"wish + Past Perfect", desc:"сожаление о прошлом", ex:"I wish I had studied harder.", border:true}
+    ]
+  },
+  {
+    title: "19. Would rather / had better",
+    items: [
+      {id:"would-rather", term:"would rather + bare infinitive", desc:"", ex:"I'd rather stay at home."},
+      {id:"had-better", term:"had better + bare infinitive", desc:"", ex:"You'd better hurry up."}
+    ]
+  },
+  {
+    title: "20. Союзы и связующие слова",
+    items: [
+      {id:"although-despite", term:"although / even though / despite / in spite of", desc:"", ex:"Despite the rain, we went out. Although it was late, she stayed."},
+      {id:"purpose-connectors", term:"so that / in order to", desc:"цель", ex:"I left early so that I wouldn't be late."},
+      {id:"result-connectors", term:"however / as a result / therefore", desc:"", ex:"It was raining. However, we went for a walk."}
+    ]
+  },
+  {
+    title: "21. Фразовые глаголы (расширение)",
+    items: [
+      {id:"phrasal-ext", term:"Распространённые фразовые глаголы", desc:"look after, give up, put off, run out of, come up with и т.д.", ex:"We had to put off the meeting."}
+    ]
+  },
+  {
+    title: "22. Разделительные вопросы (полная форма)",
+    items: [
+      {id:"question-tags-full", term:"Question tags — все случаи", desc:"включая отрицательно-утвердительные и повелительное наклонение", ex:"You haven't seen it, have you? Let's go, shall we?"}
+    ]
+  },
+  {
+    title: "23. Косвенные вопросы",
+    items: [
+      {id:"indirect-questions", term:"Embedded questions", desc:"вежливые / встроенные вопросы, прямой порядок слов", ex:"Do you know where the station is? I wonder if she's coming."}
+    ]
+  },
+  {
+    title: "24. Used to / would (повторение прошлых привычек)",
+    items: [
+      {id:"used-to-would", term:"used to vs would", desc:"would — только для повторяющихся действий, не для состояний", ex:"I used to live there. We would play outside every day."}
+    ]
+  }
+];
+
+const STORAGE_KEY = "b1GrammarChecklistProgress";
+
+function loadProgress(){
+  try{
+    return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
+  }catch(e){ return {}; }
+}
+function saveProgress(progress){
+  try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(progress)); }catch(e){}
+}
+
+let progress = loadProgress();
+
+function totalItems(){
+  return data.reduce((sum, g) => sum + g.items.length, 0);
+}
+
+function updateProgressBar(){
+  const total = totalItems();
+  const done = Object.values(progress).filter(Boolean).length;
+  document.getElementById('progressText').textContent = done + " / " + total;
+  document.getElementById('progressBar').style.width = (total ? (done/total*100) : 0) + "%";
+}
+
+function render(){
+  const container = document.getElementById('checklist');
+  container.innerHTML = "";
+  data.forEach((group, gi) => {
+    const groupDiv = document.createElement('div');
+    groupDiv.className = 'group';
+
+    const header = document.createElement('div');
+    header.className = 'group-header';
+    header.innerHTML = '<span class="num">' + (gi+1) + '</span><span>' + group.title.replace(/^\d+\.\s*/, '') + '</span>';
+    groupDiv.appendChild(header);
+
+    const itemsDiv = document.createElement('div');
+    itemsDiv.className = 'items';
+
+    group.items.forEach(item => {
+      const row = document.createElement('div');
+      row.className = 'item' + (progress[item.id] ? ' checked' : '');
+
+      const checkbox = document.createElement('input');
+      checkbox.type = 'checkbox';
+      checkbox.id = item.id;
+      checkbox.checked = !!progress[item.id];
+      checkbox.addEventListener('change', () => {
+        progress[item.id] = checkbox.checked;
+        saveProgress(progress);
+        row.classList.toggle('checked', checkbox.checked);
+        updateProgressBar();
+      });
+
+      const label = document.createElement('label');
+      label.setAttribute('for', item.id);
+      label.innerHTML =
+        '<span class="term">' + item.term + '</span>' +
+        (item.border ? '<span class="border-tag">B1/B2</span>' : '') +
+        (item.desc ? '<span class="desc">' + item.desc + '</span>' : '') +
+        (item.ex ? '<span class="ex">' + item.ex + '</span>' : '');
+
+      row.appendChild(checkbox);
+      row.appendChild(label);
+      itemsDiv.appendChild(row);
+    });
+
+    groupDiv.appendChild(itemsDiv);
+    container.appendChild(groupDiv);
+  });
+  updateProgressBar();
+}
+
+document.getElementById('resetBtn').addEventListener('click', () => {
+  progress = {};
+  saveProgress(progress);
+  render();
+});
+
+render();
+</script>
+</body>
+</html>
