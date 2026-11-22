@@ -695,7 +695,7 @@ nav{height:auto}
 .navcta{display:none!important}
 @media(max-width:760px){.navlinks.dd{padding-top:8px}}
 /* трекинг уровня — демо чек-листа */
-.trk{margin-top:20px;background:var(--paper2);border-top:2px solid var(--orange);padding:22px 22px 8px}
+.chk{margin-top:20px;background:var(--paper2);border-top:2px solid var(--orange);padding:22px 22px 8px}
 .trk-pr{display:flex;justify-content:space-between;align-items:baseline;font-size:14px;color:var(--muted)}
 .trk-pr b{font-weight:400;color:var(--ink)}
 .trk-bar{height:8px;margin:10px 0 6px;background:rgba(28,25,22,.1);border-radius:8px;overflow:hidden}
@@ -714,7 +714,7 @@ nav{height:auto}
 .trk-tx span{font-size:14px;color:var(--muted)}
 .trk-tx i{font-size:14px;color:var(--muted);opacity:.85}
 .trk-it input:checked~.trk-tx b{text-decoration:line-through;text-decoration-color:var(--orange)}
-.trk+.tiles{margin-top:28px}
+.chk+.tiles{margin-top:28px}
 </style>
 <script>document.documentElement.classList.add('js')</script>
 </head>
@@ -901,7 +901,7 @@ nav{height:auto}
   <p class="body">Мы создали Telegram-канал с чек-листами по грамматике — от A1 до C1, по международному стандарту CEFR. В них расписана вся грамматика, которая ждёт вас на каждом уровне: доступным, понятным языком и с примерами.</p>
   <p class="body">После каждой темы, пройденной с преподавателем, студентка сама отмечает её в чек-листе. Прогресс считается автоматически: сразу видно, сколько тем из скольких уже усвоено и сколько осталось до следующего уровня.</p>
   <div class="try">Попробуй сама — отметь тему</div>
-  <div class="trk" data-trk>
+  <div class="chk" data-trk>
     <div class="trk-pr"><span>Прогресс</span><b><span class="trk-n">0</span> / 3</b></div>
     <div class="trk-bar" aria-hidden="true"><i></i></div>
     <ul class="trk-list"><li><label class="trk-it"><input type="checkbox"><span class="trk-box" aria-hidden="true"></span><span class="trk-tx"><b>Present Simple</b><span>утверждения, вопросы и отрицания</span><i>She works from home. Does he like coffee?</i></span></label></li><li><label class="trk-it"><input type="checkbox"><span class="trk-box" aria-hidden="true"></span><span class="trk-tx"><b>Past Simple</b><span>правильные и неправильные глаголы</span><i>We visited London. I saw that film.</i></span></label></li><li><label class="trk-it"><input type="checkbox"><span class="trk-box" aria-hidden="true"></span><span class="trk-tx"><b>Сравнение прилагательных</b><span>bigger, more interesting, the best</span><i>This book is more interesting than that one.</i></span></label></li></ul>
