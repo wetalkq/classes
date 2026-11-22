@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>B2 Grammar Checklist — We Talk</title>
+<style>
+  :root{
+    --slate:#2f3a4a;
+    --teal:#2f8f7f;
+    --indigo:#4b5aa8;
+    --charcoal:#20242c;
+    --box-bg:#f4f6f5;
+    --border:#dfe4e2;
+    --correct:#2f8f5a;
+    --wrong:#c0504d;
+    --gold:#c99a3b;
+  }
+  *{box-sizing:border-box;}
+  body{
+    font-family:'TNR','Times New Roman',serif;
+    background:#faf9f6;
+    color:var(--charcoal);
+    margin:0;
+    padding:30px 16px 60px;
+    font-size:19px;
+    line-height:1.5;
+  }
+  .wrap{max-width:900px;margin:0 auto;}
+  header{
+    text-align:center;
+    margin-bottom:28px;
+    position:relative;
+    padding-top:10px;
+  }
+  header::before{
+    content:"📕";
+    font-size:46px;
+    display:block;
+    margin-bottom:6px;
+  }
+  h1{
+    margin:0 0 6px;
+    font-size:32px;
+    color:var(--slate);
+    letter-spacing:0.5px;
+  }
+  .subtitle{
+    color:#5a6472;
+    font-style:italic;
+    font-size:18px;
+  }
+  .badge-row{
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    margin:16px 0 0;
+    flex-wrap:wrap;
+  }
+  .badge{
+    background:var(--indigo);
+    color:#fff;
+    padding:5px 16px;
+    border-radius:20px;
+    font-size:15px;
+    font-style:normal;
+  }
+  .badge.teal{background:var(--teal);}
+  .badge.gold{background:var(--gold);}
+  .note{
+    background:var(--box-bg);
+    border-left:4px solid var(--indigo);
+    padding:14px 18px;
+    margin:24px 0;
+    font-style:italic;
+    font-size:17px;
+    border-radius:6px;
+  }
+  .progress-wrap{
+    margin:24px 0 32px;
+    background:var(--box-bg);
+    border-radius:10px;
+    padding:14px 18px;
+    border:1px solid var(--border);
+  }
+  .progress-label{
+    display:flex;
+    justify-content:space-between;
+    font-size:16px;
+    margin-bottom:8px;
+    color:var(--slate);
+  }
+  .progress-bar-bg{
+    background:#e4e8e6;
+    border-radius:8px;
+    height:16px;
+    overflow:hidden;
+  }
+  .progress-bar-fill{
+    height:100%;
+    background:linear-gradient(90deg, var(--teal), var(--indigo));
+    width:0%;
+    transition:width 0.3s ease;
+  }
+  .group{
+    margin-bottom:26px;
+    background:#fff;
+    border:1px solid var(--border);
+    border-radius:10px;
+    overflow:hidden;
+  }
+  .group-header{
+    background:var(--slate);
+    color:#fff;
+    padding:12px 18px;
+    font-size:20px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .group-header .num{
+    background:rgba(255,255,255,0.2);
+    border-radius:50%;
+    width:28px;
+    height:28px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:15px;
+    flex-shrink:0;
+  }
+  .items{padding:6px 0;}
+  .item{
+    display:flex;
+    align-items:flex-start;
+    gap:12px;
+    padding:10px 18px;
+    border-bottom:1px solid #eef1ef;
+    transition:background 0.15s;
+  }
+  .item:last-child{border-bottom:none;}
+  .item:hover{background:#fafbfa;}
+  .item input[type="checkbox"]{
+    width:20px;
+    height:20px;
+    margin-top:3px;
+    flex-shrink:0;
+    accent-color:var(--teal);
+    cursor:pointer;
+  }
+  .item label{
+    cursor:pointer;
+    flex:1;
+  }
+  .item.checked label .term{
+    color:var(--correct);
+    text-decoration:line-through;
+    text-decoration-color:rgba(47,143,90,0.5);
+  }
+  .term{
+    font-weight:bold;
+    color:var(--slate);
+  }
+  .desc{
+    display:block;
+    font-size:16px;
+    color:#5a6472;
+    margin-top:2px;
+  }
+  .ex{
+    display:block;
+    font-size:15.5px;
+    color:#7a8290;
+    font-style:italic;
+    margin-top:3px;
+  }
+  .border-tag{
+    display:inline-block;
+    background:#fff3d6;
+    color:#8a6a1e;
+    border:1px solid #e9d08a;
+    font-size:13px;
+    font-style:normal;
+    padding:1px 8px;
+    border-radius:10px;
+    margin-left:8px;
+    vertical-align:middle;
+  }
+  .btn-row{
+    display:flex;
+    justify-content:center;
+    gap:14px;
+    margin:30px 0 10px;
+    flex-wrap:wrap;
+  }
+  .btn{
+    background:var(--indigo);
+    color:#fff;
+    border:none;
+    padding:10px 26px;
+    border-radius:24px;
+    font-size:17px;
+    font-family:inherit;
+    cursor:pointer;
+  }
+  .btn.secondary{background:#9aa3ad;}
+  .btn:hover{opacity:0.9;}
+  footer{
+    text-align:center;
+    margin-top:40px;
+    color:#9aa3ad;
+    font-size:15px;
+    font-style:italic;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <h1>Грамматический чек-лист — уровень B2</h1>
+    <div class="subtitle">Стандарт CEFR (Common European Framework of Reference)</div>
+    <div class="badge-row">
+      <span class="badge">25 тем</span>
+      <span class="badge teal">Core B2 + мостик к C1</span>
+      <span class="badge gold">We Talk</span>
+    </div>
+  </header>
+
+  <div class="note">
+    Отмечай темы, которые уже пройдены / усвоены. Прогресс сохраняется автоматически в этом браузере.
+    Темы с пометкой <span class="border-tag">B2/C1</span> — пограничные: в разных программах (Cambridge English Profile, Eaquals, разные учебники) их иногда относят уже к C1.
+    Этот список строится поверх A1–B1 и не повторяет уже пройденные там темы.
+  </div>
+
+  <div class="progress-wrap">
+    <div class="progress-label">
+      <span>Прогресс</span>
+      <span id="progressText">0 / 0</span>
+    </div>
+    <div class="progress-bar-bg"><div class="progress-bar-fill" id="progressBar"></div></div>
+  </div>
+
+  <div id="checklist"></div>
+
+  <div class="btn-row">
+    <button class="btn secondary" id="resetBtn">Сбросить всё</button>
+  </div>
+
+  <footer>We Talk · we-talk.ru</footer>
+</div>
+
+<script>
+const data = [
+  {
+    title: "1. Смешанные условные предложения",
+    items: [
+      {id:"mixed-cond", term:"Mixed Conditionals", desc:"условие и результат относятся к разному времени", ex:"If I had studied harder, I would be a doctor now. If I were taller, I would have made the team."}
+    ]
+  },
+  {
+    title: "2. Инверсия в условных предложениях",
+    items: [
+      {id:"cond-inversion", term:"Were I to... / Had I known... / Should you...", desc:"формальная замена if", ex:"Were I to win the lottery, I would travel the world. Had I known, I would have called.", border:true}
+    ]
+  },
+  {
+    title: "3. Future in the Past",
+    items: [
+      {id:"future-in-past", term:"was/were going to, would", desc:"будущее, которое планировалось из точки в прошлом", ex:"I was going to call her, but I forgot. She said she would arrive at noon."}
+    ]
+  },
+  {
+    title: "4. Future Perfect Continuous",
+    items: [
+      {id:"future-perf-cont", term:"will have been + -ing", desc:"длительность действия к моменту в будущем", ex:"By next year, I will have been working here for a decade.", border:true}
+    ]
+  },
+  {
+    title: "5. Повествовательные времена",
+    items: [
+      {id:"narrative-tenses", term:"Past Simple / Continuous / Perfect / Perfect Continuous вместе", desc:"комплексное использование в рассказе о прошлом", ex:"I was walking home when I realised I had forgotten my keys, which I had left on the table."}
+    ]
+  },
+  {
+    title: "6. Пассивный залог — расширение",
+    items: [
+      {id:"passive-reporting", term:"Passive reporting structures", desc:"It is said/believed/thought that... / He is said to be...", ex:"It is believed that he is abroad. He is said to be very rich."},
+      {id:"passive-two-obj", term:"Passive с двумя дополнениями", desc:"", ex:"I was given a present. She was sent a letter."}
+    ]
+  },
+  {
+    title: "7. Косвенная речь — расширение",
+    items: [
+      {id:"reporting-verbs-patterns", term:"suggest / recommend / deny / admit / insist", desc:"разные конструкции после глаголов речи", ex:"He suggested going by train. She denied stealing it. He insisted on paying."},
+      {id:"reported-modals", term:"Изменение модальных глаголов", desc:"can→could, will→would, may→might", ex:"\"I can help,\" she said. → She said she could help."}
+    ]
+  },
+  {
+    title: "8. Модальные глаголы — продвинутый уровень",
+    items: [
+      {id:"neednt-have", term:"needn't have vs didn't need to", desc:"разница между «зря сделал» и «не нужно было (и не сделал)»", ex:"You needn't have bought it. You didn't need to buy it."},
+      {id:"modal-perfect-nuance", term:"could have / would have / must have — оттенки значения", desc:"повторение и углубление", ex:"He could have won, but he didn't try. She must have forgotten."}
+    ]
+  },
+  {
+    title: "9. Инверсия для эмфазы",
+    items: [
+      {id:"emphatic-inversion", term:"Never / Not only / Rarely / Hardly / No sooner + инверсия", desc:"", ex:"Never have I seen such a mess. Not only did she arrive late, but she also forgot her notes. No sooner had I arrived than it started raining."}
+    ]
+  },
+  {
+    title: "10. Cleft-предложения (выделительные конструкции)",
+    items: [
+      {id:"cleft-it", term:"It is/was ... who/that", desc:"", ex:"It was John who broke the window."},
+      {id:"cleft-what", term:"What ... is/was", desc:"", ex:"What I need is a holiday."}
+    ]
+  },
+  {
+    title: "11. Эмфатическое do/did",
+    items: [
+      {id:"emphatic-do", term:"do/does/did + глагол", desc:"для усиления утверждения", ex:"I do like your dress. She does work hard."}
+    ]
+  },
+  {
+    title: "12. Причастные обороты",
+    items: [
+      {id:"participle-ing", term:"-ing причастный оборот (активный)", desc:"", ex:"The man standing by the door is my uncle."},
+      {id:"participle-ed", term:"-ed причастный оборот (пассивный)", desc:"", ex:"The book written by Tolstoy is famous."},
+      {id:"perfect-participle", term:"Having + V3", desc:"для последовательности действий", ex:"Having finished his homework, he went out."}
+    ]
+  },
+  {
+    title: "13. Относительные придаточные — продвинутый уровень",
+    items: [
+      {id:"rel-prep", term:"Предлог + which/whom", desc:"", ex:"This is the house in which I was born. The woman to whom I spoke was very kind."},
+      {id:"rel-quantifier", term:"Квантификатор + of whom/which", desc:"", ex:"She has three children, two of whom are at university. He gave several reasons, none of which made sense."},
+      {id:"rel-whole-clause", term:"which, относящееся ко всему предложению", desc:"", ex:"He passed the exam, which surprised everyone."}
+    ]
+  },
+  {
+    title: "14. Придаточные подлежащего и конструкции с it/what",
+    items: [
+      {id:"noun-clause-subject", term:"That-придаточное как подлежащее", desc:"", ex:"That he lied surprised everyone."},
+      {id:"it-preparatory", term:"It + be + adjective/noun + that-придаточное", desc:"", ex:"It surprised everyone that he lied."}
+    ]
+  },
+  {
+    title: "15. Герундий / инфинитив — полный диапазон",
+    items: [
+      {id:"regret-pattern", term:"regret doing vs regret to say", desc:"сожаление о прошлом vs формальное объявление", ex:"I regret telling him. I regret to inform you that your application was unsuccessful."},
+      {id:"go-on-pattern", term:"go on doing vs go on to do", desc:"продолжить то же самое vs перейти к следующему", ex:"He went on talking for an hour. He went on to become a doctor."},
+      {id:"mean-pattern", term:"mean doing vs mean to do", desc:"означать vs намереваться", ex:"Losing the match meant missing the final. I meant to call you yesterday."},
+      {id:"cant-help", term:"can't help + -ing", desc:"не мочь удержаться", ex:"I can't help laughing every time I see it."}
+    ]
+  },
+  {
+    title: "16. Предложные глагольные конструкции",
+    items: [
+      {id:"prep-gerund", term:"verb/adjective + preposition + -ing", desc:"", ex:"I'm interested in learning Spanish. She's good at solving problems. He succeeded in passing the exam."}
+    ]
+  },
+  {
+    title: "17. Артикли — продвинутый уровень",
+    items: [
+      {id:"articles-advanced", term:"Обобщения, абстрактные понятия, географические названия", desc:"", ex:"The tiger is an endangered species. Life is hard. She visited the United Kingdom and Mount Everest."}
+    ]
+  },
+  {
+    title: "18. Усилительные конструкции (степень)",
+    items: [
+      {id:"degree-gradable", term:"quite / rather / fairly / pretty + градуируемые прилагательные", desc:"", ex:"It's quite good. The film was rather boring."},
+      {id:"degree-extreme", term:"absolutely / completely / totally + предельные прилагательные", desc:"не градуируемые: amazing, exhausted, furious", ex:"The food was absolutely amazing. I'm completely exhausted."}
+    ]
+  },
+  {
+    title: "19. Сравнения — продвинутый уровень",
+    items: [
+      {id:"same-similar-different", term:"the same as / similar to / different from", desc:"", ex:"My opinion is the same as yours. This is different from what I expected."},
+      {id:"double-extremes", term:"twice as ... as / half as ... as", desc:"", ex:"This flat is twice as expensive as that one."}
+    ]
+  },
+  {
+    title: "20. Союзы уступки и контраста",
+    items: [
+      {id:"whereas-while", term:"whereas / while", desc:"для контраста (не времени)", ex:"She loves the city, whereas her husband prefers the countryside."},
+      {id:"even-though-if", term:"even though vs even if", desc:"факт vs гипотеза", ex:"Even though it was raining, we went out. Even if it rains, we'll go out."},
+      {id:"despite-fact-that", term:"despite / in spite of the fact that", desc:"", ex:"Despite the fact that he was tired, he kept working."}
+    ]
+  },
+  {
+    title: "21. Каузативная конструкция — расширение",
+    items: [
+      {id:"have-sb-do", term:"have / get somebody do something", desc:"активный каузатив (поручить кому-то)", ex:"I'll have my assistant call you. I got my brother to fix the car."}
+    ]
+  },
+  {
+    title: "22. Фразовые глаголы — трёхчастные",
+    items: [
+      {id:"three-part-phrasal", term:"look forward to, put up with, get away with, come up with", desc:"", ex:"I can't put up with this noise anymore. She came up with a great idea."}
+    ]
+  },
+  {
+    title: "23. Желания и сожаления — расширение",
+    items: [
+      {id:"wish-would", term:"wish + would", desc:"жалоба на чужое поведение", ex:"I wish you would stop smoking."},
+      {id:"as-if-as-though", term:"as if / as though + Past Simple/Perfect", desc:"нереальное сравнение", ex:"She acts as if she were the boss. He looked as though he had seen a ghost."}
+    ]
+  },
+  {
+    title: "24. Согласование подлежащего и сказуемого — сложные случаи",
+    items: [
+      {id:"number-of-agreement", term:"a number of / the number of / none of", desc:"", ex:"A number of students are absent. The number of students is high. None of the money has been spent."},
+      {id:"collective-nouns", term:"Собирательные существительные", desc:"team, family, government — ед. или мн. число (брит. английский)", ex:"The team is/are playing well."}
+    ]
+  },
+  {
+    title: "25. Сослагательное наклонение",
+    items: [
+      {id:"subjunctive", term:"Formal subjunctive", desc:"после important/essential/suggest + that + base form", ex:"It's essential that he arrive on time. I suggest that she see a doctor.", border:true}
+    ]
+  }
+];
+
+const STORAGE_KEY = "b2GrammarChecklistProgress";
+
+function loadProgress(){
+  try{
+    return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
+  }catch(e){ return {}; }
+}
+function saveProgress(progress){
+  try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(progress)); }catch(e){}
+}
+
+let progress = loadProgress();
+
+function totalItems(){
+  return data.reduce((sum, g) => sum + g.items.length, 0);
+}
+
+function updateProgressBar(){
+  const total = totalItems();
+  const done = Object.values(progress).filter(Boolean).length;
+  document.getElementById('progressText').textContent = done + " / " + total;
+  document.getElementById('progressBar').style.width = (total ? (done/total*100) : 0) + "%";
+}
+
+function render(){
+  const container = document.getElementById('checklist');
+  container.innerHTML = "";
+  data.forEach((group, gi) => {
+    const groupDiv = document.createElement('div');
+    groupDiv.className = 'group';
+
+    const header = document.createElement('div');
+    header.className = 'group-header';
+    header.innerHTML = '<span class="num">' + (gi+1) + '</span><span>' + group.title.replace(/^\d+\.\s*/, '') + '</span>';
+    groupDiv.appendChild(header);
+
+    const itemsDiv = document.createElement('div');
+    itemsDiv.className = 'items';
+
+    group.items.forEach(item => {
+      const row = document.createElement('div');
+      row.className = 'item' + (progress[item.id] ? ' checked' : '');
+
+      const checkbox = document.createElement('input');
+      checkbox.type = 'checkbox';
+      checkbox.id = item.id;
+      checkbox.checked = !!progress[item.id];
+      checkbox.addEventListener('change', () => {
+        progress[item.id] = checkbox.checked;
+        saveProgress(progress);
+        row.classList.toggle('checked', checkbox.checked);
+        updateProgressBar();
+      });
+
+      const label = document.createElement('label');
+      label.setAttribute('for', item.id);
+      label.innerHTML =
+        '<span class="term">' + item.term + '</span>' +
+        (item.border ? '<span class="border-tag">B2/C1</span>' : '') +
+        (item.desc ? '<span class="desc">' + item.desc + '</span>' : '') +
+        (item.ex ? '<span class="ex">' + item.ex + '</span>' : '');
+
+      row.appendChild(checkbox);
+      row.appendChild(label);
+      itemsDiv.appendChild(row);
+    });
+
+    groupDiv.appendChild(itemsDiv);
+    container.appendChild(groupDiv);
+  });
+  updateProgressBar();
+}
+
+document.getElementById('resetBtn').addEventListener('click', () => {
+  progress = {};
+  saveProgress(progress);
+  render();
+});
+
+render();
+</script>
+</body>
+</html>

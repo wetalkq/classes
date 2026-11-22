@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>C1 Grammar Checklist — We Talk</title>
+<style>
+  :root{
+    --slate:#2f3a4a;
+    --teal:#2f8f7f;
+    --indigo:#4b5aa8;
+    --charcoal:#20242c;
+    --box-bg:#f4f6f5;
+    --border:#dfe4e2;
+    --correct:#2f8f5a;
+    --wrong:#c0504d;
+    --gold:#c99a3b;
+  }
+  *{box-sizing:border-box;}
+  body{
+    font-family:'TNR','Times New Roman',serif;
+    background:#faf9f6;
+    color:var(--charcoal);
+    margin:0;
+    padding:30px 16px 60px;
+    font-size:19px;
+    line-height:1.5;
+  }
+  .wrap{max-width:900px;margin:0 auto;}
+  header{
+    text-align:center;
+    margin-bottom:28px;
+    position:relative;
+    padding-top:10px;
+  }
+  header::before{
+    content:"🎓";
+    font-size:46px;
+    display:block;
+    margin-bottom:6px;
+  }
+  h1{
+    margin:0 0 6px;
+    font-size:32px;
+    color:var(--slate);
+    letter-spacing:0.5px;
+  }
+  .subtitle{
+    color:#5a6472;
+    font-style:italic;
+    font-size:18px;
+  }
+  .badge-row{
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    margin:16px 0 0;
+    flex-wrap:wrap;
+  }
+  .badge{
+    background:var(--indigo);
+    color:#fff;
+    padding:5px 16px;
+    border-radius:20px;
+    font-size:15px;
+    font-style:normal;
+  }
+  .badge.teal{background:var(--teal);}
+  .badge.gold{background:var(--gold);}
+  .note{
+    background:var(--box-bg);
+    border-left:4px solid var(--indigo);
+    padding:14px 18px;
+    margin:24px 0;
+    font-style:italic;
+    font-size:17px;
+    border-radius:6px;
+  }
+  .progress-wrap{
+    margin:24px 0 32px;
+    background:var(--box-bg);
+    border-radius:10px;
+    padding:14px 18px;
+    border:1px solid var(--border);
+  }
+  .progress-label{
+    display:flex;
+    justify-content:space-between;
+    font-size:16px;
+    margin-bottom:8px;
+    color:var(--slate);
+  }
+  .progress-bar-bg{
+    background:#e4e8e6;
+    border-radius:8px;
+    height:16px;
+    overflow:hidden;
+  }
+  .progress-bar-fill{
+    height:100%;
+    background:linear-gradient(90deg, var(--teal), var(--indigo));
+    width:0%;
+    transition:width 0.3s ease;
+  }
+  .group{
+    margin-bottom:26px;
+    background:#fff;
+    border:1px solid var(--border);
+    border-radius:10px;
+    overflow:hidden;
+  }
+  .group-header{
+    background:var(--slate);
+    color:#fff;
+    padding:12px 18px;
+    font-size:20px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .group-header .num{
+    background:rgba(255,255,255,0.2);
+    border-radius:50%;
+    width:28px;
+    height:28px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:15px;
+    flex-shrink:0;
+  }
+  .items{padding:6px 0;}
+  .item{
+    display:flex;
+    align-items:flex-start;
+    gap:12px;
+    padding:10px 18px;
+    border-bottom:1px solid #eef1ef;
+    transition:background 0.15s;
+  }
+  .item:last-child{border-bottom:none;}
+  .item:hover{background:#fafbfa;}
+  .item input[type="checkbox"]{
+    width:20px;
+    height:20px;
+    margin-top:3px;
+    flex-shrink:0;
+    accent-color:var(--teal);
+    cursor:pointer;
+  }
+  .item label{
+    cursor:pointer;
+    flex:1;
+  }
+  .item.checked label .term{
+    color:var(--correct);
+    text-decoration:line-through;
+    text-decoration-color:rgba(47,143,90,0.5);
+  }
+  .term{
+    font-weight:bold;
+    color:var(--slate);
+  }
+  .desc{
+    display:block;
+    font-size:16px;
+    color:#5a6472;
+    margin-top:2px;
+  }
+  .ex{
+    display:block;
+    font-size:15.5px;
+    color:#7a8290;
+    font-style:italic;
+    margin-top:3px;
+  }
+  .border-tag{
+    display:inline-block;
+    background:#fff3d6;
+    color:#8a6a1e;
+    border:1px solid #e9d08a;
+    font-size:13px;
+    font-style:normal;
+    padding:1px 8px;
+    border-radius:10px;
+    margin-left:8px;
+    vertical-align:middle;
+  }
+  .btn-row{
+    display:flex;
+    justify-content:center;
+    gap:14px;
+    margin:30px 0 10px;
+    flex-wrap:wrap;
+  }
+  .btn{
+    background:var(--indigo);
+    color:#fff;
+    border:none;
+    padding:10px 26px;
+    border-radius:24px;
+    font-size:17px;
+    font-family:inherit;
+    cursor:pointer;
+  }
+  .btn.secondary{background:#9aa3ad;}
+  .btn:hover{opacity:0.9;}
+  footer{
+    text-align:center;
+    margin-top:40px;
+    color:#9aa3ad;
+    font-size:15px;
+    font-style:italic;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <h1>Грамматический чек-лист — уровень C1</h1>
+    <div class="subtitle">Стандарт CEFR (Common European Framework of Reference)</div>
+    <div class="badge-row">
+      <span class="badge">20 тем</span>
+      <span class="badge teal">Core C1 + мостик к C2</span>
+      <span class="badge gold">We Talk</span>
+    </div>
+  </header>
+
+  <div class="note">
+    Отмечай темы, которые уже пройдены / усвоены. Прогресс сохраняется автоматически в этом браузере.
+    Темы с пометкой <span class="border-tag">C1/C2</span> — пограничные: это уже почти native-level нюансы формального/академического стиля.
+    Этот список строится поверх A1–B2 и не повторяет уже пройденные там темы.
+  </div>
+
+  <div class="progress-wrap">
+    <div class="progress-label">
+      <span>Прогресс</span>
+      <span id="progressText">0 / 0</span>
+    </div>
+    <div class="progress-bar-bg"><div class="progress-bar-fill" id="progressBar"></div></div>
+  </div>
+
+  <div id="checklist"></div>
+
+  <div class="btn-row">
+    <button class="btn secondary" id="resetBtn">Сбросить всё</button>
+  </div>
+
+  <footer>We Talk · we-talk.ru</footer>
+</div>
+
+<script>
+const data = [
+  {
+    title: "1. Номинализация",
+    items: [
+      {id:"nominalisation", term:"Превращение глагола/прилагательного в абстрактное существительное", desc:"формальный/академический стиль", ex:"The company's decision to expand led to growth. His refusal to apologise angered everyone.", border:true}
+    ]
+  },
+  {
+    title: "2. Абсолютные причастные обороты",
+    items: [
+      {id:"absolute-participle", term:"Participle clause со своим подлежащим", desc:"", ex:"The weather being bad, we stayed in. All things considered, it was a success. Weather permitting, we'll go hiking."}
+    ]
+  },
+  {
+    title: "3. Инверсия — полный диапазон",
+    items: [
+      {id:"inversion-full", term:"Only after / Little did... / Such was... that / So + adj + that", desc:"расширение инверсии из B2", ex:"Only after I left did I realise my mistake. Little did he know what awaited him. Such was her anger that she couldn't speak."}
+    ]
+  },
+  {
+    title: "4. Fronting (топикализация)",
+    items: [
+      {id:"fronting", term:"Вынесение дополнения в начало предложения для акцента", desc:"", ex:"This I cannot accept. Such behaviour I find unacceptable."}
+    ]
+  },
+  {
+    title: "5. Эллипсис и субституция",
+    items: [
+      {id:"ellipsis-sub", term:"so/neither, one/ones, do so — полный диапазон", desc:"", ex:"If you want to leave, you may do so. I need a pen — do you have one? She can play the piano, and so can I."}
+    ]
+  },
+  {
+    title: "6. Условные конструкции без if",
+    items: [
+      {id:"but-for", term:"But for... (= Without)", desc:"", ex:"But for your help, I would have failed."},
+      {id:"otherwise-if-so", term:"otherwise / if so / if not", desc:"", ex:"I'll bring an umbrella; otherwise, I'll get wet. Are you coming? If so, let me know."}
+    ]
+  },
+  {
+    title: "7. Модальные идиомы",
+    items: [
+      {id:"modal-idioms", term:"be to / be bound to / be due to / be about to", desc:"формальные значения долженствования, неизбежности, расписания, близкого будущего", ex:"You are to report to the office at once. It was bound to happen. The train is due to arrive at noon. I was about to leave when the phone rang."}
+    ]
+  },
+  {
+    title: "8. Модальные конструкции прошедшего времени — полный диапазон",
+    items: [
+      {id:"was-to-have", term:"was/were to have done", desc:"план, который не был реализован", ex:"I was to have met her at six, but she never showed up."},
+      {id:"could-have-been-doing", term:"could have been doing", desc:"предположение о длительном действии в прошлом", ex:"He could have been lying the whole time."}
+    ]
+  },
+  {
+    title: "9. Формальные дискурсивные маркеры",
+    items: [
+      {id:"discourse-markers", term:"nonetheless, notwithstanding, albeit, insofar as, hence, thus, thereby", desc:"", ex:"Notwithstanding the risks, he proceeded. Albeit reluctantly, she agreed. Hence, we must act now.", border:true}
+    ]
+  },
+  {
+    title: "10. Уступительные придаточные с -ever",
+    items: [
+      {id:"ever-clauses", term:"whatever / however / whoever / whenever", desc:"", ex:"Whatever you decide, I'll support you. However hard I try, I can't do it."}
+    ]
+  },
+  {
+    title: "11. Формальные относительные придаточные",
+    items: [
+      {id:"whereby-wherein", term:"whereby / wherein", desc:"юридический/официальный стиль", ex:"They introduced a system whereby employees could work remotely.", border:true}
+    ]
+  },
+  {
+    title: "12. Пассивный залог — полный диапазон",
+    items: [
+      {id:"get-passive", term:"get-passive", desc:"разговорный пассив", ex:"He got arrested last night."},
+      {id:"passive-inf-gerund", term:"Passive infinitive / gerund", desc:"", ex:"There's a lot of work to be done. I don't like being told what to do."},
+      {id:"impersonal-passive-full", term:"Impersonal passive (полная форма)", desc:"", ex:"It has been suggested that the policy should change."}
+    ]
+  },
+  {
+    title: "13. Косвенная речь через номинализацию",
+    items: [
+      {id:"reporting-nouns", term:"his claim that... / there was speculation that...", desc:"", ex:"His claim that he was innocent was never proven. There was speculation that the merger would fail."}
+    ]
+  },
+  {
+    title: "14. Эмфатические конструкции — расширение",
+    items: [
+      {id:"emphatic-ext", term:"All I want is... / The only thing that... / It wasn't until... that...", desc:"расширение cleft-предложений из B2", ex:"All I want is a bit of peace and quiet. It wasn't until she left that I realised how much I'd miss her."}
+    ]
+  },
+  {
+    title: "15. Двойное отрицание (литота)",
+    items: [
+      {id:"litotes", term:"not un- / not uncommon / not unlike", desc:"смягчённое утверждение через двойное отрицание", ex:"It's not uncommon for prices to rise in summer. She's not unlike her mother.", border:true}
+    ]
+  },
+  {
+    title: "16. Хеджирование (academic hedging)",
+    items: [
+      {id:"hedging", term:"would seem to / tend to / be inclined to / It could be argued that...", desc:"смягчение категоричности утверждения", ex:"This would seem to suggest a problem. People tend to overestimate their abilities. It could be argued that the policy failed.", border:true}
+    ]
+  },
+  {
+    title: "17. Формальные предложные обороты",
+    items: [
+      {id:"formal-prep-phrases", term:"with regard to / in terms of / by virtue of / on the grounds that", desc:"", ex:"With regard to your request, we have decided to proceed. The case was dismissed on the grounds that evidence was insufficient."}
+    ]
+  },
+  {
+    title: "18. Сослагательное наклонение — полный диапазон",
+    items: [
+      {id:"subjunctive-full", term:"demand/insist/require + that + base form; were to для гипотез", desc:"расширение из B2", ex:"The committee demanded that the report be published immediately. If he were to resign, the company would struggle."}
+    ]
+  },
+  {
+    title: "19. Аспектуальные нюансы",
+    items: [
+      {id:"stative-dynamic", term:"Stative глаголы в Continuous (эмоциональный эффект)", desc:"", ex:"I'm loving this song. (вместо нейтрального I love this song)"},
+      {id:"pres-perf-vs-cont-academic", term:"Present Perfect vs Present Perfect Continuous (академический контекст)", desc:"", ex:"Research has shown that... / Researchers have been investigating this phenomenon for decades."}
+    ]
+  },
+  {
+    title: "20. Сравнения — предельный уровень",
+    items: [
+      {id:"extreme-comparisons", term:"nothing like as...as / no less...than / not nearly as...as", desc:"", ex:"This film is nothing like as good as the book. Her achievement is no less impressive than his."}
+    ]
+  }
+];
+
+const STORAGE_KEY = "c1GrammarChecklistProgress";
+
+function loadProgress(){
+  try{
+    return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
+  }catch(e){ return {}; }
+}
+function saveProgress(progress){
+  try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(progress)); }catch(e){}
+}
+
+let progress = loadProgress();
+
+function totalItems(){
+  return data.reduce((sum, g) => sum + g.items.length, 0);
+}
+
+function updateProgressBar(){
+  const total = totalItems();
+  const done = Object.values(progress).filter(Boolean).length;
+  document.getElementById('progressText').textContent = done + " / " + total;
+  document.getElementById('progressBar').style.width = (total ? (done/total*100) : 0) + "%";
+}
+
+function render(){
+  const container = document.getElementById('checklist');
+  container.innerHTML = "";
+  data.forEach((group, gi) => {
+    const groupDiv = document.createElement('div');
+    groupDiv.className = 'group';
+
+    const header = document.createElement('div');
+    header.className = 'group-header';
+    header.innerHTML = '<span class="num">' + (gi+1) + '</span><span>' + group.title.replace(/^\d+\.\s*/, '') + '</span>';
+    groupDiv.appendChild(header);
+
+    const itemsDiv = document.createElement('div');
+    itemsDiv.className = 'items';
+
+    group.items.forEach(item => {
+      const row = document.createElement('div');
+      row.className = 'item' + (progress[item.id] ? ' checked' : '');
+
+      const checkbox = document.createElement('input');
+      checkbox.type = 'checkbox';
+      checkbox.id = item.id;
+      checkbox.checked = !!progress[item.id];
+      checkbox.addEventListener('change', () => {
+        progress[item.id] = checkbox.checked;
+        saveProgress(progress);
+        row.classList.toggle('checked', checkbox.checked);
+        updateProgressBar();
+      });
+
+      const label = document.createElement('label');
+      label.setAttribute('for', item.id);
+      label.innerHTML =
+        '<span class="term">' + item.term + '</span>' +
+        (item.border ? '<span class="border-tag">C1/C2</span>' : '') +
+        (item.desc ? '<span class="desc">' + item.desc + '</span>' : '') +
+        (item.ex ? '<span class="ex">' + item.ex + '</span>' : '');
+
+      row.appendChild(checkbox);
+      row.appendChild(label);
+      itemsDiv.appendChild(row);
+    });
+
+    groupDiv.appendChild(itemsDiv);
+    container.appendChild(groupDiv);
+  });
+  updateProgressBar();
+}
+
+document.getElementById('resetBtn').addEventListener('click', () => {
+  progress = {};
+  saveProgress(progress);
+  render();
+});
+
+render();
+</script>
+</body>
+</html>

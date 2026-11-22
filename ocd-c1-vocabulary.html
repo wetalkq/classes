@@ -1,0 +1,395 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OCD — Vocabulary</title>
+<style>
+:root{
+  --bg: #e4e6ea;
+  --bg-elev: #eef0f3;
+  --bg-elev2: #f8f9fb;
+  --slate: #3a5578;
+  --slate-soft: #6889b0;
+  --ink: #232b36;
+  --ink-dim: #566072;
+  --teal: #2f8a82;
+  --teal-deep: #216b64;
+  --indigo: #4c5fa0;
+  --indigo-deep: #384580;
+  --charcoal: #4e6886;
+  --charcoal-deep: #3a4f68;
+  --box-bg: #4572a8;
+  --box-bg2: #5a87bc;
+  --correct: #4f6e38;
+  --wrong: #8c3a32;
+  --hair: rgba(46,61,82,0.28);
+  --shadow: 0 8px 22px rgba(35,43,54,0.18), 0 2px 6px rgba(35,43,54,0.12);
+  --radius: 10px;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  background: radial-gradient(ellipse at top, #f0f1f4 0%, var(--bg) 55%, #d4d8de 100%);
+  color:var(--ink);
+  font-family:'TNR','Times New Roman',serif;
+  font-size:19px;
+  line-height:1.65;
+  min-height:100vh;
+}
+.wrap{max-width:900px; margin:0 auto; padding:48px 26px 100px;}
+
+header{
+  position:relative;
+  background:linear-gradient(180deg, var(--bg-elev) 0%, var(--bg-elev2) 100%);
+  border:1px solid var(--hair);
+  border-radius:var(--radius);
+  padding:36px 34px 28px;
+  box-shadow:var(--shadow);
+  margin-bottom:34px;
+  text-align:center;
+}
+header::before{
+  content:"🧠";
+  display:block;
+  font-size:26px;
+  margin-bottom:10px;
+}
+header h1{
+  font-weight:700;
+  font-size:38px;
+  margin:0 0 12px;
+  color:var(--slate);
+  letter-spacing:.5px;
+}
+header .subtitle{
+  font-style:italic;
+  color:var(--ink-dim);
+  font-size:19px;
+  margin:0 auto 18px;
+  max-width:680px;
+}
+.divider{
+  width:140px; height:1px;
+  background:linear-gradient(90deg, transparent, var(--slate), transparent);
+  margin:0 auto 18px;
+}
+.badge-row{display:flex; gap:10px; justify-content:center; flex-wrap:wrap;}
+.badge{
+  font-size:15.5px;
+  padding:6px 18px;
+  border-radius:999px;
+  border:1px solid var(--hair);
+  background:rgba(46,61,82,0.08);
+  color:var(--slate);
+  letter-spacing:.3px;
+}
+
+section{margin-bottom:46px;}
+.section-title{
+  font-weight:700;
+  font-size:29px;
+  color:var(--slate);
+  margin:0 0 6px;
+  display:flex; align-items:center; gap:10px;
+}
+.section-sub{
+  font-style:italic;
+  color:var(--ink-dim);
+  font-size:17px;
+  margin:0 0 20px;
+}
+
+.note{
+  background:var(--bg-elev);
+  border:1px solid var(--hair);
+  border-left:3px solid var(--slate);
+  border-radius:4px;
+  padding:18px 22px;
+  font-style:italic;
+  font-size:18px;
+  color:var(--ink-dim);
+  margin-bottom:28px;
+  max-width:720px;
+}
+
+/* flashcards */
+.cards-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill, minmax(230px,1fr));
+  gap:18px;
+}
+.flip-card{ perspective:1300px; height:190px; cursor:pointer; }
+.flip-inner{
+  position:relative; width:100%; height:100%;
+  transition:transform .5s cubic-bezier(.4,.2,.2,1);
+  transform-style:preserve-3d;
+}
+.flip-card.flipped .flip-inner{transform:rotateY(180deg);}
+.flip-front,.flip-back{
+  position:absolute; inset:0;
+  border-radius:var(--radius);
+  backface-visibility:hidden;
+  padding:18px;
+  display:flex; flex-direction:column; justify-content:center;
+  box-shadow:var(--shadow);
+  border:1px solid var(--hair);
+}
+.flip-front{
+  background:linear-gradient(160deg, var(--charcoal) 0%, var(--charcoal-deep) 100%);
+}
+.flip-card:nth-child(3n+2) .flip-front{
+  background:linear-gradient(160deg, var(--indigo) 0%, var(--indigo-deep) 100%);
+}
+.flip-card:nth-child(3n+3) .flip-front{
+  background:linear-gradient(160deg, var(--teal) 0%, var(--teal-deep) 100%);
+}
+.flip-back{
+  background:var(--bg-elev2);
+  transform:rotateY(180deg);
+  border:1px solid var(--slate-soft);
+}
+.flip-front .term{ font-weight:700; font-size:18px; color:#eef1f5; line-height:1.3; }
+.flip-front .ipa{ font-size:14px; color:rgba(238,241,245,0.75); margin-top:6px; font-style:italic; }
+.flip-front .listen-row{display:flex; align-items:center; gap:8px; margin-top:12px;}
+.flip-front .listen-btn{
+  border:1px solid rgba(238,241,245,0.5); background:rgba(255,255,255,0.08); color:#eef1f5;
+  border-radius:999px; padding:5px 12px; font-size:14px; cursor:pointer; font-family:inherit;
+}
+.flip-front .listen-btn:hover{ background:rgba(255,255,255,0.18); }
+.flip-front .hint{ font-size:12px; color:rgba(238,241,245,0.6); margin-top:10px; font-style:italic; }
+.flip-back .ru{ font-weight:700; font-size:17px; color:#2e3d52; margin-bottom:9px; }
+.flip-back .ex{ font-size:14.5px; color:#2c3a40; font-style:italic; line-height:1.4; }
+
+/* gap-fill text */
+.story-box{
+  background:var(--box-bg);
+  border:1px solid rgba(230,234,240,0.3);
+  border-radius:var(--radius);
+  padding:28px 30px;
+  font-size:18.5px;
+  color:#fdf9ef;
+  line-height:2;
+}
+.story-box select{
+  font-family:'TNR','Times New Roman',serif;
+  font-size:16.5px;
+  font-weight:700;
+  padding:4px 10px;
+  border-radius:4px;
+  border:1px solid #e4edf7;
+  background:#355c86;
+  color:#fff6de;
+  margin:0 2px;
+}
+.story-box select.correct{ border-color:var(--correct); background:#2f4a30; color:#d2e3b8; }
+.story-box select.wrong{ border-color:var(--wrong); background:#5a2a24; color:#f3d3cc; }
+
+.btn{
+  font-family:'TNR','Times New Roman',serif;
+  font-weight:700;
+  font-size:19px;
+  padding:12px 32px;
+  border-radius:999px;
+  border:1px solid var(--slate-soft);
+  background:var(--box-bg);
+  color:#eceef2;
+  cursor:pointer;
+  box-shadow:var(--shadow);
+  transition:all .15s;
+  letter-spacing:.5px;
+  margin-top:20px;
+}
+.btn:hover{ background:var(--box-bg2); transform:translateY(-1px); }
+
+.score-box{
+  font-style:italic;
+  font-size:18px;
+  margin-top:16px;
+  padding:11px 20px;
+  border-radius:6px;
+  display:inline-block;
+  border:1px solid rgba(230,234,240,0.3);
+  background:var(--box-bg);
+  color:#bcd3e8;
+}
+
+footer{
+  text-align:center;
+  font-style:italic;
+  color:var(--ink-dim);
+  font-size:15px;
+  margin-top:56px;
+  padding-top:18px;
+  border-top:1px solid var(--hair);
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <h1>OCD</h1>
+    <p class="subtitle">Лексика для разговора об обсессивно-компульсивном расстройстве: навязчивые мысли, ритуалы и попытки справиться с тревогой</p>
+    <div class="divider"></div>
+    <div class="badge-row">
+      <span class="badge">Уровень B2–C1</span>
+      <span class="badge">18 слов и выражений</span>
+      <span class="badge">Новая лексика</span>
+    </div>
+  </header>
+
+  <div class="note">
+    Сначала переверни карточки: нажми 🔊, чтобы послушать произношение, посмотри транскрипцию, переверни карточку — увидишь перевод и пример. Затем прочитай короткий текст про Марию и вставь эти слова в пропуски.
+  </div>
+
+  <section>
+    <h2 class="section-title">Словарь урока</h2>
+    <p class="section-sub">нажми 🔊, чтобы послушать слово, нажми на карточку, чтобы перевернуть</p>
+    <div class="cards-grid" id="cardsGrid"></div>
+  </section>
+
+  <section>
+    <h2 class="section-title">Задание — вставь слова в текст</h2>
+    <p class="section-sub">выбери подходящее слово или выражение из списка для каждого пропуска</p>
+    <div class="story-box" id="storyBox"></div>
+    <button class="btn" id="checkGaps">Проверить</button>
+    <div class="score-box" id="gapScore" style="display:none;"></div>
+  </section>
+
+  <footer>We Talk · B2–C1 · новая лексика по теме OCD</footer>
+</div>
+
+<script>
+const vocab = [
+  {term:"debilitating", key:"debilitating", ipa:"/dɪˈbɪlɪteɪtɪŋ/", ru:"ослабляющий, изнуряющий", ex:"Chronic anxiety can have a debilitating effect on everyday life."},
+  {term:"meticulous", key:"meticulous", ipa:"/məˈtɪkjələs/", ru:"дотошный, скрупулёзный", ex:"He was meticulous about checking every detail twice."},
+  {term:"time-consuming", key:"time-consuming", ipa:"/ˈtaɪm kənˌsjuːmɪŋ/", ru:"отнимающий много времени", ex:"Her morning routine became so time-consuming that she was always late."},
+  {term:"contamination", key:"contamination", ipa:"/kənˌtæmɪˈneɪʃn/", ru:"загрязнение", ex:"He was terrified of contamination every time he touched a door handle."},
+  {term:"to interfere", key:"interfere", ipa:"/ˌɪntəˈfɪə(r)/", ru:"мешать, вмешиваться", ex:"These worries interfere with his ability to focus at work."},
+  {term:"fastidious", key:"fastidious", ipa:"/fæˈstɪdiəs/", ru:"придирчивый, разборчивый", ex:"She was so fastidious that even a crooked picture frame upset her."},
+  {term:"to sap someone's strength", key:"sap her strength", ipa:"/sæp/", ru:"истощать силы", ex:"Constant worrying can really sap your strength over time."},
+  {term:"a reprieve", key:"reprieve", ipa:"/rɪˈpriːv/", ru:"временная передышка, облегчение", ex:"A few quiet minutes gave her a brief reprieve from her anxious thoughts."},
+  {term:"to envision", key:"envision", ipa:"/ɪnˈvɪʒn/", ru:"представлять, живо воображать", ex:"He tried to envision a calm, peaceful place to ease his mind."},
+  {term:"to loosen up", key:"loosen up", ipa:"/ˈluːsn ʌp/", ru:"расслабиться", ex:"Rolling her shoulders helped her loosen up a little."},
+  {term:"an intrusive thought", key:"intrusive thought", ipa:"/ɪnˈtruːsɪv θɔːt/", ru:"навязчивая мысль", ex:"An intrusive thought about losing control crossed her mind."},
+  {term:"obsessive", key:"obsessive", ipa:"/əbˈsesɪv/", ru:"одержимый, навязчивый", ex:"He couldn't shake the obsessive dialogue running through his head."},
+  {term:"to impair", key:"impair", ipa:"/ɪmˈpeə(r)/", ru:"нарушать, ухудшать (функции)", ex:"Severe anxiety can impair a person's ability to concentrate."},
+  {term:"to accomplish", key:"accomplish", ipa:"/əˈkʌmplɪʃ/", ru:"выполнять, достигать", ex:"It took him hours to accomplish even the simplest task."},
+  {term:"to ruin", key:"ruin", ipa:"/ˈruːɪn/", ru:"разрушать, портить", ex:"Left untreated, these patterns can ruin a person's daily life."},
+  {term:"to cope with", key:"cope with", ipa:"/kəʊp wɪð/", ru:"справляться с", ex:"Learning healthy ways to cope with stress takes practice."},
+  {term:"exposure therapy", key:"exposure therapy", ipa:"/ɪkˈspəʊʒə ˈθerəpi/", ru:"терапия с экспозицией", ex:"Exposure therapy is one of the most effective treatments for OCD."},
+  {term:"to savor", key:"savor", ipa:"/ˈseɪvə(r)/", ru:"наслаждаться, смаковать", ex:"Try to savor small, calming moments throughout your day."}
+];
+
+function speak(text){
+  if(!('speechSynthesis' in window)) return;
+  window.speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'en-US';
+  u.rate = 0.9;
+  window.speechSynthesis.speak(u);
+}
+
+const cardsGrid = document.getElementById('cardsGrid');
+vocab.forEach(v=>{
+  const card = document.createElement('div');
+  card.className='flip-card';
+  card.innerHTML = `
+    <div class="flip-inner">
+      <div class="flip-front">
+        <div class="term">${v.term}</div>
+        <div class="ipa">${v.ipa}</div>
+        <div class="listen-row"><button type="button" class="listen-btn">🔊 слушать</button></div>
+        <div class="hint">нажми карточку, чтобы перевернуть</div>
+      </div>
+      <div class="flip-back">
+        <div class="ru">${v.ru}</div>
+        <div class="ex">${v.ex}</div>
+      </div>
+    </div>`;
+  card.querySelector('.listen-btn').addEventListener('click', (e)=>{
+    e.stopPropagation();
+    speak(v.term.replace(/^(a|an|to)\s+/i,''));
+  });
+  card.addEventListener('click', ()=> card.classList.toggle('flipped'));
+  cardsGrid.appendChild(card);
+});
+
+const storyParts = [
+  "Maria has always been a ",
+  "GAP:meticulous",
+  " person, but over the past year, a ",
+  "GAP:debilitating",
+  " pattern has taken hold. Every morning, she feels a strange ",
+  "GAP:intrusive thought",
+  " that the stove is still on. Checking the switch becomes a ritual that is so ",
+  "GAP:time-consuming",
+  " it makes her late for work. If she skips a single check, an ",
+  "GAP:obsessive",
+  " worry about ",
+  "GAP:contamination",
+  " starts to ",
+  "GAP:interfere",
+  " with everything else she tries to do. Her fear of germs is so ",
+  "GAP:fastidious",
+  " that she washes her hands until they're raw. These thoughts ",
+  "GAP:impair",
+  " her ability to ",
+  "GAP:accomplish",
+  " even the simplest tasks, and the constant worry can ",
+  "GAP:sap her strength",
+  " completely. Left untreated, Maria is afraid these patterns could ",
+  "GAP:ruin",
+  " her relationships and her career. Learning to ",
+  "GAP:cope with",
+  " these feelings hasn't been easy, but her therapist suggested ",
+  "GAP:exposure therapy",
+  ", slowly facing her fears instead of avoiding them. On good days, she finds small moments of ",
+  "GAP:reprieve",
+  " — a walk outside, rolling her shoulders to ",
+  "GAP:loosen up",
+  ", or trying to ",
+  "GAP:envision",
+  " a calm, quiet place in her mind. She is learning, slowly, to ",
+  "GAP:savor",
+  " these little victories."
+];
+
+const options = vocab.map(v=>v.key);
+function shuffle(arr){ return [...arr].sort(()=>Math.random()-0.5); }
+const optsHtml = ['<option value="">— выбери —</option>'].concat(
+  shuffle(options).map(o=>`<option value="${o}">${o}</option>`)
+).join('');
+
+const storyBox = document.getElementById('storyBox');
+let html = '';
+storyParts.forEach(part=>{
+  if(part.startsWith('GAP:')){
+    const answer = part.slice(4);
+    html += `<select data-answer="${answer}">${optsHtml}</select>`;
+  } else {
+    html += part;
+  }
+});
+storyBox.innerHTML = html;
+
+document.getElementById('checkGaps').addEventListener('click', ()=>{
+  let correct = 0;
+  const selects = storyBox.querySelectorAll('select');
+  selects.forEach(sel=>{
+    sel.classList.remove('correct','wrong');
+    if(sel.value === sel.dataset.answer){
+      sel.classList.add('correct');
+      correct++;
+    } else if(sel.value !== ""){
+      sel.classList.add('wrong');
+    }
+  });
+  const scoreEl = document.getElementById('gapScore');
+  scoreEl.style.display='inline-block';
+  scoreEl.textContent = `Результат: ${correct} / ${selects.length}`;
+});
+</script>
+</body>
+</html>

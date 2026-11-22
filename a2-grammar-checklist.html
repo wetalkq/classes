@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A2 Grammar Checklist — We Talk</title>
+<style>
+  :root{
+    --slate:#2f3a4a;
+    --teal:#2f8f7f;
+    --indigo:#4b5aa8;
+    --charcoal:#20242c;
+    --box-bg:#f4f6f5;
+    --border:#dfe4e2;
+    --correct:#2f8f5a;
+    --wrong:#c0504d;
+    --gold:#c99a3b;
+  }
+  *{box-sizing:border-box;}
+  body{
+    font-family:'TNR','Times New Roman',serif;
+    background:#faf9f6;
+    color:var(--charcoal);
+    margin:0;
+    padding:30px 16px 60px;
+    font-size:19px;
+    line-height:1.5;
+  }
+  .wrap{max-width:900px;margin:0 auto;}
+  header{
+    text-align:center;
+    margin-bottom:28px;
+    position:relative;
+    padding-top:10px;
+  }
+  header::before{
+    content:"📗";
+    font-size:46px;
+    display:block;
+    margin-bottom:6px;
+  }
+  h1{
+    margin:0 0 6px;
+    font-size:32px;
+    color:var(--slate);
+    letter-spacing:0.5px;
+  }
+  .subtitle{
+    color:#5a6472;
+    font-style:italic;
+    font-size:18px;
+  }
+  .badge-row{
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    margin:16px 0 0;
+    flex-wrap:wrap;
+  }
+  .badge{
+    background:var(--indigo);
+    color:#fff;
+    padding:5px 16px;
+    border-radius:20px;
+    font-size:15px;
+    font-style:normal;
+  }
+  .badge.teal{background:var(--teal);}
+  .badge.gold{background:var(--gold);}
+  .note{
+    background:var(--box-bg);
+    border-left:4px solid var(--indigo);
+    padding:14px 18px;
+    margin:24px 0;
+    font-style:italic;
+    font-size:17px;
+    border-radius:6px;
+  }
+  .progress-wrap{
+    margin:24px 0 32px;
+    background:var(--box-bg);
+    border-radius:10px;
+    padding:14px 18px;
+    border:1px solid var(--border);
+  }
+  .progress-label{
+    display:flex;
+    justify-content:space-between;
+    font-size:16px;
+    margin-bottom:8px;
+    color:var(--slate);
+  }
+  .progress-bar-bg{
+    background:#e4e8e6;
+    border-radius:8px;
+    height:16px;
+    overflow:hidden;
+  }
+  .progress-bar-fill{
+    height:100%;
+    background:linear-gradient(90deg, var(--teal), var(--indigo));
+    width:0%;
+    transition:width 0.3s ease;
+  }
+  .group{
+    margin-bottom:26px;
+    background:#fff;
+    border:1px solid var(--border);
+    border-radius:10px;
+    overflow:hidden;
+  }
+  .group-header{
+    background:var(--slate);
+    color:#fff;
+    padding:12px 18px;
+    font-size:20px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .group-header .num{
+    background:rgba(255,255,255,0.2);
+    border-radius:50%;
+    width:28px;
+    height:28px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:15px;
+    flex-shrink:0;
+  }
+  .items{padding:6px 0;}
+  .item{
+    display:flex;
+    align-items:flex-start;
+    gap:12px;
+    padding:10px 18px;
+    border-bottom:1px solid #eef1ef;
+    transition:background 0.15s;
+  }
+  .item:last-child{border-bottom:none;}
+  .item:hover{background:#fafbfa;}
+  .item input[type="checkbox"]{
+    width:20px;
+    height:20px;
+    margin-top:3px;
+    flex-shrink:0;
+    accent-color:var(--teal);
+    cursor:pointer;
+  }
+  .item label{
+    cursor:pointer;
+    flex:1;
+  }
+  .item.checked label .term{
+    color:var(--correct);
+    text-decoration:line-through;
+    text-decoration-color:rgba(47,143,90,0.5);
+  }
+  .term{
+    font-weight:bold;
+    color:var(--slate);
+  }
+  .desc{
+    display:block;
+    font-size:16px;
+    color:#5a6472;
+    margin-top:2px;
+  }
+  .ex{
+    display:block;
+    font-size:15.5px;
+    color:#7a8290;
+    font-style:italic;
+    margin-top:3px;
+  }
+  .border-tag{
+    display:inline-block;
+    background:#fff3d6;
+    color:#8a6a1e;
+    border:1px solid #e9d08a;
+    font-size:13px;
+    font-style:normal;
+    padding:1px 8px;
+    border-radius:10px;
+    margin-left:8px;
+    vertical-align:middle;
+  }
+  .btn-row{
+    display:flex;
+    justify-content:center;
+    gap:14px;
+    margin:30px 0 10px;
+    flex-wrap:wrap;
+  }
+  .btn{
+    background:var(--indigo);
+    color:#fff;
+    border:none;
+    padding:10px 26px;
+    border-radius:24px;
+    font-size:17px;
+    font-family:inherit;
+    cursor:pointer;
+  }
+  .btn.secondary{background:#9aa3ad;}
+  .btn:hover{opacity:0.9;}
+  footer{
+    text-align:center;
+    margin-top:40px;
+    color:#9aa3ad;
+    font-size:15px;
+    font-style:italic;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <h1>Грамматический чек-лист — уровень A2</h1>
+    <div class="subtitle">Стандарт CEFR (Common European Framework of Reference)</div>
+    <div class="badge-row">
+      <span class="badge">19 тем</span>
+      <span class="badge teal">Core A2 + мостик к B1</span>
+      <span class="badge gold">We Talk</span>
+    </div>
+  </header>
+
+  <div class="note">
+    Отмечай темы, которые уже пройдены / усвоены. Прогресс сохраняется автоматически в этом браузере.
+    Темы с пометкой <span class="border-tag">A2/B1</span> — пограничные: в разных программах (Cambridge English Profile, Eaquals, разные учебники) их иногда относят уже к B1.
+  </div>
+
+  <div class="progress-wrap">
+    <div class="progress-label">
+      <span>Прогресс</span>
+      <span id="progressText">0 / 0</span>
+    </div>
+    <div class="progress-bar-bg"><div class="progress-bar-fill" id="progressBar"></div></div>
+  </div>
+
+  <div id="checklist"></div>
+
+  <div class="btn-row">
+    <button class="btn secondary" id="resetBtn">Сбросить всё</button>
+  </div>
+
+  <footer>We Talk · we-talk.ru</footer>
+</div>
+
+<script>
+const data = [
+  {
+    title: "1. Past Simple",
+    items: [
+      {id:"past-reg", term:"Правильные глаголы (-ed)", desc:"утверждение, отрицание, вопрос с did", ex:"She worked yesterday. Did you call him?"},
+      {id:"past-irreg", term:"Неправильные глаголы", desc:"основной список форм (go–went, see–saw и т.д.)", ex:"I went to Moscow last year."}
+    ]
+  },
+  {
+    title: "2. Past Continuous",
+    items: [
+      {id:"past-cont", term:"was / were + -ing", desc:"действие в процессе в прошлом", ex:"I was sleeping at 10 pm."},
+      {id:"past-cont-interrupt", term:"Past Continuous + Past Simple", desc:"прерванное действие: when / while", ex:"I was cooking when the phone rang."}
+    ]
+  },
+  {
+    title: "3. Present Perfect Simple",
+    items: [
+      {id:"pres-perf", term:"Present Perfect (базовый уровень)", desc:"have/has + V3, для опыта и результата", ex:"I have been to London. She has lost her keys."},
+      {id:"pres-perf-markers", term:"ever / never / just / already / yet", desc:"", ex:"Have you ever been abroad? I've just finished."},
+      {id:"for-since", term:"for / since", desc:"длительность действия", ex:"I've lived here for 3 years / since 2020."}
+    ]
+  },
+  {
+    title: "4. Сравнение прилагательных",
+    items: [
+      {id:"comp-sup", term:"Comparative & Superlative", desc:"regular (-er/-est, more/most) + irregular (good–better–best, bad–worse–worst, far–further)", ex:"This is more interesting than that. It's the best day ever."},
+      {id:"as-as", term:"as ... as", desc:"сравнение равенства", ex:"She is as tall as her brother."}
+    ]
+  },
+  {
+    title: "5. Наречия",
+    items: [
+      {id:"adv-manner", term:"Наречия образа действия (-ly)", desc:"", ex:"He speaks slowly. She drives carefully."},
+      {id:"adv-degree", term:"too / enough / very", desc:"наречия степени", ex:"It's too expensive. It's not big enough."}
+    ]
+  },
+  {
+    title: "6. Будущее время",
+    items: [
+      {id:"going-to", term:"be going to", desc:"планы и намерения", ex:"I'm going to visit my parents."},
+      {id:"will", term:"will", desc:"предсказания, спонтанные решения, обещания", ex:"I think it will rain. I'll help you."},
+      {id:"pres-cont-future", term:"Present Continuous для будущего", desc:"договорённости", ex:"I'm meeting her tomorrow at 5."}
+    ]
+  },
+  {
+    title: "7. Модальные глаголы",
+    items: [
+      {id:"must-have-to", term:"must / have to / don't have to / mustn't", desc:"обязанность и запрет", ex:"You must wear a seatbelt. You don't have to come."},
+      {id:"should", term:"should / shouldn't", desc:"совет", ex:"You should see a doctor."},
+      {id:"could", term:"could", desc:"умение в прошлом, вежливая просьба", ex:"I could swim when I was 5. Could you help me?"},
+      {id:"may-might", term:"may / might", desc:"возможность (базовый уровень)", ex:"It might rain later."}
+    ]
+  },
+  {
+    title: "8. Первое условное предложение",
+    items: [
+      {id:"first-cond", term:"First Conditional", desc:"if + Present Simple, will + infinitive", ex:"If it rains, I will stay at home."}
+    ]
+  },
+  {
+    title: "9. Временные придаточные",
+    items: [
+      {id:"time-clauses", term:"when, before, after, while, as soon as", desc:"", ex:"I'll call you when I arrive."}
+    ]
+  },
+  {
+    title: "10. Квантификаторы",
+    items: [
+      {id:"much-many", term:"much / many / a lot of / lots of", desc:"", ex:"I don't have much time. She has a lot of friends."},
+      {id:"little-few", term:"a little / a few / too much / too many", desc:"", ex:"I have a few questions. There's too much noise."},
+      {id:"enough", term:"enough (с существительным)", desc:"", ex:"We don't have enough chairs."}
+    ]
+  },
+  {
+    title: "11. Неопределённые местоимения",
+    items: [
+      {id:"indef-pron", term:"some- / any- / no- / every- + body/thing/where", desc:"somebody, anything, nowhere, everyone и т.д.", ex:"There's nothing in the box. Is anybody home?"}
+    ]
+  },
+  {
+    title: "12. Местоимения",
+    items: [
+      {id:"poss-pron", term:"Притяжательные местоимения", desc:"mine, yours, his, hers, ours, theirs", ex:"This book is mine, not yours."},
+      {id:"reflexive", term:"Возвратные местоимения", desc:"myself, yourself, himself, herself, ourselves...", ex:"She did it herself."}
+    ]
+  },
+  {
+    title: "13. Глагольные конструкции",
+    items: [
+      {id:"ing-vs-inf", term:"verb + -ing vs verb + to-infinitive", desc:"like/enjoy/hate + -ing; want/would like/decide + to", ex:"I enjoy reading. I'd like to travel."},
+      {id:"verb-obj-inf", term:"verb + object + to-infinitive", desc:"", ex:"I want you to call me."},
+      {id:"purpose-inf", term:"Infinitive of purpose", desc:"to + verb — зачем", ex:"She went to the shop to buy milk."}
+    ]
+  },
+  {
+    title: "14. Относительные придаточные",
+    items: [
+      {id:"rel-clauses", term:"who / which / that / where (defining)", desc:"", ex:"The man who called is my uncle.", border:true}
+    ]
+  },
+  {
+    title: "15. Used to",
+    items: [
+      {id:"used-to", term:"used to", desc:"привычки и состояния в прошлом", ex:"I used to live in Grozny."}
+    ]
+  },
+  {
+    title: "16. Фразовые глаголы и предлоги",
+    items: [
+      {id:"phrasal-verbs", term:"Базовые фразовые глаголы", desc:"get up, look for, turn on/off, give up и т.д.", ex:"I get up at 7. Can you turn off the light?"},
+      {id:"prep-after-verb", term:"Предлоги после глаголов/прилагательных", desc:"", ex:"She's good at maths. Listen to me."},
+      {id:"prep-time-ext", term:"Предлоги времени (расширение)", desc:"during, until / till, by", ex:"I'll be back by 6. Stay here until I call you."}
+    ]
+  },
+  {
+    title: "17. Вежливые просьбы и предложения",
+    items: [
+      {id:"would-like", term:"would like + noun / to-infinitive", desc:"вежливая просьба или желание", ex:"I'd like a coffee, please. I'd like to book a table."},
+      {id:"lets", term:"Let's + verb", desc:"предложение что-то сделать вместе", ex:"Let's go to the cinema tonight."}
+    ]
+  },
+  {
+    title: "18. Разделительные вопросы и согласие",
+    items: [
+      {id:"question-tags", term:"Question tags (базовые)", desc:"", ex:"You're a teacher, aren't you?"},
+      {id:"so-neither", term:"so / neither (согласие)", desc:"", ex:"I like tea. — So do I. / I don't like coffee. — Neither do I.", border:true}
+    ]
+  },
+  {
+    title: "19. Пассивный залог (базовый уровень)",
+    items: [
+      {id:"passive-present", term:"Present Simple Passive", desc:"", ex:"English is spoken all over the world.", border:true}
+    ]
+  }
+];
+
+const STORAGE_KEY = "a2GrammarChecklistProgress";
+
+function loadProgress(){
+  try{
+    return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
+  }catch(e){ return {}; }
+}
+function saveProgress(progress){
+  try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(progress)); }catch(e){}
+}
+
+let progress = loadProgress();
+
+function totalItems(){
+  return data.reduce((sum, g) => sum + g.items.length, 0);
+}
+
+function updateProgressBar(){
+  const total = totalItems();
+  const done = Object.values(progress).filter(Boolean).length;
+  document.getElementById('progressText').textContent = done + " / " + total;
+  document.getElementById('progressBar').style.width = (total ? (done/total*100) : 0) + "%";
+}
+
+function render(){
+  const container = document.getElementById('checklist');
+  container.innerHTML = "";
+  data.forEach((group, gi) => {
+    const groupDiv = document.createElement('div');
+    groupDiv.className = 'group';
+
+    const header = document.createElement('div');
+    header.className = 'group-header';
+    header.innerHTML = '<span class="num">' + (gi+1) + '</span><span>' + group.title.replace(/^\d+\.\s*/, '') + '</span>';
+    groupDiv.appendChild(header);
+
+    const itemsDiv = document.createElement('div');
+    itemsDiv.className = 'items';
+
+    group.items.forEach(item => {
+      const row = document.createElement('div');
+      row.className = 'item' + (progress[item.id] ? ' checked' : '');
+
+      const checkbox = document.createElement('input');
+      checkbox.type = 'checkbox';
+      checkbox.id = item.id;
+      checkbox.checked = !!progress[item.id];
+      checkbox.addEventListener('change', () => {
+        progress[item.id] = checkbox.checked;
+        saveProgress(progress);
+        row.classList.toggle('checked', checkbox.checked);
+        updateProgressBar();
+      });
+
+      const label = document.createElement('label');
+      label.setAttribute('for', item.id);
+      label.innerHTML =
+        '<span class="term">' + item.term + '</span>' +
+        (item.border ? '<span class="border-tag">A2/B1</span>' : '') +
+        (item.desc ? '<span class="desc">' + item.desc + '</span>' : '') +
+        (item.ex ? '<span class="ex">' + item.ex + '</span>' : '');
+
+      row.appendChild(checkbox);
+      row.appendChild(label);
+      itemsDiv.appendChild(row);
+    });
+
+    groupDiv.appendChild(itemsDiv);
+    container.appendChild(groupDiv);
+  });
+  updateProgressBar();
+}
+
+document.getElementById('resetBtn').addEventListener('click', () => {
+  progress = {};
+  saveProgress(progress);
+  render();
+});
+
+render();
+</script>
+</body>
+</html>
