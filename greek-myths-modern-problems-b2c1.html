@@ -1,0 +1,371 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Greek Myths, Modern Problems — Vocabulary</title>
+<style>
+:root{
+  --bg: #e4e6ea;
+  --bg-elev: #eef0f3;
+  --bg-elev2: #f8f9fb;
+  --slate: #3a5578;
+  --slate-soft: #6889b0;
+  --ink: #232b36;
+  --ink-dim: #566072;
+  --teal: #2f8a82;
+  --teal-deep: #216b64;
+  --indigo: #4c5fa0;
+  --indigo-deep: #384580;
+  --charcoal: #4e6886;
+  --charcoal-deep: #3a4f68;
+  --box-bg: #4572a8;
+  --box-bg2: #5a87bc;
+  --correct: #4f6e38;
+  --wrong: #8c3a32;
+  --hair: rgba(46,61,82,0.28);
+  --shadow: 0 8px 22px rgba(35,43,54,0.18), 0 2px 6px rgba(35,43,54,0.12);
+  --radius: 10px;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  background: radial-gradient(ellipse at top, #f0f1f4 0%, var(--bg) 55%, #d4d8de 100%);
+  color:var(--ink);
+  font-family:'TNR','Times New Roman',serif;
+  font-size:19px;
+  line-height:1.65;
+  min-height:100vh;
+}
+.wrap{max-width:900px; margin:0 auto; padding:48px 26px 100px;}
+
+header{
+  position:relative;
+  background:linear-gradient(180deg, var(--bg-elev) 0%, var(--bg-elev2) 100%);
+  border:1px solid var(--hair);
+  border-radius:var(--radius);
+  padding:36px 34px 28px;
+  box-shadow:var(--shadow);
+  margin-bottom:34px;
+  text-align:center;
+}
+header::before{
+  content:"🏛️";
+  display:block;
+  font-size:26px;
+  margin-bottom:10px;
+}
+header h1{
+  font-weight:700;
+  font-size:36px;
+  margin:0 0 12px;
+  color:var(--slate);
+  letter-spacing:.5px;
+}
+header .subtitle{
+  font-style:italic;
+  color:var(--ink-dim);
+  font-size:19px;
+  margin:0 auto 18px;
+  max-width:680px;
+}
+.divider{
+  width:140px; height:1px;
+  background:linear-gradient(90deg, transparent, var(--slate), transparent);
+  margin:0 auto 18px;
+}
+.badge-row{display:flex; gap:10px; justify-content:center; flex-wrap:wrap;}
+.badge{
+  font-size:15.5px;
+  padding:6px 18px;
+  border-radius:999px;
+  border:1px solid var(--hair);
+  background:rgba(46,61,82,0.08);
+  color:var(--slate);
+  letter-spacing:.3px;
+}
+
+section{margin-bottom:46px;}
+.section-title{
+  font-weight:700;
+  font-size:29px;
+  color:var(--slate);
+  margin:0 0 6px;
+  display:flex; align-items:center; gap:10px;
+}
+.section-sub{
+  font-style:italic;
+  color:var(--ink-dim);
+  font-size:17px;
+  margin:0 0 20px;
+}
+
+.note{
+  background:var(--bg-elev);
+  border:1px solid var(--hair);
+  border-left:3px solid var(--slate);
+  border-radius:4px;
+  padding:18px 22px;
+  font-style:italic;
+  font-size:18px;
+  color:var(--ink-dim);
+  margin-bottom:28px;
+  max-width:720px;
+}
+
+/* flashcards */
+.cards-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill, minmax(230px,1fr));
+  gap:18px;
+}
+.flip-card{ perspective:1300px; height:190px; cursor:pointer; }
+.flip-inner{
+  position:relative; width:100%; height:100%;
+  transition:transform .5s cubic-bezier(.4,.2,.2,1);
+  transform-style:preserve-3d;
+}
+.flip-card.flipped .flip-inner{transform:rotateY(180deg);}
+.flip-front,.flip-back{
+  position:absolute; inset:0;
+  border-radius:var(--radius);
+  backface-visibility:hidden;
+  padding:18px;
+  display:flex; flex-direction:column; justify-content:center;
+  box-shadow:var(--shadow);
+  border:1px solid var(--hair);
+}
+.flip-front{
+  background:linear-gradient(160deg, var(--charcoal) 0%, var(--charcoal-deep) 100%);
+}
+.flip-card:nth-child(3n+2) .flip-front{
+  background:linear-gradient(160deg, var(--indigo) 0%, var(--indigo-deep) 100%);
+}
+.flip-card:nth-child(3n+3) .flip-front{
+  background:linear-gradient(160deg, var(--teal) 0%, var(--teal-deep) 100%);
+}
+.flip-back{
+  background:var(--bg-elev2);
+  transform:rotateY(180deg);
+  border:1px solid var(--slate-soft);
+}
+.flip-front .term{ font-weight:700; font-size:18px; color:#eef1f5; line-height:1.3; }
+.flip-front .ipa{ font-size:14px; color:rgba(238,241,245,0.75); margin-top:6px; font-style:italic; }
+.flip-front .listen-row{display:flex; align-items:center; gap:8px; margin-top:12px;}
+.flip-front .listen-btn{
+  border:1px solid rgba(238,241,245,0.5); background:rgba(255,255,255,0.08); color:#eef1f5;
+  border-radius:999px; padding:5px 12px; font-size:14px; cursor:pointer; font-family:inherit;
+}
+.flip-front .listen-btn:hover{ background:rgba(255,255,255,0.18); }
+.flip-front .hint{ font-size:12px; color:rgba(238,241,245,0.6); margin-top:10px; font-style:italic; }
+.flip-back .ru{ font-weight:700; font-size:17px; color:#2e3d52; margin-bottom:9px; }
+.flip-back .ex{ font-size:14.5px; color:#2c3a40; font-style:italic; line-height:1.4; }
+
+/* gap-fill text */
+.story-box{
+  background:var(--box-bg);
+  border:1px solid rgba(230,234,240,0.3);
+  border-radius:var(--radius);
+  padding:28px 30px;
+  font-size:18.5px;
+  color:#fdf9ef;
+  line-height:2;
+}
+.story-box select{
+  font-family:'TNR','Times New Roman',serif;
+  font-size:16.5px;
+  font-weight:700;
+  padding:4px 10px;
+  border-radius:4px;
+  border:1px solid #e4edf7;
+  background:#355c86;
+  color:#fff6de;
+  margin:0 2px;
+}
+.story-box select.correct{ border-color:var(--correct); background:#2f4a30; color:#d2e3b8; }
+.story-box select.wrong{ border-color:var(--wrong); background:#5a2a24; color:#f3d3cc; }
+
+.btn{
+  font-family:'TNR','Times New Roman',serif;
+  font-weight:700;
+  font-size:19px;
+  padding:12px 32px;
+  border-radius:999px;
+  border:1px solid var(--slate-soft);
+  background:var(--box-bg);
+  color:#eceef2;
+  cursor:pointer;
+  box-shadow:var(--shadow);
+  transition:all .15s;
+  letter-spacing:.5px;
+  margin-top:20px;
+}
+.btn:hover{ background:var(--box-bg2); transform:translateY(-1px); }
+
+.score-box{
+  font-style:italic;
+  font-size:18px;
+  margin-top:16px;
+  padding:11px 20px;
+  border-radius:6px;
+  display:inline-block;
+  border:1px solid rgba(230,234,240,0.3);
+  background:var(--box-bg);
+  color:#bcd3e8;
+}
+
+footer{
+  text-align:center;
+  font-style:italic;
+  color:var(--ink-dim);
+  font-size:15px;
+  margin-top:56px;
+  padding-top:18px;
+  border-top:1px solid var(--hair);
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <h1>Greek Myths, Modern Problems</h1>
+    <p class="subtitle">Как древнегреческие мифы помогают говорить о современных проблемах — прокрастинации, гордыне, тщеславии и скрытых слабостях</p>
+    <div class="divider"></div>
+    <div class="badge-row">
+      <span class="badge">Уровень B2–C1</span>
+      <span class="badge">10 слов и выражений</span>
+      <span class="badge">Новая лексика</span>
+    </div>
+  </header>
+
+  <div class="note">
+    Сначала переверни карточки: нажми 🔊, чтобы послушать произношение, посмотри транскрипцию, переверни карточку — увидишь перевод и пример. Затем прочитай текст про Алекс и вставь эти слова в пропуски.
+  </div>
+
+  <section>
+    <h2 class="section-title">Словарь урока</h2>
+    <p class="section-sub">нажми 🔊, чтобы послушать слово, нажми на карточку, чтобы перевернуть</p>
+    <div class="cards-grid" id="cardsGrid"></div>
+  </section>
+
+  <section>
+    <h2 class="section-title">Задание — вставь слова в текст</h2>
+    <p class="section-sub">выбери подходящее слово или выражение из списка для каждого пропуска</p>
+    <div class="story-box" id="storyBox"></div>
+    <button class="btn" id="checkGaps">Проверить</button>
+    <div class="score-box" id="gapScore" style="display:none;"></div>
+  </section>
+
+  <footer>We Talk · B2–C1 · новая лексика по теме Greek Myths, Modern Problems</footer>
+</div>
+
+<script>
+const vocab = [
+  {term:"Sisyphean", key:"Sisyphean", ipa:"/ˌsɪsɪˈfiːən/", ru:"бессмысленный и бесконечный (как наказание Сизифа)", ex:"Cleaning the house with three kids around felt like a Sisyphean task."},
+  {term:"hubris", key:"hubris", ipa:"/ˈhjuːbrɪs/", ru:"гордыня, непомерная самоуверенность", ex:"His hubris convinced him that the safety rules simply didn't apply to him."},
+  {term:"to succumb (to something)", key:"succumb", ipa:"/səˈkʌm/", ru:"поддаться, не устоять", ex:"After resisting for weeks, she finally succumbed to the temptation."},
+  {term:"an Achilles' heel", key:"Achilles' heel", ipa:"/əˈkɪliːz hiːl/", ru:"уязвимое место, слабость", ex:"Public speaking was his Achilles' heel, even after years of experience."},
+  {term:"self-absorbed", key:"self-absorbed", ipa:"/ˌself əbˈzɔːbd/", ru:"самовлюблённый, поглощённый собой", ex:"He was so self-absorbed that he never noticed how his friends were feeling."},
+  {term:"to unleash", key:"unleash", ipa:"/ʌnˈliːʃ/", ru:"выпустить на волю, развязать", ex:"One angry comment was enough to unleash a wave of criticism online."},
+  {term:"relentless", key:"relentless", ipa:"/rɪˈlentləs/", ru:"неустанный, безжалостный", ex:"The relentless stream of notifications made it impossible to focus."},
+  {term:"to tempt fate", key:"tempt fate", ipa:"/tempt feɪt/", ru:"испытывать судьбу", ex:"Ignoring every warning sign, he kept tempting fate."},
+  {term:"an underlying flaw", key:"underlying flaw", ipa:"/ˌʌndəˈlaɪɪŋ flɔː/", ru:"скрытый недостаток, изъян", ex:"Beneath the perfect plan lay an underlying flaw nobody had noticed."},
+  {term:"to be doomed", key:"doomed", ipa:"/duːmd/", ru:"быть обречённым", ex:"Without a backup plan, the whole project felt doomed from the start."}
+];
+
+function speak(text){
+  if(!('speechSynthesis' in window)) return;
+  window.speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'en-US';
+  u.rate = 0.9;
+  window.speechSynthesis.speak(u);
+}
+
+const cardsGrid = document.getElementById('cardsGrid');
+vocab.forEach(v=>{
+  const card = document.createElement('div');
+  card.className='flip-card';
+  card.innerHTML = `
+    <div class="flip-inner">
+      <div class="flip-front">
+        <div class="term">${v.term}</div>
+        <div class="ipa">${v.ipa}</div>
+        <div class="listen-row"><button type="button" class="listen-btn">🔊 слушать</button></div>
+        <div class="hint">нажми карточку, чтобы перевернуть</div>
+      </div>
+      <div class="flip-back">
+        <div class="ru">${v.ru}</div>
+        <div class="ex">${v.ex}</div>
+      </div>
+    </div>`;
+  card.querySelector('.listen-btn').addEventListener('click', (e)=>{
+    e.stopPropagation();
+    speak(v.term.replace(/^(a|an|to)\s+/i,''));
+  });
+  card.addEventListener('click', ()=> card.classList.toggle('flipped'));
+  cardsGrid.appendChild(card);
+});
+
+const storyParts = [
+  "Every Monday, Alex's inbox filled up again like a ",
+  "GAP:Sisyphean",
+  " task — the moment she cleared it, new messages seemed to multiply overnight. She used to believe she could handle absolutely everything alone, and that kind of ",
+  "GAP:hubris",
+  " made her ignore every warning sign of burnout. Still, whenever a trendy app promised an \"easy fix,\" she was quick to ",
+  "GAP:succumb",
+  " to it, downloading one more productivity tool that she would abandon within a week. Multitasking was her ",
+  "GAP:Achilles' heel",
+  ": however hard she tried, she could never really focus on just one thing. Spending hours scrolling through her own photos and captions, she worried she was becoming too ",
+  "GAP:self-absorbed",
+  ", caring more about likes than about the people around her. One careless click was enough to ",
+  "GAP:unleash",
+  " a storm of pop-up ads across her screen. The ",
+  "GAP:relentless",
+  " stream of notifications left her exhausted before nine in the morning. Her friends warned her she was starting to ",
+  "GAP:tempt fate",
+  " by working through every single weekend without a break. Deep down, she knew there was an ",
+  "GAP:underlying flaw",
+  " in her daily routine — she simply refused to slow down. Without a real change, her burnout felt almost ",
+  "GAP:doomed",
+  "."
+];
+
+const options = vocab.map(v=>v.key);
+function shuffle(arr){ return [...arr].sort(()=>Math.random()-0.5); }
+const optsHtml = ['<option value="">— выбери —</option>'].concat(
+  shuffle(options).map(o=>`<option value="${o}">${o}</option>`)
+).join('');
+
+const storyBox = document.getElementById('storyBox');
+let html = '';
+storyParts.forEach(part=>{
+  if(part.startsWith('GAP:')){
+    const answer = part.slice(4);
+    html += `<select data-answer="${answer}">${optsHtml}</select>`;
+  } else {
+    html += part;
+  }
+});
+storyBox.innerHTML = html;
+
+document.getElementById('checkGaps').addEventListener('click', ()=>{
+  let correct = 0;
+  const selects = storyBox.querySelectorAll('select');
+  selects.forEach(sel=>{
+    sel.classList.remove('correct','wrong');
+    if(sel.value === sel.dataset.answer){
+      sel.classList.add('correct');
+      correct++;
+    } else if(sel.value !== ""){
+      sel.classList.add('wrong');
+    }
+  });
+  const scoreEl = document.getElementById('gapScore');
+  scoreEl.style.display='inline-block';
+  scoreEl.textContent = `Результат: ${correct} / ${selects.length}`;
+});
+</script>
+</body>
+</html>
