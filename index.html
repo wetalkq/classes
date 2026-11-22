@@ -715,6 +715,10 @@ nav{height:auto}
 .trk-tx i{font-size:14px;color:var(--muted);opacity:.85}
 .trk-it input:checked~.trk-tx b{text-decoration:line-through;text-decoration-color:var(--orange)}
 .chk+.tiles{margin-top:28px}
+/* цитата с кнопкой теста */
+.quote.qtest{margin-top:var(--s6,64px)}
+.qbtn{margin-top:26px;background:transparent;color:var(--paper2);border-color:var(--paper2);font-style:normal}
+.qbtn:hover{background:var(--orange);border-color:var(--orange);color:#fff}
 </style>
 <script>document.documentElement.classList.add('js')</script>
 </head>
@@ -774,6 +778,9 @@ nav{height:auto}
   </div>
 </header>
 
+
+<!-- TEST QUOTE -->
+<section class="quote qtest"><p>«Перед пробным занятием, пожалуйста, пройдите короткое тестирование — так преподаватель заранее узнает ваш уровень и цели»</p><a class="btn qbtn" href="test/">Пройти тестирование</a></section>
 
 <!-- О НАС -->
 <div class="folder" id="f-about">

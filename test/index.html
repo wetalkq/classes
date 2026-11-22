@@ -1,0 +1,358 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Тест уровня английского — We Talk</title>
+<meta name="description" content="Короткая анкета и тест уровня английского перед пробным занятием в We Talk.">
+<style>
+:root{--ink:#1C1916;--brown:#51483E;--paper:#FBF7EE;--paper2:#F5EEE1;--beige:#E9DFCB;--orange:#da5200;--line:rgba(28,25,22,.18);--muted:#51483E;
+  --serif:'Times New Roman',Times,'Liberation Serif',serif;color-scheme:light}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;font-family:var(--serif);font-size:17px;line-height:1.6;color:var(--ink);background:var(--ink);min-height:100vh;
+  background:repeating-linear-gradient(90deg,#1C1916 0,#51483E 70px,#1C1916 140px) fixed}
+a{color:inherit}
+.top{max-width:760px;margin:0 auto;padding:calc(16px + env(safe-area-inset-top,0px)) 16px 0;display:flex;justify-content:space-between;align-items:center;color:var(--paper2)}
+.top a{text-decoration:none;font-size:14px;letter-spacing:.14em;text-transform:uppercase}
+.top a:hover{color:var(--orange)}
+.brand{font-style:italic;letter-spacing:.12em;font-size:18px}
+.card{max-width:760px;margin:16px auto 40px;background:var(--paper);padding:34px 22px 36px;border-top:3px solid var(--orange);box-shadow:0 18px 50px rgba(0,0,0,.35)}
+@media(min-width:700px){.card{padding:48px 56px 52px;margin:24px auto 60px}}
+.kicker{display:block;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
+h1,h2{font-weight:400;color:var(--orange);font-style:italic;line-height:1.15;margin:0 0 16px;text-wrap:balance}
+h1{font-size:clamp(30px,6vw,44px)}h2{font-size:clamp(24px,4.6vw,32px)}
+p{margin:0 0 14px}
+.muted{color:var(--muted)}
+.note{background:var(--paper2);border-left:3px solid var(--orange);padding:14px 18px;margin:18px 0;font-style:italic}
+.steps{display:flex;gap:6px;margin:0 0 26px;padding:0;list-style:none;flex-wrap:wrap}
+.steps li{font-size:11px;letter-spacing:.14em;text-transform:uppercase;padding:5px 10px;border:1px solid var(--line);border-radius:999px;color:var(--muted)}
+.steps li.on{background:var(--orange);border-color:var(--orange);color:#fff}
+.steps li.done{background:var(--beige);border-color:var(--beige);color:var(--ink)}
+.facts{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:20px 0 6px}
+@media(min-width:600px){.facts{grid-template-columns:repeat(4,1fr)}}
+.facts div{background:var(--paper2);padding:14px;text-align:center;font-size:14px}
+.facts b{display:block;font-weight:400;font-style:italic;color:var(--orange);font-size:22px;line-height:1.2}
+label.f{display:block;font-weight:700;margin:22px 0 8px}
+label.f small{font-weight:400;color:var(--muted)}
+input[type=text],input[type=number],textarea{width:100%;font:inherit;font-size:16px;padding:12px 14px;border:1px solid var(--line);background:#fff;border-radius:6px;color:var(--ink)}
+textarea{min-height:88px;resize:vertical}
+input:focus,textarea:focus{outline:2px solid var(--orange);outline-offset:1px;border-color:transparent}
+.opts{display:grid;gap:8px}
+.opt{display:flex;gap:12px;align-items:flex-start;padding:12px 14px;border:1px solid var(--line);border-radius:8px;background:#fff;cursor:pointer;transition:border-color .15s,background .15s}
+.opt:hover{border-color:var(--orange)}
+.opt input{margin:4px 0 0;accent-color:var(--orange);flex:none;width:18px;height:18px}
+.opt:has(input:checked){border-color:var(--orange);background:#fff6ef}
+.btn{display:inline-block;font:inherit;font-size:14px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;padding:15px 30px;border-radius:999px;border:1.5px solid var(--ink);background:var(--ink);color:var(--paper);cursor:pointer;text-decoration:none;text-align:center}
+.btn:hover{background:var(--orange);border-color:var(--orange)}
+.btn.o{background:transparent;color:var(--ink)}
+.btn.o:hover{color:#fff}
+.btn:disabled{opacity:.35;cursor:not-allowed;background:var(--ink);border-color:var(--ink)}
+.nav{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:28px;flex-wrap:wrap}
+.err{color:#b00020;font-size:15px;margin-top:10px;min-height:1em}
+.bar{height:6px;background:rgba(28,25,22,.1);border-radius:6px;overflow:hidden;margin:6px 0 24px}
+.bar i{display:block;height:100%;background:var(--orange);width:0;transition:width .4s}
+.qhead{display:flex;justify-content:space-between;font-size:14px;color:var(--muted)}
+.q{font-size:clamp(20px,4vw,24px);margin:6px 0 18px;line-height:1.4}
+.q .gap{display:inline-block;min-width:70px;border-bottom:2px solid var(--orange)}
+.text{background:var(--paper2);padding:18px 20px;margin:0 0 22px;line-height:1.75}
+.rq{margin:22px 0 0}
+.rq p{font-weight:700;margin-bottom:10px}
+.player{display:flex;align-items:center;gap:16px;background:var(--paper2);padding:16px 18px;margin:0 0 22px;flex-wrap:wrap}
+.play{width:58px;height:58px;border-radius:50%;border:0;background:var(--orange);color:#fff;font-size:22px;cursor:pointer;flex:none}
+.play:disabled{opacity:.4;cursor:not-allowed}
+.player small{color:var(--muted);display:block}
+.lvl{font-size:clamp(64px,16vw,110px);font-style:italic;color:var(--orange);line-height:1;margin:6px 0 4px}
+.res-grid{display:grid;gap:12px;margin:22px 0}
+@media(min-width:600px){.res-grid{grid-template-columns:repeat(3,1fr)}}
+.res-grid div{background:var(--paper2);padding:16px}
+.res-grid b{display:block;font-weight:400;font-style:italic;font-size:26px;color:var(--orange)}
+.res-grid span{font-size:14px;color:var(--muted)}
+ul.list{padding-left:20px;margin:6px 0 16px}
+ul.list li{margin:4px 0}
+.send{margin-top:22px;padding:16px 18px;border:1px dashed var(--line);font-size:15px}
+.send.ok{border-color:#2e7d32;color:#2e7d32;border-style:solid}
+.send.bad{border-color:#b00020}
+.hide{display:none!important}
+.fade{animation:fade .35s ease}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<div class="top"><a href="../">← Вернуться на сайт</a><span class="brand">WE TALK</span></div>
+<main class="card" id="app" aria-live="polite"></main>
+
+<script>
+(function(){
+var ACCESS_KEY="7ab21201-72f8-4e0e-b5c1-0ac6622506fb";
+var WA="79911186796";
+/* аудио-файлы для аудирования: если положить mp3 в папку audio/, они заменят встроенный голос */
+var AUDIO={low:"audio/listen-low.mp3",mid:"audio/listen-mid.mp3",high:"audio/listen-high.mp3"};
+var LV=["A1","A2","B1","B2","C1"];
+var LVNAME={A1:"Начальный",A2:"Элементарный",B1:"Средний",B2:"Выше среднего",C1:"Продвинутый"};
+var LVDESC={
+A1:"Вы понимаете и используете простые фразы о себе, семье и повседневных делах. Отличная база, чтобы уверенно двигаться дальше.",
+A2:"Вы справляетесь с бытовыми ситуациями, можете рассказать о прошлом и о планах простыми фразами.",
+B1:"Вы можете общаться в путешествиях, рассказывать о своём опыте и мнении, понимаете основное в понятной речи.",
+B2:"Вы довольно свободно обсуждаете многие темы, понимаете статьи и фильмы, говорите достаточно спонтанно.",
+C1:"Вы гибко пользуетесь языком для работы и учёбы, понимаете сложные тексты и подтекст."};
+
+/* банк вопросов: [вопрос, [варианты, первый — верный], тема] */
+var BANK={
+A1:[
+["She ___ a teacher.",["is","am","are","be"],"Глагол to be"],
+["I ___ coffee every morning.",["drink","drinks","drinking","am drink"],"Present Simple"],
+["___ you like pizza?",["Do","Does","Are","Is"],"Вопросы в Present Simple"],
+["There ___ two books on the table.",["are","is","be","am"],"There is / there are"],
+["This is ___ apple.",["an","a","the","—"],"Артикли a / an"],
+["My brother ___ like fish.",["doesn't","don't","isn't","not"],"Отрицания в Present Simple"],
+["The opposite of «big» is…",["small","tall","long","old"],"Базовая лексика"],
+["We go to the gym ___ Monday.",["on","in","at","to"],"Предлоги времени"],
+["Where ___ they from?",["are","is","do","does"],"Глагол to be"],
+["I can ___ English.",["speak","speaks","speaking","to speak"],"Модальный глагол can"],
+["___ is your name?",["What","Who","Where","How"],"Вопросительные слова"],
+["These are my ___.",["children","childs","child","childrens"],"Множественное число"]],
+A2:[
+["Yesterday I ___ to the cinema.",["went","go","goed","have gone"],"Past Simple"],
+["___ you see the film last night?",["Did","Do","Were","Have"],"Вопросы в Past Simple"],
+["Look! It ___.",["is raining","rains","rain","rained"],"Present Continuous"],
+["My sister is ___ than me.",["taller","more tall","tallest","the tallest"],"Сравнительная степень"],
+["We ___ visit my grandmother next weekend.",["are going to","going to","will to","go to"],"Планы: be going to"],
+["You ___ wear a seatbelt in the car.",["have to","has to","must to","having to"],"Have to / must"],
+["There isn't ___ milk in the fridge.",["any","some","many","a"],"Some / any"],
+["I was born ___ 1995.",["in","on","at","by"],"Предлоги времени"],
+["How ___ money do you need?",["much","many","lot","more"],"Much / many"],
+["She ___ TV when I called her.",["was watching","watched","is watching","watches"],"Past Continuous"],
+["Could you ___ me the salt, please?",["pass","say","take off","bring to"],"Повседневная лексика"],
+["It's the ___ restaurant in town.",["best","better","most good","goodest"],"Превосходная степень"]],
+B1:[
+["I ___ in London since 2019.",["have lived","live","lived","am living"],"Present Perfect"],
+["If it rains tomorrow, we ___ at home.",["will stay","stay","would stay","stayed"],"Условные предложения (1 тип)"],
+["The house ___ in 1920.",["was built","built","is building","has built"],"Пассивный залог"],
+["She asked me where I ___.",["lived","live","do live","did I live"],"Косвенная речь"],
+["I'm not used to ___ up so early.",["getting","get","got","have got"],"Be used to + -ing"],
+["Have you ___ finished your homework?",["already","yet","still","ever"],"Already / yet / still"],
+["This is the woman ___ son works with me.",["whose","who","which","that's"],"Относительные местоимения"],
+["You ___ have told me earlier! I could have helped.",["should","must","can","will"],"Should have"],
+["I'm really looking forward ___ you.",["to seeing","to see","seeing","for seeing"],"Устойчивые конструкции"],
+["Can you ___ my cat while I'm away?",["look after","look for","look up","look into"],"Фразовые глаголы"],
+["Don't worry, everyone ___ mistakes.",["makes","does","takes","gets"],"Make / do"],
+["By the time we arrived, the film ___.",["had started","has started","starts","was starting"],"Past Perfect"]],
+B2:[
+["If I ___ more time, I would learn Italian.",["had","have","would have","will have"],"Условные предложения (2 тип)"],
+["I wish I ___ to the party last night.",["had gone","went","would go","have gone"],"Конструкция I wish"],
+["By next June, she ___ here for ten years.",["will have worked","will work","works","has worked"],"Future Perfect"],
+["He denied ___ the money.",["taking","to take","take","that he take"],"Герундий и инфинитив"],
+["The report needs ___ by Friday.",["to be finished","finishing to","be finished","to finish being"],"Пассив с инфинитивом"],
+["She ___ have left already — her coat is gone.",["must","should","can","would"],"Модальные глаголы: предположения"],
+["It's high time we ___ a decision.",["made","make","will make","had made"],"It's (high) time"],
+["I'd rather you ___ smoke here.",["didn't","don't","won't","not"],"Would rather"],
+["The meeting has been ___ until next week.",["put off","put out","put up","put away"],"Фразовые глаголы"],
+["Despite ___ tired, she finished the race.",["being","she was","to be","be"],"Despite / although"],
+["The new policy had a significant ___ on sales.",["impact","affect","result","cause"],"Коллокации"],
+["He's the person ___ I told you about.",["who","what","whose","where"],"Относительные придаточные"]],
+C1:[
+["Not only ___ late, but he also forgot the tickets.",["was he","he was","he did","did he was"],"Инверсия"],
+["Had I known about the problem, I ___ something.",["would have done","would do","will have done","had done"],"Условные предложения с инверсией"],
+["Little ___ that she was being watched.",["did she know","she knew","she did know","knew she"],"Инверсия"],
+["The company's ___ to expand led to rapid growth.",["decision","deciding","decide","decided"],"Номинализация"],
+["It is essential that he ___ informed immediately.",["be","is","will be","being"],"Сослагательное наклонение"],
+["She is widely ___ to be the best candidate.",["considered","considering","consider","to consider"],"Безличный пассив"],
+["___ the bad weather, the event went ahead as planned.",["Notwithstanding","Although","Despite of","However"],"Формальные связки"],
+["No sooner had we sat down ___ the phone rang.",["than","when","then","that"],"No sooner… than"],
+["His argument doesn't hold ___.",["water","ground","fire","air"],"Идиомы"],
+["What I need ___ a long holiday.",["is","are","be","being"],"Эмфатические конструкции"],
+["She has a real ___ for languages.",["flair","flare","fluency","flavour"],"Продвинутая лексика"],
+["Were the plan ___, we would need more staff.",["to go ahead","going ahead","go ahead","gone ahead"],"Конструкция were to"]]};
+
+var READ={
+low:{title:"Письмо от подруги",text:"Hi Kate!<br><br>I'm in Barcelona with my sister. Our hotel is small but very nice, and it is near the beach. Every morning we have breakfast on the balcony. Yesterday we visited a famous church and had lunch in a market. The weather is hot, so tomorrow we want to swim in the sea. We fly home on Sunday.<br><br>See you next week!<br>Love, Anna",
+ q:[["Who is Anna with?",["her sister","her friend Kate","her mother","nobody"]],
+    ["Where is the hotel?",["near the beach","in the market","near the airport","in the mountains"]],
+    ["What did they do yesterday?",["visited a church and a market","swam in the sea","stayed at the hotel","flew home"]],
+    ["When do they go home?",["on Sunday","tomorrow","next month","on Monday"]]]},
+mid:{title:"Статья о работе из дома",text:"When Laura started working from home three years ago, she thought it would be perfect. No more crowded trains, no more expensive lunches. But after a few months, she realised she missed her colleagues. «I didn't expect to feel so lonely,» she says. Now she works from a café two days a week and goes to the office on Fridays. She says the mix has made her more productive, and she has started to enjoy her job again. Experts agree that, for many people, a balance between home and office works best.",
+ q:[["Why did Laura like the idea of working from home at first?",["She didn't have to travel on crowded trains","She could earn more money","Her colleagues visited her","She could sleep all day"]],
+    ["What problem did she have?",["She felt lonely","She worked too slowly","Her internet was bad","She spent too much on lunch"]],
+    ["Where does she work on Fridays?",["at the office","at home","in a café","on the train"]],
+    ["What is the main idea of the text?",["A mix of home and office can work best","Working from home is always better","Offices will soon disappear","Cafés are good places for meetings"]]]},
+high:{title:"Научно-популярная статья",text:"The idea that we only use ten per cent of our brains is one of the most persistent myths in popular science. Neuroscientists have repeatedly debunked it: brain scans show that even simple tasks activate multiple regions, and over the course of a day virtually every part of the brain is put to work. Why, then, does the myth endure? Part of its appeal lies in the flattering promise it makes — that each of us harbours vast untapped potential, waiting to be unlocked by the right technique or product. Unsurprisingly, it has been seized upon by advertisers and self-help gurus alike. Yet the truth is arguably more encouraging: rather than lying dormant, our brains are remarkably adaptable, capable of forming new connections throughout our lives.",
+ q:[["What do brain scans show?",["Many parts of the brain are active even during simple tasks","We use only ten per cent of the brain","The brain rests most of the day","Simple tasks use only one region"]],
+    ["The word «debunked» is closest in meaning to…",["shown to be false","supported","ignored","explained in detail"]],
+    ["Why does the myth remain popular?",["It suggests that people have hidden potential","Scientists keep repeating it","It is taught at school","It is impossible to test"]],
+    ["What is the author's view?",["The truth is more encouraging than the myth","The truth is disappointing","Nobody knows the truth","The myth is more interesting than the truth"]]]}};
+
+var LISTEN={
+low:{title:"В кафе",rate:.82,lines:[["R","Hi! Can I have a coffee, please?"],["T","Of course. Small or large?"],["R","Large, please. With milk."],["T","Anything else?"],["R","Yes, a piece of chocolate cake. How much is that?"],["T","That's six pounds fifty."],["R","Here you are."],["T","Thank you. Have a nice day!"]],
+ q:[["What size coffee does the woman want?",["large","small","medium","she doesn't want coffee"]],
+    ["What does she want to eat?",["chocolate cake","a sandwich","an apple pie","nothing"]],
+    ["How much does she pay?",["£6.50","£5.60","£16.50","£6.15"]],
+    ["Does she want milk?",["yes","no","only sugar","she doesn't say"]]]},
+mid:{title:"Разговор об отпуске",rate:.92,lines:[["T","So, Rachel, did you have a good holiday?"],["R","It was lovely, thanks. We were supposed to go to Spain, but our flight was cancelled, so we ended up driving to Scotland instead."],["T","Scotland! That's quite different."],["R","I know, and it rained almost every day. But honestly, the scenery was amazing, and we stayed in a little cottage by a lake."],["T","Would you go back?"],["R","Definitely. Next time I'll pack better boots, though!"]],
+ q:[["Why didn't they go to Spain?",["Their flight was cancelled","It was too expensive","The weather was bad","They changed their minds"]],
+    ["How did they get to Scotland?",["by car","by plane","by train","by boat"]],
+    ["Where did they stay?",["in a cottage by a lake","in a city hotel","with friends","in a tent"]],
+    ["What will Rachel do differently next time?",["pack better boots","go in summer","fly there","stay longer"]]]},
+high:{title:"Подкаст о четырёхдневной рабочей неделе",rate:1,lines:[["T","Today we're talking about the four-day working week. Rachel, you've been researching this."],["R","That's right. Several large trials have now been completed, and the results are fairly striking. In most companies, productivity held steady or even rose slightly, while staff reported far lower levels of burnout."],["T","So why isn't everyone doing it?"],["R","Well, it's not a one-size-fits-all solution. It works well in offices, but in sectors like healthcare, where someone has to be there around the clock, it's much harder to implement without hiring more people. And some managers remain sceptical — they worry that the early enthusiasm will wear off."],["T","Do you think it'll catch on?"],["R","Gradually, yes. I suspect we'll see it adopted sector by sector rather than overnight."]],
+ q:[["What happened to productivity in most trials?",["It stayed the same or rose slightly","It fell sharply","It doubled","It wasn't measured"]],
+    ["Why is it harder to introduce in healthcare?",["Someone has to be at work all the time","Doctors don't want it","It's too expensive to measure","Hospitals are too small"]],
+    ["What do some managers worry about?",["The positive effect may not last","Staff will leave","Salaries will rise","Customers will complain"]],
+    ["How does Rachel think the idea will spread?",["Gradually, sector by sector","Overnight in all industries","It won't spread at all","Only in healthcare"]]]}};
+
+var WEAK=["Плохо понимаю речь на слух","Читаю с неправильным произношением","Знаю слова, но не могу говорить — не хватает разговорной практики","Не умею грамотно писать и вести переписку на английском (пунктуация, письма, сообщения)","Слова плохо запоминаются, мало работаю с лексикой","Не могу разобраться в материалах: смотрю всё подряд на YouTube (влоги, Vogue, Harper's Bazaar, GQ), а это рассчитано на носителей языка","Сложно с грамматикой: путаюсь во временах и правилах"];
+var EXP=["Не было, начинаю с нуля","Учила в школе","Учила в университете","Ходила на курсы","Занималась с репетитором","Учила самостоятельно (приложения, YouTube, книги)"];
+
+var S={step:0,form:{},stage:0,L:2,used:{A1:0,A2:0,B1:0,B2:0,C1:0},stageQs:[],qi:0,answers:[],stages:[],read:null,listen:null,rAns:[],lAns:[],plays:0};
+var app=document.getElementById("app");
+function esc(t){return String(t).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t}return a}
+var STEPS=["Анкета","Грамматика и лексика","Чтение","Аудирование","Результат"];
+function steps(n){return '<ul class="steps">'+STEPS.map(function(s,i){return '<li class="'+(i==n?"on":i<n?"done":"")+'">'+s+'</li>'}).join("")+'</ul>'}
+function render(h){app.innerHTML='<div class="fade">'+h+'</div>';window.scrollTo({top:0,behavior:"smooth"})}
+
+/* ---------- 0. вступление ---------- */
+function intro(){
+render('<span class="kicker">We Talk · перед пробным занятием</span><h1>Тест уровня английского</h1>'+
+'<p>Пожалуйста, ответьте на несколько вопросов о себе и пройдите короткий тест. Так преподаватель заранее узнает ваш уровень и цели и подготовит пробное занятие именно для вас.</p>'+
+'<div class="facts"><div><b>≈ 20</b>минут</div><div><b>A1–C1</b>все уровни</div><div><b>4</b>части</div><div><b>Сразу</b>результат</div></div>'+
+'<div class="note">Тест подстраивается под вас: если отвечаете уверенно, задания становятся сложнее, если трудно — проще. Не переживайте, если что-то не знаете: просто выбирайте вариант, который кажется верным. Здесь вы получите ориентировочный результат по грамматике, лексике, чтению и аудированию. Говорение и письмо оценит преподаватель на пробном занятии.</div>'+
+'<p class="muted">Регистрация не нужна. Для аудирования включите звук.</p>'+
+'<div class="nav"><span></span><button class="btn" id="go">Начать</button></div>');
+document.getElementById("go").onclick=survey;}
+
+/* ---------- 1. анкета ---------- */
+function survey(){
+var f=S.form;
+render(steps(0)+'<span class="kicker">Часть 1 из 4</span><h2>Немного о вас</h2>'+
+'<label class="f" for="nm">Ваше имя</label><input type="text" id="nm" autocomplete="given-name" value="'+esc(f.name||"")+'">'+
+'<label class="f" for="ag">Возраст</label><input type="number" id="ag" inputmode="numeric" min="5" max="99" value="'+esc(f.age||"")+'">'+
+'<label class="f">Был ли у вас опыт изучения английского? <small>можно выбрать несколько</small></label><div class="opts">'+EXP.map(function(e,i){return '<label class="opt"><input type="checkbox" name="exp" value="'+esc(e)+'"'+((f.exp||[]).indexOf(e)>-1?" checked":"")+'><span>'+e+'</span></label>'}).join("")+'</div>'+
+'<label class="f" for="when">Как давно вы занимались? <small>например: в школе 10 лет назад, курсы в прошлом году</small></label><input type="text" id="when" value="'+esc(f.when||"")+'">'+
+'<label class="f">Как вы считаете, какие у вас слабые стороны? <small>можно выбрать несколько</small></label><div class="opts">'+WEAK.map(function(e){return '<label class="opt"><input type="checkbox" name="weak" value="'+esc(e)+'"'+((f.weak||[]).indexOf(e)>-1?" checked":"")+'><span>'+e+'</span></label>'}).join("")+'</div>'+
+'<label class="f" for="weako">Другое <small>свой вариант</small></label><input type="text" id="weako" value="'+esc(f.weako||"")+'">'+
+'<label class="f" for="str">Какие у вас сильные стороны?</label><textarea id="str" placeholder="Например: хорошо понимаю тексты, знаю много слов, не боюсь говорить">'+esc(f.str||"")+'</textarea>'+
+'<label class="f" for="goal">Что хочется подтянуть? На чём сделать акцент и что вы хотели бы уметь?</label><textarea id="goal" placeholder="Например: свободно общаться в путешествиях, понимать сериалы без субтитров, писать письма на работе">'+esc(f.goal||"")+'</textarea>'+
+'<label class="f" for="expect">Чего вы ждёте от обучения?</label><textarea id="expect">'+esc(f.expect||"")+'</textarea>'+
+'<div class="err" id="err"></div><div class="nav"><button class="btn o" id="back">Назад</button><button class="btn" id="next">К тесту</button></div>');
+document.getElementById("back").onclick=function(){save();intro()};
+document.getElementById("next").onclick=function(){save();
+ if(!S.form.name){document.getElementById("err").textContent="Пожалуйста, напишите ваше имя.";document.getElementById("nm").focus();return}
+ if(!S.form.age){document.getElementById("err").textContent="Пожалуйста, укажите возраст.";document.getElementById("ag").focus();return}
+ startGrammar()};
+function save(){var g=function(id){return document.getElementById(id).value.trim()};
+ var c=function(n){return [].map.call(document.querySelectorAll('input[name='+n+']:checked'),function(x){return x.value})};
+ S.form={name:g("nm"),age:g("ag"),exp:c("exp"),when:g("when"),weak:c("weak"),weako:g("weako"),str:g("str"),goal:g("goal"),expect:g("expect")}}}
+
+/* ---------- 2. адаптивная грамматика: 5 блоков по 6 вопросов ---------- */
+var STAGES=5,PER=6;
+function startGrammar(){S.stage=0;S.L=2;S.used={A1:0,A2:0,B1:0,B2:0,C1:0};S.answers=[];S.stages=[];nextStage()}
+function nextStage(){
+ var lv=LV[S.L];
+ if(S.used[lv]+PER>BANK[lv].length){ /* вопросы этого уровня закончились — ищем соседний */
+   var alt=S.L<4&&S.used[LV[S.L+1]]+PER<=BANK[LV[S.L+1]].length?S.L+1:(S.L>0&&S.used[LV[S.L-1]]+PER<=BANK[LV[S.L-1]].length?S.L-1:-1);
+   if(alt<0){return startReading()} S.L=alt;lv=LV[S.L]}
+ var start=S.used[lv];S.used[lv]+=PER;
+ S.stageQs=BANK[lv].slice(start,start+PER).map(function(q){return {q:q[0],ok:q[1][0],opts:shuffle(q[1]),topic:q[2],lv:lv}});
+ S.qi=0;question()}
+function question(){
+ var total=STAGES*PER,done=S.stage*PER+S.qi,it=S.stageQs[S.qi];
+ render(steps(1)+'<span class="kicker">Часть 2 из 4 · грамматика и лексика</span>'+
+ '<div class="qhead"><span>Вопрос '+(done+1)+' из '+total+'</span><span>Выберите верный вариант</span></div><div class="bar"><i style="width:'+(done/total*100)+'%"></i></div>'+
+ '<p class="q">'+esc(it.q).replace("___",'<span class="gap"></span>')+'</p>'+
+ '<div class="opts">'+it.opts.map(function(o,i){return '<label class="opt"><input type="radio" name="a" value="'+i+'"><span>'+esc(o)+'</span></label>'}).join("")+
+ '<label class="opt"><input type="radio" name="a" value="-1"><span><i>Не знаю</i></span></label></div>'+
+ '<div class="nav"><span></span><button class="btn" id="next" disabled>Далее</button></div>');
+ var nb=document.getElementById("next");
+ [].forEach.call(document.querySelectorAll('input[name=a]'),function(r){r.onchange=function(){nb.disabled=false}});
+ nb.onclick=function(){var v=+document.querySelector('input[name=a]:checked').value;
+  var ans=v<0?"(не знаю)":it.opts[v];S.answers.push({lv:it.lv,q:it.q,ans:ans,ok:ans===it.ok,right:it.ok,topic:it.topic});
+  S.qi++;if(S.qi<PER)return question();
+  var sc=S.answers.slice(-PER).filter(function(a){return a.ok}).length;S.stages.push({lv:LV[S.L],score:sc});
+  if(sc>=5&&S.L<4)S.L++;else if(sc<=2&&S.L>0)S.L--;
+  S.stage++;if(S.stage<STAGES)nextStage();else startReading()}}
+function grammarLevel(){
+ var by={};S.answers.forEach(function(a){by[a.lv]=by[a.lv]||[0,0];by[a.lv][1]++;if(a.ok)by[a.lv][0]++});
+ var g=0;for(var i=0;i<5;i++){var b=by[LV[i]];if(b&&b[0]/b[1]>=.6)g=i}
+ var low=by.A1&&by.A1[0]/by.A1[1]<.5;return {g:g,by:by,low:!!low}}
+function band(g){return g<=1?"low":g==2?"mid":"high"}
+
+/* ---------- 3. чтение ---------- */
+function startReading(){S.gl=grammarLevel();S.read=band(S.gl.g);S.rAns=[];reading()}
+function qblock(qs,name){return qs.map(function(q,k){var o=shuffle(q[1]);q._o=o;return '<div class="rq"><p>'+(k+1)+'. '+esc(q[0])+'</p><div class="opts">'+o.map(function(x,i){return '<label class="opt"><input type="radio" name="'+name+k+'" value="'+i+'"><span>'+esc(x)+'</span></label>'}).join("")+'</div></div>'}).join("")}
+function collect(qs,name){var out=[];for(var k=0;k<qs.length;k++){var c=document.querySelector('input[name='+name+k+']:checked');if(!c)return null;var a=qs[k]._o[+c.value];out.push({q:qs[k][0],ans:a,ok:a===qs[k][1][0],right:qs[k][1][0]})}return out}
+function reading(){var R=READ[S.read];
+ render(steps(2)+'<span class="kicker">Часть 3 из 4 · чтение</span><h2>'+R.title+'</h2><p class="muted">Прочитайте текст и ответьте на вопросы.</p><div class="text" lang="en">'+R.text+'</div>'+qblock(R.q,"r")+
+ '<div class="err" id="err"></div><div class="nav"><span></span><button class="btn" id="next">Далее</button></div>');
+ document.getElementById("next").onclick=function(){var a=collect(R.q,"r");if(!a){document.getElementById("err").textContent="Пожалуйста, ответьте на все вопросы.";return}S.rAns=a;startListening()}}
+
+/* ---------- 4. аудирование ---------- */
+var voices=[];function loadV(){voices=window.speechSynthesis?speechSynthesis.getVoices():[]}
+if(window.speechSynthesis){loadV();speechSynthesis.onvoiceschanged=loadV}
+function pick(male){var en=voices.filter(function(v){return /^en(-|_)/i.test(v.lang)});var gb=en.filter(function(v){return /GB/i.test(v.lang)});var pool=gb.length?gb:en;
+ var M=/male|daniel|arthur|oliver|george|ryan|thomas|fred|alex|aaron|guy/i,F=/female|serena|kate|martha|libby|sonia|samantha|karen|moira|tessa|victoria|susan|emma|zira|hazel/i;
+ var r=pool.filter(function(v){return male?(M.test(v.name)&&!/female/i.test(v.name)):F.test(v.name)});return r[0]||pool[male?0:pool.length-1]||null}
+var MAXPLAYS=2;
+function startListening(){var rs=S.rAns.filter(function(a){return a.ok}).length;
+ S.listen=band(S.gl.g);S.lAns=[];S.plays=0;listening()}
+function listening(){var L=LISTEN[S.listen];
+ render(steps(3)+'<span class="kicker">Часть 4 из 4 · аудирование</span><h2>'+L.title+'</h2><p class="muted">Нажмите ▶ и послушайте разговор. Его можно прослушать два раза. Затем ответьте на вопросы.</p>'+
+ '<div class="player"><button class="play" id="play" aria-label="Слушать">▶</button><div><b id="pst">Прослушиваний: 0 из '+MAXPLAYS+'</b><small>Говорят Tom и Rachel</small></div><audio id="au" preload="auto" src="'+AUDIO[S.listen]+'"></audio></div>'+qblock(L.q,"l")+
+ '<div class="err" id="err"></div><div class="nav"><span></span><button class="btn" id="next">Узнать результат</button></div>');
+ var au=document.getElementById("au"),pb=document.getElementById("play"),pst=document.getElementById("pst"),hasFile=false;
+ au.addEventListener("canplaythrough",function(){hasFile=true});au.addEventListener("error",function(){hasFile=false});
+ au.onended=function(){pb.textContent="▶";upd()};
+ function upd(){pst.textContent="Прослушиваний: "+S.plays+" из "+MAXPLAYS;if(S.plays>=MAXPLAYS)pb.disabled=true}
+ pb.onclick=function(){if(S.plays>=MAXPLAYS)return;
+  if(hasFile){if(!au.paused)return;S.plays++;pb.textContent="♪";au.currentTime=0;au.play();upd();return}
+  if(!window.speechSynthesis){document.getElementById("err").textContent="Ваш браузер не воспроизводит звук. Попробуйте открыть страницу в Safari или Chrome.";return}
+  if(speechSynthesis.speaking)return;S.plays++;pb.textContent="♪";upd();
+  var tv=pick(true),rv=pick(false);
+  L.lines.forEach(function(ln,i){var u=new SpeechSynthesisUtterance(ln[1]);var v=ln[0]=="T"?tv:rv;if(v){u.voice=v;u.lang=v.lang}else u.lang="en-GB";
+   u.rate=L.rate;u.pitch=ln[0]=="T"?(tv===rv?.8:1):(tv===rv?1.25:1);if(i==L.lines.length-1)u.onend=function(){pb.textContent="▶";upd()};speechSynthesis.speak(u)})};
+ document.getElementById("next").onclick=function(){var a=collect(L.q,"l");if(!a){document.getElementById("err").textContent="Пожалуйста, ответьте на все вопросы.";return}
+  if(window.speechSynthesis)speechSynthesis.cancel();au.pause();S.lAns=a;result()}}
+
+/* ---------- 5. результат ---------- */
+function skill(b,sc){var base={low:.5,mid:2,high:3.5}[b];return Math.max(0,Math.min(4,base+(sc-2.5)*.6))}
+function result(){
+ var G=S.gl.g,rs=S.rAns.filter(function(a){return a.ok}).length,ls=S.lAns.filter(function(a){return a.ok}).length;
+ var Rk=skill(S.read,rs),Lk=skill(S.listen,ls);var fin=Math.round((2*G+Rk+Lk)/4);fin=Math.max(0,Math.min(4,fin));
+ var lv=LV[fin],gOk=S.answers.filter(function(a){return a.ok}).length;
+ var wrong={},right={};S.answers.forEach(function(a){if(a.ok){if(LV.indexOf(a.lv)<=fin+1)right[a.topic]=1}else wrong[a.topic]=1});
+ var weakT=Object.keys(wrong),strongT=Object.keys(right).filter(function(t){return !wrong[t]});
+ var plus=[],minus=[];
+ if(strongT.length)plus.push("Уверенно: "+strongT.slice(0,6).join(", "));
+ if(rs>=3)plus.push("Хорошо понимаете письменный текст своего уровня");else minus.push("Понимание текста: стоит больше читать адаптированные тексты своего уровня");
+ if(ls>=3)plus.push("Хорошо воспринимаете речь на слух");else minus.push("Аудирование: полезно регулярно слушать английскую речь в своём темпе");
+ if(weakT.length)minus.unshift("Грамматика и лексика: "+weakT.slice(0,8).join(", "));
+ if(!plus.length)plus.push("Вы уже сделали первый шаг — прошли тест до конца. С этого и начнём!");
+ S.res={lv:lv,G:LV[G],gOk:gOk,gN:S.answers.length,rs:rs,ls:ls,plus:plus,minus:minus};
+ render(steps(4)+'<span class="kicker">Ваш ориентировочный результат</span><h2>'+esc(S.form.name)+', спасибо, что прошли тест!</h2>'+
+ '<div class="lvl">'+lv+'</div><p><b>'+LVNAME[lv]+' уровень</b></p><p>'+LVDESC[lv]+'</p>'+
+ '<div class="res-grid"><div><b>'+gOk+' / '+S.answers.length+'</b><span>грамматика и лексика</span></div><div><b>'+rs+' / 4</b><span>чтение</span></div><div><b>'+ls+' / 4</b><span>аудирование</span></div></div>'+
+ '<h3 style="font-weight:400;font-style:italic;color:var(--orange);font-size:22px;margin:22px 0 4px">Ваши сильные стороны</h3><ul class="list">'+plus.map(function(x){return '<li>'+esc(x)+'</li>'}).join("")+'</ul>'+
+ (minus.length?'<h3 style="font-weight:400;font-style:italic;color:var(--orange);font-size:22px;margin:18px 0 4px">Над чем стоит поработать</h3><ul class="list">'+minus.map(function(x){return '<li>'+esc(x)+'</li>'}).join("")+'</ul>':'')+
+ '<div class="note">Это ориентировочный результат по грамматике, лексике, чтению и аудированию. Говорение и письмо оценит преподаватель на пробном занятии. Помните: подтвердить ваш уровень могут только наши преподаватели-лингвисты.</div>'+
+ '<div class="send" id="send">Отправляем ваши ответы преподавателю…</div>'+
+ '<div class="nav"><a class="btn o" href="../">На главную</a><a class="btn" href="https://wa.me/'+WA+'" target="_blank" rel="noopener">Записаться на пробное занятие</a></div>');
+ send()}
+function report(){var f=S.form,r=S.res;
+ var lines=["Имя: "+f.name,"Возраст: "+f.age,"Опыт: "+(f.exp.join("; ")||"—"),"Как давно: "+(f.when||"—"),"Слабые стороны: "+(f.weak.concat(f.weako?[f.weako]:[]).join("; ")||"—"),"Сильные стороны: "+(f.str||"—"),"Что подтянуть: "+(f.goal||"—"),"Ожидания: "+(f.expect||"—"),"",
+  "ОРИЕНТИРОВОЧНЫЙ УРОВЕНЬ: "+r.lv+" ("+LVNAME[r.lv]+")","Грамматика и лексика: "+r.gOk+"/"+r.gN+" (уровень по грамматике: "+r.G+")","Чтение: "+r.rs+"/4 (текст "+S.read+")","Аудирование: "+r.ls+"/4 (запись "+S.listen+")","Блоки теста: "+S.stages.map(function(s){return s.lv+" "+s.score+"/6"}).join(", "),"",
+  "Сильные: "+r.plus.join(" | "),"Поработать: "+(r.minus.join(" | ")||"—"),"","ОШИБКИ В ГРАММАТИКЕ:"];
+ S.answers.filter(function(a){return !a.ok}).forEach(function(a){lines.push("["+a.lv+"] "+a.q+" — ответ: "+a.ans+"; верно: "+a.right)});
+ S.rAns.concat(S.lAns).filter(function(a){return !a.ok}).forEach(function(a,i){if(!i)lines.push("","ОШИБКИ В ЧТЕНИИ/АУДИРОВАНИИ:");lines.push(a.q+" — ответ: "+a.ans+"; верно: "+a.right)});
+ return lines.join("\n")}
+function send(){var box=document.getElementById("send"),f=S.form,r=S.res,txt=report();
+ var data={access_key:ACCESS_KEY,subject:"Тест We Talk: "+f.name+", "+f.age+" — "+r.lv,from_name:"We Talk — тест уровня",botcheck:"",
+  "Имя":f.name,"Возраст":f.age,"Уровень":r.lv+" ("+LVNAME[r.lv]+")","Отчёт":txt};
+ fetch("https://api.web3forms.com/submit",{method:"POST",headers:{"Content-Type":"application/json",Accept:"application/json"},body:JSON.stringify(data)})
+ .then(function(x){return x.json()}).then(function(j){if(j&&j.success){box.className="send ok";box.textContent="✓ Ваши ответы отправлены преподавателю. Мы свяжемся с вами, чтобы договориться о пробном занятии."}else throw 0})
+ .catch(function(){box.className="send bad";var wa="https://wa.me/"+WA+"?text="+encodeURIComponent("Здравствуйте! Я прошла тест на сайте We Talk.\n\n"+txt.slice(0,1800));
+  box.innerHTML='Не получилось отправить ответы автоматически. <button class="btn o" id="retry" style="margin:10px 8px 0 0;padding:10px 18px">Попробовать ещё раз</button><a class="btn" style="margin-top:10px;padding:10px 18px" target="_blank" rel="noopener" href="'+wa+'">Отправить в WhatsApp</a>';
+  document.getElementById("retry").onclick=function(){box.className="send";box.textContent="Отправляем…";send()}})}
+intro();
+})();
+</script>
+</body>
+</html>
