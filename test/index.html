@@ -360,6 +360,7 @@ high:{title:"Подкаст о четырёхдневной рабочей не�
     ["How does Rachel think the idea will spread?",["Gradually, sector by sector","Overnight in all industries","It won't spread at all","Only in healthcare"]]]}};
 
 var WEAK=["Плохо понимаю речь на слух","Читаю с неправильным произношением","Знаю слова, но не могу говорить — не хватает разговорной практики","Не умею грамотно писать и вести переписку на английском (пунктуация, письма, сообщения)","Слова плохо запоминаются, мало работаю с лексикой","Не могу разобраться в материалах: смотрю всё подряд на YouTube (влоги, Vogue, Harper's Bazaar, GQ), а это рассчитано на носителей языка","Сложно с грамматикой: путаюсь во временах и правилах"];
+var FMT=["Индивидуально","В мини-группе (до 4 человек)","Пока не решила, хочу посоветоваться с преподавателем"];
 var EXP=["Не было, начинаю с нуля","Учила в школе","Учила в университете","Ходила на курсы","Занималась с репетитором","Учила самостоятельно (приложения, YouTube, книги)"];
 
 var S={step:0,form:{},stage:0,L:2,used:{A1:0,A2:0,B1:0,B2:0,C1:0},stageQs:[],qi:0,answers:[],stages:[],read:null,listen:null,rAns:[],lAns:[],plays:0};
@@ -386,6 +387,7 @@ var f=S.form;
 render(steps(0)+'<span class="kicker">Часть 1 из 4</span><h2>Немного о вас</h2>'+
 '<label class="f" for="nm">Ваше имя</label><input type="text" id="nm" autocomplete="given-name" value="'+esc(f.name||"")+'">'+
 '<label class="f" for="ag">Возраст</label><input type="number" id="ag" inputmode="numeric" min="5" max="99" value="'+esc(f.age||"")+'">'+
+'<label class="f">В каком формате вы хотели бы заниматься?</label><div class="opts">'+FMT.map(function(e){return '<label class="opt"><input type="radio" name="fmt" value="'+esc(e)+'"'+(f.fmt===e?" checked":"")+'><span>'+e+'</span></label>'}).join("")+'</div>'+
 '<label class="f">Был ли у вас опыт изучения английского? <small>можно выбрать несколько</small></label><div class="opts">'+EXP.map(function(e,i){return '<label class="opt"><input type="checkbox" name="exp" value="'+esc(e)+'"'+((f.exp||[]).indexOf(e)>-1?" checked":"")+'><span>'+e+'</span></label>'}).join("")+'</div>'+
 '<label class="f" for="when">Как давно вы занимались? <small>например: в школе 10 лет назад, курсы в прошлом году</small></label><input type="text" id="when" value="'+esc(f.when||"")+'">'+
 '<label class="f">Как вы считаете, какие у вас слабые стороны? <small>можно выбрать несколько</small></label><div class="opts">'+WEAK.map(function(e){return '<label class="opt"><input type="checkbox" name="weak" value="'+esc(e)+'"'+((f.weak||[]).indexOf(e)>-1?" checked":"")+'><span>'+e+'</span></label>'}).join("")+'</div>'+
@@ -401,7 +403,7 @@ document.getElementById("next").onclick=function(){save();
  startGrammar()};
 function save(){var g=function(id){return document.getElementById(id).value.trim()};
  var c=function(n){return [].map.call(document.querySelectorAll('input[name='+n+']:checked'),function(x){return x.value})};
- S.form={name:g("nm"),age:g("ag"),exp:c("exp"),when:g("when"),weak:c("weak"),weako:g("weako"),str:g("str"),goal:g("goal"),expect:g("expect")}}}
+ var fm=document.querySelector('input[name=fmt]:checked');S.form={name:g("nm"),age:g("ag"),fmt:fm?fm.value:"",exp:c("exp"),when:g("when"),weak:c("weak"),weako:g("weako"),str:g("str"),goal:g("goal"),expect:g("expect")}}}
 
 /* ---------- 2. адаптивная грамматика: 5 блоков по 6 вопросов ---------- */
 var STAGES=5,PER=6;
@@ -501,7 +503,7 @@ function result(){
  '<div class="nav"><a class="btn o" href="../">На главную</a><a class="btn" href="https://wa.me/'+WA+'" target="_blank" rel="noopener">Записаться на пробное занятие</a></div>');
  send()}
 function report(){var f=S.form,r=S.res;
- var lines=["Имя: "+f.name,"Возраст: "+f.age,"Опыт: "+(f.exp.join("; ")||"—"),"Как давно: "+(f.when||"—"),"Слабые стороны: "+(f.weak.concat(f.weako?[f.weako]:[]).join("; ")||"—"),"Сильные стороны: "+(f.str||"—"),"Что подтянуть: "+(f.goal||"—"),"Ожидания: "+(f.expect||"—"),"",
+ var lines=["Имя: "+f.name,"Возраст: "+f.age,"Формат обучения: "+(f.fmt||"—"),"Опыт: "+(f.exp.join("; ")||"—"),"Как давно: "+(f.when||"—"),"Слабые стороны: "+(f.weak.concat(f.weako?[f.weako]:[]).join("; ")||"—"),"Сильные стороны: "+(f.str||"—"),"Что подтянуть: "+(f.goal||"—"),"Ожидания: "+(f.expect||"—"),"",
   "ОРИЕНТИРОВОЧНЫЙ УРОВЕНЬ: "+r.lv+" ("+LVNAME[r.lv]+")","Грамматика и лексика: "+r.gOk+"/"+r.gN+" (уровень по грамматике: "+r.G+")","Чтение: "+r.rs+"/4 (текст "+S.read+")","Аудирование: "+r.ls+"/4 (запись "+S.listen+")","Блоки теста: "+S.stages.map(function(s){return s.lv+" "+s.score+"/6"}).join(", "),"",
   "Сильные: "+r.plus.join(" | "),"Поработать: "+(r.minus.join(" | ")||"—"),"","ОШИБКИ В ГРАММАТИКЕ:"];
  S.answers.filter(function(a){return !a.ok}).forEach(function(a){lines.push("["+a.lv+"] "+a.q+" — ответ: "+a.ans+"; верно: "+a.right)});
@@ -509,7 +511,7 @@ function report(){var f=S.form,r=S.res;
  return lines.join("\n")}
 function send(){var box=document.getElementById("send"),f=S.form,r=S.res,txt=report();
  var data={access_key:ACCESS_KEY,subject:"Тест We Talk: "+f.name+", "+f.age+" — "+r.lv,from_name:"We Talk — тест уровня",botcheck:"",
-  "Имя":f.name,"Возраст":f.age,"Уровень":r.lv+" ("+LVNAME[r.lv]+")","Отчёт":txt};
+  "Имя":f.name,"Возраст":f.age,"Формат":f.fmt||"—","Уровень":r.lv+" ("+LVNAME[r.lv]+")","Отчёт":txt};
  fetch("https://api.web3forms.com/submit",{method:"POST",headers:{"Content-Type":"application/json",Accept:"application/json"},body:JSON.stringify(data)})
  .then(function(x){return x.json()}).then(function(j){if(j&&j.success){box.className="send ok";box.textContent="✓ Ваши ответы отправлены преподавателю. Мы свяжемся с вами, чтобы договориться о пробном занятии."}else throw 0})
  .catch(function(){box.className="send bad";var wa="https://wa.me/"+WA+"?text="+encodeURIComponent("Здравствуйте! Я прошла тест на сайте We Talk.\n\n"+txt.slice(0,1800));
