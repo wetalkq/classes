@@ -70,6 +70,11 @@ input:focus,textarea:focus{outline:2px solid var(--orange);outline-offset:1px;bo
 .res-grid span{font-size:14px;color:var(--muted)}
 ul.list{padding-left:20px;margin:6px 0 16px}
 ul.list li{margin:4px 0}
+.mgr{margin-top:26px;padding:20px 18px;background:var(--paper2);border-top:3px solid var(--orange)}
+.mgr p{margin:0 0 12px;font-style:italic}
+.btn.mg{display:block;width:100%;background:var(--orange);border-color:var(--orange);color:#fff;line-height:1.3}
+.btn.mg small{display:block;font-weight:400;letter-spacing:.06em;text-transform:none;font-style:italic;font-size:13px;margin-top:4px}
+.btn.mg:hover{background:var(--ink);border-color:var(--ink)}
 .send{margin-top:22px;padding:16px 18px;border:1px dashed var(--line);font-size:15px}
 .send.ok{border-color:#2e7d32;color:#2e7d32;border-style:solid}
 .send.bad{border-color:#b00020}
@@ -500,6 +505,7 @@ function result(){
  (minus.length?'<h3 style="font-weight:400;font-style:italic;color:var(--orange);font-size:22px;margin:18px 0 4px">Над чем стоит поработать</h3><ul class="list">'+minus.map(function(x){return '<li>'+esc(x)+'</li>'}).join("")+'</ul>':'')+
  '<div class="note">Это ориентировочный результат по грамматике, лексике, чтению и аудированию. Говорение и письмо оценит преподаватель на пробном занятии. Помните: подтвердить ваш уровень могут только наши преподаватели-лингвисты.</div>'+
  '<div class="send" id="send">Отправляем ваши ответы преподавателю…</div>'+
+ '<div class="mgr"><p>Остались вопросы? Менеджер поможет выбрать формат и расписание.</p><a class="btn mg" href="https://wa.me/'+WA+'?text='+encodeURIComponent("Здравствуйте! Я прошла тест на сайте We Talk (уровень "+lv+"). Хотела бы получить консультацию.")+'" target="_blank" rel="noopener">Связаться с менеджером<small>для дальнейшей консультации</small></a></div>'+
  '<div class="nav"><a class="btn o" href="../">На главную</a><a class="btn" href="https://wa.me/'+WA+'" target="_blank" rel="noopener">Записаться на пробное занятие</a></div>');
  send()}
 function report(){var f=S.form,r=S.res;
