@@ -22,7 +22,7 @@ nav.top{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(22,31,19,
 .nvb{font:inherit;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;background:none;border:0;padding:6px 1px;color:var(--beige);cursor:pointer;display:flex;gap:5px;align-items:center}
 .ch{width:9px;height:6px;flex:none;transition:transform .25s}
 [aria-expanded=true]>.ch{transform:rotate(180deg)}
-.dm{position:absolute;top:36px;left:-10px;min-width:240px;background:var(--beige);background-image:var(--lin);color:var(--ink);padding:4px 0;box-shadow:0 18px 34px rgba(0,0,0,.4)}
+.dm{position:absolute;top:36px;left:-10px;min-width:240px;background:var(--beige);color:var(--ink);padding:4px 0;box-shadow:0 18px 34px rgba(0,0,0,.4)}
 .dd:nth-child(n+3) .dm{left:auto;right:-10px}
 .dm a{display:block;text-decoration:none;font-size:14.5px;padding:10px 16px;border-bottom:1px solid var(--line)}
 .dm a:last-child{border:0}
@@ -37,12 +37,21 @@ nav.top{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(22,31,19,
 .lead{font-size:14px;line-height:1.6;opacity:.9;margin:0 0 18px;max-width:330px}
 .hbtns{display:grid;gap:8px}
 .btn{display:block;text-decoration:none;font:inherit;font-size:10.5px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;padding:13px 14px;border:1px solid var(--beige);background:transparent;color:var(--beige);text-align:left;cursor:pointer}
-.btn.f{background:var(--beige);background-image:var(--lin);color:var(--ink)}
+.btn.f{background:var(--beige);color:var(--ink)}
 .btn.ink,.card .btn{border-color:var(--ink);color:var(--ink);background:transparent}
 .card .btn-k,.card .btn-g{display:inline-block;margin-top:10px}
 /* подложки */
-.card{background:var(--beige);background-image:var(--lin);color:var(--ink);padding:20px 18px 20px;margin:0 0 10px;scroll-margin-top:56px;box-shadow:0 10px 22px -14px rgba(0,0,0,.65)}
-.num{display:flex;align-items:baseline;gap:4px;margin:0 0 6px;color:var(--muted)}
+.card{background:var(--beige);color:var(--ink);padding:20px 18px 20px;margin:0 0 8px;scroll-margin-top:56px;box-shadow:0 10px 22px -14px rgba(0,0,0,.65)}
+.card{padding:0!important}
+.sh{display:flex;align-items:center;gap:12px;width:100%;font:inherit;text-align:left;background:none;border:0;color:var(--ink);padding:14px 18px 14px;cursor:pointer}
+.sht{flex:1;min-width:0;display:block}
+.sh .ch{width:12px;height:8px}
+.stt{display:block;font-style:italic;font-size:17px;line-height:1.25;margin-top:2px}
+.sh[aria-expanded=true]{border-bottom:1px solid var(--line)}
+.sbody{padding:14px 18px 18px}
+.sbody>*:first-child{margin-top:0}
+.gal{margin:10px -18px 0}
+.num{display:flex;align-items:baseline;gap:4px;margin:0;color:var(--muted)}
 .num .p{font-size:22px;line-height:1;font-style:italic}
 .num b{font-size:11px;letter-spacing:.12em;font-weight:400}
 .num .k{font-size:9.5px;letter-spacing:.26em;text-transform:uppercase;margin-left:8px}
@@ -138,13 +147,16 @@ table.lv{border-collapse:collapse;width:100%;font-size:11.5px;font-variant-numer
 .chb{display:flex;align-items:baseline;gap:10px;width:100%;font:inherit;background:none;border:0;color:var(--beige);padding:18px 2px 16px;cursor:pointer;text-align:left}
 .chb .cn{font-size:12px;letter-spacing:.3em;text-transform:uppercase}
 .chb{flex-wrap:wrap;row-gap:4px}.chb .cn{flex:1}
-.chb .cc{order:3;flex-basis:100%;display:flex;align-items:center;gap:3px;opacity:.7;font-size:11.5px;line-height:1.3}
+.chb .cc{order:3;flex-basis:100%;display:flex;align-items:center;gap:3px;opacity:.95;font-size:12.5px;font-weight:600;line-height:1.3;white-space:nowrap}
 .chb .cc .p{font-size:20px;font-style:italic;font-weight:300;opacity:.8;line-height:1}
 .chb .cc i{padding:0 3px}
 .chb .ch{width:12px;height:8px;align-self:center}
 .chbody{padding:2px 0 14px}
 .chaps{margin-top:22px}
 /* цитаты, цифры, финал */
+.card.qt{padding:20px 18px!important}
+.qt .num{margin:0 0 6px}
+.qt .btn{color:var(--orange);font-weight:600}
 .qt .qtx{font-style:italic;font-size:15px;line-height:1.5;margin:0 0 12px}
 .stats{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--lineL);border:1px solid var(--lineL);margin:14px 0 0}
 .stats div{background:var(--green);background-image:var(--cash);padding:12px 12px}
@@ -154,7 +166,7 @@ blockquote.q{margin:0;padding:26px 40px 24px 0;font-style:italic;font-size:16px;
 .final{padding:30px 0 30px}
 .final h2{font-weight:400;font-style:italic;font-size:20px;margin:0 0 6px}
 .final p{font-size:13.5px;opacity:.85;margin:0 0 14px}
-.final .btn{display:inline-block;background:var(--beige);background-image:var(--lin);color:var(--ink)}
+.final .btn{display:inline-block;background:var(--beige);color:var(--ink)}
 footer{border-top:1px solid var(--lineL);padding:20px 0 calc(30px + env(safe-area-inset-bottom,0px));font-size:12px;line-height:1.6;opacity:.85}
 .footrow{display:flex;flex-direction:column;gap:8px}
 .footlinks{display:flex;flex-direction:column;gap:2px}
@@ -210,20 +222,20 @@ footer .fn{color:inherit;opacity:.7}
 </header>
 <section class="card qt rv"><div class="num"><span class="p">(</span><b>!</b><span class="p">)</span><span class="k">перед пробным</span></div><p class="qtx">«Перед пробным занятием, пожалуйста, пройдите короткое тестирование — так преподаватель заранее узнает ваш уровень и цели»</p><a class="btn ink" href="../test/">Пройти тестирование</a></section>
 <section class="stats rv"><div><b>1000+</b><span>Студенток за 10 лет</span></div><div><b>WOS</b><span>Результаты исследования методики вошли в научную статью, проиндексированную в Web of Science</span></div><div><b>A0–C1</b><span>Доводим с любого уровня</span></div><div><b>4</b><span>Человека максимум в группе</span></div></section>
-<div class="chaps"><div class="chap" id="ch-about"><button type="button" class="chb" aria-expanded="false"><span class="cn">О нас</span><span class="cc"><span class="p">(</span><i>помощь, о нас, преподаватели, география</i><span class="p">)</span></span><svg class="ch" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="chbody" hidden><section class="card rv" id="goals"><div class="num"><span class="p">(</span><b>01</b><span class="p">)</span><span class="k">Английский с WeTalk</span></div>
+<div class="chaps"><div class="chap" id="ch-about"><button type="button" class="chb" aria-expanded="false"><span class="cn">О нас</span><span class="cc"><span class="p">(</span><i>помощь, о нас, преподаватели, география</i><span class="p">)</span></span><svg class="ch" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="chbody" hidden><section class="card rv" id="goals"><button type="button" class="sh" aria-expanded="false"><span class="sht"><span class="num"><span class="p">(</span><b>01</b><span class="p">)</span><span class="k">Английский с WeTalk</span></span><span class="stt">Чем мы можем помочь</span></span><svg class="ch" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="sbody" hidden>
 
-<h3 class="h2">Чем мы можем помочь</h3>
+
 <div class="cols c4">
 <div class="col"><span class="dot"></span><h4 class="semi">Язык для общения</h4><p>Разговорный английский для повседневных ситуаций: свободно говорить, понимать собеседника и не бояться ошибок.</p></div>
 <div class="col"><span class="dot"></span><h4 class="semi">Язык для переезда</h4><p>Уверенность в новой стране: учёба, работа, документы, быт и знакомства на английском.</p></div>
 <div class="col"><span class="dot"></span><h4 class="semi">Язык для путешествий</h4><p>Английский, который поможет свободно путешествовать и чувствовать себя уверенно в любой точке мира.</p></div>
 <div class="col"><span class="dot"></span><h4 class="semi">Бизнес-английский</h4><p>Для работы, переговоров, деловой переписки и карьерного роста.</p></div>
 </div>
-</section><section class="card rv" id="about"><div class="num"><span class="p">(</span><b>02</b><span class="p">)</span><span class="k">О нас</span></div>
+</div></section><section class="card rv" id="about"><button type="button" class="sh" aria-expanded="false"><span class="sht"><span class="num"><span class="p">(</span><b>02</b><span class="p">)</span><span class="k">О нас</span></span><span class="stt">Мы — женское комьюнити</span></span><svg class="ch" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="sbody" hidden>
 
 <div class="cols2">
 <div>
-<h3 class="h2">Мы — женское комьюнити</h3>
+
 <p class="body">We Talk — языковая школа, где методика преподавания сочетает современные подходы с проверенными приёмами классических методов. Результаты исследования этой методики легли в основу научной статьи, проиндексированной в базе Web of Science.</p>
 </div>
 <div class="badges">
@@ -233,37 +245,37 @@ footer .fn{color:inherit;opacity:.7}
 <span class="badge">Прямой метод</span>
 </div>
 </div>
-</section><section class="card rv" id="teachers"><div class="num"><span class="p">(</span><b>03</b><span class="p">)</span><span class="k">Обучение</span></div>
+</div></section><section class="card rv" id="teachers"><button type="button" class="sh" aria-expanded="false"><span class="sht"><span class="num"><span class="p">(</span><b>03</b><span class="p">)</span><span class="k">Обучение</span></span><span class="stt">Преподаватели We Talk</span></span><svg class="ch" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="sbody" hidden>
 
 <div class="cols2 one">
 <div>
-<h3 class="h2">Преподаватели We Talk</h3>
+
 <p class="body">Мы — лингвисты, выпускницы факультета иностранных языков Чеченского государственного университета. У нас подтверждённый уровень английского C1 и около 10 лет преподавательского опыта.</p>
 <p class="body">За эти годы мы поработали в центре раннего развития, гимназии и языковых школах, вели частную практику и курировали начинающих преподавателей. Мы участвовали в собеседованиях при найме (job interview), а также в устных собеседованиях ОГЭ и ЕГЭ в качестве экзаменаторов.</p>
 <p class="body">В нашем опыте — обучение по программе Erasmus+ в университете Фехты (Германия), а также разговорный и книжный клубы на английском в Национальной библиотеке Чеченской Республики. И мы продолжаем учиться: регулярно повышаем квалификацию на международных образовательных платформах — edX (в том числе дистанционный курс Harvard University), Udemy и Open University (Великобритания).</p>
 </div>
 </div>
-</section><section class="card rv" id="geo"><div class="num"><span class="p">(</span><b>04</b><span class="p">)</span><span class="k">География</span></div>
+</div></section><section class="card rv" id="geo"><button type="button" class="sh" aria-expanded="false"><span class="sht"><span class="num"><span class="p">(</span><b>04</b><span class="p">)</span><span class="k">География</span></span><span class="stt">Откуда наши студентки</span></span><svg class="ch" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="sbody" hidden>
 
-<h3 class="h2 sm">Откуда наши студентки</h3>
+
 <div class="tiles c4">
 <div class="tile"><h4>Россия</h4><p>Чечня, Дагестан, Ингушетия и другие регионы</p></div>
 <div class="tile s"><h4>Европа</h4><p>Беларусь, Германия, Великобритания, Греция, Португалия, Норвегия</p></div>
 <div class="tile k"><h4>Ближний Восток и Азия</h4><p>ОАЭ, Бахрейн, Саудовская Аравия, Китай</p></div>
 <div class="tile"><h4>Северная Америка</h4><p>США</p></div>
 </div>
-</section></div></div><blockquote class="q rv">«Мы создаём пространство, где женщины учатся говорить <span class="nb">по-английски</span> уверенно и без страха ошибок»</blockquote><div class="chap" id="ch-learn"><button type="button" class="chb" aria-expanded="false"><span class="cn">Обучение</span><span class="cc"><span class="p">(</span><i>методика, платформа, Telegram, бонус к лексике</i><span class="p">)</span></span><svg class="ch" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="chbody" hidden><section class="card rv" id="how"><div class="num"><span class="p">(</span><b>05</b><span class="p">)</span><span class="k">Методика</span></div>
+</div></section></div></div><blockquote class="q rv">«Мы создаём пространство, где женщины учатся говорить <span class="nb">по-английски</span> уверенно и без страха ошибок»</blockquote><div class="chap" id="ch-learn"><button type="button" class="chb" aria-expanded="false"><span class="cn">Обучение</span><span class="cc"><span class="p">(</span><i>методика, платформа, Telegram, бонус к лексике</i><span class="p">)</span></span><svg class="ch" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="chbody" hidden><section class="card rv" id="how"><button type="button" class="sh" aria-expanded="false"><span class="sht"><span class="num"><span class="p">(</span><b>05</b><span class="p">)</span><span class="k">Методика</span></span><span class="stt">Как мы преподаём</span></span><svg class="ch" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="sbody" hidden>
 
-<h3 class="h2">Как мы преподаём</h3>
+
 <div class="tiles c4">
 <div class="tile"><h4 class="semi">Коммуникативный подход</h4><p>Фокус на практике языка, ситуации из жизни, без зубрёжки.</p></div>
 <div class="tile s"><h4 class="semi"><span class="nb">Task-Based</span> Learning</h4><p>Задачно-ориентированное обучение: мотивация и критическое мышление.</p></div>
 <div class="tile k"><h4 class="semi">Аудио-лингвальный метод</h4><p>Развитие слуха и беглости речи через тематические подкасты, закрепление грамматики и лексики в контексте.</p></div>
 <div class="tile"><h4 class="semi">Прямой метод</h4><p>Усвоение языка через практику и погружение в языковую среду.</p></div>
 </div>
-</section><section class="card rv" id="platform"><div class="num"><span class="p">(</span><b>06</b><span class="p">)</span><span class="k">Платформа</span></div>
+</div></section><section class="card rv" id="platform"><button type="button" class="sh" aria-expanded="false"><span class="sht"><span class="num"><span class="p">(</span><b>06</b><span class="p">)</span><span class="k">Платформа</span></span><span class="stt">Вся учёба — в личном кабинете</span></span><svg class="ch" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="sbody" hidden>
 
-<h3 class="h2">Вся учёба — в личном кабинете</h3>
+
 <p class="body">Занятия проходят на интерактивной платформе 2EASY: у каждой студентки есть собственный кабинет, где собрано всё необходимое для учёбы.</p>
 <div class="tiles c3">
 <div class="tile"><h4 class="semi">Личный кабинет</h4><p>Уроки, задания и материалы собраны в одном месте.</p></div>
@@ -274,15 +286,15 @@ footer .fn{color:inherit;opacity:.7}
 <div class="tile s"><h4 class="semi">Видео, аудио и упражнения</h4><p>Десятки упражнений, видео- и аудиоматериалы для увлекательного и эффективного обучения.</p></div>
 </div>
 <button aria-expanded="false" class="more" type="button"><span>Посмотреть, как выглядит платформа</span><svg aria-hidden="true" class="ch" viewbox="0 0 10 6"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.3"></path></svg></button><div class="gal" hidden=""><div class="gal-track"><figure><button aria-label="Открыть фото" class="ph" data-g="pl" data-i="0" type="button"><img alt="Личный кабинет" loading="lazy" src="../wetalk-img/pl-01.webp"/></button><figcaption>Личный кабинет</figcaption></figure><figure><button aria-label="Открыть фото" class="ph" data-g="pl" data-i="1" type="button"><img alt="Свой словарь" loading="lazy" src="../wetalk-img/pl-02.webp"/></button><figcaption>Свой словарь</figcaption></figure><figure><button aria-label="Открыть фото" class="ph" data-g="pl" data-i="2" type="button"><img alt="Новая лексика" loading="lazy" src="../wetalk-img/pl-03.webp"/></button><figcaption>Новая лексика</figcaption></figure><figure><button aria-label="Открыть фото" class="ph" data-g="pl" data-i="3" type="button"><img alt="Видео прямо в уроке" loading="lazy" src="../wetalk-img/pl-04.webp"/></button><figcaption>Видео прямо в уроке</figcaption></figure><figure><button aria-label="Открыть фото" class="ph" data-g="pl" data-i="4" type="button"><img alt="Проверка понимания" loading="lazy" src="../wetalk-img/pl-05.webp"/></button><figcaption>Проверка понимания</figcaption></figure><figure><button aria-label="Открыть фото" class="ph" data-g="pl" data-i="5" type="button"><img alt="От общего к деталям" loading="lazy" src="../wetalk-img/pl-06.webp"/></button><figcaption>От общего к деталям</figcaption></figure><figure><button aria-label="Открыть фото" class="ph" data-g="pl" data-i="6" type="button"><img alt="True / False / Not given" loading="lazy" src="../wetalk-img/pl-07.webp"/></button><figcaption>True / False / Not given</figcaption></figure><figure><button aria-label="Открыть фото" class="ph" data-g="pl" data-i="7" type="button"><img alt="Заполни пропуски" loading="lazy" src="../wetalk-img/pl-08.webp"/></button><figcaption>Заполни пропуски</figcaption></figure><figure><button aria-label="Открыть фото" class="ph" data-g="pl" data-i="8" type="button"><img alt="Квизы по видео" loading="lazy" src="../wetalk-img/pl-09.webp"/></button><figcaption>Квизы по видео</figcaption></figure><figure><button aria-label="Открыть фото" class="ph" data-g="pl" data-i="9" type="button"><img alt="Темы для обсуждения" loading="lazy" src="../wetalk-img/pl-10.webp"/></button><figcaption>Темы для обсуждения</figcaption></figure><figure><button aria-label="Открыть фото" class="ph" data-g="pl" data-i="10" type="button"><img alt="Понятная домашка" loading="lazy" src="../wetalk-img/pl-11.webp"/></button><figcaption>Понятная домашка</figcaption></figure></div><div class="gal-hint">листайте вбок · нажмите на фото, чтобы открыть целиком</div></div>
-</section><section class="card rv" id="telegram"><div class="num"><span class="p">(</span><b>07</b><span class="p">)</span><span class="k">Telegram</span></div>
+</div></section><section class="card rv" id="telegram"><button type="button" class="sh" aria-expanded="false"><span class="sht"><span class="num"><span class="p">(</span><b>07</b><span class="p">)</span><span class="k">Telegram</span></span><span class="stt">Telegram-канал для домашки</span></span><svg class="ch" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="sbody" hidden>
 
-<h3 class="h2">Telegram-канал для домашки</h3>
+
 <p class="body">У каждой группы — свой Telegram-канал. Домашка, ссылки и вопросы к преподавателю лежат по порядку, без бардака.</p>
 <ul class="tg-list"><li class="tg-row"><div class="tg-text"><h4 class="semi">Свой канал у каждой группы</h4><p>В описании — расписание занятий и одно правило: домашку ищем по датам. Только ваша группа и ваш преподаватель.</p></div></li><li class="tg-row"><div class="tg-text"><h4 class="semi">Всё по датам</h4><p>Каждое задание — отдельный пост с датой урока. Нужна домашка от 26 августа? Находится за секунду, без прокрутки бесконечного чата.</p></div></li><li class="tg-row"><div class="tg-text"><h4 class="semi">Вопросы — прямо под домашкой</h4><p>Под каждым заданием открыты комментарии. Спросили — получили ответ преподавателя, и всё осталось на месте. В любой момент можно открыть урок и вспомнить, что обсуждали с преподавателем и одногруппницами.</p></div></li><li class="tg-row"><div class="tg-text"><h4 class="semi">Ничего не теряется</h4><p>Игры с урока, статьи, аудио и видео лежат в канале. Не нужно искать ссылку, которая утонула в переписке неделю назад.</p></div></li></ul><button aria-expanded="false" class="more" type="button"><span>Посмотреть, как выглядит Telegram-канал</span><svg aria-hidden="true" class="ch" viewbox="0 0 10 6"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.3"></path></svg></button><div class="gal" hidden=""><div class="gal-track"><figure><button aria-label="Открыть фото" class="ph" data-g="tg" data-i="0" type="button"><img alt="📌 Свой канал" loading="lazy" src="../wetalk-img/tg-1.webp"/></button><figcaption>📌 Свой канал</figcaption></figure><figure><button aria-label="Открыть фото" class="ph" data-g="tg" data-i="1" type="button"><img alt="📅 По датам" loading="lazy" src="../wetalk-img/tg-2.webp"/></button><figcaption>📅 По датам</figcaption></figure><figure><button aria-label="Открыть фото" class="ph" data-g="tg" data-i="2" type="button"><img alt="💬 34 комментария" loading="lazy" src="../wetalk-img/tg-3.webp"/></button><figcaption>💬 34 комментария</figcaption></figure><figure><button aria-label="Открыть фото" class="ph" data-g="tg" data-i="3" type="button"><img alt="🔗 Ссылки с урока" loading="lazy" src="../wetalk-img/tg-4.webp"/></button><figcaption>🔗 Ссылки с урока</figcaption></figure></div><div class="gal-hint">листайте вбок · нажмите на фото, чтобы открыть целиком</div></div>
 <div class="tg-final"><b>Всё чётко и системно</b><span>Платформа и Telegram — и больше никаких лишних вкладок.</span></div>
-</section><section class="card rv" id="minisites"><div class="num"><span class="p">(</span><b>08</b><span class="p">)</span><span class="k">Бонус от преподавателя</span></div>
+</div></section><section class="card rv" id="minisites"><button type="button" class="sh" aria-expanded="false"><span class="sht"><span class="num"><span class="p">(</span><b>08</b><span class="p">)</span><span class="k">Бонус от преподавателя</span></span><span class="stt">Дополнительная практика к каждому уроку</span></span><svg class="ch" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="sbody" hidden>
 
-<h3 class="h2">Дополнительная практика к каждому уроку</h3>
+
 <p class="body">Платформа закрывает все задачи. Но мы идём дальше: к темам уроков преподаватель готовит отдельные странички с упражнениями для дополнительной практики, чтобы новые слова точно остались в голове.</p>
 <div class="try">Попробуй сама — нажми на карточку</div>
 <div class="flips"><button aria-label="Карточка domineering: нажмите, чтобы перевернуть" aria-pressed="false" class="flip" type="button"><span class="flip-in"><span class="face front"><b>domineering</b><i>нажми, чтобы перевернуть</i></span><span class="face back"><b>властный, деспотичный</b><i>Her domineering boss controlled every small decision in the office.</i></span></span></button><button aria-label="Карточка isolated: нажмите, чтобы перевернуть" aria-pressed="false" class="flip" type="button"><span class="flip-in"><span class="face front"><b>isolated</b><i>нажми, чтобы перевернуть</i></span><span class="face back"><b>изолированный, одинокий</b><i>Working from a remote village, he felt completely isolated.</i></span></span></button><button aria-label="Карточка outsider: нажмите, чтобы перевернуть" aria-pressed="false" class="flip" type="button"><span class="flip-in"><span class="face front"><b>outsider</b><i>нажми, чтобы перевернуть</i></span><span class="face back"><b>чужак, изгой</b><i>As the only foreign student, she often felt like an outsider.</i></span></span></button></div>
@@ -292,9 +304,9 @@ footer .fn{color:inherit;opacity:.7}
 <div class="tile k"><h4 class="semi">С телефона за 5 минут</h4><p>Ссылка приходит в Telegram-канал группы: открыли в дороге и повторили слова.</p></div>
 </div>
 <button aria-expanded="false" class="more" type="button"><span>Посмотреть примеры заданий</span><svg aria-hidden="true" class="ch" viewbox="0 0 10 6"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.3"></path></svg></button><div class="gal" hidden=""><div class="gal-track"><figure><button aria-label="Открыть фото" class="ph" data-g="ms" data-i="0" type="button"><img alt="Карточки со словами" loading="lazy" src="../wetalk-img/ms-1.webp"/></button><figcaption>Карточки со словами</figcaption></figure><figure><button aria-label="Открыть фото" class="ph" data-g="ms" data-i="1" type="button"><img alt="Соедини слово с переводом" loading="lazy" src="../wetalk-img/ms-2.webp"/></button><figcaption>Соедини слово с переводом</figcaption></figure><figure><button aria-label="Открыть фото" class="ph" data-g="ms" data-i="2" type="button"><img alt="Словарь урока" loading="lazy" src="../wetalk-img/ms-3.webp"/></button><figcaption>Словарь урока</figcaption></figure><figure><button aria-label="Открыть фото" class="ph" data-g="ms" data-i="3" type="button"><img alt="Заполни пропуск" loading="lazy" src="../wetalk-img/ms-4.webp"/></button><figcaption>Заполни пропуск</figcaption></figure><figure><button aria-label="Открыть фото" class="ph" data-g="ms" data-i="4" type="button"><img alt="Карточка с примером" loading="lazy" src="../wetalk-img/ms-5.webp"/></button><figcaption>Карточка с примером</figcaption></figure></div><div class="gal-hint">листайте вбок · нажмите на фото, чтобы открыть целиком</div></div>
-</section></div></div><div class="chap" id="ch-time"><button type="button" class="chb" aria-expanded="false"><span class="cn">Сроки</span><span class="cc"><span class="p">(</span><i>сроки, трекинг уровня</i><span class="p">)</span></span><svg class="ch" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="chbody" hidden><section class="card rv" id="levels"><div class="num"><span class="p">(</span><b>09</b><span class="p">)</span><span class="k">Сроки</span></div>
+</div></section></div></div><div class="chap" id="ch-time"><button type="button" class="chb" aria-expanded="false"><span class="cn">Сроки</span><span class="cc"><span class="p">(</span><i>сроки, трекинг уровня</i><span class="p">)</span></span><svg class="ch" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="chbody" hidden><section class="card rv" id="levels"><button type="button" class="sh" aria-expanded="false"><span class="sht"><span class="num"><span class="p">(</span><b>09</b><span class="p">)</span><span class="k">Сроки</span></span><span class="stt">Сколько времени нужно на каждый уровень</span></span><svg class="ch" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="sbody" hidden>
 
-<h3 class="h2">Сколько времени нужно на каждый уровень</h3>
+
 <p class="body">Cambridge English публикует ориентиры: сколько учебных часов в среднем нужно, чтобы перейти на следующий уровень. Мы пересчитали их в месяцы при разном расписании.</p>
 <div class="lv-wrap"><table class="lv">
 <thead><tr><th scope="col">уровень</th><th scope="col">часов</th><th scope="col">3 ч/нед</th><th scope="col">2 ч/нед</th><th scope="col">1,5 ч/нед</th></tr></thead>
@@ -308,9 +320,9 @@ footer .fn{color:inherit;opacity:.7}
 <p class="body">Мы даём всё необходимое: платформу, материалы, домашние задания, бонусы к лексике и поддержку в Telegram. Но большая часть результата зависит от того, как вы занимаетесь между уроками: повторяете ли материал, выполняете ли домашние задания, следуете ли рекомендациям преподавателя.</p>
 <p class="body">Если заниматься раз в неделю и не повторять дома, изучение языка растянется на годы. Чем больше практики между уроками, тем быстрее результат.</p>
 </div>
-</section><section class="card rv" id="tracking"><div class="num"><span class="p">(</span><b>10</b><span class="p">)</span><span class="k">Трекинг уровня</span></div>
+</div></section><section class="card rv" id="tracking"><button type="button" class="sh" aria-expanded="false"><span class="sht"><span class="num"><span class="p">(</span><b>10</b><span class="p">)</span><span class="k">Трекинг уровня</span></span><span class="stt">Чек-листы по грамматике для каждого уровня</span></span><svg class="ch" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="sbody" hidden>
 
-<h3 class="h2">Чек-листы по грамматике для каждого уровня</h3>
+
 <p class="body">Мы создали Telegram-канал с чек-листами по грамматике — от A1 до C1, по международному стандарту CEFR. В них расписана вся грамматика, которая ждёт вас на каждом уровне: доступным, понятным языком и с примерами.</p>
 <p class="body">После каждой темы, пройденной с преподавателем, студентка сама отмечает её в чек-листе. Прогресс считается автоматически: сразу видно, сколько тем из скольких уже усвоено и сколько осталось до следующего уровня.</p>
 <div class="try">Попробуй сама — отметь тему</div>
@@ -325,17 +337,17 @@ footer .fn{color:inherit;opacity:.7}
 <div class="tile k"><h4 class="semi">Легко отмечать</h4><p>Одно касание — и тема отмечена. Прогресс сохраняется сам.</p></div>
 </div>
 <button aria-expanded="false" class="more" type="button"><span>Посмотреть чек-листы A1–C1</span><svg aria-hidden="true" class="ch" viewbox="0 0 10 6"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.3"></path></svg></button><div class="gal" hidden=""><div class="gal-track"><figure><button aria-label="Открыть фото" class="ph" data-g="tr" data-i="0" type="button"><img alt="A1 · 15 тем" loading="lazy" src="../wetalk-img/tr-1.webp"/></button><figcaption>A1 · 15 тем</figcaption></figure><figure><button aria-label="Открыть фото" class="ph" data-g="tr" data-i="1" type="button"><img alt="A2 · 19 тем" loading="lazy" src="../wetalk-img/tr-2.webp"/></button><figcaption>A2 · 19 тем</figcaption></figure><figure><button aria-label="Открыть фото" class="ph" data-g="tr" data-i="2" type="button"><img alt="B1 · 31 тема" loading="lazy" src="../wetalk-img/tr-3.webp"/></button><figcaption>B1 · 31 тема</figcaption></figure><figure><button aria-label="Открыть фото" class="ph" data-g="tr" data-i="3" type="button"><img alt="B2 · 25 тем" loading="lazy" src="../wetalk-img/tr-4.webp"/></button><figcaption>B2 · 25 тем</figcaption></figure><figure><button aria-label="Открыть фото" class="ph" data-g="tr" data-i="4" type="button"><img alt="C1 · 20 тем" loading="lazy" src="../wetalk-img/tr-5.webp"/></button><figcaption>C1 · 20 тем</figcaption></figure><figure><button aria-label="Открыть фото" class="ph" data-g="tr" data-i="5" type="button"><img alt="Так выглядит тема" loading="lazy" src="../wetalk-img/tr-6.webp"/></button><figcaption>Так выглядит тема</figcaption></figure></div><div class="gal-hint">листайте вбок · нажмите на фото, чтобы открыть целиком</div></div>
-</section></div></div><div class="chap" id="ch-sign"><button type="button" class="chb" aria-expanded="false"><span class="cn">Запись</span><span class="cc"><span class="p">(</span><i>пробное, пакеты и цены</i><span class="p">)</span></span><svg class="ch" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="chbody" hidden><section class="card rv" id="steps"><div class="num"><span class="p">(</span><b>11</b><span class="p">)</span><span class="k">Пробное занятие</span></div>
+</div></section></div></div><div class="chap" id="ch-sign"><button type="button" class="chb" aria-expanded="false"><span class="cn">Запись</span><span class="cc"><span class="p">(</span><i>пробное, пакеты и цены</i><span class="p">)</span></span><svg class="ch" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="chbody" hidden><section class="card rv" id="steps"><button type="button" class="sh" aria-expanded="false"><span class="sht"><span class="num"><span class="p">(</span><b>11</b><span class="p">)</span><span class="k">Пробное занятие</span></span><span class="stt">Что происходит на пробном</span></span><svg class="ch" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="sbody" hidden>
 
-<h3 class="h2">Что происходит на пробном</h3>
+
 <div class="tiles c3">
 <div class="tile"><span class="no">01</span><h4 class="semi">Выбираем удобное время</h4><p>Согласовываем дату и время созвона с преподавателем — гибко и без навязанных рамок.</p></div>
 <div class="tile k"><span class="no">02</span><h4 class="semi">Встречаемся онлайн</h4><p>Перед занятием — короткий 15-минутный тест на уровень. Созвон идёт 20⁠–⁠30 минут, камера не нужна — только микрофон.</p></div>
 <div class="tile s"><span class="no">03</span><h4 class="semi">Знакомимся с подходом к обучению</h4><p>Преподаватель рассказывает про методику, показывает материалы, помогает выбрать формат и расписание — и отвечает на любые вопросы.</p></div>
 </div>
-</section><section class="card rv" id="pricing"><div class="num"><span class="p">(</span><b>12</b><span class="p">)</span><span class="k">Пакеты и цены</span></div>
+</div></section><section class="card rv" id="pricing"><button type="button" class="sh" aria-expanded="false"><span class="sht"><span class="num"><span class="p">(</span><b>12</b><span class="p">)</span><span class="k">Пакеты и цены</span></span><span class="stt">Выбирай формат под себя</span></span><svg class="ch" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="sbody" hidden>
 
-<h3 class="h2">Выбирай формат под себя</h3>
+
 <div class="tiles c2">
 <div class="price k">
 <h3 class="semi">Индивидуально</h3><div class="sub">Программа 1:1 под твои цели и темп</div>
@@ -360,9 +372,9 @@ footer .fn{color:inherit;opacity:.7}
 <div class="pill"><h4 class="semi">1000+ ресурсов бесплатно</h4><p>Подборки лексики, книги, фильмы, конспекты преподавателей — в закрытом Telegram-канале*.</p></div>
 <div class="pill"><h4 class="semi">Поддержка между уроками</h4><p>Подскажем, направим и поможем с любым вопросом.</p></div>
 </div>
-</section></div></div><div class="chap" id="ch-rev"><button type="button" class="chb" aria-expanded="false"><span class="cn">Отзывы</span><span class="cc"><span class="p">(</span><i>отзывы, подкасты</i><span class="p">)</span></span><svg class="ch" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="chbody" hidden><section class="card rv" id="reviews"><div class="num"><span class="p">(</span><b>13</b><span class="p">)</span><span class="k">Отзывы</span></div>
+</div></section></div></div><div class="chap" id="ch-rev"><button type="button" class="chb" aria-expanded="false"><span class="cn">Отзывы</span><span class="cc"><span class="p">(</span><i>отзывы, подкасты</i><span class="p">)</span></span><svg class="ch" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="chbody" hidden><section class="card rv" id="reviews"><button type="button" class="sh" aria-expanded="false"><span class="sht"><span class="num"><span class="p">(</span><b>13</b><span class="p">)</span><span class="k">Отзывы</span></span><span class="stt">Что говорят наши студентки</span></span><svg class="ch" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="sbody" hidden>
 
-<h3 class="h2">Что говорят наши студентки</h3>
+
 <button aria-expanded="false" class="more" type="button"><span>Посмотреть скриншоты отзывов из Telegram</span><svg aria-hidden="true" class="ch" viewbox="0 0 10 6"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.3"></path></svg></button><div class="gal" hidden=""><div class="gal-track"><figure><button aria-label="Открыть фото" class="ph" data-g="pov" data-i="0" type="button"><img alt="Посмотреть скриншоты отзывов из Telegram" loading="lazy" src="../wetalk-img/pov-02.webp"/></button></figure><figure><button aria-label="Открыть фото" class="ph" data-g="pov" data-i="1" type="button"><img alt="Посмотреть скриншоты отзывов из Telegram" loading="lazy" src="../wetalk-img/pov-03.webp"/></button></figure><figure><button aria-label="Открыть фото" class="ph" data-g="pov" data-i="2" type="button"><img alt="Посмотреть скриншоты отзывов из Telegram" loading="lazy" src="../wetalk-img/pov-04.webp"/></button></figure><figure><button aria-label="Открыть фото" class="ph" data-g="pov" data-i="3" type="button"><img alt="Посмотреть скриншоты отзывов из Telegram" loading="lazy" src="../wetalk-img/pov-05.webp"/></button></figure><figure><button aria-label="Открыть фото" class="ph" data-g="pov" data-i="4" type="button"><img alt="Посмотреть скриншоты отзывов из Telegram" loading="lazy" src="../wetalk-img/pov-06.webp"/></button></figure><figure><button aria-label="Открыть фото" class="ph" data-g="pov" data-i="5" type="button"><img alt="Посмотреть скриншоты отзывов из Telegram" loading="lazy" src="../wetalk-img/pov-07.webp"/></button></figure><figure><button aria-label="Открыть фото" class="ph" data-g="pov" data-i="6" type="button"><img alt="Посмотреть скриншоты отзывов из Telegram" loading="lazy" src="../wetalk-img/pov-08.webp"/></button></figure><figure><button aria-label="Открыть фото" class="ph" data-g="pov" data-i="7" type="button"><img alt="Посмотреть скриншоты отзывов из Telegram" loading="lazy" src="../wetalk-img/pov-09.webp"/></button></figure></div><div class="gal-hint">листайте вбок · нажмите на фото, чтобы открыть целиком</div></div>
 <div class="tiles c3">
 <div class="review"><div class="stars">★★★★★</div><p>«Занимаюсь в школе чуть меньше года. До этого пробовала заниматься английским в других местах — есть с чем сравнивать. Хочу отметить сочетание профессионализма и комфортной среды при обучении.»</p><div class="who">Индивидуальное обучение</div></div>
@@ -375,17 +387,17 @@ footer .fn{color:inherit;opacity:.7}
 <p class="body" style="margin-top:46px">Посмотреть, как проходят уроки, и увидеть результаты тестирований можно в нашем Telegram-канале с честными и реальными отзывами и успехами студенток*.</p>
 <p style="margin:22px 0 0"><a class="btn btn-g" href="https://t.me/wetalklessons" rel="noopener" target="_blank">Перейти в Telegram-канал</a></p>
 <p class="fn">* Доступ к Telegram в РФ ограничен.</p>
-</section><section class="card rv" id="podcasts"><div class="num"><span class="p">(</span><b>14</b><span class="p">)</span><span class="k">Фирменный формат</span></div>
+</div></section><section class="card rv" id="podcasts"><button type="button" class="sh" aria-expanded="false"><span class="sht"><span class="num"><span class="p">(</span><b>14</b><span class="p">)</span><span class="k">Фирменный формат</span></span><span class="stt">Студентки записывают <span class="nb">мини-подкасты</span> на английском</span></span><svg class="ch" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="sbody" hidden>
 
 <div class="cols2 rev">
 <div>
-<h3 class="h2">Студентки записывают <span class="nb">мини-подкасты</span> на английском</h3>
+
 <p class="body">От «What's in my bag?» до разговоров о своих увлечениях и открытиях — это способ прокачать speaking, выйти из «учебной зоны» в реальную практику и начать звучать уверенно.</p>
 <p class="body">Помимо подкастов студентки пишут сочинения и эссе — мы работаем над языком по всем фронтам: говорение, аудирование, чтение и письмо.</p>
 </div>
 <button aria-expanded="false" class="more" type="button"><span>Посмотреть подкасты студенток</span><svg aria-hidden="true" class="ch" viewbox="0 0 10 6"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.3"></path></svg></button><div class="gal" hidden=""><div class="gal-track"><figure><button aria-label="Открыть фото" class="ph" data-g="pod" data-i="0" type="button"><img alt="Посмотреть подкасты студенток" loading="lazy" src="../wetalk-img/rv-02.webp"/></button></figure><figure><button aria-label="Открыть фото" class="ph" data-g="pod" data-i="1" type="button"><img alt="Посмотреть подкасты студенток" loading="lazy" src="../wetalk-img/rv-04.webp"/></button></figure></div><div class="gal-hint">листайте вбок · нажмите на фото, чтобы открыть целиком</div></div>
 </div>
-</section></div></div></div>
+</div></section></div></div></div>
 <section class="final rv"><h2>Готова заговорить <span class="nb">по-английски</span>?</h2><p>Бесплатное пробное занятие — 20⁠–⁠30 минут, без обязательств</p><a class="btn btn-o btn-mid" href="https://wa.me/79911186796" rel="noopener" target="_blank">Записаться</a></section>
 <footer><div class="footrow">
 <div>We Talk — онлайн уроки английского для женщин</div>
@@ -412,10 +424,11 @@ document.addEventListener('click',function(e){if(!e.target.closest('.dd'))closeM
 /* главы */
 function openChap(c,open){var b=q('.chb',c),body=q('.chbody',c);b.setAttribute('aria-expanded',open);body.hidden=!open;if(open)qa('.rv',body).forEach(function(x){io?io.observe(x):x.classList.add('in')});rail()}
 qa('.chb').forEach(function(b){b.addEventListener('click',function(){openChap(b.parentElement,b.getAttribute('aria-expanded')!=='true')})});
-function go(id){var el=document.getElementById(id);if(!el)return;var c=el.closest('.chap');if(c&&q('.chbody',c).hidden)openChap(c,true);closeMenus();
+function go(id){var el=document.getElementById(id);if(!el)return;var c=el.closest('.chap');if(c&&q('.chbody',c).hidden)openChap(c,true);var sh=q('.sh',el);if(sh&&sh.getAttribute('aria-expanded')!=='true'){sh.setAttribute('aria-expanded','true');sh.nextElementSibling.hidden=false}closeMenus();
  setTimeout(function(){scrollTo({top:el.getBoundingClientRect().top+scrollY-54,behavior:'smooth'})},30)}
 document.addEventListener('click',function(e){var a=e.target.closest('[data-go]');if(a){e.preventDefault();go(a.getAttribute('data-go'))}});
 /* «Посмотреть…» */
+qa('.sh').forEach(function(b){b.addEventListener('click',function(){var o=b.getAttribute('aria-expanded')!=='true';b.setAttribute('aria-expanded',o);b.nextElementSibling.hidden=!o;rail()})});
 qa('.more').forEach(function(b){b.addEventListener('click',function(){var o=b.getAttribute('aria-expanded')!=='true';b.setAttribute('aria-expanded',o);b.nextElementSibling.hidden=!o})});
 /* карточки-перевёртыши и чек-лист */
 qa('.flip').forEach(function(f){f.addEventListener('click',function(){f.setAttribute('aria-pressed',f.getAttribute('aria-pressed')==='true'?'false':'true')})});
