@@ -535,14 +535,14 @@ function send(){var box=document.getElementById("send"),f=S.form,r=S.res,txt=rep
  var data={access_key:ACCESS_KEY,subject:"Тест We Talk: "+f.name+", "+f.age+" — "+r.lv,from_name:"We Talk — тест уровня",botcheck:"",
   "Имя":f.name,"Возраст":f.age,"Формат":f.fmt||"—","Уровень":r.lv+" ("+LVNAME[r.lv]+")","Отчёт":txt};
  fetch("https://api.web3forms.com/submit",{method:"POST",headers:{"Content-Type":"application/json",Accept:"application/json"},body:JSON.stringify(data)})
- .then(function(x){return x.json()}).then(function(j){if(j&&j.success){box.className="send ok";box.textContent="✓ Ваши ответы отправлены."}else throw 0})
+ .then(function(x){return x.json()}).then(function(j){if(j&&j.success){box.className="send ok";box.textContent="✓ Ваши ответы успешно отправлены."}else throw 0})
  .catch(function(){box.className="send bad";var wa="https://wa.me/"+WA+"?text="+encodeURIComponent("Здравствуйте! Я прошла тест на сайте We Talk.\n\n"+txt.slice(0,1800));
   box.innerHTML='Не получилось отправить ответы автоматически. <button class="btn o" id="retry" style="margin:10px 8px 0 0;padding:10px 18px">Попробовать ещё раз</button><a class="btn" style="margin-top:10px;padding:10px 18px" target="_blank" rel="noopener" href="'+wa+'">Отправить в WhatsApp</a>';
   document.getElementById("retry").onclick=function(){box.className="send";box.textContent="Отправляем…";send()}})}
 /* ---------- режим просмотра страниц (?preview / #preview) ---------- */
 var PREVIEW=/preview/.test(location.search+location.hash);
 if(PREVIEW){
- var _send=send;send=function(){var box=document.getElementById("send");box.className="send ok";box.textContent="✓ Ваши ответы отправлены. (режим просмотра — письмо не отправлено)"};
+ var _send=send;send=function(){var box=document.getElementById("send");box.className="send ok";box.textContent="✓ Ваши ответы успешно отправлены. (режим просмотра — письмо не отправлено)"};
  demoForm();
  function demoForm(){S.form={name:"Анна",age:"30",fmt:"В мини-группе (до 4 человек)",exp:["Учила в школе"],when:"",weak:[],weako:"",str:"",goal:"",expect:""}}
  function demoGrammar(L){demoForm();S.L=L;S.stage=0;S.seen={A1:{},A2:{},B1:{},B2:{},C1:{}};S.answers=[];S.stages=[];nextStage()}
