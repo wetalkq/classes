@@ -205,7 +205,7 @@ footer .fn{color:inherit;opacity:.85}
 @media (min-width:768px){
  body{font-size:16px}
  .page{max-width:760px;padding-left:28px;padding-right:56px}
- .nv{max-width:760px;height:56px}.nvb{font-size:12px}
+ .nv{max-width:760px;height:56px;justify-content:flex-start;gap:44px;padding-left:28px;padding-right:56px}.nvb{font-size:12px}
  html{scroll-padding-top:68px}
  .hero{padding:56px 0 36px}
  .issue{font-size:10px;max-width:none}
@@ -218,7 +218,8 @@ footer .fn{color:inherit;opacity:.85}
  .qt .qtx{font-size:18px}
  .stats{grid-template-columns:repeat(4,1fr)}
  .stats b{font-size:26px}.stats span{font-size:13px}
- blockquote.q{font-size:20px;max-width:620px}
+ blockquote.q{font-size:20px;max-width:none;padding-right:25%}
+ .dd:nth-child(n+3) .dm{left:-10px;right:auto}
  .chb{padding:24px 2px 20px}.chb .cn{font-size:14px}.chb .cnum{font-size:28px}
  .chb .cc{font-size:14px}
  .sh{padding:18px 24px}.stt{font-size:21px}
@@ -232,12 +233,11 @@ footer .fn{color:inherit;opacity:.85}
  table.lv{font-size:14px}.lv thead th{font-size:12px}
  .price-row .amt{font-size:18px}
  .final h2{font-size:28px}.final p{font-size:16px}
- .rail{right:calc(50% - 380px + 14px);top:84px}
+ .rail{right:calc(18px + env(safe-area-inset-right,0px));top:84px}
  .rail .orng{width:28px;height:28px;margin:-14px 0 0 -14px}
 }
 @media (min-width:1100px){
  .page{max-width:960px}.nv{max-width:960px}
- .rail{right:calc(50% - 480px + 14px)}
  .hero h1{font-size:52px}
  .cols.c4,.tiles.c4{grid-template-columns:repeat(4,1fr)}
  .gal img{height:400px}
