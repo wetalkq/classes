@@ -524,6 +524,29 @@ function send(){var box=document.getElementById("send"),f=S.form,r=S.res,txt=rep
  .catch(function(){box.className="send bad";var wa="https://wa.me/"+WA+"?text="+encodeURIComponent("Здравствуйте! Я прошла тест на сайте We Talk.\n\n"+txt.slice(0,1800));
   box.innerHTML='Не получилось отправить ответы автоматически. <button class="btn o" id="retry" style="margin:10px 8px 0 0;padding:10px 18px">Попробовать ещё раз</button><a class="btn" style="margin-top:10px;padding:10px 18px" target="_blank" rel="noopener" href="'+wa+'">Отправить в WhatsApp</a>';
   document.getElementById("retry").onclick=function(){box.className="send";box.textContent="Отправляем…";send()}})}
+/* ---------- режим просмотра страниц (?preview / #preview) ---------- */
+var PREVIEW=/preview/.test(location.search+location.hash);
+if(PREVIEW){
+ var _send=send;send=function(){var box=document.getElementById("send");box.className="send ok";box.textContent="✓ Ваши ответы отправлены преподавателю. Мы свяжемся с вами, чтобы договориться о пробном занятии. (режим просмотра — письмо не отправлено)"};
+ function demoForm(){S.form={name:"Анна",age:"30",fmt:"В мини-группе (до 4 человек)",exp:["Учила в школе"],when:"",weak:[],weako:"",str:"",goal:"",expect:""}}
+ function demoGrammar(L){demoForm();S.L=L;S.stage=0;S.seen={A1:{},A2:{},B1:{},B2:{},C1:{}};S.answers=[];S.stages=[];nextStage()}
+ function demoRead(b){demoForm();S.answers=[];S.gl={g:{low:1,mid:2,high:3}[b],by:{}};S.read=b;S.rAns=[];reading()}
+ function demoListen(b){demoForm();S.gl={g:{low:1,mid:2,high:3}[b],by:{}};S.listen=b;S.lAns=[];S.plays=0;listening()}
+ function demoResult(lv){demoForm();var k=LV.indexOf(lv);S.answers=[];S.stages=[];
+  [0,1,2,3,4].forEach(function(i){var L=LV[Math.max(0,Math.min(4,k-1+(i>2?1:0)))];BANK[L].slice(i*2,i*2+6).forEach(function(q,j){var ok=j<4;S.answers.push({lv:L,q:q[0],ans:ok?q[1][0]:q[1][1],ok:ok,right:q[1][0],topic:q[2]})})});
+  S.gl={g:k,by:{},low:false};var b=band(k);S.read=b;S.listen=b;S.rAns=[1,1,1,0].map(function(o){return{ok:!!o,q:"",ans:"",right:""}});S.lAns=[1,1,0,1].map(function(o){return{ok:!!o,q:"",ans:"",right:""}});result()}
+ var bar=document.createElement("div");bar.className="pvbar";
+ var B=[["Начало",intro],["Анкета",function(){demoForm();survey()}],["Вопросы A1",function(){demoGrammar(0)}],["A2",function(){demoGrammar(1)}],["B1",function(){demoGrammar(2)}],["B2",function(){demoGrammar(3)}],["C1",function(){demoGrammar(4)}],
+  ["Чтение: простое",function(){demoRead("low")}],["среднее",function(){demoRead("mid")}],["сложное",function(){demoRead("high")}],
+  ["Аудирование: простое",function(){demoListen("low")}],["среднее",function(){demoListen("mid")}],["сложное",function(){demoListen("high")}],
+  ["Результат A1",function(){demoResult("A1")}],["A2",function(){demoResult("A2")}],["B1",function(){demoResult("B1")}],["B2",function(){demoResult("B2")}],["C1",function(){demoResult("C1")}]];
+ bar.innerHTML='<b>Просмотр страниц теста</b>'+B.map(function(x,i){return '<button type="button" data-i="'+i+'">'+x[0]+'</button>'}).join("");
+ bar.addEventListener("click",function(e){var t=e.target.closest("button");if(t){B[+t.dataset.i][1]()}});
+ document.body.appendChild(bar);
+ var st=document.createElement("style");st.textContent=".pvbar{position:fixed;left:0;right:0;bottom:0;z-index:99;background:#131d11;color:#efe9dc;padding:8px 10px calc(8px + env(safe-area-inset-bottom,0px));display:flex;gap:6px;overflow-x:auto;align-items:center;font-size:12px;box-shadow:0 -6px 20px rgba(0,0,0,.4)}.pvbar b{white-space:nowrap;margin-right:6px;font-weight:400;font-style:italic}.pvbar button{flex:none;font:inherit;font-size:12px;padding:7px 11px;border:1px solid rgba(239,233,220,.5);background:transparent;color:inherit;border-radius:999px;cursor:pointer}.pvbar button:hover{background:#da5200;border-color:#da5200}body{padding-bottom:64px}";
+ document.head.appendChild(st);
+}
+
 intro();
 })();
 </script>
