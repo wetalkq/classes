@@ -3,796 +3,182 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#1C1916">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#26301f">
 <title>We Talk — английский для женщин</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <style>
-:root{
-  /* фирменные цвета We Talk */
-  --green:#51483E; --green-d:#1C1916; --green-dd:#1C1916;
-  --orange:#da5200; --orange-l:#da5200;
-  --beige:#E9DFCB; --paper:#FBF7EE; --paper2:#F5EEE1;
-  --ink:#1C1916; --muted:#51483E; --line:rgba(28,25,22,.22);
-  --type:'Cutive Mono','Courier New','Cousine',Courier,monospace;
-  --hand:'Old Standard TT','PT Serif',Georgia,serif;
-  --orn:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath d='M5 0L10 5L5 10L0 5Z' fill='%23da5200'/%3E%3C/svg%3E");
-  --ul:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 12' preserveAspectRatio='none'%3E%3Cpath d='M2 7C40 2 80 10 120 5S180 4 198 6' fill='none' stroke='%23da5200' stroke-width='2.4' stroke-linecap='round'/%3E%3C/svg%3E");
-  --ease:cubic-bezier(.22,.8,.24,1);
-  color-scheme: light;
-}
+/* Телефонная версия: тёмно-зелёный кашемир, бежевые льняные подложки, чёрный текст; оранжевый — только апельсин и подзаголовки цен. Всё по левому краю */
+:root{--green:#2a3624;--green2:#34422c;--beige:#d8d2c4;--beige2:#e4dfd3;--ink:#1b1b18;--muted:#55534a;--line:rgba(27,27,24,.2);--lineL:rgba(216,210,196,.35);--orange:#c4561a;
+ --serif:'Times New Roman',Times,'Liberation Serif',serif;--cash:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='f0' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.006 0.006' numOctaves='3' seed='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.38 0'/%3E%3C/filter%3E%3Cfilter id='f1' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.02 0.02' numOctaves='2' seed='7' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.14 0'/%3E%3C/filter%3E%3Cfilter id='f2' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9 0.03' numOctaves='1' seed='11' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.1 0'/%3E%3C/filter%3E%3Cfilter id='f3' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.03 0.9' numOctaves='1' seed='13' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.12 0'/%3E%3C/filter%3E%3Cfilter id='f4' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.4 1.4' numOctaves='1' seed='5' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.1 0'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23f0)'/%3E%3Crect width='400' height='400' filter='url(%23f1)'/%3E%3Crect width='400' height='400' filter='url(%23f2)'/%3E%3Crect width='400' height='400' filter='url(%23f3)'/%3E%3Crect width='400' height='400' filter='url(%23f4)'/%3E%3C/svg%3E");--lin:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='f0' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.012 0.85' numOctaves='2' seed='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.26 0'/%3E%3C/filter%3E%3Cfilter id='f1' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85 0.012' numOctaves='2' seed='8' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.13 0'/%3E%3C/filter%3E%3Cfilter id='f2' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.008 0.008' numOctaves='2' seed='4' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23f0)'/%3E%3Crect width='400' height='400' filter='url(%23f1)'/%3E%3Crect width='400' height='400' filter='url(%23f2)'/%3E%3C/svg%3E");color-scheme:dark}
 *{box-sizing:border-box}
-html{scroll-behavior:smooth;scroll-padding-top:88px;-webkit-text-size-adjust:100%;overflow-x:hidden}
-body{-webkit-text-stroke:.35px currentColor;margin:0;background:var(--ink);color:var(--ink);font-family:var(--type);font-weight:400;font-size:16px;line-height:1.7;
-  overflow-x:hidden;padding-top:calc(62px + env(safe-area-inset-top,0px))}
-body::before{content:"";position:fixed;inset:0;z-index:-1;
-  background:repeating-linear-gradient(90deg,#1C1916 0,#51483E 70px,#1C1916 140px)}
-h1,h2,h3,h4,p{margin:0;font-weight:400}
+html{-webkit-text-size-adjust:100%;scroll-padding-top:56px}
+body{margin:0;font-family:var(--serif);font-size:14.5px;line-height:1.55;color:var(--beige);background:var(--green);background-image:var(--cash);background-attachment:fixed}
 a{color:inherit}
-em{font-style:normal}
-img{max-width:100%}
-.nb{white-space:nowrap}
-::selection{background:var(--orange);color:var(--paper)}
-:focus-visible{outline:2px solid var(--orange);outline-offset:3px}
-
-.semi{-webkit-text-stroke:1.2px currentColor}
-.h2,.hero h2,.quote p,.final h2,.tile .no,.stat b,.price-row .amt,.review .who{-webkit-text-stroke:0}
-
-/* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:50;background:var(--paper);border-bottom:1px solid var(--ink);
-  padding-top:env(safe-area-inset-top,0px);box-sizing:content-box;height:61px;box-shadow:0 10px 30px -12px rgba(0,0,0,.35)}
-.navrow{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:0 max(28px,env(safe-area-inset-right,0px)) 0 max(28px,env(safe-area-inset-left,0px));max-width:1180px;margin:0 auto;height:61px}
-.navsp{flex:1}
-.navcta{flex:1;text-align:right}
-.navlinks{display:flex;gap:30px}
-.navlinks a{position:relative;font-size:12px;letter-spacing:.16em;text-transform:uppercase;text-decoration:none;color:var(--ink);padding:6px 0}
-.navlinks a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--orange);transform:scaleX(0);transform-origin:left;transition:transform .35s var(--ease)}
-.navlinks a:hover{color:var(--orange)}
-.navlinks a:hover::after{transform:scaleX(1)}
-.cta{display:inline-block;border:1.5px solid var(--orange);color:var(--orange);padding:9px 20px;border-radius:999px;font-weight:700;-webkit-text-stroke:.5px currentColor;font-size:13px;letter-spacing:.16em;text-transform:uppercase;text-decoration:none;white-space:nowrap;transition:background .25s,color .25s}
-.cta:hover{background:var(--orange);color:var(--paper)}
-@media(max-width:760px){.navlinks{display:none}.navsp{display:none}.navcta{text-align:center}.navrow{padding:0 16px}}
-
-/* PAGE + SHEETS — листы бумаги на зелёном столе, ровно и аккуратно */
-.page{padding:64px max(22px,env(safe-area-inset-right,0px)) 40px max(22px,env(safe-area-inset-left,0px));overflow-x:clip}
-.sheet{position:relative;max-width:1080px;margin:0 auto 104px;padding:78px 68px 68px;color:var(--ink);isolation:isolate}
-.sheet::before{content:"";position:absolute;inset:0;z-index:-2;background:var(--beige);transform:translate(9px,9px);box-shadow:0 18px 40px -18px rgba(0,0,0,.5)}
-.sheet::after{content:"";position:absolute;inset:0;z-index:-1;background:var(--paper);box-shadow:0 30px 60px -30px rgba(0,0,0,.55)}
-.sheet.beige::after{background:var(--paper)}
-.kicker{position:absolute;top:-31px;left:52px;display:block;background:var(--beige);color:var(--ink);
-  padding:8px 28px 6px;font-size:12px;letter-spacing:.22em;text-transform:uppercase;line-height:1.5;
-  clip-path:polygon(0 100%,6% 0,94% 0,100% 100%);white-space:nowrap}
-.h2{font-family:var(--hand);font-weight:400;color:var(--orange);font-size:clamp(32px,4.2vw,52px);line-height:1.12;text-wrap:balance;letter-spacing:-.01em}
-.h2::after{content:"";display:block;width:92px;height:9px;margin-top:18px;background:linear-gradient(var(--ink),var(--ink)) left center/74px 1px no-repeat,var(--orn) right center/9px 9px no-repeat;transition:clip-path 1.1s var(--ease) .25s}
-.js .h2::after{clip-path:inset(0 100% 0 0)}
-.js .in .h2::after,.js .h2.in::after{clip-path:inset(0 0 0 0)}
-.h2.sm{font-size:clamp(30px,3.8vw,44px)}
-.body{margin:22px 0 0;max-width:64ch;text-wrap:pretty;line-height:1.8}
-.body+.body{margin-top:16px}
-@media(max-width:760px){
-  .page{padding:54px 14px 24px}
-  .sheet{padding:58px 22px 44px;margin-bottom:84px}
-  .sheet::before{transform:translate(5px,6px)}
-  .kicker{left:20px;font-size:11px;padding:7px 20px 5px}
-  body{font-size:15px}
-}
-
-/* ИЛЛЮСТРАЦИИ */
-.photo{position:relative;background:var(--paper);padding:12px;border:1px solid var(--line);box-shadow:0 26px 50px -24px rgba(0,0,0,.6)}
-.photo svg{display:block;width:100%;height:auto}
-.photo>img{display:block;width:100%;height:auto}
-.photo .orange-pin{position:absolute;top:-22px;right:26px;width:44px;height:48px;z-index:3;pointer-events:none;filter:drop-shadow(0 6px 6px rgba(0,0,0,.3));animation:bob 5s ease-in-out infinite}
-.shot{max-width:920px;margin:0 auto 104px;padding:0 6px}
-.shot.sm{max-width:640px}
-.cols2{display:grid;grid-template-columns:1.5fr 1fr;gap:58px;align-items:start}
-.cols2.rev{grid-template-columns:1.4fr 1fr}
-.stackp{display:grid;gap:30px}
-@media(max-width:860px){.cols2,.cols2.rev{grid-template-columns:1fr;gap:44px}}
-
-/* HERO */
-.hero{text-align:center;padding-top:92px;padding-bottom:76px}
-.issue{position:absolute;top:-31px;left:52px;background:var(--beige);color:var(--ink);padding:8px 28px 6px;font-size:12px;letter-spacing:.22em;text-transform:uppercase;line-height:1.5;
-  clip-path:polygon(0 100%,5% 0,95% 0,100% 100%)}
-@media(max-width:760px){.issue{left:16px;font-size:10.5px;padding:7px 14px 5px;letter-spacing:.14em}}
-.title{white-space:nowrap;font-family:var(--type);font-size:clamp(38px,13vw,150px);line-height:1;letter-spacing:.06em;margin:6px 0 0 .06em;color:var(--ink)}
-.title .ch{display:inline-block}
-.js .title .ch{opacity:0;transform:translateY(.35em);filter:blur(6px);animation:chIn .9s var(--ease) forwards;animation-delay:calc(var(--i) * 70ms + .15s)}
-@keyframes chIn{to{opacity:1;transform:none;filter:none}}
-.tag{font-size:17px;margin-top:22px;color:var(--ink)}
-.hero h2{font-family:var(--hand);font-weight:400;font-size:clamp(34px,5vw,60px);line-height:1.15;max-width:860px;margin:44px auto 0;color:var(--ink);text-wrap:balance}
-.hero h2 em{color:var(--orange);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.2em}
-.hero .body{margin:26px auto 36px;max-width:620px;text-align:center}
-.herobtns{display:flex;gap:14px;flex-wrap:wrap;justify-content:center}
-.btn{position:relative;overflow:hidden;display:inline-block;padding:15px 30px;border-radius:999px;font-weight:700;-webkit-text-stroke:.5px currentColor;font-size:13.5px;text-decoration:none;letter-spacing:.16em;text-transform:uppercase;border:1.5px solid var(--ink);font-family:var(--type);cursor:pointer;
-  transition:transform .3s var(--ease),box-shadow .3s var(--ease),background .25s,color .25s,border-color .25s}
-.btn:hover{transform:translateY(-3px);box-shadow:0 14px 26px -12px rgba(0,0,0,.45)}
-.btn:active{transform:translateY(0) scale(.98)}
-.btn-o{background:var(--orange);color:var(--paper2);border-color:var(--orange)}
-.btn-o::after{content:"";position:absolute;top:-50%;bottom:-50%;left:-40%;width:30%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.4),transparent);transform:skewX(-20deg);animation:shine 4.5s ease-in-out infinite;pointer-events:none}
-@keyframes shine{0%{left:-40%}35%,100%{left:130%}}
-.btn-o:hover{background:var(--ink);border-color:var(--ink)}
-.btn-mid{text-align:center;text-indent:.16em}
-.trial .btn-mid{margin:0 auto}
-.btn-g{background:transparent;color:var(--ink)}
-.btn-g:hover{background:var(--ink);color:var(--paper)}
-.btn-k{background:var(--green);color:var(--paper);border-color:var(--green)}
-.btn-k:hover{background:var(--ink);border-color:var(--ink)}
-
-/* GOALS */
-.cols{display:grid;margin-top:48px}
-.cols.c4{grid-template-columns:1fr}
-.col{padding:24px 0;border-top:1px solid var(--line)}
-.col:first-child{border-top:none;padding-top:0}
-.col .dot{display:block;width:9px;height:9px;background:var(--orange);transform:rotate(45deg);margin:4px 0 22px 3px}
-.col h4{font-size:14px;text-transform:uppercase;letter-spacing:.13em;margin-bottom:12px;line-height:1.5;color:var(--ink)}
-.col p{font-size:15px;line-height:1.75;color:var(--ink)}
-@media(min-width:701px){
-  .cols.c4{grid-template-columns:repeat(2,1fr);row-gap:44px}
-  .col,.col:first-child{padding:4px 0;border-top:none}
-  .col:nth-child(even){padding-left:44px;border-left:1px solid var(--line)}
-  .col:nth-child(odd){padding-right:44px}
-}
-
-/* ПЛИТКИ */
-.tiles{display:grid;gap:20px;margin-top:48px}
-.c4{grid-template-columns:repeat(2,1fr)}.c3{grid-template-columns:repeat(3,1fr)}.c2{grid-template-columns:repeat(2,1fr)}
-.statrow .tiles.c4{grid-template-columns:repeat(4,1fr)}
-@media(max-width:980px){.tiles.c3{grid-template-columns:repeat(2,1fr)}.statrow .tiles.c4{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:760px){.tiles.c3,.tiles.c2,.tiles.c4{grid-template-columns:1fr}}
-@media(max-width:520px){.statrow .tiles.c4{grid-template-columns:1fr}}
-.tile{position:relative;padding:30px 26px 28px;background:var(--paper2);color:var(--ink);border-top:2px solid var(--orange);
-  transition:transform .4s var(--ease),box-shadow .4s var(--ease)}
-.tile:hover{transform:translateY(-4px);box-shadow:0 20px 34px -22px rgba(31,38,25,.55)}
-.tile h4{font-size:14px;text-transform:uppercase;letter-spacing:.12em;margin-bottom:12px;line-height:1.5;color:var(--ink);text-wrap:balance}
-.tile p{font-size:15px;line-height:1.75;text-wrap:pretty}
-.tile.s{background:var(--beige)}
-.tile.k{background:var(--green);color:var(--paper2);border-top-color:var(--orange)}.tile.k h4{color:var(--paper2)}
-.tile .no{display:block;font-family:var(--hand);font-size:48px;color:var(--orange);margin-bottom:8px;line-height:1}
-.stat{text-align:center;padding:52px 18px 36px;display:flex;flex-direction:column;justify-content:flex-start;border-top:0;background:var(--paper2)}
-.stat b{display:block;font-family:var(--hand);font-weight:400;font-size:clamp(42px,5vw,60px);line-height:1;color:var(--orange)}
-.stat.k{background:var(--green)}
-.stat.k b{color:var(--paper2)}
-.stat span{display:block;margin-top:16px;font-size:12px;text-transform:uppercase;letter-spacing:.14em;line-height:1.7}
-.statrow{max-width:1080px;margin:0 auto 104px}
-.statrow .tiles{margin-top:0;gap:14px}
-.statrow .tile{box-shadow:0 24px 40px -24px rgba(0,0,0,.6)}
-
-/* ABOUT — штампы */
-.badges{display:flex;flex-direction:column;gap:18px;padding:6px 8px}
-.badge{border:1.5px solid var(--green);outline:1px solid var(--green);outline-offset:4px;padding:13px 18px;font-size:13px;text-align:center;letter-spacing:.12em;text-transform:uppercase;background:var(--paper2);color:var(--ink);
-  transition:background .3s,color .3s}
-.badge:hover{background:var(--green);color:var(--paper2)}
-
-/* QUOTE */
-.quote{max-width:900px;margin:0 auto 110px;text-align:center;color:var(--paper2);padding:0 10px}
-.quote p{font-family:var(--hand);font-size:clamp(28px,4.2vw,48px);line-height:1.35;text-wrap:balance}
-.quote p::after{content:"";display:block;width:110px;height:9px;margin:26px auto 0;background:linear-gradient(var(--paper2),var(--paper2)) left center/46px 1px no-repeat,var(--orn) center/9px 9px no-repeat,linear-gradient(var(--paper2),var(--paper2)) right center/46px 1px no-repeat}
-
-/* PRICING */
-.price{position:relative;padding:38px 34px 32px;background:var(--paper2);color:var(--ink);border-top:2px solid var(--orange)}
-.price.k{background:var(--green);color:var(--paper2)}
-.price h3{font-size:19px;margin-bottom:6px;text-transform:uppercase;letter-spacing:.12em;color:var(--ink)}
-.price.k h3{color:var(--paper2)}
-.price .sub{font-size:14px;margin-bottom:24px;opacity:.85}
-.price-row{display:flex;justify-content:space-between;align-items:baseline;padding:14px 0 12px;border-top:1px dashed currentColor;gap:12px}
-.price-row .lbl{font-size:15px}
-.price-row .amt{font-family:var(--hand);font-size:28px;white-space:nowrap;color:var(--orange);line-height:1}
-.price.k .amt{color:var(--paper2)}
-.trial{position:relative;margin-top:44px;background:var(--beige);color:var(--ink);padding:32px 36px;display:flex;gap:24px;align-items:center;flex-wrap:wrap}
-.trial h4{font-size:17px;margin-bottom:8px;text-transform:uppercase;letter-spacing:.12em}
-.trial p{margin:0;font-size:15px;max-width:540px;line-height:1.75}
-.pills{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:44px}
-@media(max-width:860px){.pills{grid-template-columns:1fr}}
-.pill{border:1px dashed var(--green);padding:22px 24px;background:var(--paper2)}
-.pill h4{font-size:13px;margin-bottom:8px;text-transform:uppercase;letter-spacing:.13em;color:var(--ink)}
-.pill p{font-size:14.5px;line-height:1.7}
-
-/* REVIEWS (текстовые) */
-.review{position:relative;padding:32px 26px 26px;background:var(--paper2);display:flex;flex-direction:column;border-top:2px solid var(--orange);transition:transform .4s var(--ease),box-shadow .4s var(--ease)}
-.review:hover{transform:translateY(-4px);box-shadow:0 20px 34px -22px rgba(31,38,25,.55)}
-.review .stars{font-size:0;width:98px;height:14px;margin-bottom:14px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpolygon fill='%23da5200' points='10,1.5 12.6,7.3 18.9,7.9 14.1,12.1 15.6,18.3 10,15 4.4,18.3 5.9,12.1 1.1,7.9 7.4,7.3'/%3E%3C/svg%3E") 0 0/19.6px 14px repeat-x}
-.review p{font-size:15px;line-height:1.7;margin:0 0 16px}
-.review .who{font-family:var(--hand);font-size:22px;color:var(--orange);line-height:1.2;margin-top:auto}
-
-/* FINAL + FOOTER */
-.final{max-width:760px;margin:0 auto 96px;text-align:center;color:var(--paper2);padding:0 10px}
-.final h2{font-family:var(--hand);font-size:clamp(34px,4.6vw,56px);line-height:1.15;margin-bottom:18px;color:var(--paper2)}
-.final p{font-size:16px;margin:0 0 32px}
-footer{background:var(--paper);border-top:1px solid var(--line);padding:30px 0 calc(30px + env(safe-area-inset-bottom,0px));font-size:13px;color:var(--ink)}
-.footrow{max-width:1160px;margin:0 auto;padding:0 max(28px,env(safe-area-inset-right,0px)) 0 max(28px,env(safe-area-inset-left,0px));display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px}
-.footlinks{display:flex;gap:26px;flex-wrap:wrap}
-.footlinks a{text-decoration:none;letter-spacing:.14em;text-transform:uppercase;font-size:12px}.footlinks a:hover{color:var(--orange)}
-.h2,.hero h2,.hero h2 em,.quote p,.final h2,.tile .no,.stat b,.price-row .amt,.review .who{font-style:normal;font-weight:400;-webkit-text-stroke:0}
-.fn{font-size:13px;margin:18px 0 0;line-height:1.5;opacity:.8;text-transform:none;letter-spacing:0}
-p,.body{text-wrap:pretty}
-
-/* ЛЕНТЫ ФОТО — без обрезки: высота общая, ширина по пропорциям */
-.strip{position:relative;margin-top:44px;--h:440px}
-.strip-head{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:18px}
-.strip-label{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
-.strip-arrows{display:flex;gap:8px}
-.strip-arrows button{width:44px;height:44px;border-radius:50%;border:1.5px solid var(--ink);background:transparent;color:var(--ink);font:400 20px/1 var(--type);cursor:pointer;transition:background .25s,color .25s,opacity .25s}
-.strip-arrows button:hover{background:var(--ink);color:var(--paper)}
-.strip-arrows button:disabled{opacity:.3;pointer-events:none}
-.strip-track{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch;padding:4px 2px 22px;cursor:grab;overscroll-behavior-x:contain}
-.strip-track::-webkit-scrollbar{display:none}
-.strip-track.drag{cursor:grabbing;scroll-snap-type:none}
-.strip-track.drag *{pointer-events:none}
-.fig{flex:0 0 auto;width:min-content;margin:0;scroll-snap-align:start;display:flex;flex-direction:column;gap:12px}
-.fig button{display:block;padding:0;border:0;background:none;cursor:zoom-in;position:relative}
-.fig img{display:block;height:var(--h);width:auto;max-width:none;background:var(--paper2);box-shadow:0 18px 30px -20px rgba(31,38,25,.6);border:1px solid var(--line);transition:transform .45s var(--ease),box-shadow .45s var(--ease)}
-.fig button:hover img{transform:translateY(-5px);box-shadow:0 26px 40px -22px rgba(31,38,25,.7)}
-.fig figcaption{font-size:12px;line-height:1.5;letter-spacing:.1em;text-transform:uppercase;color:var(--ink)}
-.fig figcaption::before{content:"";display:inline-block;width:7px;height:7px;background:var(--orange);transform:rotate(45deg);margin:0 10px 2px 2px}
-.strip-bar{height:2px;background:var(--line);position:relative;overflow:hidden}
-.strip-bar i{position:absolute;left:0;top:0;bottom:0;width:20%;background:var(--orange);transition:transform .15s linear}
-@media(max-width:980px){.strip{--h:400px}}
-@media(max-width:600px){.strip{--h:340px}.strip-arrows{display:none}}
-.strip.tall{--h:500px}
-@media(max-width:980px){.strip.tall{--h:440px}}
-@media(max-width:600px){.strip.tall{--h:400px}}
-.allbtn{display:flex;justify-content:center;margin-top:34px}
-.allbtn .btn small{font-size:12px;margin-left:10px;background:rgba(244,242,237,.22);padding:3px 9px;border-radius:99px;letter-spacing:.06em}
-
-/* TELEGRAM */
-.tg-list{margin:52px 0 0;padding:0;list-style:none;display:grid;gap:64px}
-.tg-row{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
-.tg-row:nth-child(even) .tg-shot{order:2}
-.tg-shot{justify-self:center;padding:0;border:0;background:none;cursor:zoom-in;position:relative}
-.tg-shot img{display:block;width:auto;height:auto;max-width:100%;max-height:480px;border-radius:16px;box-shadow:0 26px 44px -26px rgba(31,38,25,.75);transition:transform .45s var(--ease)}
-.tg-shot:hover img{transform:translateY(-5px)}
-.tg-pin{position:absolute;top:-14px;left:-10px;background:var(--orange);color:var(--paper);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;padding:7px 14px 6px;border-radius:99px;box-shadow:0 8px 16px -8px rgba(0,0,0,.5);-webkit-text-stroke:.3px currentColor}
-.tg-text .no{display:block;font-family:var(--hand);font-style:italic;font-size:44px;line-height:1;color:var(--orange);margin-bottom:12px;-webkit-text-stroke:0}
-.tg-text h4{font-size:15px;text-transform:uppercase;letter-spacing:.12em;margin-bottom:12px;line-height:1.5}
-.tg-text p{font-size:15px;line-height:1.8;max-width:46ch}
-.tg-final{margin-top:60px;background:var(--green);color:var(--paper);padding:30px 34px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
-.tg-final b{font-family:var(--hand);font-style:italic;font-weight:400;font-size:clamp(26px,3vw,36px);line-height:1.1;-webkit-text-stroke:0}
-.tg-final span{font-size:14px;letter-spacing:.06em;max-width:40ch}
-@media(max-width:860px){.tg-row{grid-template-columns:1fr;gap:26px}.tg-row:nth-child(even) .tg-shot{order:0}.tg-shot img{max-height:420px}}
-
-/* МИНИ-САЙТЫ */
-.try{margin-top:44px;display:flex;align-items:center;gap:14px;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
-.try::after{content:"";flex:1;height:1px;background:var(--line)}
-.flips{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:20px}
-.flip{aspect-ratio:4/3;perspective:1000px;border:0;padding:0;background:none;cursor:pointer;font:inherit;color:inherit;text-align:left}
-.flip-in{position:relative;display:block;width:100%;height:100%;transform-style:preserve-3d;transition:transform .8s var(--ease)}
-.flip[aria-pressed="true"] .flip-in{transform:rotateY(180deg)}
-.face{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;gap:10px;padding:26px;-webkit-backface-visibility:hidden;backface-visibility:hidden}
-.face.front{background:var(--green);color:var(--paper)}
-.face.front b{font-family:var(--hand);font-style:italic;font-weight:400;font-size:clamp(28px,3vw,36px);line-height:1.1;-webkit-text-stroke:0}
-.face.front i{font-style:normal;font-size:12px;letter-spacing:.16em;text-transform:uppercase;opacity:.7}
-.face.back{background:var(--paper);border:1.5px solid var(--orange);transform:rotateY(180deg)}
-.face.back b{font-size:16px;text-transform:uppercase;letter-spacing:.08em;color:var(--orange);font-weight:400;-webkit-text-stroke:1px currentColor}
-.face.back i{font-style:normal;font-size:14.5px;line-height:1.6;color:var(--muted)}
-@media(max-width:760px){.flips{grid-template-columns:1fr}.flip{aspect-ratio:16/9}}
-
-/* ГАЛЕРЕЯ НА ВЕСЬ ЭКРАН */
-.lb{position:fixed;inset:0;z-index:100;background:rgba(28,25,22,.97);color:var(--paper2);display:flex;flex-direction:column}
-.lb[hidden]{display:none}
-.lb-top{display:flex;align-items:center;justify-content:space-between;padding:calc(14px + env(safe-area-inset-top,0px)) max(18px,env(safe-area-inset-right,0px)) 12px max(18px,env(safe-area-inset-left,0px));font-size:13px;letter-spacing:.16em;text-transform:uppercase}
-.lb-close{width:46px;height:46px;border-radius:50%;border:1.5px solid rgba(244,242,237,.5);background:transparent;color:var(--paper);font:400 26px/1 var(--type);cursor:pointer}
-.lb-track{flex:1;display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;min-height:0}
-.lb-track::-webkit-scrollbar{display:none}
-.lb-item{flex:0 0 100%;scroll-snap-align:center;display:flex;align-items:center;justify-content:center;padding:6px 16px;min-height:0;overflow:auto}
-.lb-item img{max-width:min(100%,900px);max-height:100%;width:auto;height:auto;object-fit:contain;box-shadow:0 30px 60px -30px rgba(0,0,0,.8)}
-.lb-item.zoom{align-items:flex-start;justify-content:flex-start}
-.lb-item.zoom img{max-width:none;max-height:none;width:180%}
-.lb-hint{text-align:center;font-size:12px;opacity:.6;padding:10px 16px calc(16px + env(safe-area-inset-bottom,0px));letter-spacing:.06em}
-.lb-arrow{position:absolute;top:50%;width:52px;height:52px;margin-top:-26px;border-radius:50%;border:1.5px solid rgba(244,242,237,.45);background:rgba(0,0,0,.25);color:var(--paper);font:400 22px/1 var(--type);cursor:pointer}
-.lb-prev{left:22px}.lb-next{right:22px}
-@media(max-width:760px){.lb-arrow{display:none}}
-
-/* ПРОГРЕСС, РЕЛЬС С АПЕЛЬСИНОМ, НАВЕРХ */
-.prog{position:absolute;left:0;right:0;top:100%;height:5px;background:var(--green);pointer-events:none}
-.prog i{display:block;height:100%;width:100%;background:var(--orange);transform-origin:0 50%;transform:scaleX(0)}
-.rail{position:fixed;right:calc(16px + env(safe-area-inset-right,0px));top:100px;bottom:100px;width:16px;z-index:40}
-.rail .trk{position:absolute;left:-8px;right:-8px;top:0;bottom:0;cursor:pointer}
-.rail .trk::after{content:"";position:absolute;left:50%;top:0;bottom:0;width:2px;margin-left:-1px;background:var(--paper2);opacity:.35;border-radius:2px}
-.rail .thumb{position:absolute;left:50%;top:0;width:34px;height:38px;margin-left:-17px;cursor:grab;touch-action:none;will-change:transform;z-index:2;-webkit-tap-highlight-color:transparent}
-.rail .thumb.grab{cursor:grabbing}
-.rail .thumb svg{display:block;width:100%;height:100%;overflow:visible;filter:drop-shadow(0 4px 5px rgba(0,0,0,.4));transition:transform .2s}
-.rail .thumb:hover svg,.rail .thumb.grab svg{transform:scale(1.12)}
-.rail .dot{position:absolute;left:50%;width:10px;height:10px;margin:-5px 0 0 -5px;border-radius:50%;background:var(--paper2);border:2px solid var(--green);box-sizing:border-box;display:block;transition:background .25s,transform .25s}
-.rail .dot.on{background:var(--orange);border-color:var(--paper2);transform:scale(1.25)}
-.rail .dot span{position:absolute;right:24px;top:50%;transform:translateY(-50%);white-space:nowrap;background:var(--paper);color:var(--ink);border:1px solid var(--line);padding:4px 10px;font-size:12px;letter-spacing:.12em;text-transform:uppercase;line-height:1.3;opacity:0;pointer-events:none;transition:opacity .15s}
-.rail .dot:hover span,.rail .dot:focus-visible span{opacity:1}
-.totop{position:fixed;right:calc(56px + env(safe-area-inset-right,0px));bottom:calc(22px + env(safe-area-inset-bottom,0px));z-index:45;display:inline-block;border:1.5px solid var(--orange);background:var(--paper);color:var(--orange);padding:9px 18px;border-radius:999px;font-weight:700;font-size:13px;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;opacity:0;visibility:hidden;transform:translateY(10px);transition:opacity .25s,transform .25s,visibility .25s,background .25s,color .25s}
-.totop.show{opacity:1;visibility:visible;transform:none}
-.totop:hover{background:var(--orange);color:var(--paper)}
-@media(max-width:760px){.rail{right:calc(6px + env(safe-area-inset-right,0px));width:12px}.rail .thumb{width:28px;height:32px;margin-left:-14px}.rail .dot span{display:none}.totop{right:calc(40px + env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));padding:8px 14px;font-size:12px}}
-@keyframes bob{0%,100%{transform:translateY(0) rotate(-6deg)}50%{transform:translateY(-6px) rotate(6deg)}}
-
-/* ПОЯВЛЕНИЕ ПРИ ПРОКРУТКЕ (без JS всё видно сразу) */
-.js .rv{opacity:0;transform:translateY(26px);transition:opacity .9s var(--ease),transform .9s var(--ease);transition-delay:var(--d,0s)}
-.js .rv.in{opacity:1;transform:none}
-@media(prefers-reduced-motion:reduce){
-  html{scroll-behavior:auto}
-  *,*::before,*::after{animation:none!important;transition:none!important}
-  .js .rv{opacity:1;transform:none}
-  .js .title .ch{opacity:1;transform:none;filter:none}
-  .js .h2::after{clip-path:none}
-}
-
-/* ===== Times New Roman везде, спокойные размеры ===== */
-:root{--type:'Times New Roman',Times,'Liberation Serif',serif;--hand:'Times New Roman',Times,'Liberation Serif',serif}
-*{-webkit-text-stroke:0!important}
-body{font-size:17px;line-height:1.6}
-.semi,.col h4,.tile h4,.price h3,.trial h4,.pill h4,.tg-text h4{font-weight:600}
-.btn,.cta{font-weight:600}
-.title{font-size:clamp(34px,7vw,84px);font-weight:600;letter-spacing:.08em}
-.tag{font-style:italic;font-size:16px}
-.hero h2{font-size:clamp(24px,3vw,38px);font-weight:400}
+.page{max-width:520px;margin:0 auto;padding:calc(56px + env(safe-area-inset-top,0px)) max(34px,calc(env(safe-area-inset-right,0px) + 30px)) 0 max(16px,env(safe-area-inset-left,0px))}
+/* шапка */
+nav.top{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(36,46,31,.94);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid var(--lineL);padding-top:env(safe-area-inset-top,0px)}
+.nv{max-width:520px;margin:0 auto;display:flex;justify-content:space-between;padding:0 max(14px,env(safe-area-inset-right,0px)) 0 max(14px,env(safe-area-inset-left,0px));height:46px;align-items:center}
+.dd{position:relative}
+.nvb{font:inherit;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;background:none;border:0;padding:6px 1px;color:var(--beige);cursor:pointer;display:flex;gap:5px;align-items:center}
+.ch{width:9px;height:6px;flex:none;transition:transform .25s}
+[aria-expanded=true]>.ch{transform:rotate(180deg)}
+.dm{position:absolute;top:36px;left:-10px;min-width:240px;background:var(--beige);background-image:var(--lin);color:var(--ink);padding:4px 0;box-shadow:0 18px 34px rgba(0,0,0,.4)}
+.dd:nth-child(n+3) .dm{left:auto;right:-10px}
+.dm a{display:block;text-decoration:none;font-size:14.5px;padding:10px 16px;border-bottom:1px solid var(--line)}
+.dm a:last-child{border:0}
+.p{font-weight:300;opacity:.55;padding:0 1px}
+/* первый экран */
+.hero{padding:34px 0 26px}
+.issue{font-size:9px;letter-spacing:.26em;text-transform:uppercase;opacity:.75;max-width:210px;line-height:1.6}
+.hero h1{font-weight:400;font-style:italic;font-size:27px;letter-spacing:.1em;margin:10px 0 10px;line-height:1}
+.tag{font-style:italic;font-size:12.5px;line-height:1.5;opacity:.75;margin:0 0 20px}
+.hero h2{font-weight:400;font-size:16px;line-height:1.4;margin:0 0 10px;max-width:260px}
 .hero h2 em{font-style:italic}
-.h2{font-size:clamp(24px,2.6vw,34px);font-style:italic;font-weight:600;letter-spacing:0}
-.h2.sm{font-size:clamp(22px,2.3vw,30px)}
-.h2::after,.quote p::after{display:none!important}
-.stat b{font-size:clamp(28px,2.8vw,38px);font-weight:600}
-.tile .no,.tg-text .no{font-size:28px;font-style:italic}
-.quote p{font-size:clamp(20px,2.4vw,30px);font-style:italic}
-.final h2{font-size:clamp(24px,2.8vw,36px);font-style:italic;font-weight:600}
-.price-row .amt{font-size:21px;font-weight:600}
-.review .who{font-size:17px;font-style:italic}
-.face.front b{font-size:26px;font-style:italic}
-.tg-final b{font-size:24px;font-style:italic}
-/* апельсин меньше */
-.rail .thumb{width:22px;height:24px;margin-left:-11px}
-.photo .orange-pin{width:28px;height:30px;top:-14px}
-@media(max-width:760px){.rail .thumb{width:20px;height:22px;margin-left:-10px}}
-/* без тени у фото в лентах */
-.fig img,.fig button:hover img{box-shadow:none}
-/* скрины подкастов вместо фото */
-.stackp .photo>img{max-height:520px;width:auto;max-width:100%;margin:0 auto}
-
-/* ===== компактнее ===== */
-body{font-size:16px;line-height:1.6}
-.page{padding-top:44px}
-.sheet{padding:56px 56px 52px;margin-bottom:80px;max-width:1000px}
-.statrow{max-width:1000px;margin-bottom:80px}
-.title{font-size:clamp(30px,5.2vw,60px)}
-.tag{font-size:14px;margin-top:16px}
-.hero{padding-top:64px;padding-bottom:56px}
-.hero h2{font-size:clamp(20px,2.3vw,28px);margin-top:30px}
-.hero .body{font-size:15px;margin:20px auto 28px}
-.h2{font-size:clamp(21px,2.1vw,27px)}
-.h2.sm{font-size:clamp(20px,2vw,25px)}
-.body{margin-top:16px;font-size:15.5px}
-.cols,.tiles{margin-top:34px}
-.col h4,.tile h4{font-size:12.5px;margin-bottom:8px}
-.col p,.tile p,.pill p,.review p,.price-row .lbl,.trial p,.tg-text p{font-size:14.5px}
-.tile{padding:24px 22px 22px}
-.stat{padding:38px 16px 28px}
-.stat b{font-size:clamp(24px,2.3vw,32px)}
-.stat span{font-size:11px;margin-top:12px}
-.tile .no,.tg-text .no{font-size:24px}
-.quote{margin-bottom:84px}
-.quote p{font-size:clamp(18px,2vw,24px)}
-.final h2{font-size:clamp(21px,2.3vw,28px)}
-.final p{font-size:15px}
-.price{padding:30px 28px 26px}
-.price h3{font-size:15px}
-.price-row .amt{font-size:18px}
-.review{padding:26px 22px 22px}
-.review .who{font-size:15px}
-.btn{padding:12px 24px;font-size:12px}
-.kicker,.issue{font-size:11px}
-.badge{font-size:12px;padding:10px 14px}
-.face.front b{font-size:22px}
-.tg-final b{font-size:21px}
-.strip{--h:380px}
-.strip.tall{--h:440px}
-@media(max-width:980px){.strip{--h:340px}.strip.tall{--h:400px}}
-@media(max-width:600px){.strip{--h:300px}.strip.tall{--h:360px}}
-@media(max-width:760px){.sheet{padding:48px 20px 38px;margin-bottom:68px}body{font-size:15px}}
-/* без декоративных фото */
-.cols2.one,.cols2.rev{grid-template-columns:1fr}
-/* подкасты */
-.pods{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;align-items:start}
-.pods button{padding:0;border:0;background:none;cursor:zoom-in}
-.pods img{display:block;width:100%;height:auto;border:1px solid var(--line);transition:transform .4s var(--ease)}
-.pods button:hover img{transform:translateY(-4px)}
-@media(max-width:600px){.pods{grid-template-columns:1fr}}
-.pods{max-width:820px}
-.pods img{border:0}
-.title{font-style:italic;font-weight:400;letter-spacing:.06em}
-/* подкасты: целиком, одинаковой высоты */
-.pods{display:flex;gap:16px;align-items:flex-start;max-width:900px}
-.pods button{flex:var(--ar) 1 0;min-width:0}
-.pods img{border:1px solid var(--line);border-radius:6px}
-@media(max-width:600px){.pods{flex-direction:column}.pods button{flex:none;width:100%}}
-
-/* ===== единая сетка отступов ===== */
-:root{--s1:8px;--s2:16px;--s3:24px;--s4:32px;--s5:48px;--s6:80px}
-body{padding-top:96px;hyphens:manual;-webkit-hyphens:manual;overflow-wrap:normal;word-break:normal}
-p,.body,.tile p,.col p,.review p,.pill p,.trial p,.tg-text p,.price-row .lbl{line-height:1.65;text-wrap:pretty}
-/* разделы */
-.sheet,.hero{padding:56px 56px 56px;margin-bottom:var(--s6)}
-.hero{padding-top:72px;padding-bottom:64px}
-.statrow,.quote,.final{margin-bottom:var(--s6)}
-/* заголовок → текст → блоки */
-.h2,.h2.sm{font-size:clamp(21px,2.1vw,27px);line-height:1.25}
-.h2+.body,.h2+.strip,.h2+.tg-list{margin-top:20px}
-.body{margin-top:20px;max-width:62ch}
-.body+.body{margin-top:14px}
-.cols,.tiles,.strip,.tg-list,.pods,.pills,.trial,.try,.allbtn,.tg-final,.cols2 .badges{margin-top:var(--s4)}
-.cols2 .badges{margin-top:0}
-.flips{margin-top:var(--s2)}
-.pods{margin-top:var(--s4)}
-.cols2{gap:var(--s5)}
-/* сетки — один шаг */
-.tiles,.statrow .tiles,.pills,.flips{gap:var(--s2)}
-.strip-track,.pods{gap:var(--s2)}
-.cols.c4{row-gap:var(--s4)}
-.tg-list{gap:var(--s5)}
-/* карточки — одинаковые внутренние поля */
-.tile,.review,.pill,.price{padding:var(--s3)}
-.stat{padding:var(--s4) var(--s2) var(--s3)}
-.trial{padding:var(--s3) 28px}
-.tile h4,.col h4,.pill h4,.price h3,.trial h4,.tg-text h4{margin-bottom:var(--s1)}
-.review .stars{margin-bottom:12px}
-.review p{margin-bottom:var(--s2)}
-.price .sub{margin-bottom:var(--s2)}
-.col .dot{margin:4px 0 14px 3px}
-.tile .no{margin-bottom:var(--s1)}
-.fn{margin-top:var(--s2)}
-/* меню: все разделы, два ряда */
-nav{height:auto}
-.navrow{height:auto;min-height:61px;padding-top:10px;padding-bottom:10px;align-items:center}
-.navlinks{flex:0 1 700px;display:flex;flex-wrap:wrap;justify-content:center;gap:6px 22px}
-.navlinks a{font-size:11px;letter-spacing:.14em;padding:3px 0;white-space:nowrap}
-@media(max-width:1100px){.navlinks{flex-basis:560px;gap:5px 16px}.navlinks a{font-size:10.5px;letter-spacing:.1em}}
-@media(max-width:760px){
-  .navrow{flex-wrap:wrap;padding:8px 0 6px;gap:6px}
-  .navcta{order:1;flex:1 1 100%;text-align:center}
-  .navlinks{display:flex;order:2;flex:1 1 100%;flex-wrap:nowrap;justify-content:flex-start;overflow-x:auto;scrollbar-width:none;padding:2px 16px 4px;gap:18px}
-  .navlinks::-webkit-scrollbar{display:none}
-  .sheet,.hero{padding:44px 20px 40px;margin-bottom:64px}
-  .statrow,.quote,.final{margin-bottom:64px}
-}
-@media(min-width:761px){
-  .navlinks{display:grid;grid-template-columns:repeat(6,auto);justify-content:center;gap:6px 20px;flex:0 1 auto}
-  .navlinks a{text-align:center}
-}
-@media(min-width:761px) and (max-width:1100px){
-  .navsp{display:none}
-  .navrow{padding-left:20px;padding-right:20px}
-  .navlinks{gap:6px 14px}
-  .navlinks a{font-size:10px;letter-spacing:.07em}
-  .cta{padding:8px 14px;font-size:11px;letter-spacing:.1em}
-}
-@media(min-width:761px) and (max-width:1100px){.navlinks{margin:0 auto}.navcta{flex:0 0 auto}}
-@media(min-width:761px) and (max-width:900px){
-  .navrow{flex-wrap:wrap;justify-content:center;row-gap:8px}
-  .navcta{order:-1;flex:1 1 100%;text-align:center}
-}
-/* меню: ссылки как мягкие кнопки-ярлыки */
-.navlinks a{display:inline-flex;align-items:center;justify-content:center;padding:5px 12px;border:1px solid rgba(28,25,22,.22);border-radius:999px;background:var(--paper2);color:var(--ink);transition:background .2s,color .2s,border-color .2s}
-.navlinks a::after{display:none}
-.navlinks a:hover,.navlinks a:focus-visible{background:var(--orange);border-color:var(--orange);color:var(--paper)}
-.navlinks a.on{border-color:var(--orange);color:var(--orange);background:var(--paper)}
-@media(min-width:761px){.navlinks{gap:6px 8px}}
-@media(min-width:761px) and (max-width:1100px){.navlinks{gap:5px 6px}.navlinks a{padding:4px 9px}}
-@media(max-width:760px){.navlinks{gap:8px}.navlinks a{padding:6px 12px}}
-@media(min-width:761px){
-  .navlinks{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 6px;flex:0 1 auto;min-width:0}
-  .navlinks .nbr{flex-basis:100%;height:0}
-}
-@media(max-width:760px){.navlinks .nbr{display:none}}
-@media(min-width:761px){.navlinks .nbr{margin-top:-6px}}
-/* меню компактнее */
-.navlinks a{font-size:9.5px;letter-spacing:.1em;padding:3px 9px;line-height:1.4}
-@media(min-width:761px){.navlinks{gap:5px 5px}.navlinks .nbr{margin-top:-5px}}
-@media(min-width:761px) and (max-width:1100px){.navlinks a{font-size:9px;padding:3px 8px;letter-spacing:.07em}}
-@media(max-width:760px){.navlinks a{font-size:10px;padding:4px 10px}.navlinks{gap:6px}}
-.navrow{padding-top:8px;padding-bottom:8px}
-/* меню: без рамок, слово загорается оранжевым */
-.navlinks a{border:0;background:none;border-radius:0;padding:3px 6px;font-size:10.5px;letter-spacing:.12em}
-.navlinks a:hover,.navlinks a:focus-visible{background:none;color:var(--orange)}
-.navlinks a.on{background:none;color:var(--orange)}
-@media(min-width:761px){.navlinks{gap:4px 14px}.navlinks .nbr{margin-top:-4px}}
-@media(min-width:761px) and (max-width:1100px){.navlinks{gap:4px 10px}.navlinks a{font-size:10px;letter-spacing:.08em;padding:3px 4px}}
-@media(max-width:760px){.navlinks{gap:14px}.navlinks a{padding:4px 2px;font-size:11px}}
-/* меню строго по центру страницы */
-@media(min-width:901px){
-  .navrow{position:relative;justify-content:flex-end}
-  .navsp{display:none}
-  .navlinks{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);margin:0;width:max-content}
-}
-@media(min-width:761px){
-  .navlinks{display:grid;grid-template-columns:repeat(5,auto);justify-items:center;justify-content:center;column-gap:26px;row-gap:2px}
-  .navlinks .nbr{display:none}
-}
-@media(min-width:761px) and (max-width:1100px){.navlinks{column-gap:16px}}
-@media(min-width:761px){.navlinks{column-gap:18px}.navlinks a{font-size:10px;letter-spacing:.1em;padding:3px 2px}}
-@media(min-width:761px) and (max-width:1100px){.navlinks{column-gap:14px}.navlinks a{letter-spacing:.07em}}
-/* до 1040px — кнопка над меню, меню по центру */
-@media(min-width:761px) and (max-width:1040px){
-  .navrow{flex-wrap:wrap;justify-content:center;row-gap:6px}
-  .navcta{order:-1;flex:1 1 100%;text-align:center}
-  .navlinks{position:static;transform:none;margin:0 auto}
-}
-/* меню по левому краю — от начала текста на ярлыке первого листа */
-@media(min-width:900px){
-  .navrow{max-width:1000px;padding-left:0;padding-right:0;justify-content:space-between}
-  .navlinks{position:static;transform:none;margin:0 0 0 80px;justify-items:start;justify-content:start;width:auto}
-  .navcta{flex:0 0 auto}
-}
-@media(min-width:1041px) and (max-width:1044px){.navrow{padding-left:22px;padding-right:22px}}
-@media(min-width:900px){.navrow{width:min(1000px,calc(100% - 44px));max-width:none;padding-left:0!important;padding-right:0!important;margin:0 auto}}
-
-/* ===== папки с закладками ===== */
-.folder{position:relative;max-width:1000px;margin:0 auto var(--s6);padding-top:34px}
-.folder>.fpanel{margin-bottom:0}
-.fpanel>.kicker{display:none}
-.ftabs{position:absolute;top:0;left:52px;right:20px;display:flex;gap:2px;z-index:2;overflow-x:auto;scrollbar-width:none}
-.ftabs::-webkit-scrollbar{display:none}
-.ftabs button{flex:0 0 auto;border:0;cursor:pointer;font:400 11px/1.5 var(--type);letter-spacing:.18em;text-transform:uppercase;color:rgba(28,25,22,.62);
-  background:#d8cdb6;padding:8px 24px 6px;clip-path:polygon(0 100%,8% 0,92% 0,100% 100%);margin-right:-8px;transition:color .2s,background .2s,transform .2s;transform:translateY(4px)}
-.ftabs button:hover{color:var(--orange)}
-.ftabs button.on{background:var(--paper);color:var(--ink);transform:none;z-index:1}
-.ftabs button:focus-visible{outline:2px solid var(--orange);outline-offset:-2px}
-.fpanel.fanim{animation:flipIn .45s var(--ease)}
-@keyframes flipIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
-.folder .sheet::before{display:none}
-.folder::after{content:"";position:absolute;left:9px;right:-9px;top:43px;bottom:-9px;background:var(--beige);z-index:-1;box-shadow:0 18px 40px -18px rgba(0,0,0,.5)}
-@media(max-width:760px){.folder{margin-bottom:64px}.ftabs{left:12px;right:0}.ftabs button{font-size:10px;padding:7px 18px 5px;letter-spacing:.12em}.folder::after{left:5px;right:-5px;top:40px;bottom:-6px}}
-@media(prefers-reduced-motion:reduce){.fpanel.fanim{animation:none}}
-.ftabs button{color:rgba(28,25,22,.72)}
-
-/* ===== меню по группам ===== */
-.navlinks{display:flex!important;flex-wrap:nowrap;align-items:flex-start;gap:0;grid-template-columns:none}
-.ng{display:flex;flex-direction:column;gap:3px}
-.ng+.ng{margin-left:22px;padding-left:22px;border-left:1px solid rgba(28,25,22,.16)}
-.ngl{font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--orange);font-style:italic;line-height:1.4}
-.ngi{display:grid;grid-template-columns:repeat(var(--c),auto);gap:0 14px;justify-content:start}
-.ngi a{padding:2px 0!important;text-align:left}
-@media(min-width:761px) and (max-width:1100px){.ng+.ng{margin-left:14px;padding-left:14px}.ngi{gap:0 10px}}
-@media(max-width:760px){
-  .navlinks{overflow-x:auto;padding:2px 16px 4px;gap:0}
-  .ng{flex-direction:row;align-items:center;gap:10px;flex:0 0 auto}
-  .ng+.ng{margin-left:14px;padding-left:14px}
-  .ngi{display:flex;gap:14px}
-  .ngi a{white-space:nowrap}
-}
-.ngi{justify-items:start}.ngi a{justify-content:flex-start!important;text-align:left!important}
-
-/* ===== меню: подписи групп — курсив, полужирный; всё по левому краю ===== */
-.ngl{font-size:10.5px;font-style:italic;font-weight:600;letter-spacing:.14em;text-align:left}
-.ng{align-items:flex-start;text-align:left}
-.ngi{grid-template-columns:repeat(2,auto)!important;justify-content:start}
-@media(min-width:761px){.navlinks{justify-content:flex-start!important}}
-
-/* ===== таблица «Сроки» ===== */
-.lv-wrap{margin-top:var(--s4);overflow-x:auto}
-.lv{width:100%;border-collapse:collapse;font-size:14.5px;font-variant-numeric:tabular-nums}
-.lv th,.lv td{padding:12px 14px;text-align:left;border-bottom:1px solid var(--line);white-space:nowrap}
-.lv thead th{font-size:11.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;border-bottom:1.5px solid var(--ink);vertical-align:bottom}
-.lv thead small{display:block;font-size:11px;font-weight:400;letter-spacing:0;text-transform:none;font-style:italic;opacity:.75;margin-top:2px}
-.lv tbody th{font-weight:600}
-.lv tfoot th,.lv tfoot td{font-weight:600;color:var(--orange);border-top:1.5px solid var(--ink);border-bottom:0}
-.lv tbody tr:hover{background:var(--paper2)}
-.lv-note{margin-top:var(--s5);padding-top:var(--s4);border-top:1px solid var(--line)}
-.lv-h{font-size:clamp(18px,1.8vw,22px);font-style:italic;font-weight:600;color:var(--ink);line-height:1.3}
-.lv-note .body:first-of-type{margin-top:var(--s2)}
-@media(max-width:760px){.lv{font-size:13.5px}.lv th,.lv td{padding:10px}}
-/* меню: 4 группы компактнее; при нехватке места кнопка — справа над меню нет, меню слева */
-@media(min-width:761px){
-  .ng+.ng{margin-left:16px;padding-left:16px}
-  .ngi{gap:0 12px}
-}
-@media(min-width:761px) and (max-width:899px){
-  .navrow{flex-wrap:wrap;justify-content:flex-start;row-gap:8px;width:min(1000px,calc(100% - 44px))!important;margin:0 auto;padding-left:0!important;padding-right:0!important}
-  .navcta{order:-1;flex:1 1 100%;text-align:left;padding-left:80px}
-  .navlinks{position:static!important;transform:none!important;margin:0 0 0 80px!important}
-}
-@media(min-width:761px) and (max-width:900px){.navcta,.navlinks{padding-left:0}.navlinks{margin-left:0!important}.navcta{padding-left:0}}
-/* меню: в группе подпись и ссылки столбиком */
-@media(min-width:761px){
-  .ngi{display:flex!important;flex-direction:column;gap:1px}
-  .ng{gap:2px}
-  .ng+.ng{margin-left:26px;padding-left:26px}
-  .navrow{min-height:0;padding-top:9px;padding-bottom:9px}
-}
-
-@media(min-width:900px){.navrow{flex-wrap:nowrap!important}.navcta{order:0!important;flex:0 0 auto!important;padding-left:0!important}.navlinks{margin:0 0 0 80px!important;position:static!important;transform:none!important}}
-@media(min-width:761px) and (max-width:899px){.navrow{width:calc(100% - 44px)!important;margin:0 auto}.navlinks{margin-left:80px!important}.navcta{padding-left:80px!important;text-align:left}}
-
-/* ===== выпадающее меню ===== */
-.navlinks.dd{display:flex!important;flex-wrap:nowrap;align-items:center;gap:10px;grid-template-columns:none}
-.ddg{position:relative}
-.ddb{display:inline-flex;align-items:center;gap:8px;border:1.5px solid var(--orange);background:transparent;color:var(--orange);border-radius:999px;padding:7px 16px 7px 18px;font:600 12px/1.2 var(--type);letter-spacing:.14em;text-transform:uppercase;cursor:pointer;white-space:nowrap;transition:background .2s,color .2s}
-.ddb svg{width:10px;height:6px;transition:transform .25s var(--ease)}
-.ddb:hover,.ddg.open .ddb{background:var(--orange);color:var(--paper)}
-.ddg.open .ddb svg{transform:rotate(180deg)}
-.ddg.cur:not(.open) .ddb{background:rgba(218,82,0,.08)}
-.ddm{position:absolute;left:0;top:calc(100% + 8px);min-width:230px;background:var(--paper);border:1px solid var(--line);box-shadow:0 18px 36px -16px rgba(28,25,22,.45);padding:8px 0;z-index:60;display:flex;flex-direction:column;animation:ddIn .18s var(--ease)}
-.ddm[hidden]{display:none}
-@keyframes ddIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
-.ddm a{display:block;padding:9px 18px!important;font-size:13px!important;letter-spacing:.06em!important;text-transform:none!important;color:var(--ink);text-decoration:none;white-space:nowrap;border:0!important;background:none!important;border-radius:0!important;text-align:left}
-.ddm a:hover,.ddm a:focus-visible{color:var(--orange)!important;background:var(--paper2)!important;outline:none}
-.ddm a.on{color:var(--orange)!important}
-@media(min-width:900px){.navlinks.dd{margin:0 0 0 80px!important}}
-@media(min-width:761px) and (max-width:899px){.navrow{flex-wrap:nowrap!important}.navcta{order:0!important;flex:0 0 auto!important;padding-left:0!important}.navlinks.dd{margin-left:80px!important}}
-@media(max-width:760px){
-  .navrow{flex-wrap:wrap}
-  .navlinks.dd{order:2;flex:1 1 100%;overflow:visible!important;padding:0 16px 4px;display:grid!important;grid-template-columns:repeat(4,auto);justify-content:start;gap:6px}
-  .ddb{padding:6px 10px 6px 12px;font-size:10.5px;letter-spacing:.08em;gap:6px}
-  .ddg:nth-child(n+3) .ddm{left:auto;right:0}
-  .ddm{min-width:210px}
-}
-@media(max-width:380px){.ddb{padding:5px 8px;font-size:10px;letter-spacing:.05em}}
-
-/* ===== меню в стиле «текст + карточка» ===== */
-.navlinks.dd{gap:28px}
-.ddb{border:0!important;background:none!important;color:var(--ink)!important;padding:8px 0!important;font:400 13px/1.2 var(--type)!important;letter-spacing:.12em!important;gap:7px}
-.ddb svg{width:9px;height:6px;opacity:.6}
-.ddb:hover,.ddg.open .ddb{color:var(--orange)!important}
-.ddg.cur .ddb{color:var(--orange)!important}
-.ddg.cur:not(.open) .ddb{background:none!important}
-.ddm{top:calc(100% + 10px);left:-18px;min-width:280px;border:0;border-radius:16px;padding:10px;box-shadow:0 22px 50px -18px rgba(28,25,22,.45),0 0 0 1px rgba(28,25,22,.06)}
-.ddm::before{content:"";position:absolute;left:0;right:0;top:-12px;height:12px}
-.ddm a{display:flex!important;align-items:center;gap:14px;padding:10px 12px!important;border-radius:10px!important;font-size:15px!important;letter-spacing:.01em!important;color:#5b544c!important}
-.ddm a:hover,.ddm a:focus-visible{background:var(--paper2)!important;color:var(--ink)!important}
-.ddi{flex:0 0 34px;width:34px;height:34px;border-radius:50%;border:1.3px solid var(--orange);display:inline-flex;align-items:center;justify-content:center;color:var(--orange);background:var(--paper)}
-.ddi svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round}
-.ddm a:hover .ddi{background:var(--orange);color:var(--paper)}
-@media(max-width:760px){
-  .navlinks.dd{gap:18px;padding:0 16px 6px;grid-template-columns:repeat(4,auto)}
-  .ddb{font-size:11.5px!important;letter-spacing:.08em!important;padding:6px 0!important}
-  .ddm{left:-10px;min-width:250px}
-  .ddg:nth-child(n+3) .ddm{left:auto;right:-10px}
-  .ddm a{font-size:14px!important;padding:9px 10px!important}
-  .ddi{flex-basis:30px;width:30px;height:30px}
-}
-.ddm a{justify-content:flex-start!important;text-align:left!important}.ddm a span:last-child{text-align:left}
-
-/* ===== таблица «Сроки» — новый вид ===== */
-.lv-wrap{margin-top:var(--s4);overflow-x:auto;border:1px solid var(--line);border-radius:14px;background:var(--paper)}
-.lv{width:100%;border-collapse:separate;border-spacing:0;font-size:15px}
-.lv th,.lv td{padding:16px 18px;border-bottom:1px solid var(--line);white-space:nowrap;vertical-align:middle}
-.lv thead th{background:var(--paper2);border-bottom:1px solid var(--line);font-size:11px;letter-spacing:.12em;color:var(--ink);padding-top:14px;padding-bottom:12px}
-.lv thead small{font-size:11.5px;margin-top:3px;color:var(--muted);opacity:1}
-.lv tbody tr:last-child th,.lv tbody tr:last-child td{border-bottom:0}
-.lv tbody tr:hover{background:rgba(218,82,0,.04)}
-.lv tbody th,.lv tfoot th{position:sticky;left:0;background:inherit;z-index:1}
-.lv tbody tr{background:var(--paper)}
-.lv tbody tr:hover th{background:#fbf3ea}
-.lv-lv{display:inline-flex;align-items:center;gap:8px}
-.lv-lv b{display:inline-flex;align-items:center;justify-content:center;min-width:34px;height:26px;padding:0 8px;border-radius:999px;border:1px solid rgba(28,25,22,.25);font-size:12.5px;font-weight:600;letter-spacing:.04em;color:var(--ink);background:var(--paper)}
-.lv-lv b.to{border-color:var(--orange);color:var(--orange)}
-.lv-lv i{font-style:normal;color:var(--muted);font-size:13px}
-.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
-.lv-hr{display:flex;flex-direction:column;gap:6px;min-width:96px;font-weight:600}
-.lv-bar{display:block;height:4px;border-radius:4px;background:rgba(28,25,22,.08);overflow:hidden}
-.lv-bar i{display:block;height:100%;border-radius:4px;background:var(--orange)}
-.lv tfoot th,.lv tfoot td{background:var(--green);color:var(--paper2)!important;border:0!important;font-weight:600;padding-top:18px;padding-bottom:18px}
-.lv tfoot td{color:#f6b98a!important;font-size:15.5px}
-.lv tfoot .lv-lv b{background:transparent;color:var(--paper2);border-color:rgba(251,247,238,.5)}
-.lv tfoot .lv-lv b.to{border-color:#f6b98a;color:#f6b98a}
-.lv tfoot .lv-lv i{color:rgba(251,247,238,.7)}
-.lv-tot{display:block;margin-top:6px;font-size:11px;font-weight:400;font-style:italic;letter-spacing:.06em;color:rgba(251,247,238,.75)}
-@media(max-width:760px){.lv{font-size:13.5px}.lv th,.lv td{padding:12px 12px}.lv-lv b{min-width:30px;height:24px;font-size:11.5px}}
-
-/* телефон: карточки вместо широкой таблицы */
-@media(max-width:600px){
-  .lv-wrap{border:0;background:none;overflow:visible;border-radius:0}
-  .lv,.lv tbody,.lv tfoot,.lv tr,.lv th,.lv td{display:block;width:auto}
-  .lv thead{display:none}
-  .lv tr{border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin-bottom:10px;background:var(--paper);display:grid!important;grid-template-columns:1fr 1fr 1fr;gap:10px 12px}
-  .lv th,.lv td{padding:0!important;border:0!important;white-space:normal;position:static!important;background:none!important}
-  .lv th{grid-column:1/-1;display:flex!important;align-items:center;justify-content:space-between}
-  .lv td[data-l="Учебных часов"]{grid-column:1/-1}
-  .lv td::before{content:attr(data-l);display:block;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:3px}
-  .lv-hr{min-width:0;flex-direction:row;align-items:center;gap:12px}.lv-hr .lv-bar{flex:1}
-  .lv tfoot tr{background:var(--green)!important;border-color:var(--green)}
-  .lv tfoot td::before{color:rgba(251,247,238,.65)}
-  .lv-tot{margin:0}
-}
-@media(max-width:600px){.lv td::before{letter-spacing:0;font-size:10px;white-space:nowrap}}
-.lv thead th{vertical-align:top!important}
-.price-row .lbl .freq{display:block;margin-top:3px;font-size:12.5px;font-style:italic;opacity:.75;line-height:1.35}
-.price-row{align-items:center}
-/* кнопку «Пробное занятие» в шапке убрали */
-.navcta{display:none!important}
-@media(max-width:760px){.navlinks.dd{padding-top:8px}}
-/* трекинг уровня — демо чек-листа */
-.chk{margin-top:20px;background:var(--paper2);border-top:2px solid var(--orange);padding:22px 22px 8px}
-.trk-pr{display:flex;justify-content:space-between;align-items:baseline;font-size:14px;color:var(--muted)}
+.lead{font-size:14px;line-height:1.6;opacity:.9;margin:0 0 18px;max-width:330px}
+.hbtns{display:grid;gap:8px}
+.btn{display:block;text-decoration:none;font:inherit;font-size:10.5px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;padding:13px 14px;border:1px solid var(--beige);background:transparent;color:var(--beige);text-align:left;cursor:pointer}
+.btn.f{background:var(--beige);background-image:var(--lin);color:var(--ink)}
+.btn.ink,.card .btn{border-color:var(--ink);color:var(--ink);background:transparent}
+.card .btn-k,.card .btn-g{display:inline-block;margin-top:10px}
+/* подложки */
+.card{background:var(--beige);background-image:var(--lin);color:var(--ink);padding:20px 18px 20px;margin:0 0 10px;scroll-margin-top:56px;box-shadow:0 10px 22px -14px rgba(0,0,0,.65)}
+.num{display:flex;align-items:baseline;gap:4px;margin:0 0 6px;color:var(--muted)}
+.num .p{font-size:22px;line-height:1;font-style:italic}
+.num b{font-size:11px;letter-spacing:.12em;font-weight:400}
+.num .k{font-size:9.5px;letter-spacing:.26em;text-transform:uppercase;margin-left:8px}
+.card h3,.card .h2{font-weight:400;font-style:italic;font-size:18px;line-height:1.25;margin:0 0 10px;text-wrap:balance}
+.card .body,.card>p{font-size:14px;line-height:1.6;margin:0 0 10px}
+.card h4{font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;margin:0 0 3px;line-height:1.45}
+.card p{margin:0 0 8px}
+.cols,.tiles{display:block;margin:6px 0 0}
+.col,.tile,.pill,.review{border-top:1px solid var(--line);padding:10px 0 4px;background:none;margin:0}
+.col .dot{display:none}
+.col p,.tile p,.pill p{font-size:13.5px;line-height:1.55}
+.tile .no{display:inline;font-size:12px;font-style:italic;color:var(--muted);margin-right:6px}
+.tile .no::before{content:"( "}.tile .no::after{content:" )"}
+.cols2{display:block}
+.badges{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 2px}
+.badge{font-size:10px;letter-spacing:.12em;text-transform:uppercase;border:1px solid var(--ink);padding:6px 9px}
+.nb{white-space:nowrap}
+/* «Посмотреть…» */
+.more{display:flex;justify-content:space-between;align-items:center;gap:10px;width:100%;font:inherit;font-size:13.5px;font-style:italic;text-align:left;background:none;border:0;border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);padding:11px 2px;margin:12px 0 0;color:var(--ink);cursor:pointer}
+.more .ch{width:11px;height:7px}
+.gal{margin:10px -18px 0}
+.gal-track{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;padding:0 18px 4px;scrollbar-width:none}
+.gal-track::-webkit-scrollbar{display:none}
+.gal figure{margin:0;flex:none;scroll-snap-align:start}
+.gal .ph{display:block;padding:0;border:0;background:#fff;cursor:zoom-in;box-shadow:0 6px 14px rgba(0,0,0,.22)}
+.gal img{display:block;height:230px;width:auto;max-width:none}
+.gal figcaption{font-size:11.5px;font-style:italic;color:var(--muted);margin-top:6px;max-width:200px}
+.gal-hint{font-size:10px;letter-spacing:.12em;color:var(--muted);padding:6px 18px 0}
+/* Telegram */
+.tg-list{list-style:none;margin:6px 0 0;padding:0}
+.tg-row{border-top:1px solid var(--line);padding:10px 0 2px}
+.tg-text p{font-size:13.5px}
+.tg-final{border:1px solid var(--ink);padding:12px 14px;margin-top:12px}
+.tg-final b{display:block;font-weight:400;font-style:italic;font-size:16px}
+.tg-final span{font-size:13.5px}
+/* бонус: карточки-перевёртыши */
+.try{font-size:9.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--muted);margin:14px 0 8px}
+.flips{display:grid;gap:8px}
+.flip{display:block;width:100%;font:inherit;text-align:left;background:none;border:1px solid var(--ink);padding:12px 14px;color:var(--ink);cursor:pointer}
+.flip .back{display:none}.flip[aria-pressed=true] .front{display:none}.flip[aria-pressed=true] .back{display:block}
+.flip b{display:block;font-weight:400;font-style:italic;font-size:17px}
+.flip i{font-size:12.5px;color:var(--muted)}
+/* сроки */
+.lv-wrap{margin:8px 0 6px}
+table.lv{border-collapse:collapse;width:100%;font-size:11.5px;font-variant-numeric:tabular-nums;table-layout:fixed}
+.lv th,.lv td{text-align:left;padding:6px 4px;border-bottom:1px solid var(--line);border-left:1px solid var(--line);white-space:nowrap;overflow:hidden;text-overflow:clip;font-weight:400}
+.lv th:first-child,.lv td:first-child{border-left:0;padding-left:0}
+.lv thead th{font-size:10px;color:var(--muted);font-style:italic}
+.lv tbody th{font-weight:700}
+.lv col1{}
+.lv-lv{display:inline-flex;gap:2px}.lv-lv b{font-weight:700}.lv-lv i{font-style:normal;opacity:.55}
+.lv tfoot th,.lv tfoot td{font-weight:700;border-bottom:1px solid var(--ink);white-space:normal;line-height:1.25;vertical-align:top}
+.lv col.c0{width:19%}
+.lv-hr span{display:inline}
+.fn{font-size:11.5px!important;line-height:1.5;color:var(--muted);font-style:italic}
+.lv-note{margin-top:12px;border-top:1px solid var(--ink);padding-top:10px}
+.lv-h{font-weight:400;font-style:italic;font-size:16px;line-height:1.3;margin:0 0 8px}
+/* трекинг */
+.chk{border:1px solid var(--ink);padding:10px 12px 2px}
+.trk-pr{display:flex;justify-content:space-between;font-size:12.5px;color:var(--muted)}
 .trk-pr b{font-weight:400;color:var(--ink)}
-.trk-bar{height:8px;margin:10px 0 6px;background:rgba(28,25,22,.1);border-radius:8px;overflow:hidden}
-.trk-bar i{display:block;height:100%;width:0;background:var(--orange);border-radius:8px;transition:width .5s var(--ease)}
+.trk-bar{height:4px;background:var(--line);margin:6px 0 4px}
+.trk-bar i{display:block;height:100%;width:0;background:var(--ink);transition:width .4s}
 .trk-list{list-style:none;margin:0;padding:0}
 .trk-list li+li{border-top:1px solid var(--line)}
-.trk-it{display:flex;gap:14px;align-items:flex-start;padding:16px 0;cursor:pointer}
+.trk-it{display:flex;gap:10px;padding:10px 0;cursor:pointer}
 .trk-it input{position:absolute;opacity:0;width:1px;height:1px}
-.trk-box{flex:none;width:22px;height:22px;margin-top:3px;border:1.5px solid var(--muted);border-radius:5px;display:grid;place-items:center;transition:background .2s,border-color .2s}
-.trk-box::after{content:"";width:6px;height:11px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg) scale(0);margin-top:-3px;transition:transform .2s var(--ease)}
-.trk-it input:checked+.trk-box{background:var(--orange);border-color:var(--orange)}
-.trk-it input:checked+.trk-box::after{transform:rotate(45deg) scale(1)}
-.trk-it input:focus-visible+.trk-box{outline:2px solid var(--orange);outline-offset:2px}
-.trk-tx{display:flex;flex-direction:column;gap:2px}
-.trk-tx b{font-weight:600}
-.trk-tx span{font-size:14px;color:var(--muted)}
-.trk-tx i{font-size:14px;color:var(--muted);opacity:.85}
-.trk-it input:checked~.trk-tx b{text-decoration:line-through;text-decoration-color:var(--orange)}
-.chk+.tiles{margin-top:28px}
-/* цитата с кнопкой теста — на подложке, как у папок */
-.quote.qtest{margin-top:var(--s6,64px);max-width:900px;background:var(--paper);color:var(--ink);border-top:3px solid var(--orange);box-shadow:0 18px 50px rgba(0,0,0,.35);padding:40px clamp(20px,5vw,56px) 42px}
-.quote.qtest p{color:var(--orange)}
-.qbtn{margin-top:24px;background:var(--ink);color:var(--paper);border-color:var(--ink);font-style:normal}
-.qbtn:hover{background:var(--orange);border-color:var(--orange);color:#fff}
-@media(max-width:760px){.quote.qtest{margin-left:16px;margin-right:16px}}
-</style>
-<script>document.documentElement.classList.add('js')</script>
-<meta name="robots" content="noindex">
-<style>
-/* ===== ТЕЛЕФОН: лента блоков во всю ширину, без папок (в духе Тильды) ===== */
-@media (max-width:760px){
-  body{background:var(--paper)!important;padding-top:calc(52px + env(safe-area-inset-top,0px))}
-  body::before{display:none!important}
-  main{overflow:hidden}
-  /* шапка компактнее */
-  .navrow{height:51px}
-  /* папки исчезают: закладки скрыты, все вкладки идут подряд */
-  .folder{margin:0!important;padding:0!important}
-  .folder .ftabs{display:none!important}
-  .folder::before{content:attr(data-group);display:flex;align-items:center;justify-content:center;gap:14px;background:var(--ink);color:var(--paper2);
-    font-size:11px;letter-spacing:.32em;text-transform:uppercase;padding:22px 16px 20px;border-top:3px solid var(--orange)}
-  .fpanel.fanim{animation:none!important}
-  /* каждая вкладка — блок во всю ширину */
-  .sheet,.hero{max-width:none!important;margin:0!important;transform:none!important;
-    padding:38px max(30px,calc(env(safe-area-inset-right,0px) + 26px)) 38px max(20px,env(safe-area-inset-left,0px))!important;scroll-margin-top:56px}
-  .sheet::before{display:none!important}
-  .sheet::after{box-shadow:none!important;background:var(--paper)!important}
-  .sheet.band2::after{background:var(--paper2)!important}
-  .js .rv{opacity:1!important;transform:none!important}
-  /* заголовки и подписи по центру, компактнее */
-  .kicker{display:block;text-align:center;font-size:10px!important;letter-spacing:.26em}
-  .h2{text-align:center;font-size:24px!important;line-height:1.18;margin-left:auto;margin-right:auto}
-  .h2::after{content:"";display:block!important;width:64px;height:1px;background:currentColor;opacity:.35;margin:14px auto 0;clip-path:none!important}
-  .sheet>.body,.sheet>p.body,.sheet .lv-note .body,.sheet .fn{text-align:center}
-  .body{font-size:15px}
-  /* карточки-пункты превращаются в строки с тонкой линией */
-  .sheet .tiles{gap:0!important;margin-top:18px!important}
-  .sheet .tile{background:none!important;color:var(--ink)!important;border-top:1px solid var(--line)!important;padding:14px 4px 12px!important;text-align:center;box-shadow:none!important}
-  .sheet .tile h4{color:var(--ink)!important;font-size:12px!important;letter-spacing:.16em}
-  .sheet .tile .no{font-size:28px!important;margin-bottom:2px}
-  .sheet .cols{margin-top:18px!important}
-  .sheet .col{text-align:center;padding:14px 0!important;border-top:1px solid var(--line)!important}
-  .sheet .col:first-child{border-top:1px solid var(--line)!important}
-  .sheet .col .dot{margin:0 auto 10px!important}
-  .badges{padding:0!important}
-  /* ленты фото во всю ширину экрана */
-  .sheet .strip{margin-left:calc(-1 * max(20px,env(safe-area-inset-left,0px)));margin-right:calc(-1 * max(30px,calc(env(safe-area-inset-right,0px) + 26px)))}
-  .sheet .strip-head{padding:0 30px 0 20px}
-  .sheet .strip-track{padding-left:20px!important;padding-right:30px!important;scroll-padding-left:20px}
-  .sheet .strip-bar{margin-left:20px;margin-right:30px}
-  /* Telegram */
-  .tg-list{gap:30px!important}
-  .tg-text{text-align:center}
-  .tg-final{text-align:center}
-  /* отзывы — строками */
-  .reviews,.sheet .rev-grid{gap:0!important}
-  .review{background:none!important;border-top:1px solid var(--line)!important;padding:16px 4px!important;text-align:center;align-items:center}
-  .review .stars{margin-left:auto;margin-right:auto}
-  /* цены */
-  .pills{gap:14px!important}
-  .trial{padding:22px 18px!important;text-align:center;justify-content:center}
-  /* цитаты, цифры и финал — тёмные полосы */
-  .statrow{max-width:none!important;margin:0!important;background:var(--ink);padding:22px 20px!important}
-  .quote:not(.qtest){max-width:none!important;margin:0!important;background:var(--ink);padding:40px 30px 40px 22px!important}
-  .quote.qtest{max-width:none!important;margin:0!important;box-shadow:none!important;border-top:3px solid var(--orange);padding:34px 30px 34px 22px!important;background:var(--paper2)!important}
-  .final{max-width:none!important;margin:0!important;background:var(--ink);padding:48px 30px 48px 22px!important}
-  footer{text-align:center}
-  .footrow{justify-content:center}
-  /* рельс с апельсином виден на светлом фоне */
-  .rail .trk::after{background:var(--green)!important;opacity:.35!important}
-  .hero .issue{position:static;display:inline-block;margin:0 0 14px}
-}
+.trk-box{flex:none;width:17px;height:17px;border:1px solid var(--ink);margin-top:2px;display:grid;place-items:center}
+.trk-box::after{content:"";width:4px;height:8px;border:solid var(--beige2);border-width:0 1.5px 1.5px 0;transform:rotate(45deg) scale(0);margin-top:-2px;transition:transform .2s}
+.trk-it input:checked+.trk-box{background:var(--ink)}.trk-it input:checked+.trk-box::after{transform:rotate(45deg) scale(1)}
+.trk-tx{display:flex;flex-direction:column;font-size:13px;line-height:1.45}
+.trk-tx b{font-size:13.5px}.trk-tx span,.trk-tx i{color:var(--muted)}
+/* цены */
+.price{margin:14px 0 0;padding:0}
+.price+.price{margin-top:30px;padding-top:18px;border-top:1px solid var(--ink)}
+.price h3{font-style:normal!important;font-size:12px!important;letter-spacing:.24em;text-transform:uppercase;color:var(--orange);margin:0 0 2px!important;font-weight:700}
+.price .sub{font-size:12.5px;font-style:italic;color:var(--muted);margin-bottom:6px}
+.price-row{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:9px 0;border-top:1px solid var(--line)}
+.price-row .lbl{font-size:13.5px;line-height:1.35}
+.price-row .freq{display:block;font-style:italic;font-size:12px;color:var(--muted)}
+.price-row .amt{font-size:15px;font-weight:700;white-space:nowrap}
+.trial{border:1px solid var(--ink);padding:12px 14px;margin-top:18px}
+.trial h4{margin-bottom:4px}.trial p{font-size:13.5px}
+.pills{margin-top:12px}
+/* отзывы */
+.review .stars{font-size:11px;letter-spacing:.2em;color:var(--muted)}
+.review p{font-size:13.5px;line-height:1.55;margin:2px 0 4px}
+.review .who{font-size:12px;font-style:italic;color:var(--muted);margin-bottom:6px}
+/* главы */
+.chap{border-top:1px solid var(--lineL);scroll-margin-top:50px}
+.chap:last-of-type{border-bottom:1px solid var(--lineL)}
+.chb{display:flex;align-items:baseline;gap:10px;width:100%;font:inherit;background:none;border:0;color:var(--beige);padding:18px 2px 16px;cursor:pointer;text-align:left}
+.chb .cn{font-size:12px;letter-spacing:.3em;text-transform:uppercase}
+.chb .cc{font-size:11px;font-style:italic;opacity:.55;flex:1}
+.chb .ch{width:12px;height:8px;align-self:center}
+.chbody{padding:2px 0 14px}
+.chaps{margin-top:22px}
+/* цитаты, цифры, финал */
+.qt .qtx{font-style:italic;font-size:15px;line-height:1.5;margin:0 0 12px}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--lineL);border:1px solid var(--lineL);margin:14px 0 0}
+.stats div{background:var(--green);background-image:var(--cash);padding:12px 12px}
+.stats b{display:block;font-weight:400;font-style:italic;font-size:20px;line-height:1.1}
+.stats span{font-size:11.5px;line-height:1.4;opacity:.8}
+blockquote.q{margin:0;padding:26px 0 24px;font-style:italic;font-size:16px;line-height:1.5;max-width:300px;border-top:1px solid var(--lineL)}
+.final{padding:30px 0 30px}
+.final h2{font-weight:400;font-style:italic;font-size:20px;margin:0 0 6px}
+.final p{font-size:13.5px;opacity:.85;margin:0 0 14px}
+.final .btn{display:inline-block;background:var(--beige);background-image:var(--lin);color:var(--ink)}
+footer{border-top:1px solid var(--lineL);padding:20px 0 calc(30px + env(safe-area-inset-bottom,0px));font-size:12px;line-height:1.6;opacity:.85}
+.footrow{display:flex;flex-direction:column;gap:8px}
+.footlinks{display:flex;flex-direction:column;gap:2px}
+footer .fn{color:inherit;opacity:.7}
+/* появление */
+.rv{opacity:0;transform:translateY(18px);transition:opacity .8s ease,transform .8s ease}
+.rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}}
+/* рельс с апельсином */
+.rail{position:fixed;top:calc(64px + env(safe-area-inset-top,0px));bottom:28px;right:max(10px,calc(env(safe-area-inset-right,0px) + 8px));width:16px;z-index:40}
+@media(min-width:600px){.rail{right:calc(50% - 260px + 8px)}}
+.rail::before{content:"";position:absolute;left:50%;top:0;bottom:0;width:1px;background:var(--beige);opacity:.4}
+.rail a{position:absolute;left:50%;width:9px;height:9px;margin:-4.5px 0 0 -4.5px;border-radius:50%;background:var(--green);border:1px solid var(--beige)}
+.rail a.on{background:var(--beige)}
+.rail svg{position:absolute;left:50%;width:26px;height:28px;margin:-14px 0 0 -13px;filter:drop-shadow(0 3px 4px rgba(0,0,0,.45));pointer-events:none}
+/* просмотр фото */
+.lb{position:fixed;inset:0;z-index:90;background:#0d0f0b;display:flex;flex-direction:column}
+.lb[hidden]{display:none}
+.lb-top{display:flex;justify-content:space-between;align-items:center;padding:calc(10px + env(safe-area-inset-top,0px)) 16px 8px;color:#ddd;font-size:13px}
+.lb-x{font:inherit;font-size:30px;line-height:1;background:none;border:0;color:#fff;cursor:pointer;padding:0 4px}
+.lb-track{flex:1;display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none}
+.lb-track::-webkit-scrollbar{display:none}
+.lb-track div{flex:0 0 100%;scroll-snap-align:center;display:flex;align-items:center;justify-content:center;padding:6px 10px calc(20px + env(safe-area-inset-bottom,0px))}
+.lb-track img{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain}
 </style>
 </head>
 <body>
-
-<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs><symbol id="orng" viewBox="0 0 44 48">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><symbol id="orng" viewBox="0 0 44 48">
 <radialGradient id="orG" cx="36%" cy="32%" r="72%"><stop offset="0" stop-color="#ffbe6b"/><stop offset=".3" stop-color="#f7931f"/><stop offset=".7" stop-color="#e06a06"/><stop offset="1" stop-color="#9c3a00"/></radialGradient>
 <radialGradient id="orR" cx="50%" cy="50%" r="50%"><stop offset=".72" stop-color="#5a1f00" stop-opacity="0"/><stop offset="1" stop-color="#5a1f00" stop-opacity=".45"/></radialGradient>
 <radialGradient id="orH" cx="33%" cy="27%" r="30%"><stop offset="0" stop-color="#fff" stop-opacity=".85"/><stop offset=".45" stop-color="#fff" stop-opacity=".25"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
@@ -806,508 +192,249 @@ nav{height:auto}
 <path d="M22 11.2c.3-1.6.9-2.8 2-3.6" stroke="#4a3a1e" stroke-width="1.3" fill="none" stroke-linecap="round"/>
 <path d="M23.6 7.8c2.6-4.6 8.2-6.6 13.4-5.4-1.6 4.9-7.6 8.1-13.4 5.4z" fill="url(#orL)"/>
 <path d="M24.4 7.4c3.6-1.9 7.6-3.4 11.6-4.4" stroke="#c9dc93" stroke-opacity=".6" stroke-width=".6" fill="none" stroke-linecap="round"/>
-</symbol></defs></svg>
-
-<nav>
-  <div class="navrow">
-    <div class="navsp"></div>
-    <div class="navlinks dd">
-      <div class="ddg"><button type="button" class="ddb" aria-expanded="false" aria-controls="dd0" id="ddb0">О нас<svg viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="ddm" id="dd0" role="menu" aria-labelledby="ddb0" hidden><a role="menuitem" href="#goals"><span class="ddi"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></span><span>Чем мы можем помочь</span></a><a role="menuitem" href="#about"><span class="ddi"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="9" r="3"/><circle cx="16.5" cy="10" r="2.5"/><path d="M3.5 19c.6-3 2.8-5 5.5-5s4.9 2 5.5 5M14 15.2c.8-.5 1.6-.7 2.5-.7 2.1 0 3.7 1.6 4 4.5"/></svg></span><span>О нас</span></a><a role="menuitem" href="#teachers"><span class="ddi"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.5 9 12 4.5 21.5 9 12 13.5z"/><path d="M6.5 11v4.5c1.4 1.3 3.4 2 5.5 2s4.1-.7 5.5-2V11M21.5 9v5"/></svg></span><span>Преподаватели</span></a><a role="menuitem" href="#geo"><span class="ddi"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c2.4 2.4 3.6 5.2 3.6 8.5S14.4 18.1 12 20.5M12 3.5C9.6 5.9 8.4 8.7 8.4 12s1.2 6.1 3.6 8.5"/></svg></span><span>География студенток</span></a></div></div>
-      <div class="ddg"><button type="button" class="ddb" aria-expanded="false" aria-controls="dd1" id="ddb1">Обучение<svg viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="ddm" id="dd1" role="menu" aria-labelledby="ddb1" hidden><a role="menuitem" href="#how"><span class="ddi"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 9.5h17M8 3v4M16 3v4M8 13.5h3M8 16.5h6"/></svg></span><span>Как проходят занятия</span></a><a role="menuitem" href="#platform"><span class="ddi"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="11" rx="1.5"/><path d="M2.5 19h19M10 8.5l4 2-4 2z"/></svg></span><span>Платформа</span></a><a role="menuitem" href="#minisites"><span class="ddi"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="9" width="16" height="11" rx="1.5"/><path d="M3 9h18M12 9v11M12 9c-1.5-3.5-5.5-4-5.5-1.5S10 9 12 9zm0 0c1.5-3.5 5.5-4 5.5-1.5S14 9 12 9z"/></svg></span><span>Бонусы преподавателей</span></a><a role="menuitem" href="#telegram"><span class="ddi"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 4 3 11l6 2.2L18 7l-7 7.5v5l3.3-3.6L18.5 20z"/></svg></span><span>Telegram</span></a></div></div>
-      <div class="ddg"><button type="button" class="ddb" aria-expanded="false" aria-controls="dd2" id="ddb2">Сроки<svg viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="ddm" id="dd2" role="menu" aria-labelledby="ddb2" hidden><a role="menuitem" href="#levels"><span class="ddi"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="13" r="7.5"/><path d="M12 9v4.5l3 1.8M9.5 3h5"/></svg></span><span>Сроки освоения уровней</span></a><a role="menuitem" href="#tracking"><span class="ddi"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="3.5" width="14" height="17" rx="1.5"/><path d="m8 9 1.5 1.5L12 8M8 15l1.5 1.5L12 14M14 9.5h2.5M14 15.5h2.5"/></svg></span><span>Трекинг уровня</span></a></div></div>
-      <div class="ddg"><button type="button" class="ddb" aria-expanded="false" aria-controls="dd3" id="ddb3">Запись<svg viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="ddm" id="dd3" role="menu" aria-labelledby="ddb3" hidden><a role="menuitem" href="#pricing"><span class="ddi"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 12.5V4.5h8l9 9-8 8z"/><circle cx="8" cy="9" r="1.4"/></svg></span><span>Пакеты и цены</span></a><a role="menuitem" href="#reviews"><span class="ddi"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5h16v10H9l-4.5 3.5v-3.5H4z"/><path d="M8.5 9.5h7M8.5 12.5h4.5"/></svg></span><span>Отзывы</span></a><a role="menuitem" href="#podcasts"><span class="ddi"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3.8 2.5 5.2 5.7.8-4.1 4 1 5.6-5.1-2.7-5.1 2.7 1-5.6-4.1-4 5.7-.8z"/></svg></span><span>Успехи студенток</span></a></div></div>
-    </div>
-    <div class="navcta"><a class="cta" href="#trial">Пробное занятие</a></div>
-  </div>
-</nav>
-<div class="rail" aria-label="Навигация по странице">
-  <div class="trk"></div>
-  <a class="dot" href="#f-about" data-t="f-about" aria-label="О нас"><span>О нас</span></a>
-  <a class="dot" href="#f-learn" data-t="f-learn" aria-label="Занятия"><span>Занятия</span></a>
-  <a class="dot" href="#f-time" data-t="f-time" aria-label="Сроки"><span>Сроки</span></a>
-  <a class="dot" href="#f-price" data-t="f-price" aria-label="Цены"><span>Цены</span></a>
-  <a class="dot" href="#f-rev" data-t="f-rev" aria-label="Отзывы"><span>Отзывы</span></a>
-  <div class="thumb" role="slider" aria-label="Прокрутка страницы" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><svg viewBox="0 0 44 48" aria-hidden="true"><g id="orngSpin"><use href="#orng"/></g></svg></div>
-</div>
-<a class="totop" href="#" aria-label="Наверх">↑ Наверх</a>
-
-
+</symbol>
+<filter id="tex" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".5 .035" numOctaves="2" seed="2" result="a"/><feTurbulence type="fractalNoise" baseFrequency=".035 .5" numOctaves="2" seed="6" result="b"/><feBlend in="a" in2="b" mode="multiply" result="c"/><feColorMatrix in="c" type="matrix" values=".5 .5 .5 0 .02 .5 .5 .5 0 .02 .5 .5 .5 0 .02 0 0 0 0 1" result="d"/><feComposite in="d" in2="SourceAlpha" operator="in" result="e"/><feBlend in="SourceGraphic" in2="e" mode="multiply"/></filter></defs></svg>
+<nav class="top"><div class="nv"><div class="dd"><button type="button" class="nvb" aria-expanded="false">О нас<svg class="ch" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="dm" hidden><a href="#goals" data-go="goals"><span class="p">(</span>1<span class="p">)</span> Чем мы можем помочь</a><a href="#about" data-go="about"><span class="p">(</span>2<span class="p">)</span> О нас</a><a href="#teachers" data-go="teachers"><span class="p">(</span>3<span class="p">)</span> Преподаватели</a><a href="#geo" data-go="geo"><span class="p">(</span>4<span class="p">)</span> География студенток</a></div></div><div class="dd"><button type="button" class="nvb" aria-expanded="false">Обучение<svg class="ch" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="dm" hidden><a href="#how" data-go="how"><span class="p">(</span>1<span class="p">)</span> Как проходят занятия</a><a href="#platform" data-go="platform"><span class="p">(</span>2<span class="p">)</span> Платформа</a><a href="#minisites" data-go="minisites"><span class="p">(</span>3<span class="p">)</span> Бонусы преподавателей</a><a href="#telegram" data-go="telegram"><span class="p">(</span>4<span class="p">)</span> Telegram</a></div></div><div class="dd"><button type="button" class="nvb" aria-expanded="false">Сроки<svg class="ch" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="dm" hidden><a href="#levels" data-go="levels"><span class="p">(</span>1<span class="p">)</span> Сроки освоения уровней</a><a href="#tracking" data-go="tracking"><span class="p">(</span>2<span class="p">)</span> Трекинг уровня</a></div></div><div class="dd"><button type="button" class="nvb" aria-expanded="false">Запись<svg class="ch" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="dm" hidden><a href="#steps" data-go="steps"><span class="p">(</span>1<span class="p">)</span> Пробное занятие</a><a href="#pricing" data-go="pricing"><span class="p">(</span>2<span class="p">)</span> Пакеты и цены</a><a href="#reviews" data-go="reviews"><span class="p">(</span>3<span class="p">)</span> Отзывы</a><a href="#podcasts" data-go="podcasts"><span class="p">(</span>4<span class="p">)</span> Успехи студенток</a></div></div></div></nav>
 <main class="page">
-
-<!-- HERO -->
-<header class="sheet hero" style="--r:-.5deg">
+<header class="hero rv in" id="top">
   <div class="issue">Online English classes for women</div>
-  <h1 class="title">WE TALK</h1>
-  <div class="tag">«The only time I set the bar low is for limbo.» — Michael Scott</div>
+  <h1>WE TALK</h1>
+  <p class="tag">«The only time I set the bar low is for limbo.»<br>— Michael Scott</p>
   <h2>Английский, на котором ты <em>заговоришь уверенно</em></h2>
-  <p class="body">We Talk — <span class="nb">онлайн-комьюнити</span> для женщин, которые хотят говорить <span class="nb">по-английски</span> свободно и грамотно. Занимаемся индивидуально и в <span class="nb">мини-группах</span>: с нуля до уровня C1, в комфортной среде и из любой точки мира.</p>
-  <div class="herobtns">
-    <a class="btn btn-o" href="#trial">Записаться на бесплатное пробное</a>
-    <a class="btn btn-g" href="#pricing">Пакеты и цены</a>
-  </div>
+  <p class="lead">We Talk — <span class="nb">онлайн-комьюнити</span> для женщин, которые хотят говорить <span class="nb">по-английски</span> свободно и грамотно. Занимаемся индивидуально и в <span class="nb">мини-группах</span>: с нуля до уровня C1, в комфортной среде и из любой точки мира.</p>
+  <div class="hbtns"><a class="btn f" href="#steps" data-go="steps">Записаться на бесплатное пробное</a><a class="btn" href="#pricing" data-go="pricing">Пакеты и цены</a></div>
 </header>
+<section class="card qt rv"><div class="num"><span class="p">(</span><b>!</b><span class="p">)</span><span class="k">перед пробным</span></div><p class="qtx">«Перед пробным занятием, пожалуйста, пройдите короткое тестирование — так преподаватель заранее узнает ваш уровень и цели»</p><a class="btn ink" href="../test/">Пройти тестирование</a></section>
+<section class="stats rv"><div><b>1000+</b><span>Студенток за 10 лет</span></div><div><b>WOS</b><span>Результаты исследования методики вошли в научную статью, проиндексированную в Web of Science</span></div><div><b>A0–C1</b><span>Доводим с любого уровня</span></div><div><b>4</b><span>Человека максимум в группе</span></div></section>
+<div class="chaps"><div class="chap" id="ch-about"><button type="button" class="chb" aria-expanded="false"><span class="cn">О нас</span><span class="cc">4 раздела</span><svg class="ch" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="chbody" hidden><section class="card rv" id="goals"><div class="num"><span class="p">(</span><b>01</b><span class="p">)</span><span class="k">Английский с WeTalk</span></div>
 
-
-<!-- TEST QUOTE -->
-<section class="quote qtest"><p>«Перед пробным занятием, пожалуйста, пройдите короткое тестирование — так преподаватель заранее узнает ваш уровень и цели»</p><a class="btn qbtn" href="../test/">Пройти тестирование</a></section>
-
-<!-- О НАС -->
-<div class="folder" id="f-about">
-  <div class="ftabs" role="tablist" aria-label="О нас"><button type="button" role="tab" id="t-goals" data-tab="goals" aria-selected="true" class="on">Чем мы поможем</button><button type="button" role="tab" id="t-about" data-tab="about" aria-selected="false">О нас</button><button type="button" role="tab" id="t-teachers" data-tab="teachers" aria-selected="false">Преподаватели</button><button type="button" role="tab" id="t-geo" data-tab="geo" aria-selected="false">География</button></div>
-<section role="tabpanel" aria-labelledby="t-goals" class="sheet fpanel beige" id="goals" style="--r:.5deg">
-  <span class="kicker">Английский с WeTalk</span>
-  <h2 class="h2">Чем мы можем помочь</h2>
-  <div class="cols c4">
-    <div class="col"><span class="dot"></span><h4 class="semi">Язык для общения</h4><p>Разговорный английский для повседневных ситуаций: свободно говорить, понимать собеседника и не бояться ошибок.</p></div>
-    <div class="col"><span class="dot"></span><h4 class="semi">Язык для переезда</h4><p>Уверенность в новой стране: учёба, работа, документы, быт и знакомства на английском.</p></div>
-    <div class="col"><span class="dot"></span><h4 class="semi">Язык для путешествий</h4><p>Английский, который поможет свободно путешествовать и чувствовать себя уверенно в любой точке мира.</p></div>
-    <div class="col"><span class="dot"></span><h4 class="semi">Бизнес-английский</h4><p>Для работы, переговоров, деловой переписки и карьерного роста.</p></div>
-  </div>
-</section>
-<section hidden role="tabpanel" aria-labelledby="t-about" class="sheet fpanel" id="about" style="--r:-.6deg">
-  <span class="kicker">О нас</span>
-  <div class="cols2">
-    <div>
-      <h2 class="h2">Мы — женское комьюнити</h2>
-      <p class="body">We Talk — языковая школа, где методика преподавания сочетает современные подходы с проверенными приёмами классических методов. Результаты исследования этой методики легли в основу научной статьи, проиндексированной в базе Web of Science.</p>
-    </div>
-    <div class="badges">
-      <span class="badge">Коммуникативный подход</span>
-      <span class="badge"><span class="nb">Task-Based</span> Learning</span>
-      <span class="badge">Аудио-лингвальный метод</span>
-      <span class="badge">Прямой метод</span>
-    </div>
-  </div>
-</section>
-<section hidden role="tabpanel" aria-labelledby="t-teachers" class="sheet fpanel" id="teachers" style="--r:.6deg">
-  <span class="kicker">Обучение</span>
-  <div class="cols2 one">
-    <div>
-      <h2 class="h2">Преподаватели We Talk</h2>
-      <p class="body">Мы — лингвисты, выпускницы факультета иностранных языков Чеченского государственного университета. У нас подтверждённый уровень английского C1 и около 10 лет преподавательского опыта.</p>
-      <p class="body">За эти годы мы поработали в центре раннего развития, гимназии и языковых школах, вели частную практику и курировали начинающих преподавателей. Мы участвовали в собеседованиях при найме (job interview), а также в устных собеседованиях ОГЭ и ЕГЭ в качестве экзаменаторов.</p>
-      <p class="body">В нашем опыте — обучение по программе Erasmus+ в университете Фехты (Германия), а также разговорный и книжный клубы на английском в Национальной библиотеке Чеченской Республики. И мы продолжаем учиться: регулярно повышаем квалификацию на международных образовательных платформах — edX (в том числе дистанционный курс Harvard University), Udemy и Open University (Великобритания).</p>
-    </div>
-  </div>
-</section>
-<section hidden role="tabpanel" aria-labelledby="t-geo" class="sheet fpanel" id="geo" style="--r:-.4deg">
-  <span class="kicker">География</span>
-  <h2 class="h2 sm">Откуда наши студентки</h2>
-  <div class="tiles c4">
-    <div class="tile"><h4>Россия</h4><p>Чечня, Дагестан, Ингушетия и другие регионы</p></div>
-    <div class="tile s"><h4>Европа</h4><p>Беларусь, Германия, Великобритания, Греция, Португалия, Норвегия</p></div>
-    <div class="tile k"><h4>Ближний Восток и Азия</h4><p>ОАЭ, Бахрейн, Саудовская Аравия, Китай</p></div>
-    <div class="tile"><h4>Северная Америка</h4><p>США</p></div>
-  </div>
-</section>
+<h3 class="h2">Чем мы можем помочь</h3>
+<div class="cols c4">
+<div class="col"><span class="dot"></span><h4 class="semi">Язык для общения</h4><p>Разговорный английский для повседневных ситуаций: свободно говорить, понимать собеседника и не бояться ошибок.</p></div>
+<div class="col"><span class="dot"></span><h4 class="semi">Язык для переезда</h4><p>Уверенность в новой стране: учёба, работа, документы, быт и знакомства на английском.</p></div>
+<div class="col"><span class="dot"></span><h4 class="semi">Язык для путешествий</h4><p>Английский, который поможет свободно путешествовать и чувствовать себя уверенно в любой точке мира.</p></div>
+<div class="col"><span class="dot"></span><h4 class="semi">Бизнес-английский</h4><p>Для работы, переговоров, деловой переписки и карьерного роста.</p></div>
 </div>
+</section><section class="card rv" id="about"><div class="num"><span class="p">(</span><b>02</b><span class="p">)</span><span class="k">О нас</span></div>
 
-
-
-<!-- STATS -->
-<section class="statrow">
-  <div class="tiles c4">
-    <div class="tile stat"><b>1000+</b><span>Студенток за 10 лет</span></div>
-    <div class="tile stat k"><b>WOS</b><span>Результаты исследования методики вошли в научную статью, проиндексированную в Web of Science</span></div>
-    <div class="tile stat"><b>A0–C1</b><span>Доводим с любого уровня</span></div>
-    <div class="tile stat s"><b>4</b><span>Человека максимум в группе</span></div>
-  </div>
-</section>
-
-
-
-
-
-
-
-
-<!-- QUOTE -->
-<section class="quote"><p>«Мы создаём пространство, где женщины учатся говорить <span class="nb">по-английски</span> уверенно и без страха ошибок»</p></section>
-
-<!-- КАК ПРОХОДЯТ ЗАНЯТИЯ -->
-<div class="folder" id="f-learn">
-  <div class="ftabs" role="tablist" aria-label="Как проходят занятия"><button type="button" role="tab" id="t-how" data-tab="how" aria-selected="true" class="on">Методика</button><button type="button" role="tab" id="t-platform" data-tab="platform" aria-selected="false">Платформа</button><button type="button" role="tab" id="t-telegram" data-tab="telegram" aria-selected="false">Telegram</button><button type="button" role="tab" id="t-minisites" data-tab="minisites" aria-selected="false">Бонус к лексике</button></div>
-<section role="tabpanel" aria-labelledby="t-how" class="sheet fpanel" id="how" style="--r:.5deg">
-  <span class="kicker">Методика</span>
-  <h2 class="h2">Как мы преподаём</h2>
-  <div class="tiles c4">
-    <div class="tile"><h4 class="semi">Коммуникативный подход</h4><p>Фокус на практике языка, ситуации из жизни, без зубрёжки.</p></div>
-    <div class="tile s"><h4 class="semi"><span class="nb">Task-Based</span> Learning</h4><p>Задачно-ориентированное обучение: мотивация и критическое мышление.</p></div>
-    <div class="tile k"><h4 class="semi">Аудио-лингвальный метод</h4><p>Развитие слуха и беглости речи через тематические подкасты, закрепление грамматики и лексики в контексте.</p></div>
-    <div class="tile"><h4 class="semi">Прямой метод</h4><p>Усвоение языка через практику и погружение в языковую среду.</p></div>
-  </div>
-</section>
-<section hidden role="tabpanel" aria-labelledby="t-platform" class="sheet fpanel" id="platform" style="--r:-.5deg">
-  <span class="kicker">Платформа</span>
-  <h2 class="h2">Вся учёба — в личном кабинете</h2>
-  <p class="body">Занятия проходят на интерактивной платформе 2EASY: у каждой студентки есть собственный кабинет, где собрано всё необходимое для учёбы.</p>
-  <div class="tiles c3">
-    <div class="tile"><h4 class="semi">Личный кабинет</h4><p>Уроки, задания и материалы собраны в одном месте.</p></div>
-    <div class="tile s"><h4 class="semi">Возвращайся к урокам</h4><p>Все уроки сохраняются в кабинете — их можно пересматривать и повторять в любой момент.</p></div>
-    <div class="tile"><h4 class="semi">Чат с преподавателем</h4><p>Можно задать вопрос в чате, в том числе во время урока.</p></div>
-    <div class="tile s"><h4 class="semi">Личный словарик</h4><p>Студентка сама пополняет словарь и повторяет слова в удобное время.</p></div>
-    <div class="tile"><h4 class="semi">Домашние задания</h4><p>Домашние задания тоже выполняются на платформе.</p></div>
-    <div class="tile s"><h4 class="semi">Видео, аудио и упражнения</h4><p>Десятки упражнений, видео- и аудиоматериалы для увлекательного и эффективного обучения.</p></div>
-  </div>
-  <div class="strip tall"><div class="strip-head"><span class="strip-label">Так выглядит платформа изнутри</span><div class="strip-arrows"><button type="button" class="sp" aria-label="Назад">‹</button><button type="button" class="sn" aria-label="Вперёд">›</button></div></div><div class="strip-track" tabindex="0" aria-label="Так выглядит платформа изнутри"><figure class="fig"><button type="button" data-g="pl" data-i="0" aria-label="Открыть: Платформа: Личный кабинет"><img src="../wetalk-img/pl-01.webp" width="828" height="661" alt="Платформа: Личный кабинет" loading="lazy" decoding="async"></button><figcaption>Личный кабинет</figcaption></figure><figure class="fig"><button type="button" data-g="pl" data-i="1" aria-label="Открыть: Платформа: Свой словарь"><img src="../wetalk-img/pl-02.webp" width="828" height="1349" alt="Платформа: Свой словарь" loading="lazy" decoding="async"></button><figcaption>Свой словарь</figcaption></figure><figure class="fig"><button type="button" data-g="pl" data-i="2" aria-label="Открыть: Платформа: Новая лексика"><img src="../wetalk-img/pl-03.webp" width="828" height="1061" alt="Платформа: Новая лексика" loading="lazy" decoding="async"></button><figcaption>Новая лексика</figcaption></figure><figure class="fig"><button type="button" data-g="pl" data-i="3" aria-label="Открыть: Платформа: Видео прямо в уроке"><img src="../wetalk-img/pl-04.webp" width="828" height="856" alt="Платформа: Видео прямо в уроке" loading="lazy" decoding="async"></button><figcaption>Видео прямо в уроке</figcaption></figure><figure class="fig"><button type="button" data-g="pl" data-i="4" aria-label="Открыть: Платформа: Проверка понимания"><img src="../wetalk-img/pl-05.webp" width="828" height="1054" alt="Платформа: Проверка понимания" loading="lazy" decoding="async"></button><figcaption>Проверка понимания</figcaption></figure><figure class="fig"><button type="button" data-g="pl" data-i="5" aria-label="Открыть: Платформа: От общего к деталям"><img src="../wetalk-img/pl-06.webp" width="828" height="1008" alt="Платформа: От общего к деталям" loading="lazy" decoding="async"></button><figcaption>От общего к деталям</figcaption></figure><figure class="fig"><button type="button" data-g="pl" data-i="6" aria-label="Открыть: Платформа: True / False / Not given"><img src="../wetalk-img/pl-07.webp" width="828" height="1130" alt="Платформа: True / False / Not given" loading="lazy" decoding="async"></button><figcaption>True / False / Not given</figcaption></figure><figure class="fig"><button type="button" data-g="pl" data-i="7" aria-label="Открыть: Платформа: Заполни пропуски"><img src="../wetalk-img/pl-08.webp" width="828" height="1344" alt="Платформа: Заполни пропуски" loading="lazy" decoding="async"></button><figcaption>Заполни пропуски</figcaption></figure><figure class="fig"><button type="button" data-g="pl" data-i="8" aria-label="Открыть: Платформа: Квизы по видео"><img src="../wetalk-img/pl-09.webp" width="828" height="1530" alt="Платформа: Квизы по видео" loading="lazy" decoding="async"></button><figcaption>Квизы по видео</figcaption></figure><figure class="fig"><button type="button" data-g="pl" data-i="9" aria-label="Открыть: Платформа: Темы для обсуждения"><img src="../wetalk-img/pl-10.webp" width="828" height="1486" alt="Платформа: Темы для обсуждения" loading="lazy" decoding="async"></button><figcaption>Темы для обсуждения</figcaption></figure><figure class="fig"><button type="button" data-g="pl" data-i="10" aria-label="Открыть: Платформа: Понятная домашка"><img src="../wetalk-img/pl-11.webp" width="828" height="1362" alt="Платформа: Понятная домашка" loading="lazy" decoding="async"></button><figcaption>Понятная домашка</figcaption></figure></div><div class="strip-bar" aria-hidden="true"><i></i></div></div>
-</section>
-<section hidden role="tabpanel" aria-labelledby="t-telegram" class="sheet fpanel" id="telegram">
-  <span class="kicker">Telegram</span>
-  <h2 class="h2">Telegram-канал для домашки</h2>
-  <p class="body">У каждой группы — свой Telegram-канал. Домашка, ссылки и вопросы к преподавателю лежат по порядку, без бардака.</p>
-  <ul class="tg-list"><li class="tg-row"><button type="button" class="tg-shot" data-g="tg" data-i="0" aria-label="Открыть: Канал группы с расписанием и подсказкой «Домашку ищем по датам»"><img src="../wetalk-img/tg-1.webp" width="828" height="817" alt="Канал группы с расписанием и подсказкой «Домашку ищем по датам»" loading="lazy" decoding="async"><span class="tg-pin">📌 Свой канал</span></button><div class="tg-text"><h4 class="semi">Свой канал у каждой группы</h4><p>В описании — расписание занятий и одно правило: домашку ищем по датам. Только ваша группа и ваш преподаватель.</p></div></li><li class="tg-row"><button type="button" class="tg-shot" data-g="tg" data-i="1" aria-label="Открыть: Пост с домашкой за 26.08 и 29.08"><img src="../wetalk-img/tg-2.webp" width="828" height="1241" alt="Пост с домашкой за 26.08 и 29.08" loading="lazy" decoding="async"><span class="tg-pin">📅 По датам</span></button><div class="tg-text"><h4 class="semi">Всё по датам</h4><p>Каждое задание — отдельный пост с датой урока. Нужна домашка от 26 августа? Находится за секунду, без прокрутки бесконечного чата.</p></div></li><li class="tg-row"><button type="button" class="tg-shot" data-g="tg" data-i="2" aria-label="Открыть: Задание на сочинение и 34 комментария под ним"><img src="../wetalk-img/tg-3.webp" width="828" height="738" alt="Задание на сочинение и 34 комментария под ним" loading="lazy" decoding="async"><span class="tg-pin">💬 34 комментария</span></button><div class="tg-text"><h4 class="semi">Вопросы — прямо под домашкой</h4><p>Под каждым заданием открыты комментарии. Спросили — получили ответ преподавателя, и всё осталось на месте. В любой момент можно открыть урок и вспомнить, что обсуждали с преподавателем и одногруппницами.</p></div></li><li class="tg-row"><button type="button" class="tg-shot" data-g="tg" data-i="3" aria-label="Открыть: Пост со ссылками на игры, в которые играли на уроке"><img src="../wetalk-img/tg-4.webp" width="828" height="582" alt="Пост со ссылками на игры, в которые играли на уроке" loading="lazy" decoding="async"><span class="tg-pin">🔗 Ссылки с урока</span></button><div class="tg-text"><h4 class="semi">Ничего не теряется</h4><p>Игры с урока, статьи, аудио и видео лежат в канале. Не нужно искать ссылку, которая утонула в переписке неделю назад.</p></div></li></ul>
-  <div class="tg-final"><b>Всё чётко и системно</b><span>Платформа и Telegram — и больше никаких лишних вкладок.</span></div>
-</section>
-<section hidden role="tabpanel" aria-labelledby="t-minisites" class="sheet fpanel" id="minisites">
-  <span class="kicker">Бонус от преподавателя</span>
-  <h2 class="h2">Дополнительная практика к каждому уроку</h2>
-  <p class="body">Платформа закрывает все задачи. Но мы идём дальше: к темам уроков преподаватель готовит отдельные странички с упражнениями для дополнительной практики, чтобы новые слова точно остались в голове.</p>
-  <div class="try">Попробуй сама — нажми на карточку</div>
-  <div class="flips"><button type="button" class="flip" aria-pressed="false" aria-label="Карточка domineering: нажмите, чтобы перевернуть"><span class="flip-in"><span class="face front"><b>domineering</b><i>нажми, чтобы перевернуть</i></span><span class="face back"><b>властный, деспотичный</b><i>Her domineering boss controlled every small decision in the office.</i></span></span></button><button type="button" class="flip" aria-pressed="false" aria-label="Карточка isolated: нажмите, чтобы перевернуть"><span class="flip-in"><span class="face front"><b>isolated</b><i>нажми, чтобы перевернуть</i></span><span class="face back"><b>изолированный, одинокий</b><i>Working from a remote village, he felt completely isolated.</i></span></span></button><button type="button" class="flip" aria-pressed="false" aria-label="Карточка outsider: нажмите, чтобы перевернуть"><span class="flip-in"><span class="face front"><b>outsider</b><i>нажми, чтобы перевернуть</i></span><span class="face back"><b>чужак, изгой</b><i>As the only foreign student, she often felt like an outsider.</i></span></span></button></div>
-  <div class="tiles c3">
-    <div class="tile"><h4 class="semi">Под вашу тему</h4><p>Слова берём из урока, который прошла ваша группа.</p></div>
-    <div class="tile s"><h4 class="semi">Разные форматы</h4><p>Карточки, «соедини слово с переводом», пропуски в предложениях.</p></div>
-    <div class="tile k"><h4 class="semi">С телефона за 5 минут</h4><p>Ссылка приходит в Telegram-канал группы: открыли в дороге и повторили слова.</p></div>
-  </div>
-  <div class="strip tall"><div class="strip-head"><span class="strip-label">Примеры заданий</span><div class="strip-arrows"><button type="button" class="sp" aria-label="Назад">‹</button><button type="button" class="sn" aria-label="Вперёд">›</button></div></div><div class="strip-track" tabindex="0" aria-label="Примеры заданий"><figure class="fig"><button type="button" data-g="ms" data-i="0" aria-label="Открыть: Дополнительная практика: Карточки со словами"><img src="../wetalk-img/ms-1.webp" width="828" height="1179" alt="Дополнительная практика: Карточки со словами" loading="lazy" decoding="async"></button><figcaption>Карточки со словами</figcaption></figure><figure class="fig"><button type="button" data-g="ms" data-i="1" aria-label="Открыть: Дополнительная практика: Соедини слово с переводом"><img src="../wetalk-img/ms-2.webp" width="828" height="1450" alt="Дополнительная практика: Соедини слово с переводом" loading="lazy" decoding="async"></button><figcaption>Соедини слово с переводом</figcaption></figure><figure class="fig"><button type="button" data-g="ms" data-i="2" aria-label="Открыть: Дополнительная практика: Словарь урока"><img src="../wetalk-img/ms-3.webp" width="828" height="957" alt="Дополнительная практика: Словарь урока" loading="lazy" decoding="async"></button><figcaption>Словарь урока</figcaption></figure><figure class="fig"><button type="button" data-g="ms" data-i="3" aria-label="Открыть: Дополнительная практика: Заполни пропуск"><img src="../wetalk-img/ms-4.webp" width="828" height="899" alt="Дополнительная практика: Заполни пропуск" loading="lazy" decoding="async"></button><figcaption>Заполни пропуск</figcaption></figure><figure class="fig"><button type="button" data-g="ms" data-i="4" aria-label="Открыть: Дополнительная практика: Карточка с примером"><img src="../wetalk-img/ms-5.webp" width="828" height="953" alt="Дополнительная практика: Карточка с примером" loading="lazy" decoding="async"></button><figcaption>Карточка с примером</figcaption></figure></div><div class="strip-bar" aria-hidden="true"><i></i></div></div>
-</section>
+<div class="cols2">
+<div>
+<h3 class="h2">Мы — женское комьюнити</h3>
+<p class="body">We Talk — языковая школа, где методика преподавания сочетает современные подходы с проверенными приёмами классических методов. Результаты исследования этой методики легли в основу научной статьи, проиндексированной в базе Web of Science.</p>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- СРОКИ -->
-<div class="folder" id="f-time">
-  <div class="ftabs" role="tablist" aria-label="Сроки"><button type="button" role="tab" id="t-levels" data-tab="levels" aria-selected="true" class="on">Сроки</button><button type="button" role="tab" id="t-tracking" data-tab="tracking" aria-selected="false">Трекинг уровня</button></div>
-<section role="tabpanel" aria-labelledby="t-levels" class="sheet fpanel" id="levels">
-  <span class="kicker">Сроки</span>
-  <h2 class="h2">Сколько времени нужно на каждый уровень</h2>
-  <p class="body">Cambridge English публикует ориентиры: сколько учебных часов в среднем нужно, чтобы перейти на следующий уровень. Мы пересчитали их в месяцы при разном расписании.</p>
-  <div class="lv-wrap"><table class="lv">
-    <thead><tr><th scope="col">Уровень<small>переход</small></th><th scope="col">Учебных часов<small>по Cambridge</small></th><th scope="col">3 ч в неделю<small>12 ч в месяц</small></th><th scope="col">2 ч в неделю<small>8 ч в месяц</small></th><th scope="col">1,5 ч в неделю<small>6 ч в месяц</small></th></tr></thead>
-    <tbody><tr><th scope="row"><span class="lv-lv"><b>0</b><i aria-hidden="true">→</i><b class="to">A1</b></span><span class="sr">С нуля → A1</span></th><td data-l="Учебных часов"><span class="lv-hr"><span>90–100</span><span class="lv-bar" aria-hidden="true"><i style="width:50%"></i></span></span></td><td data-l="3 ч в неделю">≈ 8 мес</td><td data-l="2 ч в неделю">≈ 12 мес</td><td data-l="1,5 ч в неделю">≈ 16 мес</td></tr><tr><th scope="row"><span class="lv-lv"><b>A1</b><i aria-hidden="true">→</i><b class="to">A2</b></span><span class="sr">A1 → A2</span></th><td data-l="Учебных часов"><span class="lv-hr"><span>90–100</span><span class="lv-bar" aria-hidden="true"><i style="width:50%"></i></span></span></td><td data-l="3 ч в неделю">≈ 8 мес</td><td data-l="2 ч в неделю">≈ 12 мес</td><td data-l="1,5 ч в неделю">≈ 16 мес</td></tr><tr><th scope="row"><span class="lv-lv"><b>A2</b><i aria-hidden="true">→</i><b class="to">B1</b></span><span class="sr">A2 → B1</span></th><td data-l="Учебных часов"><span class="lv-hr"><span>170–200</span><span class="lv-bar" aria-hidden="true"><i style="width:100%"></i></span></span></td><td data-l="3 ч в неделю">14–17 мес</td><td data-l="2 ч в неделю">21–25 мес</td><td data-l="1,5 ч в неделю">28–33 мес</td></tr><tr><th scope="row"><span class="lv-lv"><b>B1</b><i aria-hidden="true">→</i><b class="to">B2</b></span><span class="sr">B1 → B2</span></th><td data-l="Учебных часов"><span class="lv-hr"><span>150–200</span><span class="lv-bar" aria-hidden="true"><i style="width:100%"></i></span></span></td><td data-l="3 ч в неделю">13–17 мес</td><td data-l="2 ч в неделю">19–25 мес</td><td data-l="1,5 ч в неделю">25–33 мес</td></tr><tr><th scope="row"><span class="lv-lv"><b>B2</b><i aria-hidden="true">→</i><b class="to">C1</b></span><span class="sr">B2 → C1</span></th><td data-l="Учебных часов"><span class="lv-hr"><span>≈ 200</span><span class="lv-bar" aria-hidden="true"><i style="width:100%"></i></span></span></td><td data-l="3 ч в неделю">≈ 17 мес</td><td data-l="2 ч в неделю">≈ 25 мес</td><td data-l="1,5 ч в неделю">≈ 33 мес</td></tr></tbody>
-    <tfoot><tr><th scope="row"><span class="lv-lv"><b>0</b><i aria-hidden="true">→</i><b class="to">C1</b></span><span class="lv-tot">весь путь</span></th><td data-l="Учебных часов">700–800</td><td data-l="3 ч в неделю">≈ 5–5,5 лет</td><td data-l="2 ч в неделю">≈ 7–8 лет</td><td data-l="1,5 ч в неделю">≈ 10–11 лет</td></tr></tfoot>
-  </table></div>
-  <p class="fn">Расчёт — только для занятий с преподавателем; самостоятельная работа сокращает сроки. Источник: <a href="https://support.cambridgeenglish.org/hc/en-gb/articles/202838506-Guided-learning-hours" target="_blank" rel="noopener">Cambridge English, Guided learning hours</a>.</p>
-  <div class="lv-note">
-    <h3 class="lv-h">Сроки обучения зависят не от нас, а от количества практики</h3>
-    <p class="body">В месяце 720 часов. При трёх уроках в неделю вы проводите с преподавателем 12 из них — меньше 2% времени. Всё остальное время вы работаете сами.</p>
-    <p class="body">Мы даём всё необходимое: платформу, материалы, домашние задания, бонусы к лексике и поддержку в Telegram. Но большая часть результата зависит от того, как вы занимаетесь между уроками: повторяете ли материал, выполняете ли домашние задания, следуете ли рекомендациям преподавателя.</p>
-    <p class="body">Если заниматься раз в неделю и не повторять дома, изучение языка растянется на годы. Чем больше практики между уроками, тем быстрее результат.</p>
-  </div>
-</section>
-<section hidden role="tabpanel" aria-labelledby="t-tracking" class="sheet fpanel" id="tracking">
-  <span class="kicker">Трекинг уровня</span>
-  <h2 class="h2">Чек-листы по грамматике для каждого уровня</h2>
-  <p class="body">Мы создали Telegram-канал с чек-листами по грамматике — от A1 до C1, по международному стандарту CEFR. В них расписана вся грамматика, которая ждёт вас на каждом уровне: доступным, понятным языком и с примерами.</p>
-  <p class="body">После каждой темы, пройденной с преподавателем, студентка сама отмечает её в чек-листе. Прогресс считается автоматически: сразу видно, сколько тем из скольких уже усвоено и сколько осталось до следующего уровня.</p>
-  <div class="try">Попробуй сама — отметь тему</div>
-  <div class="chk" data-trk>
-    <div class="trk-pr"><span>Прогресс</span><b><span class="trk-n">0</span> / 3</b></div>
-    <div class="trk-bar" aria-hidden="true"><i></i></div>
-    <ul class="trk-list"><li><label class="trk-it"><input type="checkbox"><span class="trk-box" aria-hidden="true"></span><span class="trk-tx"><b>Present Simple</b><span>утверждения, вопросы и отрицания</span><i>She works from home. Does he like coffee?</i></span></label></li><li><label class="trk-it"><input type="checkbox"><span class="trk-box" aria-hidden="true"></span><span class="trk-tx"><b>Past Simple</b><span>правильные и неправильные глаголы</span><i>We visited London. I saw that film.</i></span></label></li><li><label class="trk-it"><input type="checkbox"><span class="trk-box" aria-hidden="true"></span><span class="trk-tx"><b>Сравнение прилагательных</b><span>bigger, more interesting, the best</span><i>This book is more interesting than that one.</i></span></label></li></ul>
-  </div>
-  <div class="tiles c3">
-    <div class="tile"><h4 class="semi">Вся грамматика уровня</h4><p>Все темы уровня собраны в одном списке. Понятно, что уже пройдено и что впереди.</p></div>
-    <div class="tile s"><h4 class="semi">Простым языком</h4><p>Каждая тема объяснена коротко и понятно, с примерами на английском.</p></div>
-    <div class="tile k"><h4 class="semi">Легко отмечать</h4><p>Одно касание — и тема отмечена. Прогресс сохраняется сам.</p></div>
-  </div>
-  <div class="strip tall"><div class="strip-head"><span class="strip-label">Чек-листы A1–C1</span><div class="strip-arrows"><button type="button" class="sp" aria-label="Назад">‹</button><button type="button" class="sn" aria-label="Вперёд">›</button></div></div><div class="strip-track" tabindex="0" aria-label="Чек-листы A1–C1"><figure class="fig"><button type="button" data-g="tr" data-i="0" aria-label="Открыть: Чек-лист A1"><img src="../wetalk-img/tr-1.webp" width="828" height="1256" alt="Чек-лист A1" loading="lazy" decoding="async"></button><figcaption>A1 · 15 тем</figcaption></figure><figure class="fig"><button type="button" data-g="tr" data-i="1" aria-label="Открыть: Чек-лист A2"><img src="../wetalk-img/tr-2.webp" width="828" height="1271" alt="Чек-лист A2" loading="lazy" decoding="async"></button><figcaption>A2 · 19 тем</figcaption></figure><figure class="fig"><button type="button" data-g="tr" data-i="2" aria-label="Открыть: Чек-лист B1"><img src="../wetalk-img/tr-3.webp" width="828" height="1255" alt="Чек-лист B1" loading="lazy" decoding="async"></button><figcaption>B1 · 31 тема</figcaption></figure><figure class="fig"><button type="button" data-g="tr" data-i="3" aria-label="Открыть: Чек-лист B2"><img src="../wetalk-img/tr-4.webp" width="828" height="1371" alt="Чек-лист B2" loading="lazy" decoding="async"></button><figcaption>B2 · 25 тем</figcaption></figure><figure class="fig"><button type="button" data-g="tr" data-i="4" aria-label="Открыть: Чек-лист C1"><img src="../wetalk-img/tr-5.webp" width="828" height="1316" alt="Чек-лист C1" loading="lazy" decoding="async"></button><figcaption>C1 · 20 тем</figcaption></figure><figure class="fig"><button type="button" data-g="tr" data-i="5" aria-label="Открыть: Так выглядит тема в чек-листе"><img src="../wetalk-img/tr-6.webp" width="828" height="773" alt="Так выглядит тема в чек-листе" loading="lazy" decoding="async"></button><figcaption>Так выглядит тема</figcaption></figure></div><div class="strip-bar" aria-hidden="true"><i></i></div></div>
-</section>
+<div class="badges">
+<span class="badge">Коммуникативный подход</span>
+<span class="badge"><span class="nb">Task-Based</span> Learning</span>
+<span class="badge">Аудио-лингвальный метод</span>
+<span class="badge">Прямой метод</span>
 </div>
-
-<!-- ПАКЕТЫ И ЦЕНЫ -->
-<div class="folder" id="f-price">
-  <div class="ftabs" role="tablist" aria-label="Пакеты и цены"><button type="button" role="tab" id="t-steps" data-tab="steps" aria-selected="true" class="on">Пробное занятие</button><button type="button" role="tab" id="t-pricing" data-tab="pricing" aria-selected="false">Пакеты и цены</button></div>
-<section role="tabpanel" aria-labelledby="t-steps" class="sheet fpanel" id="steps" style="--r:-.5deg">
-  <span class="kicker">Пробное занятие</span>
-  <h2 class="h2">Что происходит на пробном</h2>
-  <div class="tiles c3">
-    <div class="tile"><span class="no">01</span><h4 class="semi">Выбираем удобное время</h4><p>Согласовываем дату и время созвона с преподавателем — гибко и без навязанных рамок.</p></div>
-    <div class="tile k"><span class="no">02</span><h4 class="semi">Встречаемся онлайн</h4><p>Перед занятием — короткий 15-минутный тест на уровень. Созвон идёт 20⁠–⁠30 минут, камера не нужна — только микрофон.</p></div>
-    <div class="tile s"><span class="no">03</span><h4 class="semi">Знакомимся с подходом к обучению</h4><p>Преподаватель рассказывает про методику, показывает материалы, помогает выбрать формат и расписание — и отвечает на любые вопросы.</p></div>
-  </div>
-</section>
-<section hidden role="tabpanel" aria-labelledby="t-pricing" class="sheet fpanel" id="pricing" style="--r:.4deg">
-  <span class="kicker">Пакеты и цены</span>
-  <h2 class="h2">Выбирай формат под себя</h2>
-  <div class="tiles c2">
-    <div class="price k">
-      <h3 class="semi">Индивидуально</h3><div class="sub">Программа 1:1 под твои цели и темп</div>
-      <div class="price-row"><span class="lbl">2 раза в неделю × 60 мин<small class="freq">10 уроков</small></span><span class="amt">15 000 ₽</span></div>
-      <div class="price-row"><span class="lbl">3 раза в неделю × 60 мин<small class="freq">10 уроков</small></span><span class="amt">15 000 ₽</span></div>
-      <div class="price-row"><span class="lbl">1 раз в неделю × 90 мин<small class="freq">4 урока</small></span><span class="amt">9 000 ₽</span></div>
-      <div class="price-row"><span class="lbl">2 раза в неделю × 90 мин<small class="freq">8 уроков</small></span><span class="amt">18 000 ₽</span></div>
-    </div>
-    <div class="price">
-      <h3 class="semi"><span class="nb">Мини-группа</span></h3><div class="sub">До 4 учениц, больше живого общения</div>
-      <div class="price-row"><span class="lbl">2 раза в неделю × 60 мин<small class="freq">10 уроков</small></span><span class="amt">8 000 ₽</span></div>
-      <div class="price-row"><span class="lbl">3 раза в неделю × 60 мин<small class="freq">12 уроков</small></span><span class="amt">10 000 ₽</span></div>
-      <div class="price-row"><span class="lbl">2 раза в неделю × 90 мин<small class="freq">8 уроков</small></span><span class="amt">10 000 ₽</span></div>
-    </div>
-  </div>
-  <div class="trial" id="trial">
-    <div style="flex:1;min-width:240px"><h4 class="semi">Пробное занятие — бесплатно</h4><p>20⁠–⁠30 минут: знакомство, определение уровня и путь обучения, который тебе подойдёт. Ни к чему не обязывает.</p></div>
-    <a class="btn btn-k btn-mid" href="https://wa.me/79911186796" target="_blank" rel="noopener">Записаться</a>
-  </div>
-  <div class="pills">
-    <div class="pill"><h4 class="semi">Всё включено</h4><p>Платформа 2EASY и домашние задания входят в стоимость обучения.</p></div>
-    <div class="pill"><h4 class="semi">1000+ ресурсов бесплатно</h4><p>Подборки лексики, книги, фильмы, конспекты преподавателей — в закрытом Telegram-канале*.</p></div>
-    <div class="pill"><h4 class="semi">Поддержка между уроками</h4><p>Подскажем, направим и поможем с любым вопросом.</p></div>
-  </div>
-</section>
 </div>
+</section><section class="card rv" id="teachers"><div class="num"><span class="p">(</span><b>03</b><span class="p">)</span><span class="k">Обучение</span></div>
 
-
-
-
-
-
-
-<!-- ОТЗЫВЫ -->
-<div class="folder" id="f-rev">
-  <div class="ftabs" role="tablist" aria-label="Отзывы"><button type="button" role="tab" id="t-reviews" data-tab="reviews" aria-selected="true" class="on">Отзывы</button><button type="button" role="tab" id="t-podcasts" data-tab="podcasts" aria-selected="false">Успехи студенток</button></div>
-<section role="tabpanel" aria-labelledby="t-reviews" class="sheet fpanel" id="reviews" style="--r:-.5deg">
-  <span class="kicker">Отзывы</span>
-  <h2 class="h2">Что говорят наши студентки</h2>
-  <div class="strip" data-auto="1"><div class="strip-head"><span class="strip-label">Скриншоты отзывов из нашего Telegram</span><div class="strip-arrows"><button type="button" class="sp" aria-label="Назад">‹</button><button type="button" class="sn" aria-label="Вперёд">›</button></div></div><div class="strip-track" tabindex="0" aria-label="Скриншоты отзывов из нашего Telegram"><figure class="fig"><button type="button" data-g="pov" data-i="0" aria-label="Открыть: Отзывы студенток WeTalk, слайд 02"><img src="../wetalk-img/pov-02.webp" width="1080" height="1350" alt="Отзывы студенток WeTalk, слайд 02" loading="lazy" decoding="async"></button></figure><figure class="fig"><button type="button" data-g="pov" data-i="1" aria-label="Открыть: Отзывы студенток WeTalk, слайд 03"><img src="../wetalk-img/pov-03.webp" width="1080" height="1350" alt="Отзывы студенток WeTalk, слайд 03" loading="lazy" decoding="async"></button></figure><figure class="fig"><button type="button" data-g="pov" data-i="2" aria-label="Открыть: Отзывы студенток WeTalk, слайд 04"><img src="../wetalk-img/pov-04.webp" width="1080" height="1350" alt="Отзывы студенток WeTalk, слайд 04" loading="lazy" decoding="async"></button></figure><figure class="fig"><button type="button" data-g="pov" data-i="3" aria-label="Открыть: Отзывы студенток WeTalk, слайд 05"><img src="../wetalk-img/pov-05.webp" width="1080" height="1350" alt="Отзывы студенток WeTalk, слайд 05" loading="lazy" decoding="async"></button></figure><figure class="fig"><button type="button" data-g="pov" data-i="4" aria-label="Открыть: Отзывы студенток WeTalk, слайд 06"><img src="../wetalk-img/pov-06.webp" width="1080" height="1350" alt="Отзывы студенток WeTalk, слайд 06" loading="lazy" decoding="async"></button></figure><figure class="fig"><button type="button" data-g="pov" data-i="5" aria-label="Открыть: Отзывы студенток WeTalk, слайд 07"><img src="../wetalk-img/pov-07.webp" width="1080" height="1350" alt="Отзывы студенток WeTalk, слайд 07" loading="lazy" decoding="async"></button></figure><figure class="fig"><button type="button" data-g="pov" data-i="6" aria-label="Открыть: Отзывы студенток WeTalk, слайд 08"><img src="../wetalk-img/pov-08.webp" width="1080" height="1350" alt="Отзывы студенток WeTalk, слайд 08" loading="lazy" decoding="async"></button></figure><figure class="fig"><button type="button" data-g="pov" data-i="7" aria-label="Открыть: Отзывы студенток WeTalk, слайд 09"><img src="../wetalk-img/pov-09.webp" width="1080" height="1350" alt="Отзывы студенток WeTalk, слайд 09" loading="lazy" decoding="async"></button></figure></div><div class="strip-bar" aria-hidden="true"><i></i></div></div>
-  <div class="tiles c3">
-    <div class="review"><div class="stars">★★★★★</div><p>«Занимаюсь в школе чуть меньше года. До этого пробовала заниматься английским в других местах — есть с чем сравнивать. Хочу отметить сочетание профессионализма и комфортной среды при обучении.»</p><div class="who">Индивидуальное обучение</div></div>
-    <div class="review"><div class="stars">★★★★★</div><p>«За 10 месяцев обучения с Диной я не только выучила язык, но и изменилась сама. Теперь я с лёгкостью пишу заметки, отправляю сообщения и, главное, перестала бояться ошибок.»</p><div class="who">Индивидуальное обучение</div></div>
-    <div class="review"><div class="stars">★★★★★</div><p>«Тактика преподавания нацелена на результат. Все задания продуманы, домашнее задание направлено на закрепление пройденных тем.»</p><div class="who">Индивидуальное обучение</div></div>
-    <div class="review"><div class="stars">★★★★★</div><p>«Я ни разу не пожалела, что перешла на коллективный формат обучения. На Беллу можно положиться как на наставника.»</p><div class="who">Групповое обучение</div></div>
-    <div class="review"><div class="stars">★★★★★</div><p>«Сама скептически отношусь к приложениям при обучении, но выбранные We Talk считаю очень успешными. По моей рекомендации уже обучается моя лучшая подруга.»</p><div class="who">Групповое обучение</div></div>
-    <div class="review"><div class="stars">★★★★★</div><p>«Мне очень понравилось, занятия интересные и информация хорошо преподносится. Я планирую продолжать.»</p><div class="who">Групповое обучение</div></div>
-  </div>
-  <p class="body" style="margin-top:46px">Посмотреть, как проходят уроки, и увидеть результаты тестирований можно в нашем Telegram-канале с честными и реальными отзывами и успехами студенток*.</p>
-  <p style="margin:22px 0 0"><a class="btn btn-g" href="https://t.me/wetalklessons" target="_blank" rel="noopener">Перейти в Telegram-канал</a></p>
-  <p class="fn">* Доступ к Telegram в РФ ограничен.</p>
-</section>
-<section hidden role="tabpanel" aria-labelledby="t-podcasts" class="sheet fpanel" id="podcasts" style="--r:.6deg">
-  <span class="kicker">Фирменный формат</span>
-  <div class="cols2 rev">
-    <div>
-      <h2 class="h2">Студентки записывают <span class="nb">мини-подкасты</span> на английском</h2>
-      <p class="body">От «What's in my bag?» до разговоров о своих увлечениях и открытиях — это способ прокачать speaking, выйти из «учебной зоны» в реальную практику и начать звучать уверенно.</p>
-      <p class="body">Помимо подкастов студентки пишут сочинения и эссе — мы работаем над языком по всем фронтам: говорение, аудирование, чтение и письмо.</p>
-    </div>
-    <div class="pods"><button type="button" data-g="pod" data-i="0" style="--ar:1.2778" aria-label="Открыть подкаст 1"><img src="../wetalk-img/rv-02.webp" width="828" height="648" alt="Подкаст студентки WeTalk" loading="lazy" decoding="async"></button><button type="button" data-g="pod" data-i="1" style="--ar:1.2622" aria-label="Открыть подкаст 2"><img src="../wetalk-img/rv-04.webp" width="828" height="656" alt="Подкаст студентки WeTalk" loading="lazy" decoding="async"></button></div>
-  </div>
-</section>
+<div class="cols2 one">
+<div>
+<h3 class="h2">Преподаватели We Talk</h3>
+<p class="body">Мы — лингвисты, выпускницы факультета иностранных языков Чеченского государственного университета. У нас подтверждённый уровень английского C1 и около 10 лет преподавательского опыта.</p>
+<p class="body">За эти годы мы поработали в центре раннего развития, гимназии и языковых школах, вели частную практику и курировали начинающих преподавателей. Мы участвовали в собеседованиях при найме (job interview), а также в устных собеседованиях ОГЭ и ЕГЭ в качестве экзаменаторов.</p>
+<p class="body">В нашем опыте — обучение по программе Erasmus+ в университете Фехты (Германия), а также разговорный и книжный клубы на английском в Национальной библиотеке Чеченской Республики. И мы продолжаем учиться: регулярно повышаем квалификацию на международных образовательных платформах — edX (в том числе дистанционный курс Harvard University), Udemy и Open University (Великобритания).</p>
 </div>
+</div>
+</section><section class="card rv" id="geo"><div class="num"><span class="p">(</span><b>04</b><span class="p">)</span><span class="k">География</span></div>
 
+<h3 class="h2 sm">Откуда наши студентки</h3>
+<div class="tiles c4">
+<div class="tile"><h4>Россия</h4><p>Чечня, Дагестан, Ингушетия и другие регионы</p></div>
+<div class="tile s"><h4>Европа</h4><p>Беларусь, Германия, Великобритания, Греция, Португалия, Норвегия</p></div>
+<div class="tile k"><h4>Ближний Восток и Азия</h4><p>ОАЭ, Бахрейн, Саудовская Аравия, Китай</p></div>
+<div class="tile"><h4>Северная Америка</h4><p>США</p></div>
+</div>
+</section></div></div><blockquote class="q rv">«Мы создаём пространство, где женщины учатся говорить <span class="nb">по-английски</span> уверенно и без страха ошибок»</blockquote><div class="chap" id="ch-learn"><button type="button" class="chb" aria-expanded="false"><span class="cn">Обучение</span><span class="cc">4 раздела</span><svg class="ch" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="chbody" hidden><section class="card rv" id="how"><div class="num"><span class="p">(</span><b>05</b><span class="p">)</span><span class="k">Методика</span></div>
 
+<h3 class="h2">Как мы преподаём</h3>
+<div class="tiles c4">
+<div class="tile"><h4 class="semi">Коммуникативный подход</h4><p>Фокус на практике языка, ситуации из жизни, без зубрёжки.</p></div>
+<div class="tile s"><h4 class="semi"><span class="nb">Task-Based</span> Learning</h4><p>Задачно-ориентированное обучение: мотивация и критическое мышление.</p></div>
+<div class="tile k"><h4 class="semi">Аудио-лингвальный метод</h4><p>Развитие слуха и беглости речи через тематические подкасты, закрепление грамматики и лексики в контексте.</p></div>
+<div class="tile"><h4 class="semi">Прямой метод</h4><p>Усвоение языка через практику и погружение в языковую среду.</p></div>
+</div>
+</section><section class="card rv" id="platform"><div class="num"><span class="p">(</span><b>06</b><span class="p">)</span><span class="k">Платформа</span></div>
 
+<h3 class="h2">Вся учёба — в личном кабинете</h3>
+<p class="body">Занятия проходят на интерактивной платформе 2EASY: у каждой студентки есть собственный кабинет, где собрано всё необходимое для учёбы.</p>
+<div class="tiles c3">
+<div class="tile"><h4 class="semi">Личный кабинет</h4><p>Уроки, задания и материалы собраны в одном месте.</p></div>
+<div class="tile s"><h4 class="semi">Возвращайся к урокам</h4><p>Все уроки сохраняются в кабинете — их можно пересматривать и повторять в любой момент.</p></div>
+<div class="tile"><h4 class="semi">Чат с преподавателем</h4><p>Можно задать вопрос в чате, в том числе во время урока.</p></div>
+<div class="tile s"><h4 class="semi">Личный словарик</h4><p>Студентка сама пополняет словарь и повторяет слова в удобное время.</p></div>
+<div class="tile"><h4 class="semi">Домашние задания</h4><p>Домашние задания тоже выполняются на платформе.</p></div>
+<div class="tile s"><h4 class="semi">Видео, аудио и упражнения</h4><p>Десятки упражнений, видео- и аудиоматериалы для увлекательного и эффективного обучения.</p></div>
+</div>
+<button aria-expanded="false" class="more" type="button"><span>Посмотреть, как выглядит платформа</span><svg aria-hidden="true" class="ch" viewbox="0 0 10 6"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.3"></path></svg></button><div class="gal" hidden=""><div class="gal-track"><figure><button aria-label="Открыть фото" class="ph" data-g="pl" data-i="0" type="button"><img alt="Личный кабинет" loading="lazy" src="../wetalk-img/pl-01.webp"/></button><figcaption>Личный кабинет</figcaption></figure><figure><button aria-label="Открыть фото" class="ph" data-g="pl" data-i="1" type="button"><img alt="Свой словарь" loading="lazy" src="../wetalk-img/pl-02.webp"/></button><figcaption>Свой словарь</figcaption></figure><figure><button aria-label="Открыть фото" class="ph" data-g="pl" data-i="2" type="button"><img alt="Новая лексика" loading="lazy" src="../wetalk-img/pl-03.webp"/></button><figcaption>Новая лексика</figcaption></figure><figure><button aria-label="Открыть фото" class="ph" data-g="pl" data-i="3" type="button"><img alt="Видео прямо в уроке" loading="lazy" src="../wetalk-img/pl-04.webp"/></button><figcaption>Видео прямо в уроке</figcaption></figure><figure><button aria-label="Открыть фото" class="ph" data-g="pl" data-i="4" type="button"><img alt="Проверка понимания" loading="lazy" src="../wetalk-img/pl-05.webp"/></button><figcaption>Проверка понимания</figcaption></figure><figure><button aria-label="Открыть фото" class="ph" data-g="pl" data-i="5" type="button"><img alt="От общего к деталям" loading="lazy" src="../wetalk-img/pl-06.webp"/></button><figcaption>От общего к деталям</figcaption></figure><figure><button aria-label="Открыть фото" class="ph" data-g="pl" data-i="6" type="button"><img alt="True / False / Not given" loading="lazy" src="../wetalk-img/pl-07.webp"/></button><figcaption>True / False / Not given</figcaption></figure><figure><button aria-label="Открыть фото" class="ph" data-g="pl" data-i="7" type="button"><img alt="Заполни пропуски" loading="lazy" src="../wetalk-img/pl-08.webp"/></button><figcaption>Заполни пропуски</figcaption></figure><figure><button aria-label="Открыть фото" class="ph" data-g="pl" data-i="8" type="button"><img alt="Квизы по видео" loading="lazy" src="../wetalk-img/pl-09.webp"/></button><figcaption>Квизы по видео</figcaption></figure><figure><button aria-label="Открыть фото" class="ph" data-g="pl" data-i="9" type="button"><img alt="Темы для обсуждения" loading="lazy" src="../wetalk-img/pl-10.webp"/></button><figcaption>Темы для обсуждения</figcaption></figure><figure><button aria-label="Открыть фото" class="ph" data-g="pl" data-i="10" type="button"><img alt="Понятная домашка" loading="lazy" src="../wetalk-img/pl-11.webp"/></button><figcaption>Понятная домашка</figcaption></figure></div><div class="gal-hint">листайте вбок · нажмите на фото, чтобы открыть целиком</div></div>
+</section><section class="card rv" id="telegram"><div class="num"><span class="p">(</span><b>07</b><span class="p">)</span><span class="k">Telegram</span></div>
 
-<!-- FINAL -->
-<section class="final">
-  <h2>Готова заговорить <span class="nb">по-английски</span>?</h2>
-  <p>Бесплатное пробное занятие — 20⁠–⁠30 минут, без обязательств</p>
-  <a class="btn btn-o btn-mid" href="https://wa.me/79911186796" target="_blank" rel="noopener">Записаться</a>
-</section>
+<h3 class="h2">Telegram-канал для домашки</h3>
+<p class="body">У каждой группы — свой Telegram-канал. Домашка, ссылки и вопросы к преподавателю лежат по порядку, без бардака.</p>
+<ul class="tg-list"><li class="tg-row"><div class="tg-text"><h4 class="semi">Свой канал у каждой группы</h4><p>В описании — расписание занятий и одно правило: домашку ищем по датам. Только ваша группа и ваш преподаватель.</p></div></li><li class="tg-row"><div class="tg-text"><h4 class="semi">Всё по датам</h4><p>Каждое задание — отдельный пост с датой урока. Нужна домашка от 26 августа? Находится за секунду, без прокрутки бесконечного чата.</p></div></li><li class="tg-row"><div class="tg-text"><h4 class="semi">Вопросы — прямо под домашкой</h4><p>Под каждым заданием открыты комментарии. Спросили — получили ответ преподавателя, и всё осталось на месте. В любой момент можно открыть урок и вспомнить, что обсуждали с преподавателем и одногруппницами.</p></div></li><li class="tg-row"><div class="tg-text"><h4 class="semi">Ничего не теряется</h4><p>Игры с урока, статьи, аудио и видео лежат в канале. Не нужно искать ссылку, которая утонула в переписке неделю назад.</p></div></li></ul><button aria-expanded="false" class="more" type="button"><span>Посмотреть, как выглядит Telegram-канал</span><svg aria-hidden="true" class="ch" viewbox="0 0 10 6"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.3"></path></svg></button><div class="gal" hidden=""><div class="gal-track"><figure><button aria-label="Открыть фото" class="ph" data-g="tg" data-i="0" type="button"><img alt="📌 Свой канал" loading="lazy" src="../wetalk-img/tg-1.webp"/></button><figcaption>📌 Свой канал</figcaption></figure><figure><button aria-label="Открыть фото" class="ph" data-g="tg" data-i="1" type="button"><img alt="📅 По датам" loading="lazy" src="../wetalk-img/tg-2.webp"/></button><figcaption>📅 По датам</figcaption></figure><figure><button aria-label="Открыть фото" class="ph" data-g="tg" data-i="2" type="button"><img alt="💬 34 комментария" loading="lazy" src="../wetalk-img/tg-3.webp"/></button><figcaption>💬 34 комментария</figcaption></figure><figure><button aria-label="Открыть фото" class="ph" data-g="tg" data-i="3" type="button"><img alt="🔗 Ссылки с урока" loading="lazy" src="../wetalk-img/tg-4.webp"/></button><figcaption>🔗 Ссылки с урока</figcaption></figure></div><div class="gal-hint">листайте вбок · нажмите на фото, чтобы открыть целиком</div></div>
+<div class="tg-final"><b>Всё чётко и системно</b><span>Платформа и Telegram — и больше никаких лишних вкладок.</span></div>
+</section><section class="card rv" id="minisites"><div class="num"><span class="p">(</span><b>08</b><span class="p">)</span><span class="k">Бонус от преподавателя</span></div>
 
-</main>
+<h3 class="h2">Дополнительная практика к каждому уроку</h3>
+<p class="body">Платформа закрывает все задачи. Но мы идём дальше: к темам уроков преподаватель готовит отдельные странички с упражнениями для дополнительной практики, чтобы новые слова точно остались в голове.</p>
+<div class="try">Попробуй сама — нажми на карточку</div>
+<div class="flips"><button aria-label="Карточка domineering: нажмите, чтобы перевернуть" aria-pressed="false" class="flip" type="button"><span class="flip-in"><span class="face front"><b>domineering</b><i>нажми, чтобы перевернуть</i></span><span class="face back"><b>властный, деспотичный</b><i>Her domineering boss controlled every small decision in the office.</i></span></span></button><button aria-label="Карточка isolated: нажмите, чтобы перевернуть" aria-pressed="false" class="flip" type="button"><span class="flip-in"><span class="face front"><b>isolated</b><i>нажми, чтобы перевернуть</i></span><span class="face back"><b>изолированный, одинокий</b><i>Working from a remote village, he felt completely isolated.</i></span></span></button><button aria-label="Карточка outsider: нажмите, чтобы перевернуть" aria-pressed="false" class="flip" type="button"><span class="flip-in"><span class="face front"><b>outsider</b><i>нажми, чтобы перевернуть</i></span><span class="face back"><b>чужак, изгой</b><i>As the only foreign student, she often felt like an outsider.</i></span></span></button></div>
+<div class="tiles c3">
+<div class="tile"><h4 class="semi">Под вашу тему</h4><p>Слова берём из урока, который прошла ваша группа.</p></div>
+<div class="tile s"><h4 class="semi">Разные форматы</h4><p>Карточки, «соедини слово с переводом», пропуски в предложениях.</p></div>
+<div class="tile k"><h4 class="semi">С телефона за 5 минут</h4><p>Ссылка приходит в Telegram-канал группы: открыли в дороге и повторили слова.</p></div>
+</div>
+<button aria-expanded="false" class="more" type="button"><span>Посмотреть примеры заданий</span><svg aria-hidden="true" class="ch" viewbox="0 0 10 6"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.3"></path></svg></button><div class="gal" hidden=""><div class="gal-track"><figure><button aria-label="Открыть фото" class="ph" data-g="ms" data-i="0" type="button"><img alt="Карточки со словами" loading="lazy" src="../wetalk-img/ms-1.webp"/></button><figcaption>Карточки со словами</figcaption></figure><figure><button aria-label="Открыть фото" class="ph" data-g="ms" data-i="1" type="button"><img alt="Соедини слово с переводом" loading="lazy" src="../wetalk-img/ms-2.webp"/></button><figcaption>Соедини слово с переводом</figcaption></figure><figure><button aria-label="Открыть фото" class="ph" data-g="ms" data-i="2" type="button"><img alt="Словарь урока" loading="lazy" src="../wetalk-img/ms-3.webp"/></button><figcaption>Словарь урока</figcaption></figure><figure><button aria-label="Открыть фото" class="ph" data-g="ms" data-i="3" type="button"><img alt="Заполни пропуск" loading="lazy" src="../wetalk-img/ms-4.webp"/></button><figcaption>Заполни пропуск</figcaption></figure><figure><button aria-label="Открыть фото" class="ph" data-g="ms" data-i="4" type="button"><img alt="Карточка с примером" loading="lazy" src="../wetalk-img/ms-5.webp"/></button><figcaption>Карточка с примером</figcaption></figure></div><div class="gal-hint">листайте вбок · нажмите на фото, чтобы открыть целиком</div></div>
+</section></div></div><div class="chap" id="ch-time"><button type="button" class="chb" aria-expanded="false"><span class="cn">Сроки</span><span class="cc">2 раздела</span><svg class="ch" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="chbody" hidden><section class="card rv" id="levels"><div class="num"><span class="p">(</span><b>09</b><span class="p">)</span><span class="k">Сроки</span></div>
 
+<h3 class="h2">Сколько времени нужно на каждый уровень</h3>
+<p class="body">Cambridge English публикует ориентиры: сколько учебных часов в среднем нужно, чтобы перейти на следующий уровень. Мы пересчитали их в месяцы при разном расписании.</p>
+<div class="lv-wrap"><table class="lv">
+<thead><tr><th scope="col">уровень</th><th scope="col">часов</th><th scope="col">3 ч/нед</th><th scope="col">2 ч/нед</th><th scope="col">1,5 ч/нед</th></tr></thead>
+<tbody><tr><th scope="row"><span class="lv-lv"><b>0</b><i aria-hidden="true">→</i><b class="to">A1</b></span></th><td data-l="Учебных часов"><span class="lv-hr"><span>90–100</span></span></td><td data-l="3 ч в неделю">≈ 8 мес</td><td data-l="2 ч в неделю">≈ 12 мес</td><td data-l="1,5 ч в неделю">≈ 16 мес</td></tr><tr><th scope="row"><span class="lv-lv"><b>A1</b><i aria-hidden="true">→</i><b class="to">A2</b></span></th><td data-l="Учебных часов"><span class="lv-hr"><span>90–100</span></span></td><td data-l="3 ч в неделю">≈ 8 мес</td><td data-l="2 ч в неделю">≈ 12 мес</td><td data-l="1,5 ч в неделю">≈ 16 мес</td></tr><tr><th scope="row"><span class="lv-lv"><b>A2</b><i aria-hidden="true">→</i><b class="to">B1</b></span></th><td data-l="Учебных часов"><span class="lv-hr"><span>170–200</span></span></td><td data-l="3 ч в неделю">14–17 мес</td><td data-l="2 ч в неделю">21–25 мес</td><td data-l="1,5 ч в неделю">28–33 мес</td></tr><tr><th scope="row"><span class="lv-lv"><b>B1</b><i aria-hidden="true">→</i><b class="to">B2</b></span></th><td data-l="Учебных часов"><span class="lv-hr"><span>150–200</span></span></td><td data-l="3 ч в неделю">13–17 мес</td><td data-l="2 ч в неделю">19–25 мес</td><td data-l="1,5 ч в неделю">25–33 мес</td></tr><tr><th scope="row"><span class="lv-lv"><b>B2</b><i aria-hidden="true">→</i><b class="to">C1</b></span></th><td data-l="Учебных часов"><span class="lv-hr"><span>≈ 200</span></span></td><td data-l="3 ч в неделю">≈ 17 мес</td><td data-l="2 ч в неделю">≈ 25 мес</td><td data-l="1,5 ч в неделю">≈ 33 мес</td></tr></tbody>
+<tfoot><tr><th scope="row"><span class="lv-lv"><b>0</b><i aria-hidden="true">→</i><b class="to">C1</b></span></th><td data-l="Учебных часов">700–800</td><td data-l="3 ч в неделю">≈ 5–5,5 лет</td><td data-l="2 ч в неделю">≈ 7–8 лет</td><td data-l="1,5 ч в неделю">≈ 10–11 лет</td></tr></tfoot>
+</table></div>
+<p class="fn">Расчёт — только для занятий с преподавателем; самостоятельная работа сокращает сроки. Источник: <a href="https://support.cambridgeenglish.org/hc/en-gb/articles/202838506-Guided-learning-hours" rel="noopener" target="_blank">Cambridge English, Guided learning hours</a>.</p>
+<div class="lv-note">
+<h3 class="lv-h">Сроки обучения зависят не от нас, а от количества практики</h3>
+<p class="body">В месяце 720 часов. При трёх уроках в неделю вы проводите с преподавателем 12 из них — меньше 2% времени. Всё остальное время вы работаете сами.</p>
+<p class="body">Мы даём всё необходимое: платформу, материалы, домашние задания, бонусы к лексике и поддержку в Telegram. Но большая часть результата зависит от того, как вы занимаетесь между уроками: повторяете ли материал, выполняете ли домашние задания, следуете ли рекомендациям преподавателя.</p>
+<p class="body">Если заниматься раз в неделю и не повторять дома, изучение языка растянется на годы. Чем больше практики между уроками, тем быстрее результат.</p>
+</div>
+</section><section class="card rv" id="tracking"><div class="num"><span class="p">(</span><b>10</b><span class="p">)</span><span class="k">Трекинг уровня</span></div>
+
+<h3 class="h2">Чек-листы по грамматике для каждого уровня</h3>
+<p class="body">Мы создали Telegram-канал с чек-листами по грамматике — от A1 до C1, по международному стандарту CEFR. В них расписана вся грамматика, которая ждёт вас на каждом уровне: доступным, понятным языком и с примерами.</p>
+<p class="body">После каждой темы, пройденной с преподавателем, студентка сама отмечает её в чек-листе. Прогресс считается автоматически: сразу видно, сколько тем из скольких уже усвоено и сколько осталось до следующего уровня.</p>
+<div class="try">Попробуй сама — отметь тему</div>
+<div class="chk" data-trk="">
+<div class="trk-pr"><span>Прогресс</span><b><span class="trk-n">0</span> / 3</b></div>
+<div aria-hidden="true" class="trk-bar"><i></i></div>
+<ul class="trk-list"><li><label class="trk-it"><input type="checkbox"/><span aria-hidden="true" class="trk-box"></span><span class="trk-tx"><b>Present Simple</b><span>утверждения, вопросы и отрицания</span><i>She works from home. Does he like coffee?</i></span></label></li><li><label class="trk-it"><input type="checkbox"/><span aria-hidden="true" class="trk-box"></span><span class="trk-tx"><b>Past Simple</b><span>правильные и неправильные глаголы</span><i>We visited London. I saw that film.</i></span></label></li><li><label class="trk-it"><input type="checkbox"/><span aria-hidden="true" class="trk-box"></span><span class="trk-tx"><b>Сравнение прилагательных</b><span>bigger, more interesting, the best</span><i>This book is more interesting than that one.</i></span></label></li></ul>
+</div>
+<div class="tiles c3">
+<div class="tile"><h4 class="semi">Вся грамматика уровня</h4><p>Все темы уровня собраны в одном списке. Понятно, что уже пройдено и что впереди.</p></div>
+<div class="tile s"><h4 class="semi">Простым языком</h4><p>Каждая тема объяснена коротко и понятно, с примерами на английском.</p></div>
+<div class="tile k"><h4 class="semi">Легко отмечать</h4><p>Одно касание — и тема отмечена. Прогресс сохраняется сам.</p></div>
+</div>
+<button aria-expanded="false" class="more" type="button"><span>Посмотреть чек-листы A1–C1</span><svg aria-hidden="true" class="ch" viewbox="0 0 10 6"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.3"></path></svg></button><div class="gal" hidden=""><div class="gal-track"><figure><button aria-label="Открыть фото" class="ph" data-g="tr" data-i="0" type="button"><img alt="A1 · 15 тем" loading="lazy" src="../wetalk-img/tr-1.webp"/></button><figcaption>A1 · 15 тем</figcaption></figure><figure><button aria-label="Открыть фото" class="ph" data-g="tr" data-i="1" type="button"><img alt="A2 · 19 тем" loading="lazy" src="../wetalk-img/tr-2.webp"/></button><figcaption>A2 · 19 тем</figcaption></figure><figure><button aria-label="Открыть фото" class="ph" data-g="tr" data-i="2" type="button"><img alt="B1 · 31 тема" loading="lazy" src="../wetalk-img/tr-3.webp"/></button><figcaption>B1 · 31 тема</figcaption></figure><figure><button aria-label="Открыть фото" class="ph" data-g="tr" data-i="3" type="button"><img alt="B2 · 25 тем" loading="lazy" src="../wetalk-img/tr-4.webp"/></button><figcaption>B2 · 25 тем</figcaption></figure><figure><button aria-label="Открыть фото" class="ph" data-g="tr" data-i="4" type="button"><img alt="C1 · 20 тем" loading="lazy" src="../wetalk-img/tr-5.webp"/></button><figcaption>C1 · 20 тем</figcaption></figure><figure><button aria-label="Открыть фото" class="ph" data-g="tr" data-i="5" type="button"><img alt="Так выглядит тема" loading="lazy" src="../wetalk-img/tr-6.webp"/></button><figcaption>Так выглядит тема</figcaption></figure></div><div class="gal-hint">листайте вбок · нажмите на фото, чтобы открыть целиком</div></div>
+</section></div></div><div class="chap" id="ch-sign"><button type="button" class="chb" aria-expanded="false"><span class="cn">Запись</span><span class="cc">2 раздела</span><svg class="ch" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="chbody" hidden><section class="card rv" id="steps"><div class="num"><span class="p">(</span><b>11</b><span class="p">)</span><span class="k">Пробное занятие</span></div>
+
+<h3 class="h2">Что происходит на пробном</h3>
+<div class="tiles c3">
+<div class="tile"><span class="no">01</span><h4 class="semi">Выбираем удобное время</h4><p>Согласовываем дату и время созвона с преподавателем — гибко и без навязанных рамок.</p></div>
+<div class="tile k"><span class="no">02</span><h4 class="semi">Встречаемся онлайн</h4><p>Перед занятием — короткий 15-минутный тест на уровень. Созвон идёт 20⁠–⁠30 минут, камера не нужна — только микрофон.</p></div>
+<div class="tile s"><span class="no">03</span><h4 class="semi">Знакомимся с подходом к обучению</h4><p>Преподаватель рассказывает про методику, показывает материалы, помогает выбрать формат и расписание — и отвечает на любые вопросы.</p></div>
+</div>
+</section><section class="card rv" id="pricing"><div class="num"><span class="p">(</span><b>12</b><span class="p">)</span><span class="k">Пакеты и цены</span></div>
+
+<h3 class="h2">Выбирай формат под себя</h3>
+<div class="tiles c2">
+<div class="price k">
+<h3 class="semi">Индивидуально</h3><div class="sub">Программа 1:1 под твои цели и темп</div>
+<div class="price-row"><span class="lbl">2 раза в неделю × 60 мин<small class="freq">10 уроков</small></span><span class="amt">15 000 ₽</span></div>
+<div class="price-row"><span class="lbl">3 раза в неделю × 60 мин<small class="freq">10 уроков</small></span><span class="amt">15 000 ₽</span></div>
+<div class="price-row"><span class="lbl">1 раз в неделю × 90 мин<small class="freq">4 урока</small></span><span class="amt">9 000 ₽</span></div>
+<div class="price-row"><span class="lbl">2 раза в неделю × 90 мин<small class="freq">8 уроков</small></span><span class="amt">18 000 ₽</span></div>
+</div>
+<div class="price">
+<h3 class="semi"><span class="nb">Мини-группа</span></h3><div class="sub">До 4 учениц, больше живого общения</div>
+<div class="price-row"><span class="lbl">2 раза в неделю × 60 мин<small class="freq">10 уроков</small></span><span class="amt">8 000 ₽</span></div>
+<div class="price-row"><span class="lbl">3 раза в неделю × 60 мин<small class="freq">12 уроков</small></span><span class="amt">10 000 ₽</span></div>
+<div class="price-row"><span class="lbl">2 раза в неделю × 90 мин<small class="freq">8 уроков</small></span><span class="amt">10 000 ₽</span></div>
+</div>
+</div>
+<div class="trial" id="trial">
+<div style="flex:1;min-width:240px"><h4 class="semi">Пробное занятие — бесплатно</h4><p>20⁠–⁠30 минут: знакомство, определение уровня и путь обучения, который тебе подойдёт. Ни к чему не обязывает.</p></div>
+<a class="btn btn-k btn-mid" href="https://wa.me/79911186796" rel="noopener" target="_blank">Записаться</a>
+</div>
+<div class="pills">
+<div class="pill"><h4 class="semi">Всё включено</h4><p>Платформа 2EASY и домашние задания входят в стоимость обучения.</p></div>
+<div class="pill"><h4 class="semi">1000+ ресурсов бесплатно</h4><p>Подборки лексики, книги, фильмы, конспекты преподавателей — в закрытом Telegram-канале*.</p></div>
+<div class="pill"><h4 class="semi">Поддержка между уроками</h4><p>Подскажем, направим и поможем с любым вопросом.</p></div>
+</div>
+</section></div></div><div class="chap" id="ch-rev"><button type="button" class="chb" aria-expanded="false"><span class="cn">Отзывы</span><span class="cc">2 раздела</span><svg class="ch" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="chbody" hidden><section class="card rv" id="reviews"><div class="num"><span class="p">(</span><b>13</b><span class="p">)</span><span class="k">Отзывы</span></div>
+
+<h3 class="h2">Что говорят наши студентки</h3>
+<button aria-expanded="false" class="more" type="button"><span>Посмотреть скриншоты отзывов из Telegram</span><svg aria-hidden="true" class="ch" viewbox="0 0 10 6"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.3"></path></svg></button><div class="gal" hidden=""><div class="gal-track"><figure><button aria-label="Открыть фото" class="ph" data-g="pov" data-i="0" type="button"><img alt="Посмотреть скриншоты отзывов из Telegram" loading="lazy" src="../wetalk-img/pov-02.webp"/></button></figure><figure><button aria-label="Открыть фото" class="ph" data-g="pov" data-i="1" type="button"><img alt="Посмотреть скриншоты отзывов из Telegram" loading="lazy" src="../wetalk-img/pov-03.webp"/></button></figure><figure><button aria-label="Открыть фото" class="ph" data-g="pov" data-i="2" type="button"><img alt="Посмотреть скриншоты отзывов из Telegram" loading="lazy" src="../wetalk-img/pov-04.webp"/></button></figure><figure><button aria-label="Открыть фото" class="ph" data-g="pov" data-i="3" type="button"><img alt="Посмотреть скриншоты отзывов из Telegram" loading="lazy" src="../wetalk-img/pov-05.webp"/></button></figure><figure><button aria-label="Открыть фото" class="ph" data-g="pov" data-i="4" type="button"><img alt="Посмотреть скриншоты отзывов из Telegram" loading="lazy" src="../wetalk-img/pov-06.webp"/></button></figure><figure><button aria-label="Открыть фото" class="ph" data-g="pov" data-i="5" type="button"><img alt="Посмотреть скриншоты отзывов из Telegram" loading="lazy" src="../wetalk-img/pov-07.webp"/></button></figure><figure><button aria-label="Открыть фото" class="ph" data-g="pov" data-i="6" type="button"><img alt="Посмотреть скриншоты отзывов из Telegram" loading="lazy" src="../wetalk-img/pov-08.webp"/></button></figure><figure><button aria-label="Открыть фото" class="ph" data-g="pov" data-i="7" type="button"><img alt="Посмотреть скриншоты отзывов из Telegram" loading="lazy" src="../wetalk-img/pov-09.webp"/></button></figure></div><div class="gal-hint">листайте вбок · нажмите на фото, чтобы открыть целиком</div></div>
+<div class="tiles c3">
+<div class="review"><div class="stars">★★★★★</div><p>«Занимаюсь в школе чуть меньше года. До этого пробовала заниматься английским в других местах — есть с чем сравнивать. Хочу отметить сочетание профессионализма и комфортной среды при обучении.»</p><div class="who">Индивидуальное обучение</div></div>
+<div class="review"><div class="stars">★★★★★</div><p>«За 10 месяцев обучения с Диной я не только выучила язык, но и изменилась сама. Теперь я с лёгкостью пишу заметки, отправляю сообщения и, главное, перестала бояться ошибок.»</p><div class="who">Индивидуальное обучение</div></div>
+<div class="review"><div class="stars">★★★★★</div><p>«Тактика преподавания нацелена на результат. Все задания продуманы, домашнее задание направлено на закрепление пройденных тем.»</p><div class="who">Индивидуальное обучение</div></div>
+<div class="review"><div class="stars">★★★★★</div><p>«Я ни разу не пожалела, что перешла на коллективный формат обучения. На Беллу можно положиться как на наставника.»</p><div class="who">Групповое обучение</div></div>
+<div class="review"><div class="stars">★★★★★</div><p>«Сама скептически отношусь к приложениям при обучении, но выбранные We Talk считаю очень успешными. По моей рекомендации уже обучается моя лучшая подруга.»</p><div class="who">Групповое обучение</div></div>
+<div class="review"><div class="stars">★★★★★</div><p>«Мне очень понравилось, занятия интересные и информация хорошо преподносится. Я планирую продолжать.»</p><div class="who">Групповое обучение</div></div>
+</div>
+<p class="body" style="margin-top:46px">Посмотреть, как проходят уроки, и увидеть результаты тестирований можно в нашем Telegram-канале с честными и реальными отзывами и успехами студенток*.</p>
+<p style="margin:22px 0 0"><a class="btn btn-g" href="https://t.me/wetalklessons" rel="noopener" target="_blank">Перейти в Telegram-канал</a></p>
+<p class="fn">* Доступ к Telegram в РФ ограничен.</p>
+</section><section class="card rv" id="podcasts"><div class="num"><span class="p">(</span><b>14</b><span class="p">)</span><span class="k">Фирменный формат</span></div>
+
+<div class="cols2 rev">
+<div>
+<h3 class="h2">Студентки записывают <span class="nb">мини-подкасты</span> на английском</h3>
+<p class="body">От «What's in my bag?» до разговоров о своих увлечениях и открытиях — это способ прокачать speaking, выйти из «учебной зоны» в реальную практику и начать звучать уверенно.</p>
+<p class="body">Помимо подкастов студентки пишут сочинения и эссе — мы работаем над языком по всем фронтам: говорение, аудирование, чтение и письмо.</p>
+</div>
+<button aria-expanded="false" class="more" type="button"><span>Посмотреть подкасты студенток</span><svg aria-hidden="true" class="ch" viewbox="0 0 10 6"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.3"></path></svg></button><div class="gal" hidden=""><div class="gal-track"><figure><button aria-label="Открыть фото" class="ph" data-g="pod" data-i="0" type="button"><img alt="Посмотреть подкасты студенток" loading="lazy" src="../wetalk-img/rv-02.webp"/></button></figure><figure><button aria-label="Открыть фото" class="ph" data-g="pod" data-i="1" type="button"><img alt="Посмотреть подкасты студенток" loading="lazy" src="../wetalk-img/rv-04.webp"/></button></figure></div><div class="gal-hint">листайте вбок · нажмите на фото, чтобы открыть целиком</div></div>
+</div>
+</section></div></div></div>
+<section class="final rv"><h2>Готова заговорить <span class="nb">по-английски</span>?</h2><p>Бесплатное пробное занятие — 20⁠–⁠30 минут, без обязательств</p><a class="btn btn-o btn-mid" href="https://wa.me/79911186796" rel="noopener" target="_blank">Записаться</a></section>
 <footer><div class="footrow">
-  <div>We Talk — онлайн уроки английского для женщин</div>
-  <div class="footlinks">
-    <a href="https://www.instagram.com/wetalk.ru" target="_blank" rel="noopener">Instagram*</a>
-    <a href="https://t.me/booksbywetalk" target="_blank" rel="noopener">Канал с ресурсами*</a>
-    <a href="https://t.me/wetalklessons" target="_blank" rel="noopener">Канал с отзывами и успехами*</a>
-    <a href="https://wa.me/79911186796" target="_blank" rel="noopener">WhatsApp</a>
-  </div>
-  <p class="fn" style="flex-basis:100%;margin:0">* Instagram принадлежит компании Meta, признанной экстремистской организацией и запрещённой в РФ. Доступ к Telegram в РФ ограничен.</p>
-</div></footer>
-
-<div class="lb" id="lb" hidden role="dialog" aria-modal="true" aria-label="Галерея">
-  <div class="lb-top"><span id="lbCount">1 / 1</span><button type="button" class="lb-close" id="lbClose" aria-label="Закрыть">×</button></div>
-  <div class="lb-track" id="lbTrack"></div>
-  <button type="button" class="lb-arrow lb-prev" id="lbPrev" aria-label="Предыдущее">‹</button>
-  <button type="button" class="lb-arrow lb-next" id="lbNext" aria-label="Следующее">›</button>
-  <div class="lb-hint">Листайте в стороны · двойное нажатие увеличивает · свайп вниз закрывает</div>
+<div>We Talk — онлайн уроки английского для женщин</div>
+<div class="footlinks">
+<a href="https://www.instagram.com/wetalk.ru" rel="noopener" target="_blank">Instagram*</a>
+<a href="https://t.me/booksbywetalk" rel="noopener" target="_blank">Канал с ресурсами*</a>
+<a href="https://t.me/wetalklessons" rel="noopener" target="_blank">Канал с отзывами и успехами*</a>
+<a href="https://wa.me/79911186796" rel="noopener" target="_blank">WhatsApp</a>
 </div>
-
+<p class="fn" style="flex-basis:100%;margin:0">* Instagram принадлежит компании Meta, признанной экстремистской организацией и запрещённой в РФ. Доступ к Telegram в РФ ограничен.</p>
+</div></footer>
+</main>
+<div class="rail" id="rail" aria-label="Навигация по главам"><svg viewBox="0 0 44 48" aria-hidden="true"><g filter="url(#tex)"><use href="#orng"/></g></svg></div>
+<div class="lb" id="lb" hidden role="dialog" aria-modal="true" aria-label="Фото"><div class="lb-top"><span id="lbn"></span><button type="button" class="lb-x" id="lbx" aria-label="Закрыть">×</button></div><div class="lb-track" id="lbt"></div></div>
 <script>
 (function(){
-var de=document.documentElement,reduced=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
-var GAL={"pov": ["../wetalk-img/pov-02.webp", "../wetalk-img/pov-03.webp", "../wetalk-img/pov-04.webp", "../wetalk-img/pov-05.webp", "../wetalk-img/pov-06.webp", "../wetalk-img/pov-07.webp", "../wetalk-img/pov-08.webp", "../wetalk-img/pov-09.webp"], "all": ["../wetalk-img/pov-02.webp", "../wetalk-img/pov-03.webp", "../wetalk-img/pov-04.webp", "../wetalk-img/pov-05.webp", "../wetalk-img/pov-06.webp", "../wetalk-img/pov-07.webp", "../wetalk-img/pov-08.webp", "../wetalk-img/pov-09.webp", "../wetalk-img/rv-01.webp", "../wetalk-img/rv-02.webp", "../wetalk-img/rv-03.webp", "../wetalk-img/rv-04.webp", "../wetalk-img/rv-05.webp", "../wetalk-img/rv-06.webp", "../wetalk-img/rv-07.webp", "../wetalk-img/rv-08.webp", "../wetalk-img/rv-09.webp", "../wetalk-img/rv-10.webp", "../wetalk-img/rv-11.webp", "../wetalk-img/rv-12.webp", "../wetalk-img/rv-13.webp", "../wetalk-img/rv-14.webp", "../wetalk-img/rv-15.webp", "../wetalk-img/rv-16.webp", "../wetalk-img/rv-17.webp", "../wetalk-img/rv-18.webp", "../wetalk-img/rv-19.webp", "../wetalk-img/rv-20.webp", "../wetalk-img/rv-21.webp", "../wetalk-img/rv-22.webp", "../wetalk-img/rv-23.webp", "../wetalk-img/rv-24.webp", "../wetalk-img/rv-25.webp"], "pl": ["../wetalk-img/pl-01.webp", "../wetalk-img/pl-02.webp", "../wetalk-img/pl-03.webp", "../wetalk-img/pl-04.webp", "../wetalk-img/pl-05.webp", "../wetalk-img/pl-06.webp", "../wetalk-img/pl-07.webp", "../wetalk-img/pl-08.webp", "../wetalk-img/pl-09.webp", "../wetalk-img/pl-10.webp", "../wetalk-img/pl-11.webp"], "ms": ["../wetalk-img/ms-1.webp", "../wetalk-img/ms-2.webp", "../wetalk-img/ms-3.webp", "../wetalk-img/ms-4.webp", "../wetalk-img/ms-5.webp"], "tg": ["../wetalk-img/tg-1.webp", "../wetalk-img/tg-2.webp", "../wetalk-img/tg-3.webp", "../wetalk-img/tg-4.webp"], "tr": ["../wetalk-img/tr-1.webp", "../wetalk-img/tr-2.webp", "../wetalk-img/tr-3.webp", "../wetalk-img/tr-4.webp", "../wetalk-img/tr-5.webp", "../wetalk-img/tr-6.webp"], "pod": ["../wetalk-img/rv-02.webp", "../wetalk-img/rv-04.webp"]};
-/* высота меню (в два ряда) — отступ страницы под ним */
-function navFit(){var n=document.querySelector('nav');if(!n)return;var h=n.offsetHeight;document.body.style.paddingTop=h+'px';de.style.scrollPaddingTop=(h+24)+'px';var r=document.querySelector('.rail');if(r)r.style.top=(h+36)+'px'}
-navFit();addEventListener('resize',navFit);addEventListener('load',navFit);
-
-/* буквы заголовка WE TALK появляются по очереди */
-var t=document.querySelector('.title');
-if(t&&!reduced){var txt=t.textContent;t.setAttribute('aria-label',txt);t.innerHTML='';
-  txt.split('').forEach(function(c,i){var s=document.createElement('span');s.className='ch';s.style.setProperty('--i',i);s.setAttribute('aria-hidden','true');s.textContent=c===' '?' ':c;t.appendChild(s)})}
-
-/* появление блоков при прокрутке */
-var sel='.sheet,.shot,.statrow .tile,.quote,.final,.tiles>*,.cols .col,.badge,.pills>*,.trial,.tg-row,.flip,.strip,.tg-final,.h2';
-var els=[].slice.call(document.querySelectorAll(sel)).filter(function(e){return !e.classList.contains('hero')});
-els.forEach(function(e){if(!e.classList.contains('h2'))e.classList.add('rv');
-  var p=e.parentElement,idx=p?[].indexOf.call(p.children,e):0;
-  if(p&&(p.classList.contains('tiles')||p.classList.contains('pills')||p.classList.contains('cols')||p.classList.contains('badges')||p.classList.contains('flips')))e.style.setProperty('--d',(idx%4)*90+'ms')});
-if(reduced||!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in')})}
-else{var io=new IntersectionObserver(function(es){es.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}})},{rootMargin:'0px 0px -8% 0px',threshold:.06});
-  els.forEach(function(e){io.observe(e)});
-  setTimeout(function(){els.forEach(function(e){if(e.getBoundingClientRect().top<innerHeight)e.classList.add('in')})},1400)}
-
-/* ленты фото: стрелки, прогресс, перетаскивание мышью, автопрокрутка */
-var lbOpen=false;
-[].forEach.call(document.querySelectorAll('.strip'),function(st){
-  var tr=st.querySelector('.strip-track'),bar=st.querySelector('.strip-bar i'),sp=st.querySelector('.sp'),sn=st.querySelector('.sn');
-  function figs(){return [].slice.call(tr.children)}
-  function upd(){var max=tr.scrollWidth-tr.clientWidth,w=tr.clientWidth/tr.scrollWidth,bw=bar.parentElement.clientWidth;
-    bar.style.width=(w*100)+'%';bar.style.transform='translateX('+(max>0?tr.scrollLeft/max*(bw-bw*w):0)+'px)';
-    sp.disabled=tr.scrollLeft<4;sn.disabled=tr.scrollLeft>max-4}
-  function step(dir){var f=figs(),x=tr.scrollLeft,target=null;
-    if(dir>0){for(var i=0;i<f.length;i++){if(f[i].offsetLeft-tr.offsetLeft>x+8){target=f[i].offsetLeft-tr.offsetLeft;break}}}
-    else{for(var j=f.length-1;j>=0;j--){if(f[j].offsetLeft-tr.offsetLeft<x-8){target=f[j].offsetLeft-tr.offsetLeft;break}}}
-    if(target===null)target=dir>0?tr.scrollWidth:0;
-    tr.scrollTo({left:target,behavior:reduced?'auto':'smooth'})}
-  sp.addEventListener('click',function(){step(-1)});sn.addEventListener('click',function(){step(1)});
-  tr.addEventListener('scroll',upd,{passive:true});addEventListener('resize',upd);
-  [].forEach.call(tr.querySelectorAll('img'),function(i){i.addEventListener('load',upd)});
-  upd();
-  /* перетаскивание мышью на компьютере */
-  var down=false,sx=0,sl=0,moved=false;
-  tr.addEventListener('pointerdown',function(e){if(e.pointerType!=='mouse')return;down=true;moved=false;sx=e.clientX;sl=tr.scrollLeft});
-  addEventListener('pointermove',function(e){if(!down)return;var dx=e.clientX-sx;if(Math.abs(dx)>6){moved=true;tr.classList.add('drag')}if(moved)tr.scrollLeft=sl-dx});
-  addEventListener('pointerup',function(){if(!down)return;down=false;if(moved){tr.classList.remove('drag');var f=figs(),x=tr.scrollLeft,best=0,bd=1e9;f.forEach(function(el){var d=Math.abs(el.offsetLeft-tr.offsetLeft-x);if(d<bd){bd=d;best=el.offsetLeft-tr.offsetLeft}});tr.scrollTo({left:best,behavior:'smooth'})}});
-  tr.addEventListener('click',function(e){if(moved){e.preventDefault();e.stopPropagation();moved=false}},true);
-  /* автопрокрутка для отзывов */
-  if(st.hasAttribute('data-auto')&&!reduced){var paused=false,vis=false;
-    st.addEventListener('mouseenter',function(){paused=true});st.addEventListener('mouseleave',function(){paused=false});
-    tr.addEventListener('touchstart',function(){paused=true},{passive:true});tr.addEventListener('touchend',function(){setTimeout(function(){paused=false},3000)},{passive:true});
-    if('IntersectionObserver' in window)new IntersectionObserver(function(es){vis=es[0].isIntersecting}).observe(st);
-    setInterval(function(){if(paused||!vis||lbOpen||document.hidden)return;if(tr.scrollLeft>=tr.scrollWidth-tr.clientWidth-4)tr.scrollTo({left:0,behavior:'smooth'});else step(1)},3800)}
-});
-
-/* галерея на весь экран */
-var lb=document.getElementById('lb'),lt=document.getElementById('lbTrack'),lc=document.getElementById('lbCount'),cur=[],li=0,last=null;
-function fill(list){lt.innerHTML='';cur=list;list.forEach(function(src,i){var d=document.createElement('div');d.className='lb-item';
-  var im=document.createElement('img');im.src=src;im.alt='Фото '+(i+1)+' из '+list.length;im.loading='lazy';d.appendChild(im);
-  var lastTap=0;d.addEventListener('click',function(e){var n=Date.now();if(n-lastTap<320||e.detail===2)d.classList.toggle('zoom');lastTap=n});lt.appendChild(d)})}
-function go(i,smooth){li=Math.max(0,Math.min(cur.length-1,i));lt.scrollTo({left:li*lt.clientWidth,behavior:smooth?'smooth':'auto'});lc.textContent=(li+1)+' / '+cur.length}
-function open(g,i,btn){if(!GAL[g])return;last=btn;fill(GAL[g]);lb.hidden=false;lbOpen=true;document.body.style.overflow='hidden';requestAnimationFrame(function(){go(i,false)});document.getElementById('lbClose').focus()}
-function close(){lb.hidden=true;lbOpen=false;document.body.style.overflow='';if(last)last.focus()}
-document.addEventListener('click',function(e){var b=e.target.closest('[data-g]');if(b)open(b.getAttribute('data-g'),+b.getAttribute('data-i')||0,b)});
-lt.addEventListener('scroll',function(){var n=Math.round(lt.scrollLeft/lt.clientWidth);if(n!==li){li=n;lc.textContent=(n+1)+' / '+cur.length}},{passive:true});
-document.getElementById('lbClose').addEventListener('click',close);
-document.getElementById('lbPrev').addEventListener('click',function(){go(li-1,true)});
-document.getElementById('lbNext').addEventListener('click',function(){go(li+1,true)});
-document.addEventListener('keydown',function(e){if(lb.hidden)return;if(e.key==='Escape')close();if(e.key==='ArrowRight')go(li+1,true);if(e.key==='ArrowLeft')go(li-1,true)});
-var y0=null,x0=0;lt.addEventListener('touchstart',function(e){if(e.touches.length===1){y0=e.touches[0].clientY;x0=e.touches[0].clientX}},{passive:true});
-lt.addEventListener('touchend',function(e){if(y0===null)return;var t=e.changedTouches[0],z=lt.children[li];if(t.clientY-y0>90&&Math.abs(t.clientX-x0)<60&&!(z&&z.classList.contains('zoom')))close();y0=null},{passive:true});
-
-/* карточки-перевёртыши */
-[].forEach.call(document.querySelectorAll('.flip'),function(f){f.addEventListener('click',function(){f.setAttribute('aria-pressed',f.getAttribute('aria-pressed')==='true'?'false':'true')})});
-
-/* рельс прокрутки с апельсином */
-var r=document.querySelector('.rail'),th=r.querySelector('.thumb'),trk=r.querySelector('.trk'),dots=[].slice.call(r.querySelectorAll('.dot')),tt=document.querySelector('.totop'),pad=document.querySelector('.prog i'),spin=document.getElementById('orngSpin'),q=false,drag=false;
-function dims(){return{m:Math.max(1,de.scrollHeight-window.innerHeight),y:window.pageYOffset||de.scrollTop}}
-function cl(v){return Math.min(1,Math.max(0,v))}
-function place(){var o=dims(),h=r.clientHeight,H=th.offsetHeight;dots.forEach(function(a){var e=document.getElementById(a.getAttribute('data-t'));if(!e)return;var top=e.getBoundingClientRect().top+o.y;a.setAttribute('data-top',top);a.style.top=(cl(top/o.m)*(h-H)+H/2)+'px'})}
-function upd(){q=false;var o=dims(),p=cl(o.y/o.m),h=r.clientHeight;
-if(pad)pad.style.transform='scaleX('+p+')';
-th.style.transform='translateY('+(p*(h-th.offsetHeight))+'px)';th.setAttribute('aria-valuenow',Math.round(p*100));
-if(spin)spin.setAttribute('transform','rotate('+(p*540).toFixed(1)+' 22 28)');
-var c=null;dots.forEach(function(a){var t=+a.getAttribute('data-top');if(t<=o.y+window.innerHeight*.35)c=a;a.classList.remove('on')});if(c)c.classList.add('on');
-tt.classList.toggle('show',o.y>600)}
-function gq(){if(!q){q=true;requestAnimationFrame(upd)}}
-function pf(e){var rc=r.getBoundingClientRect(),H=th.offsetHeight;return cl((e.clientY-rc.top-H/2)/(rc.height-H))}
-th.addEventListener('pointerdown',function(e){drag=true;try{th.setPointerCapture(e.pointerId)}catch(x){}de.style.scrollBehavior='auto';th.classList.add('grab');e.preventDefault()});
-th.addEventListener('pointermove',function(e){if(!drag)return;window.scrollTo(0,pf(e)*dims().m);gq()});
-function end(){if(!drag)return;drag=false;de.style.scrollBehavior='';th.classList.remove('grab')}
-th.addEventListener('pointerup',end);th.addEventListener('pointercancel',end);th.addEventListener('lostpointercapture',end);
-trk.addEventListener('click',function(e){window.scrollTo({top:pf(e)*dims().m,behavior:'smooth'})});
-tt.addEventListener('click',function(e){e.preventDefault();window.scrollTo({top:0,behavior:'smooth'})});
-window.addEventListener('scroll',gq,{passive:true});window.addEventListener('resize',function(){place();gq()});window.addEventListener('load',function(){place();upd()});
-setTimeout(function(){place();upd()},1500);
-place();upd();
-
-/* подсветка текущего раздела в меню */
-(function(){var links=[].slice.call(document.querySelectorAll('.navlinks a')),secs=links.map(function(a){return document.querySelector(a.getAttribute('href'))});
-function hl(){var y=innerHeight*.3,cur=-1;secs.forEach(function(s,i){if(s&&s.getBoundingClientRect().top<y)cur=i});
-links.forEach(function(a,i){a.classList.toggle('on',i===cur)});
-var on=links[cur];if(on&&innerWidth<=760){var n=on.parentElement;var l=on.offsetLeft-n.clientWidth/2+on.offsetWidth/2;if(Math.abs(n.scrollLeft-l)>40)n.scrollTo({left:l,behavior:'smooth'})}}
-})();
-
-/* папки: переключение закладок */
-(function(){
-function show(sid,scroll){var p=document.getElementById(sid);if(!p||!p.classList.contains('fpanel'))return false;var f=p.closest('.folder');
-[].forEach.call(f.querySelectorAll('.fpanel'),function(x){x.hidden=(x!==p)});
-[].forEach.call(f.querySelectorAll('.ftabs [data-tab]'),function(t){var on=t.getAttribute('data-tab')===sid;t.classList.toggle('on',on);t.setAttribute('aria-selected',on?'true':'false')});
-var tb=f.querySelector('.ftabs .on');if(tb)tb.parentElement.scrollTo({left:Math.max(0,tb.offsetLeft-24),behavior:'smooth'});
-p.classList.add('in');[].forEach.call(p.querySelectorAll('.rv'),function(e){e.classList.add('in')});
-p.classList.remove('fanim');void p.offsetWidth;p.classList.add('fanim');
-window.dispatchEvent(new Event('resize'));
-if(scroll){var top=f.getBoundingClientRect().top+scrollY-(document.querySelector('nav').offsetHeight+12);if(Math.abs(top-scrollY)>40||f.getBoundingClientRect().top<0)scrollTo({top:top,behavior:reduced?'auto':'smooth'})}
-return true}
-document.addEventListener('click',function(e){var t=e.target.closest('.ftabs [data-tab]');if(t){show(t.getAttribute('data-tab'),true);return}
-var a=e.target.closest('a[href^="#"]');if(a){var id=a.getAttribute('href').slice(1);if(id&&show(id,true))e.preventDefault()}});
-[].forEach.call(document.querySelectorAll('.ftabs'),function(bar){bar.addEventListener('keydown',function(e){if(e.key!=='ArrowRight'&&e.key!=='ArrowLeft')return;var ts=[].slice.call(bar.querySelectorAll('[data-tab]')),i=ts.indexOf(document.activeElement);if(i<0)return;var n=ts[(i+(e.key==='ArrowRight'?1:ts.length-1))%ts.length];n.focus();show(n.getAttribute('data-tab'),false)})});
-if(location.hash)show(location.hash.slice(1),true);
-/* подсветка меню с учётом папок */
-var links=[].slice.call(document.querySelectorAll('.navlinks a'));
-function hl2(){var y=innerHeight*.3,cur=null,best=-1e9;links.forEach(function(a){var t=document.querySelector(a.getAttribute('href'));if(!t)return;var box=t.closest('.folder')||t;var top=box.getBoundingClientRect().top;if(top<y&&top>best-1){if(t.hidden)return;if(top>=best){best=top;cur=a}}});links.forEach(function(a){a.classList.toggle('on',a===cur)})}
-addEventListener('scroll',hl2,{passive:true});document.addEventListener('click',function(){setTimeout(hl2,50)});hl2();
-})();
-
-/* выпадающее меню */
-(function(){var gs=[].slice.call(document.querySelectorAll('.ddg'));
-function closeAll(ex){gs.forEach(function(g){if(g===ex)return;g.querySelector('.ddb').setAttribute('aria-expanded','false');g.querySelector('.ddm').hidden=true;g.classList.remove('open')})}
-gs.forEach(function(g){var b=g.querySelector('.ddb'),m=g.querySelector('.ddm');
-b.addEventListener('click',function(e){e.stopPropagation();var open=b.getAttribute('aria-expanded')!=='true';closeAll(g);b.setAttribute('aria-expanded',open?'true':'false');m.hidden=!open;g.classList.toggle('open',open);if(open){var f=m.querySelector('a');if(e.detail===0&&f)f.focus()}});
-m.addEventListener('click',function(e){if(e.target.closest('a'))setTimeout(function(){closeAll()},0)});
-g.addEventListener('keydown',function(e){var items=[].slice.call(m.querySelectorAll('a')),i=items.indexOf(document.activeElement);
-if(e.key==='Escape'){closeAll();b.focus()}
-if(e.key==='ArrowDown'){e.preventDefault();if(m.hidden)b.click();else items[Math.min(items.length-1,i+1)].focus()}
-if(e.key==='ArrowUp'&&i>=0){e.preventDefault();(i>0?items[i-1]:b).focus()}})});
-document.addEventListener('click',function(e){if(!e.target.closest('.ddg'))closeAll()});
-addEventListener('scroll',function(){closeAll()},{passive:true});
-/* подсветка группы текущего раздела */
-function hl3(){var y=innerHeight*.3,curG=null,best=-1e9;gs.forEach(function(g){[].forEach.call(g.querySelectorAll('.ddm a'),function(a){var t=document.querySelector(a.getAttribute('href'));if(!t||t.hidden)return;var box=t.closest('.folder')||t;var top=box.getBoundingClientRect().top;if(top<y&&top>=best){best=top;curG=g}})});gs.forEach(function(g){g.classList.toggle('cur',g===curG)})}
-addEventListener('scroll',hl3,{passive:true});document.addEventListener('click',function(){setTimeout(hl3,60)});hl3();
-})();
-
-/* открытие по наведению мышью */
-(function(){if(!matchMedia('(hover:hover) and (pointer:fine)').matches)return;
-[].forEach.call(document.querySelectorAll('.ddg'),function(g){var t=null,b=g.querySelector('.ddb');
-g.addEventListener('mouseenter',function(){clearTimeout(t);if(b.getAttribute('aria-expanded')!=='true')b.click()});
-g.addEventListener('mouseleave',function(){t=setTimeout(function(){if(b.getAttribute('aria-expanded')==='true')b.click()},180)})})})();
-})();
-[].forEach.call(document.querySelectorAll('[data-trk]'),function(w){var bs=w.querySelectorAll('input'),n=w.querySelector('.trk-n'),bar=w.querySelector('.trk-bar i');function u(){var c=0;[].forEach.call(bs,function(b){if(b.checked)c++});n.textContent=c;bar.style.width=(c/bs.length*100)+'%'}[].forEach.call(bs,function(b){b.addEventListener('change',u)})});
-
-</script>
-
-<script>
-/* телефон: все вкладки открыты подряд, меню прокручивает к разделу */
-(function(){
-var mq=matchMedia('(max-width:760px)');
-var G={'f-about':'О нас','f-learn':'Обучение','f-time':'Сроки','f-price':'Запись','f-rev':'Отзывы'};
-Object.keys(G).forEach(function(id){var f=document.getElementById(id);if(f)f.setAttribute('data-group',G[id])});
-var k=0;[].forEach.call(document.querySelectorAll('main .sheet:not(.hero)'),function(s){s.classList.add(k++%2?'band2':'band1')});
-function flat(){[].forEach.call(document.querySelectorAll('.fpanel'),function(p){p.hidden=false;p.classList.add('in')});
- [].forEach.call(document.querySelectorAll('.rv'),function(e){e.classList.add('in')});window.dispatchEvent(new Event('resize'))}
-function folders(){[].forEach.call(document.querySelectorAll('.folder'),function(f){var on=f.querySelector('.ftabs .on'),sid=on&&on.getAttribute('data-tab');
- [].forEach.call(f.querySelectorAll('.fpanel'),function(p,i){p.hidden=sid?p.id!==sid:i>0})})}
-if(mq.matches)flat();
-(mq.addEventListener?mq.addEventListener.bind(mq,'change'):mq.addListener.bind(mq))(function(){mq.matches?flat():folders()});
-document.addEventListener('click',function(e){if(!mq.matches)return;var a=e.target.closest('a[href^="#"]');if(!a)return;
- var el=document.getElementById(a.getAttribute('href').slice(1));if(!el)return;e.preventDefault();e.stopImmediatePropagation();
- var top=el.getBoundingClientRect().top+scrollY-(document.querySelector('nav').offsetHeight+2);
- [].forEach.call(document.querySelectorAll('.ddb[aria-expanded="true"]'),function(b){b.setAttribute('aria-expanded','false');b.nextElementSibling.hidden=true;b.parentElement.classList.remove('open')});
- scrollTo({top:top,behavior:'smooth'})},true);
-if(mq.matches&&location.hash){var el=document.getElementById(location.hash.slice(1));if(el)setTimeout(function(){scrollTo({top:el.getBoundingClientRect().top+scrollY-56})},300)}
+var GAL={"pl": ["../wetalk-img/pl-01.webp", "../wetalk-img/pl-02.webp", "../wetalk-img/pl-03.webp", "../wetalk-img/pl-04.webp", "../wetalk-img/pl-05.webp", "../wetalk-img/pl-06.webp", "../wetalk-img/pl-07.webp", "../wetalk-img/pl-08.webp", "../wetalk-img/pl-09.webp", "../wetalk-img/pl-10.webp", "../wetalk-img/pl-11.webp"], "ms": ["../wetalk-img/ms-1.webp", "../wetalk-img/ms-2.webp", "../wetalk-img/ms-3.webp", "../wetalk-img/ms-4.webp", "../wetalk-img/ms-5.webp"], "tr": ["../wetalk-img/tr-1.webp", "../wetalk-img/tr-2.webp", "../wetalk-img/tr-3.webp", "../wetalk-img/tr-4.webp", "../wetalk-img/tr-5.webp", "../wetalk-img/tr-6.webp"], "pov": ["../wetalk-img/pov-02.webp", "../wetalk-img/pov-03.webp", "../wetalk-img/pov-04.webp", "../wetalk-img/pov-05.webp", "../wetalk-img/pov-06.webp", "../wetalk-img/pov-07.webp", "../wetalk-img/pov-08.webp", "../wetalk-img/pov-09.webp"], "tg": ["../wetalk-img/tg-1.webp", "../wetalk-img/tg-2.webp", "../wetalk-img/tg-3.webp", "../wetalk-img/tg-4.webp"], "pod": ["../wetalk-img/rv-02.webp", "../wetalk-img/rv-04.webp"]},CHS=["ch-about", "ch-learn", "ch-time", "ch-sign", "ch-rev"],CHN=["О нас", "Обучение", "Сроки", "Запись", "Отзывы"];
+function q(s,r){return (r||document).querySelector(s)}function qa(s,r){return [].slice.call((r||document).querySelectorAll(s))}
+/* меню */
+function closeMenus(){qa('.nvb').forEach(function(b){b.setAttribute('aria-expanded','false');b.nextElementSibling.hidden=true})}
+qa('.nvb').forEach(function(b){b.addEventListener('click',function(e){e.stopPropagation();var o=b.getAttribute('aria-expanded')!=='true';closeMenus();b.setAttribute('aria-expanded',o);b.nextElementSibling.hidden=!o;openY=scrollY})});
+var openY=0;
+document.addEventListener('click',function(e){if(!e.target.closest('.dd'))closeMenus()});
+/* главы */
+function openChap(c,open){var b=q('.chb',c),body=q('.chbody',c);b.setAttribute('aria-expanded',open);body.hidden=!open;if(open)qa('.rv',body).forEach(function(x){io?io.observe(x):x.classList.add('in')});rail()}
+qa('.chb').forEach(function(b){b.addEventListener('click',function(){openChap(b.parentElement,b.getAttribute('aria-expanded')!=='true')})});
+function go(id){var el=document.getElementById(id);if(!el)return;var c=el.closest('.chap');if(c&&q('.chbody',c).hidden)openChap(c,true);closeMenus();
+ setTimeout(function(){scrollTo({top:el.getBoundingClientRect().top+scrollY-54,behavior:'smooth'})},30)}
+document.addEventListener('click',function(e){var a=e.target.closest('[data-go]');if(a){e.preventDefault();go(a.getAttribute('data-go'))}});
+/* «Посмотреть…» */
+qa('.more').forEach(function(b){b.addEventListener('click',function(){var o=b.getAttribute('aria-expanded')!=='true';b.setAttribute('aria-expanded',o);b.nextElementSibling.hidden=!o})});
+/* карточки-перевёртыши и чек-лист */
+qa('.flip').forEach(function(f){f.addEventListener('click',function(){f.setAttribute('aria-pressed',f.getAttribute('aria-pressed')==='true'?'false':'true')})});
+qa('.chk').forEach(function(w){var bs=qa('input',w),n=q('.trk-n',w),bar=q('.trk-bar i',w);bs.forEach(function(x){x.addEventListener('change',function(){var c=bs.filter(function(y){return y.checked}).length;n.textContent=c;bar.style.width=(c/bs.length*100)+'%'})})});
+/* фото целиком */
+var lb=q('#lb'),lbt=q('#lbt'),lbn=q('#lbn'),cur=null;
+function openLB(g,i){cur=GAL[g];lbt.innerHTML=cur.map(function(s){return '<div><img src="'+s+'" alt="Фото"></div>'}).join('');lb.hidden=false;document.body.style.overflow='hidden';
+ requestAnimationFrame(function(){lbt.scrollLeft=lbt.clientWidth*i;upd()})}
+function upd(){if(!cur)return;lbn.textContent=(Math.round(lbt.scrollLeft/lbt.clientWidth)+1)+' / '+cur.length}
+lbt.addEventListener('scroll',upd);
+function closeLB(){lb.hidden=true;document.body.style.overflow='';cur=null}
+q('#lbx').addEventListener('click',closeLB);lbt.addEventListener('click',function(e){if(e.target===lbt||e.target.tagName==='DIV')closeLB()});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!lb.hidden)closeLB()});
+qa('.ph[data-g]').forEach(function(b){b.addEventListener('click',function(){openLB(b.dataset.g,+b.dataset.i)})});
+/* появление */
+var io='IntersectionObserver' in window?new IntersectionObserver(function(es){es.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}})},{threshold:.08}):null;
+qa('.rv').forEach(function(x){if(x.closest('[hidden]'))return;io?io.observe(x):x.classList.add('in')});
+/* рельс */
+var R=q('#rail'),O=q('svg',R);
+CHS.forEach(function(id,i){var a=document.createElement('a');a.href='#'+id;a.setAttribute('aria-label',CHN[i]);a.style.top=(8+i*(84/(CHS.length-1)))+'%';a.addEventListener('click',function(e){e.preventDefault();var c=document.getElementById(id);openChap(c,true);setTimeout(function(){scrollTo({top:c.getBoundingClientRect().top+scrollY-50,behavior:'smooth'})},30)});R.insertBefore(a,O)});
+function rail(){var max=document.documentElement.scrollHeight-innerHeight,p=max>0?scrollY/max:0;O.style.top=(p*100)+'%';var act=-1;
+ CHS.forEach(function(id,i){var c=document.getElementById(id);if(c.getBoundingClientRect().top<innerHeight*.5)act=i});qa('a',R).forEach(function(a,i){a.classList.toggle('on',i===act)})}
+addEventListener('scroll',function(){rail();if(Math.abs(scrollY-openY)>40)closeMenus()},{passive:true});addEventListener('resize',rail);rail();
 })();
 </script>
 </body>
