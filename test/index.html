@@ -87,10 +87,40 @@ ul.list li{margin:4px 0}
 .hide{display:none!important}
 .fade{animation:fade .35s ease}
 @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+/* ===== оформление как на главном сайте: картина-фон, бежевые подложки ===== */
+:root{--ink:#0d0d0b;--muted:#2f2e29;--paper:#d8d2c4;--paper2:#e4dfd4;--beige:#cbc4b4;--orange:#c4561a;--line:rgba(13,13,11,.2)}
+body{background:#1b2819!important;font-size:16px}
+body::before{content:"";position:fixed;inset:0;z-index:-1;background:linear-gradient(rgba(14,20,12,.62),rgba(14,20,12,.5) 45%,rgba(14,20,12,.58)),url(../wetalk-img/bg-meadow.webp) center/cover no-repeat}
+.top{color:#efe9dc;text-shadow:0 1px 2px rgba(0,0,0,.35)}
+.top a{font-size:12px}.brand{font-style:normal;letter-spacing:.01em;font-size:20px}
+.card{background:var(--paper);border-top:0;box-shadow:0 14px 34px -14px rgba(0,0,0,.6)}
+h1,h2{color:var(--ink)}
+h1{font-size:clamp(26px,5vw,36px)}h2{font-size:clamp(21px,4vw,28px)}
+.kicker{font-size:10px;letter-spacing:.26em}
+.note{background:var(--paper2);border-left:2px solid var(--orange)}
+.steps li{border-radius:0;font-size:10px}
+.steps li.on{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+.facts div,.res-grid div,.text,.player{background:var(--paper2)}
+.facts b,.res-grid b{color:var(--ink)}
+.lvl{color:var(--ink)}
+input[type=text],input[type=number],input[type=tel],textarea{border-radius:0;background:#f3f0e9;border-color:var(--line)}
+.opt{border-radius:0;background:#f3f0e9}
+.opt:has(input:checked){background:#fbf6ec;border-color:var(--ink)}
+.opt input{accent-color:var(--ink)}
+.btn{border-radius:0;font-size:12px;padding:13px 22px;letter-spacing:.2em}
+.btn:hover{background:var(--orange);border-color:var(--orange)}
+.btn.mg{background:var(--orange);border-color:var(--orange)}
+.play{background:var(--ink)}
+.bar{border-radius:0}.bar i{background:var(--ink)}
+.q .gap{border-bottom-color:var(--ink)}
+.mgr{border-top:2px solid var(--orange)}
+@media(max-width:799px){.card{margin:14px 12px 30px;padding:28px 18px 30px}.top{padding-left:16px;padding-right:16px}}
+body{padding-bottom:20px}
 </style>
 </head>
 <body>
-<div class="top"><a href="../">← Вернуться на сайт</a><span class="brand">WE TALK</span></div>
+<div class="top"><a href="../">← Вернуться на сайт</a><span class="brand">WeTalk</span></div>
 <main class="card" id="app" aria-live="polite"></main>
 
 <script>
