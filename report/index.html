@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Отчёт по тесту — We Talk</title>
+<style>
+:root{--ink:#0d0d0b;--muted:#4a4840;--paper:#d8d2c4;--paper2:#e4dfd4;--paper3:#f3f0e9;--line:rgba(13,13,11,.18);--orange:#c4561a;--ok:#2e6b2f;--okbg:#e3eadb;--bad:#a3341f;--badbg:#f1dfd6;
+ --serif:'Times New Roman',Times,'Liberation Serif',serif;color-scheme:light}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;font-family:var(--serif);font-size:16px;line-height:1.55;color:var(--ink);background:#1b2819;min-height:100vh;padding-bottom:30px}
+body::before{content:"";position:fixed;inset:0;z-index:-1;background:linear-gradient(rgba(14,20,12,.62),rgba(14,20,12,.5) 45%,rgba(14,20,12,.58)),url(../wetalk-img/bg-meadow.webp) center/cover no-repeat}
+.top{max-width:940px;margin:0 auto;padding:calc(14px + env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) 0 max(16px,env(safe-area-inset-left,0px));display:flex;justify-content:space-between;align-items:center;color:#efe9dc}
+.top b{font-weight:400;font-size:20px}.top span{font-size:11px;letter-spacing:.22em;text-transform:uppercase;opacity:.85}
+.card{max-width:940px;margin:14px auto;background:var(--paper);padding:24px 22px;box-shadow:0 14px 34px -14px rgba(0,0,0,.6)}
+@media(max-width:979px){.card{margin:12px 12px}}
+@media(min-width:700px){.card{padding:32px 40px}}
+.k{display:block;font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+h1{font-weight:400;font-style:italic;font-size:clamp(26px,5vw,36px);line-height:1.1;margin:0 0 4px}
+h2{font-weight:400;font-style:italic;font-size:22px;margin:0 0 14px;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+h2 small{font-style:normal;font-size:13px;color:var(--muted)}
+.p{font-style:italic;font-weight:300;opacity:.6}
+.head{display:grid;gap:18px;grid-template-columns:1fr auto;align-items:end}
+.lvl{font-style:italic;font-size:clamp(56px,12vw,84px);line-height:.9;text-align:right}
+.lvl small{display:block;font-size:13px;font-style:normal;color:var(--muted);margin-top:6px}
+.meta{color:var(--muted);font-size:14px;margin:0}
+.wa{display:inline-block;margin-top:10px;font-size:15px;text-decoration:none;color:var(--ink);border:1px solid var(--ink);padding:7px 12px}
+.wa:hover{background:var(--ink);color:var(--paper)}
+.score{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-top:20px}
+.score div{background:var(--paper2);padding:12px 14px}
+.score b{display:block;font-weight:400;font-style:italic;font-size:24px;line-height:1.1}
+.score span{font-size:13px;color:var(--muted)}
+.path{margin-top:12px;font-size:14px;color:var(--muted)}
+.path i{font-style:normal;display:inline-block;border:1px solid var(--line);padding:1px 7px;margin:2px 4px 2px 0;background:var(--paper3);color:var(--ink)}
+dl{margin:0;display:grid;grid-template-columns:minmax(120px,190px) 1fr;border-top:1px solid var(--line)}
+dt,dd{margin:0;padding:9px 0;border-bottom:1px solid var(--line)}
+dt{color:var(--muted);font-size:14px;padding-right:14px}
+dd{min-width:0}
+@media(max-width:560px){dl{grid-template-columns:1fr}dt{border-bottom:0;padding-bottom:0}dd{padding-top:2px}}
+.flt{display:flex;gap:6px;margin:0 0 14px;flex-wrap:wrap}
+.flt button{font:inherit;font-size:13px;padding:6px 12px;border:1px solid var(--ink);background:transparent;cursor:pointer;color:var(--ink)}
+.flt button[aria-pressed=true]{background:var(--ink);color:var(--paper)}
+.blk{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin:18px 0 8px;display:flex;justify-content:space-between;gap:10px}
+.blk:first-of-type{margin-top:0}
+.q{display:grid;grid-template-columns:34px 1fr;gap:4px 10px;background:var(--paper3);border-left:4px solid var(--ok);padding:12px 14px;margin:0 0 8px}
+.q.bad{border-left-color:var(--bad)}
+.q .n{font-style:italic;font-size:20px;line-height:1.1;color:var(--muted)}
+.q .tx{font-size:17px;line-height:1.45}
+.q .gap{display:inline-block;padding:0 6px;border-bottom:2px solid var(--ok);background:var(--okbg)}
+.q.bad .gap{border-bottom-color:var(--bad);background:var(--badbg);text-decoration:line-through;text-decoration-color:var(--bad)}
+.q .fix{display:inline-block;padding:0 6px;margin-left:4px;border-bottom:2px solid var(--ok);background:var(--okbg)}
+.q .info{grid-column:2;font-size:13.5px;color:var(--muted);display:flex;flex-wrap:wrap;gap:4px 14px}
+.q .info b{font-weight:400;color:var(--ink)}
+.tag{display:inline-block;font-size:11px;letter-spacing:.08em;border:1px solid var(--line);padding:0 6px;background:var(--paper2);color:var(--ink)}
+.ans{grid-column:2;font-size:15px}
+.ans .me{color:var(--bad)}.ans .me.ok{color:var(--ok)}
+.hidden-ok .q:not(.bad){display:none}
+details{margin:0 0 14px;background:var(--paper2);padding:10px 14px}
+summary{cursor:pointer;font-style:italic}
+details .src{margin-top:10px;line-height:1.7;font-size:15px}
+.ln b{font-weight:400;font-style:italic;color:var(--muted)}
+audio{width:100%;margin-top:8px}
+.empty{font-style:italic;color:var(--muted)}
+.err{max-width:600px;margin:60px auto;background:var(--paper);padding:28px}
+@media print{body::before{display:none}body{background:#fff}.card{box-shadow:none;margin:0 0 10px}.flt{display:none}}
+</style>
+</head>
+<body>
+<div class="top"><b>WeTalk</b><span>Отчёт для преподавателя</span></div>
+<main id="app"></main>
+<script src="../test/data.js"></script>
+<script>
+(function(){
+var LV=["A1","A2","B1","B2","C1"],LVN={A1:"Начальный",A2:"Элементарный",B1:"Средний",B2:"Выше среднего",C1:"Продвинутый"};
+var BAND={low:"простой",mid:"средний",high:"сложный"};
+var app=document.getElementById("app");
+function esc(t){return String(t==null?"":t).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+function fail(m){app.innerHTML='<div class="err"><h1>Отчёт не открылся</h1><p>'+m+'</p></div>'}
+var d;
+try{var h=location.hash.slice(1).replace(/-/g,"+").replace(/_/g,"/");while(h.length%4)h+="=";d=JSON.parse(decodeURIComponent(escape(atob(h))))}
+catch(e){return fail("Ссылка повреждена или неполная. Откройте её из письма целиком.")}
+if(!d||!d.g)return fail("В ссылке нет данных теста.");
+
+var g=d.g.map(function(x){var L=LV[x[0]],q=BANK[L]&&BANK[L][x[1]];if(!q)return null;var ok=x[2]===0;
+ return {lv:L,q:q[0],right:q[1][0],me:x[2]<0?null:q[1][x[2]],ok:ok,topic:q[2]}}).filter(Boolean);
+var gOk=g.filter(function(x){return x.ok}).length;
+function rl(src,arr){return (src&&src.q||[]).map(function(q,k){var oi=arr[k];return {q:q[0],right:q[1][0],me:oi==null||oi<0?null:q[1][oi],ok:oi===0}})}
+var R=READ[d.rb],Lt=LISTEN[d.lb],rr=rl(R,d.r||[]),ll=rl(Lt,d.l||[]);
+var rOk=rr.filter(function(x){return x.ok}).length,lOk=ll.filter(function(x){return x.ok}).length;
+var dt=d.t?new Date(d.t):null;
+
+function fill(x){var me=x.me==null?"(не знаю)":x.me;
+ if(x.q.indexOf("___")>-1){var parts=x.q.split("___");return esc(parts[0])+'<span class="gap">'+esc(me)+'</span>'+(x.ok?"":'<span class="fix">'+esc(x.right)+'</span>')+esc(parts.slice(1).join("___"))}
+ return esc(x.q)}
+function qcard(x,i,showAns){var choose=x.q.indexOf("___")<0;
+ return '<div class="q'+(x.ok?'':' bad')+'"><span class="n">'+(i+1)+'</span><div class="tx">'+fill(x)+'</div>'+
+ (choose||showAns?'<div class="ans">Ответ: <span class="me'+(x.ok?' ok':'')+'">'+esc(x.me==null?"(не знаю)":x.me)+'</span>'+(x.ok?' ✓':' · верно: <b>'+esc(x.right)+'</b>')+'</div>':'')+
+ '<div class="info">'+(x.lv?'<span class="tag">'+x.lv+'</span>':'')+(x.topic?'<span>'+esc(x.topic)+'</span>':'')+'<span>'+(x.ok?'верно':'ошибка')+'</span></div></div>'}
+
+var h='';
+/* шапка */
+h+='<section class="card"><div class="head"><div><span class="k">Тест уровня · '+(dt?dt.toLocaleString("ru-RU",{day:"numeric",month:"long",year:"numeric",hour:"2-digit",minute:"2-digit"}):"")+'</span><h1>'+esc(d.n||"Без имени")+'</h1><p class="meta">'+(d.a?esc(d.a)+' лет':'')+(d.fm?' · '+esc(d.fm):'')+'</p>'+
+ (d.ph?'<a class="wa" target="_blank" rel="noopener" href="https://wa.me/'+esc(String(d.ph).replace(/\D/g,""))+'">WhatsApp: '+esc(d.ph)+'</a>':'')+'</div>'+
+ '<div class="lvl">'+esc(d.lv)+'<small>'+esc(LVN[d.lv]||"")+' · ориентировочно</small></div></div>'+
+ '<div class="score"><div><b>'+gOk+' / '+g.length+'</b><span>грамматика и лексика</span></div><div><b>'+rOk+' / '+rr.length+'</b><span>чтение</span></div><div><b>'+lOk+' / '+ll.length+'</b><span>аудирование</span></div></div>';
+var blocks=[];for(var i=0;i<g.length;i+=6){var b=g.slice(i,i+6);blocks.push(b[0].lv+' '+b.filter(function(x){return x.ok}).length+'/6')}
+h+='<div class="path">Путь по уровням: '+blocks.map(function(t){return '<i>'+t+'</i>'}).join("→ ")+' · грамматика на уровне <b>'+esc(d.G||"")+'</b></div></section>';
+/* анкета */
+var rows=[["Формат обучения",d.fm],["Опыт изучения",(d.ex||[]).join(", ")],["Как давно",d.wh],["Слабые стороны",(d.wk||[]).join("; ")],["Сильные стороны",d.st],["Что подтянуть",d.go],["Ожидания",d.xp]];
+h+='<section class="card"><h2>Анкета</h2><dl>'+rows.map(function(r){return '<dt>'+r[0]+'</dt><dd>'+(r[1]?esc(r[1]):'<span class="empty">—</span>')+'</dd>'}).join("")+'</dl></section>';
+/* грамматика */
+var errN=g.length-gOk;
+h+='<section class="card" id="gr"><h2>Грамматика и лексика <small>'+gOk+' верно · '+errN+' '+(errN%10==1&&errN%100!=11?'ошибка':(errN%10>=2&&errN%10<=4&&(errN%100<10||errN%100>=20)?'ошибки':'ошибок'))+'</small></h2>'+
+ '<div class="flt"><button type="button" data-f="all" aria-pressed="true">Все вопросы</button><button type="button" data-f="bad" aria-pressed="false">Только ошибки</button></div><div id="gl">';
+for(var b2=0;b2<g.length;b2+=6){var bl=g.slice(b2,b2+6);h+='<div class="blk"><span>Блок '+(b2/6+1)+' · '+bl[0].lv+'</span><span>'+bl.filter(function(x){return x.ok}).length+' / '+bl.length+'</span></div>'+bl.map(function(x,j){return qcard(x,b2+j,false)}).join("")}
+h+='</div></section>';
+/* чтение */
+if(R){h+='<section class="card"><h2>Чтение <small>'+esc(R.title)+' · '+BAND[d.rb]+' текст · '+rOk+' / '+rr.length+'</small></h2><details><summary>Показать текст</summary><div class="src" lang="en">'+R.text+'</div></details>'+rr.map(function(x,i){return qcard(x,i,true)}).join("")+'</section>'}
+/* аудирование */
+if(Lt){h+='<section class="card"><h2>Аудирование <small>'+esc(Lt.title)+' · '+BAND[d.lb]+' запись · '+lOk+' / '+ll.length+'</small></h2><details><summary>Послушать и прочитать запись</summary><audio controls preload="none" src="../test/audio/listen-'+d.lb+'.mp3"></audio><div class="src" lang="en">'+Lt.lines.map(function(l){return '<div class="ln"><b>'+(l[0]=="T"?"Tom":"Rachel")+':</b> '+esc(l[1])+'</div>'}).join("")+'</div></details>'+ll.map(function(x,i){return qcard(x,i,true)}).join("")+'</section>'}
+app.innerHTML=h;
+document.querySelector(".flt").addEventListener("click",function(e){var b=e.target.closest("button");if(!b)return;[].forEach.call(this.children,function(x){x.setAttribute("aria-pressed",x===b)});document.getElementById("gl").classList.toggle("hidden-ok",b.dataset.f==="bad")});
+document.title="Отчёт: "+(d.n||"")+" — "+d.lv;
+})();
+</script>
+</body>
+</html>

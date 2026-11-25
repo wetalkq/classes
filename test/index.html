@@ -126,6 +126,7 @@ ul.list li::before{content:counter(li);position:absolute;left:2px;top:-.1em;font
 <div class="top"><a href="../">← Вернуться на сайт</a><span class="brand">WeTalk</span></div>
 <main class="card" id="app" aria-live="polite"></main>
 
+<script src="data.js"></script>
 <script>
 (function(){
 var ACCESS_KEY="7ab21201-72f8-4e0e-b5c1-0ac6622506fb";
@@ -142,267 +143,6 @@ B2:"Вы довольно свободно обсуждаете многие т�
 C1:"Вы гибко пользуетесь языком для работы и учёбы, понимаете сложные тексты и подтекст."};
 
 /* банк вопросов: [вопрос, [варианты, первый — верный], тема] */
-var BANK={
-A1:[
-["She ___ a teacher.",["is","am","are","be"],"Глагол to be"],
-["They ___ at home today. They're at work.",["aren't","isn't","not","don't"],"Глагол to be: краткие формы"],
-["Tom is my friend. ___ is from London.",["He","Him","His","It"],"Личные местоимения"],
-["I like Anna. I often call ___.",["her","she","hers","herself"],"Объектные местоимения"],
-["This is Mark, and that is ___ car.",["his","he","him","he's"],"Притяжательные прилагательные"],
-["Look at ___ birds over there!",["those","this","that","these"],"Указательные местоимения"],
-["This is ___ apple.",["an","a","the","—"],"Артикли a / an / the"],
-["Can you close ___ door, please? It's cold.",["the","a","an","—"],"Артикли a / an / the"],
-["These are my ___.",["children","childs","child","childrens"],"Множественное число"],
-["This is ___ bag.",["my sister's","my sisters","sister's my","my sister"],"Притяжательный падеж 's"],
-["We haven't got ___ bread.",["any","some","a","many"],"Some / any"],
-["How ___ apples do you want?",["many","much","lot","more"],"How much / how many"],
-["There ___ two books on the table.",["are","is","be","am"],"There is / there are"],
-["The picture is ___ the wall.",["on","in","at","to"],"Предлоги места"],
-["We go to the gym ___ Monday.",["on","in","at","to"],"Предлоги времени"],
-["My birthday is ___ May.",["in","on","at","to"],"Предлоги времени"],
-["I go ___ work by bus.",["to","at","in","on"],"Предлоги движения"],
-["I ___ coffee every morning.",["drink","drinks","drinking","am drink"],"Present Simple"],
-["My brother ___ in a bank.",["works","work","working","is work"],"Present Simple: 3-е лицо"],
-["My brother ___ like fish.",["doesn't","don't","isn't","not"],"Present Simple: отрицание"],
-["___ you like pizza?",["Do","Does","Are","Is"],"Present Simple: вопрос"],
-["Choose the correct sentence.",["She always gets up at 7.","She gets always up at 7.","Always she get up at 7.","She gets up always at 7."],"Наречия частотности"],
-["Look! The baby ___.",["is sleeping","sleeps","sleep","sleeping"],"Present Continuous"],
-["She ___ two brothers.",["has got","have got","has get","is got"],"Have got / has got"],
-["I can ___ English.",["speak","speaks","speaking","to speak"],"Can / can't"],
-["Penguins ___ fly.",["can't","don't can","not can","aren't can"],"Can / can't"],
-["___ the window, please. It's cold.",["Close","Closes","Closing","To closes"],"Повелительное наклонение"],
-["___ is your name?",["What","Who","Where","How"],"Вопросительные слова"],
-["___ are you? — I'm 25.",["How old","How many","What age is","How much"],"Вопросительные слова"],
-["Choose the correct question.",["Where do you live?","Where you live?","Where you do live?","Where does you live?"],"Порядок слов в вопросе"],
-["Choose the correct sentence.",["She has a red car.","She has a car red.","She has red a car.","She has a reds car."],"Прилагательное + существительное"],
-["My sister is ___ than me.",["taller","more tall","tallest","tall"],"Сравнительная степень"],
-["December is the ___ month of the year.",["twelfth","twelve","twelveth","twentieth"],"Числительные"],
-["I like tea, ___ I don't like coffee.",["but","and","or","because"],"Союзы and / but / or / because"],
-["I'm tired ___ I worked a lot today.",["because","but","or","and"],"Союзы and / but / or / because"],
-["They ___ at the party yesterday.",["were","was","are","be"],"Was / were"],
-["Yesterday we ___ football in the park.",["played","play","plays","playing"],"Past Simple: правильные глаголы"],
-["I ___ visit my grandma tomorrow.",["am going to","going to","go to","am go"],"Going to"]],
-A2:[
-["I ___ the film. It was boring.",["didn't like","don't liked","didn't liked","not liked"],"Past Simple: отрицание"],
-["Yesterday I ___ to the cinema.",["went","go","goed","have gone"],"Past Simple: неправильные глаголы"],
-["___ you see Kate last night?",["Did","Do","Were","Have"],"Past Simple: вопрос"],
-["At 8 p.m. yesterday I ___ dinner.",["was having","had","am having","have"],"Past Continuous"],
-["I was walking home when it ___ to rain.",["started","was starting","starts","has started"],"Past Continuous + Past Simple"],
-["I ___ to Japan. I'd love to go one day!",["have never been","never was","have never went","never have been"],"Present Perfect"],
-["Have you finished your homework ___?",["yet","already","just","ever"],"Already / just / yet"],
-["I've lived here ___ 2015.",["since","for","from","during"],"For / since"],
-["It's the ___ restaurant in town.",["best","better","most good","goodest"],"Превосходная степень"],
-["My English is ___ than last year.",["better","gooder","more good","best"],"Сравнительная степень"],
-["Tom is ___ his brother.",["as tall as","as taller as","so tall than","as tall than"],"As … as"],
-["He drives very ___.",["carefully","careful","carefuly","care"],"Наречия на -ly"],
-["This coffee is ___ hot to drink.",["too","enough","very much","so much"],"Too / enough / very"],
-["He isn't old ___ to drive.",["enough","too","very","so"],"Too / enough / very"],
-["Look at those black clouds! It ___ rain.",["is going to","will to","goes to","is going"],"Be going to"],
-["The phone is ringing. — OK, I ___ answer it.",["'ll","am going to","am","would"],"Will"],
-["I ___ my dentist at 10 tomorrow — it's in my calendar.",["am seeing","see","will seeing","seeing"],"Present Continuous для будущего"],
-["It's Sunday, so you ___ get up early.",["don't have to","mustn't","haven't to","don't must"],"Must / have to / mustn't"],
-["You ___ smoke here. It's forbidden.",["mustn't","don't have to","needn't","haven't"],"Must / have to / mustn't"],
-["You look tired. You ___ go to bed.",["should","must to","should to","ought"],"Should"],
-["When I was five, I ___ swim.",["could","can","could to","was can"],"Could"],
-["Take an umbrella. It ___ rain later.",["might","must","should to","will to"],"May / might"],
-["If it rains tomorrow, we ___ at home.",["will stay","stay","would stay","stayed"],"Условные предложения: 1 тип"],
-["I'll call you as soon as I ___ home.",["get","will get","got","am getting"],"Придаточные времени"],
-["How ___ money do you need?",["much","many","lot","few"],"Much / many / a lot of"],
-["There are only ___ people here.",["a few","a little","much","little"],"A few / a little"],
-["There are ___ cars in the city centre.",["too many","too much","enough of","a little"],"Too much / too many"],
-["I can't find my keys ___.",["anywhere","somewhere","nowhere","everywhere"],"Some- / any- / no- / every-"],
-["This book isn't mine. It's ___.",["hers","her","she's","her's"],"Притяжательные местоимения"],
-["She hurt ___ in the kitchen.",["herself","her","hers","sheself"],"Возвратные местоимения"],
-["I enjoy ___ in the morning.",["running","to run","run","runs"],"Глагол + -ing / to"],
-["We decided ___ a new car.",["to buy","buying","buy","for buy"],"Глагол + -ing / to"],
-["My mum wants me ___ a doctor.",["to become","become","becoming","that I become"],"Глагол + объект + to"],
-["I went to the shop ___ some bread.",["to buy","for buy","for buying","buy"],"Инфинитив цели"],
-["That's the man ___ lives next door.",["who","which","where","whose"],"Относительные местоимения who / which / that"],
-["I ___ live in Moscow, but now I live in New York.",["used to","use to","was used to","am used to"],"Used to"],
-["Can you ___ the light? It's dark in here.",["turn on","turn off","give up","look for"],"Фразовые глаголы"],
-["She's very good ___ languages.",["at","in","on","for"],"Предлоги после прилагательных"],
-["I'll wait for you ___ 6 o'clock.",["until","during","for","since"],"During / until / by"],
-["___ a cup of tea?",["Would you like","Do you like","Would you","Will you like"],"Would like"],
-["Let's ___ to the beach!",["go","to go","going","goes"],"Let's"],
-["You're Anna, ___?",["aren't you","isn't it","don't you","are you"],"Разделительные вопросы"],
-["I don't like horror films. — ___ do I.",["Neither","So","Too","Either"],"So / neither"],
-["English ___ all over the world.",["is spoken","speaks","is speaking","spoken"],"Пассивный залог: Present Simple"]],
-B1:[
-["I'm tired because I ___ all day.",["have been working","worked","work","had worked"],"Present Perfect Continuous"],
-["I ___ my keys yesterday.",["lost","have lost","had lost","lose"],"Present Perfect или Past Simple"],
-["___ you seen any good films lately?",["Have","Did","Do","Had"],"Present Perfect или Past Simple"],
-["By the time we arrived, the film ___.",["had started","has started","starts","was starting"],"Past Perfect"],
-["Her eyes were red because she ___.",["had been crying","has cried","cried","was cry"],"Past Perfect Continuous"],
-["If you heat ice, it ___.",["melts","melted","would melt","had melted"],"Условные предложения: 0 тип"],
-["If I ___ a million dollars, I would travel the world.",["had","have","would have","will have"],"Условные предложения: 2 тип"],
-["If you had told me, I ___ you.",["would have helped","would help","will help","had helped"],"Условные предложения: 3 тип"],
-["This time tomorrow, I ___ on the beach.",["will be lying","will lie","am lying","lie"],"Future Continuous"],
-["By next June, I ___ my degree.",["will have finished","will finish","finish","have finished"],"Future Perfect"],
-["The bridge ___ in 1990.",["was built","built","is built","has built"],"Пассивный залог в разных временах"],
-["My car ___! I can't find it anywhere.",["has been stolen","has stolen","was stealing","is stealing"],"Пассивный залог в разных временах"],
-["This work must ___ by Friday.",["be finished","finish","finished","be finish"],"Пассив с модальными глаголами"],
-["She said she ___ tired.",["was","is","be","were being"],"Косвенная речь: утверждения"],
-["He asked me where I ___.",["lived","live","did I live","do I live"],"Косвенная речь: вопросы"],
-["The teacher told us ___ quiet.",["to be","be","being","that be"],"Косвенная речь: просьбы и команды"],
-["She isn't answering the phone. She ___ be busy.",["must","can","should to","has"],"Модальные глаголы: предположения"],
-["That ___ be Tom — he's in Paris this week.",["can't","mustn't","needn't","shouldn't"],"Модальные глаголы: предположения"],
-["The ground is wet. It ___ rained last night.",["must have","must","should","can have"],"Модальные глаголы: предположения о прошлом"],
-["You ___ told me earlier! I could have helped.",["should have","should","must","would"],"Should have"],
-["This is the woman ___ son works with me.",["whose","who","which","that's"],"Относительные придаточные"],
-["My brother, ___ lives in Boston, is a doctor.",["who","that","which","whose"],"Относительные придаточные с запятыми"],
-["She suggested ___ to the cinema.",["going","to go","go","that go"],"Глагол + -ing"],
-["I can't afford ___ a new phone.",["to buy","buying","buy","for buy"],"Глагол + to-infinitive"],
-["I'll never forget ___ the Eiffel Tower for the first time.",["seeing","to see","see","saw"],"Stop / remember / forget / try"],
-["I didn't cut my hair myself — I ___ at the salon.",["had it cut","cut it","had cut it","was cutting it"],"Have / get something done"],
-["___ of my parents speak English — they only speak Russian.",["Neither","Both","All","Each"],"All / both / neither / either / each"],
-["It was ___ a good film that I watched it twice.",["such","so","very","too"],"So / such … that"],
-["The more you practise, ___ you get.",["the better","better","the best","more better"],"The + сравнительная степень"],
-["This flat is ___ bigger than our old one.",["much","very","more","most"],"Much / far + сравнительная степень"],
-["I wish I ___ taller.",["were","am","will be","would"],"Wish + Past Simple"],
-["I wish I ___ to the party last night.",["had gone","went","would go","have gone"],"Wish + Past Perfect"],
-["I'd rather ___ at home tonight.",["stay","to stay","staying","stayed"],"Would rather / had better"],
-["You'd better ___ now, or you'll miss the train.",["leave","to leave","leaving","left"],"Would rather / had better"],
-["___ the rain, we went for a walk.",["Despite","Although","However","Even"],"Although / despite / in spite of"],
-["I'm saving money ___ I can buy a car.",["so that","in order","for","because"],"So that / in order to"],
-["The hotel was expensive. ___, it was very comfortable.",["However","Although","Despite","Because"],"However / therefore"],
-["We've ___ milk. Can you buy some?",["run out of","run into","run over","run away"],"Фразовые глаголы"],
-["She ___ a great idea for the project.",["came up with","came across","came over","came down"],"Фразовые глаголы"],
-["Let's go for a walk, ___?",["shall we","will we","don't we","aren't we"],"Разделительные вопросы"],
-["Could you tell me where ___?",["the station is","is the station","does the station be","the station does"],"Косвенные вопросы"],
-["When I was a child, we ___ go to the sea every summer.",["would","used","were used to","use to"],"Used to / would"],
-["The film was so long that I felt ___.",["bored","boring","bore","boredom"],"Прилагательные на -ing / -ed"],
-["It was a really ___ lecture.",["interesting","interested","interest","interestingly"],"Прилагательные на -ing / -ed"],
-["Who ___ you this present?",["gave","did give","did gave","gives to"],"Вопросы к подлежащему"],
-["You won't pass the exam ___ you study.",["unless","if","in case","provided"],"Unless / provided that / in case"],
-["Take a jacket ___ it gets cold.",["in case","unless","provided","as long"],"Unless / provided that / in case"],
-["You ___ bring food — we have plenty.",["needn't","mustn't","can't","shouldn't to"],"Needn't / mustn't"],
-["My parents didn't let me ___ out late.",["go","to go","going","went"],"Make / let / allow"],
-["We aren't allowed ___ phones in class.",["to use","use","using","used"],"Make / let / allow"],
-["___ my sister nor I like coffee.",["Neither","Either","Both","Not"],"Both … and / neither … nor"],
-["Choose the correct order.",["a beautiful old Italian table","an old beautiful Italian table","an Italian beautiful old table","a beautiful Italian old table"],"Порядок прилагательных"]],
-B2:[
-["If I had studied medicine, I ___ a doctor now.",["would be","would have been","will be","am"],"Смешанные условные предложения"],
-["If she weren't so shy, she ___ to the party last night.",["would have come","would come","will come","came"],"Смешанные условные предложения"],
-["___ I known, I would have called you.",["Had","If","Should","Did"],"Условные предложения с инверсией"],
-["___ you need any help, please call me.",["Should","Would","Had","Were"],"Условные предложения с инверсией"],
-["I ___ call you, but I forgot.",["was going to","am going to","will","would have"],"Future in the Past"],
-["By next year, I ___ here for ten years.",["will have been working","will be working","have been working","will work"],"Future Perfect Continuous"],
-["When I got to the station, the train ___.",["had already left","already left","has already left","was already leaving"],"Повествовательные времена"],
-["He ___ to be the richest man in town.",["is said","says","is saying","said"],"Пассив с глаголами мнения"],
-["She ___ a prize for her work.",["was given","was gave","gave","has giving"],"Пассив с двумя дополнениями"],
-["He denied ___ the money.",["taking","to take","take","that he take"],"Глаголы речи: deny / admit / insist"],
-["She insisted on ___ the bill.",["paying","to pay","pay","that pay"],"Глаголы речи: deny / admit / insist"],
-["«I can help,» she said. → She said she ___ help.",["could","can","would can","may"],"Косвенная речь: модальные глаголы"],
-["You ___ bought milk — we already had some.",["needn't have","didn't need to","mustn't have","shouldn't"],"Needn't have / didn't need to"],
-["Be careful! You ___ fallen!",["could have","must have","should have","needn't have"],"Could have / must have / would have"],
-["Never ___ such a beautiful place.",["have I seen","I have seen","I saw","did I saw"],"Инверсия для эмфазы"],
-["Not only ___ late, but he also forgot the tickets.",["was he","he was","he did","did he was"],"Инверсия для эмфазы"],
-["No sooner had we sat down ___ the phone rang.",["than","when","then","that"],"Инверсия для эмфазы"],
-["Hardly ___ the house when it started to rain.",["had I left","I had left","I left","have I left"],"Инверсия для эмфазы"],
-["It was Mary ___ broke the window.",["who","which","what","whom she"],"Выделительные конструкции It is … who"],
-["What I need ___ a long holiday.",["is","are","be","being"],"Выделительные конструкции What …"],
-["I ___ like your new dress! It's lovely.",["do","am","does","did to"],"Эмфатическое do"],
-["___ along the beach, she found a beautiful shell.",["Walking","Walked","To walk","She walking"],"Причастный оборот с -ing (Participle I)"],
-["The woman ___ next to the window is my aunt.",["sitting","sat","sits","who sitting"],"Причастный оборот с -ing (Participle I)"],
-["___ in 1889, the Eiffel Tower is a symbol of Paris.",["Built","Building","Having built","To build"],"Причастный оборот с -ed (Participle II)"],
-["The letters ___ yesterday haven't arrived yet.",["sent","sending","were sent","send"],"Причастный оборот с -ed (Participle II)"],
-["___ her homework, she went out with friends.",["Having finished","Finished","Having finishing","To have finish"],"Having + V3"],
-["This is the house ___ I grew up.",["in which","which","in that","where in"],"Предлог + which / whom"],
-["I have two brothers, both of ___ live abroad.",["whom","who","them","which"],"Both of whom / some of which"],
-["He passed all his exams, ___ surprised everyone.",["which","what","that","who"],"Which ко всему предложению"],
-["It's essential ___ everyone arrives on time.",["that","what","which","if"],"It + прилагательное + that"],
-["I regret ___ you that your application was unsuccessful.",["to tell","telling","tell","told"],"Regret / go on / mean + -ing или to"],
-["After university, she went on ___ a famous lawyer.",["to become","becoming","become","became"],"Regret / go on / mean + -ing или to"],
-["I can't help ___ when I watch this video.",["laughing","to laugh","laugh","laughed"],"Can't help + -ing"],
-["I'm thinking ___ moving to Spain.",["about","for","to","in"],"Предлог + -ing"],
-["___ Mount Everest is the highest mountain in the world.",["—","The","A","An"],"Артикли: продвинутый уровень"],
-["___ life is full of surprises.",["—","The","A","An"],"Артикли: продвинутый уровень"],
-["The view from the top was ___ amazing!",["absolutely","very","fairly","a bit"],"Absolutely / very / fairly"],
-["Her dress is very similar ___ mine.",["to","with","as","than"],"Similar to / different from"],
-["This phone is ___ expensive as that one.",["twice as","two times more","twice more","double as"],"Twice as … as"],
-["I love coffee, ___ my husband prefers tea.",["whereas","despite","however","although of"],"Whereas / while"],
-["I won't go to the party, ___ they invite me.",["even if","even though","despite","however"],"Even if / even though"],
-["In spite of ___ he was ill, he went to work.",["the fact that","that","he","of"],"Despite the fact that"],
-["I'll have the mechanic ___ the car tomorrow.",["check","to check","checking","checked"],"Have somebody do something"],
-["I can't put up ___ this noise any longer.",["with","for","to","on"],"Трёхчастные фразовые глаголы"],
-["I wish you ___ interrupting me!",["would stop","stopped","stop","will stop"],"Wish + would"],
-["She looked at me as though she ___ a ghost.",["had seen","has seen","sees","would see"],"As if / as though"],
-["A number of students ___ absent today.",["are","is","was","has"],"A number of / the number of"],
-["The number of tourists ___ growing every year.",["is","are","were","have"],"A number of / the number of"],
-["It is essential that he ___ informed immediately.",["be","is","will be","being"],"Сослагательное наклонение"],
-["The doctor recommended that she ___ more water.",["drink","drank","to drink","drinking"],"Сослагательное наклонение"]],
-C1:[
-["The company's ___ to expand led to rapid growth.",["decision","deciding","decide","decided"],"Номинализация"],
-["There has been a significant ___ in prices this year.",["increase","increasing","increased","to increase"],"Номинализация"],
-["___, we decided to have a picnic.",["The weather being fine","The weather was fine","Being the weather fine","The weather fine being"],"Абсолютный причастный оборот"],
-["___, the meeting was cancelled.",["Her flight having been delayed","Her flight delayed having","Having her flight delayed","Her flight was delayed"],"Абсолютный причастный оборот"],
-["Only after the meeting ___ the truth.",["did I learn","I learned","I did learn","learned I"],"Инверсия: полный диапазон"],
-["Little ___ that she was being watched.",["did she know","she knew","she did know","knew she"],"Инверсия: полный диапазон"],
-["___ his anger that he couldn't speak.",["Such was","So was","Such is","So much was"],"Инверсия: полный диапазон"],
-["So difficult ___ that nobody passed.",["was the exam","the exam was","did the exam","the exam did"],"Инверсия: полный диапазон"],
-["Which sentence puts the object first for emphasis?",["That film I will never forget.","I will never forget that film.","Never I will forget that film.","That film never I forget."],"Вынесение в начало (fronting)"],
-["I need a new phone — this ___ is too old.",["one","it","ones","same"],"Эллипсис и замещение"],
-["___ your help, I would have failed.",["But for","Except","Unless","Without of"],"Условия без if: but for / otherwise"],
-["Leave now; ___ you'll miss the bus.",["otherwise","unless","if not so","in case"],"Условия без if: but for / otherwise"],
-["The President ___ visit Paris next month.",["is to","is going","will to","is about"],"Be to / be bound to / be about to"],
-["Don't worry, she's ___ to call — she always does.",["bound","due","about","able"],"Be to / be bound to / be about to"],
-["The bridge ___ completed in 2020, but the project was cancelled.",["was to have been","was to be","had to be","would be"],"Was to have done"],
-["He didn't answer the phone — he ___ driving at the time.",["could have been","could be","can have been","should be"],"Could have been doing"],
-["The plan is risky; ___, we will go ahead with it.",["nonetheless","whereby","albeit","insofar"],"Формальные связки"],
-["He accepted the offer, ___ reluctantly.",["albeit","although of","despite","whereas"],"Формальные связки"],
-["___ the bad weather, the event went ahead as planned.",["Notwithstanding","Although","Despite of","However"],"Формальные связки"],
-["___ hard I try, I can't remember his name.",["However","Whatever","Whenever","Although"],"Whatever / however / whoever"],
-["___ you decide, I'll support you.",["Whatever","However","Whichever of","Whoever"],"Whatever / however / whoever"],
-["They introduced a system ___ employees can work from home.",["whereby","wherein of","whose","which by"],"Whereby / wherein"],
-["He ___ fired for being late every day.",["got","became","had","did"],"Get-passive"],
-["She hates ___ told what to do.",["being","to be","be","been"],"Пассивный инфинитив и герундий"],
-["It ___ that the economy will grow next year.",["is expected","expects","is expecting","expected"],"Безличный пассив"],
-["There was speculation ___ the minister would resign.",["that","which","what","of"],"Номинализация в косвенной речи"],
-["It wasn't until I got home ___ I realised my phone was missing.",["that","when","then","what"],"Эмфатические конструкции"],
-["All I want ___ some peace and quiet.",["is","are","be","being"],"Эмфатические конструкции"],
-["Such mistakes are not ___ among beginners.",["uncommon","common","rare","unusually"],"Двойное отрицание (литота)"],
-["It ___ that the results are not entirely reliable.",["could be argued","could argue","is arguing","argues"],"Академическое смягчение (hedging)"],
-["He was promoted by ___ his experience.",["virtue of","regard to","terms of","grounds that"],"Формальные предложные обороты"],
-["The manager demanded that he ___ immediately.",["leave","leaves","left","to leave"],"Сослагательное наклонение: полный диапазон"],
-["Were the plan ___, we would need more staff.",["to go ahead","going ahead","go ahead","gone ahead"],"Сослагательное наклонение: полный диапазон"],
-["Researchers ___ this problem for decades and still have no answer.",["have been studying","studied","are studying","had studied"],"Аспектуальные нюансы"],
-["The sequel is nothing ___ as good as the original.",["like","near","close","so"],"Сравнения: предельный уровень"],
-["The view was no less impressive ___ the photos had promised.",["than","as","that","then"],"Сравнения: предельный уровень"]]};
-
-var READ={
-low:{title:"Письмо от подруги",text:"Hi Kate!<br><br>I'm in Barcelona with my sister. Our hotel is small but very nice, and it is near the beach. Every morning we have breakfast on the balcony. Yesterday we visited a famous church and had lunch in a market. The weather is hot, so tomorrow we want to swim in the sea. We fly home on Sunday.<br><br>See you next week!<br>Love, Anna",
- q:[["Who is Anna with?",["her sister","her friend Kate","her mother","nobody"]],
-    ["Where is the hotel?",["near the beach","in the market","near the airport","in the mountains"]],
-    ["What did they do yesterday?",["visited a church and a market","swam in the sea","stayed at the hotel","flew home"]],
-    ["When do they go home?",["on Sunday","tomorrow","next month","on Monday"]]]},
-mid:{title:"Статья о работе из дома",text:"When Laura started working from home three years ago, she thought it would be perfect. No more crowded trains, no more expensive lunches. But after a few months, she realised she missed her colleagues. «I didn't expect to feel so lonely,» she says. Now she works from a café two days a week and goes to the office on Fridays. She says the mix has made her more productive, and she has started to enjoy her job again. Experts agree that, for many people, a balance between home and office works best.",
- q:[["Why did Laura like the idea of working from home at first?",["She didn't have to travel on crowded trains","She could earn more money","Her colleagues visited her","She could sleep all day"]],
-    ["What problem did she have?",["She felt lonely","She worked too slowly","Her internet was bad","She spent too much on lunch"]],
-    ["Where does she work on Fridays?",["at the office","at home","in a café","on the train"]],
-    ["What is the main idea of the text?",["A mix of home and office can work best","Working from home is always better","Offices will soon disappear","Cafés are good places for meetings"]]]},
-high:{title:"Научно-популярная статья",text:"The idea that we only use ten per cent of our brains is one of the most persistent myths in popular science. Neuroscientists have repeatedly debunked it: brain scans show that even simple tasks activate multiple regions, and over the course of a day virtually every part of the brain is put to work. Why, then, does the myth endure? Part of its appeal lies in the flattering promise it makes — that each of us harbours vast untapped potential, waiting to be unlocked by the right technique or product. Unsurprisingly, it has been seized upon by advertisers and self-help gurus alike. Yet the truth is arguably more encouraging: rather than lying dormant, our brains are remarkably adaptable, capable of forming new connections throughout our lives.",
- q:[["What do brain scans show?",["Many parts of the brain are active even during simple tasks","We use only ten per cent of the brain","The brain rests most of the day","Simple tasks use only one region"]],
-    ["The word «debunked» is closest in meaning to…",["shown to be false","supported","ignored","explained in detail"]],
-    ["Why does the myth remain popular?",["It suggests that people have hidden potential","Scientists keep repeating it","It is taught at school","It is impossible to test"]],
-    ["What is the author's view?",["The truth is more encouraging than the myth","The truth is disappointing","Nobody knows the truth","The myth is more interesting than the truth"]]]}};
-
-var LISTEN={
-low:{title:"В кафе",rate:.82,lines:[["R","Hi! Can I have a coffee, please?"],["T","Of course. Small or large?"],["R","Large, please. With milk."],["T","Anything else?"],["R","Yes, a piece of chocolate cake. How much is that?"],["T","That's six pounds fifty."],["R","Here you are."],["T","Thank you. Have a nice day!"]],
- q:[["What size coffee does the woman want?",["large","small","medium","she doesn't want coffee"]],
-    ["What does she want to eat?",["chocolate cake","a sandwich","an apple pie","nothing"]],
-    ["How much does she pay?",["£6.50","£5.60","£16.50","£6.15"]],
-    ["Does she want milk?",["yes","no","only sugar","she doesn't say"]]]},
-mid:{title:"Разговор об отпуске",rate:.92,lines:[["T","So, Rachel, did you have a good holiday?"],["R","It was lovely, thanks. We were supposed to go to Spain, but our flight was cancelled, so we ended up driving to Scotland instead."],["T","Scotland! That's quite different."],["R","I know, and it rained almost every day. But honestly, the scenery was amazing, and we stayed in a little cottage by a lake."],["T","Would you go back?"],["R","Definitely. Next time I'll pack better boots, though!"]],
- q:[["Why didn't they go to Spain?",["Their flight was cancelled","It was too expensive","The weather was bad","They changed their minds"]],
-    ["How did they get to Scotland?",["by car","by plane","by train","by boat"]],
-    ["Where did they stay?",["in a cottage by a lake","in a city hotel","with friends","in a tent"]],
-    ["What will Rachel do differently next time?",["pack better boots","go in summer","fly there","stay longer"]]]},
-high:{title:"Подкаст о четырёхдневной рабочей неделе",rate:1,lines:[["T","Today we're talking about the four-day working week. Rachel, you've been researching this."],["R","That's right. Several large trials have now been completed, and the results are fairly striking. In most companies, productivity held steady or even rose slightly, while staff reported far lower levels of burnout."],["T","So why isn't everyone doing it?"],["R","Well, it's not a one-size-fits-all solution. It works well in offices, but in sectors like healthcare, where someone has to be there around the clock, it's much harder to implement without hiring more people. And some managers remain sceptical — they worry that the early enthusiasm will wear off."],["T","Do you think it'll catch on?"],["R","Gradually, yes. I suspect we'll see it adopted sector by sector rather than overnight."]],
- q:[["What happened to productivity in most trials?",["It stayed the same or rose slightly","It fell sharply","It doubled","It wasn't measured"]],
-    ["Why is it harder to introduce in healthcare?",["Someone has to be at work all the time","Doctors don't want it","It's too expensive to measure","Hospitals are too small"]],
-    ["What do some managers worry about?",["The positive effect may not last","Staff will leave","Salaries will rise","Customers will complain"]],
-    ["How does Rachel think the idea will spread?",["Gradually, sector by sector","Overnight in all industries","It won't spread at all","Only in healthcare"]]]}};
-
 var WEAK=["Плохо понимаю речь на слух","Читаю с неправильным произношением","Знаю слова, но не могу говорить — не хватает разговорной практики","Не умею грамотно писать и вести переписку на английском (пунктуация, письма, сообщения)","Слова плохо запоминаются, мало работаю с лексикой","Не могу разобраться в материалах: смотрю всё подряд на YouTube (влоги, Vogue, Harper's Bazaar, GQ), а это рассчитано на носителей языка","Сложно с грамматикой: путаюсь во временах и правилах"];
 var FMT=["Индивидуально","В мини-группе (до 4 человек)","Пока не решила, хочу посоветоваться с преподавателем"];
 var EXP=["Не было, начинаю с нуля","Учила в школе","Учила в университете","Ходила на курсы","Занималась с репетитором","Учила самостоятельно (приложения, YouTube, книги)"];
@@ -463,7 +203,7 @@ function nextStage(){
  if(idx.length<PER){var alt=[S.L+1,S.L-1].filter(function(k){return k>=0&&k<5&&pickStage(LV[k]).length>=PER})[0];
    if(alt===undefined)return startReading();S.L=alt;lv=LV[S.L];idx=pickStage(lv)}
  idx.forEach(function(i){S.seen[lv][i]=1});
- S.stageQs=idx.map(function(i){var q=BANK[lv][i];return {q:q[0],ok:q[1][0],opts:shuffle(q[1]),topic:q[2],lv:lv}});
+ S.stageQs=idx.map(function(i){var q=BANK[lv][i];return {q:q[0],ok:q[1][0],opts:shuffle(q[1]),topic:q[2],lv:lv,bi:i}});
  S.qi=0;question()}
 function question(){
  var total=STAGES*PER,done=S.stage*PER+S.qi,it=S.stageQs[S.qi];
@@ -476,7 +216,7 @@ function question(){
  var nb=document.getElementById("next");
  [].forEach.call(document.querySelectorAll('input[name=a]'),function(r){r.onchange=function(){nb.disabled=false}});
  nb.onclick=function(){var ch=document.querySelector('input[name=a]:checked');var v=ch?+ch.value:0;
-  var ans=v<0?"(не знаю)":it.opts[v];S.answers.push({lv:it.lv,q:it.q,ans:ans,ok:ans===it.ok,right:it.ok,topic:it.topic});
+  var ans=v<0?"(не знаю)":it.opts[v];S.answers.push({lv:it.lv,q:it.q,ans:ans,ok:ans===it.ok,right:it.ok,topic:it.topic,bi:it.bi,oi:v<0?-1:BANK[it.lv][it.bi][1].indexOf(ans)});
   S.qi++;if(S.qi<PER)return question();
   var sc=S.answers.slice(-PER).filter(function(a){return a.ok}).length;S.stages.push({lv:LV[S.L],score:sc});
   if(sc>=5&&S.L<4)S.L++;else if(sc<=2&&S.L>0)S.L--;
@@ -490,7 +230,7 @@ function band(g){return g<=1?"low":g==2?"mid":"high"}
 /* ---------- 3. чтение ---------- */
 function startReading(){S.gl=grammarLevel();S.read=band(S.gl.g);S.rAns=[];reading()}
 function qblock(qs,name){return qs.map(function(q,k){var o=shuffle(q[1]);q._o=o;return '<div class="rq"><p>'+(k+1)+'. '+esc(q[0])+'</p><div class="opts">'+o.map(function(x,i){return '<label class="opt"><input type="radio" name="'+name+k+'" value="'+i+'"><span>'+esc(x)+'</span></label>'}).join("")+'</div></div>'}).join("")}
-function collect(qs,name){var out=[];for(var k=0;k<qs.length;k++){var c=document.querySelector('input[name='+name+k+']:checked');if(!c){if(!PREVIEW)return null;out.push({q:qs[k][0],ans:qs[k]._o[0],ok:qs[k]._o[0]===qs[k][1][0],right:qs[k][1][0]});continue}var a=qs[k]._o[+c.value];out.push({q:qs[k][0],ans:a,ok:a===qs[k][1][0],right:qs[k][1][0]})}return out}
+function collect(qs,name){var out=[];for(var k=0;k<qs.length;k++){var c=document.querySelector('input[name='+name+k+']:checked');if(!c){if(!PREVIEW)return null;out.push({q:qs[k][0],ans:qs[k]._o[0],ok:qs[k]._o[0]===qs[k][1][0],right:qs[k][1][0],oi:qs[k][1].indexOf(qs[k]._o[0])});continue}var a=qs[k]._o[+c.value];out.push({q:qs[k][0],ans:a,ok:a===qs[k][1][0],right:qs[k][1][0],oi:qs[k][1].indexOf(a)})}return out}
 function reading(){var R=READ[S.read];
  render(steps(2)+'<span class="kicker">Часть 3 из 4 · чтение</span><h2>'+R.title+'</h2><p class="muted">Прочитайте текст и ответьте на вопросы.</p><div class="text" lang="en">'+R.text+'</div>'+qblock(R.q,"r")+
  '<div class="err" id="err"></div><div class="nav"><span></span><button class="btn" id="next">Далее</button></div>');
@@ -548,6 +288,11 @@ function result(){
  '<div class="mgr" id="mgr"><p class="mt">Чтобы наш менеджер связался с вами, оставьте номер WhatsApp:</p><form id="phf" class="phf"><label for="ph" class="sr">Номер WhatsApp</label><input type="tel" id="ph" inputmode="tel" autocomplete="tel" placeholder="+1 555 123 4567"><button class="btn mg" type="submit">Отправить</button></form><div class="err" id="pherr"></div></div>'+
  '<div class="nav"><a class="btn o" href="../">На главную</a><a class="btn" href="https://wa.me/'+WA+'" target="_blank" rel="noopener">Записаться на пробное занятие</a></div>');
  bindPhone();send()}
+function reportLink(phone){var f=S.form,r=S.res;
+ var d={v:1,t:Date.now(),n:f.name,a:f.age,fm:f.fmt||"",ex:f.exp||[],wh:f.when||"",wk:(f.weak||[]).concat(f.weako?[f.weako]:[]),st:f.str||"",go:f.goal||"",xp:f.expect||"",ph:phone||"",
+  lv:r.lv,G:r.G,g:S.answers.map(function(x){return [LV.indexOf(x.lv),x.bi,x.oi]}),rb:S.read,r:S.rAns.map(function(x){return x.oi}),lb:S.listen,l:S.lAns.map(function(x){return x.oi})};
+ var b=btoa(unescape(encodeURIComponent(JSON.stringify(d)))).replace(/\+/g,"-").replace(/\//g,"_").replace(/=+$/,"");
+ return "https://we-talk.ru/report/#"+b}
 function report(){var f=S.form,r=S.res;
  var lines=["Имя: "+f.name,"Возраст: "+f.age,"Формат обучения: "+(f.fmt||"—"),"WhatsApp: "+(f.phone||"—"),"Опыт: "+(f.exp.join("; ")||"—"),"Как давно: "+(f.when||"—"),"Слабые стороны: "+(f.weak.concat(f.weako?[f.weako]:[]).join("; ")||"—"),"Сильные стороны: "+(f.str||"—"),"Что подтянуть: "+(f.goal||"—"),"Ожидания: "+(f.expect||"—"),"",
   "ОРИЕНТИРОВОЧНЫЙ УРОВЕНЬ: "+r.lv+" ("+LVNAME[r.lv]+")","Грамматика и лексика: "+r.gOk+"/"+r.gN+" (уровень по грамматике: "+r.G+")","Чтение: "+r.rs+"/4 (текст "+S.read+")","Аудирование: "+r.ls+"/4 (запись "+S.listen+")","Блоки теста: "+S.stages.map(function(s){return s.lv+" "+s.score+"/6"}).join(", "),"",
@@ -561,12 +306,12 @@ function bindPhone(){var f=document.getElementById("phf");if(!f)return;f.onsubmi
  var box=document.getElementById("mgr"),done=function(){box.innerHTML='<p class="ok">✓ Спасибо! Мы напишем вам в WhatsApp: '+esc(v)+'</p>'};
  if(PREVIEW){done();return}
  var r=S.res,fm=S.form;f.querySelector("button").disabled=true;
- fetch("https://api.web3forms.com/submit",{method:"POST",headers:{"Content-Type":"application/json",Accept:"application/json"},body:JSON.stringify({access_key:ACCESS_KEY,subject:"WhatsApp: "+fm.name+" — "+v,from_name:"We Talk — тест уровня",botcheck:"","Имя":fm.name,"Возраст":fm.age,"WhatsApp":v,"Формат":fm.fmt||"—","Уровень":r.lv+" ("+LVNAME[r.lv]+")","Отчёт":report()})})
+ fetch("https://api.web3forms.com/submit",{method:"POST",headers:{"Content-Type":"application/json",Accept:"application/json"},body:JSON.stringify({access_key:ACCESS_KEY,subject:"WhatsApp: "+fm.name+" — "+v,from_name:"We Talk — тест уровня",botcheck:"","Открыть подробный отчёт":reportLink(v),"Имя":fm.name,"Возраст":fm.age,"WhatsApp":v,"Формат":fm.fmt||"—","Уровень":r.lv+" ("+LVNAME[r.lv]+")","Отчёт":report()})})
  .then(function(x){return x.json()}).then(function(j){if(j&&j.success)done();else throw 0})
  .catch(function(){f.querySelector("button").disabled=false;er.innerHTML='Не получилось отправить. Попробуйте ещё раз или <a href="https://wa.me/'+WA+'" target="_blank" rel="noopener">напишите нам в WhatsApp</a>.'})}}
 function send(){var box=document.getElementById("send"),f=S.form,r=S.res,txt=report();
  var data={access_key:ACCESS_KEY,subject:"Тест We Talk: "+f.name+", "+f.age+" — "+r.lv,from_name:"We Talk — тест уровня",botcheck:"",
-  "Имя":f.name,"Возраст":f.age,"Формат":f.fmt||"—","Уровень":r.lv+" ("+LVNAME[r.lv]+")","Отчёт":txt};
+  "Открыть подробный отчёт":reportLink(""),"Имя":f.name,"Возраст":f.age,"Формат":f.fmt||"—","Уровень":r.lv+" ("+LVNAME[r.lv]+")","Отчёт (текстом)":txt};
  fetch("https://api.web3forms.com/submit",{method:"POST",headers:{"Content-Type":"application/json",Accept:"application/json"},body:JSON.stringify(data)})
  .then(function(x){return x.json()}).then(function(j){if(j&&j.success){box.className="send ok";box.textContent="✓ Ваши ответы успешно отправлены."}else throw 0})
  .catch(function(){box.className="send bad";var wa="https://wa.me/"+WA+"?text="+encodeURIComponent("Здравствуйте! Я прошла тест на сайте We Talk.\n\n"+txt.slice(0,1800));
@@ -582,13 +327,13 @@ if(PREVIEW){
  function demoRead(b){demoForm();S.answers=[];S.gl={g:{low:1,mid:2,high:3}[b],by:{}};S.read=b;S.rAns=[];reading()}
  function demoListen(b){demoForm();S.gl={g:{low:1,mid:2,high:3}[b],by:{}};S.listen=b;S.lAns=[];S.plays=0;listening()}
  function demoResult(lv){demoForm();var k=LV.indexOf(lv);S.answers=[];S.stages=[];
-  [0,1,2,3,4].forEach(function(i){var L=LV[Math.max(0,Math.min(4,k-1+(i>2?1:0)))];BANK[L].slice(i*2,i*2+6).forEach(function(q,j){var ok=j<4;S.answers.push({lv:L,q:q[0],ans:ok?q[1][0]:q[1][1],ok:ok,right:q[1][0],topic:q[2]})})});
-  S.gl={g:k,by:{},low:false};var b=band(k);S.read=b;S.listen=b;S.rAns=[1,1,1,0].map(function(o){return{ok:!!o,q:"",ans:"",right:""}});S.lAns=[1,1,0,1].map(function(o){return{ok:!!o,q:"",ans:"",right:""}});result()}
+  [0,1,2,3,4].forEach(function(i){var L=LV[Math.max(0,Math.min(4,k-1+(i>2?1:0)))];BANK[L].slice(i*2,i*2+6).forEach(function(q,j){var ok=j<4;S.answers.push({lv:L,q:q[0],ans:ok?q[1][0]:q[1][1],ok:ok,right:q[1][0],topic:q[2],bi:i*2+j,oi:ok?0:1})})});
+  S.gl={g:k,by:{},low:false};var b=band(k);S.read=b;S.listen=b;S.rAns=[1,1,1,0].map(function(o){return{ok:!!o,q:"",ans:"",right:"",oi:o?0:2}});S.lAns=[1,1,0,1].map(function(o){return{ok:!!o,q:"",ans:"",right:"",oi:o?0:1}});result()}
  var bar=document.createElement("div");bar.className="pvbar";
  var B=[["Начало",intro],["Анкета",function(){demoForm();survey()}],["Вопросы A1",function(){demoGrammar(0)}],["A2",function(){demoGrammar(1)}],["B1",function(){demoGrammar(2)}],["B2",function(){demoGrammar(3)}],["C1",function(){demoGrammar(4)}],
   ["Чтение: простое",function(){demoRead("low")}],["среднее",function(){demoRead("mid")}],["сложное",function(){demoRead("high")}],
   ["Аудирование: простое",function(){demoListen("low")}],["среднее",function(){demoListen("mid")}],["сложное",function(){demoListen("high")}],
-  ["Результат A1",function(){demoResult("A1")}],["A2",function(){demoResult("A2")}],["B1",function(){demoResult("B1")}],["B2",function(){demoResult("B2")}],["C1",function(){demoResult("C1")}]];
+  ["Отчёт для преподавателя",function(){demoResult("B1");window.open(reportLink("+1 555 123 4567").replace("https://we-talk.ru/","../"),"_blank")}],["Результат A1",function(){demoResult("A1")}],["A2",function(){demoResult("A2")}],["B1",function(){demoResult("B1")}],["B2",function(){demoResult("B2")}],["C1",function(){demoResult("C1")}]];
  bar.innerHTML='<b>Просмотр страниц теста</b>'+B.map(function(x,i){return '<button type="button" data-i="'+i+'">'+x[0]+'</button>'}).join("");
  bar.addEventListener("click",function(e){var t=e.target.closest("button");if(t){B[+t.dataset.i][1]()}});
  document.body.appendChild(bar);
