@@ -293,6 +293,12 @@ function reportLink(phone){var f=S.form,r=S.res;
   lv:r.lv,G:r.G,g:S.answers.map(function(x){return [LV.indexOf(x.lv),x.bi,x.oi]}),rb:S.read,r:S.rAns.map(function(x){return x.oi}),lb:S.listen,l:S.lAns.map(function(x){return x.oi})};
  var b=btoa(unescape(encodeURIComponent(JSON.stringify(d)))).replace(/\+/g,"-").replace(/\//g,"_").replace(/=+$/,"");
  return "https://we-talk.ru/report/#"+b}
+var FB={key:"AIzaSyBEanHZ8htwiHQEBwflUwbmIfRAtezEseo",pid:"wetalk-ba8d5"};
+function shortLink(phone,cb,tries){tries=tries||0;var long=reportLink(phone),b=long.split("#")[1];
+ var A="abcdefghjkmnpqrstuvwxyz23456789",id="";for(var i=0;i<6;i++)id+=A[Math.floor(Math.random()*A.length)];
+ var done=false,fin=function(v){if(!done){done=true;cb(v)}};setTimeout(function(){fin(long)},6000);
+ fetch("https://firestore.googleapis.com/v1/projects/"+FB.pid+"/databases/(default)/documents/reports?documentId="+id+"&key="+FB.key,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({fields:{d:{stringValue:b},t:{integerValue:String(Date.now())}}})})
+ .then(function(x){if(x.ok)fin("https://we-talk.ru/r/?"+id);else if(x.status===409&&tries<3)shortLink(phone,fin,tries+1);else fin(long)}).catch(function(){fin(long)})}
 function report(){var f=S.form,r=S.res;
  var lines=["Имя: "+f.name,"Возраст: "+f.age,"Формат обучения: "+(f.fmt||"—"),"WhatsApp: "+(f.phone||"—"),"Опыт: "+(f.exp.join("; ")||"—"),"Как давно: "+(f.when||"—"),"Слабые стороны: "+(f.weak.concat(f.weako?[f.weako]:[]).join("; ")||"—"),"Сильные стороны: "+(f.str||"—"),"Что подтянуть: "+(f.goal||"—"),"Ожидания: "+(f.expect||"—"),"",
   "ОРИЕНТИРОВОЧНЫЙ УРОВЕНЬ: "+r.lv+" ("+LVNAME[r.lv]+")","Грамматика и лексика: "+r.gOk+"/"+r.gN+" (уровень по грамматике: "+r.G+")","Чтение: "+r.rs+"/4 (текст "+S.read+")","Аудирование: "+r.ls+"/4 (запись "+S.listen+")","Блоки теста: "+S.stages.map(function(s){return s.lv+" "+s.score+"/6"}).join(", "),"",
@@ -306,17 +312,19 @@ function bindPhone(){var f=document.getElementById("phf");if(!f)return;f.onsubmi
  var box=document.getElementById("mgr"),done=function(){box.innerHTML='<p class="ok">✓ Спасибо! Мы напишем вам в WhatsApp: '+esc(v)+'</p>'};
  if(PREVIEW){done();return}
  var r=S.res,fm=S.form;f.querySelector("button").disabled=true;
- fetch("https://api.web3forms.com/submit",{method:"POST",headers:{"Content-Type":"application/json",Accept:"application/json"},body:JSON.stringify({access_key:ACCESS_KEY,subject:"WhatsApp: "+fm.name+" — "+v,from_name:"We Talk — тест уровня",botcheck:"","Открыть подробный отчёт":reportLink(v),"Имя":fm.name,"Возраст":fm.age,"WhatsApp":v,"Формат":fm.fmt||"—","Уровень":r.lv+" ("+LVNAME[r.lv]+")","Отчёт":report()})})
+ shortLink(v,function(link){
+ fetch("https://api.web3forms.com/submit",{method:"POST",headers:{"Content-Type":"application/json",Accept:"application/json"},body:JSON.stringify({access_key:ACCESS_KEY,subject:"WhatsApp: "+fm.name+" — "+v,from_name:"We Talk — тест уровня",botcheck:"","Открыть подробный отчёт":link,"Имя":fm.name,"Возраст":fm.age,"WhatsApp":v,"Формат":fm.fmt||"—","Уровень":r.lv+" ("+LVNAME[r.lv]+")","Отчёт":report()})})
  .then(function(x){return x.json()}).then(function(j){if(j&&j.success)done();else throw 0})
- .catch(function(){f.querySelector("button").disabled=false;er.innerHTML='Не получилось отправить. Попробуйте ещё раз или <a href="https://wa.me/'+WA+'" target="_blank" rel="noopener">напишите нам в WhatsApp</a>.'})}}
-function send(){var box=document.getElementById("send"),f=S.form,r=S.res,txt=report();
+ .catch(function(){f.querySelector("button").disabled=false;er.innerHTML='Не получилось отправить. Попробуйте ещё раз или <a href="https://wa.me/'+WA+'" target="_blank" rel="noopener">напишите нам в WhatsApp</a>.'})})}}
+function send(link){var box=document.getElementById("send"),f=S.form,r=S.res,txt=report();
+ if(!link){shortLink("",function(l){send(l)});return}
  var data={access_key:ACCESS_KEY,subject:"Тест We Talk: "+f.name+", "+f.age+" — "+r.lv,from_name:"We Talk — тест уровня",botcheck:"",
-  "Открыть подробный отчёт":reportLink(""),"Имя":f.name,"Возраст":f.age,"Формат":f.fmt||"—","Уровень":r.lv+" ("+LVNAME[r.lv]+")","Отчёт (текстом)":txt};
+  "Открыть подробный отчёт":link,"Имя":f.name,"Возраст":f.age,"Формат":f.fmt||"—","Уровень":r.lv+" ("+LVNAME[r.lv]+")","Отчёт (текстом)":txt};
  fetch("https://api.web3forms.com/submit",{method:"POST",headers:{"Content-Type":"application/json",Accept:"application/json"},body:JSON.stringify(data)})
  .then(function(x){return x.json()}).then(function(j){if(j&&j.success){box.className="send ok";box.textContent="✓ Ваши ответы успешно отправлены."}else throw 0})
  .catch(function(){box.className="send bad";var wa="https://wa.me/"+WA+"?text="+encodeURIComponent("Здравствуйте! Я прошла тест на сайте We Talk.\n\n"+txt.slice(0,1800));
   box.innerHTML='Не получилось отправить ответы автоматически. <button class="btn o" id="retry" style="margin:10px 8px 0 0;padding:10px 18px">Попробовать ещё раз</button><a class="btn" style="margin-top:10px;padding:10px 18px" target="_blank" rel="noopener" href="'+wa+'">Отправить в WhatsApp</a>';
-  document.getElementById("retry").onclick=function(){box.className="send";box.textContent="Отправляем…";send()}})}
+  document.getElementById("retry").onclick=function(){box.className="send";box.textContent="Отправляем…";send(link)}})}
 /* ---------- режим просмотра страниц (?preview / #preview) ---------- */
 var PREVIEW=/preview/.test(location.search+location.hash);
 if(PREVIEW){

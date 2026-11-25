@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex">
+<title>Отчёт — We Talk</title>
+<style>body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;font-family:'Times New Roman',Times,serif;color:#efe9dc;background:#1b2819;font-style:italic;font-size:18px;text-align:center;padding:20px}</style>
+</head><body><p id="m">Открываем отчёт…</p>
+<script>
+(function(){var id=(location.search.slice(1)||location.hash.slice(1)).replace(/[^a-z0-9]/gi,"");var m=document.getElementById("m");
+if(!id){m.textContent="В ссылке нет номера отчёта.";return}
+fetch("https://firestore.googleapis.com/v1/projects/wetalk-ba8d5/databases/(default)/documents/reports/"+id+"?key=AIzaSyBEanHZ8htwiHQEBwflUwbmIfRAtezEseo")
+.then(function(x){if(!x.ok)throw x.status;return x.json()})
+.then(function(j){location.replace("../report/#"+j.fields.d.stringValue)})
+.catch(function(e){m.textContent=e===404?"Отчёт не найден. Проверьте ссылку.":"Не получилось открыть отчёт. Проверьте интернет и обновите страницу."})})();
+</script></body></html>
