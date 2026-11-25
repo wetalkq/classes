@@ -286,7 +286,7 @@ function result(){
  (minus.length?'<h3 style="font-weight:400;font-style:italic;color:var(--orange);font-size:22px;margin:18px 0 4px">Над чем стоит поработать</h3><ul class="list">'+minus.map(function(x){return '<li>'+esc(x)+'</li>'}).join("")+'</ul>':'')+
  '<div class="note">Это ориентировочный результат по грамматике, лексике, чтению и аудированию. Говорение и письмо оценит преподаватель на пробном занятии. Помните: подтвердить ваш уровень могут только наши преподаватели-лингвисты.</div>'+
  
- '<div class="mgr" id="mgr"><p class="mt">Чтобы наш менеджер связался с вами, оставьте номер WhatsApp:</p><form id="phf" class="phf"><label for="ph" class="sr">Номер WhatsApp</label><input type="tel" id="ph" inputmode="tel" autocomplete="tel" placeholder="+1 555 123 4567"><button class="btn mg" type="submit">Отправить</button></form><div class="err" id="pherr"></div><button type="button" class="skip" id="skip">Отправить без номера</button></div>'+
+ '<div class="mgr" id="mgr"><p class="mt">Чтобы наш менеджер связался с вами, оставьте номер WhatsApp:</p><form id="phf" class="phf"><label for="ph" class="sr">Номер WhatsApp</label><input type="tel" id="ph" inputmode="tel" autocomplete="tel" placeholder="+1 555 123 4567"><button class="btn mg" type="submit">Отправить</button></form><div class="err" id="pherr"></div></div>'+
  '<div class="nav"><a class="btn o" href="../">На главную</a><a class="btn" href="https://wa.me/'+WA+'" target="_blank" rel="noopener">Записаться на пробное занятие</a></div>');
  bindPhone()}
 function reportLink(phone){var f=S.form,r=S.res;
